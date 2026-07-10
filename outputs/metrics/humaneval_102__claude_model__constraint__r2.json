@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def choose_num(x, y):\n    if x > y:\n        return -1\n    result = -1\n    for i in range(x, y + 1):\n        if i % 2 == 0:\n            result = i\n    return result",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.096154,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

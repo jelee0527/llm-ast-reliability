@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef max_fill(grid: List[List[int]], capacity: int) -> int:\n    \"\"\"\n    Given grid of 0/1 where each row is a well and each 1 is a unit of water,\n    and buckets of given capacity, return the number of times you need to\n    lower a bucket to empty all wells. Each lowering removes up to `capacity`\n    units from a single well.\n    \"\"\"\n    if not grid:\n        return 0\n    if capacity <= 0:\n        raise ValueError(\"capacity must be positive\")\n    total_lowerings = 0\n    for row in grid:\n        # count units in this well (row)\n        units = 0\n        for v in row:\n            if v:\n                units += 1\n        if units > 0:\n            # number of times to lower bucket for this well\n            lowers = (units + capacity - 1) // capacity\n            total_lowerings += lowers\n    return total_lowerings\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(max_fill([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1))  # expect 6\n    print(max_fill([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2))  # expect 5\n    print(max_fill([[0,0,0], [0,0,0]], 5))  # expect 0",
+  "metrics": {
+    "total_nodes": 188,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.053191,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

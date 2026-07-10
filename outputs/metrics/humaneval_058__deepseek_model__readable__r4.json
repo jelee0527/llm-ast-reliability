@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_058__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\"\"\"\n    set1 = set(l1)\n    set2 = set(l2)\n    common_elements = set1.intersection(set2)\n    return sorted(common_elements)",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.023256,
+    "function_names": [
+      "common"
+    ]
+  }
+}

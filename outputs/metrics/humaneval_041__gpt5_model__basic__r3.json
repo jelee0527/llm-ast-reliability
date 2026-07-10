@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    For n cars going left-to-right and n different cars going right-to-left on a line,\n    all at same speed, starting far apart but interleaved so every pair of opposite-direction\n    cars will meet exactly once as they pass through each other.\n    The number of collisions equals number of pairs between the two groups: n * n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n",
+  "metrics": {
+    "total_nodes": 45,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.111111,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

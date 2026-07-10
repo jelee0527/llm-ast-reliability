@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_099__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def closest_integer(value):\n    from decimal import Decimal, ROUND_HALF_UP\n    return int(Decimal(value).to_integral_value(rounding=ROUND_HALF_UP))",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='closest_integer',\n      args=arguments(\n        args=[\n          arg(arg='value')]),\n      body=[\n        ImportFrom(\n          module='decimal',\n          names=[\n            alias(name='Decimal'),\n            alias(name='ROUND_HALF_UP')],\n          level=0),\n        Return(\n          value=Call(\n            func=Name(id='int', ctx=Load()),\n            args=[\n              Call(\n                func=Attribute(\n                  value=Call(\n                    func=Name(id='Decimal', ctx=Load()),\n                    args=[\n                      Name(id='value', ctx=Load())]),\n                  attr='to_integral_value',\n                  ctx=Load()),\n                keywords=[\n                  keyword(\n                    arg='rounding',\n                    value=Name(id='ROUND_HALF_UP', ctx=Load()))])]))])])"
+}

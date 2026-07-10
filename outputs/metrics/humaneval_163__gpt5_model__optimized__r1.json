@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"a and b must be integers\")\n    if a <= 0 or b <= 0:\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = (a, b) if a <= b else (b, a)\n    # We only consider single-digit numbers (0-9)? The examples imply digits between a and b.\n    # Interpret \"even digits between a and b\" as even integers in [lo, hi] that are single-digit (0-9).\n    result = []\n    for d in range(max(0, lo), min(9, hi) + 1):\n        if d % 2 == 0:\n            result.append(d)\n    return result",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.059259,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

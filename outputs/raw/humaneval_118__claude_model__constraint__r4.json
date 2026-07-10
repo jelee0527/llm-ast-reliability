@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:03:48.340242+00:00",
+  "elapsed_seconds": 3.303,
+  "official_prompt": "\ndef get_closest_vowel(word):\n    \"\"\"You are given a word. Your task is to find the closest vowel that stands between \n    two consonants from the right side of the word (case sensitive).\n    \n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition. \n\n    You may assume that the given string contains English letter only.\n\n    Example:\n    get_closest_vowel(\"yogurt\") ==> \"u\"\n    get_closest_vowel(\"FULL\") ==> \"U\"\n    get_closest_vowel(\"quick\") ==> \"\"\n    get_closest_vowel(\"ab\") ==> \"\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef get_closest_vowel(word):\n    \"\"\"You are given a word. Your task is to find the closest vowel that stands between \n    two consonants from the right side of the word (case sensitive).\n    \n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition. \n\n    You may assume that the given string contains English letter only.\n\n    Example:\n    get_closest_vowel(\"yogurt\") ==> \"u\"\n    get_closest_vowel(\"FULL\") ==> \"U\"\n    get_closest_vowel(\"quick\") ==> \"\"\n    get_closest_vowel(\"ab\") ==> \"\"\n    \"\"\"\n\n",
+  "raw_response": "def get_closest_vowel(word):\n    vowels = set('aeiouAEIOU')\n    \n    # We need to find the closest vowel from the right that is between two consonants\n    # Vowels at beginning and ending don't count\n    # So we look from index 1 to len(word)-2 (inclusive), scanning from right to left\n    \n    for i in range(len(word) - 2, 0, -1):\n        char = word[i]\n        if char in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if left not in vowels and right not in vowels:\n                return char\n    \n    return \"\"",
+  "generated_code": "def get_closest_vowel(word):\n    vowels = set('aeiouAEIOU')\n    \n    # We need to find the closest vowel from the right that is between two consonants\n    # Vowels at beginning and ending don't count\n    # So we look from index 1 to len(word)-2 (inclusive), scanning from right to left\n    \n    for i in range(len(word) - 2, 0, -1):\n        char = word[i]\n        if char in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if left not in vowels and right not in vowels:\n                return char\n    \n    return \"\""
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\nWORD_TO_INT = {\n    'zero': 0,\n    'one': 1,\n    'two': 2,\n    'three': 3,\n    'four': 4,\n    'five': 5,\n    'six': 6,\n    'seven': 7,\n    'eight': 8,\n    'nine': 9,\n}\n\nINT_TO_WORD = {v: k for k, v in WORD_TO_INT.items()}\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\"Input is a space-delimited string of numerals from 'zero' to 'nine'.\n    Return the string with numbers sorted from smallest to largest.\n    \"\"\"\n    if not numbers:\n        return ''\n    # Split on whitespace, ignore extra spaces\n    tokens: List[str] = [tok for tok in numbers.split() if tok]\n    # Map words to integers, validating tokens\n    try:\n        ints: List[int] = [WORD_TO_INT[tok] for tok in tokens]\n    except KeyError as e:\n        raise ValueError(f\"Invalid numeral word: {e.args[0]}\") from None\n    # Sort integers\n    ints.sort()\n    # Map back to words\n    sorted_words: List[str] = [INT_TO_WORD[i] for i in ints]\n    return ' '.join(sorted_words)\n\n\n# Example usage for quick manual test (will not run when imported):\nif __name__ == \"__main__\":\n    print(sort_numbers('three one five'))  # expected: 'one three five'",
+  "metrics": {
+    "total_nodes": 173,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.034682,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

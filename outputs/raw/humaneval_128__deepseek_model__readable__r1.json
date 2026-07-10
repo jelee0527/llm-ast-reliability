@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:58:23.712526+00:00",
+  "elapsed_seconds": 1.546,
+  "official_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef prod_signs(arr):\n    if not arr:\n        return None\n    \n    product_of_signs = 1\n    sum_of_magnitudes = 0\n    \n    for num in arr:\n        if num > 0:\n            product_of_signs *= 1\n        elif num < 0:\n            product_of_signs *= -1\n        else:\n            product_of_signs *= 0\n        \n        sum_of_magnitudes += abs(num)\n    \n    return sum_of_magnitudes * product_of_signs\n```",
+  "generated_code": "def prod_signs(arr):\n    if not arr:\n        return None\n    \n    product_of_signs = 1\n    sum_of_magnitudes = 0\n    \n    for num in arr:\n        if num > 0:\n            product_of_signs *= 1\n        elif num < 0:\n            product_of_signs *= -1\n        else:\n            product_of_signs *= 0\n        \n        sum_of_magnitudes += abs(num)\n    \n    return sum_of_magnitudes * product_of_signs"
+}

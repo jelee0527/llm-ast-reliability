@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__claude_model__concise__r4.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def skjkasdkd(lst):\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        for i in range(3, int(n**0.5) + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n    \n    largest_prime = 0\n    for num in lst:\n        if is_prime(num) and num > largest_prime:\n            largest_prime = num\n    \n    return sum(int(d) for d in str(largest_prime))",
+  "metrics": {
+    "total_nodes": 113,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.115044,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

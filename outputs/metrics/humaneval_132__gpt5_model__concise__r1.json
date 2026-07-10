@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    # We need a subsequence (not necessarily contiguous) that is a valid bracket sequence\n    # and has at least one nested pair. That means there exist indices i<j<k<l with\n    # string[i]=='[', string[j]=='[', string[k]==']', string[l]==']' and choosing those four\n    # yields \"[[]]\" pattern as subsequence. So we need two '[' before two ']' with interleaving.\n    # Equivalent: find positions of '[' and ']' such that there are at least two '[' before some ']',\n    # and after that ']' there is another ']' (or more generally two ']' after the first of those).\n    # More robust approach: iterate and track count of '[' seen; when we see a ']' and count_of_open>=2 -> nested True.\n    # But ensure order of closing: we need one ']' to close inner, one later to close outer. Seeing a ']' with open>=2 indicates a possible inner close,\n    # and if there remains at least one ']' later in string, it's True.\n    # Implement by scanning for first time open_count>=2 and then a ']' occurs at position p, then check if any ']' exists after p.\n    opens = 0\n    n = len(string)\n    for i,ch in enumerate(string):\n        if ch == '[':\n            opens += 1\n        elif ch == ']':\n            if opens >= 2:\n                # Found a potential inner closing at i; check if there's any ']' after i\n                if ']' in string[i+1:]:\n                    return True\n            # decrease opens if possible for subsequence building (we can choose to match)\n            if opens > 0:\n                opens -= 1\n    return False\n\n# Quick self-tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        '[[]]': True,\n        '[]]]]]]][[[[[]': False,\n        '[][]': False,\n        '[]': False,\n        '[[][]]': True,\n        '[[]][[': True\n    }\n    for s, expected in tests.items():\n        print(s, is_nested(s), expected)",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 13,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.075188,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

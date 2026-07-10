@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef incr_list(l: List[int]) -> List[int]:\n    \"\"\"Return list with elements incremented by 1.\"\"\"\n    return [x + 1 for x in l]\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 46,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

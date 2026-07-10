@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_039__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    def is_prime(k: int) -> bool:\n        if k <= 1:\n            return False\n        if k <= 3:\n            return True\n        if k % 2 == 0:\n            return False\n        # check up to sqrt\n        r = int(math.isqrt(k))\n        f = 3\n        while f <= r:\n            if k % f == 0:\n                return False\n            f += 2\n        return True\n\n    count = 0\n    a, b = 0, 1\n    # iterate Fibonacci numbers until we find n primes\n    while True:\n        # next Fibonacci\n        a, b = b, a + b\n        if a >= 2 and is_prime(a):\n            count += 1\n            if count == n:\n                return a",
+  "metrics": {
+    "total_nodes": 175,
+    "ast_depth": 9,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.102857,
+    "function_names": [
+      "prime_fib",
+      "is_prime"
+    ]
+  }
+}

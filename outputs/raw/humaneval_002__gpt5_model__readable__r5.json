@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:24:40.944275+00:00",
+  "elapsed_seconds": 3.495,
+  "official_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n\n",
+  "raw_response": "from math import floor, modf\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n\n    The decimal part is the fractional remainder after removing the integer part.\n    For example:\n    truncate_number(3.5) -> 0.5\n    truncate_number(2.0) -> 0.0\n    truncate_number(0.75) -> 0.75\n\n    The function handles positive numbers. For robustness it accepts any real\n    number and returns the fractional part with the same sign as the input's\n    fractional component (so negative numbers yield a negative fractional part).\n    \"\"\"\n    # Use math.modf which returns (fractional_part, integer_part)\n    fractional, _ = modf(number)\n    # For exact integers this will be 0.0 (or -0.0 for negative integers).\n    # Normalize -0.0 to 0.0\n    if fractional == 0.0:\n        return 0.0\n    return fractional",
+  "generated_code": "from math import floor, modf\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n\n    The decimal part is the fractional remainder after removing the integer part.\n    For example:\n    truncate_number(3.5) -> 0.5\n    truncate_number(2.0) -> 0.0\n    truncate_number(0.75) -> 0.75\n\n    The function handles positive numbers. For robustness it accepts any real\n    number and returns the fractional part with the same sign as the input's\n    fractional component (so negative numbers yield a negative fractional part).\n    \"\"\"\n    # Use math.modf which returns (fractional_part, integer_part)\n    fractional, _ = modf(number)\n    # For exact integers this will be 0.0 (or -0.0 for negative integers).\n    # Normalize -0.0 to 0.0\n    if fractional == 0.0:\n        return 0.0\n    return fractional"
+}

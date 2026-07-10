@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_003__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_003",
+  "task_id": "HumanEval/3",
+  "problem_name": "Below Zero",
+  "entry_point": "below_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\"You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Detect if at any point the balance falls below zero; return True then, else False.\n    \"\"\"\n    balance = 0\n    for op in operations:\n        # ensure op is an integer (if not, try to coerce; otherwise raise)\n        if not isinstance(op, int):\n            try:\n                op = int(op)\n            except Exception:\n                raise TypeError(f\"Operation value {op!r} is not an integer and cannot be converted.\")\n        balance += op\n        if balance < 0:\n            return True\n    return False\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert below_zero([1, 2, 3]) is False\n    assert below_zero([1, 2, -4, 5]) is True\n    assert below_zero([]) is False\n    assert below_zero([0, 0, 0]) is False\n    assert below_zero([-1]) is True\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 144,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "below_zero"
+    ]
+  }
+}

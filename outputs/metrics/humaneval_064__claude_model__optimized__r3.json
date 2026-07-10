@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    if not s:\n        return 0\n    \n    vowels = set('aeiouAEIOU')\n    count = sum(1 for c in s if c in vowels)\n    \n    if s[-1].lower() == 'y':\n        count += 1\n    \n    return count\n\n\nif __name__ == \"__main__\":\n    # Original test cases\n    assert vowels_count(\"abcde\") == 2\n    assert vowels_count(\"ACEDY\") == 3\n    \n    # Additional test cases\n    assert vowels_count(\"\") == 0\n    assert vowels_count(\"y\") == 1\n    assert vowels_count(\"Y\") == 1\n    assert vowels_count(\"rhythm\") == 0\n    assert vowels_count(\"rhythmy\") == 1\n    assert vowels_count(\"sky\") == 1\n    assert vowels_count(\"SKY\") == 1\n    assert vowels_count(\"aeiou\") == 5\n    assert vowels_count(\"AEIOU\") == 5\n    assert vowels_count(\"bcdfg\") == 0\n    assert vowels_count(\"happy\") == 2\n    assert vowels_count(\"HAPPY\") == 2\n    assert vowels_count(\"play\") == 2\n    assert vowels_count(\"a\") == 1\n    assert vowels_count(\"e\") == 1\n    assert vowels_count(\"b\") == 0\n    assert vowels_count(\"bye\") == 2\n    assert vowels_count(\"yay\") == 2\n    assert vowels_count(\"YAY\") == 2\n    assert vowels_count(\"gymnasium\") == 4\n    assert vowels_count(\"fly\") == 1\n    assert vowels_count(\"type\") == 2\n    \n    print(\"All test cases passed!\")",
+  "metrics": {
+    "total_nodes": 264,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.018939,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

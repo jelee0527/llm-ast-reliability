@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Union, Optional\n\ndef compare_one(a: Union[int, float, str], b: Union[int, float, str]) -> Optional[Union[int, float, str]]:\n    \"\"\"\n    Takes integers, floats, or strings representing real numbers (decimal separator '.' or ','),\n    returns the larger variable in its given variable type.\n    Returns None if values are equal (numerically).\n    \"\"\"\n    def to_float_and_normalized_str(x):\n        # Return tuple (numeric_value as float, normalized string original form)\n        if isinstance(x, (int, float)):\n            return float(x), None  # None indicates original wasn't a string\n        if isinstance(x, str):\n            s = x.strip()\n            # Replace comma with dot for parsing, but only for the decimal separator.\n            # If there are multiple commas/dots, prefer replacing commas with dots everywhere\n            # to allow locales where comma is decimal separator.\n            s_for_parse = s.replace(',', '.')\n            try:\n                val = float(s_for_parse)\n            except ValueError:\n                # If parsing fails, try removing spaces and then replace again\n                s2 = s.replace(' ', '').replace('\\u00A0', '')\n                val = float(s2.replace(',', '.'))\n            return val, s\n        # Fallback: try convert via float()\n        try:\n            return float(x), None\n        except Exception:\n            raise ValueError(f\"Unsupported type or unparseable value: {x!r}\")\n\n    val_a, orig_a = to_float_and_normalized_str(a)\n    val_b, orig_b = to_float_and_normalized_str(b)\n\n    # Compare numeric values with exact equality for floats: use math.isclose?\n    # But requirement: return None if values are equal. Use exact numeric equivalence with tolerance for float roundoff.\n    import math\n    if math.isclose(val_a, val_b, rel_tol=0.0, abs_tol=1e-12):\n        return None\n\n    # Determine which is larger\n    if val_a > val_b:\n        # return in original type: if original was string, return original string; else original number\n        return a if isinstance(a, (int, float)) else a\n    else:\n        return b if isinstance(b, (int, float)) else b",
+  "metrics": {
+    "total_nodes": 252,
+    "ast_depth": 13,
+    "branch_count": 8,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.059524,
+    "function_names": [
+      "compare_one",
+      "to_float_and_normalized_str"
+    ]
+  }
+}

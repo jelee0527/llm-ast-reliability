@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def get_closest_vowel(word):\n    vowels = set('aeiouAEIOU')\n    \n    # We need to find the closest vowel from the right that is between two consonants\n    # Vowels at the beginning and ending don't count\n    # So we look from index 1 to len(word)-2 (inclusive), scanning from right to left\n    \n    for i in range(len(word) - 2, 0, -1):\n        char = word[i]\n        if char in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if left not in vowels and right not in vowels:\n                return char\n    \n    return \"\"",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05618,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

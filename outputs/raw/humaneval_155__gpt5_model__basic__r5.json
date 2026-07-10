@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:57:17.105333+00:00",
+  "elapsed_seconds": 3.046,
+  "official_prompt": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n\n",
+  "raw_response": "def even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Ensure it's an integer\n    try:\n        n = int(num)\n    except (ValueError, TypeError):\n        raise ValueError(\"Input must be an integer or convertible to int\")\n    n = abs(n)\n    even = 0\n    odd = 0\n    if n == 0:\n        # 0 is an even digit\n        return (1, 0)\n    while n > 0:\n        d = n % 10\n        if d % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n        n //= 10\n    return (even, odd)",
+  "generated_code": "def even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Ensure it's an integer\n    try:\n        n = int(num)\n    except (ValueError, TypeError):\n        raise ValueError(\"Input must be an integer or convertible to int\")\n    n = abs(n)\n    even = 0\n    odd = 0\n    if n == 0:\n        # 0 is an even digit\n        return (1, 0)\n    while n > 0:\n        d = n % 10\n        if d % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n        n //= 10\n    return (even, odd)"
+}

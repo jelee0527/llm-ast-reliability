@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from collections import deque\nimport heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    # map value to position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Precompute neighbors for positions\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    neighbors = {}\n    for i in range(n):\n        for j in range(n):\n            nbrs = []\n            for di,dj in dirs:\n                ni,nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    nbrs.append((ni,nj))\n            neighbors[(i,j)] = nbrs\n\n    # For each cell, compute reachable set of values in exactly t steps up to k-1 using BFS level by level.\n    # We'll use adjacency via positions; but since grid numbers unique, we can track values.\n    # Precompute reach[t][(i,j)] = set of values reachable in exactly t steps (including starting cell at t=1)\n    # But for pruning lexicographically, we only need to know for a given prefix whether it's possible to complete.\n    # We'll implement greedy building of sequence: at each step, try values in increasing order that are reachable from any current positions.\n    # Maintain current frontier: set of positions where we could be after building prefix.\n    # For step 1, frontier is all positions.\n    # For choosing next value v, check if there exists a position p in frontier such that value at p == v.\n    # If so, new frontier becomes {p}. Otherwise, see if from frontier we can move to some neighbor chain to a cell with value v in one move:\n    # but we must pick immediate next cell, so we can only move to adjacent cells from current positions.\n    # So at each step we must pick v that appears in the set S = values at frontier positions' neighbors (including staying? Problem allows revisiting same cell; staying is allowed only if self-neighbor, but you cannot stay unless move zero; path of length k means visiting k cells — you can remain by moving back and forth. But you cannot stay in place in a single step unless you come from neighbor that is same cell; so staying is not allowed.)\n    # However you can start at any cell, so first value can be any cell's value.\n    # The step transitions: from a set of possible current positions P, the possible next positions are union of neighbors of P.\n    # We'll implement forward greedy with reachability check via dynamic programming: for remaining steps rem, from a candidate next position, check if it's possible to continue for rem-1 steps (always true because grid connected?), but we need exact lexicographic minimality, uniqueness guaranteed.\n    # We'll perform BFS reachability of positions for a given number of remaining steps: compute set of positions reachable in exactly rem steps starting from candidate position (including starting as step1). But since you must produce values sequence, any continuation is allowed.\n    # To test if choosing a candidate value v at current step is feasible, we need at least one path of length remaining starting from some position with that value. That's always true because you can wander; but you must ensure you can produce lexicographically minimal tail given choices. Simpler correct approach: model states as all positions and use Dijkstra-like lexicographic path of length k.\n    # We'll perform multi-source BFS with priority queue where state = (sequence tuple, position, steps). Start with all positions with sequence [value]. Use PQ prioritized by sequence lexicographically. Expand until steps==k and return sequence. Use visited pruning: for (position, steps) keep minimal sequence seen to avoid revisiting worse sequences.\n    start_states = []\n    for i in range(n):\n        for j in range(n):\n            val = grid[i][j]\n            heapq.heappush(start_states, ( (val,), i, j, 1 ))  # sequence tuple, pos, steps\n\n    # visited best sequence per (i,j,steps)\n    best = {}\n    while start_states:\n        seq, i, j, steps = heapq.heappop(start_states)\n        key = (i,j,steps)\n        if key in best:\n            if best[key] <= seq:\n                continue\n        best[key] = seq\n        if steps == k:\n            return list(seq)\n        # expand to neighbors\n        for ni,nj in neighbors[(i,j)]:\n            new_seq = seq + (grid[ni][nj],)\n            nkey = (ni,nj,steps+1)\n            if nkey in best and best[nkey] <= new_seq:\n                continue\n            heapq.heappush(start_states, (new_seq, ni, nj, steps+1))\n    return []",
+  "metrics": {
+    "total_nodes": 406,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 9,
+    "function_count": 1,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.044335,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

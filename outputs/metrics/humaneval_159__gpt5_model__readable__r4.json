@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef eat(number: int, need: int, remaining: int) -> List[int]:\n    \"\"\"\n    Return [total_eaten_after_meals, carrots_left_after_meals].\n\n    - number: carrots already eaten\n    - need: carrots you still need to eat\n    - remaining: carrots available in stock\n\n    If remaining < need, you eat all remaining carrots and will still be hungry.\n    \"\"\"\n    # Ensure inputs are non-negative integers (as per constraints)\n    if number < 0 or need < 0 or remaining < 0:\n        raise ValueError(\"Inputs must be non-negative integers\")\n\n    # Determine how many carrots you can actually eat now\n    eaten_now = min(need, remaining)\n\n    total_eaten = number + eaten_now\n    carrots_left = remaining - eaten_now\n\n    return [total_eaten, carrots_left]\n\n\n# Example usages (uncomment to test)\n# print(eat(5, 6, 10))  # -> [11, 4]\n# print(eat(4, 8, 9))   # -> [12, 1]\n# print(eat(1, 10, 10)) # -> [11, 0]\n# print(eat(2, 11, 5))  # -> [7, 0]",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.0375,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

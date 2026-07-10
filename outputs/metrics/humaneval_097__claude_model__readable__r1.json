@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_097__claude_model__readable__r1.json",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def multiply(a, b):\n    unit_digit_a = abs(a) % 10\n    unit_digit_b = abs(b) % 10\n    return unit_digit_a * unit_digit_b",
+  "metrics": {
+    "total_nodes": 34,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.029412,
+    "function_names": [
+      "multiply"
+    ]
+  }
+}

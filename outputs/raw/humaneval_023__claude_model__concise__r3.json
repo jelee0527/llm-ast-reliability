@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_023",
+  "task_id": "HumanEval/23",
+  "problem_name": "Strlen",
+  "entry_point": "strlen",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:59:00.230792+00:00",
+  "elapsed_seconds": 1.8,
+  "official_prompt": "\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n\n",
+  "raw_response": "def strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    return len(string)",
+  "generated_code": "def strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    return len(string)"
+}

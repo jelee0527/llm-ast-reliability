@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:43:44.979582+00:00",
+  "elapsed_seconds": 5.811,
+  "official_prompt": "\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n\n",
+  "raw_response": "def order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    def digit_sum(number):\n        # Convert number to string to handle digits individually\n        number_str = str(number)\n        \n        # Check if the number is negative\n        if number_str[0] == '-':\n            # For negative numbers, the first digit after '-' is negative\n            digits = [int(digit) for digit in number_str[1:]]\n            # Make the first digit negative\n            digits[0] = -digits[0]\n        else:\n            digits = [int(digit) for digit in number_str]\n        \n        return sum(digits)\n    \n    # Sort using digit_sum as key, with enumerate index to preserve original order for ties\n    sorted_nums = sorted(enumerate(nums), key=lambda item: (digit_sum(item[1]), item[0]))\n    \n    # Extract just the numbers from the sorted (index, number) pairs\n    return [number for index, number in sorted_nums]",
+  "generated_code": "def order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    def digit_sum(number):\n        # Convert number to string to handle digits individually\n        number_str = str(number)\n        \n        # Check if the number is negative\n        if number_str[0] == '-':\n            # For negative numbers, the first digit after '-' is negative\n            digits = [int(digit) for digit in number_str[1:]]\n            # Make the first digit negative\n            digits[0] = -digits[0]\n        else:\n            digits = [int(digit) for digit in number_str]\n        \n        return sum(digits)\n    \n    # Sort using digit_sum as key, with enumerate index to preserve original order for ties\n    sorted_nums = sorted(enumerate(nums), key=lambda item: (digit_sum(item[1]), item[0]))\n    \n    # Extract just the numbers from the sorted (index, number) pairs\n    return [number for index, number in sorted_nums]"
+}

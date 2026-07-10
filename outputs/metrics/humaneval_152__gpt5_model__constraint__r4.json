@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"Return list of absolute differences between game scores and guesses.\n    If lengths differ, raise ValueError.\n    \"\"\"\n    if not isinstance(game, (list, tuple)) or not isinstance(guess, (list, tuple)):\n        raise TypeError(\"game and guess must be lists or tuples of numbers\")\n    if len(game) != len(guess):\n        raise ValueError(\"game and guess must have the same length\")\n    result: List[int] = []\n    for g, q in zip(game, guess):\n        try:\n            diff = abs(int(g) - int(q))\n        except Exception:\n            # If values are not integers but are convertible (e.g., floats or numeric strings), try conversion\n            diff = abs(float(g) - float(q))\n            diff = int(diff) if diff.is_integer() else diff\n        result.append(diff)\n    return result\n\n# Example usage (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(compare([1,2,3,4,5,1],[1,2,3,4,2,-2]))  # -> [0,0,0,0,3,3]\n    print(compare([0,5,0,0,0,4],[4,1,1,0,0,-2]))  # -> [4,4,1,0,0,6]",
+  "metrics": {
+    "total_nodes": 227,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.039648,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

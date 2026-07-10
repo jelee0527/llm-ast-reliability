@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_092__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from numbers import Integral\n\ndef any_int(x, y, z):\n    # Check all are integers (instances of Integral)\n    if not (isinstance(x, Integral) and isinstance(y, Integral) and isinstance(z, Integral)):\n        return False\n    # Check if any one equals sum of the other two\n    return x == y + z or y == x + z or z == x + y\n\n# Optional simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(any_int(5, 2, 7))    # True\n    print(any_int(3, 2, 2))    # False\n    print(any_int(3, -2, 1))   # True\n    print(any_int(3.6, -2.2, 2))# False",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.033613,
+    "function_names": [
+      "any_int"
+    ]
+  }
+}

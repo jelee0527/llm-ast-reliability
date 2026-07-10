@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:32:21.639381+00:00",
+  "elapsed_seconds": 5.028,
+  "official_prompt": "\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n    n = len(s)\n    groups: List[str] = [s[(3 * i):min((3 * i + 3), n)] for i in range((n + 2) // 3)]\n    # For groups of length 3, encoded form is original rotated left by 1: abc -> bca\n    # To reverse, rotate right by 1: bca -> abc\n    decoded_groups = [(g[-1] + g[:-1]) if len(g) == 3 else g for g in groups]\n    return \"\".join(decoded_groups)",
+  "generated_code": "from typing import List\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n    n = len(s)\n    groups: List[str] = [s[(3 * i):min((3 * i + 3), n)] for i in range((n + 2) // 3)]\n    # For groups of length 3, encoded form is original rotated left by 1: abc -> bca\n    # To reverse, rotate right by 1: bca -> abc\n    decoded_groups = [(g[-1] + g[:-1]) if len(g) == 3 else g for g in groups]\n    return \"\".join(decoded_groups)"
+}

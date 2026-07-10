@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert integer to its string representation (preserve minus sign if present)\n    s = str(x)\n    if s.startswith('-'):\n        sign = '-'\n        digits = s[1:]\n    else:\n        sign = ''\n        digits = s\n\n    # Handle empty digits (shouldn't occur for integers) and zero\n    if digits == '':\n        return sign\n\n    n = len(digits)\n    # If shift is negative, convert to equivalent right shift\n    # For example shift=-1 means left shift by 1 which is right shift by n-1\n    if shift < 0:\n        # normalize negative shifts\n        shift = shift % n\n\n    # If shift greater than number of digits, return digits reversed\n    if shift > n:\n        reversed_digits = digits[::-1]\n        return sign + reversed_digits\n\n    # Normalize shift to range [0, n)\n    effective_shift = shift % n if n > 0 else 0\n\n    if effective_shift == 0:\n        return sign + digits\n\n    # Right circular shift: take last effective_shift digits to front\n    split_point = n - effective_shift\n    shifted = digits[split_point:] + digits[:split_point]\n    return sign + shifted\n\n\n# Quick manual tests when run as a script\nif __name__ == \"__main__\":\n    test_cases = [\n        (12, 1, \"21\"),\n        (12, 2, \"12\"),\n        (12345, 2, \"45123\"),\n        (12345, 7, \"54321\"),  # shift > n -> reversed\n        (-123, 1, \"-312\"),\n        (0, 3, \"0\"),\n        (100, 1, \"010\"),  # keeps leading zeros in result string\n        (100, 5, \"001\"),  # shift>n -> reversed \"001\"\n        (123, -1, \"231\"),  # negative shift -> left shift by 1\n    ]\n    for x, sh, expected in test_cases:\n        result = circular_shift(x, sh)\n        print(x, sh, \"->\", result, \"expected:\", expected)",
+  "metrics": {
+    "total_nodes": 262,
+    "ast_depth": 8,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.045802,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_098__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_098",
+  "task_id": "HumanEval/98",
+  "problem_name": "Count Upper",
+  "entry_point": "count_upper",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def count_upper(s):\n    upper_vowels = set('AEIOU')\n    return sum(1 for i in range(0, len(s), 2) if s[i] in upper_vowels)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='count_upper',\n      args=arguments(\n        args=[\n          arg(arg='s')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='upper_vowels', ctx=Store())],\n          value=Call(\n            func=Name(id='set', ctx=Load()),\n            args=[\n              Constant(value='AEIOU')])),\n        Return(\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Constant(value=1),\n                generators=[\n                  comprehension(\n                    target=Name(id='i', ctx=Store()),\n                    iter=Call(\n                      func=Name(id='range', ctx=Load()),\n                      args=[\n                        Constant(value=0),\n                        Call(\n                          func=Name(id='len', ctx=Load()),\n                          args=[\n                            Name(id='s', ctx=Load())]),\n                        Constant(value=2)]),\n                    ifs=[\n                      Compare(\n                        left=Subscript(\n                          value=Name(id='s', ctx=Load()),\n                          slice=Name(id='i', ctx=Load()),\n                          ctx=Load()),\n                        ops=[\n                          In()],\n                        comparators=[\n                          Name(id='upper_vowels', ctx=Load())])],\n                    is_async=0)])]))])])"
+}

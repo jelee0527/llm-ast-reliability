@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from math import gcd\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number.\"\"\"\n    # Parse fractions \"a/b\"\n    ax, bx = x.split('/')\n    an, bn = n.split('/')\n    a = int(ax); b = int(bx)\n    c = int(an); d = int(bn)\n    # product = (a*c) / (b*d) -> whole if numerator divisible by denominator\n    # reduce by gcd to avoid large numbers: check if (a*c) % (b*d) == 0 efficiently\n    # Cancel common factors between numerator and denominator\n    # Cancel gcd(a, b*d)\n    g1 = gcd(a, b)\n    a //= g1\n    b //= g1\n    g2 = gcd(c, b)\n    c //= g2\n    b //= g2\n    # Now denominator is b*d, but we can cancel with d as well\n    g3 = gcd(a, d)\n    a //= g3\n    d //= g3\n    g4 = gcd(c, d)\n    c //= g4\n    d //= g4\n    # After cancellation, product numerator = a*c, denominator = b*d\n    # It's whole if b==1 and d==1 (denominator reduced to 1)\n    return (b == 1 and d == 1)",
+  "metrics": {
+    "total_nodes": 168,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.005952,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

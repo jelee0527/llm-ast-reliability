@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_027__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "SyntaxError",
+  "error_message": "f-string: expecting '}' (<string>, line 40)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 42, in main\n    exec(generated_code, namespace)\n  File \"<string>\", line 40\n    print(f\"flip_case({inp!r}) = {out!r}  -> {'OK' if out == expected else 'FAIL (expected '+expected!r+')'}\")\n                                                                                                             ^\nSyntaxError: f-string: expecting '}'\n"
+}

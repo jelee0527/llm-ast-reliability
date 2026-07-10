@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import *\ndef correct_bracketing(brackets: str) -> bool:\n    count = 0\n    for ch in brackets:\n        if ch == '(':\n            count += 1\n        elif ch == ')':\n            count -= 1\n        else:\n            # ignore other characters or treat as invalid; here treat as invalid\n            return False\n        if count < 0:\n            return False\n    return count == 0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.112676,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

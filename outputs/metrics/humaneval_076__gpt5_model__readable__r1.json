@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., there exists an integer k >= 0 with n**k == x).\n    Handles integers and non-negative values appropriately.\n    \"\"\"\n    # Validate inputs: x and n must be integers and n >= 1, x >= 1 for meaningful powers as described.\n    try:\n        xi = int(x)\n        ni = int(n)\n    except Exception:\n        return False\n\n    # If original values weren't exact integers, not considered a simple integer power\n    if xi != x or ni != n:\n        return False\n\n    x = xi\n    n = ni\n\n    # Special handling:\n    # By convention in the examples, 1 is a power of any n (n**0 == 1).\n    if x == 1:\n        return True\n\n    # If base n is 1: 1**k == 1 for any k, but only x==1 should be True (example shows is_simple_power(3,1) => False).\n    if n == 1:\n        return False\n\n    # n must be at least 2 and x must be positive to be a power; negative or zero cases are not considered here.\n    if n <= 0 or x <= 0:\n        return False\n\n    # Repeatedly divide x by n while divisible\n    current = x\n    while current % n == 0:\n        current //= n\n        if current == 1:\n            return True\n\n    return False",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 7,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.116667,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in string s.\n    Vowels are 'a', 'e', 'i', 'o', 'u' (case-insensitive).\n    Additionally, 'y' counts as a vowel only if it appears as the final character of the word.\n    Non-letter characters are ignored (but they do not affect y's special rule apart from position).\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    if s == \"\":\n        return 0\n\n    lower = s.lower()\n    vowel_set = set(\"aeiou\")\n    count = 0\n\n    for i, ch in enumerate(lower):\n        if ch in vowel_set:\n            count += 1\n        elif ch == 'y' and i == len(lower) - 1:\n            count += 1\n\n    return count\n\n\n# Additional test cases\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),        # a, e\n        (\"ACEDY\", 3),        # A, E, Y(as last)\n        (\"rhythm\", 0),       # no final y\n        (\"rhythmy\", 1),      # final y counts\n        (\"why\", 1),          # final y counts\n        (\"Y\", 1),            # single letter Y counts\n        (\"b\", 0),            # no vowels\n        (\"\", 0),             # empty string\n        (\"aeiou\", 5),        # all vowels\n        (\"AEIOUY\", 6),       # all vowels including final Y\n        (\"pythOn!\", 1),      # O only, punctuation ignored\n        (\"sky!\", 1),         # final y counts even with punctuation present at end? punctuation is character, so here '!' is last -> y is not last -> 0 expected\n    ]\n\n    # Adjust the last test to reflect behavior: punctuation counts as character, so final y must be last char.\n    tests[-1] = (\"sky!\", 0)\n\n    for word, expected in tests:\n        result = vowels_count(word)\n        print(f\"vowels_count({word!r}) = {result} (expected {expected})\", \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 217,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.050691,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

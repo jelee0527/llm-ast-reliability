@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Takes a string and returns an ordered version of it.\n    Each contiguous sequence of non-space characters (a \"word\") is replaced\n    by the same characters sorted in ascending ASCII order.\n    Spaces are preserved exactly as in the input.\n\n    Examples:\n    anti_shuffle('Hi') -> 'Hi'\n    anti_shuffle('hello') -> 'ehllo'\n    anti_shuffle('Hello World!!!') -> 'Hello !!!Wdlor'\n    \"\"\"\n    # Split on spaces but keep them: use regex to get runs of non-spaces or runs of spaces\n    parts = re.findall(r'\\S+|\\s+', s)\n    out_parts = []\n    for part in parts:\n        if part.isspace():\n            out_parts.append(part)\n        else:\n            # Sort characters by ASCII (default for sorted on string)\n            sorted_chars = ''.join(sorted(part))\n            out_parts.append(sorted_chars)\n    return ''.join(out_parts)",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.042857,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

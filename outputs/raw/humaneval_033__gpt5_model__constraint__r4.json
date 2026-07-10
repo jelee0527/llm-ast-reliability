@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:24:18.664971+00:00",
+  "elapsed_seconds": 4.707,
+  "official_prompt": "\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef sort_third(l: List[Any]) -> List[Any]:\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indices that are not divisible by three, while its values at the indices that are divisible by three are equal\n    to the values of the corresponding indices of l, but sorted.\n    \"\"\"\n    # Collect elements at indices divisible by 3\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = [l[i] for i in third_indices]\n    # Sort those values\n    sorted_third_values = sorted(third_values)\n    # Build result copying original and replacing positions divisible by 3\n    result = list(l)  # shallow copy\n    for idx, val in zip(third_indices, sorted_third_values):\n        result[idx] = val\n    return result\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert sort_third([1,2,3]) == [1,2,3]\n    assert sort_third([5,6,3,4,8,9,2]) == [2,6,3,4,8,9,5]\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import List, Any\n\ndef sort_third(l: List[Any]) -> List[Any]:\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indices that are not divisible by three, while its values at the indices that are divisible by three are equal\n    to the values of the corresponding indices of l, but sorted.\n    \"\"\"\n    # Collect elements at indices divisible by 3\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = [l[i] for i in third_indices]\n    # Sort those values\n    sorted_third_values = sorted(third_values)\n    # Build result copying original and replacing positions divisible by 3\n    result = list(l)  # shallow copy\n    for idx, val in zip(third_indices, sorted_third_values):\n        result[idx] = val\n    return result\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert sort_third([1,2,3]) == [1,2,3]\n    assert sort_third([5,6,3,4,8,9,2]) == [2,6,3,4,8,9,5]\n    print(\"Tests passed.\")"
+}

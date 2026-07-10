@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_078__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_078",
+  "task_id": "HumanEval/78",
+  "problem_name": "Hex Key",
+  "entry_point": "hex_key",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import typing\n\ndef hex_key(num: str) -> int:\n    \"\"\"Count hexadecimal digits in the input string that represent prime numbers:\n    primes among single hex digits are: 2,3,5,7,B(11),D(13).\n    \"\"\"\n    prime_chars = {'2', '3', '5', '7', 'B', 'D'}\n    if not num:\n        return 0\n    count = 0\n    for ch in num:\n        if ch in prime_chars:\n            count += 1\n    return count\n\n# Simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        \"AB\": 1,\n        \"1077E\": 2,\n        \"ABED1A33\": 4,\n        \"123456789ABCDEF0\": 6,\n        \"2020\": 2,\n        \"\": 0,\n    }\n    for k, v in tests.items():\n        res = hex_key(k)\n        print(k, res, \"OK\" if res == v else f\"FAIL (expected {v})\")",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.068376,
+    "function_names": [
+      "hex_key"
+    ]
+  }
+}

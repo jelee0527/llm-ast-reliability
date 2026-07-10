@@ -1,0 +1,11 @@
+analysis_unit,legacy_metric,structural_metric,n,spearman_rho
+problem_model_prompt,loc,ssi,2460,-0.6217483461602299
+problem_model_prompt,sloc,ssi,2460,-0.5692303460257427
+problem_model_prompt,cc_avg,ssi,2460,-0.3878762667963005
+problem_model_prompt,cc_max,ssi,2460,-0.39351815223103387
+problem_model_prompt,cc_sum,ssi,2460,-0.3923684859074467
+problem_model_prompt,halstead_volume,ssi,2460,-0.4067994052284626
+problem_model_prompt,halstead_difficulty,ssi,2460,-0.33313501743333584
+problem_model_prompt,halstead_effort,ssi,2460,-0.40301777061167326
+problem_model_prompt,maintainability_index,ssi,2460,-0.11991490967117306
+problem_model_prompt,token_length,ssi,2460,-0.6453614848283236

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting.\n    Sort ascending if (first element + last element) is odd, otherwise sort descending.\n    Do not modify the input array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    # Make a copy to avoid mutating the input\n    arr_copy = list(array)\n\n    # Handle empty and single-element lists quickly\n    if len(arr_copy) <= 1:\n        return arr_copy\n\n    # Determine parity of sum of first and last elements\n    total = arr_copy[0] + arr_copy[-1]\n    is_odd = (total % 2) != 0\n\n    # Sort accordingly without changing original list\n    if is_odd:\n        # ascending\n        return sorted(arr_copy)\n    else:\n        # descending\n        return sorted(arr_copy, reverse=True)",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

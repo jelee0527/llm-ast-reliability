@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Swap case of all letters, replace all vowels with the letter 2 places ahead.\n    Assume only letters and spaces in input; preserve spaces. Operates on letters only.\n    \"\"\"\n    # Define vowels lower and upper\n    vowels_lower = {'a', 'e', 'i', 'o', 'u'}\n    vowels_upper = {v.upper() for v in vowels_lower}\n    # Helper to shift a letter by n within a-z or A-Z\n    def shift_letter(ch, n):\n        if 'a' <= ch <= 'z':\n            base = ord('a')\n            return chr((ord(ch) - base + n) % 26 + base)\n        if 'A' <= ch <= 'Z':\n            base = ord('A')\n            return chr((ord(ch) - base + n) % 26 + base)\n        return ch\n\n    result_chars = []\n    for ch in message:\n        if not ch.isalpha():\n            # preserve non-letters as-is (e.g., spaces)\n            result_chars.append(ch)\n            continue\n        # swap case\n        swapped = ch.swapcase()\n        # after swapping, check if it's a vowel (consider swapped case)\n        if swapped in vowels_lower or swapped in vowels_upper:\n            # replace with letter 2 places ahead, preserving case of swapped\n            shifted = shift_letter(swapped, 2)\n            result_chars.append(shifted)\n        else:\n            result_chars.append(swapped)\n    return ''.join(result_chars)\n\n# Example tests\nif __name__ == \"__main__\":\n    print(encode('test'))            # expected 'TGST'\n    print(encode('This is a message'))  # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 220,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "encode",
+      "shift_letter"
+    ]
+  }
+}

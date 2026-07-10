@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Swap case of all letters, then replace all vowels in the message\n    with the vowel that appears 2 places ahead in the English alphabet.\n    Assumes message contains only letters and spaces (per examples).\n    \"\"\"\n    # Define lowercase and uppercase vowels\n    vowels_lower = \"aeiou\"\n    vowels_upper = vowels_lower.upper()\n    # Build mapping for vowels shifted by 2 positions (wrap-around)\n    shifted_vowels_lower = {}\n    shifted_vowels_upper = {}\n    for i, v in enumerate(vowels_lower):\n        shifted = vowels_lower[(i + 2) % len(vowels_lower)]\n        shifted_vowels_lower[v] = shifted\n        shifted_vowels_upper[v.upper()] = shifted.upper()\n\n    result_chars = []\n    for ch in message:\n        # Swap case first\n        if ch.islower():\n            ch_swapped = ch.upper()\n        elif ch.isupper():\n            ch_swapped = ch.lower()\n        else:\n            # Non-letter characters (e.g., spaces) remain as is\n            ch_swapped = ch\n\n        # If swapped character is a vowel, replace with shifted vowel\n        if ch_swapped in shifted_vowels_lower:\n            result_chars.append(shifted_vowels_lower[ch_swapped])\n        elif ch_swapped in shifted_vowels_upper:\n            result_chars.append(shifted_vowels_upper[ch_swapped])\n        else:\n            result_chars.append(ch_swapped)\n\n    return \"\".join(result_chars)\n\n\n# Example quick tests\nif __name__ == \"__main__\":\n    print(encode('test'))               # Expected: TGST\n    print(encode('This is a message'))  # Expected: tHKS KS C MGSSCGG",
+  "metrics": {
+    "total_nodes": 201,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.039801,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if (x * n) is a whole number, False otherwise.\n    x and n are strings like 'numerator/denominator' with positive integers.\n    \"\"\"\n    # Parse the fractions using Fraction for exact arithmetic\n    frac_x = Fraction(int(x.split('/')[0]), int(x.split('/')[1]))\n    frac_n = Fraction(int(n.split('/')[0]), int(n.split('/')[1]))\n    product = frac_x * frac_n\n    # A Fraction is a whole number if its denominator is 1\n    return product.denominator == 1\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"1/5\", \"5/1\", True),\n        (\"1/6\", \"2/1\", False),\n        (\"7/10\", \"10/2\", False),\n        (\"3/4\", \"4/3\", True),  # 1\n        (\"6/7\", \"7/6\", True),  # 1\n    ]\n    for a,b,expected in tests:\n        result = simplify(a,b)\n        print(a, \"*\", b, \"=>\", result, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.018987,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

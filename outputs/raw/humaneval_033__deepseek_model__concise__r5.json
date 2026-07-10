@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T12:42:21.691276+00:00",
+  "elapsed_seconds": 1.504,
+  "official_prompt": "\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef sort_third(l: list):\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = sorted([l[i] for i in third_indices])\n    result = l[:]\n    for i, val in zip(third_indices, third_values):\n        result[i] = val\n    return result\n```",
+  "generated_code": "def sort_third(l: list):\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = sorted([l[i] for i in third_indices])\n    result = l[:]\n    for i, val in zip(third_indices, third_values):\n        result[i] = val\n    return result"
+}

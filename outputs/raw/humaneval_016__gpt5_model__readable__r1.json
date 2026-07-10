@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_016",
+  "task_id": "HumanEval/16",
+  "problem_name": "Count Distinct Characters",
+  "entry_point": "count_distinct_characters",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:47:57.295852+00:00",
+  "elapsed_seconds": 3.725,
+  "official_prompt": "\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n\n",
+  "raw_response": "from typing import Set\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of.\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    if string is None:\n        return 0\n    # Normalize case to be case-insensitive\n    lower_string = string.lower()\n    # Use a set to collect distinct characters\n    distinct_chars: Set[str] = set(lower_string)\n    return len(distinct_chars)\n\n\n# Quick internal self-test when running this file directly\nif __name__ == \"__main__\":\n    tests = [\n        (\"xyzXYZ\", 3),\n        (\"Jerry\", 4),\n        (\"\", 0),\n        (\"AaBbCc\", 3),\n        (\"123!@#123\", 6),\n        (None, 0),\n    ]\n    for s, expected in tests:\n        result = count_distinct_characters(s) if s is not None else count_distinct_characters(None)\n        print(f\"Input: {s!r}, distinct count: {result}, expected: {expected}\")",
+  "generated_code": "from typing import Set\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of.\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    if string is None:\n        return 0\n    # Normalize case to be case-insensitive\n    lower_string = string.lower()\n    # Use a set to collect distinct characters\n    distinct_chars: Set[str] = set(lower_string)\n    return len(distinct_chars)\n\n\n# Quick internal self-test when running this file directly\nif __name__ == \"__main__\":\n    tests = [\n        (\"xyzXYZ\", 3),\n        (\"Jerry\", 4),\n        (\"\", 0),\n        (\"AaBbCc\", 3),\n        (\"123!@#123\", 6),\n        (None, 0),\n    ]\n    for s, expected in tests:\n        result = count_distinct_characters(s) if s is not None else count_distinct_characters(None)\n        print(f\"Input: {s!r}, distinct count: {result}, expected: {expected}\")"
+}

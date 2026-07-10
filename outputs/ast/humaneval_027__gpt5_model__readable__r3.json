@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_027__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "f-string: expecting ':' or '}' (<unknown>, line 40)",
+  "generated_code": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if string is None:\n        raise TypeError(\"Input must be a string, got None\")\n    if not isinstance(string, str):\n        raise TypeError(f\"Input must be a string, got {type(string).__name__}\")\n\n    # Use a list builder for efficiency and clarity\n    result_chars: list[str] = []\n    for ch in string:\n        # str.islower and str.isupper only return True for alphabetic characters;\n        # they leave digits and symbols unchanged when case-swapped using swapcase().\n        if ch.islower():\n            result_chars.append(ch.upper())\n        elif ch.isupper():\n            result_chars.append(ch.lower())\n        else:\n            result_chars.append(ch)\n\n    return \"\".join(result_chars)\n\n\n# Optional quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests: Iterable[tuple[str, str]] = [\n        (\"Hello\", \"hELLO\"),\n        (\"WORLD\", \"world\"),\n        (\"python3.9\", \"PYTHON3.9\"),\n        (\"123!?\", \"123!?\"),\n        (\"MiXeD Case\", \"mIxEd cASE\"),\n        (\"\", \"\"),\n    ]\n    for inp, expected in tests:\n        out = flip_case(inp)\n        print(f\"flip_case({inp!r}) = {out!r}  -> {'OK' if out == expected else 'FAIL (expected '+expected!r+')'}\")"
+}

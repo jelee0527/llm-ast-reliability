@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import operator as _op\nimport math\n\n_ops = {\n    '+': _op.add,\n    '-': _op.sub,\n    '*': _op.mul,\n    '//': lambda a, b: a // b,\n    '**': pow\n}\n\n_prec = {'**': 3, '*': 2, '//': 2, '+': 1, '-': 1}\n\ndef do_algebra(operator, operand):\n    # Shunting-yard to convert to RPN then evaluate\n    ops = operator[:]\n    vals = operand[:]\n    output_q = []\n    op_stack = []\n    # tokens: number, op, number, op...\n    n = len(vals)\n    for i in range(n):\n        output_q.append(vals[i])\n        if i < len(ops):\n            token = ops[i]\n            # handle right-associative exponent '**'\n            while op_stack:\n                top = op_stack[-1]\n                if ( _prec[top] > _prec[token] ) or ( _prec[top] == _prec[token] and token != '**' ):\n                    output_q.append(op_stack.pop())\n                else:\n                    break\n            op_stack.append(token)\n    while op_stack:\n        output_q.append(op_stack.pop())\n    # evaluate RPN\n    stack = []\n    for tok in output_q:\n        if isinstance(tok, int):\n            stack.append(tok)\n        else:\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(_ops[tok](a, b))\n    return stack[0]",
+  "metrics": {
+    "total_nodes": 279,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

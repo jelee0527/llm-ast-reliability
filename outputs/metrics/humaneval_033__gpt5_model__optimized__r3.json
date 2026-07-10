@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_third(l: List) -> List:\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indices that are not divisible by three,\n    while its values at the indices that are divisible by three are equal\n    to the values of the corresponding indices of l, but sorted.\n    \"\"\"\n    if not l:\n        return []\n    # collect indices divisible by 3 and their values\n    idxs = list(range(0, len(l), 3))\n    vals = [l[i] for i in idxs]\n    vals.sort()\n    # create result as shallow copy and replace those positions with sorted values\n    res = list(l)\n    for i, v in zip(idxs, vals):\n        res[i] = v\n    return res\n\n# Quick self-tests\nif __name__ == \"__main__\":\n    assert sort_third([1,2,3]) == [1,2,3]\n    assert sort_third([5,6,3,4,8,9,2]) == [2,6,3,4,8,9,5]\n    assert sort_third([]) == []\n    assert sort_third([9,8,7,6]) == [9,8,7,6] or sort_third([9,8,7,6]) == [9,8,7,6]\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.026455,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

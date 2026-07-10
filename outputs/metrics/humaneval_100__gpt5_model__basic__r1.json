@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef make_a_pile(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a list of length n representing a pile of n levels.\n    The first level has n stones. Each subsequent level uses the next odd number if n is odd,\n    or the next even number if n is even.\n    \"\"\"\n    if n <= 0:\n        return []\n    result = []\n    current = n\n    # Determine parity to step by 2 preserving odd/even sequence\n    step = 2\n    for _ in range(n):\n        result.append(current)\n        current += step\n    return result\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(make_a_pile(3))  # [3, 5, 7]\n    print(make_a_pile(4))  # [4, 6, 8, 10]",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05814,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

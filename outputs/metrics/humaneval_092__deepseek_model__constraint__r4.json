@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_092__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n    '''\n    if not all(isinstance(n, int) for n in (x, y, z)):\n        return False\n    return (x == y + z) or (y == x + z) or (z == x + y)",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044118,
+    "function_names": [
+      "any_int"
+    ]
+  }
+}

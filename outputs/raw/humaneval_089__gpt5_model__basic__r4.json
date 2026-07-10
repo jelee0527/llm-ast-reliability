@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:16:49.565305+00:00",
+  "elapsed_seconds": 2.225,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions forward in the alphabet (shift by 2*2).\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    lower = string.ascii_lowercase\n    trans = {c: lower[(i + 4) % 26] for i, c in enumerate(lower)}\n    result_chars = []\n    for ch in s:\n        if ch in trans:\n            result_chars.append(trans[ch])\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions forward in the alphabet (shift by 2*2).\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    lower = string.ascii_lowercase\n    trans = {c: lower[(i + 4) % 26] for i, c in enumerate(lower)}\n    result_chars = []\n    for ch in s:\n        if ch in trans:\n            result_chars.append(trans[ch])\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)"
+}

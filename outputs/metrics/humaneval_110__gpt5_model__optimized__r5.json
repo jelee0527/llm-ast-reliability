@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef exchange(lst1, lst2):\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of elements)\n    we can make all elements of lst1 even; otherwise return \"NO\".\"\"\"\n    # Count parity in both lists\n    ev1 = sum(1 for x in lst1 if x % 2 == 0)\n    odd1 = len(lst1) - ev1\n    ev2 = sum(1 for x in lst2 if x % 2 == 0)\n    odd2 = len(lst2) - ev2\n\n    # After exchanges, we need all positions in lst1 to be even.\n    # Each odd element in lst1 must be replaced by an even element from lst2.\n    # Available evens to bring from lst2: ev2.\n    # But exchanging an even from lst2 with an odd from lst1 moves that odd into lst2.\n    # We don't care about lst2 final state.\n    # So condition is simply: ev2 >= odd1\n    return \"YES\" if ev2 >= odd1 else \"NO\"",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.023529,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

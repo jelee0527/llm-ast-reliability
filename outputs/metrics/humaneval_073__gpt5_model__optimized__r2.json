@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import collections\n\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n    \"\"\"\n    n = len(arr)\n    # Count mismatched symmetric pairs\n    mismatches = []\n    for i in range(n // 2):\n        j = n - 1 - i\n        a, b = arr[i], arr[j]\n        if a != b:\n            mismatches.append((a, b))\n    if not mismatches:\n        return 0\n    # Build frequency of values appearing in mismatched positions\n    freq = collections.Counter()\n    for a, b in mismatches:\n        freq[a] += 1\n        freq[b] += 1\n    # For each value x, if we change other elements in those pairs to x,\n    # pairs already containing x on one side need only one change; pairs with neither x need two.\n    # Minimum changes = total_mismatches - max_savings, where savings = number of pairs that contain chosen x (since each such pair saves 1 change compared to changing both)\n    total_pairs = len(mismatches)\n    # For a value x, number of pairs that contain x = count_pairs_with_x\n    # We computed freq as total appearances; but a pair could contain x twice? not possible since pair elements differ.\n    # So freq[x] equals number of pairs containing x.\n    max_pairs_with_x = max(freq.values())\n    # Changing to best x: need total_pairs + (pairs without x) = total_pairs + (total_pairs - pairs_with_x) = 2*total_pairs - pairs_with_x\n    # But each pair requires at least one change; simpler formula: minimal changes = total_pairs - max_pairs_with_x + (total_pairs - (total_pairs - max_pairs_with_x))\n    # Actually correct minimal number of single-element changes = total_pairs  (one per mismatched pair) except that if we change one element in a pair to match chosen x and the opposite also changed? Simpler derivation:\n    # Each mismatched pair must have at least one element changed. If we choose target value x, pairs containing x need 1 change, pairs without x need 1 change as well if we change one side to other side? Wait:\n    # Correct approach: For each pair (a,b), to make both equal to some value, minimum changes is:\n    # - 0 if a==b (not in mismatches)\n    # - 1 if we change a to b or b to a (always possible)\n    # So each mismatched pair requires exactly 1 change. BUT we can do better across pairs by changing one element that participates in multiple pairs? No element participates in at most one pair (distinct indices). So minimum changes equals number of mismatched pairs.\n    # Therefore minimal changes = total_pairs.\n    return total_pairs\n\n# Quick self-tests (not required, but harmless)\nif __name__ == \"__main__\":\n    assert smallest_change([1,2,3,5,4,7,9,6]) == 4\n    assert smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    assert smallest_change([1, 2, 3, 2, 1]) == 0\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 206,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.033981,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

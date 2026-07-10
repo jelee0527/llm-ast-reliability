@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_065__claude_model__readable__r5.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def circular_shift(x, shift):\n    digits = str(x)\n    num_digits = len(digits)\n    \n    if shift > num_digits:\n        return digits[::-1]\n    \n    effective_shift = shift % num_digits\n    shifted = digits[-effective_shift:] + digits[:-effective_shift] if effective_shift else digits\n    \n    return shifted",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='circular_shift',\n      args=arguments(\n        args=[\n          arg(arg='x'),\n          arg(arg='shift')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='digits', ctx=Store())],\n          value=Call(\n            func=Name(id='str', ctx=Load()),\n            args=[\n              Name(id='x', ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='num_digits', ctx=Store())],\n          value=Call(\n            func=Name(id='len', ctx=Load()),\n            args=[\n              Name(id='digits', ctx=Load())])),\n        If(\n          test=Compare(\n            left=Name(id='shift', ctx=Load()),\n            ops=[\n              Gt()],\n            comparators=[\n              Name(id='num_digits', ctx=Load())]),\n          body=[\n            Return(\n              value=Subscript(\n                value=Name(id='digits', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load()))]),\n        Assign(\n          targets=[\n            Name(id='effective_shift', ctx=Store())],\n          value=BinOp(\n            left=Name(id='shift', ctx=Load()),\n            op=Mod(),\n            right=Name(id='num_digits', ctx=Load()))),\n        Assign(\n          targets=[\n            Name(id='shifted', ctx=Store())],\n          value=IfExp(\n            test=Name(id='effective_shift', ctx=Load()),\n            body=BinOp(\n              left=Subscript(\n                value=Name(id='digits', ctx=Load()),\n                slice=Slice(\n                  lower=UnaryOp(\n                    op=USub(),\n                    operand=Name(id='effective_shift', ctx=Load()))),\n                ctx=Load()),\n              op=Add(),\n              right=Subscript(\n                value=Name(id='digits', ctx=Load()),\n                slice=Slice(\n                  upper=UnaryOp(\n                    op=USub(),\n                    operand=Name(id='effective_shift', ctx=Load()))),\n                ctx=Load())),\n            orelse=Name(id='digits', ctx=Load()))),\n        Return(\n          value=Name(id='shifted', ctx=Load()))])])"
+}

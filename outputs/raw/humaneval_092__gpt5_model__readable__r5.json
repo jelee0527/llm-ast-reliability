@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:23:49.538256+00:00",
+  "elapsed_seconds": 4.128,
+  "official_prompt": "\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n\n",
+  "raw_response": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if:\n      - all three inputs are integers (no floats), and\n      - one of the numbers equals the sum of the other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check that all are of exact int type (reject bools as they are subclasses of int)\n    if not (type(x) is int and type(y) is int and type(z) is int):\n        return False\n\n    # Check the three possible sum-equality combinations\n    if x == y + z:\n        return True\n    if y == x + z:\n        return True\n    if z == x + y:\n        return True\n\n    return False\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    test_cases = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n        (0, 0, 0, True),\n        (1, True, 0, False),  # bool should be rejected\n    ]\n    for a, b, c, expected in test_cases:\n        result = any_int(a, b, c)\n        print(f\"any_int({a!r}, {b!r}, {c!r}) -> {result} (expected {expected})\")",
+  "generated_code": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if:\n      - all three inputs are integers (no floats), and\n      - one of the numbers equals the sum of the other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check that all are of exact int type (reject bools as they are subclasses of int)\n    if not (type(x) is int and type(y) is int and type(z) is int):\n        return False\n\n    # Check the three possible sum-equality combinations\n    if x == y + z:\n        return True\n    if y == x + z:\n        return True\n    if z == x + y:\n        return True\n\n    return False\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    test_cases = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n        (0, 0, 0, True),\n        (1, True, 0, False),  # bool should be rejected\n    ]\n    for a, b, c, expected in test_cases:\n        result = any_int(a, b, c)\n        print(f\"any_int({a!r}, {b!r}, {c!r}) -> {result} (expected {expected})\")"
+}

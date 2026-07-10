@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parse a string like \"5 apples and 6 oranges\" and return n - apples - oranges.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"s must be a string\")\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n\n    # Find integers in the string. Expect at least two numbers: apples then oranges.\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # Attempt more robust parsing if wording is unusual: look for patterns like \"apples\" and \"oranges\"\n        # We'll try to extract numbers adjacent to those words.\n        apples = None\n        oranges = None\n        tokens = re.split(r'(\\s+)', s)\n        for i, tok in enumerate(tokens):\n            low = tok.lower()\n            if 'apple' in low:\n                # look left for a number\n                for j in range(i-1, -1, -1):\n                    if re.fullmatch(r'\\s+', tokens[j]):\n                        continue\n                    m = re.search(r'-?\\d+', tokens[j])\n                    if m:\n                        apples = int(m.group())\n                        break\n            if 'orange' in low:\n                for j in range(i-1, -1, -1):\n                    if re.fullmatch(r'\\s+', tokens[j]):\n                        continue\n                    m = re.search(r'-?\\d+', tokens[j])\n                    if m:\n                        oranges = int(m.group())\n                        break\n        if apples is None or oranges is None:\n            raise ValueError(\"Could not parse two numbers for apples and oranges from string\")\n    else:\n        apples = int(nums[0])\n        oranges = int(nums[1])\n\n    return n - apples - oranges\n\n\n# Example quick tests (will run if module executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"5 apples and 6 oranges\", 19, 8),\n        (\"0 apples and 1 oranges\", 3, 2),\n        (\"2 apples and 3 oranges\", 100, 95),\n        (\"100 apples and 1 oranges\", 120, 19),\n        (\"12 apples and 0 oranges\", 20, 8),\n    ]\n    for s, n, expected in tests:\n        result = fruit_distribution(s, n)\n        print(s, n, \"->\", result, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 354,
+    "ast_depth": 13,
+    "branch_count": 11,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 23,
+    "control_flow_ratio": 0.064972,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

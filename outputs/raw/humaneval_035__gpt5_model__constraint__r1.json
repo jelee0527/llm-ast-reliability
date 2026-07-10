@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:27:21.496961+00:00",
+  "elapsed_seconds": 4.493,
+  "official_prompt": "\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any, Iterable\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    # Validate input\n    if l is None:\n        raise TypeError(\"Input must be an iterable with at least one comparable element\")\n    if not isinstance(l, Iterable):\n        raise TypeError(\"Input must be an iterable with at least one comparable element\")\n    # Convert to iterator and get first element to initialize\n    it = iter(l)\n    try:\n        current_max = next(it)\n    except StopIteration:\n        raise ValueError(\"max_element() arg is an empty sequence\")\n    # Compare remaining elements\n    for item in it:\n        # Rely on Python's comparison; allow TypeError to propagate if not comparable\n        if item > current_max:\n            current_max = item\n    return current_max\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert max_element([1,2,3]) == 3\n    assert max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]) == 123\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import Any, Iterable\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    # Validate input\n    if l is None:\n        raise TypeError(\"Input must be an iterable with at least one comparable element\")\n    if not isinstance(l, Iterable):\n        raise TypeError(\"Input must be an iterable with at least one comparable element\")\n    # Convert to iterator and get first element to initialize\n    it = iter(l)\n    try:\n        current_max = next(it)\n    except StopIteration:\n        raise ValueError(\"max_element() arg is an empty sequence\")\n    # Compare remaining elements\n    for item in it:\n        # Rely on Python's comparison; allow TypeError to propagate if not comparable\n        if item > current_max:\n            current_max = item\n    return current_max\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert max_element([1,2,3]) == 3\n    assert max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]) == 123\n    print(\"Tests passed.\")"
+}

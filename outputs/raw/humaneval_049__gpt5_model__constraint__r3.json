@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:56:08.245183+00:00",
+  "elapsed_seconds": 5.09,
+  "official_prompt": "\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if not isinstance(n, int) or not isinstance(p, int):\n        raise TypeError(\"n and p must be integers\")\n    if p <= 0:\n        raise ValueError(\"p must be a positive integer\")\n    if n < 0:\n        # For negative exponents, compute modular inverse of 2^(-n)\n        # That requires gcd(2, p) == 1\n        # If 2 and p are not coprime, result is undefined in modular arithmetic\n        from math import gcd\n        if gcd(2, p) != 1:\n            raise ValueError(\"Modular inverse does not exist for negative exponent when gcd(2, p) != 1\")\n        # Compute inverse of 2 modulo p using pow with -1 exponent via Euler/Fermat isn't safe for composite p,\n        # so compute inverse via extended Euclidean algorithm and then pow.\n        def egcd(a: int, b: int):\n            if b == 0:\n                return (a, 1, 0)\n            else:\n                g, x1, y1 = egcd(b, a % b)\n                return (g, y1, x1 - (a // b) * y1)\n        g, inv2, _ = egcd(2, p)\n        inv2 %= p\n        # Now compute (inv2)^{-n} mod p\n        return pow(inv2, -n, p)\n    # For non-negative n, use fast modular exponentiation via built-in pow\n    return pow(2, n, p)",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if not isinstance(n, int) or not isinstance(p, int):\n        raise TypeError(\"n and p must be integers\")\n    if p <= 0:\n        raise ValueError(\"p must be a positive integer\")\n    if n < 0:\n        # For negative exponents, compute modular inverse of 2^(-n)\n        # That requires gcd(2, p) == 1\n        # If 2 and p are not coprime, result is undefined in modular arithmetic\n        from math import gcd\n        if gcd(2, p) != 1:\n            raise ValueError(\"Modular inverse does not exist for negative exponent when gcd(2, p) != 1\")\n        # Compute inverse of 2 modulo p using pow with -1 exponent via Euler/Fermat isn't safe for composite p,\n        # so compute inverse via extended Euclidean algorithm and then pow.\n        def egcd(a: int, b: int):\n            if b == 0:\n                return (a, 1, 0)\n            else:\n                g, x1, y1 = egcd(b, a % b)\n                return (g, y1, x1 - (a // b) * y1)\n        g, inv2, _ = egcd(2, p)\n        inv2 %= p\n        # Now compute (inv2)^{-n} mod p\n        return pow(inv2, -n, p)\n    # For non-negative n, use fast modular exponentiation via built-in pow\n    return pow(2, n, p)"
+}

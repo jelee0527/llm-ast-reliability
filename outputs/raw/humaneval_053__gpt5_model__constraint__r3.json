@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:02:07.611863+00:00",
+  "elapsed_seconds": 5.545,
+  "official_prompt": "\n\ndef add(x: int, y: int):\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef add(x: int, y: int):\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Input validation: ensure integers (but allow types that can be converted to int without loss)\n    if not isinstance(x, int) or not isinstance(y, int):\n        # Try to coerce common numeric types (e.g., bool is subclass of int so it's allowed)\n        try:\n            xi = int(x)\n            yi = int(y)\n        except Exception:\n            raise TypeError(\"add() requires integer arguments\") from None\n        # If original values were not equal to their int conversions, reject to avoid silent truncation\n        if xi != x or yi != y:\n            raise TypeError(\"add() requires integer arguments without loss\")\n        x, y = xi, yi\n    return x + y\n\nif __name__ == \"__main__\":\n    # Simple self-tests\n    assert add(2, 3) == 5\n    assert add(5, 7) == 12\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Input validation: ensure integers (but allow types that can be converted to int without loss)\n    if not isinstance(x, int) or not isinstance(y, int):\n        # Try to coerce common numeric types (e.g., bool is subclass of int so it's allowed)\n        try:\n            xi = int(x)\n            yi = int(y)\n        except Exception:\n            raise TypeError(\"add() requires integer arguments\") from None\n        # If original values were not equal to their int conversions, reject to avoid silent truncation\n        if xi != x or yi != y:\n            raise TypeError(\"add() requires integer arguments without loss\")\n        x, y = xi, yi\n    return x + y\n\nif __name__ == \"__main__\":\n    # Simple self-tests\n    assert add(2, 3) == 5\n    assert add(5, 7) == 12\n    print(\"All tests passed.\")"
+}

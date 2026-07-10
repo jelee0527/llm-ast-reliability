@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_043__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_043",
+  "task_id": "HumanEval/43",
+  "problem_name": "Pairs Sum To Zero",
+  "entry_point": "pairs_sum_to_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pairs_sum_to_zero(l: List[int]) -> bool:\n    seen = set()\n    for x in l:\n        if -x in seen:\n            # ensure distinct elements: if x==0 need another zero seen earlier\n            if x != 0 or (x == 0 and 0 in seen):\n                return True\n        seen.add(x)\n    return False\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.075,
+    "function_names": [
+      "pairs_sum_to_zero"
+    ]
+  }
+}

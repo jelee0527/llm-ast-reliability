@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s.\n    Vowels: a, e, i, o, u (case-insensitive). 'y' counts only if at end of word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_lower = s.lower()\n    # Count a,e,i,o,u anywhere\n    count = sum(1 for ch in s_lower if ch in \"aeiou\")\n    # Count y only if last character is y\n    if s_lower.endswith('y'):\n        count += 1\n    return count\n\n# Simple tests\nif __name__ == \"__main__\":\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,\n        \"rhythm\": 0,\n        \"happy\": 2,      # a + y at end\n        \"Y\": 1,          # y at end counts (case-insensitive)\n        \"why\": 1,        # y at end only\n        \"yellow\": 2,     # e + o, y not at end so doesn't count\n        \"\": 0,\n        \"AEIOU\": 5,\n        \"aeioubcdfy\": 6, # a,e,i,o,u + y at end\n        \"   y   \": 1,    # trimmed, y at end counts\n        \"sky\": 1,\n        \"mythology\": 3,  # o,o,y? ends with y so count y + o,o =3\n    }\n    for inp, expected in tests.items():\n        out = vowels_count(inp)\n        print(repr(inp), out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.055901,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

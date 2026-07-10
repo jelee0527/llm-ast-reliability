@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_142__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_142",
+  "task_id": "HumanEval/142",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sum_squares(lst: List[int]) -> int:\n    \"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    total = 0\n    for i, v in enumerate(lst):\n        if i % 3 == 0:\n            total += v * v\n        elif i % 4 == 0:\n            # only reached if not multiple of 3 due to elif\n            total += v * v * v\n        else:\n            total += v\n    return total\n\n# Quick check of provided examples (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(sum_squares([1,2,3]))        # expected 6\n    print(sum_squares([]))             # expected 0\n    print(sum_squares([-1,-5,2,-1,-5]))# expected -126",
+  "metrics": {
+    "total_nodes": 132,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.037879,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

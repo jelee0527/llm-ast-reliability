@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    if s0 is s1:\n        return True\n    # Count characters in both strings\n    c0 = Counter(s0)\n    c1 = Counter(s1)\n    # For every character present in either string, counts must be >0 in both\n    # and their presence (nonzero) must match; also ensure no character has differing\n    # multiplicity parity requirements? Problem implies just same set of characters,\n    # not counts, but examples show counts don't need to match; only membership matters.\n    # So we check sets of keys.\n    return set(c0.keys()) == set(c1.keys())",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

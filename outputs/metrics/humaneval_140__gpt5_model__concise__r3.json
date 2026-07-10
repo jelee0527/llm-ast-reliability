@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    \"\"\"\n    Replace spaces with underscores, except runs of 3 or more spaces become a single hyphen.\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    # Replace runs of 3 or more spaces with '-' first\n    text = re.sub(r' {3,}', '-', text)\n    # Then replace remaining single or double spaces with underscores\n    # Any remaining spaces (1 or 2) should become underscores individually\n    return text.replace(' ', '_')",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.069767,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    # Handle zero explicitly\n    if a == 0:\n        return True\n    # For positive and negative, compute cube root approximation\n    # Use abs and then restore sign to handle negative cubes\n    sign = 1\n    n = a\n    if a < 0:\n        sign = -1\n        n = -a\n    # Get integer approximation of cube root\n    # Use round of floating cube root, but guard with integer checks\n    # Compute float cube root\n    c_float = n ** (1.0 / 3.0)\n    k = int(round(c_float))\n    # Because of floating precision, check neighbors k-1, k, k+1\n    for candidate in (k-1, k, k+1):\n        if candidate >= 0 and (candidate ** 3) == n:\n            return True if sign == 1 else True\n    return False",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.072072,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

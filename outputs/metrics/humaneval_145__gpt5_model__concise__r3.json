@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    def digit_sum(n: int) -> int:\n        return sum(int(ch) for ch in str(abs(n)))\n    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.028571,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

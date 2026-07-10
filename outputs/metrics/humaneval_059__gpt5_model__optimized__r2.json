@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_059__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    max_pf = None\n    while n % 2 == 0:\n        max_pf = 2\n        n //= 2\n    # Check odd factors up to sqrt(n)\n    f = 3\n    # while f * f <= n is slightly faster than math.sqrt each loop\n    while f * f <= n:\n        if n % f == 0:\n            max_pf = f\n            while n % f == 0:\n                n //= f\n        f += 2\n    # If remaining n > 1 it is prime and is the largest prime factor\n    if n > 1:\n        max_pf = n\n    if max_pf is None:\n        # n was prime to begin with; per doc assume not prime but handle anyway\n        return n\n    return int(max_pf)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.08209,
+    "function_names": [
+      "largest_prime_factor"
+    ]
+  }
+}

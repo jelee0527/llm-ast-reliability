@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s. Vowels: a,e,i,o,u (case-insensitive).\n    'y' counts as a vowel only when it's the last character of the word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if not s:\n        return 0\n    s_lower = s.lower()\n    # count aeiou\n    count = len(re.findall(r'[aeiou]', s_lower))\n    # count trailing 'y' or 'Y' as one if present at end\n    if s_lower.endswith('y'):\n        count += 1\n    return count\n\n# Additional tests\nif __name__ == \"__main__\":\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,     # A, E, trailing Y\n        \"rhythm\": 0,    # y not at end counts? here y's are internal, so 0\n        \"sky\": 1,       # trailing y counts\n        \"Y\": 1,         # single Y counts\n        \"\": 0,\n        \"bcd\": 0,\n        \"aeiou\": 5,\n        \"AEIOUY\": 6,\n        \"playing\": 2,   # a,i (y not at end)\n        \"happy\": 2,     # a + trailing y\n        \"  apple  \": 2, # a,e with surrounding spaces\n    }\n    for s, expected in tests.items():\n        result = vowels_count(s)\n        print(repr(s), result, \"OK\" if result == expected else f\"ERROR expected {expected}\")",
+  "metrics": {
+    "total_nodes": 153,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_129__claude_model__basic__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    def get_neighbors(i, j):\n        neighbors = []\n        for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n            ni, nj = i+di, j+dj\n            if 0 <= ni < n and 0 <= nj < n:\n                neighbors.append((ni, nj))\n        return neighbors\n    \n    # BFS/dynamic programming approach\n    # dp[i][j] = list of minimum paths of length k starting from cell (i,j)\n    # We'll use a greedy approach: at each step, track the minimum path\n    \n    # For each cell, compute the minimum path of length k starting there\n    # Then return the overall minimum\n    \n    # Use memoization with (i, j, remaining_steps)\n    from functools import lru_cache\n    \n    @lru_cache(maxsize=None)\n    def min_path_from(i, j, steps):\n        if steps == 1:\n            return [grid[i][j]]\n        \n        best = None\n        for ni, nj in get_neighbors(i, j):\n            candidate = [grid[i][j]] + min_path_from(ni, nj, steps - 1)\n            if best is None or candidate < best:\n                best = candidate\n        \n        return best\n    \n    overall_best = None\n    for i in range(n):\n        for j in range(n):\n            candidate = min_path_from(i, j, k)\n            if overall_best is None or candidate < overall_best:\n                overall_best = candidate\n    \n    return overall_best",
+  "metrics": {
+    "total_nodes": 301,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 6,
+    "function_count": 3,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.046512,
+    "function_names": [
+      "minPath",
+      "get_neighbors",
+      "min_path_from"
+    ]
+  }
+}

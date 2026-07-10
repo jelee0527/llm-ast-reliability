@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "problem_name": "Sum To N",
+  "entry_point": "sum_to_n",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:14:50.448391+00:00",
+  "elapsed_seconds": 2.617,
+  "official_prompt": "\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n\n",
+  "raw_response": "from typing import Union\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return the sum of integers from 1 to n inclusive.\n    Uses the arithmetic series formula for O(1) time and O(1) space.\n    Assumes n is a non-negative integer; for n <= 0 returns 0.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n    return n * (n + 1) // 2\n\nif __name__ == \"__main__\":\n    # simple tests\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Union\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return the sum of integers from 1 to n inclusive.\n    Uses the arithmetic series formula for O(1) time and O(1) space.\n    Assumes n is a non-negative integer; for n <= 0 returns 0.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n    return n * (n + 1) // 2\n\nif __name__ == \"__main__\":\n    # simple tests\n    import doctest\n    doctest.testmod()"
+}

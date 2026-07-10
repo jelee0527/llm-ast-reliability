@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def histogram(test):\n    if not test:\n        return {}\n    counts = {}\n    for char in test.split():\n        counts[char] = counts.get(char, 0) + 1\n    max_count = max(counts.values())\n    return {char: count for char, count in counts.items() if count == max_count}",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

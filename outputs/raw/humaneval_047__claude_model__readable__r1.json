@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T15:32:22.303017+00:00",
+  "elapsed_seconds": 3.071,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "def median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    sorted_list = sorted(l)\n    list_length = len(sorted_list)\n    middle_index = list_length // 2\n\n    if list_length % 2 == 1:\n        return sorted_list[middle_index]\n    else:\n        lower_middle = sorted_list[middle_index - 1]\n        upper_middle = sorted_list[middle_index]\n        return (lower_middle + upper_middle) / 2",
+  "generated_code": "def median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    sorted_list = sorted(l)\n    list_length = len(sorted_list)\n    middle_index = list_length // 2\n\n    if list_length % 2 == 1:\n        return sorted_list[middle_index]\n    else:\n        lower_middle = sorted_list[middle_index - 1]\n        upper_middle = sorted_list[middle_index]\n        return (lower_middle + upper_middle) / 2"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def is_bored(S):\n    count = 0\n    sentence = \"\"\n    for ch in S:\n        sentence += ch\n        if ch in '.?!':\n            words = sentence.strip().split()\n            if words and words[0] == \"I\":\n                count += 1\n            sentence = \"\"\n    if sentence.strip():\n        words = sentence.strip().split()\n        if words and words[0] == \"I\":\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.06,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

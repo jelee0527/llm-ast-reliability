@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_122__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    # Ensure k is within bounds\n    if not arr:\n        return 0\n    if k < 1:\n        return 0\n    if k > len(arr):\n        k = len(arr)\n    total = 0\n    for i in range(k):\n        val = arr[i]\n        # Count digits by absolute value\n        abs_val = abs(val)\n        # Convert to string only for counting digits could be done arithmetically\n        # but string conversion is simple and deterministic\n        digit_count = len(str(abs_val))\n        if digit_count <= 2:\n            total += val\n    return total\n\n# Example quick test\nif __name__ == \"__main__\":\n    print(add_elements([111,21,3,4000,5,6,7,8,9], 4))  # expected 24",
+  "metrics": {
+    "total_nodes": 132,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.068182,
+    "function_names": [
+      "add_elements"
+    ]
+  }
+}

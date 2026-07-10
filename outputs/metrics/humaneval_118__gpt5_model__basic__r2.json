@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef get_closest_vowel(word):\n    \"\"\"You are given a word. Your task is to find the closest vowel that stands between \n    two consonants from the right side of the word (case sensitive).\n    \n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition. \n\n    You may assume that the given string contains English letter only.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n    vowels = set(\"aeiouAEIOU\")\n    # scan from right to left excluding first and last positions as candidates\n    for i in range(len(word) - 2, 0, -1):\n        ch = word[i]\n        if ch in vowels:\n            left = word[i-1]\n            right = word[i+1]\n            # both neighbors must be consonants (i.e., letters and not vowels)\n            if left not in vowels and right not in vowels:\n                # ensure neighbors are letters — input guarantees letters only\n                return ch\n    return \"\"",
+  "metrics": {
+    "total_nodes": 110,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.063636,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

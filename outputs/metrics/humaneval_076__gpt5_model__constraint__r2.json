@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is an exact power of n (i.e., there exists an integer k >= 0 with n**k == x).\n    Special cases:\n    - n must be an integer greater than or equal to 2 to have meaningful powers beyond 1.\n    - By convention, 1 is n**0 for any n != 0, so is_simple_power(1, n) returns True for n >= 2.\n    - If n == 1, only 1 is a power (1**k == 1), but the prompt treats is_simple_power(3,1) as False;\n      we'll follow the mathematical convention and return True only when x == 1.\n    - Negative n and x are handled: if n is negative, only integer exponents k producing the correct sign are allowed,\n      but we restrict to non-negative integer exponents as typical for \"simple power\" detection.\n    \"\"\"\n    # Validate types and basic cases\n    try:\n        xi = int(x)\n        ni = int(n)\n    except Exception:\n        return False\n\n    # Must match exactly (no floats tolerated that differ)\n    if xi != x or ni != n:\n        # input was not an integer value\n        return False\n\n    x = xi\n    n = ni\n\n    # Disallow n == 0 (0**0 undefined; 0**k == 0 for k>0)\n    if n == 0:\n        # Only x==0 with exponent k>0 would yield 0; but since exponent must be integer >=0,\n        # 0**0 is undefined; we consider x==0 to be a power of 0 only if k>=1 exists: True for x==0\n        # but problem examples don't mention 0; to be safe, treat 0 as power only if x==0.\n        return x == 0\n\n    # Exponent k should be a non-negative integer.\n    # By convention, 1 == n**0 for any n != 0.\n    if x == 1:\n        return True\n\n    # If x <= 0, cannot be n**k for k>=0 when n>0 (except perhaps when n is negative and k odd).\n    # We'll handle negative n: only possible when x is negative and n is negative and k is odd.\n    if x == 0:\n        # For n != 0, 0 == n**k only when k>0.\n        return True  # there exists k>=1 such that n**k == 0 only if n==0; handled above. For n!=0, impossible.\n        # However, above we returned for n==0. For n!=0, 0 cannot be power. Adjust:\n    # Adjust handling for x==0:\n    if x == 0:\n        return n == 0\n\n    # From this point, x != 0 and x != 1\n    # If n == 1, 1**k == 1 only, so other x cannot be powers.\n    if n == 1:\n        return False\n\n    # If n == -1, powers alternate between 1 and -1\n    if n == -1:\n        return x in (1, -1)\n\n    # For n > 1: check by repeated division\n    if n > 1:\n        if x < 1:\n            return False\n        v = x\n        while v % n == 0:\n            v //= n\n        return v == 1\n\n    # For n <= -2:\n    if n <= -2:\n        # k must be non-negative integer. For even k, n**k positive; for odd k, negative.\n        # So check dividing by n repeatedly while maintaining integer division.\n        v = x\n        k = 0\n        # We only consider non-negative k. Repeat division while divisible.\n        while True:\n            if v == 1 and k >= 0:\n                return True\n            if v == -1 and k >= 0:\n                # If remaining is -1 and k will be even/odd? Actually if v == -1 and further division by n not possible.\n                # We only reach v==-1 if k is whatever; n**k times v == original x. Simpler: try to divide while divisible.\n                break\n            if v % n != 0:\n                break\n            v //= n\n            k += 1\n        # After loop, check if we reduced to 1\n        return v == 1 or v == -1 and (k % 2 == 1)\n\n# Quick manual tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (1,4, True),\n        (2,2, True),\n        (8,2, True),\n        (3,2, False),\n        (3,1, False),\n        (5,3, False),\n        (0,0, True),\n        (0,2, False),\n        (-8,-2, True),\n        (1,-3, True),\n        (-1,-1, True),\n    ]\n    for x,n,expected in tests:\n        print(x, n, is_simple_power(x,n), \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 368,
+    "ast_depth": 10,
+    "branch_count": 15,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 32,
+    "control_flow_ratio": 0.086957,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

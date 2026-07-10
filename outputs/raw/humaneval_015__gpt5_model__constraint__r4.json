@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_015",
+  "task_id": "HumanEval/15",
+  "problem_name": "String Sequence",
+  "entry_point": "string_sequence",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:47:24.128236+00:00",
+  "elapsed_seconds": 3.576,
+  "official_prompt": "\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 up to n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n    # Validate input type\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    # Handle negative values: produce empty sequence or raise? Follow natural interpretation: include numbers from 0 to n inclusive.\n    # If n < 0, there are no numbers from 0 up to n; return empty string.\n    if n < 0:\n        return \"\"\n    # Build list of stringified numbers\n    parts = []\n    i = 0\n    while i <= n:\n        parts.append(str(i))\n        i += 1\n    # Join with spaces\n    return \" \".join(parts)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Iterable\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 up to n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n    # Validate input type\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    # Handle negative values: produce empty sequence or raise? Follow natural interpretation: include numbers from 0 to n inclusive.\n    # If n < 0, there are no numbers from 0 up to n; return empty string.\n    if n < 0:\n        return \"\"\n    # Build list of stringified numbers\n    parts = []\n    i = 0\n    while i <= n:\n        parts.append(str(i))\n        i += 1\n    # Join with spaces\n    return \" \".join(parts)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

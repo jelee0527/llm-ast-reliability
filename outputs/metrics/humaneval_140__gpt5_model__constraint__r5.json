@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n\n    Examples:\n    fix_spaces(\"Example\") == \"Example\"\n    fix_spaces(\"Example 1\") == \"Example_1\"\n    fix_spaces(\" Example 2\") == \"_Example_2\"\n    fix_spaces(\" Example   3\") == \"_Example-3\"\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    # First replace any run of 3 or more spaces with a single hyphen\n    # Then replace remaining single or double spaces with underscores\n    # Use regex to ensure deterministic behavior\n    # Replace runs of 3+ spaces with '-'\n    result = re.sub(r' {3,}', '-', text)\n    # Replace any remaining single or double spaces with underscore(s)\n    # Since requirement is \"replace all spaces with underscores\" after handling long runs,\n    # we replace each remaining space with an underscore.\n    result = result.replace(' ', '_')\n    return result\n\n\n# Quick self-tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        \"Example\": \"Example\",\n        \"Example 1\": \"Example_1\",\n        \" Example 2\": \"_Example_2\",\n        \" Example   3\": \"_Example-3\",\n        \"A  B\": \"A__B\",            # two spaces -> two underscores\n        \"A   B\": \"A-B\",            # three spaces -> hyphen\n        \"A    B\": \"A-B\",           # four spaces -> hyphen\n        \"\": \"\",\n        \"   \": \"-\",                # three spaces only -> hyphen\n    }\n    for inp, expected in tests.items():\n        out = fix_spaces(inp)\n        assert out == expected, f\"Input: {repr(inp)} Expected: {repr(expected)} Got: {repr(out)}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

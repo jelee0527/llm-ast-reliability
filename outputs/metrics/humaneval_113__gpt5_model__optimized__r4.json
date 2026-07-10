@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings of digits, return list of formatted strings where\n    every 'i' in the template is replaced by the count of odd digits in that input string.\n    \"\"\"\n    out = []\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # But original examples show no spaces around inserted numbers and replace every 'i' letter\n    # Build template matching problem statement: \"the number of odd elements i the stri ng i of the i nput.\"\n    # Instead, use original sentence from docstring:\n    base = \"the number of odd elements i n the stri ng i of the i nput.\"\n    # Simpler: use given expected outputs to craft exact template:\n    tmpl = \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n    for s in lst:\n        # count odd digits\n        count = sum((ord(c) - ord('0')) & 1 for c in s)\n        out.append(tmpl.format(n=count))\n    return out",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027397,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

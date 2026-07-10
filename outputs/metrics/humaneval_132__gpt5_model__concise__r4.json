@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    \"\"\"\n    Return True iff there exists a valid subsequence of brackets (balanced) where at least one bracket is nested.\n    That is, there exists indices i<j with string[i]=='[' and string[j]==']' forming a matching pair, and between them there is\n    at least one complete bracket pair (i.e., nesting depth >=2 somewhere).\n    \"\"\"\n    # First, collect positions of brackets\n    n = len(string)\n    opens = [i for i,ch in enumerate(string) if ch == '[']\n    closes = [i for i,ch in enumerate(string) if ch == ']']\n    if not opens or not closes:\n        return False\n\n    # Build for each position the next close index after it\n    # We'll attempt to greedily match to find any nested structure.\n    # Use stack approach to find matched pairs in a subsequence (not necessarily contiguous),\n    # which is equivalent to checking if there exists indices forming nested matched pairs.\n    # We can simulate greedy matching: iterate chars, push opens indices, when see close, pop last open to match.\n    stack: List[int] = []\n    pairs: List[tuple] = []\n    for i,ch in enumerate(string):\n        if ch == '[':\n            stack.append(i)\n        else:  # ch == ']'\n            if stack:\n                o = stack.pop()\n                pairs.append((o,i))\n    if not pairs:\n        return False\n    # Now pairs are matched as in a subsequence matching (greedy). Check if any pair contains another pair strictly inside.\n    # That indicates nesting.\n    # Sort pairs by opening index\n    pairs.sort()\n    # For each pair, see if there exists another pair with both indices inside it.\n    # Use maximum close seen so far while scanning openings to detect nesting.\n    # Simpler: for each i<j: if pairs[i][0] < pairs[j][0] and pairs[j][1] < pairs[i][1] -> nesting\n    m = len(pairs)\n    for a in range(m):\n        oa, ca = pairs[a]\n        for b in range(a+1, m):\n            ob, cb = pairs[b]\n            if oa < ob and cb < ca:\n                return True\n    return False\n\n# Quick manual tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    tests = ['[[]]', '[]]]]]]][[[[[]', '[][]', '[]', '[[][]]', '[[]][[']\n    for t in tests:\n        print(t, is_nested(t))",
+  "metrics": {
+    "total_nodes": 270,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.051852,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

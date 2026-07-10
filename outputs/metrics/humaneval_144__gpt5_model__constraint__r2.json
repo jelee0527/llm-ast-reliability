@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number, else False.\n    x and n are strings like \"numerator/denominator\" with positive integers.\"\"\"\n    # Parse fractions\n    try:\n        a_num, a_den = x.split('/')\n        b_num, b_den = n.split('/')\n        a = Fraction(int(a_num), int(a_den))\n        b = Fraction(int(b_num), int(b_den))\n    except Exception:\n        # If parsing fails, raise ValueError to surface incorrect usage\n        raise ValueError(\"Inputs must be strings in 'numerator/denominator' format with positive integers.\")\n    prod = a * b\n    # A Fraction is whole if denominator == 1\n    return prod.denominator == 1",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

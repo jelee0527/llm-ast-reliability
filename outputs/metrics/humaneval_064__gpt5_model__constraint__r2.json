@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in the input string s.\n    Vowels are 'a', 'e', 'i', 'o', 'u' (case-insensitive).\n    'y' is considered a vowel only when it appears at the end of the word.\n    Non-alphabetic characters are ignored (but do not affect 'y' rule except position).\n    \"\"\"\n    if s is None:\n        return 0\n    # Ensure string type\n    s = str(s)\n    if s == \"\":\n        return 0\n    # Count regular vowels (a,e,i,o,u)\n    count = 0\n    lower = s.lower()\n    for ch in lower:\n        if ch in \"aeiou\":\n            count += 1\n    # Handle 'y' at the end: only counts if final character is 'y' (and is a letter)\n    # We treat the very last character of the string as the end of the word.\n    last_char = lower[-1]\n    if last_char == 'y':\n        count += 1\n    return count\n\n# Tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),       # A, E, Y (end)\n        (\"rhythm\", 0),      # y not at end? actually 'rhythm' ends with 'm' -> 0\n        (\"play\", 1),        # a + y (end) => 2? but play: p l a y -> a and y => 2\n        (\"play\", 2),\n        (\"sky\", 1),         # y at end\n        (\"Y\", 1),           # single letter Y counts\n        (\"\", 0),\n        (None, 0),\n        (\"bcd\", 0),\n        (\"AEIOU\", 5),\n        (\"aeiouy\", 6),      # y at end counts\n        (\"yodel\", 2),       # o,e (y at start does not count)\n        (\"fifty\", 1),       # i + y at end => 2\n        (\"fifty\", 2),\n        (\"pythony\", 2),     # o + y at end => 2\n        (\"multi-wordy\", 3), # u,i,o + y at end? ends with 'y' -> u i o + y = 4; but string has hyphen counted; expected 4\n        (\"multi-wordy\", 4),\n        (\"123y\", 1),        # digits allowed, last char y counts\n        (\"Y123\", 1),        # last char not y, but Y at start counts? Y at start doesn't count; but uppercase vowels count if vowel letters\n        (\"bEy\", 2),         # e and y at end\n    ]\n\n    # Run and print mismatches\n    all_ok = True\n    for inp, expected in tests:\n        out = vowels_count(inp)\n        if out != expected:\n            all_ok = False\n            print(f\"FAIL: input={inp!r} expected={expected} got={out}\")\n    if all_ok:\n        print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 236,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.050847,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Determine if it's possible to exchange elements between lst1 and lst2\n    so that all elements in lst1 are even. Unlimited swaps allowed.\n    \"\"\"\n    # Count evens and odds in both lists\n    evens1 = sum(1 for x in lst1 if x % 2 == 0)\n    odds1 = len(lst1) - evens1\n    evens2 = sum(1 for x in lst2 if x % 2 == 0)\n    odds2 = len(lst2) - evens2\n\n    # We need lst1 to have length(len(lst1)) evens after exchanges.\n    # Swapping moves parity between lists: swapping an odd from lst1 with an even from lst2\n    # increases evens1 by 1 (and decreases odds1 by 1). Each such beneficial swap requires\n    # one odd in lst1 and one even in lst2. We can perform up to min(odds1, evens2) such swaps.\n    possible_new_evens1 = evens1 + min(odds1, evens2)\n\n    return \"YES\" if possible_new_evens1 == len(lst1) else \"NO\"",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.017241,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

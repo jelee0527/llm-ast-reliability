@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_063__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Dict\n\ndef fibfib(n: int) -> int:\n    \"\"\"Compute the n-th FibFib number where:\n    fibfib(0) = 0\n    fibfib(1) = 0\n    fibfib(2) = 1\n    fibfib(n) = fibfib(n-1) + fibfib(n-2) + fibfib(n-3) for n >= 3\n\n    Uses fast matrix exponentiation to compute in O(log n) time.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n\n    # The recurrence can be represented by the matrix:\n    # |1 1 1|   |F(n-1)|   = |F(n)  |\n    # |1 0 0| * |F(n-2)|     |F(n-1)|\n    # |0 1 0|   |F(n-3)|     |F(n-2)|\n    #\n    # If we raise this matrix to the (n-2) power and multiply by vector [F(2), F(1), F(0)]^T = [1,0,0]^T,\n    # the top element will be F(n).\n\n    def mat_mult(a: tuple, b: tuple) -> tuple:\n        \"\"\"Multiply two 3x3 matrices represented as tuples of 9 ints in row-major order.\"\"\"\n        return (\n            a[0]*b[0] + a[1]*b[3] + a[2]*b[6],\n            a[0]*b[1] + a[1]*b[4] + a[2]*b[7],\n            a[0]*b[2] + a[1]*b[5] + a[2]*b[8],\n            a[3]*b[0] + a[4]*b[3] + a[5]*b[6],\n            a[3]*b[1] + a[4]*b[4] + a[5]*b[7],\n            a[3]*b[2] + a[4]*b[5] + a[5]*b[8],\n            a[6]*b[0] + a[7]*b[3] + a[8]*b[6],\n            a[6]*b[1] + a[7]*b[4] + a[8]*b[7],\n            a[6]*b[2] + a[7]*b[5] + a[8]*b[8],\n        )\n\n    def mat_pow(mat: tuple, power: int) -> tuple:\n        \"\"\"Fast exponentiation of a 3x3 matrix.\"\"\"\n        # identity matrix\n        result = (1,0,0, 0,1,0, 0,0,1)\n        base = mat\n        p = power\n        while p > 0:\n            if p & 1:\n                result = mat_mult(result, base)\n            base = mat_mult(base, base)\n            p >>= 1\n        return result\n\n    # transformation matrix\n    trans = (1,1,1, 1,0,0, 0,1,0)\n    # We need trans^(n-2)\n    trans_pow = mat_pow(trans, n-2)\n    # Multiply by initial vector [F(2), F(1), F(0)] = [1,0,0].\n    # Top element is trans_pow row0 dot [1,0,0] = trans_pow[0]\n    return trans_pow[0]  # integer result\n\n\n# Quick simple tests when run as script\nif __name__ == \"__main__\":\n    tests = {1:0, 2:1, 3:1, 4:2, 5:4, 6:7, 7:13, 8:24}\n    for k, expected in tests.items():\n        got = fibfib(k)\n        print(k, got, \"OK\" if got == expected else f\"FAIL(expected {expected})\")",
+  "metrics": {
+    "total_nodes": 598,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 3,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.023411,
+    "function_names": [
+      "fibfib",
+      "mat_mult",
+      "mat_pow"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:02:43.807746+00:00",
+  "elapsed_seconds": 4.433,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n.\n    Returns None if no such divisor exists (e.g., n <= 1 or n is prime? For prime >1 returns 1).\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(1) is None\n    True\n    >>> largest_divisor(2)\n    1\n    >>> largest_divisor(17)\n    1\n    >>> largest_divisor(100)\n    50\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n    # Check divisors from largest possible (n//2) down to 1 for efficiency\n    # The largest proper divisor of n is at most n//2 for n>1.\n    for d in range(n // 2, 0, -1):\n        if n % d == 0:\n            return d\n    # Fallback, though loop should always return for n>1\n    return None\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Optional\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n.\n    Returns None if no such divisor exists (e.g., n <= 1 or n is prime? For prime >1 returns 1).\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(1) is None\n    True\n    >>> largest_divisor(2)\n    1\n    >>> largest_divisor(17)\n    1\n    >>> largest_divisor(100)\n    50\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n    # Check divisors from largest possible (n//2) down to 1 for efficiency\n    # The largest proper divisor of n is at most n//2 for n>1.\n    for d in range(n // 2, 0, -1):\n        if n % d == 0:\n            return d\n    # Fallback, though loop should always return for n>1\n    return None\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

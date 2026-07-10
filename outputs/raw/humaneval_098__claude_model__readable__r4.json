@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_098",
+  "task_id": "HumanEval/98",
+  "problem_name": "Count Upper",
+  "entry_point": "count_upper",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:38:00.484848+00:00",
+  "elapsed_seconds": 2.764,
+  "official_prompt": "\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n\n",
+  "raw_response": "def count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n    uppercase_vowels = set('AEIOU')\n    count = 0\n    \n    for index in range(0, len(s), 2):\n        character = s[index]\n        if character in uppercase_vowels:\n            count += 1\n    \n    return count",
+  "generated_code": "def count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n    uppercase_vowels = set('AEIOU')\n    count = 0\n    \n    for index in range(0, len(s), 2):\n        character = s[index]\n        if character in uppercase_vowels:\n            count += 1\n    \n    return count"
+}

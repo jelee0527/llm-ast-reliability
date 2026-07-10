@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"Return the largest even integer in the inclusive range [x, y].\n    If no such integer exists, return -1.\n    x and y are expected to be numbers. If x > y, return -1.\"\"\"\n    try:\n        # Ensure numeric inputs\n        x_val = float(x)\n        y_val = float(y)\n    except (TypeError, ValueError):\n        return -1\n\n    if x_val > y_val:\n        return -1\n\n    # Compute the largest integer <= y\n    y_int = math.floor(y_val)\n    # If that integer is even, it's a candidate; otherwise subtract 1 to get an even integer\n    if y_int % 2 == 0:\n        candidate = y_int\n    else:\n        candidate = y_int - 1\n\n    # Check candidate is within [x, y]\n    if candidate < math.ceil(x_val):\n        return -1\n    if candidate < x_val:\n        return -1\n    return candidate\n\n\n# Simple tests when module run directly\nif __name__ == \"__main__\":\n    tests = [\n        (12, 15, 14),\n        (13, 12, -1),\n        (2.1, 3.9, -1),\n        (2, 2, 2),\n        (2.5, 4.9, 4),\n        (3, 3, -1),\n        (3, 4, 4),\n        (-3, 1, 0),\n        (-4.5, -1.2, -2),\n    ]\n    for a, b, expected in tests:\n        result = choose_num(a, b)\n        print(a, b, result, \"OK\" if result == expected else \"FAIL (expected %s)\" % expected)",
+  "metrics": {
+    "total_nodes": 224,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.058036,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Given a list of two strings consisting only of '(' and ')',\n    determine if there exists an order to concatenate them so the result is balanced.\n    Return 'Yes' or 'No'.\n    \"\"\"\n    def is_good(s: str) -> bool:\n        balance = 0\n        for ch in s:\n            if ch == '(':\n                balance += 1\n            else:\n                balance -= 1\n            if balance < 0:\n                return False\n        return balance == 0\n\n    a, b = lst[0], lst[1]\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    return 'No'",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.075472,
+    "function_names": [
+      "match_parens",
+      "is_good"
+    ]
+  }
+}

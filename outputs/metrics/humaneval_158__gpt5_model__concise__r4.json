@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    if not words:\n        return \"\"\n    # For each word, compute count of unique chars\n    # Then find maximum unique count\n    max_unique = max(len(set(w)) for w in words)\n    # Filter words with that count and return lexicographically smallest\n    candidates = [w for w in words if len(set(w)) == max_unique]\n    return min(candidates) if candidates else \"\"",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.054054,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

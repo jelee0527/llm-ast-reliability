@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pluck(arr: List[int]) -> List[int]:\n    \"\"\"\n    Return [smallest_even_value, index] for the smallest even value in arr.\n    If multiple equal smallest evens, return the one with smallest index.\n    If no even values or arr is empty, return [].\n    \"\"\"\n    best_value = None\n    best_index = -1\n    for i, v in enumerate(arr):\n        if v % 2 == 0:\n            if best_value is None or v < best_value:\n                best_value = v\n                best_index = i\n    if best_value is None:\n        return []\n    return [best_value, best_index]\n\n# Simple self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        ([4,2,3], [2,1]),\n        ([1,2,3], [2,1]),\n        ([], []),\n        ([5,0,3,0,4,2], [0,1]),\n        ([7,7,7], []),\n        ([6,6,2,2], [2,2]),\n    ]\n    for inp, expected in tests:\n        out = pluck(inp)\n        print(inp, \"=>\", out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 205,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.043902,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

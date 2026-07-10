@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Examples:\n    generate_integers(2, 8) -> [2, 4, 6, 8]\n    generate_integers(8, 2) -> [2, 4, 6, 8]\n    generate_integers(10, 14) -> []\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    if a < 0 or b < 0:\n        raise ValueError(\"a and b must be positive integers (including zero)\")\n\n    start = min(a, b)\n    end = max(a, b)\n\n    evens = []\n    # Iterate through the range inclusive and collect single-digit even integers\n    for num in range(start, end + 1):\n        if 0 <= num <= 9 and num % 2 == 0:\n            evens.append(num)\n\n    return evens\n\n# Quick tests (will run when module is executed)\nif __name__ == \"__main__\":\n    print(generate_integers(2, 8))   # [2, 4, 6, 8]\n    print(generate_integers(8, 2))   # [2, 4, 6, 8]\n    print(generate_integers(10, 14)) # []\n    print(generate_integers(0, 4))   # [0, 2, 4]",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.047059,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

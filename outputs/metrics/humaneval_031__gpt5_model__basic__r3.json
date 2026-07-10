@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_031__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_031",
+  "task_id": "HumanEval/31",
+  "problem_name": "Is Prime",
+  "entry_point": "is_prime",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n    if not isinstance(n, int):\n        return False\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0:\n        return False\n    # check odd divisors up to sqrt(n)\n    limit = int(math.isqrt(n))\n    for i in range(3, limit + 1, 2):\n        if n % i == 0:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.137931,
+    "function_names": [
+      "is_prime"
+    ]
+  }
+}

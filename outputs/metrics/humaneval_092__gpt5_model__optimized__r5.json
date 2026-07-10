@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_092__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Return True if x, y, z are all integers and one equals the sum of the other two.\n    Otherwise return False.\n    \"\"\"\n    # Check integer types exactly (exclude floats that are whole numbers)\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n    return (x == y + z) or (y == x + z) or (z == x + y)",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.037975,
+    "function_names": [
+      "any_int"
+    ]
+  }
+}

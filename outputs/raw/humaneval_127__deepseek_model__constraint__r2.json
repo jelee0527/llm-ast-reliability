@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:57:56.801708+00:00",
+  "elapsed_seconds": 1.615,
+  "official_prompt": "\ndef intersection(interval1, interval2):\n    \"\"\"You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two \n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n\n    [input/output] samples:\n    intersection((1, 2), (2, 3)) ==> \"NO\"\n    intersection((-1, 1), (0, 4)) ==> \"NO\"\n    intersection((-3, -1), (-5, 5)) ==> \"YES\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef intersection(interval1, interval2):\n    \"\"\"You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two \n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n\n    [input/output] samples:\n    intersection((1, 2), (2, 3)) ==> \"NO\"\n    intersection((-1, 1), (0, 4)) ==> \"NO\"\n    intersection((-3, -1), (-5, 5)) ==> \"YES\"\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef intersection(interval1, interval2):\n    start1, end1 = interval1\n    start2, end2 = interval2\n    \n    inter_start = max(start1, start2)\n    inter_end = min(end1, end2)\n    \n    if inter_start > inter_end:\n        return \"NO\"\n    \n    length = inter_end - inter_start + 1\n    \n    if length < 2:\n        return \"NO\"\n    \n    if length == 2:\n        return \"YES\"\n    \n    if length % 2 == 0:\n        return \"NO\"\n    \n    i = 3\n    while i * i <= length:\n        if length % i == 0:\n            return \"NO\"\n        i += 2\n    \n    return \"YES\"\n```",
+  "generated_code": "def intersection(interval1, interval2):\n    start1, end1 = interval1\n    start2, end2 = interval2\n    \n    inter_start = max(start1, start2)\n    inter_end = min(end1, end2)\n    \n    if inter_start > inter_end:\n        return \"NO\"\n    \n    length = inter_end - inter_start + 1\n    \n    if length < 2:\n        return \"NO\"\n    \n    if length == 2:\n        return \"YES\"\n    \n    if length % 2 == 0:\n        return \"NO\"\n    \n    i = 3\n    while i * i <= length:\n        if length % i == 0:\n            return \"NO\"\n        i += 2\n    \n    return \"YES\""
+}

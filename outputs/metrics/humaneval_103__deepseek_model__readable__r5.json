@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    total = sum(range(n, m + 1))\n    count = m - n + 1\n    average = total / count\n    rounded = round(average)\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

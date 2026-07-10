@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for ch in message:\n        if ch in vowels:\n            shifted = chr(ord(ch) + 2)\n            if ch.islower():\n                result.append(shifted.upper())\n            else:\n                result.append(shifted.lower())\n        else:\n            if ch.isalpha():\n                result.append(ch.swapcase())\n            else:\n                result.append(ch)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

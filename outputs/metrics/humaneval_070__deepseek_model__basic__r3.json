@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_070__deepseek_model__basic__r3.json",
+  "problem_id": "humaneval_070",
+  "task_id": "HumanEval/70",
+  "problem_name": "Strange Sort List",
+  "entry_point": "strange_sort_list",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def strange_sort_list(lst):\n    if not lst:\n        return []\n    sorted_lst = sorted(lst)\n    result = []\n    left, right = 0, len(sorted_lst) - 1\n    while left <= right:\n        if left == right:\n            result.append(sorted_lst[left])\n            break\n        result.append(sorted_lst[left])\n        result.append(sorted_lst[right])\n        left += 1\n        right -= 1\n    return result",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.056075,
+    "function_names": [
+      "strange_sort_list"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef words_string(s: str) -> List[str]:\n    \"\"\"\n    Split a string of words separated by commas or spaces into a list of words.\n\n    Examples:\n    words_string(\"Hi, my name is John\") -> [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") -> [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n    if s is None:\n        return []\n    # Replace commas with spaces, then split on any whitespace sequence.\n    # Also strip to remove leading/trailing whitespace.\n    cleaned = s.replace(\",\", \" \")\n    # Split on whitespace; filter out any empty strings\n    parts = re.split(r\"\\s+\", cleaned.strip())\n    # If original string was empty or contained only separators, return empty list\n    if parts == [''] or parts == []:\n        return []\n    return parts",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.068493,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

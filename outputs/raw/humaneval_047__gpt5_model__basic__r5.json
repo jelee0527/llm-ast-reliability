@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:51:26.843879+00:00",
+  "elapsed_seconds": 3.452,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\nimport math\nimport statistics\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Use sorted copy\n    s = sorted(l)\n    mid = n // 2\n    if n % 2 == 1:\n        return s[mid]\n    else:\n        # ensure numeric behavior: average of two middle values\n        a, b = s[mid - 1], s[mid]\n        return (a + b) / 2.0",
+  "generated_code": "from typing import List, Any\nimport math\nimport statistics\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Use sorted copy\n    s = sorted(l)\n    mid = n // 2\n    if n % 2 == 1:\n        return s[mid]\n    else:\n        # ensure numeric behavior: average of two middle values\n        a, b = s[mid - 1], s[mid]\n        return (a + b) / 2.0"
+}

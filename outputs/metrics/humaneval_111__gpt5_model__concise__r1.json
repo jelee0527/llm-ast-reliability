@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import Counter\nfrom typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    if not test:\n        return {}\n    # split by whitespace, filter out any empty tokens\n    tokens = [t for t in test.split() if t]\n    if not tokens:\n        return {}\n    counts = Counter(tokens)\n    maxc = max(counts.values())\n    return {k: v for k, v in counts.items() if v == maxc}",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.053763,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

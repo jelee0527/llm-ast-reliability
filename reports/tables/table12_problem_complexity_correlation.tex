@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Correlation between problem complexity and structural sensitivity}
+\label{tab:problem_complexity_correlation}
+\begin{tabular}{lcccc}
+\toprule
+Relationship & N & Spearman $\rho$ & p-value & Significant \\
+\midrule
+problem\_complexity vs. pssi & 164 & 0.269 & 4.97e-04 & Yes \\
+problem\_complexity vs. sds & 164 & 0.321 & 2.87e-05 & Yes \\
+problem\_complexity vs. ssi & 164 & -0.430 & 9.51e-09 & Yes \\
+problem\_complexity vs. functional\_pass\_rate & 164 & -0.278 & 3.07e-04 & Yes \\
+branch\_count vs. pssi & 164 & 0.264 & 6.37e-04 & Yes \\
+loop\_count vs. pssi & 164 & 0.171 & 0.0286 & Yes \\
+branch\_count vs. sds & 164 & 0.302 & 8.73e-05 & Yes \\
+loop\_count vs. sds & 164 & 0.189 & 0.0156 & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}

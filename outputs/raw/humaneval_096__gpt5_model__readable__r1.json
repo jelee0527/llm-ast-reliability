@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:33:06.548076+00:00",
+  "elapsed_seconds": 4.77,
+  "official_prompt": "\ndef count_up_to(n):\n    \"\"\"Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_up_to(n):\n    \"\"\"Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef count_up_to(n):\n    \"\"\"Return a list of prime numbers less than n.\"\"\"\n    if not isinstance(n, int) or n <= 1:\n        return []\n    limit = n - 1\n    sieve_limit = n  # we will mark numbers < n\n    sieve = bytearray(b'\\x01') * (sieve_limit)\n    sieve[0:2] = b'\\x00\\x00'  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start:sieve_limit:step] = b'\\x00' * ((sieve_limit - 1 - start) // step + 1)\n    return [i for i in range(2, n) if sieve[i]]",
+  "generated_code": "import math\n\ndef count_up_to(n):\n    \"\"\"Return a list of prime numbers less than n.\"\"\"\n    if not isinstance(n, int) or n <= 1:\n        return []\n    limit = n - 1\n    sieve_limit = n  # we will mark numbers < n\n    sieve = bytearray(b'\\x01') * (sieve_limit)\n    sieve[0:2] = b'\\x00\\x00'  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start:sieve_limit:step] = b'\\x00' * ((sieve_limit - 1 - start) // step + 1)\n    return [i for i in range(2, n) if sieve[i]]"
+}

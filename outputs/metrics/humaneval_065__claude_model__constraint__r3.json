@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def circular_shift(x, shift):\n    digits = str(x)\n    n = len(digits)\n    if shift > n:\n        return digits[::-1]\n    shift = shift % n\n    return digits[-shift:] + digits[:-shift] if shift else digits",
+  "metrics": {
+    "total_nodes": 72,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

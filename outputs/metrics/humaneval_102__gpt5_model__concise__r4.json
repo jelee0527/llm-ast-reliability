@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"Return the biggest even integer in [x,y] inclusive, or -1 if none.\"\"\"\n    try:\n        # ensure numeric\n        lx = float(x)\n        ly = float(y)\n    except Exception:\n        return -1\n    if ly < lx:\n        return -1\n    # smallest integer >= lx\n    start = math.ceil(lx)\n    # largest integer <= ly\n    end = math.floor(ly)\n    if end < start:\n        return -1\n    # make end even\n    if end % 2 != 0:\n        end -= 1\n    # ensure end still within range\n    if end < start:\n        # maybe start is even and within\n        if start % 2 == 0 and start <= end + 1 and start <= math.floor(ly):\n            return start\n        return -1\n    return int(end)",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.085714,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

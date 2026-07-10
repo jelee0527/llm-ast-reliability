@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:36:54.736897+00:00",
+  "elapsed_seconds": 1.922,
+  "official_prompt": "\ndef fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores, \n    and if a string has more than 2 consecutive spaces, \n    then replace all consecutive spaces with - \n    \n    fix_spaces(\"Example\") == \"Example\"\n    fix_spaces(\"Example 1\") == \"Example_1\"\n    fix_spaces(\" Example 2\") == \"_Example_2\"\n    fix_spaces(\" Example   3\") == \"_Example-3\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores, \n    and if a string has more than 2 consecutive spaces, \n    then replace all consecutive spaces with - \n    \n    fix_spaces(\"Example\") == \"Example\"\n    fix_spaces(\"Example 1\") == \"Example_1\"\n    fix_spaces(\" Example 2\") == \"_Example_2\"\n    fix_spaces(\" Example   3\") == \"_Example-3\"\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef fix_spaces(text):\n    text = re.sub(r' {3,}', '-', text)\n    text = text.replace(' ', '_')\n    return text",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    text = re.sub(r' {3,}', '-', text)\n    text = text.replace(' ', '_')\n    return text"
+}

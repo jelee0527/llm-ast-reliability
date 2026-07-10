@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Callable\nimport operator as op_module\nimport math\n\n# Map symbol strings to functions implementing the operation\n_OPERATOR_FUNCS = {\n    '+': op_module.add,\n    '-': op_module.sub,\n    '*': op_module.mul,\n    '//': lambda a, b: a // b,\n    '**': pow,\n}\n\ndef do_algebra(operator: List[str], operand: List[int]) -> int:\n    \"\"\"\n    Evaluate an expression built from a list of operators and a list of operands.\n    The operator list length is len(operand) - 1.\n\n    Supported operators: '+', '-', '*', '//', '**'\n    All operands are non-negative integers. Evaluation is left-to-right\n    without any operator precedence (operators are applied in the given sequence).\n    \"\"\"\n    if not operator or not operand or len(operator) != len(operand) - 1:\n        raise ValueError(\"Invalid input lengths: operator must be length operand-1 and non-empty.\")\n\n    # Start with the first operand\n    result = int(operand[0])\n\n    for op_sym, next_value in zip(operator, operand[1:]):\n        if op_sym not in _OPERATOR_FUNCS:\n            raise ValueError(f\"Unsupported operator: {op_sym}\")\n        func: Callable = _OPERATOR_FUNCS[op_sym]\n        # Ensure integer for next_value\n        b = int(next_value)\n        # Apply the operation\n        result = func(result, b)\n\n    return result",
+  "metrics": {
+    "total_nodes": 169,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.035503,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

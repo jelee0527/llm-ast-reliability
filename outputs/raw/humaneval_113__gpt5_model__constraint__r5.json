@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:07:48.877696+00:00",
+  "elapsed_seconds": 3.705,
+  "official_prompt": "\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    >>> odd_count(['3',\"11111111\"])\n    [\"the number of odd elements 1n the str1ng 1 of the 1nput.\",\n     \"the number of odd elements 8n the str8ng 8 of the 8nput.\"]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    >>> odd_count(['3',\"11111111\"])\n    [\"the number of odd elements 1n the str1ng 1 of the 1nput.\",\n     \"the number of odd elements 8n the str8ng 8 of the 8nput.\"]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return list where each element i is:\n    \"the number of odd elements <n>n the str<n>ng <n> of the <n>nput.\"\n    with <n> replaced by the count of odd digits in the ith input string.\n    \"\"\"\n    result: List[str] = []\n    for s in lst:\n        # Count digits that are odd\n        count = 0\n        for ch in s:\n            # ch is a digit per the problem statement\n            if (ord(ch) - ord('0')) % 2 == 1:\n                count += 1\n        # Build the string with count inserted in three places and 'n' replacing 'o' after each insertion\n        piece = str(count)\n        out = (\n            \"the number of odd elements \" + piece + \"n the str\" + piece + \"ng \"\n            + piece + \" of the \" + piece + \"nput.\"\n        )\n        result.append(out)\n    return result\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return list where each element i is:\n    \"the number of odd elements <n>n the str<n>ng <n> of the <n>nput.\"\n    with <n> replaced by the count of odd digits in the ith input string.\n    \"\"\"\n    result: List[str] = []\n    for s in lst:\n        # Count digits that are odd\n        count = 0\n        for ch in s:\n            # ch is a digit per the problem statement\n            if (ord(ch) - ord('0')) % 2 == 1:\n                count += 1\n        # Build the string with count inserted in three places and 'n' replacing 'o' after each insertion\n        piece = str(count)\n        out = (\n            \"the number of odd elements \" + piece + \"n the str\" + piece + \"ng \"\n            + piece + \" of the \" + piece + \"nput.\"\n        )\n        result.append(out)\n    return result\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))"
+}

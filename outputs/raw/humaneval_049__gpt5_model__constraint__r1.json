@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:55:57.192133+00:00",
+  "elapsed_seconds": 4.358,
+  "official_prompt": "\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(p, int):\n        raise TypeError(\"n and p must be integers\")\n    if p <= 0:\n        raise ValueError(\"modulus p must be a positive integer\")\n    if n < 0:\n        # For negative exponent, compute modular inverse of 2^(-n) mod p if exists\n        # 2^n mod p with negative n is ambiguous unless inverse exists; raise error.\n        raise ValueError(\"n must be non-negative\")\n    # Fast modular exponentiation\n    result = 1 % p\n    base = 2 % p\n    exp = n\n    while exp > 0:\n        if exp & 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        exp >>= 1\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(p, int):\n        raise TypeError(\"n and p must be integers\")\n    if p <= 0:\n        raise ValueError(\"modulus p must be a positive integer\")\n    if n < 0:\n        # For negative exponent, compute modular inverse of 2^(-n) mod p if exists\n        # 2^n mod p with negative n is ambiguous unless inverse exists; raise error.\n        raise ValueError(\"n must be non-negative\")\n    # Fast modular exponentiation\n    result = 1 % p\n    base = 2 % p\n    exp = n\n    while exp > 0:\n        if exp & 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        exp >>= 1\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

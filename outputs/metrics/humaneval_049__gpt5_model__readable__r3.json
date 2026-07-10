@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_049__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"Modulus p must be a positive integer\")\n    if n < 0:\n        # Handle negative exponents by using modular inverse of 2 mod p if it exists\n        # 2^(-n) mod p = inverse(2^n) mod p\n        # Compute inverse of 2 modulo p using extended gcd\n        def egcd(a: int, b: int):\n            if b == 0:\n                return (a, 1, 0)\n            g, x1, y1 = egcd(b, a % b)\n            return (g, y1, x1 - (a // b) * y1)\n        g, x, _ = egcd(2, p)\n        if g != 1:\n            raise ValueError(\"Modular inverse of 2 does not exist for given p; cannot handle negative exponent\")\n        inv2 = x % p\n        return pow(inv2, -n, p)\n    # Use Python's built-in pow with modulus for efficiency and correctness\n    return pow(2, n, p)",
+  "metrics": {
+    "total_nodes": 150,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.066667,
+    "function_names": [
+      "modp",
+      "egcd"
+    ]
+  }
+}

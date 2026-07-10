@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm: find the longest suffix of the string that is a palindrome,\n    then append the reverse of the prefix before that suffix.\n    \"\"\"\n    if not string:\n        return \"\"\n    n = len(string)\n    # Find longest palindromic suffix starting at i\n    for i in range(n):\n        suffix = string[i:]\n        if is_palindrome(suffix):\n            prefix = string[:i]\n            return string + prefix[::-1]\n    # Fallback (shouldn't be reached since last char is palindrome)\n    return string + string[:-1][::-1]\n\n# Quick tests when run as script\nif __name__ == \"__main__\":\n    assert make_palindrome('') == ''\n    assert make_palindrome('cat') == 'catac'\n    assert make_palindrome('cata') == 'catac'\n    assert make_palindrome('a') == 'a'\n    assert make_palindrome('ab') == 'aba'\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.048193,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

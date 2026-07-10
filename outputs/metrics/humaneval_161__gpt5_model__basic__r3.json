@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef solve(s: str) -> str:\n    \"\"\"\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vice versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n    if s is None:\n        return s\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n    # Flip case for letters, leave other characters unchanged\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\n\nif __name__ == \"__main__\":\n    # simple interactive tests\n    print(solve(\"1234\"))   # expected \"4321\"\n    print(solve(\"ab\"))     # expected \"AB\"\n    print(solve(\"#a@C\"))   # expected \"#A@c\"",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.066038,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_072__claude_model__readable__r5.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def will_it_fly(q, w):\n    is_balanced = q == q[::-1]\n    total_weight = sum(q)\n    return is_balanced and total_weight <= w",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='will_it_fly',\n      args=arguments(\n        args=[\n          arg(arg='q'),\n          arg(arg='w')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='is_balanced', ctx=Store())],\n          value=Compare(\n            left=Name(id='q', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Subscript(\n                value=Name(id='q', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='total_weight', ctx=Store())],\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              Name(id='q', ctx=Load())])),\n        Return(\n          value=BoolOp(\n            op=And(),\n            values=[\n              Name(id='is_balanced', ctx=Load()),\n              Compare(\n                left=Name(id='total_weight', ctx=Load()),\n                ops=[\n                  LtE()],\n                comparators=[\n                  Name(id='w', ctx=Load())])]))])])"
+}

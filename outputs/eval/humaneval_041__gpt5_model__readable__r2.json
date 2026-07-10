@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_041__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "SyntaxError",
+  "error_message": "f-string: unmatched ')' (<string>, line 33)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 42, in main\n    exec(generated_code, namespace)\n  File \"<string>\", line 33\n    print(f\"n={val} -> collisions={car_race_collision(val))}\")\n                                                             ^\nSyntaxError: f-string: unmatched ')'\n"
+}

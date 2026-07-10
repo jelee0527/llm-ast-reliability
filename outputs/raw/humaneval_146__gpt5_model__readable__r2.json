@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:20:32.986383+00:00",
+  "elapsed_seconds": 4.529,
+  "official_prompt": "\ndef specialFilter(nums):\n    \"\"\"Write a function that takes an array of numbers as input and returns \n    the number of elements in the array that are greater than 10 and both \n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1 \n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef specialFilter(nums):\n    \"\"\"Write a function that takes an array of numbers as input and returns \n    the number of elements in the array that are greater than 10 and both \n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1 \n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    \"\"\"Return the count of numbers in nums that are:\n       - greater than 10\n       - have both first and last digits odd (1,3,5,7,9)\n    \"\"\"\n    odd_digits = {'1', '3', '5', '7', '9'}\n    count = 0\n    for n in nums:\n        if n <= 10:\n            continue\n        s = str(abs(n))\n        if not s:\n            continue\n        first, last = s[0], s[-1]\n        if first in odd_digits and last in odd_digits:\n            count += 1\n    return count\n\n# Example usage (can be removed if only the function is needed)\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))       # => 1\n    print(specialFilter([33, -2, -3, 45, 21, 109])) # => 2",
+  "generated_code": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    \"\"\"Return the count of numbers in nums that are:\n       - greater than 10\n       - have both first and last digits odd (1,3,5,7,9)\n    \"\"\"\n    odd_digits = {'1', '3', '5', '7', '9'}\n    count = 0\n    for n in nums:\n        if n <= 10:\n            continue\n        s = str(abs(n))\n        if not s:\n            continue\n        first, last = s[0], s[-1]\n        if first in odd_digits and last in odd_digits:\n            count += 1\n    return count\n\n# Example usage (can be removed if only the function is needed)\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))       # => 1\n    print(specialFilter([33, -2, -3, 45, 21, 109])) # => 2"
+}

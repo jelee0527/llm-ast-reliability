@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:48:19.977889+00:00",
+  "elapsed_seconds": 7.693,
+  "official_prompt": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef unique_digits(x: List[int]) -> List[int]:\n    \"\"\"Given a list of positive integers x, return a sorted list of all\n    elements that haven't any even digit.\n\n    Returned list is sorted in increasing order.\n    \"\"\"\n    def has_even_digit(n: int) -> bool:\n        if n == 0:\n            return True  # 0 is even digit\n        n = abs(n)\n        while n:\n            d = n % 10\n            if d % 2 == 0:\n                return True\n            n //= 10\n        return False\n\n    result = []\n    for num in x:\n        # skip non-positive? specification says positive integers; treat others as having even digit if 0 or negative sign ignored\n        if not has_even_digit(num):\n            result.append(num)\n    result.sort()\n    return result\n\nif __name__ == \"__main__\":\n    # Quick tests\n    print(unique_digits([15, 33, 1422, 1]))    # [1, 15, 33]\n    print(unique_digits([152, 323, 1422, 10])) # []",
+  "generated_code": "from typing import List\n\ndef unique_digits(x: List[int]) -> List[int]:\n    \"\"\"Given a list of positive integers x, return a sorted list of all\n    elements that haven't any even digit.\n\n    Returned list is sorted in increasing order.\n    \"\"\"\n    def has_even_digit(n: int) -> bool:\n        if n == 0:\n            return True  # 0 is even digit\n        n = abs(n)\n        while n:\n            d = n % 10\n            if d % 2 == 0:\n                return True\n            n //= 10\n        return False\n\n    result = []\n    for num in x:\n        # skip non-positive? specification says positive integers; treat others as having even digit if 0 or negative sign ignored\n        if not has_even_digit(num):\n            result.append(num)\n    result.sort()\n    return result\n\nif __name__ == \"__main__\":\n    # Quick tests\n    print(unique_digits([15, 33, 1422, 1]))    # [1, 15, 33]\n    print(unique_digits([152, 323, 1422, 10])) # []"
+}

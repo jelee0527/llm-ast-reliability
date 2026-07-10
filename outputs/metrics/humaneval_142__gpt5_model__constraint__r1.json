@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_142__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_142",
+  "task_id": "HumanEval/142",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sum_squares(lst: List[int]) -> int:\n    \"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    total = 0\n    # iterate with explicit index\n    for i in range(len(lst)):\n        val = lst[i]\n        if i % 3 == 0:\n            # index multiple of 3: square\n            transformed = val * val\n        elif i % 4 == 0:\n            # index multiple of 4 but not of 3 (because previous branch would have matched)\n            transformed = val * val * val\n        else:\n            transformed = val\n        total += transformed\n    return total\n\n# Quick self-check when run as script (not required, but harmless)\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3], 6),\n        ([], 0),\n        ([-1,-5,2,-1,-5], -126),\n        ([0,1,2,3,4,5,6,7,8,9,10,11,12], None),\n    ]\n    for lst, expected in tests:\n        result = sum_squares(lst)\n        if expected is not None:\n            print(lst, \"->\", result, \"expected\", expected)\n        else:\n            print(lst, \"->\", result)",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.035,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

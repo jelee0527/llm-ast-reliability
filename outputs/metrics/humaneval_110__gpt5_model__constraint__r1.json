@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Return \"YES\" if by exchanging some elements between lst1 and lst2\n    (any number, any positions) we can make all elements of lst1 even.\n    Otherwise return \"NO\".\n    \"\"\"\n    # Count evens and odds in both lists\n    ev1 = sum(1 for x in lst1 if x % 2 == 0)\n    od1 = len(lst1) - ev1\n    ev2 = sum(1 for x in lst2 if x % 2 == 0)\n    od2 = len(lst2) - ev2\n\n    # We need lst1 to have length len(lst1) all even.\n    # Currently ev1 are even; we need to convert od1 odd elements to even.\n    need = od1\n\n    # Each exchange swaps one element from lst1 with one from lst2.\n    # To turn an odd in lst1 into even, we must bring an even from lst2.\n    # So we need at least 'need' evens available in lst2 to swap in.\n    # But swapping also sends the odd to lst2; that's allowed.\n    if ev2 >= need:\n        return \"YES\"\n    else:\n        return \"NO\"",
+  "metrics": {
+    "total_nodes": 105,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.028571,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

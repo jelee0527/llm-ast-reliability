@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_016__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_016",
+  "task_id": "HumanEval/16",
+  "problem_name": "Count Distinct Characters",
+  "entry_point": "count_distinct_characters",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from collections.abc import Iterable\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of \"\"\"\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    return len(set(string.lower())) if string else 0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.087719,
+    "function_names": [
+      "count_distinct_characters"
+    ]
+  }
+}

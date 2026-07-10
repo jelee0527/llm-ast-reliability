@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:48:47.568454+00:00",
+  "elapsed_seconds": 2.944,
+  "official_prompt": "\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\"\"\"\n    prod = None\n    for ch in str(abs(int(n))):\n        d = ord(ch) - 48\n        if d % 2 == 1:\n            prod = d if prod is None else prod * d\n    return 0 if prod is None else prod",
+  "generated_code": "import math\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\"\"\"\n    prod = None\n    for ch in str(abs(int(n))):\n        d = ord(ch) - 48\n        if d % 2 == 1:\n            prod = d if prod is None else prod * d\n    return 0 if prod is None else prod"
+}

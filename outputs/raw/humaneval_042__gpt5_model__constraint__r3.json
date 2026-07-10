@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:42:44.493974+00:00",
+  "elapsed_seconds": 5.187,
+  "official_prompt": "\n\ndef incr_list(l: list):\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef incr_list(l: list):\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    result: List[Any] = []\n    for item in l:\n        # If item is an int or float, increment by 1 numerically.\n        # For other types that support addition with 1, attempt to add; otherwise raise TypeError.\n        if isinstance(item, (int, float)):\n            result.append(item + 1)\n        else:\n            try:\n                result.append(item + 1)  # may work for e.g. numpy types or custom objects\n            except Exception as e:\n                raise TypeError(f\"Cannot increment item of type {type(item)!r}: {e}\")\n    return result",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    result: List[Any] = []\n    for item in l:\n        # If item is an int or float, increment by 1 numerically.\n        # For other types that support addition with 1, attempt to add; otherwise raise TypeError.\n        if isinstance(item, (int, float)):\n            result.append(item + 1)\n        else:\n            try:\n                result.append(item + 1)  # may work for e.g. numpy types or custom objects\n            except Exception as e:\n                raise TypeError(f\"Cannot increment item of type {type(item)!r}: {e}\")\n    return result"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__claude_model__readable__r3.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n    closest_pair = None\n    smallest_difference = float('inf')\n\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            difference = abs(numbers[i] - numbers[j])\n            if difference < smallest_difference:\n                smallest_difference = difference\n                first_number = min(numbers[i], numbers[j])\n                second_number = max(numbers[i], numbers[j])\n                closest_pair = (first_number, second_number)\n\n    return closest_pair",
+  "metrics": {
+    "total_nodes": 143,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.027972,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

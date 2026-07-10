@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef smallest_change(arr: List[int]) -> int:\n    \"\"\"\n    Return the minimum number of elements to change to make arr a palindrome.\n    \"\"\"\n    n = len(arr)\n    changes = 0\n    for i in range(n // 2):\n        if arr[i] != arr[n - 1 - i]:\n            changes += 1\n    return changes\n\n# Quick tests\nif __name__ == \"__main__\":\n    assert smallest_change([1,2,3,5,4,7,9,6]) == 4\n    assert smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    assert smallest_change([1, 2, 3, 2, 1]) == 0\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.031496,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # dp[pos][step] = best path starting from cell pos with given remaining steps\n    # We'll store as tuple (value_list) but to save memory we store as tuple of ints\n    # Actually we need to compare lexicographically, so we store the whole path for small k\n    # For efficiency, we use BFS-like DP with pruning\n    \n    # Map value to coordinates\n    val_to_pos = {}\n    for i in range(n):\n        for j in range(n):\n            val_to_pos[grid[i][j]] = (i, j)\n    \n    # For each possible starting cell, we want the best path of length k\n    # Use DP: best_path[i][j][step] = tuple of values for best path starting at (i,j) with step steps left\n    # We'll compute from step=1 up to step=k\n    # For step=1, best path is just [grid[i][j]]\n    \n    best = [[None for _ in range(n)] for _ in range(n)]\n    for i in range(n):\n        for j in range(n):\n            best[i][j] = (grid[i][j],)  # path of length 1\n    \n    # For longer paths, we build iteratively\n    for step in range(2, k+1):\n        new_best = [[None for _ in range(n)] for _ in range(n)]\n        for i in range(n):\n            for j in range(n):\n                candidates = []\n                for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    ni, nj = i+di, j+dj\n                    if 0 <= ni < n and 0 <= nj < n:\n                        candidates.append((grid[i][j],) + best[ni][nj])\n                # pick lexicographically smallest\n                new_best[i][j] = min(candidates)\n        best = new_best\n    \n    # Find overall minimum starting path\n    overall_min = None\n    for i in range(n):\n        for j in range(n):\n            if overall_min is None or best[i][j] < overall_min:\n                overall_min = best[i][j]\n    return list(overall_min)",
+  "metrics": {
+    "total_nodes": 381,
+    "ast_depth": 15,
+    "branch_count": 3,
+    "loop_count": 10,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.03937,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

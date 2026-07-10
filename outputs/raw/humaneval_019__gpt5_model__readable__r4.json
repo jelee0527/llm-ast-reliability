@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:53:42.195107+00:00",
+  "elapsed_seconds": 5.614,
+  "official_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\nWORD_TO_VALUE = {\n    \"zero\": 0,\n    \"one\": 1,\n    \"two\": 2,\n    \"three\": 3,\n    \"four\": 4,\n    \"five\": 5,\n    \"six\": 6,\n    \"seven\": 7,\n    \"eight\": 8,\n    \"nine\": 9,\n}\n\nVALUE_TO_WORD = {v: k for k, v in WORD_TO_VALUE.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\"Sort a space-delimited string of number words from smallest to largest.\n    Valid inputs: 'zero'...'nine'. Returns a space-delimited sorted string.\n    \"\"\"\n    if not numbers:\n        return \"\"\n    tokens: List[str] = numbers.split()\n    # Map words to values, ignoring any empty tokens\n    values: List[int] = []\n    for tok in tokens:\n        low = tok.strip().lower()\n        if low == \"\":\n            continue\n        if low not in WORD_TO_VALUE:\n            raise ValueError(f\"Invalid number word: {tok}\")\n        values.append(WORD_TO_VALUE[low])\n    values.sort()\n    sorted_words = [VALUE_TO_WORD[v] for v in values]\n    return \" \".join(sorted_words)",
+  "generated_code": "from typing import List\n\nWORD_TO_VALUE = {\n    \"zero\": 0,\n    \"one\": 1,\n    \"two\": 2,\n    \"three\": 3,\n    \"four\": 4,\n    \"five\": 5,\n    \"six\": 6,\n    \"seven\": 7,\n    \"eight\": 8,\n    \"nine\": 9,\n}\n\nVALUE_TO_WORD = {v: k for k, v in WORD_TO_VALUE.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\"Sort a space-delimited string of number words from smallest to largest.\n    Valid inputs: 'zero'...'nine'. Returns a space-delimited sorted string.\n    \"\"\"\n    if not numbers:\n        return \"\"\n    tokens: List[str] = numbers.split()\n    # Map words to values, ignoring any empty tokens\n    values: List[int] = []\n    for tok in tokens:\n        low = tok.strip().lower()\n        if low == \"\":\n            continue\n        if low not in WORD_TO_VALUE:\n            raise ValueError(f\"Invalid number word: {tok}\")\n        values.append(WORD_TO_VALUE[low])\n    values.sort()\n    sorted_words = [VALUE_TO_WORD[v] for v in values]\n    return \" \".join(sorted_words)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_025__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    factors: List[int] = []\n    # Handle negative numbers: include -1 as a factor\n    if n < 0:\n        factors.append(-1)\n        n = -n\n    # Handle factor 2\n    while n % 2 == 0 and n > 0:\n        factors.append(2)\n        n //= 2\n    # Handle odd factors\n    limit = int(math.isqrt(n)) + 1\n    p = 3\n    while p <= limit and n > 1:\n        while n % p == 0:\n            factors.append(p)\n            n //= p\n            limit = int(math.isqrt(n)) + 1\n        p += 2\n    if n > 1:\n        factors.append(n)\n    return factors",
+  "metrics": {
+    "total_nodes": 186,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.043011,
+    "function_names": [
+      "factorize"
+    ]
+  }
+}

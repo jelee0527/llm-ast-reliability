@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_007__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    result = []\n    for s in strings:\n        if substring in s:\n            result.append(s)\n    return result",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='filter_by_substring',\n      args=arguments(\n        args=[\n          arg(\n            arg='strings',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='str', ctx=Load()),\n              ctx=Load())),\n          arg(\n            arg='substring',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\" Filter an input list of strings only for ones that contain given substring\\n    >>> filter_by_substring([], 'a')\\n    []\\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\\n    ['abc', 'bacd', 'array']\\n    \")),\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=List(ctx=Load())),\n        For(\n          target=Name(id='s', ctx=Store()),\n          iter=Name(id='strings', ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='substring', ctx=Load()),\n                ops=[\n                  In()],\n                comparators=[\n                  Name(id='s', ctx=Load())]),\n              body=[\n                Expr(\n                  value=Call(\n                    func=Attribute(\n                      value=Name(id='result', ctx=Load()),\n                      attr='append',\n                      ctx=Load()),\n                    args=[\n                      Name(id='s', ctx=Load())]))])]),\n        Return(\n          value=Name(id='result', ctx=Load()))],\n      returns=Subscript(\n        value=Name(id='List', ctx=Load()),\n        slice=Name(id='str', ctx=Load()),\n        ctx=Load()))])"
+}

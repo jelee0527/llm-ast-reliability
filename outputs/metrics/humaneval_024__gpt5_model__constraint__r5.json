@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        # For n <= 1 there is no positive divisor smaller than n that divides n evenly.\n        # By convention, return 0 to indicate no such divisor exists.\n        return 0\n\n    # If n is even, the largest proper divisor is n//2\n    if n % 2 == 0:\n        return n // 2\n\n    # For odd n, search for the largest divisor starting from sqrt(n) downwards.\n    # We look for the largest proper divisor < n.\n    import math\n    root = int(math.isqrt(n))\n\n    # Check from root down to 1 to find a divisor; when we find d dividing n,\n    # the corresponding pair is n//d which is >= d. We want the largest proper divisor < n,\n    # so we should consider n//d when n//d < n (which holds for d>1).\n    largest: Optional[int] = 1  # 1 always divides n, so initialize to 1\n    for d in range(root, 0, -1):\n        if n % d == 0:\n            paired = n // d\n            if paired < n:\n                # paired is a proper divisor; it's >= d, and scanning from root down\n                # ensures we find the largest paired divisor first when paired < n.\n                return paired\n            # paired == n can happen when d == 1; continue to find others\n            if d < n and d > largest:\n                largest = d\n\n    return largest",
+  "metrics": {
+    "total_nodes": 139,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.086331,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

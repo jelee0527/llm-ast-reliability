@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_058__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef common(l1: List[Any], l2: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use sets to find unique elements, then intersection\n    try:\n        set1 = set(l1)\n        set2 = set(l2)\n    except TypeError:\n        # If elements are unhashable (like lists), fall back to manual check preserving uniqueness\n        seen = []\n        for a in l1:\n            found = False\n            for b in l2:\n                if a == b:\n                    found = True\n                    break\n            if found and a not in seen:\n                seen.append(a)\n        # sort using default ordering\n        try:\n            return sorted(seen)\n        except TypeError:\n            # If items are not mutually comparable, return in insertion order\n            return seen\n\n    common_set = set1 & set2\n    try:\n        return sorted(common_set)\n    except TypeError:\n        # elements not comparable, return as list in deterministic order (sorted by repr)\n        return sorted(common_set, key=lambda x: repr(x))",
+  "metrics": {
+    "total_nodes": 145,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.082759,
+    "function_names": [
+      "common"
+    ]
+  }
+}

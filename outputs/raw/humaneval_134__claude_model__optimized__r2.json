@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:29:08.726838+00:00",
+  "elapsed_seconds": 2.277,
+  "official_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n\n",
+  "raw_response": "def check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    last_word = txt.split(' ')[-1]\n    return len(last_word) == 1 and last_word.isalpha()",
+  "generated_code": "def check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    last_word = txt.split(' ')[-1]\n    return len(last_word) == 1 and last_word.isalpha()"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__claude_model__readable__r4.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def sort_third(l: list):\n    # Extract values at indices divisible by three\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = sorted([l[i] for i in third_indices])\n    \n    # Create a copy of the original list\n    result = l[:]\n    \n    # Place sorted values back at indices divisible by three\n    for index, value in zip(third_indices, third_values):\n        result[index] = value\n    \n    return result",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.024096,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

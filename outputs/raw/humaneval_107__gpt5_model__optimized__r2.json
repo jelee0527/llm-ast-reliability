@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_107",
+  "task_id": "HumanEval/107",
+  "problem_name": "Even Odd Palindrome",
+  "entry_point": "even_odd_palindrome",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:55:23.101697+00:00",
+  "elapsed_seconds": 101.498,
+  "official_prompt": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n    \"\"\"\n    if n < 1:\n        return (0, 0)\n    even = 0\n    odd = 0\n    for i in range(1, n+1):\n        s = str(i)\n        if s == s[::-1]:\n            if i % 2 == 0:\n                even += 1\n            else:\n                odd += 1\n    return (even, odd)",
+  "generated_code": "import math\n\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n    \"\"\"\n    if n < 1:\n        return (0, 0)\n    even = 0\n    odd = 0\n    for i in range(1, n+1):\n        s = str(i)\n        if s == s[::-1]:\n            if i % 2 == 0:\n                even += 1\n            else:\n                odd += 1\n    return (even, odd)"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:22:46.570629+00:00",
+  "elapsed_seconds": 1.53,
+  "official_prompt": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n\n",
+  "raw_response": "def anti_shuffle(s):\n    return ' '.join(''.join(sorted(word)) for word in s.split(' '))",
+  "generated_code": "def anti_shuffle(s):\n    return ' '.join(''.join(sorted(word)) for word in s.split(' '))"
+}

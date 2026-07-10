@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parse counts of apples and oranges from string s and return mango count = n - apples - oranges.\n    \"\"\"\n    # find all integers in the string (handles negative but inputs are non-negative)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # fallback: try to parse words like \"zero\", \"one\" etc. minimal map\n        words = {\n            'zero':0,'one':1,'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,'nine':9,\n            'ten':10,'eleven':11,'twelve':12,'thirteen':13,'fourteen':14,'fifteen':15\n        }\n        lower = s.lower()\n        found = [words.get(w) for w in words if w in lower]\n        if len(found) >= 2:\n            apples, oranges = found[0], found[1]\n        else:\n            apples = int(nums[0]) if nums else 0\n            oranges = int(nums[1]) if len(nums) > 1 else 0\n    else:\n        apples, oranges = int(nums[0]), int(nums[1])\n    return n - apples - oranges\n\n\n# Example usage (can be removed if only function is needed)\nif __name__ == \"__main__\":\n    print(fruit_distribution(\"5 apples and 6 oranges\", 19))  # 8\n    print(fruit_distribution(\"0 apples and 1 oranges\",3))    # 2\n    print(fruit_distribution(\"2 apples and 3 oranges\", 100))# 95",
+  "metrics": {
+    "total_nodes": 228,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

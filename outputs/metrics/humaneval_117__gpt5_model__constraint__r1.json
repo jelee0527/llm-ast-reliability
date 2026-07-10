@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_117__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, return a list of all words from s\n    that contain exactly n consonants, in the order they appear. Assumes s contains\n    only letters and spaces.\"\"\"\n    if not s:\n        return []\n    vowels = set(\"aeiouAEIOU\")\n    result = []\n    # split on spaces; consecutive spaces produce empty tokens which we skip\n    for token in s.split(\" \"):\n        if token == \"\":\n            continue\n        consonant_count = 0\n        for ch in token:\n            # consider only letters (per spec, inputs are letters and spaces)\n            if ch.isalpha() and ch not in vowels:\n                consonant_count += 1\n        if consonant_count == n:\n            result.append(token)\n    return result\n\n# Simple tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Mary had a little lamb\", 4, [\"little\"]),\n        (\"Mary had a little lamb\", 3, [\"Mary\", \"lamb\"]),\n        (\"simple white space\", 2, []),\n        (\"Hello world\", 4, [\"world\"]),\n        (\"Uncle sam\", 3, [\"Uncle\"]),\n        (\"\", 1, []),\n        (\"A  B   C\", 0, [\"A\", \"B\", \"C\"]),\n    ]\n    for s, n, expected in tests:\n        out = select_words(s, n)\n        print(f\"select_words({s!r}, {n}) -> {out}  expected: {expected}\")",
+  "metrics": {
+    "total_nodes": 194,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.056701,
+    "function_names": [
+      "select_words"
+    ]
+  }
+}

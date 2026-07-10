@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef get_closest_vowel(word: str) -> str:\n    vowels = set(\"aeiouAEIOU\")\n    n = len(word)\n    # need a vowel that is between two consonants (both sides consonant letters),\n    # vowel can't be at beginning or end. Search from right side of the word and return first match.\n    for i in range(n - 2, 0, -1):  # i from n-2 down to 1 inclusive (can't be first or last)\n        ch = word[i]\n        if ch in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            # consonant means not a vowel; letters only guaranteed by prompt\n            if left not in vowels and right not in vowels:\n                return ch\n    return \"\"",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

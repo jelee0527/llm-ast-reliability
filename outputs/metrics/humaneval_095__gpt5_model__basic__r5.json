@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef check_dict_case(d: dict) -> bool:\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False if the given dictionary is empty.\n    \"\"\"\n    if not isinstance(d, dict):\n        raise TypeError(\"Input must be a dictionary\")\n    if len(d) == 0:\n        return False\n\n    seen_lower = False\n    seen_upper = False\n\n    for key in d.keys():\n        if not isinstance(key, str):\n            return False\n        # If the key has no alphabetic characters, str.islower()/isupper() are False.\n        # But requirement is \"keys are strings in lower case or upper case\".\n        # We'll treat a key with no letters as not satisfying either, so return False.\n        has_alpha = any(ch.isalpha() for ch in key)\n        if not has_alpha:\n            return False\n        if key.islower():\n            seen_lower = True\n        elif key.isupper():\n            seen_upper = True\n        else:\n            # Mixed case or other characters cause failure\n            return False\n        # If both seen, cannot be all lower or all upper\n        if seen_lower and seen_upper:\n            return False\n\n    return True",
+  "metrics": {
+    "total_nodes": 123,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.121951,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

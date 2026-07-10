@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from collections import deque\nimport heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # dp[t][i][j] lexicographically minimal sequence of length t starting at (i,j)\n    # We'll instead compute greedy level by level: current set of positions reachable after t-1 steps\n    # and maintain minimal sequence so far. Use BFS-like expansion picking minimal next value.\n    # Start: choose all minimal-valued starting cells (but need unique answer guaranteed)\n    # We'll maintain set of positions that achieve current best prefix.\n    # At step 1 pick minimal value among all cells.\n    # For further steps, from current positions, consider neighbors (including staying not allowed? Problem allows visiting same cell consecutive? You can move to neighbor cells only; path visits exactly k cells; so stay isn't allowed.)\n    moves = [(1,0),(-1,0),(0,1),(0,-1)]\n    # Step 1\n    min_val = min(grid[i][j] for i in range(n) for j in range(n))\n    seq = [min_val]\n    cur = set()\n    for i in range(n):\n        for j in range(n):\n            if grid[i][j] == min_val:\n                cur.add((i,j))\n    for step in range(1, k):\n        # collect candidate neighbors\n        best = None\n        nxt = set()\n        for (i,j) in cur:\n            for di,dj in moves:\n                ni, nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    v = grid[ni][nj]\n                    if best is None or v < best:\n                        best = v\n                        nxt = {(ni,nj)}\n                    elif v == best:\n                        nxt.add((ni,nj))\n        # best must not be None because grid size >=2 and moves exist\n        seq.append(best)\n        cur = nxt\n    return seq\n\n# Example tests\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # [1,2,1] expected per prompt? but stays not allowed; given example implies move back to 1 which requires revisiting allowed via adjacency: 1->2->1 works\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # [1]",
+  "metrics": {
+    "total_nodes": 382,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 7,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.034031,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

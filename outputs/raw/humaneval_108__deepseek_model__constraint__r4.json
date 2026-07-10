@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:43:58.346596+00:00",
+  "elapsed_seconds": 1.629,
+  "official_prompt": "\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef count_nums(arr):\n    def sum_signed_digits(n):\n        if n == 0:\n            return 0\n        if n < 0:\n            n = -n\n            first = True\n            total = 0\n            while n > 0:\n                digit = n % 10\n                if first:\n                    total -= digit\n                    first = False\n                else:\n                    total += digit\n                n //= 10\n            return total\n        else:\n            total = 0\n            while n > 0:\n                total += n % 10\n                n //= 10\n            return total\n\n    count = 0\n    for num in arr:\n        if sum_signed_digits(num) > 0:\n            count += 1\n    return count\n```",
+  "generated_code": "def count_nums(arr):\n    def sum_signed_digits(n):\n        if n == 0:\n            return 0\n        if n < 0:\n            n = -n\n            first = True\n            total = 0\n            while n > 0:\n                digit = n % 10\n                if first:\n                    total -= digit\n                    first = False\n                else:\n                    total += digit\n                n //= 10\n            return total\n        else:\n            total = 0\n            while n > 0:\n                total += n % 10\n                n //= 10\n            return total\n\n    count = 0\n    for num in arr:\n        if sum_signed_digits(num) > 0:\n            count += 1\n    return count"
+}

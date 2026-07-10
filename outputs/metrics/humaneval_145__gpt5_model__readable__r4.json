@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If multiple items have the same digit-sum, preserve their original relative order.\n\n    Examples:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    # Helper to compute sum of digits for an integer (ignoring sign)\n    def digit_sum(n: int) -> int:\n        return sum(int(ch) for ch in str(abs(n)))\n\n    # Use stable sort with key as (digit_sum); stable sort preserves original order\n    return sorted(nums, key=digit_sum)",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.035088,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

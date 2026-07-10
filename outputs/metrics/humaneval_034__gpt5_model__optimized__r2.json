@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Iterable, TypeVar\n\nT = TypeVar(\"T\")\n\ndef unique(l: List[T]) -> List[T]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use set for uniqueness then sort; stable and efficient.\n    # If elements are unhashable, fall back to an order-preserving unique by scanning.\n    try:\n        return sorted(set(l))\n    except TypeError:\n        seen = []\n        seen_set = []\n        for x in l:\n            # For unhashable, use linear scan in seen to check membership\n            if x not in seen_set:\n                seen_set.append(x)\n        # Now return sorted version of seen_set\n        try:\n            return sorted(seen_set)\n        except TypeError:\n            # If elements are not comparable, return insertion order uniques\n            return seen_set\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.080808,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

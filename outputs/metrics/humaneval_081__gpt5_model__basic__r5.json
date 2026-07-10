@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_081__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_081",
+  "task_id": "HumanEval/81",
+  "problem_name": "Numerical Letter Grade",
+  "entry_point": "numerical_letter_grade",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef numerical_letter_grade(grades: List[float]) -> List[str]:\n    \"\"\"Convert a list of GPAs to letter grades according to the specified table.\"\"\"\n    result = []\n    for g in grades:\n        # Ensure numeric; handle None or non-number by treating as 0.0\n        try:\n            val = float(g)\n        except Exception:\n            val = 0.0\n        # Clamp to valid range\n        if val >= 4.0:\n            result.append(\"A+\")\n        elif val > 3.7:\n            result.append(\"A\")\n        elif val > 3.3:\n            result.append(\"A-\")\n        elif val > 3.0:\n            result.append(\"B+\")\n        elif val > 2.7:\n            result.append(\"B\")\n        elif val > 2.3:\n            result.append(\"B-\")\n        elif val > 2.0:\n            result.append(\"C+\")\n        elif val > 1.7:\n            result.append(\"C\")\n        elif val > 1.3:\n            result.append(\"C-\")\n        elif val > 1.0:\n            result.append(\"D+\")\n        elif val > 0.7:\n            result.append(\"D\")\n        elif val > 0.0:\n            result.append(\"D-\")\n        else:\n            # val == 0.0 or negative\n            result.append(\"E\")\n    return result\n\n# Example usage:\n# print(numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]))  # -> ['A+', 'B', 'C-', 'C', 'A-']",
+  "metrics": {
+    "total_nodes": 212,
+    "ast_depth": 20,
+    "branch_count": 13,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.070755,
+    "function_names": [
+      "numerical_letter_grade"
+    ]
+  }
+}

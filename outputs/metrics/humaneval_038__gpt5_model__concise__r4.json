@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_038__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n    groups: List[str] = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # inverse of (abc -> bca) is (bca -> abc): take last char to front? Let's derive:\n    # encoded = group[1:] + group[0]; for original abc -> encoded bca\n    # to recover original, take last char of encoded and prepend: encoded[-1] + encoded[:-1]\n    groups = [(g[-1] + g[:-1]) if len(g) == 3 else g for g in groups]\n    return \"\".join(groups)\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    tests = [\"\", \"a\", \"ab\", \"abc\", \"abcd\", \"abcdefg\", \"The quick brown fox\"]\n    for t in tests:\n        e = encode_cyclic(t)\n        d = decode_cyclic(e)\n        print(repr(t), \"->\", repr(e), \"->\", repr(d), \"OK\" if d == t else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 270,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.025926,
+    "function_names": [
+      "encode_cyclic",
+      "decode_cyclic"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def sort_third(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n    third_values = sorted([l[i] for i in range(0, len(l), 3)])\n    result = l[:]\n    for idx, val in zip(range(0, len(l), 3), third_values):\n        result[idx] = val\n    return result",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

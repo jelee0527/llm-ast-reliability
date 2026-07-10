@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_052__claude_model__concise__r5.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def below_threshold(l: list, t: int):\n    return all(x < t for x in l)",
+  "metrics": {
+    "total_nodes": 25,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "below_threshold"
+    ]
+  }
+}

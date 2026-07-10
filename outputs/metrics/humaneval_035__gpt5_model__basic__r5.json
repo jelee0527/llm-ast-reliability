@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_035__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any, Iterable\n\ndef max_element(l: list) -> Any:\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be an iterable (list)\")\n    try:\n        iterator = iter(l)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable (list)\")\n    try:\n        max_val = next(iterator)\n    except StopIteration:\n        raise ValueError(\"max_element() arg is an empty sequence\")\n    for item in iterator:\n        if item > max_val:\n            max_val = item\n    return max_val",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.115385,
+    "function_names": [
+      "max_element"
+    ]
+  }
+}

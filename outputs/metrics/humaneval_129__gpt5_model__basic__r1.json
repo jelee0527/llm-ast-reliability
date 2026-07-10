@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import deque, defaultdict\n\ndef minPath(grid, k):\n    \"\"\"\n    Return lexicographically smallest path of length k (list of values) in grid.\n    \"\"\"\n    n = len(grid)\n    if n == 0:\n        return []\n    # map value to position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # neighbors function\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # For k==1, return minimal value cell\n    if k == 1:\n        # minimal value in grid\n        minv = min(pos.keys())\n        return [minv]\n    # We will perform BFS-like expansion by steps selecting minimal possible next value reachable.\n    # Start with all positions that contain minimal value(s)? Actually lexicographic comparison allows starting at any cell.\n    # At step 1, choose minimal value in entire grid (best starting cell).\n    # Then iteratively choose next cell with minimal value reachable from current frontier in one move.\n    # However path may revisit; need to keep frontier as set of positions reachable following chosen prefix.\n    # This greedy is correct because values are unique and lexicographic comparison: at each index choose minimal possible value among all paths that extend some optimal prefix.\n    # Implementation:\n    # initialize frontier to positions having minimal value\n    min_val = min(pos.keys())\n    start_pos = pos[min_val]\n    frontier = set()\n    frontier.add(start_pos)\n    result = [min_val]\n    # For steps 2..k\n    for step in range(2, k+1):\n        # collect neighbors of current frontier (including staying? problem says visiting exactly k cells; moving each step to neighbor - cannot stay unless neighbor includes same cell which is impossible. So staying is not allowed.)\n        # From each position, neighbors that are within grid\n        candidates = []\n        cand_positions = defaultdict(list)  # value -> list of positions\n        min_candidate_value = None\n        for (i,j) in frontier:\n            for di,dj in dirs:\n                ni,nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    v = grid[ni][nj]\n                    if (min_candidate_value is None) or (v < min_candidate_value):\n                        min_candidate_value = v\n                    cand_positions[v].append((ni,nj))\n        # minimal next value\n        if min_candidate_value is None:\n            # no moves possible (shouldn't happen unless isolated), break\n            break\n        result.append(min_candidate_value)\n        # new frontier is all positions that have that value (could be multiple if same value occurs multiple times? But values unique so exactly one)\n        frontier = set(cand_positions[min_candidate_value])\n    return result\n\n# Quick tests (can be removed)\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1] per prompt but note moving back to 1 requires neighbor - given grid 1 at (0,0), 2 at (0,1) then back to 1 is neighbor. Our algorithm starts at minimal 1 then picks neighbor minimal 2 then next step neighbors of frontier {(0,1)} include (0,0)=1 so picks 1 -> [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # [1]",
+  "metrics": {
+    "total_nodes": 377,
+    "ast_depth": 12,
+    "branch_count": 6,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.039788,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

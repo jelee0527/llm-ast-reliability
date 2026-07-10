@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_013__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    return math.gcd(a, b)",
+  "metrics": {
+    "total_nodes": 25,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "greatest_common_divisor"
+    ]
+  }
+}

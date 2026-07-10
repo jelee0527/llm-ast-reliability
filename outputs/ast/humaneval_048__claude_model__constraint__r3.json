@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_048__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    n = len(text)\n    for i in range(n // 2):\n        if text[i] != text[n - 1 - i]:\n            return False\n    return True",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='is_palindrome',\n      args=arguments(\n        args=[\n          arg(\n            arg='text',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\"\\n    Checks if given string is a palindrome\\n    >>> is_palindrome('')\\n    True\\n    >>> is_palindrome('aba')\\n    True\\n    >>> is_palindrome('aaaaa')\\n    True\\n    >>> is_palindrome('zbcd')\\n    False\\n    \")),\n        Assign(\n          targets=[\n            Name(id='n', ctx=Store())],\n          value=Call(\n            func=Name(id='len', ctx=Load()),\n            args=[\n              Name(id='text', ctx=Load())])),\n        For(\n          target=Name(id='i', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              BinOp(\n                left=Name(id='n', ctx=Load()),\n                op=FloorDiv(),\n                right=Constant(value=2))]),\n          body=[\n            If(\n              test=Compare(\n                left=Subscript(\n                  value=Name(id='text', ctx=Load()),\n                  slice=Name(id='i', ctx=Load()),\n                  ctx=Load()),\n                ops=[\n                  NotEq()],\n                comparators=[\n                  Subscript(\n                    value=Name(id='text', ctx=Load()),\n                    slice=BinOp(\n                      left=BinOp(\n                        left=Name(id='n', ctx=Load()),\n                        op=Sub(),\n                        right=Constant(value=1)),\n                      op=Sub(),\n                      right=Name(id='i', ctx=Load())),\n                    ctx=Load())]),\n              body=[\n                Return(\n                  value=Constant(value=False))])]),\n        Return(\n          value=Constant(value=True))])])"
+}

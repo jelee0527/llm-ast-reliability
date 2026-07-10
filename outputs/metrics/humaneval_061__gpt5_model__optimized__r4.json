@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\"Return True if brackets string has properly matched parentheses.\"\"\"\n    # Early checks: length must be even, first cannot be ')', last cannot be '('\n    n = len(brackets)\n    if n % 2 == 1:\n        return False\n    if n == 0:\n        return True\n    if brackets[0] == ')' or brackets[-1] == '(':\n        return False\n\n    balance = 0\n    for ch in brackets:\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        else:\n            # invalid character\n            return False\n        if balance < 0:\n            return False\n    return balance == 0\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        \"(\": False,\n        \"()\": True,\n        \"(()())\": True,\n        \")(()\": False,\n        \"\": True,\n        \"()()\": True,\n        \"((())\": False,\n        \"())(()\": False,\n    }\n    for s, exp in tests.items():\n        res = correct_bracketing(s)\n        print(s, res, \"OK\" if res == exp else f\"ERR expected {exp}\")",
+  "metrics": {
+    "total_nodes": 176,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

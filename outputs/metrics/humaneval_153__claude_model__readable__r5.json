@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_153__claude_model__readable__r5.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def Strongest_Extension(class_name, extensions):\n    def calculate_strength(extension):\n        uppercase_count = sum(1 for char in extension if char.isupper())\n        lowercase_count = sum(1 for char in extension if char.islower())\n        return uppercase_count - lowercase_count\n\n    strongest_extension = None\n    strongest_strength = None\n\n    for extension in extensions:\n        current_strength = calculate_strength(extension)\n        if strongest_extension is None or current_strength > strongest_strength:\n            strongest_extension = extension\n            strongest_strength = current_strength\n\n    return f\"{class_name}.{strongest_extension}\"",
+  "metrics": {
+    "total_nodes": 105,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.038095,
+    "function_names": [
+      "Strongest_Extension",
+      "calculate_strength"
+    ]
+  }
+}

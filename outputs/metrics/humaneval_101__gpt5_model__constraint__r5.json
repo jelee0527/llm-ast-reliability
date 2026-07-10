@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef words_string(s):\n    \"\"\"\n    Split a string of words separated by commas or spaces into a list of words.\n    \"\"\"\n    if s is None:\n        return []\n    # Replace commas with spaces, then split on any whitespace.\n    # Also handle multiple commas/spaces and trim.\n    # Use regex to find sequences of non-space, non-comma characters.\n    return re.findall(r'[^,\\s]+', s)",
+  "metrics": {
+    "total_nodes": 26,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.115385,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

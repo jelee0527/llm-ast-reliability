@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:15:12.915847+00:00",
+  "elapsed_seconds": 2.684,
+  "official_prompt": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef select_words(s, n):\n    \"\"\"Return list of words from s that contain exactly n consonants.\"\"\"\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    res = []\n    for word in s.split():\n        cnt = 0\n        for ch in word:\n            # assuming only letters and spaces per problem\n            if ch not in vowels:\n                cnt += 1\n                # minor optimization: break early if exceed n\n                if cnt > n:\n                    break\n        if cnt == n:\n            res.append(word)\n    return res",
+  "generated_code": "import string\n\ndef select_words(s, n):\n    \"\"\"Return list of words from s that contain exactly n consonants.\"\"\"\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    res = []\n    for word in s.split():\n        cnt = 0\n        for ch in word:\n            # assuming only letters and spaces per problem\n            if ch not in vowels:\n                cnt += 1\n                # minor optimization: break early if exceed n\n                if cnt > n:\n                    break\n        if cnt == n:\n            res.append(word)\n    return res"
+}

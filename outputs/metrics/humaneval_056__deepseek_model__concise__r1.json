@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_056__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def correct_bracketing(brackets: str):\n    count = 0\n    for b in brackets:\n        if b == '<':\n            count += 1\n        else:\n            count -= 1\n        if count < 0:\n            return False\n    return count == 0",
+  "metrics": {
+    "total_nodes": 45,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.111111,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

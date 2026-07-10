@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import deque\n\ndef minPath(grid, k):\n    n = len(grid)\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # neighbors for position\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # For k==1 pick minimal value\n    if k == 1:\n        return [min(pos.keys())]\n    # BFS layer by layer building lexicographically smallest sequence.\n    # Start with positions that have minimal value.\n    # At each step, among all reachable positions from current frontier, choose those with minimal cell value to continue.\n    # Keep set of positions to avoid duplicates.\n    # We can start from any cell: initial frontier = all cells.\n    # But lexicographic minimal path: first element should be minimal possible value anywhere, so we pick all positions with that value.\n    # More generally we maintain frontier of positions that correspond to current prefix.\n    # Initialize frontier as all positions; but first pick minimal value and positions with it.\n    all_positions = [(i,j) for i in range(n) for j in range(n)]\n    # step 1:\n    min_val = min(grid[i][j] for i in range(n) for j in range(n))\n    frontier = set()\n    for i in range(n):\n        for j in range(n):\n            if grid[i][j] == min_val:\n                frontier.add((i,j))\n    res = [min_val]\n    # For remaining steps 2..k\n    for step in range(1, k):\n        # gather reachable neighbors (including staying? path visits exactly k cells, can revisit same cell; but moves must be to neighbor each step)\n        # From frontier, neighbors are adjacent cells; can't stay in place.\n        candidates = {}\n        min_c = None\n        for (i,j) in frontier:\n            for di,dj in dirs:\n                ni,nj = i+di, j+dj\n                if 0<=ni<n and 0<=nj<n:\n                    v = grid[ni][nj]\n                    if (min_c is None) or (v < min_c):\n                        min_c = v\n                        candidates = {(ni,nj)}\n                    elif v == min_c:\n                        candidates.add((ni,nj))\n        # If there are no neighbors (shouldn't happen in grid with n>=2), break\n        if min_c is None:\n            break\n        res.append(min_c)\n        frontier = candidates\n    return res\n\n# quick tests\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # [1,2,1] expected but movement doesn't allow 2->1 unless adjacent; grid has 1 at (0,0),2 at (0,1): from 1 can go to 2 then back to1 -> ok\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]],1))  # [1]",
+  "metrics": {
+    "total_nodes": 430,
+    "ast_depth": 13,
+    "branch_count": 7,
+    "loop_count": 7,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.039535,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

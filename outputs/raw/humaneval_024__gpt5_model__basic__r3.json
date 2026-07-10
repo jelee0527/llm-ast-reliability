@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:01:18.264356+00:00",
+  "elapsed_seconds": 3.2,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    if n is None:\n        return None\n    if n <= 1:\n        return None  # no proper divisors for 0,1 and negatives treated as None\n    # largest proper divisor is at most n//2, but we can search by checking factors up to sqrt(n)\n    # Track the largest proper divisor found\n    largest = 1\n    limit = int(math.isqrt(n))\n    for i in range(1, limit + 1):\n        if n % i == 0:\n            j = n // i\n            if i != n and i > largest:\n                largest = i\n            if j != n and j > largest:\n                largest = j\n    return largest",
+  "generated_code": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    if n is None:\n        return None\n    if n <= 1:\n        return None  # no proper divisors for 0,1 and negatives treated as None\n    # largest proper divisor is at most n//2, but we can search by checking factors up to sqrt(n)\n    # Track the largest proper divisor found\n    largest = 1\n    limit = int(math.isqrt(n))\n    for i in range(1, limit + 1):\n        if n % i == 0:\n            j = n // i\n            if i != n and i > largest:\n                largest = i\n            if j != n and j > largest:\n                largest = j\n    return largest"
+}

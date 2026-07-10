@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    sorted_l = sorted(l)\n    n = len(sorted_l)\n    if n % 2 == 1:\n        return sorted_l[n // 2]\n    else:\n        mid1 = sorted_l[n // 2 - 1]\n        mid2 = sorted_l[n // 2]\n        return (mid1 + mid2) / 2.0",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.0375,
+    "function_names": [
+      "median"
+    ]
+  }
+}

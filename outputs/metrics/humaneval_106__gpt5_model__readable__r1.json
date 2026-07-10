@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_106__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "problem_name": "F",
+  "entry_point": "f",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef f(n: int) -> List[int]:\n    \"\"\"Return a list of size n where for i from 1..n:\n    - if i is even: element at index i-1 is i! (factorial of i)\n    - otherwise: element at index i-1 is sum of numbers from 1 to i (inclusive)\n    Example: f(5) => [1, 2, 6, 24, 15]\n    \"\"\"\n    if n <= 0:\n        return []\n\n    result: List[int] = []\n    factorial = 1\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            # update factorial from previous value\n            factorial *= i\n            result.append(factorial)\n        else:\n            # compute sum 1..i using formula i*(i+1)//2\n            result.append(i * (i + 1) // 2)\n            # ensure factorial stays correct for next even i (factorial should equal product up to last even)\n            # If previous i was even, factorial already up-to-date; if starting from 1, keep factorial=1\n            # No change needed here.\n    return result",
+  "metrics": {
+    "total_nodes": 96,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.052083,
+    "function_names": [
+      "f"
+    ]
+  }
+}

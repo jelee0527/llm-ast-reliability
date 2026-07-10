@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__claude_model__basic__r5.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    a = abs(a)\n    cube_root = round(a ** (1/3))\n    return cube_root ** 3 == a",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

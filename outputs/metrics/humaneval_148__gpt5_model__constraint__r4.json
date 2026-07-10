@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_148__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    \"\"\"\n    Return a tuple of planet names whose orbits lie between planet1 and planet2,\n    ordered by proximity to the Sun (from closest to farthest).\n    Return an empty tuple if either name is not a valid planet.\n    \"\"\"\n    planets = [\n        \"Mercury\",\n        \"Venus\",\n        \"Earth\",\n        \"Mars\",\n        \"Jupiter\",\n        \"Saturn\",\n        \"Uranus\",\n        \"Neptune\",\n    ]\n\n    # Validate inputs\n    if planet1 not in planets or planet2 not in planets:\n        return tuple()\n\n    idx1 = planets.index(planet1)\n    idx2 = planets.index(planet2)\n\n    # Determine slice bounds (exclusive)\n    if idx1 < idx2:\n        between = planets[idx1 + 1 : idx2]\n    elif idx1 > idx2:\n        between = planets[idx2 + 1 : idx1]\n    else:\n        # same planet => no planets between\n        between = []\n\n    return tuple(between)",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.03876,
+    "function_names": [
+      "bf"
+    ]
+  }
+}

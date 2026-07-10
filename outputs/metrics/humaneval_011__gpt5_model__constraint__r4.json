@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # Validate inputs are strings of equal length containing only '0' and '1'\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Inputs must be strings.\")\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must have the same length.\")\n    result_chars: List[str] = []\n    for i in range(len(a)):\n        ai = a[i]\n        bi = b[i]\n        if ai not in ('0', '1') or bi not in ('0', '1'):\n            raise ValueError(\"Input strings must consist only of '0' and '1'.\")\n        # XOR: if bits differ -> '1', else '0'\n        if ai == bi:\n            result_chars.append('0')\n        else:\n            result_chars.append('1')\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    # quick self-test\n    assert string_xor('010', '110') == '100'\n    assert string_xor('', '') == ''\n    assert string_xor('0', '1') == '1'\n    assert string_xor('10101', '01010') == '11111'\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 198,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

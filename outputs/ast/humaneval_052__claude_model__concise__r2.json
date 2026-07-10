@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_052__claude_model__concise__r2.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def below_threshold(l: list, t: int):\n    return all(x < t for x in l)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='below_threshold',\n      args=arguments(\n        args=[\n          arg(\n            arg='l',\n            annotation=Name(id='list', ctx=Load())),\n          arg(\n            arg='t',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Return(\n          value=Call(\n            func=Name(id='all', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Compare(\n                  left=Name(id='x', ctx=Load()),\n                  ops=[\n                    Lt()],\n                  comparators=[\n                    Name(id='t', ctx=Load())]),\n                generators=[\n                  comprehension(\n                    target=Name(id='x', ctx=Store()),\n                    iter=Name(id='l', ctx=Load()),\n                    is_async=0)])]))])])"
+}

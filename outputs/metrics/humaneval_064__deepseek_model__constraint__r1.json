@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def vowels_count(s):\n    vowels = set('aeiouAEIOU')\n    count = 0\n    for i, ch in enumerate(s):\n        if ch in vowels:\n            count += 1\n        elif ch.lower() == 'y' and i == len(s) - 1:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.057143,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

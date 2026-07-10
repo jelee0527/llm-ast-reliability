@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T15:44:23.908231+00:00",
+  "elapsed_seconds": 3.038,
+  "official_prompt": "\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n\n",
+  "raw_response": "def monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) <= 1:\n        return True\n    \n    is_increasing = all(l[i] <= l[i + 1] for i in range(len(l) - 1))\n    is_decreasing = all(l[i] >= l[i + 1] for i in range(len(l) - 1))\n    \n    return is_increasing or is_decreasing",
+  "generated_code": "def monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) <= 1:\n        return True\n    \n    is_increasing = all(l[i] <= l[i + 1] for i in range(len(l) - 1))\n    is_decreasing = all(l[i] >= l[i + 1] for i in range(len(l) - 1))\n    \n    return is_increasing or is_decreasing"
+}

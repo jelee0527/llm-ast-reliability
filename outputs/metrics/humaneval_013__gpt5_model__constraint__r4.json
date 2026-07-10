@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_013__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    # Handle non-integer inputs robustly by converting to int if possible\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"Inputs must be integers\")\n\n    # Make absolute to handle negative values\n    a = abs(a)\n    b = abs(b)\n\n    # gcd(0, 0) is undefined mathematically; return 0 by convention here\n    if a == 0 and b == 0:\n        return 0\n\n    # Ensure a >= b for convenience\n    if b > a:\n        a, b = b, a\n\n    # Euclidean algorithm\n    while b != 0:\n        a, b = b, a % b\n\n    return a\n\nif __name__ == \"__main__\":\n    # Simple self-tests\n    assert greatest_common_divisor(3, 5) == 1\n    assert greatest_common_divisor(25, 15) == 5\n    assert greatest_common_divisor(0, 5) == 5\n    assert greatest_common_divisor(0, 0) == 0\n    assert greatest_common_divisor(-12, 18) == 6\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 176,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "greatest_common_divisor"
+    ]
+  }
+}

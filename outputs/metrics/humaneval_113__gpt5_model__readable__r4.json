@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output is the template sentence with every letter 'i' replaced\n    by the count of odd digits in the corresponding input string.\n\n    Example:\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    \"\"\"\n    output: List[str] = []\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # The original examples show replacements of the letter 'i' within words,\n    # producing sentences like \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n    # To match that, construct a base phrase and replace occurrences of 'i' inside it.\n    # Build a version of the template matching the example (without spaces around i).\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # Normalize to expected format by removing spaces around inserted 'i' parts for clarity\n    template = template.replace(\" i n \", \" in \").replace(\" str i ng \", \" string \").replace(\" stri ng \", \" string \")\n    # But we want 'i' letters inside words to be replaced; to match examples, create a template with 'i' characters where needed:\n    base = \"the number of odd elements i n the stri ng i of the in put.\"\n    # The examples show 'i' inside 'elements' -> \"elements\" unchanged; actually they replaced 'i' characters only where they appear in words like 'in', 'string', 'input' and as standalone number.\n    # Simpler: build the exact expected output pattern programmatically:\n    for s in lst:\n        # Count odd digits in the string\n        odd_count_num = sum(1 for ch in s if ch in \"13579\")\n        n_str = str(odd_count_num)\n        # Build the sentence by inserting n_str into the places shown in the examples:\n        # \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n        sentence = (\"the number of odd elements \" + n_str + \"n the str\" + n_str + \"ng \" +\n                    n_str + \" of the \" + n_str + \"nput.\")\n        output.append(sentence)\n    return output\n\n# If run as a script, include a quick test\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3', \"11111111\"]))",
+  "metrics": {
+    "total_nodes": 164,
+    "ast_depth": 14,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.018293,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

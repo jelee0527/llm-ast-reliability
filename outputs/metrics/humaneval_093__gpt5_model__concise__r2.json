@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    # mapping for vowel -> letter 2 places ahead, preserving case of original vowel before swap\n    def shift_vowel(ch):\n        is_upper = ch.isupper()\n        base = ch.lower()\n        # compute letter 2 ahead in alphabet\n        idx = (ord(base) - ord('a') + 2) % 26\n        new = chr(ord('a') + idx)\n        # after replacing vowel we will also swap case of all letters, so return new with case flipped relative to original later\n        return new.upper() if is_upper else new.lower()\n    res_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # first, replace vowel if vowel (based on original)\n            if ch in vowels:\n                ch2 = shift_vowel(ch)\n            else:\n                ch2 = ch\n            # then swap case of all letters\n            ch2 = ch2.swapcase()\n            res_chars.append(ch2)\n        else:\n            # assume only letters per prompt, but keep as-is otherwise\n            res_chars.append(ch)\n    return ''.join(res_chars)\n\nif __name__ == \"__main__\":\n    print(encode('test'))\n    print(encode('This is a message'))",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.042169,
+    "function_names": [
+      "encode",
+      "shift_vowel"
+    ]
+  }
+}

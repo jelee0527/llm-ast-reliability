@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__claude_model__concise__r1.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    paren_string = paren_string.replace(' ', '')\n    result = []\n    depth = 0\n    current = []\n    for char in paren_string:\n        current.append(char)\n        if char == '(':\n            depth += 1\n        elif char == ')':\n            depth -= 1\n        if depth == 0 and current:\n            result.append(''.join(current))\n            current = []\n    return result",
+  "metrics": {
+    "total_nodes": 103,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.048544,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

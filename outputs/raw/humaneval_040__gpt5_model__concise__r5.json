@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_040",
+  "task_id": "HumanEval/40",
+  "problem_name": "Triples Sum To Zero",
+  "entry_point": "triples_sum_to_zero",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:37:50.884730+00:00",
+  "elapsed_seconds": 2.61,
+  "official_prompt": "\n\ndef triples_sum_to_zero(l: list):\n    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef triples_sum_to_zero(l: list):\n    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\nimport itertools\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    n = len(l)\n    if n < 3:\n        return False\n    l_sorted = sorted(l)\n    for i in range(n-2):\n        # skip duplicates for i to slightly optimize\n        if i > 0 and l_sorted[i] == l_sorted[i-1]:\n            continue\n        a = l_sorted[i]\n        target = -a\n        lo, hi = i+1, n-1\n        while lo < hi:\n            s = l_sorted[lo] + l_sorted[hi]\n            if s == target:\n                return True\n            if s < target:\n                lo += 1\n            else:\n                hi -= 1\n    return False",
+  "generated_code": "from typing import List\nimport itertools\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    n = len(l)\n    if n < 3:\n        return False\n    l_sorted = sorted(l)\n    for i in range(n-2):\n        # skip duplicates for i to slightly optimize\n        if i > 0 and l_sorted[i] == l_sorted[i-1]:\n            continue\n        a = l_sorted[i]\n        target = -a\n        lo, hi = i+1, n-1\n        while lo < hi:\n            s = l_sorted[lo] + l_sorted[hi]\n            if s == target:\n                return True\n            if s < target:\n                lo += 1\n            else:\n                hi -= 1\n    return False"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__claude_model__readable__r4.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    if remaining >= need:\n        total_eaten = number + need\n        carrots_left = remaining - need\n    else:\n        total_eaten = number + remaining\n        carrots_left = 0\n    \n    return [total_eaten, carrots_left]",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.039216,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

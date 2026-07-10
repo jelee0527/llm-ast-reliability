@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:43:22.509279+00:00",
+  "elapsed_seconds": 2.531,
+  "official_prompt": "\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n\n",
+  "raw_response": "def order_by_points(nums):\n    def digit_sum(n):\n        s = str(abs(n))\n        digits = [int(d) for d in s]\n        if n < 0 and digits:\n            digits[0] = -digits[0]\n        return sum(digits)\n    \n    return sorted(nums, key=lambda x: digit_sum(x))",
+  "generated_code": "def order_by_points(nums):\n    def digit_sum(n):\n        s = str(abs(n))\n        digits = [int(d) for d in s]\n        if n < 0 and digits:\n            digits[0] = -digits[0]\n        return sum(digits)\n    \n    return sorted(nums, key=lambda x: digit_sum(x))"
+}

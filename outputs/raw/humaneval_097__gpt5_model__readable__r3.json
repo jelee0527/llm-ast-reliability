@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:35:01.397115+00:00",
+  "elapsed_seconds": 2.542,
+  "official_prompt": "\ndef multiply(a, b):\n    \"\"\"Complete the function that takes two integers and returns \n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef multiply(a, b):\n    \"\"\"Complete the function that takes two integers and returns \n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n    \"\"\"\n\n",
+  "raw_response": "def multiply(a, b):\n    \"\"\"Return the product of the unit (ones) digits of two integers.\n\n    Examples:\n    multiply(148, 412) -> 16\n    multiply(19, 28) -> 72\n    multiply(2020, 1851) -> 0\n    multiply(14, -15) -> 20\n    \"\"\"\n    # Get absolute values to handle negative numbers\n    abs_a = abs(a)\n    abs_b = abs(b)\n\n    # Extract unit (ones) digits\n    unit_a = abs_a % 10\n    unit_b = abs_b % 10\n\n    # Return their product\n    return unit_a * unit_b",
+  "generated_code": "def multiply(a, b):\n    \"\"\"Return the product of the unit (ones) digits of two integers.\n\n    Examples:\n    multiply(148, 412) -> 16\n    multiply(19, 28) -> 72\n    multiply(2020, 1851) -> 0\n    multiply(14, -15) -> 20\n    \"\"\"\n    # Get absolute values to handle negative numbers\n    abs_a = abs(a)\n    abs_b = abs(b)\n\n    # Extract unit (ones) digits\n    unit_a = abs_a % 10\n    unit_b = abs_b % 10\n\n    # Return their product\n    return unit_a * unit_b"
+}

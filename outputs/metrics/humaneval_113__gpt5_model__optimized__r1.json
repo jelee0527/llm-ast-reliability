@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return formatted strings where each\n    'i' in the template is replaced by the count of odd digits in that input string.\n    \"\"\"\n    out = []\n    template = \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n    for s in lst:\n        # count odd digits\n        cnt = 0\n        # iterate chars; compare to odd digits for speed\n        for ch in s:\n            # assuming input contains only digits as stated\n            if (ord(ch) - 48) & 1:\n                cnt += 1\n        out.append(template.format(n=cnt))\n    return out",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.051948,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:39:55.788038+00:00",
+  "elapsed_seconds": 3.738,
+  "official_prompt": "\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef make_a_pile(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a list of length n representing a pile of n levels.\n    The first level has n stones. Each subsequent level uses the next odd number if n is odd,\n    or the next even number if n is even.\n    \"\"\"\n    if n <= 0:\n        return []\n    result = []\n    current = n\n    # Determine parity to step by 2 preserving odd/even sequence\n    step = 2\n    for _ in range(n):\n        result.append(current)\n        current += step\n    return result\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(make_a_pile(3))  # [3, 5, 7]\n    print(make_a_pile(4))  # [4, 6, 8, 10]",
+  "generated_code": "from typing import List\n\ndef make_a_pile(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a list of length n representing a pile of n levels.\n    The first level has n stones. Each subsequent level uses the next odd number if n is odd,\n    or the next even number if n is even.\n    \"\"\"\n    if n <= 0:\n        return []\n    result = []\n    current = n\n    # Determine parity to step by 2 preserving odd/even sequence\n    step = 2\n    for _ in range(n):\n        result.append(current)\n        current += step\n    return result\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(make_a_pile(3))  # [3, 5, 7]\n    print(make_a_pile(4))  # [4, 6, 8, 10]"
+}

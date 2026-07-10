@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import *\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p == 1:\n        return 0\n    # handle negative n?\n    if n < 0:\n        # compute modular inverse of 2 and raise to -n\n        # use pow with mod which supports negative exponent only in Python 3.8+? safer to compute inverse\n        inv2 = pow(2, -1, p)\n        return pow(inv2, -n, p)\n    return pow(2, n, p)",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.083333,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

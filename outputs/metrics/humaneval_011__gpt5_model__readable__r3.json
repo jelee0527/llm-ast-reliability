@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Inputs must be strings.\")\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must have the same length.\")\n    # Validate characters\n    valid_chars = {\"0\", \"1\"}\n    if any(ch not in valid_chars for ch in a) or any(ch not in valid_chars for ch in b):\n        raise ValueError(\"Input strings must contain only '0' and '1' characters.\")\n    # Perform XOR per character: '0' xor '0' -> '0', '0' xor '1' -> '1', etc.\n    result_chars: List[str] = []\n    for ca, cb in zip(a, b):\n        # XOR as integers then convert back to string\n        xor_bit = str(int(ca) ^ int(cb))\n        result_chars.append(xor_bit)\n    return \"\".join(result_chars)",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.049689,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

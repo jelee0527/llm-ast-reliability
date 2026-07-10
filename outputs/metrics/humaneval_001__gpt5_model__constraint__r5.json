@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    groups: List[str] = []\n    current = []\n    depth = 0\n    for ch in s:\n        if ch not in (\"(\", \")\"):\n            # ignore any non-parenthesis characters\n            continue\n        if ch == \"(\":\n            depth += 1\n            current.append(ch)\n        else:  # ch == \")\"\n            if depth <= 0:\n                # unmatched closing parenthesis: skip or could raise; here we skip\n                continue\n            current.append(ch)\n            depth -= 1\n            if depth == 0:\n                groups.append(\"\".join(current))\n                current = []\n    # If any incomplete group remains, we ignore it (not balanced)\n    return groups\n\nif __name__ == \"__main__\":\n    # quick test\n    print(separate_paren_groups('( ) (( )) (( )( ))'))",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.064286,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

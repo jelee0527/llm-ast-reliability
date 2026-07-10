@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_089__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 places forward in the alphabet (shift down by two multiplied to two places).\n    Non-letter characters are left unchanged. Case is preserved.\n    Examples:\n      encrypt('hi') -> 'lm'\n      encrypt('asdfghjkl') -> 'ewhjklnop'\n      encrypt('gf') -> 'kj'\n      encrypt('et') -> 'ix'\n    \"\"\"\n    def shift_char(c):\n        if 'a' <= c <= 'z':\n            # shift forward by 4 with wrap\n            base = ord('a')\n            return chr((ord(c) - base + 4) % 26 + base)\n        if 'A' <= c <= 'Z':\n            base = ord('A')\n            return chr((ord(c) - base + 4) % 26 + base)\n        return c\n\n    return ''.join(shift_char(ch) for ch in s)",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 13,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.056604,
+    "function_names": [
+      "encrypt",
+      "shift_char"
+    ]
+  }
+}

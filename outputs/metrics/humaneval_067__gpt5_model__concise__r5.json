@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    nums = list(map(int, re.findall(r'-?\\d+', s)))\n    if len(nums) >= 2:\n        a, o = nums[0], nums[1]\n    elif len(nums) == 1:\n        a, o = nums[0], 0\n    else:\n        a, o = 0, 0\n    return n - a - o",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.03,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

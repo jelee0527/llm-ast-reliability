@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_108__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Return the number of elements in arr whose sum of digits (with sign for the first digit if the number is negative)\n    is greater than 0.\n\n    Examples:\n    >>> count_nums([]) == 0\n    True\n    >>> count_nums([-1, 11, -11]) == 1\n    True\n    >>> count_nums([1, 1, 2]) == 3\n    True\n    \"\"\"\n    count = 0\n    for n in arr:\n        # Handle zero explicitly: digits sum is 0\n        if n == 0:\n            digit_sum = 0\n        else:\n            s = str(n)\n            # If negative, first character is '-', so treat first digit as negative\n            if s[0] == '-':\n                # s[1:] are remaining digits; if there's only one digit like \"-5\"\n                # first signed digit is negative of int(s[1])\n                # compute sum: negative of first digit plus sum of remaining digits\n                if len(s) >= 2:\n                    first_digit = -int(s[1])\n                    remaining = s[2:]\n                    rem_sum = 0\n                    for ch in remaining:\n                        rem_sum += int(ch)\n                    digit_sum = first_digit + rem_sum\n                else:\n                    # shouldn't happen since \"-\"\" not a number, but safe fallback\n                    digit_sum = 0\n            else:\n                # positive number: sum all digits\n                digit_sum = 0\n                for ch in s:\n                    digit_sum += int(ch)\n        if digit_sum > 0:\n            count += 1\n    return count\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert count_nums([]) == 0\n    assert count_nums([-1, 11, -11]) == 1\n    assert count_nums([1, 1, 2]) == 3\n    # additional tests\n    assert count_nums([0, -10, 10, -101]) == 2  # 0 -> 0, -10 -> -1+0=-1, 10->1, -101-> -1+0+1=0 so only 10 and maybe none => 1? Wait compute: 10->1 so count 1; -101->0 not counted. So expecting 1\n    # Correct the above expectation\n    assert count_nums([0, -10, 10, -101]) == 1\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 228,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.039474,
+    "function_names": [
+      "count_nums"
+    ]
+  }
+}

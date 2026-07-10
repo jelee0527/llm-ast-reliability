@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_030__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_030",
+  "task_id": "HumanEval/30",
+  "problem_name": "Get Positive",
+  "entry_point": "get_positive",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef get_positive(l: List) -> List:\n    \"\"\"Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    if l is None:\n        return []\n    result = []\n    for x in l:\n        try:\n            if x > 0:\n                result.append(x)\n        except Exception:\n            # ignore non-comparable or non-numeric items\n            continue\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.119403,
+    "function_names": [
+      "get_positive"
+    ]
+  }
+}

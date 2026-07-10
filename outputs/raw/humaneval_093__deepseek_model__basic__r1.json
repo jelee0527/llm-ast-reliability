@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:31:41.439295+00:00",
+  "elapsed_seconds": 2.148,
+  "official_prompt": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n\n",
+  "raw_response": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for ch in message:\n        if ch.isalpha():\n            # Swap case\n            swapped = ch.swapcase()\n            # If it's a vowel, replace with letter 2 places ahead\n            if ch.lower() in 'aeiou':\n                # Determine base (a/A) and shift\n                if ch.islower():\n                    new_char = chr((ord(ch) - ord('a') + 2) % 26 + ord('a'))\n                else:\n                    new_char = chr((ord(ch) - ord('A') + 2) % 26 + ord('A'))\n                # Then swap case of the new character\n                result.append(new_char.swapcase())\n            else:\n                result.append(swapped)\n        else:\n            result.append(ch)\n    return ''.join(result)",
+  "generated_code": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for ch in message:\n        if ch.isalpha():\n            # Swap case\n            swapped = ch.swapcase()\n            # If it's a vowel, replace with letter 2 places ahead\n            if ch.lower() in 'aeiou':\n                # Determine base (a/A) and shift\n                if ch.islower():\n                    new_char = chr((ord(ch) - ord('a') + 2) % 26 + ord('a'))\n                else:\n                    new_char = chr((ord(ch) - ord('A') + 2) % 26 + ord('A'))\n                # Then swap case of the new character\n                result.append(new_char.swapcase())\n            else:\n                result.append(swapped)\n        else:\n            result.append(ch)\n    return ''.join(result)"
+}

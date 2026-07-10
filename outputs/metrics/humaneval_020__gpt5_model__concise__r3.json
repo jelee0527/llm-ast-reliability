@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    if len(numbers) < 2:\n        raise ValueError(\"numbers must contain at least two elements\")\n    nums = sorted(numbers)\n    best_i = 0\n    best_diff = float('inf')\n    for i in range(len(nums) - 1):\n        d = nums[i+1] - nums[i]\n        if d < best_diff:\n            best_diff = d\n            best_i = i\n    return (nums[best_i], nums[best_i+1])",
+  "metrics": {
+    "total_nodes": 125,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:02:56.741697+00:00",
+  "elapsed_seconds": 4.251,
+  "official_prompt": "\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n\n",
+  "raw_response": "from collections import Counter\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    c0 = Counter(s0)\n    c1 = Counter(s1)\n    # For each character present in either string, counts must be either equal or one count must be >=1 and the other >=1?\n    # The intended behavior: characters present in one must be present in the other (nonzero vs zero), but counts can differ arbitrarily.\n    # However tests show counts don't need to match: 'abcd' vs 'dddddddabc' True because both contain same set {'a','b','c','d'}.\n    # But 'eabcdzzzz' vs 'dddzzzzzzzddddabc' should be False because 'e' present in first not in second? Actually second lacks 'e' -> False.\n    # So simply compare sets of keys.\n    return set(c0.keys()) == set(c1.keys())",
+  "generated_code": "from collections import Counter\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    c0 = Counter(s0)\n    c1 = Counter(s1)\n    # For each character present in either string, counts must be either equal or one count must be >=1 and the other >=1?\n    # The intended behavior: characters present in one must be present in the other (nonzero vs zero), but counts can differ arbitrarily.\n    # However tests show counts don't need to match: 'abcd' vs 'dddddddabc' True because both contain same set {'a','b','c','d'}.\n    # But 'eabcdzzzz' vs 'dddzzzzzzzddddabc' should be False because 'e' present in first not in second? Actually second lacks 'e' -> False.\n    # So simply compare sets of keys.\n    return set(c0.keys()) == set(c1.keys())"
+}

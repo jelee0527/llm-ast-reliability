@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_132__claude_model__readable__r3.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "This prints if this assert fails 1 (good for debugging!)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 4, in check\nAssertionError: This prints if this assert fails 1 (good for debugging!)\n"
+}

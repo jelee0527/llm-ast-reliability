@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_052__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def below_threshold(l: list, t: int):\n    \"\"\"Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"\n    for num in l:\n        if num >= t:\n            return False\n    return True",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='below_threshold',\n      args=arguments(\n        args=[\n          arg(\n            arg='l',\n            annotation=Name(id='list', ctx=Load())),\n          arg(\n            arg='t',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return True if all numbers in the list l are below threshold t.\\n    >>> below_threshold([1, 2, 4, 10], 100)\\n    True\\n    >>> below_threshold([1, 20, 4, 10], 5)\\n    False\\n    ')),\n        For(\n          target=Name(id='num', ctx=Store()),\n          iter=Name(id='l', ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='num', ctx=Load()),\n                ops=[\n                  GtE()],\n                comparators=[\n                  Name(id='t', ctx=Load())]),\n              body=[\n                Return(\n                  value=Constant(value=False))])]),\n        Return(\n          value=Constant(value=True))])])"
+}

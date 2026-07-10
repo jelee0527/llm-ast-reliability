@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message (assume only letters and spaces), swaps case of all letters,\n    and replaces all vowels in the message with the letter that appears 2 places\n    ahead of that vowel in the English alphabet. Swapping case occurs before\n    vowel shifting so that vowel replacement follows the case-swapped character.\n    \"\"\"\n    # Define vowel mapping forward by 2 within alphabet, preserve case after swap\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n    # Create mapping for lowercase vowels: a->c, e->g, i->k, o->q, u->w\n    vowel_shift_lower = {}\n    for v in \"aeiou\":\n        idx = lower.index(v)\n        new_char = lower[(idx + 2) % 26]\n        vowel_shift_lower[v] = new_char\n    # For uppercase vowels\n    vowel_shift_upper = {}\n    for v in \"AEIOU\":\n        idx = upper.index(v)\n        new_char = upper[(idx + 2) % 26]\n        vowel_shift_upper[v] = new_char\n\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # Swap case\n            swapped = ch.lower() if ch.isupper() else ch.upper()\n            # If swapped is a vowel, replace with shifted vowel preserving case\n            if swapped in vowel_shift_lower:\n                result_chars.append(vowel_shift_lower[swapped])\n            elif swapped in vowel_shift_upper:\n                result_chars.append(vowel_shift_upper[swapped])\n            else:\n                result_chars.append(swapped)\n        else:\n            # Keep non-letters (e.g., spaces) unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Simple test cases\nif __name__ == \"__main__\":\n    print(encode('test'))             # expected TGST\n    print(encode('This is a message'))  # expected tHKS KS C MGSSCGG",
+  "metrics": {
+    "total_nodes": 224,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.040179,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

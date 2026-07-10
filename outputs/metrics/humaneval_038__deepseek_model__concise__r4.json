@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_038__deepseek_model__concise__r4.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def encode_cyclic(s: str):\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\ndef decode_cyclic(s: str):\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.021164,
+    "function_names": [
+      "encode_cyclic",
+      "decode_cyclic"
+    ]
+  }
+}

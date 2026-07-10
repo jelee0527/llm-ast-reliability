@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from functools import reduce\nimport operator\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n    if n <= 0:\n        # For non-positive, define behavior: no odd digits -> 0\n        return 0\n    prod = 1\n    found_odd = False\n    for ch in str(n):\n        d = ord(ch) - 48\n        if d % 2 == 1:\n            prod *= d\n            found_odd = True\n    return prod if found_odd else 0\n\n# Quick tests\nif __name__ == \"__main__\":\n    assert digits(1) == 1\n    assert digits(4) == 0\n    assert digits(235) == 15\n    assert digits(0) == 0\n    assert digits(2468) == 0\n    assert digits(993) == 243\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.053846,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_075__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a < 100 is product of exactly three primes (counting multiplicity).\"\"\"\n    if a < 2:\n        return False\n    # simple primality check\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n % 2 == 0:\n            return n == 2\n        r = int(math.isqrt(n))\n        for i in range(3, r+1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    # factorize and count prime factors with multiplicity\n    n = a\n    count = 0\n    # factor out 2s\n    while n % 2 == 0:\n        count += 1\n        n //= 2\n        if count > 3:\n            return False\n    f = 3\n    while f * f <= n and count <= 3:\n        while n % f == 0:\n            count += 1\n            n //= f\n            if count > 3:\n                return False\n        f += 2\n    if n > 1:\n        count += 1\n    return count == 3",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 4,
+    "function_count": 2,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.099476,
+    "function_names": [
+      "is_multiply_prime",
+      "is_prime"
+    ]
+  }
+}

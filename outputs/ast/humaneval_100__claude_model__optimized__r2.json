@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_100__claude_model__optimized__r2.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def make_a_pile(n):\n    return [n + 2 * i for i in range(n)]",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='make_a_pile',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Return(\n          value=ListComp(\n            elt=BinOp(\n              left=Name(id='n', ctx=Load()),\n              op=Add(),\n              right=BinOp(\n                left=Constant(value=2),\n                op=Mult(),\n                right=Name(id='i', ctx=Load()))),\n            generators=[\n              comprehension(\n                target=Name(id='i', ctx=Store()),\n                iter=Call(\n                  func=Name(id='range', ctx=Load()),\n                  args=[\n                    Name(id='n', ctx=Load())]),\n                is_async=0)]))])])"
+}

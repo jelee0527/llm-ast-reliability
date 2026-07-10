@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:49:09.153890+00:00",
+  "elapsed_seconds": 2.985,
+  "official_prompt": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute n-th Fib4 number iteratively with O(n) time and O(1) space.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    # keep last four values: f0..f3 correspond to fib4(i-4)..fib4(i-1)\n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(4, n + 1):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute n-th Fib4 number iteratively with O(n) time and O(1) space.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    # keep last four values: f0..f3 correspond to fib4(i-4)..fib4(i-1)\n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(4, n + 1):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

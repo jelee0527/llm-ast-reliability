@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import deque\n\ndef minPath(grid, k):\n    n = len(grid)\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # neighbors\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # For k==1 return minimal value\n    if k == 1:\n        mn = min(pos.keys())\n        return [mn]\n    # BFS levels of positions reachable after t steps starting from minimal possible prefixes.\n    # We'll build sequence greedily: at each step pick smallest value reachable from any current frontier.\n    # Start frontier: all cells (we may start anywhere), but first choice should be global minimum value.\n    # So initial frontier is all positions.\n    # However to be correct, at step 1 we should pick the minimal cell value overall.\n    # Initialize frontier as set of position(s) that have that minimal value.\n    # Then for further steps expand neighbors.\n    # Use sets of coordinates to avoid duplicates.\n    # Complexity: n^2 per step, fine.\n    all_coords = [(i,j) for i in range(n) for j in range(n)]\n    # step1: pick minimal value\n    min_val = min(pos.keys())\n    seq = [min_val]\n    frontier = {pos[min_val]}\n    for step in range(1, k):\n        # collect reachable positions from frontier (including staying in place? Path can revisit same cell by moving to neighbor; staying in place not allowed unless neighbor equals same cell which isn't; problem says visiting k cells moving to neighbor each step, so move each step to neighbor - but examples show 1->2->1 where moved back, so must move each step)\n        # So next positions are neighbors of frontier positions.\n        next_set = set()\n        for (x,y) in frontier:\n            for dx,dy in dirs:\n                nx, ny = x+dx, y+dy\n                if 0 <= nx < n and 0 <= ny < n:\n                    next_set.add((nx,ny))\n        # From next_set pick those with minimal grid value\n        # If next_set empty (shouldn't happen), break\n        best_val = None\n        best_positions = set()\n        for (x,y) in next_set:\n            v = grid[x][y]\n            if best_val is None or v < best_val:\n                best_val = v\n                best_positions = {(x,y)}\n            elif v == best_val:\n                best_positions.add((x,y))\n        seq.append(best_val)\n        frontier = best_positions\n    return seq",
+  "metrics": {
+    "total_nodes": 340,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 6,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.035294,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

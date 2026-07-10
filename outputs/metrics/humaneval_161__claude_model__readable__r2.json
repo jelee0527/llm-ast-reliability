@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__claude_model__readable__r2.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def solve(s):\n    has_letters = any(char.isalpha() for char in s)\n    \n    if not has_letters:\n        return s[::-1]\n    \n    result = []\n    for char in s:\n        if char.isalpha():\n            result.append(char.swapcase())\n        else:\n            result.append(char)\n    \n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.064935,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

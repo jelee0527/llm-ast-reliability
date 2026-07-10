@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:49:17.875737+00:00",
+  "elapsed_seconds": 3.383,
+  "official_prompt": "\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef digits(n: int) -> int:\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    \"\"\"\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    prod: int = 1\n    found_odd = False\n    while n:\n        d = n % 10\n        if d & 1:\n            prod *= d\n            found_odd = True\n        n //= 10\n    return prod if found_odd else 0\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    assert digits(1) == 1\n    assert digits(4) == 0\n    assert digits(235) == 15\n    assert digits(2468) == 0\n    assert digits(13579) == 1*3*5*7*9\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import Optional\n\ndef digits(n: int) -> int:\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    \"\"\"\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    prod: int = 1\n    found_odd = False\n    while n:\n        d = n % 10\n        if d & 1:\n            prod *= d\n            found_odd = True\n        n //= 10\n    return prod if found_odd else 0\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    assert digits(1) == 1\n    assert digits(4) == 0\n    assert digits(235) == 15\n    assert digits(2468) == 0\n    assert digits(13579) == 1*3*5*7*9\n    print(\"Tests passed.\")"
+}

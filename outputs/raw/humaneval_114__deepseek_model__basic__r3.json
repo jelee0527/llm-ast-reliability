@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:47:36.703901+00:00",
+  "elapsed_seconds": 1.252,
+  "official_prompt": "\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef minSubArraySum(nums):\n    min_ending_here = nums[0]\n    min_so_far = nums[0]\n    for x in nums[1:]:\n        min_ending_here = min(x, min_ending_here + x)\n        min_so_far = min(min_so_far, min_ending_here)\n    return min_so_far\n```",
+  "generated_code": "def minSubArraySum(nums):\n    min_ending_here = nums[0]\n    min_so_far = nums[0]\n    for x in nums[1:]:\n        min_ending_here = min(x, min_ending_here + x)\n        min_so_far = min(min_so_far, min_ending_here)\n    return min_so_far"
+}

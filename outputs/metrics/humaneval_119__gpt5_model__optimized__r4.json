@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import sys\n\ndef match_parens(lst):\n    # Helper: check if string s is balanced when concatenated left-to-right\n    def is_good(s):\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False\n        return bal == 0\n\n    a, b = lst\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    return 'No'\n\n\nif __name__ == \"__main__\":\n    # simple tests if run as script\n    tests = [\n        (['()(', ')'], 'Yes'),\n        ([')', ')'], 'No'),\n        (['(', ')'], 'Yes'),\n        (['(()', '())'], 'Yes'),\n        (['(()', ')('], 'No'),\n    ]\n    for inp, exp in tests:\n        out = match_parens(inp)\n        sys.stdout.write(f\"{inp} -> {out} (expected {exp})\\n\")",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.060241,
+    "function_names": [
+      "match_parens",
+      "is_good"
+    ]
+  }
+}

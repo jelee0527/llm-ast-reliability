@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_004__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_004",
+  "task_id": "HumanEval/4",
+  "problem_name": "Mean Absolute Deviation",
+  "entry_point": "mean_absolute_deviation",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\nimport math\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not isinstance(numbers, list):\n        raise TypeError(\"Input must be a list of numbers.\")\n    n = len(numbers)\n    if n == 0:\n        raise ValueError(\"Cannot compute mean absolute deviation of an empty list.\")\n    # Ensure elements are numeric\n    try:\n        total = 0.0\n        for x in numbers:\n            total += float(x)\n    except (TypeError, ValueError):\n        raise TypeError(\"All elements in the list must be numeric (convertible to float).\")\n    mean_value = total / n\n    # Compute average absolute deviation from the mean\n    abs_sum = 0.0\n    for x in numbers:\n        abs_sum += abs(float(x) - mean_value)\n    mad = abs_sum / n\n    # If mad is very close to an integer, return a plain float (not necessary but keeps consistency)\n    if math.isclose(mad, round(mad), rel_tol=1e-12, abs_tol=1e-12):\n        return float(round(mad))\n    return mad",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.070968,
+    "function_names": [
+      "mean_absolute_deviation"
+    ]
+  }
+}

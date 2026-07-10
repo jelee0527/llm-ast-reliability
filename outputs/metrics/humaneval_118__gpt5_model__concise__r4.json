@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef get_closest_vowel(word):\n    vowels = set(\"aeiouAEIOU\")\n    # iterate from right to left excluding first and last positions since vowel must be between two consonants\n    n = len(word)\n    for i in range(n - 2, 0, -1):  # start at n-2 down to 1\n        ch = word[i]\n        if ch in vowels:\n            if word[i-1] not in vowels and word[i+1] not in vowels:\n                return ch\n    return \"\"",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05814,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

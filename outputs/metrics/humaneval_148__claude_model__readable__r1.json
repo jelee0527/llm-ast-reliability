@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_148__claude_model__readable__r1.json",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def bf(planet1, planet2):\n    planets_in_order = (\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\")\n    \n    if planet1 not in planets_in_order or planet2 not in planets_in_order:\n        return ()\n    \n    index1 = planets_in_order.index(planet1)\n    index2 = planets_in_order.index(planet2)\n    \n    lower_index = min(index1, index2)\n    upper_index = max(index1, index2)\n    \n    planets_between = planets_in_order[lower_index + 1 : upper_index]\n    \n    return tuple(planets_between)",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.030928,
+    "function_names": [
+      "bf"
+    ]
+  }
+}

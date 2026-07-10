@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_029__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_029",
+  "task_id": "HumanEval/29",
+  "problem_name": "Filter By Prefix",
+  "entry_point": "filter_by_prefix",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n    \"\"\"\n    if strings is None:\n        return []\n    if prefix is None:\n        prefix = ''\n    result: List[str] = []\n    for s in strings:\n        # Ensure we only consider string elements\n        if not isinstance(s, str):\n            continue\n        if s.startswith(prefix):\n            result.append(s)\n    return result",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "filter_by_prefix"
+    ]
+  }
+}

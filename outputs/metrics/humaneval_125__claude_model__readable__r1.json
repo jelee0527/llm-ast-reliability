@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__claude_model__readable__r1.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for char in txt:\n            if char.islower():\n                position = ord(char) - ord('a')\n                if position % 2 == 1:\n                    count += 1\n        return count",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.106667,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_142",
+  "task_id": "HumanEval/142",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:14:15.782439+00:00",
+  "elapsed_seconds": 6.017,
+  "official_prompt": "\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\n\ndef sum_squares(lst):\n    \"\"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a \n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not \n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. \n    \n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n\n",
+  "raw_response": "import typing\n\ndef sum_squares(lst: typing.List[int]) -> int:\n    \"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    total = 0\n    for i, v in enumerate(lst):\n        if i % 3 == 0:\n            total += v * v\n        elif i % 4 == 0:\n            total += v * v * v\n        else:\n            total += v\n    return total\n\n# Quick manual tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(sum_squares([1,2,3]))            # expected 6\n    print(sum_squares([]))                 # expected 0\n    print(sum_squares([-1,-5,2,-1,-5]))    # expected -126",
+  "generated_code": "import typing\n\ndef sum_squares(lst: typing.List[int]) -> int:\n    \"\"\"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n    Examples:\n    For lst = [1,2,3] the output should be 6\n    For lst = []  the output should be 0\n    For lst = [-1,-5,2,-1,-5]  the output should be -126\n    \"\"\"\n    total = 0\n    for i, v in enumerate(lst):\n        if i % 3 == 0:\n            total += v * v\n        elif i % 4 == 0:\n            total += v * v * v\n        else:\n            total += v\n    return total\n\n# Quick manual tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(sum_squares([1,2,3]))            # expected 6\n    print(sum_squares([]))                 # expected 0\n    print(sum_squares([-1,-5,2,-1,-5]))    # expected -126"
+}

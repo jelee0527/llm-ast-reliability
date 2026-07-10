@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_044__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_044",
+  "task_id": "HumanEval/44",
+  "problem_name": "Change Base",
+  "entry_point": "change_base",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef change_base(x: int, base: int) -> str:\n    \"\"\"Change numerical base of input number x to base (base < 10).\"\"\"\n    if base < 2 or base >= 10:\n        raise ValueError(\"base must be between 2 and 9 inclusive\")\n    if x == 0:\n        return \"0\"\n    neg = x < 0\n    n = -x if neg else x\n    digits: List[str] = []\n    while n > 0:\n        digits.append(str(n % base))\n        n //= base\n    if neg:\n        digits.append('-')\n    return ''.join(reversed(digits))",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.067227,
+    "function_names": [
+      "change_base"
+    ]
+  }
+}

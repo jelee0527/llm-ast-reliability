@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:53:14.386248+00:00",
+  "elapsed_seconds": 2.751,
+  "official_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n\n",
+  "raw_response": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle negative values by taking cube root sign into account\n    if a == 0:\n        return True\n    # Compute real cube root\n    if a > 0:\n        root = round(a ** (1.0/3.0))\n    else:\n        root = -round(abs(a) ** (1.0/3.0))\n    return root**3 == a\n\n# Optional simple tests\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,125,126,-125]\n    for t in tests:\n        print(t, iscube(t))",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle negative values by taking cube root sign into account\n    if a == 0:\n        return True\n    # Compute real cube root\n    if a > 0:\n        root = round(a ** (1.0/3.0))\n    else:\n        root = -round(abs(a) ** (1.0/3.0))\n    return root**3 == a\n\n# Optional simple tests\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,125,126,-125]\n    for t in tests:\n        print(t, iscube(t))"
+}

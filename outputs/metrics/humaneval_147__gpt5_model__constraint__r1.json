@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_147__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import itertools\n\ndef get_max_triples(n):\n    \"\"\"\n    Compute number of triples (i<j<k) where a[i]=i^2 - i +1, and sum divisible by 3.\n    \"\"\"\n    # For i from 1..n, compute a[i] mod 3. But we can derive pattern:\n    # a(i) = i^2 - i + 1 mod 3\n    # Compute counts of residues 0,1,2.\n    cnt = [0, 0, 0]\n    for i in range(1, n+1):\n        r = (i*i - i + 1) % 3\n        cnt[r] += 1\n\n    # Count triples (x,y,z) with residues summing to 0 mod 3.\n    # Cases:\n    # - all three 0: C(cnt0,3)\n    # - all three 1: C(cnt1,3)\n    # - all three 2: C(cnt2,3)\n    # - one of each: cnt0 * cnt1 * cnt2\n    def comb3(x):\n        if x < 3:\n            return 0\n        return (x * (x-1) * (x-2)) // 6\n\n    total = comb3(cnt[0]) + comb3(cnt[1]) + comb3(cnt[2]) + cnt[0]*cnt[1]*cnt[2]\n    return total\n\n# Example small test\nif __name__ == \"__main__\":\n    print(get_max_triples(5))  # expected 1",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "get_max_triples",
+      "comb3"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_146__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    \"\"\"Return the count of numbers in nums that are > 10 and whose first and last digits are odd.\"\"\"\n    def first_and_last_odd(n: int) -> bool:\n        # Work with absolute value for digit extraction\n        if n == 0:\n            return False\n        a = abs(n)\n        last = a % 10\n        # find first digit\n        first = a\n        while first >= 10:\n            first //= 10\n        return (first % 2 == 1) and (last % 2 == 1)\n\n    count = 0\n    for x in nums:\n        if x > 10 and first_and_last_odd(x):\n            count += 1\n    return count\n\n# Example quick tests (these lines can be removed if not desired)\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))    # expected 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))  # expected 2",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.051948,
+    "function_names": [
+      "specialFilter",
+      "first_and_last_odd"
+    ]
+  }
+}

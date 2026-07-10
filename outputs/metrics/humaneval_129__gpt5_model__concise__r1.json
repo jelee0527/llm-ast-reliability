@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import deque\nimport heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i,j)\n    # neighbors\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # For each cell value v, compute minimal possible next value reachable in one move (including staying? can't stay unless neighbor? path can revisit same cell but move must be to neighbor each step)\n    # We'll build successor choices per cell: sorted neighbor values\n    neigh_vals = {}\n    for v,(i,j) in pos.items():\n        lst = []\n        for di,dj in dirs:\n            ni,nj = i+di, j+dj\n            if 0 <= ni < n and 0 <= nj < n:\n                lst.append(grid[ni][nj])\n        neigh_vals[v] = sorted(lst)\n    # Starting value: minimal grid value (since first element determines lexicographically)\n    start = min(pos.keys())\n    res = [start]\n    cur = start\n    for step in range(1, k):\n        # choose smallest neighbor value that allows completing remaining steps lexicographically minimal.\n        # Greedy works: always pick smallest neighbor available at each step.\n        # Because values are unique and lexicographic comparison prefers earliest minimal.\n        # So pick minimum neighbor value.\n        if neigh_vals[cur]:\n            nxt = neigh_vals[cur][0]\n        else:\n            # no neighbor (shouldn't happen in grid n>=2)\n            nxt = cur\n        res.append(nxt)\n        cur = nxt\n    return res\n\n# Quick test with provided examples\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]],3))  # expect [1,2,1] per prompt (but note can't move to non-neighbor)\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]],1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 313,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.028754,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

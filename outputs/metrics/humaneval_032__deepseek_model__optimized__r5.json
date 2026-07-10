@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: List[float]) -> float:\n    n = len(xs) - 1\n    if n % 2 != 0:\n        raise ValueError(\"xs must have even number of coefficients\")\n    \n    # Use Newton's method starting from 0\n    x = 0.0\n    for _ in range(100):\n        f = poly(xs, x)\n        if abs(f) < 1e-12:\n            return x\n        # Compute derivative\n        f_prime = sum([i * xs[i] * math.pow(x, i-1) for i in range(1, n+1)])\n        if abs(f_prime) < 1e-12:\n            break\n        x -= f / f_prime\n    \n    # Fallback: binary search on a reasonable interval\n    # Find bounds by evaluating at large values\n    bound = 1.0\n    while abs(poly(xs, bound)) < abs(poly(xs, -bound)):\n        bound *= 2\n    \n    left, right = -bound, bound\n    f_left = poly(xs, left)\n    f_right = poly(xs, right)\n    \n    for _ in range(200):\n        mid = (left + right) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if f_left * f_mid < 0:\n            right = mid\n            f_right = f_mid\n        else:\n            left = mid\n            f_left = f_mid\n    \n    return (left + right) / 2",
+  "metrics": {
+    "total_nodes": 331,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.042296,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

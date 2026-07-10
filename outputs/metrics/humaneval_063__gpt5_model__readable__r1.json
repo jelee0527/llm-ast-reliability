@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_063__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef fibfib(n: int) -> int:\n    \"\"\"Compute the n-th FibFib number where:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3) for n >= 3\n\n    Uses fast doubling-like approach via matrix exponentiation for O(log n) time.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n\n    # The recurrence can be represented by the matrix:\n    # [1 1 1]   [f(n-1)]   [f(n)]\n    # [1 0 0] * [f(n-2)] = [f(n-1)]\n    # [0 1 0]   [f(n-3)]   [f(n-2)]\n    #\n    # So f(n) is the top element of M^(n-2) * [f(2), f(1), f(0)]^T\n    # where base vector is [1, 0, 0]^T.\n\n    def mat_mult(a, b):\n        \"\"\"Multiply two 3x3 matrices.\"\"\"\n        return [\n            [\n                a[0][0]*b[0][0] + a[0][1]*b[1][0] + a[0][2]*b[2][0],\n                a[0][0]*b[0][1] + a[0][1]*b[1][1] + a[0][2]*b[2][1],\n                a[0][0]*b[0][2] + a[0][1]*b[1][2] + a[0][2]*b[2][2],\n            ],\n            [\n                a[1][0]*b[0][0] + a[1][1]*b[1][0] + a[1][2]*b[2][0],\n                a[1][0]*b[0][1] + a[1][1]*b[1][1] + a[1][2]*b[2][1],\n                a[1][0]*b[0][2] + a[1][1]*b[1][2] + a[1][2]*b[2][2],\n            ],\n            [\n                a[2][0]*b[0][0] + a[2][1]*b[1][0] + a[2][2]*b[2][0],\n                a[2][0]*b[0][1] + a[2][1]*b[1][1] + a[2][2]*b[2][1],\n                a[2][0]*b[0][2] + a[2][1]*b[1][2] + a[2][2]*b[2][2],\n            ],\n        ]\n\n    def mat_pow(matrix, power):\n        \"\"\"Exponentiate a 3x3 matrix to non-negative integer power.\"\"\"\n        # Initialize result as identity matrix\n        result = [\n            [1, 0, 0],\n            [0, 1, 0],\n            [0, 0, 1],\n        ]\n        base = matrix\n        exp = power\n        while exp > 0:\n            if exp & 1:\n                result = mat_mult(result, base)\n            base = mat_mult(base, base)\n            exp >>= 1\n        return result\n\n    transition = [\n        [1, 1, 1],\n        [1, 0, 0],\n        [0, 1, 0],\n    ]\n\n    # We need M^(n-2)\n    power_matrix = mat_pow(transition, n - 2)\n\n    # Multiply power_matrix by base vector [f(2), f(1), f(0)] = [1,0,0].\n    # The top element (row 0) dot base vector is just power_matrix[0][0]*1 + [0]*... -> power_matrix[0][0]\n    return power_matrix[0][0]\n\n\n# Quick self-tests (will run when module is executed directly)\nif __name__ == \"__main__\":\n    assert fibfib(0) == 0\n    assert fibfib(1) == 0\n    assert fibfib(2) == 1\n    assert fibfib(3) == 1  # 1+0+0\n    assert fibfib(4) == 2  # 1+1+0\n    assert fibfib(5) == 4  # 2+1+1\n    assert fibfib(6) == 7  # 4+2+1\n    assert fibfib(7) == 13\n    assert fibfib(8) == 24\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 784,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.015306,
+    "function_names": [
+      "fibfib",
+      "mat_mult",
+      "mat_pow"
+    ]
+  }
+}

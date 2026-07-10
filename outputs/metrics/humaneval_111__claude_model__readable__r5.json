@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__claude_model__readable__r5.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def histogram(test):\n    if not test.strip():\n        return {}\n    \n    letters = test.split()\n    \n    letter_counts = {}\n    for letter in letters:\n        if letter in letter_counts:\n            letter_counts[letter] += 1\n        else:\n            letter_counts[letter] = 1\n    \n    max_count = max(letter_counts.values())\n    \n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    \n    return result",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

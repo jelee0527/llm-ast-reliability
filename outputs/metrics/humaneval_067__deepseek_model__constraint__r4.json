@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def fruit_distribution(s, n):\n    words = s.split()\n    apples = int(words[0])\n    oranges = int(words[3])\n    return n - apples - oranges",
+  "metrics": {
+    "total_nodes": 46,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

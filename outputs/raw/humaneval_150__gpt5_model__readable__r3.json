@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_150",
+  "task_id": "HumanEval/150",
+  "problem_name": "X Or Y",
+  "entry_point": "x_or_y",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:28:55.999660+00:00",
+  "elapsed_seconds": 4.444,
+  "official_prompt": "\ndef x_or_y(n, x, y):\n    \"\"\"A simple program which should return the value of x if n is \n    a prime number and should return the value of y otherwise.\n\n    Examples:\n    for x_or_y(7, 34, 12) == 34\n    for x_or_y(15, 8, 5) == 5\n    \n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef x_or_y(n, x, y):\n    \"\"\"A simple program which should return the value of x if n is \n    a prime number and should return the value of y otherwise.\n\n    Examples:\n    for x_or_y(7, 34, 12) == 34\n    for x_or_y(15, 8, 5) == 5\n    \n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef x_or_y(n, x, y):\n    \"\"\"Return x if n is prime, otherwise return y.\n\n    Handles integers n. For n <= 1, n is not prime.\n    \"\"\"\n    # Ensure n is an integer\n    try:\n        n_int = int(n)\n    except (TypeError, ValueError):\n        # If n is not convertible to int, treat as not prime\n        return y\n\n    if n_int <= 1:\n        return y\n    if n_int <= 3:\n        return x  # 2 and 3 are prime\n\n    # Eliminate even numbers and multiples of 3 quickly\n    if n_int % 2 == 0 or n_int % 3 == 0:\n        return y\n\n    # Check potential factors of the form 6k +/- 1 up to sqrt(n)\n    limit = int(math.isqrt(n_int))\n    factor = 5\n    while factor <= limit:\n        if n_int % factor == 0 or n_int % (factor + 2) == 0:\n            return y\n        factor += 6\n\n    return x",
+  "generated_code": "import math\n\ndef x_or_y(n, x, y):\n    \"\"\"Return x if n is prime, otherwise return y.\n\n    Handles integers n. For n <= 1, n is not prime.\n    \"\"\"\n    # Ensure n is an integer\n    try:\n        n_int = int(n)\n    except (TypeError, ValueError):\n        # If n is not convertible to int, treat as not prime\n        return y\n\n    if n_int <= 1:\n        return y\n    if n_int <= 3:\n        return x  # 2 and 3 are prime\n\n    # Eliminate even numbers and multiples of 3 quickly\n    if n_int % 2 == 0 or n_int % 3 == 0:\n        return y\n\n    # Check potential factors of the form 6k +/- 1 up to sqrt(n)\n    limit = int(math.isqrt(n_int))\n    factor = 5\n    while factor <= limit:\n        if n_int % factor == 0 or n_int % (factor + 2) == 0:\n            return y\n        factor += 6\n\n    return x"
+}

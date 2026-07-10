@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_120__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    # Validate k bounds\n    n = len(arr)\n    if k <= 0:\n        return []\n    if k >= n:\n        return sorted(arr)\n    # Use a selection algorithm: find the k-th largest value (i.e., (n-k)-th smallest)\n    target_index = n - k  # zero-based index for k largest cutoff in sorted ascending order\n\n    # Make a copy to avoid mutating input\n    a = list(arr)\n\n    import random\n\n    def partition(left: int, right: int, pivot_index: int) -> int:\n        pivot_value = a[pivot_index]\n        # move pivot to end\n        a[pivot_index], a[right] = a[right], a[pivot_index]\n        store_index = left\n        for i in range(left, right):\n            if a[i] < pivot_value:\n                a[store_index], a[i] = a[i], a[store_index]\n                store_index += 1\n        # move pivot to its final place\n        a[store_index], a[right] = a[right], a[store_index]\n        return store_index\n\n    def quickselect(left: int, right: int, index: int):\n        while True:\n            if left == right:\n                return\n            pivot_index = random.randint(left, right)\n            pivot_index = partition(left, right, pivot_index)\n            if index == pivot_index:\n                return\n            elif index < pivot_index:\n                right = pivot_index - 1\n            else:\n                left = pivot_index + 1\n\n    quickselect(0, n - 1, target_index)\n    # Now elements at positions target_index..n-1 are the k largest, but not sorted.\n    result = a[target_index:]\n    result.sort()\n    return result",
+  "metrics": {
+    "total_nodes": 322,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 3,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "maximum",
+      "partition",
+      "quickselect"
+    ]
+  }
+}

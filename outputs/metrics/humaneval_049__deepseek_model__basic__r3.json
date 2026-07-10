@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__deepseek_model__basic__r3.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    return pow(2, n, p)",
+  "metrics": {
+    "total_nodes": 20,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

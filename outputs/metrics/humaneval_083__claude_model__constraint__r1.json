@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    # n-digit numbers range from 10^(n-1) to 10^n - 1\n    # Count numbers that start with 1: 10^(n-1) numbers (from 10^(n-1) to 2*10^(n-1)-1)\n    # Count numbers that end with 1: 9 * 10^(n-2) numbers (first digit can be 2-9, last digit is 1)\n    # Total = 10^(n-1) + 9 * 10^(n-2) = 18 * 10^(n-2)\n    return 18 * (10 ** (n - 2))",
+  "metrics": {
+    "total_nodes": 24,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.125,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

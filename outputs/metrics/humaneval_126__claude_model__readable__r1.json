@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__claude_model__readable__r1.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def is_sorted(lst):\n    if len(lst) <= 1:\n        return True\n    \n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_value = lst[i + 1]\n        \n        if current > next_value:\n            return False\n        \n        if current == next_value:\n            if i + 2 < len(lst) and lst[i + 2] == current:\n                return False\n    \n    return True",
+  "metrics": {
+    "total_nodes": 98,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.091837,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

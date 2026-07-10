@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:09:29.848994+00:00",
+  "elapsed_seconds": 4.202,
+  "official_prompt": "\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef monotonic(l: List[Any]) -> bool:\n    \"\"\"Return True if list elements are monotonically non-decreasing or non-increasing.\n    Examples:\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    # Empty or single-element list is monotonic\n    if l is None:\n        return False\n    n = len(l)\n    if n <= 1:\n        return True\n\n    # Determine direction by finding first unequal pair\n    i = 1\n    direction = 0  # 0 unknown, 1 non-decreasing, -1 non-increasing\n    while i < n and direction == 0:\n        if l[i] > l[i-1]:\n            direction = 1\n        elif l[i] < l[i-1]:\n            direction = -1\n        i += 1\n\n    # If all equal elements\n    if direction == 0:\n        return True\n\n    # Check rest according to direction\n    for j in range(1, n):\n        if direction == 1 and l[j] < l[j-1]:\n            return False\n        if direction == -1 and l[j] > l[j-1]:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List, Any\n\ndef monotonic(l: List[Any]) -> bool:\n    \"\"\"Return True if list elements are monotonically non-decreasing or non-increasing.\n    Examples:\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    # Empty or single-element list is monotonic\n    if l is None:\n        return False\n    n = len(l)\n    if n <= 1:\n        return True\n\n    # Determine direction by finding first unequal pair\n    i = 1\n    direction = 0  # 0 unknown, 1 non-decreasing, -1 non-increasing\n    while i < n and direction == 0:\n        if l[i] > l[i-1]:\n            direction = 1\n        elif l[i] < l[i-1]:\n            direction = -1\n        i += 1\n\n    # If all equal elements\n    if direction == 0:\n        return True\n\n    # Check rest according to direction\n    for j in range(1, n):\n        if direction == 1 and l[j] < l[j-1]:\n            return False\n        if direction == -1 and l[j] > l[j-1]:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

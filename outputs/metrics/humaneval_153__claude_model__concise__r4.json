@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__claude_model__concise__r4.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def Strongest_Extension(class_name, extensions):\n    best = max(extensions, key=lambda e: sum(1 if c.isupper() else -1 if c.islower() else 0 for c in e))\n    return f\"{class_name}.{best}\"",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 14,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    if not words:\n        return \"\"\n    # For each word compute (unique count, word). We need max by unique count, tie-break by lexicographically smallest.\n    # So key: (unique_count, negative lex order?) Instead use sorting with tuple (-unique_count, word) and pick first.\n    best = min(words, key=lambda w: (-len(set(w)), w))\n    return best",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 12,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

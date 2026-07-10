@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_080__claude_model__readable__r2.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:20:31.032785+00:00",
+  "elapsed_seconds": 1.233,
+  "official_prompt": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef even_odd_count(num):\n    num = abs(num)\n    even = odd = 0\n    for digit in str(num):\n        if int(digit) % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n    return (even, odd)\n```",
+  "generated_code": "def even_odd_count(num):\n    num = abs(num)\n    even = odd = 0\n    for digit in str(num):\n        if int(digit) % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n    return (even, odd)"
+}

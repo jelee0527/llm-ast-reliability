@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_131__claude_model__readable__r3.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n    odd_digits = [int(digit) for digit in str(n) if int(digit) % 2 != 0]\n    \n    if not odd_digits:\n        return 0\n    \n    product = 1\n    for digit in odd_digits:\n        product *= digit\n    \n    return product",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='digits',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Expr(\n          value=Constant(value='Given a positive integer n, return the product of the odd digits.\\n    Return 0 if all digits are even.\\n    For example:\\n    digits(1)  == 1\\n    digits(4)  == 0\\n    digits(235) == 15\\n    ')),\n        Assign(\n          targets=[\n            Name(id='odd_digits', ctx=Store())],\n          value=ListComp(\n            elt=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='digit', ctx=Load())]),\n            generators=[\n              comprehension(\n                target=Name(id='digit', ctx=Store()),\n                iter=Call(\n                  func=Name(id='str', ctx=Load()),\n                  args=[\n                    Name(id='n', ctx=Load())]),\n                ifs=[\n                  Compare(\n                    left=BinOp(\n                      left=Call(\n                        func=Name(id='int', ctx=Load()),\n                        args=[\n                          Name(id='digit', ctx=Load())]),\n                      op=Mod(),\n                      right=Constant(value=2)),\n                    ops=[\n                      NotEq()],\n                    comparators=[\n                      Constant(value=0)])],\n                is_async=0)])),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='odd_digits', ctx=Load())),\n          body=[\n            Return(\n              value=Constant(value=0))]),\n        Assign(\n          targets=[\n            Name(id='product', ctx=Store())],\n          value=Constant(value=1)),\n        For(\n          target=Name(id='digit', ctx=Store()),\n          iter=Name(id='odd_digits', ctx=Load()),\n          body=[\n            AugAssign(\n              target=Name(id='product', ctx=Store()),\n              op=Mult(),\n              value=Name(id='digit', ctx=Load()))]),\n        Return(\n          value=Name(id='product', ctx=Load()))])])"
+}

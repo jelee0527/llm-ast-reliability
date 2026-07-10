@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_even(l: List) -> List:\n    \"\"\"Return a new list where elements at even indices (0,2,4,...) are sorted,\n    while elements at odd indices remain in their original positions.\n    \"\"\"\n    # Copy input to avoid mutating original list\n    result = list(l)\n    # Extract even-indexed values and their indices\n    even_indices = [i for i in range(0, len(l), 2)]\n    even_values = [l[i] for i in even_indices]\n    # Sort the even-indexed values\n    even_values.sort()\n    # Place sorted values back into their even positions\n    for idx, val in zip(even_indices, even_values):\n        result[idx] = val\n    return result\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 3], [1, 2, 3]),\n        ([5, 6, 3, 4], [3, 6, 5, 4]),\n        ([], []),\n        ([9], [9]),\n        ([4,1,2,3,0,5], [0,1,2,3,4,5]),\n    ]\n    for inp, expected in tests:\n        out = sort_even(inp)\n        print(inp, \"->\", out, \"OK\" if out == expected else \"FAIL (expected {})\".format(expected))",
+  "metrics": {
+    "total_nodes": 195,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.025641,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

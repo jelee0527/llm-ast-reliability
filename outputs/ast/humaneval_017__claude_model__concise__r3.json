@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_017__claude_model__concise__r3.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    note_map = {'o': 4, 'o|': 2, '.|': 1}\n    return [note_map[note] for note in music_string.split() if note in note_map]",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='parse_music',\n      args=arguments(\n        args=[\n          arg(\n            arg='music_string',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='note_map', ctx=Store())],\n          value=Dict(\n            keys=[\n              Constant(value='o'),\n              Constant(value='o|'),\n              Constant(value='.|')],\n            values=[\n              Constant(value=4),\n              Constant(value=2),\n              Constant(value=1)])),\n        Return(\n          value=ListComp(\n            elt=Subscript(\n              value=Name(id='note_map', ctx=Load()),\n              slice=Name(id='note', ctx=Load()),\n              ctx=Load()),\n            generators=[\n              comprehension(\n                target=Name(id='note', ctx=Store()),\n                iter=Call(\n                  func=Attribute(\n                    value=Name(id='music_string', ctx=Load()),\n                    attr='split',\n                    ctx=Load())),\n                ifs=[\n                  Compare(\n                    left=Name(id='note', ctx=Load()),\n                    ops=[\n                      In()],\n                    comparators=[\n                      Name(id='note_map', ctx=Load())])],\n                is_async=0)]))],\n      returns=Subscript(\n        value=Name(id='List', ctx=Load()),\n        slice=Name(id='int', ctx=Load()),\n        ctx=Load()))])"
+}

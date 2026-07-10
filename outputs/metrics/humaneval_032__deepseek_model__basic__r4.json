@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef poly(xs: list, x: float):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: list):\n    if len(xs) % 2 != 0:\n        raise ValueError(\"xs must have an even number of coefficients\")\n    if xs[-1] == 0:\n        raise ValueError(\"Largest non-zero coefficient must be non-zero\")\n    \n    n = len(xs) - 1\n    a = xs[-1]\n    b = xs[-2] if n >= 1 else 0\n    \n    if n == 1:\n        return -xs[0] / xs[1]\n    \n    x0 = -b / (n * a) if a != 0 else 0.0\n    \n    for _ in range(100):\n        f = poly(xs, x0)\n        if abs(f) < 1e-12:\n            return x0\n        f_prime = 0.0\n        for i in range(1, len(xs)):\n            f_prime += i * xs[i] * math.pow(x0, i - 1)\n        if f_prime == 0:\n            break\n        x0 = x0 - f / f_prime\n    \n    return x0",
+  "metrics": {
+    "total_nodes": 256,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

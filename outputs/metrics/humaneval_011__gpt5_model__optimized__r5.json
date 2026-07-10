@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must have the same length\")\n    # Use list comprehension for speed and join\n    return ''.join('1' if (ca != cb) else '0' for ca, cb in zip(a, b))",
+  "metrics": {
+    "total_nodes": 62,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.064516,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

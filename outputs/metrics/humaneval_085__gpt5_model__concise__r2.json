@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_085__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_085",
+  "task_id": "HumanEval/85",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef add(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices.\"\"\"\n    return sum(x for i, x in enumerate(lst) if i % 2 == 1 and x % 2 == 0)",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.018868,
+    "function_names": [
+      "add"
+    ]
+  }
+}

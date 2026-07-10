@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_111__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "invalid syntax (<unknown>, line 55)",
+  "generated_code": "from typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter(s) with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \"\"\"\n    # Handle empty or whitespace-only input\n    if test is None:\n        return {}\n    s = test.strip()\n    if s == \"\":\n        return {}\n\n    parts = s.split()\n    counts = {}\n    for token in parts:\n        # Expect single-letter tokens; ignore empty tokens\n        if token == \"\":\n            continue\n        # Use the whole token as key (as examples suggest single letters)\n        key = token\n        counts[key] = counts.get(key, 0) + 1\n\n    if not counts:\n        return {}\n\n    # Find maximum frequency\n    max_count = None\n    for v in counts.values():\n        if max_count is None or v > max_count:\n            max_count = v\n\n    # Collect keys with maximum frequency\n    result = {}\n    for k, v in counts.items():\n        if v == max_count:\n            result[k] = v\n\n    return result\n\n# Quick internal tests (will not run unless invoked)\nif __name__ == \"__main__\":\n    tests = [\n        (\"a b c\", {'a':1,'b':1,'c':1}),\n        (\"a b b a\", {'a':2,'b':2}),\n        (\"a b c a b\", {'a':2,'b':2}),\n        (\"b b b b a\", {'b':4}),\n        (\"\", {}),\n        (\"   \", {}),\n        (\"x x y z z z\", {'z':3}),\n    ]\n    for inp, expected in tests:\n        out = histogram(inp)\n        print(inp!r, out, \"OK\" if out==expected else \"FAIL, expected \"+str(expected))"
+}

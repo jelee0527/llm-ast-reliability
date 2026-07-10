@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from decimal import Decimal, getcontext, ROUND_FLOOR, ROUND_CEILING\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    # Use Decimal for precise half handling\n    getcontext().prec = max(28, len(value) + 10)\n    x = Decimal(value)\n    # Separate integer and fractional parts\n    sign = 1 if x >= 0 else -1\n    abs_x = x.copy_abs()\n    int_part = int(abs_x.to_integral_value(rounding=ROUND_FLOOR))\n    frac = abs_x - Decimal(int_part)\n    if frac < Decimal('0.5'):\n        result = int_part\n    elif frac > Decimal('0.5'):\n        result = int_part + 1\n    else:  # exactly 0.5 -> round away from zero\n        result = int_part + 1\n    return result * sign",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.030769,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

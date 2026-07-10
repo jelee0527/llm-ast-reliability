@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_043__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_043",
+  "task_id": "HumanEval/43",
+  "problem_name": "Pairs Sum To Zero",
+  "entry_point": "pairs_sum_to_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pairs_sum_to_zero(l: List[int]) -> bool:\n    \"\"\"\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    \"\"\"\n    # Use a set to record seen values. For each value x, check if -x has been seen.\n    seen = set()\n    for x in l:\n        # Ensure distinct elements: if x == 0, need another zero previously seen.\n        if x == 0:\n            if 0 in seen:\n                return True\n            seen.add(0)\n        else:\n            if -x in seen:\n                return True\n            seen.add(x)\n    return False\n\nif __name__ == \"__main__\":\n    # Quick self-tests based on the docstring examples\n    tests = [\n        ([1, 3, 5, 0], False),\n        ([1, 3, -2, 1], False),\n        ([1, 2, 3, 7], False),\n        ([2, 4, -5, 3, 5, 7], True),\n        ([1], False),\n        ([0, 0], True),\n        ([0], False),\n    ]\n    for inp, expected in tests:\n        result = pairs_sum_to_zero(inp)\n        print(inp, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "pairs_sum_to_zero"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_138__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_equal_to_sum_even(n: int) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Positive even numbers are 2, 4, 6, ...\n    Each term must be >= 2 and even. So sum of four positive evens is 2+2+2+2 = 8 minimum,\n    and any such sum is an even number >= 8. Therefore condition: n is even and n >= 8.\n\n    Examples:\n    is_equal_to_sum_even(4) -> False\n    is_equal_to_sum_even(6) -> False\n    is_equal_to_sum_even(8) -> True\n    \"\"\"\n    if not isinstance(n, int):\n        return False\n    return n >= 8 and (n % 2 == 0)",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='is_equal_to_sum_even',\n      args=arguments(\n        args=[\n          arg(\n            arg='n',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\\n\\n    Positive even numbers are 2, 4, 6, ...\\n    Each term must be >= 2 and even. So sum of four positive evens is 2+2+2+2 = 8 minimum,\\n    and any such sum is an even number >= 8. Therefore condition: n is even and n >= 8.\\n\\n    Examples:\\n    is_equal_to_sum_even(4) -> False\\n    is_equal_to_sum_even(6) -> False\\n    is_equal_to_sum_even(8) -> True\\n    ')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='n', ctx=Load()),\n                Name(id='int', ctx=Load())])),\n          body=[\n            Return(\n              value=Constant(value=False))]),\n        Return(\n          value=BoolOp(\n            op=And(),\n            values=[\n              Compare(\n                left=Name(id='n', ctx=Load()),\n                ops=[\n                  GtE()],\n                comparators=[\n                  Constant(value=8)]),\n              Compare(\n                left=BinOp(\n                  left=Name(id='n', ctx=Load()),\n                  op=Mod(),\n                  right=Constant(value=2)),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Constant(value=0)])]))],\n      returns=Name(id='bool', ctx=Load()))])"
+}

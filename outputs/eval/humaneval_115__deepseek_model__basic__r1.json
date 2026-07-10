@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_115__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "Error",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 13, in check\nAssertionError: Error\n"
+}

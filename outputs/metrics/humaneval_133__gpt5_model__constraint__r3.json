@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_133__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Iterable\n\ndef sum_squares(lst: Iterable[float]) -> int:\n    \"\"\"Return the sum of squares of the elements in lst after applying ceiling to each element.\n    Each element is first rounded up using math.ceil, then squared, and summed.\n    \"\"\"\n    total = 0\n    for x in lst:\n        # Ensure numeric types behave with ceil; raise if not convertible\n        if not isinstance(x, (int, float)):\n            try:\n                x = float(x)\n            except Exception:\n                raise TypeError(f\"List contains non-numeric value: {x!r}\")\n        ceiled = math.ceil(x)\n        total += ceiled * ceiled\n    return total",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

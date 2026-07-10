@@ -1,0 +1,33 @@
+{
+  "source_file": "humaneval_064__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import unittest\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in the input string s.\n    Vowels: a, e, i, o, u (case-insensitive).\n    'y' counts as a vowel only when it appears at the end of the word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    lower = s.lower()\n    base_vowels = set(\"aeiou\")\n    count = 0\n    for ch in lower:\n        if ch in base_vowels:\n            count += 1\n    # Count 'y' only if it's the last character and is 'y'\n    if lower.endswith(\"y\"):\n        count += 1\n    return count\n\nclass TestVowelsCount(unittest.TestCase):\n    def test_basic_examples(self):\n        self.assertEqual(vowels_count(\"abcde\"), 2)\n        self.assertEqual(vowels_count(\"ACEDY\"), 3)\n\n    def test_only_vowels(self):\n        self.assertEqual(vowels_count(\"aeiou\"), 5)\n        self.assertEqual(vowels_count(\"AEIOU\"), 5)\n\n    def test_y_at_end(self):\n        self.assertEqual(vowels_count(\"play\"), 1)   # 'a' + 'y' at end\n        self.assertEqual(vowels_count(\"Y\"), 1)      # 'y' at end counts\n        self.assertEqual(vowels_count(\"bY\"), 1)     # 'y' at end counts\n\n    def test_y_not_at_end(self):\n        self.assertEqual(vowels_count(\"yellow\"), 2) # 'e' and second 'l' no; 'y' at start doesn't count\n        self.assertEqual(vowels_count(\"beyond\"), 2) # 'e' and 'o'; 'y' not at end\n\n    def test_empty_and_nonletters(self):\n        self.assertEqual(vowels_count(\"\"), 0)\n        self.assertEqual(vowels_count(\"123ae!y\"), 3) # 'a','e' and trailing 'y' count\n        self.assertEqual(vowels_count(\"a!e?i.o,u\"), 5)\n\n    def test_mixed_case_and_spaces(self):\n        self.assertEqual(vowels_count(\"Hello World\"), 3)  # e, o, o\n        self.assertEqual(vowels_count(\"Cry by sky\"), 1)   # only trailing 'y' in \"sky\" counts? note: function treats entire string; last char 'y' counts once\n\n    def test_non_string_raises(self):\n        with self.assertRaises(TypeError):\n            vowels_count(None)\n        with self.assertRaises(TypeError):\n            vowels_count(123)\n\nif __name__ == \"__main__\":\n    unittest.main()",
+  "metrics": {
+    "total_nodes": 294,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 8,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.02381,
+    "function_names": [
+      "vowels_count",
+      "test_basic_examples",
+      "test_only_vowels",
+      "test_y_at_end",
+      "test_y_not_at_end",
+      "test_empty_and_nonletters",
+      "test_mixed_case_and_spaces",
+      "test_non_string_raises"
+    ]
+  }
+}

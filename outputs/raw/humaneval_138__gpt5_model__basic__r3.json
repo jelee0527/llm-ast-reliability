@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:04:55.573637+00:00",
+  "elapsed_seconds": 2.972,
+  "official_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # Each positive even number is at least 2, so sum of 4 positive evens >= 8\n    if not isinstance(n, int):\n        return False\n    if n < 8:\n        return False\n    # Sum of even numbers is even, so n must be even\n    return n % 2 == 0",
+  "generated_code": "import math\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # Each positive even number is at least 2, so sum of 4 positive evens >= 8\n    if not isinstance(n, int):\n        return False\n    if n < 8:\n        return False\n    # Sum of even numbers is even, so n must be even\n    return n % 2 == 0"
+}

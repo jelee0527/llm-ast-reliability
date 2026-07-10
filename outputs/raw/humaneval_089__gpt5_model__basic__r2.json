@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:16:43.731983+00:00",
+  "elapsed_seconds": 7.628,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate alphabet such that letters shift down by two multiplied to two places.\n    Examples:\n    'hi' -> 'lm'\n    'asdfghjkl' -> 'ewhjklnop'\n    'gf' -> 'kj'\n    'et' -> 'ix'\n    \"\"\"\n    # Interpretation: for each letter, shift forward by 4 positions (2 multiplied to 2)\n    # Use lowercase alphabet; preserve case? Examples are lowercase; implement for lowercase only.\n    alpha = string.ascii_lowercase\n    n = len(alpha)\n    shift = 4\n    result = []\n    for ch in s:\n        if ch.isalpha():\n            is_upper = ch.isupper()\n            base_alpha = string.ascii_uppercase if is_upper else alpha\n            idx = base_alpha.index(ch.upper() if is_upper else ch)\n            new_ch = base_alpha[(idx + shift) % n]\n            result.append(new_ch)\n        else:\n            result.append(ch)\n    return ''.join(result)",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate alphabet such that letters shift down by two multiplied to two places.\n    Examples:\n    'hi' -> 'lm'\n    'asdfghjkl' -> 'ewhjklnop'\n    'gf' -> 'kj'\n    'et' -> 'ix'\n    \"\"\"\n    # Interpretation: for each letter, shift forward by 4 positions (2 multiplied to 2)\n    # Use lowercase alphabet; preserve case? Examples are lowercase; implement for lowercase only.\n    alpha = string.ascii_lowercase\n    n = len(alpha)\n    shift = 4\n    result = []\n    for ch in s:\n        if ch.isalpha():\n            is_upper = ch.isupper()\n            base_alpha = string.ascii_uppercase if is_upper else alpha\n            idx = base_alpha.index(ch.upper() if is_upper else ch)\n            new_ch = base_alpha[(idx + shift) % n]\n            result.append(new_ch)\n        else:\n            result.append(ch)\n    return ''.join(result)"
+}

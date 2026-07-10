@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_063__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Dict\n\ndef fibfib(n: int) -> int:\n    \"\"\"Compute the n-th FibFib number where\n    fibfib(0)=0, fibfib(1)=0, fibfib(2)=1 and\n    fibfib(n)=fibfib(n-1)+fibfib(n-2)+fibfib(n-3) for n>=3.\n    Uses iterative dynamic programming for efficiency.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n    # Iteratively build up from 0..n\n    a, b, c = 0, 0, 1  # fibfib(0), fibfib(1), fibfib(2)\n    for i in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c\n\nif __name__ == \"__main__\":\n    # Basic tests from the docstring\n    import sys\n    tests = [(1, 0), (5, 4), (8, 24), (0, 0), (2, 1), (3, 1), (4, 2)]\n    ok = True\n    for inp, exp in tests:\n        res = fibfib(inp)\n        if res != exp:\n            print(f\"Test failed: fibfib({inp}) == {res}, expected {exp}\")\n            ok = False\n    if ok:\n        print(\"All tests passed.\")\n    # If run with a numeric argument, print that fibfib\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(f\"fibfib({n}) = {fibfib(n)}\")\n        except Exception as e:\n            print(\"Error:\", e)",
+  "metrics": {
+    "total_nodes": 264,
+    "ast_depth": 11,
+    "branch_count": 9,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.060606,
+    "function_names": [
+      "fibfib"
+    ]
+  }
+}

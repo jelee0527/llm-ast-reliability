@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:19:40.503119+00:00",
+  "elapsed_seconds": 10.07,
+  "official_prompt": "\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If sums are equal, preserve original order (stable by index).\n\n    Examples:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    # Helper to compute sum of digits of an integer (ignoring sign)\n    def sum_digits(n: int) -> int:\n        n_abs = n\n        if n_abs < 0:\n            n_abs = -n_abs\n        total = 0\n        if n_abs == 0:\n            return 0\n        while n_abs:\n            total += n_abs % 10\n            n_abs //= 10\n        return total\n\n    # Attach original index to preserve order for equal sums\n    indexed = [(i, val) for i, val in enumerate(nums)]\n    # Sort by (sum_digits(value), original_index)\n    indexed.sort(key=lambda iv: (sum_digits(iv[1]), iv[0]))\n    # Extract values in sorted order\n    return [val for (_, val) in indexed]",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If sums are equal, preserve original order (stable by index).\n\n    Examples:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    # Helper to compute sum of digits of an integer (ignoring sign)\n    def sum_digits(n: int) -> int:\n        n_abs = n\n        if n_abs < 0:\n            n_abs = -n_abs\n        total = 0\n        if n_abs == 0:\n            return 0\n        while n_abs:\n            total += n_abs % 10\n            n_abs //= 10\n        return total\n\n    # Attach original index to preserve order for equal sums\n    indexed = [(i, val) for i, val in enumerate(nums)]\n    # Sort by (sum_digits(value), original_index)\n    indexed.sort(key=lambda iv: (sum_digits(iv[1]), iv[0]))\n    # Extract values in sorted order\n    return [val for (_, val) in indexed]"
+}

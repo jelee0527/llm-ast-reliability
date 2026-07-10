@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef maximum(arr, k):\n    if k == 0:\n        return []\n    if k >= len(arr):\n        return sorted(arr)\n    # Use a min-heap of size k to keep the k largest elements\n    heap = arr[:k]\n    heapq.heapify(heap)\n    for x in arr[k:]:\n        if x > heap[0]:\n            heapq.heapreplace(heap, x)\n    return sorted(heap)",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.081395,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

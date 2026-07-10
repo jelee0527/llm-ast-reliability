@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_023__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_023",
+  "task_id": "HumanEval/23",
+  "problem_name": "Strlen",
+  "entry_point": "strlen",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    count = 0\n    for _ in string:\n        count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 27,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.074074,
+    "function_names": [
+      "strlen"
+    ]
+  }
+}

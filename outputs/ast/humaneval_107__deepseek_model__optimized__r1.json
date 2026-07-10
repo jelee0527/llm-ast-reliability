@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_107__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_107",
+  "task_id": "HumanEval/107",
+  "problem_name": "Even Odd Palindrome",
+  "entry_point": "even_odd_palindrome",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def even_odd_palindrome(n):\n    even_count = 0\n    odd_count = 0\n    for num in range(1, n + 1):\n        s = str(num)\n        if s == s[::-1]:\n            if num % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    return (even_count, odd_count)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='even_odd_palindrome',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='even_count', ctx=Store())],\n          value=Constant(value=0)),\n        Assign(\n          targets=[\n            Name(id='odd_count', ctx=Store())],\n          value=Constant(value=0)),\n        For(\n          target=Name(id='num', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=1),\n              BinOp(\n                left=Name(id='n', ctx=Load()),\n                op=Add(),\n                right=Constant(value=1))]),\n          body=[\n            Assign(\n              targets=[\n                Name(id='s', ctx=Store())],\n              value=Call(\n                func=Name(id='str', ctx=Load()),\n                args=[\n                  Name(id='num', ctx=Load())])),\n            If(\n              test=Compare(\n                left=Name(id='s', ctx=Load()),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Subscript(\n                    value=Name(id='s', ctx=Load()),\n                    slice=Slice(\n                      step=UnaryOp(\n                        op=USub(),\n                        operand=Constant(value=1))),\n                    ctx=Load())]),\n              body=[\n                If(\n                  test=Compare(\n                    left=BinOp(\n                      left=Name(id='num', ctx=Load()),\n                      op=Mod(),\n                      right=Constant(value=2)),\n                    ops=[\n                      Eq()],\n                    comparators=[\n                      Constant(value=0)]),\n                  body=[\n                    AugAssign(\n                      target=Name(id='even_count', ctx=Store()),\n                      op=Add(),\n                      value=Constant(value=1))],\n                  orelse=[\n                    AugAssign(\n                      target=Name(id='odd_count', ctx=Store()),\n                      op=Add(),\n                      value=Constant(value=1))])])]),\n        Return(\n          value=Tuple(\n            elts=[\n              Name(id='even_count', ctx=Load()),\n              Name(id='odd_count', ctx=Load())],\n            ctx=Load()))])])"
+}

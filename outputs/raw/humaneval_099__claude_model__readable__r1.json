@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:39:08.242329+00:00",
+  "elapsed_seconds": 4.895,
+  "official_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n\n",
+  "raw_response": "import math\n\ndef closest_integer(value):\n    number = float(value)\n    \n    if number >= 0:\n        # For positive numbers, check if fractional part is exactly 0.5\n        if number - math.floor(number) == 0.5:\n            return math.ceil(number)\n        else:\n            return round(number)\n    else:\n        # For negative numbers, check if fractional part is exactly 0.5\n        if math.ceil(number) - number == 0.5:\n            return math.floor(number)\n        else:\n            return round(number)",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    number = float(value)\n    \n    if number >= 0:\n        # For positive numbers, check if fractional part is exactly 0.5\n        if number - math.floor(number) == 0.5:\n            return math.ceil(number)\n        else:\n            return round(number)\n    else:\n        # For negative numbers, check if fractional part is exactly 0.5\n        if math.ceil(number) - number == 0.5:\n            return math.floor(number)\n        else:\n            return round(number)"
+}

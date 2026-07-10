@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\n\ndef closest_integer(value):\n    \"\"\"\n    Parse string value and return the closest integer.\n    If equidistant, round away from zero.\n    \"\"\"\n    # Use Decimal for precise fractional handling\n    d = Decimal(value)\n    sign = 1 if d >= 0 else -1\n    # Separate integer and fractional part using quantize to get fractional\n    int_part = int(d.to_integral_value(rounding=ROUND_HALF_DOWN))\n    frac = d - Decimal(int_part)\n    # For negative numbers, int_part from to_integral_value with ROUND_HALF_DOWN gives toward zero;\n    # ensure frac is non-negative magnitude\n    if d < 0 and frac != 0:\n        # For negative numbers int_part is toward zero, so frac is negative; take absolute\n        frac = -frac\n    # Compare fractional part to 0.5\n    half = Decimal('0.5')\n    if frac < half:\n        return int_part\n    elif frac > half:\n        # move away from zero\n        return int_part + sign\n    else:\n        # exactly half -> away from zero\n        return int_part + sign\n\n# Quick simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\"10\",\"15.3\",\"14.5\",\"-14.5\",\"-15.3\",\"2.5\",\"-2.5\",\"0.5\",\"-0.5\",\"3.499999999999999\",\"3.500000000000000\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.058065,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

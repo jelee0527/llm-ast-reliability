@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_lower = s.lower()\n    count = 0\n    vowels = set(\"aeiou\")\n    for i, ch in enumerate(s_lower):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y':\n            # 'y' counts only when at the end of the given word\n            if i == len(s_lower) - 1:\n                count += 1\n    return count\n\n# Additional simple tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"\", 0),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"rhythm\", 0),  # 'y' not at end\n        (\"rhythmy\", 1), # 'y' at end\n        (\"AEIOU\", 5),\n        (\"queue\", 4),\n        (\"tryst\", 0),\n        (\"play\", 1),\n        (\"bEy\", 2),     # 'e' and ending 'y'\n        (\"   aei  \", 3),\n    ]\n    all_ok = True\n    for s, expected in tests:\n        got = vowels_count(s)\n        print(f\"{s!r}: expected {expected}, got {got}\")\n        if got != expected:\n            all_ok = False\n    if not all_ok:\n        raise SystemExit(1)",
+  "metrics": {
+    "total_nodes": 230,
+    "ast_depth": 11,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.06087,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

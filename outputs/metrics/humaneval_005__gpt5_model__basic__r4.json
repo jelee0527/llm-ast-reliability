@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_005__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_005",
+  "task_id": "HumanEval/5",
+  "problem_name": "Intersperse",
+  "entry_point": "intersperse",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n    if not numbers:\n        return []\n    # Efficient approach: preallocate list of correct size\n    n = len(numbers)\n    if n == 1:\n        return numbers.copy()\n    result = [0] * (n * 2 - 1)\n    result[0::2] = numbers\n    result[1::2] = [delimeter] * (n - 1)\n    return result",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "intersperse"
+    ]
+  }
+}

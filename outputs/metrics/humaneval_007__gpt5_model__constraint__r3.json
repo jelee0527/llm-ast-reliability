@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_007__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    if not isinstance(strings, list):\n        raise TypeError(\"strings must be a list\")\n    if not isinstance(substring, str):\n        raise TypeError(\"substring must be a string\")\n    if substring == \"\":\n        # If substring is empty, include all strings (every string contains empty substring)\n        # Preserve original list order\n        return [s for s in strings if isinstance(s, str)]\n    result: List[str] = []\n    for s in strings:\n        if not isinstance(s, str):\n            # Skip non-string elements\n            continue\n        if substring in s:\n            result.append(s)\n    return result\n\n\nif __name__ == \"__main__\":\n    # Quick internal tests\n    assert filter_by_substring([], \"a\") == []\n    assert filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a') == ['abc', 'bacd', 'array']\n    assert filter_by_substring(['', 'x', 'y'], '') == ['', 'x', 'y']\n    assert filter_by_substring(['foo', 123, 'bar'], 'a') == ['bar']\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 192,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "filter_by_substring"
+    ]
+  }
+}

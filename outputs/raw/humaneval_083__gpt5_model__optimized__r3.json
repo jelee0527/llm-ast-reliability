@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:06:04.843808+00:00",
+  "elapsed_seconds": 5.438,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "from functools import lru_cache\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # For n=1: digits 1..9 (single-digit numbers). Count those that start or end with 1 -> exactly one: 1\n    if n == 1:\n        return 1\n    # For n>=2:\n    # Count numbers that start with 1: leading digit 1, remaining (n-1) digits each 0-9 -> 10^(n-1)\n    # Count numbers that end with 1: trailing digit 1, leading digit cannot be 0 so:\n    # leading digit choices 1-9 (9 choices) for the first digit, middle (n-2) digits 0-9 -> 9 * 10^(n-2)\n    # Overlap: numbers that both start and end with 1: leading 1, trailing 1, middle (n-2) digits 0-9 -> 10^(n-2)\n    # Use inclusion-exclusion: start + end - overlap\n    pow10_n1 = 10 ** (n - 1)\n    pow10_n2 = 10 ** (n - 2)\n    count = pow10_n1 + 9 * pow10_n2 - pow10_n2\n    # Simplify: pow10_n1 + 8*pow10_n2\n    return count",
+  "generated_code": "from functools import lru_cache\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # For n=1: digits 1..9 (single-digit numbers). Count those that start or end with 1 -> exactly one: 1\n    if n == 1:\n        return 1\n    # For n>=2:\n    # Count numbers that start with 1: leading digit 1, remaining (n-1) digits each 0-9 -> 10^(n-1)\n    # Count numbers that end with 1: trailing digit 1, leading digit cannot be 0 so:\n    # leading digit choices 1-9 (9 choices) for the first digit, middle (n-2) digits 0-9 -> 9 * 10^(n-2)\n    # Overlap: numbers that both start and end with 1: leading 1, trailing 1, middle (n-2) digits 0-9 -> 10^(n-2)\n    # Use inclusion-exclusion: start + end - overlap\n    pow10_n1 = 10 ** (n - 1)\n    pow10_n2 = 10 ** (n - 2)\n    count = pow10_n1 + 9 * pow10_n2 - pow10_n2\n    # Simplify: pow10_n1 + 8*pow10_n2\n    return count"
+}

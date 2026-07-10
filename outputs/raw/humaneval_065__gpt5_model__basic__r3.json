@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:27:06.734685+00:00",
+  "elapsed_seconds": 4.559,
+  "official_prompt": "\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef circular_shift(x: int, shift: int) -> str:\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, preserving minus sign if present\n    s = str(x)\n    # Handle negative numbers: work with digits only, preserve sign\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # If no digits or single digit, shifting doesn't change except reversal rule for shift > len\n    n = len(s)\n    if n == 0:\n        return sign + s\n    if shift > n:\n        # return digits reversed\n        return sign + s[::-1]\n    # Effective shift modulo n (right shift)\n    k = shift % n\n    if k == 0:\n        return sign + s\n    # Right circular shift by k: take last k to front\n    return sign + s[-k:] + s[:-k]",
+  "generated_code": "from typing import Any\n\ndef circular_shift(x: int, shift: int) -> str:\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, preserving minus sign if present\n    s = str(x)\n    # Handle negative numbers: work with digits only, preserve sign\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # If no digits or single digit, shifting doesn't change except reversal rule for shift > len\n    n = len(s)\n    if n == 0:\n        return sign + s\n    if shift > n:\n        # return digits reversed\n        return sign + s[::-1]\n    # Effective shift modulo n (right shift)\n    k = shift % n\n    if k == 0:\n        return sign + s\n    # Right circular shift by k: take last k to front\n    return sign + s[-k:] + s[:-k]"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef vowels_count(s: str) -> int:\n    \"\"\"Return the number of vowels in the string s.\n    Vowels are 'a', 'e', 'i', 'o', 'u' (case-insensitive).\n    'y' is considered a vowel only when it occurs at the end of the word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n\n    s_lower = s.lower()\n    vowels = set(\"aeiou\")\n    count = 0\n\n    for idx, ch in enumerate(s_lower):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y' and idx == len(s_lower) - 1:\n            count += 1\n\n    return count\n\n\n# Additional test cases\nif __name__ == \"__main__\":\n    test_cases: List[tuple] = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),       # A, E, Y(at end)\n        (\"rhythm\", 0),      # y not at end counts 0\n        (\"play\", 1),        # a and y at end -> 2? actually 'a' and 'y' -> 2\n        (\"play\", 2),\n        (\"Y\", 1),           # single 'Y' at end counts as vowel\n        (\"\", 0),            # empty string\n        (\"bcd\", 0),\n        (\"AEIOU\", 5),\n        (\"queue\", 4),       # q u e u e -> 4\n        (\"sky\", 1),         # y at end -> 1\n        (\"yellow\", 2),      # e and o; y not at end\n        (\"baby\", 2),        # a and y at end -> 2\n        (\"crypt\", 0),       # y not at end\n        (\"sly\", 1),\n        (\"toy\", 2),         # o and y at end -> 2\n        (\"yummy\", 2),       # u and y at end? last y counts, internal y doesn't -> u and last y -> 2\n    ]\n\n    # Adjust duplicate corrected case above\n    # Running tests\n    for word, expected in test_cases:\n        result = vowels_count(word)\n        status = \"OK\" if result == expected else \"FAIL\"\n        print(f\"'{word}': expected={expected}, got={result} -> {status}\")",
+  "metrics": {
+    "total_nodes": 233,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.038627,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

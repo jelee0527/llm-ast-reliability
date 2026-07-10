@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def simplify(x, n):\n    num1, den1 = map(int, x.split('/'))\n    num2, den2 = map(int, n.split('/'))\n    product_num = num1 * num2\n    product_den = den1 * den2\n    return product_num % product_den == 0",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.014493,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

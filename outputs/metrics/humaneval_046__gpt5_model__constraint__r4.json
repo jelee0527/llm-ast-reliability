@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute the n-th element of the Fib4 sequence (non-recursively).\n\n    Definition:\n      fib4(0) = 0\n      fib4(1) = 0\n      fib4(2) = 2\n      fib4(3) = 0\n      for n >= 4: fib4(n) = fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4)\n\n    Args:\n      n: non-negative integer index\n\n    Returns:\n      The n-th Fib4 number as an int.\n\n    Examples:\n      fib4(5) -> 4\n      fib4(6) -> 8\n      fib4(7) -> 14\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Use a sliding window of the last four values to compute iteratively\n    # order: f0, f1, f2, f3 correspond to fib4(n-4), fib4(n-3), fib4(n-2), fib4(n-1)\n    f0, f1, f2, f3 = 0, 0, 2, 0\n\n    # iterate from k = 4 to n, inclusive\n    for _ in range(4, n + 1):\n        fn = f3 + f2 + f1 + f0\n        # shift window\n        f0, f1, f2, f3 = f1, f2, f3, fn\n\n    return f3\n\n# Quick self-tests (only run when executed as a script)\nif __name__ == \"__main__\":\n    test_values = {\n        0: 0,\n        1: 0,\n        2: 2,\n        3: 0,\n        4: 2,   # 0+2+0+0\n        5: 4,   # 2+0+0+2\n        6: 8,\n        7: 14,\n        8: 28,  # 14+8+4+2\n    }\n    for k, expected in test_values.items():\n        result = fib4(k)\n        assert result == expected, f\"fib4({k}) = {result}, expected {expected}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 213,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.075117,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

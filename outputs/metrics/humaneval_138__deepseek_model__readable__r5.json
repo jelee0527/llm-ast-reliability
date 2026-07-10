@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_138__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # The smallest sum of 4 positive even numbers is 2+2+2+2 = 8\n    # Since all even numbers are multiples of 2, the sum of 4 even numbers must be even and at least 8\n    if n < 8 or n % 2 != 0:\n        return False\n    # Any even number >= 8 can be expressed as the sum of 4 positive even numbers\n    # For example: n = 2 + 2 + 2 + (n-6) where (n-6) is even and >= 2\n    return True",
+  "metrics": {
+    "total_nodes": 26,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.115385,
+    "function_names": [
+      "is_equal_to_sum_even"
+    ]
+  }
+}

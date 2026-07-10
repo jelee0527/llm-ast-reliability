@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_051__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_051",
+  "task_id": "HumanEval/51",
+  "problem_name": "Remove Vowels",
+  "entry_point": "remove_vowels",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def remove_vowels(text):\n    vowels = 'aeiouAEIOU'\n    return ''.join(char for char in text if char not in vowels)",
+  "metrics": {
+    "total_nodes": 27,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.037037,
+    "function_names": [
+      "remove_vowels"
+    ]
+  }
+}

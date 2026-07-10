@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_117__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def select_words(s, n):\n    if not s:\n        return []\n    \n    vowels = set('aeiouAEIOU')\n    result = []\n    \n    for word in s.split():\n        consonant_count = 0\n        for char in word:\n            if char.isalpha() and char not in vowels:\n                consonant_count += 1\n        if consonant_count == n:\n            result.append(word)\n    \n    return result",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.088608,
+    "function_names": [
+      "select_words"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:25:01.890243+00:00",
+  "elapsed_seconds": 2.503,
+  "official_prompt": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n\n",
+  "raw_response": "def sort_array(array):\n    if not array:\n        return []\n    \n    first_element = array[0]\n    last_element = array[-1]\n    sum_of_ends = first_element + last_element\n    \n    sorted_copy = sorted(array)\n    \n    if sum_of_ends % 2 == 0:\n        return sorted_copy[::-1]\n    else:\n        return sorted_copy",
+  "generated_code": "def sort_array(array):\n    if not array:\n        return []\n    \n    first_element = array[0]\n    last_element = array[-1]\n    sum_of_ends = first_element + last_element\n    \n    sorted_copy = sorted(array)\n    \n    if sum_of_ends % 2 == 0:\n        return sorted_copy[::-1]\n    else:\n        return sorted_copy"
+}

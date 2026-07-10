@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_116__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by number of 1s in their binary representation (ascending).\n    For equal counts, sort by numeric value (ascending).\n    Non-negative and negative integers are supported; for negatives use two's complement bit count\n    behavior consistent with their Python binary representation: count of '1's in bin(abs(n)).\n    However examples suggest negatives should be sorted by their decimal values when counts equal.\n    We'll count ones in the binary representation of the absolute value so that -3 and 3 have same count.\n    \"\"\"\n    # Precompute bit counts using Python's int.bit_count() for efficiency (Python 3.8+ has int.bit_count)\n    # If not available, fallback to bin(x).count('1')\n    try:\n        bit_count = int.bit_count  # type: ignore\n        def ones(x: int) -> int:\n            return bit_count(abs(x))\n    except AttributeError:\n        def ones(x: int) -> int:\n            return bin(abs(x)).count('1')\n    return sorted(arr, key=lambda x: (ones(x), x))",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 12,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 3,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.046512,
+    "function_names": [
+      "sort_array",
+      "ones",
+      "ones"
+    ]
+  }
+}

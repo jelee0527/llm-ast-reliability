@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_007__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    if substring is None:\n        # If substring is None, no string can contain it\n        return []\n    result: List[str] = []\n    for s in strings:\n        # skip None entries in input list\n        if s is None:\n            continue\n        if substring in s:\n            result.append(s)\n    return result\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.091954,
+    "function_names": [
+      "filter_by_substring"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_031__deepseek_model__basic__r2.json",
+  "problem_id": "humaneval_031",
+  "task_id": "HumanEval/31",
+  "problem_name": "Is Prime",
+  "entry_point": "is_prime",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\"\"\"\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+  "metrics": {
+    "total_nodes": 91,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.10989,
+    "function_names": [
+      "is_prime"
+    ]
+  }
+}

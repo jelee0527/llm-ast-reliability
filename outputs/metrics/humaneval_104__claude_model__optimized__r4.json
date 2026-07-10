@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_104__claude_model__optimized__r4.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    def has_no_even_digit(n):\n        while n > 0:\n            if (n % 10) % 2 == 0:\n                return False\n            n //= 10\n        return True\n    \n    return sorted([n for n in x if has_no_even_digit(n)])",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.098039,
+    "function_names": [
+      "unique_digits",
+      "has_no_even_digit"
+    ]
+  }
+}

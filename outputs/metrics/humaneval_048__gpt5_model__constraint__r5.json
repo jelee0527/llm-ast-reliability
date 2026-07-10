@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_048__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_palindrome(text: str) -> bool:\n    \"\"\"\n    Checks if given string is a palindrome\n\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"Input must be a string\")\n    # Compare characters from both ends moving towards center\n    left = 0\n    right = len(text) - 1\n    while left < right:\n        if text[left] != text[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert is_palindrome(\"\") is True\n    assert is_palindrome(\"aba\") is True\n    assert is_palindrome(\"aaaaa\") is True\n    assert is_palindrome(\"zbcd\") is False\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 121,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.057851,
+    "function_names": [
+      "is_palindrome"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_090__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list, or None if it doesn't exist.\n    \"\"\"\n    if not lst:\n        return None\n\n    # Track smallest and second smallest distinct values\n    smallest = None\n    second = None\n\n    for x in lst:\n        # initialize smallest\n        if smallest is None:\n            smallest = x\n            continue\n\n        if x == smallest or (second is not None and x == second):\n            # ignore duplicates of tracked values\n            continue\n\n        if x < smallest:\n            # new smallest, shift previous smallest to second\n            second = smallest\n            smallest = x\n        else:\n            # x >= smallest and x != smallest\n            if second is None or x < second:\n                second = x\n\n    return second\n\n# Simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,4,5], 2),\n        ([5,1,4,3,2], 2),\n        ([], None),\n        ([1,1], None),\n        ([1,2,1,2], 2),\n        ([2,1], 2),\n        ([1], None),\n        ([3,3,2,2,1,1], 2),\n        ([0, -1, -2], -1),\n    ]\n    for inp, expected in tests:\n        res = next_smallest(inp)\n        print(inp, res, \"OK\" if res == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 244,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.053279,
+    "function_names": [
+      "next_smallest"
+    ]
+  }
+}

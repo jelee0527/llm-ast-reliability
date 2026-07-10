@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \"\"\"\n    if len(numbers) < 2:\n        raise ValueError(\"numbers must contain at least two elements\")\n\n    # Work on a sorted copy to make nearest neighbors adjacent\n    sorted_numbers = sorted(numbers)\n\n    # Initialize with the first pair\n    best_idx = 0\n    best_diff = abs(sorted_numbers[1] - sorted_numbers[0])\n\n    # Iterate adjacent pairs to find minimal difference\n    for i in range(1, len(sorted_numbers) - 1):\n        a = sorted_numbers[i]\n        b = sorted_numbers[i + 1]\n        diff = abs(b - a)\n        if diff < best_diff:\n            best_diff = diff\n            best_idx = i\n\n    smaller = sorted_numbers[best_idx]\n    larger = sorted_numbers[best_idx + 1]\n    return (smaller, larger)",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.030864,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

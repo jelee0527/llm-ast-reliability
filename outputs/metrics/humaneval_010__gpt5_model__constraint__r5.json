@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm:\n    - Find the longest suffix of the supplied string that is a palindrome.\n    - Append to the end of the string the reverse of the prefix that comes before that palindromic suffix.\n    \"\"\"\n    # Handle trivial cases\n    if not string:\n        return \"\"\n    n = len(string)\n    # Iterate over possible starting indices of the suffix (from 0 to n-1).\n    # We want the longest palindromic suffix, so prefer smaller start index.\n    for start in range(0, n):\n        suffix = string[start:]\n        if is_palindrome(suffix):\n            # prefix is string[0:start]; we need to append reverse of that prefix\n            prefix = string[:start]\n            return string + prefix[::-1]\n    # Fallback (should not reach because at least last character is a palindrome suffix)\n    return string + string[:-1][::-1]\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", \"\"),\n        (\"a\", \"a\"),\n        (\"aa\", \"aa\"),\n        (\"ab\", \"aba\"),\n        (\"cat\", \"catac\"),\n        (\"cata\", \"catac\"),\n        (\"abba\", \"abba\"),\n        (\"abcbaXYZ\", \"abcbaXYZabcba\"),\n    ]\n    for inp, expected in tests:\n        out = make_palindrome(inp)\n        ok = out == expected\n        print(f\"make_palindrome({inp!r}) -> {out!r}  Expected: {expected!r}  {'OK' if ok else 'FAIL'}\")",
+  "metrics": {
+    "total_nodes": 209,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.047847,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

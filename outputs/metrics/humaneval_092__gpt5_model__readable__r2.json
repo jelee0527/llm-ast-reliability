@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_092__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if:\n      - x, y, z are all integers (no fractional part), and\n      - one of the numbers equals the sum of the other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check that all inputs are integers (either int type or numeric with zero fractional part)\n    def is_integer_value(value: Any) -> bool:\n        if isinstance(value, int):\n            return True\n        # reject booleans (subclass of int) explicitly\n        if isinstance(value, bool):\n            return False\n        try:\n            # allow floats that represent integer values (e.g., 5.0)\n            if isinstance(value, float) and value.is_integer():\n                return True\n        except Exception:\n            pass\n        return False\n\n    if not (is_integer_value(x) and is_integer_value(y) and is_integer_value(z)):\n        return False\n\n    # Convert to int safely\n    xi, yi, zi = int(x), int(y), int(z)\n\n    # Check the three possible sums\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)\n\n\n# Example quick self-test (will run if this file executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n        (5.0, 2.0, 7.0, True),\n        (True, 1, 2, False),  # bool should be rejected\n    ]\n    for a, b, c, expected in tests:\n        result = any_int(a, b, c)\n        print((a, b, c), \"=>\", result, \"expected:\", expected)",
+  "metrics": {
+    "total_nodes": 244,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.053279,
+    "function_names": [
+      "any_int",
+      "is_integer_value"
+    ]
+  }
+}

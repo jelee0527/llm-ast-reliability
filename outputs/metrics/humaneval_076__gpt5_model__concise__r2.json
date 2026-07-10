@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    if x < 1 or n < 1:\n        return False\n    if x == 1:\n        return True  # n**0 = 1 for any n>=1\n    if n == 1:\n        return False  # 1**k == 1 only, x>1 handled above\n    # compute integer k such that n**k == x\n    # use logarithm to get an initial estimate\n    k = round(math.log(x, n))\n    # adjust around k in case of rounding issues\n    for candidate in (k-1, k, k+1, k+2):\n        if candidate >= 0 and pow(n, candidate) == x:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 125,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.096,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_136__deepseek_model__basic__r2.json",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def largest_smallest_integers(lst):\n    negatives = [x for x in lst if x < 0]\n    positives = [x for x in lst if x > 0]\n    \n    a = max(negatives) if negatives else None\n    b = min(positives) if positives else None\n    \n    return (a, b)",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "largest_smallest_integers"
+    ]
+  }
+}

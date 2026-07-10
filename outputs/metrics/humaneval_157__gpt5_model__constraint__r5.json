@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or \n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''\n    # Validate inputs are numbers\n    for x in (a, b, c):\n        if not isinstance(x, (int, float)):\n            return False\n\n    # All sides must be positive\n    if a <= 0 or b <= 0 or c <= 0:\n        return False\n\n    # Triangle inequality: sum of any two sides > third side\n    if not (a + b > c and a + c > b and b + c > a):\n        return False\n\n    # Sort sides so largest is hypotenuse candidate\n    sides = sorted([a, b, c])\n    x, y, z = sides  # x <= y <= z\n\n    # Use a tolerance for floating point comparisons\n    # Tolerance scaled to magnitudes to be robust\n    tol = 1e-9 * max(1.0, z*z)\n    return math.isclose(x*x + y*y, z*z, rel_tol=1e-9, abs_tol=tol)",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.048193,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:53:18.358283+00:00",
+  "elapsed_seconds": 2.799,
+  "official_prompt": "\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n\n",
+  "raw_response": "import unicodedata\nimport re\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if text is None:\n        return False\n    # Normalize to NFKD to separate combined characters, then remove diacritics\n    normalized = unicodedata.normalize('NFKD', text)\n    # Keep only alphanumeric characters and combine letters/digits; casefold for aggressive case-insensitivity\n    filtered = re.sub(r'[^0-9A-Za-z]+', '', normalized).casefold()\n    return filtered == filtered[::-1]",
+  "generated_code": "import unicodedata\nimport re\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if text is None:\n        return False\n    # Normalize to NFKD to separate combined characters, then remove diacritics\n    normalized = unicodedata.normalize('NFKD', text)\n    # Keep only alphanumeric characters and combine letters/digits; casefold for aggressive case-insensitivity\n    filtered = re.sub(r'[^0-9A-Za-z]+', '', normalized).casefold()\n    return filtered == filtered[::-1]"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__claude_model__readable__r3.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    sorted_list = sorted(l)\n    list_length = len(sorted_list)\n    middle_index = list_length // 2\n\n    if list_length % 2 == 1:\n        return sorted_list[middle_index]\n    else:\n        lower_middle = sorted_list[middle_index - 1]\n        upper_middle = sorted_list[middle_index]\n        return (lower_middle + upper_middle) / 2",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.037975,
+    "function_names": [
+      "median"
+    ]
+  }
+}

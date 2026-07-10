@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    \"\"\"\n    Given two lists operator, and operand. The first list has basic algebra operations, and \n    the second list is a list of integers. Use the two given lists to build the algebraic \n    expression and return the evaluation of this expression.\n    \"\"\"\n    if not operator or not operand or len(operator) != len(operand) - 1:\n        raise ValueError(\"Invalid input lengths\")\n\n    # Map operator symbols to functions\n    import operator as op\n    ops = {\n        '+': lambda a, b: a + b,\n        '-': lambda a, b: a - b,\n        '*': lambda a, b: a * b,\n        '//': lambda a, b: a // b,\n        '**': lambda a, b: a ** b\n    }\n\n    # Shunting-yard-like approach: convert to Reverse Polish Notation (RPN) respecting precedence and left/right associativity\n    # Define precedence and associativity\n    prec = {'+': 1, '-': 1, '*': 2, '//': 2, '**': 3}\n    # For associativity: left for + - * //, right for **\n    assoc_right = {'**'}\n\n    # Build token list: alternating operand and operator, starting with operand[0]\n    tokens = []\n    for i, val in enumerate(operand):\n        tokens.append(val)\n        if i < len(operator):\n            tokens.append(operator[i])\n\n    # Shunting-yard: output queue and operator stack\n    output = []\n    stack = []\n    for tok in tokens:\n        if isinstance(tok, int):\n            output.append(tok)\n        else:\n            # operator token\n            while stack:\n                top = stack[-1]\n                if top not in prec:\n                    break\n                if ( (tok in assoc_right and prec[tok] < prec[top]) or\n                     (tok not in assoc_right and prec[tok] <= prec[top]) ):\n                    output.append(stack.pop())\n                else:\n                    break\n            stack.append(tok)\n    while stack:\n        output.append(stack.pop())\n\n    # Evaluate RPN\n    eval_stack = []\n    for tok in output:\n        if isinstance(tok, int):\n            eval_stack.append(tok)\n        else:\n            if len(eval_stack) < 2:\n                raise ValueError(\"Invalid expression\")\n            b = eval_stack.pop()\n            a = eval_stack.pop()\n            if tok not in ops:\n                raise ValueError(f\"Unsupported operator {tok}\")\n            # floor division by zero guard\n            if tok == '//' and b == 0:\n                raise ZeroDivisionError(\"integer division by zero\")\n            eval_stack.append(ops[tok](a, b))\n    if len(eval_stack) != 1:\n        raise ValueError(\"Invalid evaluation\")\n    return eval_stack[0]",
+  "metrics": {
+    "total_nodes": 439,
+    "ast_depth": 12,
+    "branch_count": 10,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 23,
+    "control_flow_ratio": 0.052392,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

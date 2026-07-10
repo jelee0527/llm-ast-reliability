@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If sums are equal, preserve original order (stable by index).\n    \"\"\"\n    def digit_sum(n: int) -> int:\n        # Sum of digits of absolute value\n        n_abs = abs(n)\n        s = 0\n        if n_abs == 0:\n            return 0\n        while n_abs:\n            s += n_abs % 10\n            n_abs //= 10\n        return s\n\n    # Pair each number with its digit sum and original index to ensure stability\n    paired = [(digit_sum(num), idx, num) for idx, num in enumerate(nums)]\n    # Sort by digit sum, then by original index\n    paired.sort(key=lambda x: (x[0], x[1]))\n    # Extract numbers in sorted order\n    return [t[2] for t in paired]\n\n\n# Quick self-check when module is run directly (not required, but harmless)\nif __name__ == \"__main__\":\n    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    assert order_by_points([]) == []\n    print(\"Basic tests passed.\")",
+  "metrics": {
+    "total_nodes": 181,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.033149,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def by_length(arr):\n    num_to_word = {\n        1: \"One\", 2: \"Two\", 3: \"Three\", 4: \"Four\", 5: \"Five\",\n        6: \"Six\", 7: \"Seven\", 8: \"Eight\", 9: \"Nine\"\n    }\n    filtered = [x for x in arr if 1 <= x <= 9]\n    filtered.sort(reverse=True)\n    return [num_to_word[num] for num in filtered]",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.015385,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

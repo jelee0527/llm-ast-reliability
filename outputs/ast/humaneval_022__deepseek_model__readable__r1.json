@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_022__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_022",
+  "task_id": "HumanEval/22",
+  "problem_name": "Filter Integers",
+  "entry_point": "filter_integers",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\" Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"\n    return [value for value in values if isinstance(value, int) and not isinstance(value, bool)]",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List'),\n        alias(name='Any')],\n      level=0),\n    FunctionDef(\n      name='filter_integers',\n      args=arguments(\n        args=[\n          arg(\n            arg='values',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='Any', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\" Filter given list of any python values only for integers\\n    >>> filter_integers(['a', 3.14, 5])\\n    [5]\\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\\n    [1, 2, 3]\\n    \")),\n        Return(\n          value=ListComp(\n            elt=Name(id='value', ctx=Load()),\n            generators=[\n              comprehension(\n                target=Name(id='value', ctx=Store()),\n                iter=Name(id='values', ctx=Load()),\n                ifs=[\n                  BoolOp(\n                    op=And(),\n                    values=[\n                      Call(\n                        func=Name(id='isinstance', ctx=Load()),\n                        args=[\n                          Name(id='value', ctx=Load()),\n                          Name(id='int', ctx=Load())]),\n                      UnaryOp(\n                        op=Not(),\n                        operand=Call(\n                          func=Name(id='isinstance', ctx=Load()),\n                          args=[\n                            Name(id='value', ctx=Load()),\n                            Name(id='bool', ctx=Load())]))])],\n                is_async=0)]))],\n      returns=Subscript(\n        value=Name(id='List', ctx=Load()),\n        slice=Name(id='int', ctx=Load()),\n        ctx=Load()))])"
+}

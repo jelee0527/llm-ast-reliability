@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef reverse_delete(s: str, c: str) -> Tuple[str, bool]:\n    \"\"\"\n    Remove all characters from s that appear in c, then check if the resulting string is a palindrome.\n    Returns a tuple of (result_string, is_palindrome).\n    \"\"\"\n    # Build a set of characters to delete for O(1) membership tests\n    to_delete = set(c)\n    # Construct the resulting string by including only characters not in to_delete\n    result_chars = []\n    for ch in s:\n        if ch not in to_delete:\n            result_chars.append(ch)\n    result = ''.join(result_chars)\n    # Check palindrome: compare with its reverse\n    is_palindrome = result == result[::-1]\n    return result, is_palindrome\n\n# Example quick tests (will run if this file is executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", \"ae\", (\"bcd\", False)),\n        (\"abcdef\", \"b\", (\"acdef\", False)),\n        (\"abcdedcba\", \"ab\", (\"cdedc\", True)),\n        (\"\", \"\", (\"\", True)),\n        (\"a\", \"a\", (\"\", True)),\n        (\"racecar\", \"\", (\"racecar\", True)),\n    ]\n    for s, c, expected in tests:\n        out = reverse_delete(s, c)\n        print(s, c, \"->\", out, \"OK\" if out == expected else \"FAIL (expected \" + str(expected) + \")\")",
+  "metrics": {
+    "total_nodes": 197,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.030457,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

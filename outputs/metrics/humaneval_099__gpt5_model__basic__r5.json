@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n    '''\n    # parse input\n    try:\n        x = float(value)\n    except Exception as e:\n        raise ValueError(f\"Invalid numeric value: {value}\") from e\n\n    # Use math.floor and math.ceil to determine nearest integers\n    if math.isinf(x) or math.isnan(x):\n        raise ValueError(\"Input must be a finite number\")\n\n    lower = math.floor(x)\n    upper = math.ceil(x)\n\n    # If already integer\n    if lower == upper:\n        return int(x)\n\n    # Distances\n    dist_lower = abs(x - lower)\n    dist_upper = abs(upper - x)\n\n    if dist_lower < dist_upper:\n        return int(lower)\n    if dist_upper < dist_lower:\n        return int(upper)\n\n    # Equidistant: choose away from zero\n    if x > 0:\n        return int(upper)  # upper is farther from zero for positive x\n    elif x < 0:\n        return int(lower)  # lower is more negative -> farther from zero\n    else:\n        # x == 0 and equidistant won't occur except exact zero handled above,\n        # but return 0 for completeness\n        return 0\n\n\n# Quick tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\"10\", \"15.3\", \"14.5\", \"-14.5\", \"2.5\", \"-2.5\", \"0.0\", \"3.0\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 198,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.085859,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

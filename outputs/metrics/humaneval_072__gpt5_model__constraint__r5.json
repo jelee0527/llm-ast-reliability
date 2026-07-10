@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef will_it_fly(q: List[Any], w: float) -> bool:\n    \"\"\"\n    Return True if list q is palindromic (reads same forwards and backwards)\n    and the sum of its numeric elements is less than or equal to w.\n    Non-numeric elements will raise a TypeError when summed.\n    \"\"\"\n    # Check palindrome: empty list and single-element lists are palindromic\n    if q != q[::-1]:\n        return False\n\n    # Compute sum, ensuring elements are numeric\n    total = 0\n    for item in q:\n        # Allow ints and floats (and booleans are subclasses of int in Python;\n        # they will be treated numerically)\n        if not isinstance(item, (int, float)):\n            raise TypeError(\"All elements of q must be numbers\")\n        total += item\n\n    return total <= w\n\n\n# Optional simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (([1, 2], 5), False),\n        (([3, 2, 3], 1), False),\n        (([3, 2, 3], 9), True),\n        (([3], 5), True),\n        (([], 0), True),\n    ]\n    for args, expected in tests:\n        result = will_it_fly(*args)\n        print(args, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.050847,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For each cell, store the best path of length L starting from that cell\n    # We'll use dynamic programming with BFS-like expansion\n    # dp[l][i][j] = tuple representing the lexicographically smallest path of length l starting at (i,j)\n    # We store as tuple for easy comparison\n    \n    # Initialize for length 1\n    dp = [[[None for _ in range(n)] for _ in range(n)] for _ in range(k+1)]\n    for i in range(n):\n        for j in range(n):\n            dp[1][i][j] = (grid[i][j],)\n    \n    # Build paths from length 2 to k\n    for length in range(2, k+1):\n        for i in range(n):\n            for j in range(n):\n                best = None\n                for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    ni, nj = i + di, j + dj\n                    if 0 <= ni < n and 0 <= nj < n:\n                        if dp[length-1][ni][nj] is not None:\n                            candidate = (grid[i][j],) + dp[length-1][ni][nj]\n                            if best is None or candidate < best:\n                                best = candidate\n                dp[length][i][j] = best\n    \n    # Find the best path of length k\n    best_path = None\n    for i in range(n):\n        for j in range(n):\n            if dp[k][i][j] is not None:\n                if best_path is None or dp[k][i][j] < best_path:\n                    best_path = dp[k][i][j]\n    \n    return list(best_path)",
+  "metrics": {
+    "total_nodes": 398,
+    "ast_depth": 16,
+    "branch_count": 6,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.040201,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

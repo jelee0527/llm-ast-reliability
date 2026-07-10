@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # Total n-digit numbers: 9 * 10^(n-1)\n    # Count that start with 1: 10^(n-1)\n    # Count that end with 1: For n=1, same as start; for n>1, first digit 1-9 (9 choices) and middle digits 10^(n-2), so 9 * 10^(n-2) numbers ending with 1\n    # But easier: Count ending with 1 = 9 * 10^(n-2) for n>1, and =1 for n==1\n    # Intersection (both start and end with 1): first digit 1, last digit 1, middle digits 10^(n-2) (or 1 if n==1)\n    if n == 1:\n        # single-digit numbers that start or end with 1: only the number 1\n        return 1\n    # compute powers\n    pow10_n_1 = 10 ** (n - 1)\n    pow10_n_2 = 10 ** (n - 2)\n    start_with_1 = pow10_n_1\n    end_with_1 = 9 * pow10_n_2\n    both = pow10_n_2  # first digit 1, last digit 1, middle digits free\n    # inclusion-exclusion\n    return start_with_1 + end_with_1 - both",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.075269,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

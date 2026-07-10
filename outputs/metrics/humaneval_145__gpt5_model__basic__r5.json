@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If sums are equal, preserve original order (stable).\n    \"\"\"\n    def digit_sum(n: int) -> int:\n        return sum(int(ch) for ch in str(abs(n)))\n    # Use enumerate to preserve original index for stability if needed, but Python's sort is stable.\n    return sorted(nums, key=lambda x: digit_sum(x))\n\n\n# Quick self-test when run as script (not required by the prompt, but harmless)\nif __name__ == \"__main__\":\n    assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    assert order_by_points([]) == []\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.025862,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

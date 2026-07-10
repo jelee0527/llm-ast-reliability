@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Count the number of sentences that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'. Leading/trailing whitespace ignored.\n    A sentence \"starts with the word 'I'\" means the first token in the sentence\n    is exactly 'I' (case-sensitive as per examples).\n    \"\"\"\n    if not isinstance(S, str):\n        return 0\n    # Split on sentence delimiters . ? !\n    # Keep parts between delimiters; re.split returns fragments\n    fragments = re.split(r'[.?!]', S)\n    count = 0\n    for fragment in fragments:\n        # Strip whitespace\n        sentence = fragment.strip()\n        if not sentence:\n            continue\n        # Split into words by whitespace\n        words = sentence.split()\n        if not words:\n            continue\n        # Check if first word is exactly 'I'\n        if words[0] == 'I':\n            count += 1\n    return count\n\n# Quick informal tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello world\", 0),\n        (\"The sky is blue. The sun is shining. I love this weather\", 1),\n        (\"I am here. You are there!\", 1),\n        (\"Wait? I think so! I!\", 2),\n        (\"...I...! I\", 2),\n        (\"I\", 1),\n        (\" i am small. I big\", 1),  # lowercase i shouldn't count\n    ]\n    for s, expected in tests:\n        result = is_bored(s)\n        print(repr(s), \"->\", result, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.070513,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

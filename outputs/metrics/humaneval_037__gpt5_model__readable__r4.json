@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef sort_even(l: List[Any]) -> List[Any]:\n    \"\"\"Return a list where elements at even indices are sorted, odd indices unchanged.\n\n    Even indices use Python's 0-based indexing (0, 2, 4, ...).\n    The relative positions of odd-indexed elements are preserved.\n\n    Examples:\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    # Defensive copy to avoid mutating the input list\n    result = list(l)\n\n    # Extract values at even indices\n    even_indices = list(range(0, len(result), 2))\n    even_values = [result[i] for i in even_indices]\n\n    # Sort the even-index values\n    even_values.sort()\n\n    # Place sorted values back into their even positions\n    for idx, val in zip(even_indices, even_values):\n        result[idx] = val\n\n    return result\n\n\nif __name__ == \"__main__\":\n    # Simple self-test\n    test_cases = [\n        ([1, 2, 3], [1, 2, 3]),\n        ([5, 6, 3, 4], [3, 6, 5, 4]),\n        ([], []),\n        ([7], [7]),\n        ([9,8,7,6,5], [5,8,7,6,9]),\n    ]\n    for inp, expected in test_cases:\n        out = sort_even(inp)\n        print(inp, \"->\", out, \"OK\" if out == expected else \"FAIL, expected \"+str(expected))",
+  "metrics": {
+    "total_nodes": 201,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.024876,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

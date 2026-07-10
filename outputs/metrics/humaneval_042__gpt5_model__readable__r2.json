@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    # Work on a new list to avoid mutating the input\n    result: List[Any] = []\n    for item in l:\n        # If item is an int or float, increment numerically\n        if isinstance(item, (int, float)):\n            result.append(item + 1)\n        else:\n            # For other types, try to use the + operator; if that fails, raise TypeError\n            try:\n                result.append(item + 1)\n            except Exception as e:\n                raise TypeError(f\"Cannot increment item of type {type(item)!r}: {e}\")\n    return result\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    print(incr_list([1, 2, 3]))\n    print(incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123]))",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.046154,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

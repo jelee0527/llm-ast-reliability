@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\n\ndef closest_integer(value: str) -> int:\n    # Use Decimal for precise half cases\n    getcontext().prec = max(28, len(value) + 10)\n    d = Decimal(value)\n    # If fractional part is exactly 0.5 or -0.5, need round away from zero\n    sign = 1 if d >= 0 else -1\n    absd = d.copy_abs()\n    int_part = int(absd // 1)\n    frac = absd - int_part\n    # Compare frac to 0.5 with Decimal precision\n    half = Decimal('0.5')\n    if frac == half:\n        # away from zero\n        return sign * (int_part + 1)\n    else:\n        # use normal rounding to nearest integer\n        return int(d.to_integral_value(rounding=ROUND_HALF_UP)) if d >= 0 else int(d.to_integral_value(rounding=ROUND_HALF_DOWN))",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.037037,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_108__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Return the number of elements in arr whose sum of digits > 0,\n    where for negative numbers the first signed digit is negative.\n    \"\"\"\n    count = 0\n    for n in arr:\n        if n == 0:\n            continue\n        s = 0\n        x = n\n        if x < 0:\n            # first digit negative\n            x = -x\n            # get most significant digit\n            msd = int(str(x)[0])\n            s -= msd\n            # add remaining digits\n            x //= 10 ** (len(str(x)) - 1)\n            # The above line attempted to reduce x, but simpler to process differently.\n            # Recompute properly:\n            x = -n  # positive magnitude\n            digits = str(x)\n            # first digit already used\n            for ch in digits[1:]:\n                s += ord(ch) - 48\n        else:\n            for ch in str(x):\n                s += ord(ch) - 48\n        if s > 0:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.049383,
+    "function_names": [
+      "count_nums"
+    ]
+  }
+}

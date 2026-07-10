@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_012__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_012",
+  "task_id": "HumanEval/12",
+  "problem_name": "Longest",
+  "entry_point": "longest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n    if not strings:\n        return None\n    max_idx = 0\n    max_len = len(strings[0])\n    for i in range(1, len(strings)):\n        s = strings[i]\n        # Ensure s is a string; if not, convert to str for length comparison\n        if not isinstance(s, str):\n            s = str(s)\n        l = len(s)\n        if l > max_len:\n            max_len = l\n            max_idx = i\n    return strings[max_idx]",
+  "metrics": {
+    "total_nodes": 114,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "longest"
+    ]
+  }
+}

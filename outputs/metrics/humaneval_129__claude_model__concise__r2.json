@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__claude_model__concise__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    def get_neighbors(i, j):\n        neighbors = []\n        for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n            ni, nj = i+di, j+dj\n            if 0 <= ni < n and 0 <= nj < n:\n                neighbors.append((ni, nj))\n        return neighbors\n    \n    # BFS/dynamic programming approach\n    # dp[i][j] = list of minimum paths of current length ending at (i,j)\n    # We'll store just the path list\n    \n    # Initialize with length 1\n    current = {}\n    for i in range(n):\n        for j in range(n):\n            current[(i,j)] = [grid[i][j]]\n    \n    for step in range(k-1):\n        next_dp = {}\n        for i in range(n):\n            for j in range(n):\n                best = None\n                for ni, nj in get_neighbors(i, j):\n                    candidate = current[(ni,nj)] + [grid[i][j]]\n                    if best is None or candidate < best:\n                        best = candidate\n                next_dp[(i,j)] = best\n        current = next_dp\n    \n    result = None\n    for i in range(n):\n        for j in range(n):\n            if result is None or current[(i,j)] < result:\n                result = current[(i,j)]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 361,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 11,
+    "function_count": 2,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.044321,
+    "function_names": [
+      "minPath",
+      "get_neighbors"
+    ]
+  }
+}

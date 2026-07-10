@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"Return list of first n+1 Tribonacci numbers as defined:\n    tri(1) = 3\n    tri(n) = 1 + n/2 if n is even (use integer arithmetic for n/2)\n    tri(n) = tri(n-1) + tri(n-2) + tri(n+1) if n is odd\n    The function returns list indexed from 0 to n inclusive; index 0 is tri(0).\n    The docstring examples imply tri(0)=1 (since tri(1)=3 and example tri(3)=[1,3,2,8]).\n    We'll treat tri(0)=1 to match that example.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # We'll store values in a dict to allow forward references for odd indices (uses tri(n+1))\n    vals = {}\n    # Based on example, set tri(0)=1 and tri(1)=3\n    vals[0] = 1\n    if n >= 1:\n        vals[1] = 3\n    # We'll compute progressively from 2 up to n, but odd indices require tri(n+1).\n    # For an odd k, tri(k) = tri(k-1)+tri(k-2)+tri(k+1) => tri(k+1) appears.\n    # We can rearrange when k+1 is even or odd. Strategy: compute in increasing order,\n    # and when encountering an odd k, compute tri(k+1) first if not present by using its even formula.\n    for k in range(2, n + 1):\n        if k % 2 == 0:\n            # even: tri(k) = 1 + k/2 -- use integer division for consistency with examples\n            vals[k] = 1 + (k // 2)\n        else:\n            # odd: need tri(k+1)\n            kp1 = k + 1\n            if kp1 not in vals:\n                # If k+1 is within needed range or beyond, compute its value via even rule if even.\n                if kp1 % 2 == 0:\n                    vals[kp1] = 1 + (kp1 // 2)\n                else:\n                    # In practice kp1 = even because k is odd, so shouldn't reach here.\n                    # But handle generically: compute recursively by ensuring needed neighbors.\n                    # We'll compute forward until we hit an even index.\n                    j = kp1\n                    # build up until we find an even index; this loop will stop quickly.\n                    while j % 2 != 0:\n                        # ensure j-1 and j-2 exist\n                        if (j-1) not in vals and j-1 <= n:\n                            # compute previous if possible\n                            if (j-1) % 2 == 0:\n                                vals[j-1] = 1 + ((j-1) // 2)\n                            else:\n                                # fallback small default to avoid infinite loop\n                                vals[j-1] = 1\n                        if (j-2) not in vals and j-2 >= 0:\n                            if (j-2) % 2 == 0:\n                                vals[j-2] = 1 + ((j-2) // 2)\n                            else:\n                                vals[j-2] = 1\n                        # As a last resort break to avoid infinite\n                        break\n                    # finally if j even, set via even rule\n                    if j % 2 == 0:\n                        vals[j] = 1 + (j // 2)\n                    else:\n                        vals[j] = 1\n            # Now compute tri(k) using tri(k+1) which should exist\n            vals[k] = vals[k-1] + vals[k-2] + vals[k+1]\n    # Build result list from 0..n\n    result = [vals[i] for i in range(0, n+1)]\n    return result\n\n# Simple test when running as script (not required, but harmless)\nif __name__ == \"__main__\":\n    print(tri(3))",
+  "metrics": {
+    "total_nodes": 379,
+    "ast_depth": 15,
+    "branch_count": 11,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.042216,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

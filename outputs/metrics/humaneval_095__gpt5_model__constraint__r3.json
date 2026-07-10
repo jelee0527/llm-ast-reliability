@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any, Dict\n\ndef check_dict_case(d: Dict[Any, Any]) -> bool:\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function returns False if the given dictionary is empty.\n    \"\"\"\n    # Not a dict or empty dict -> False\n    if not isinstance(d, dict):\n        return False\n    if len(d) == 0:\n        return False\n\n    saw_lower = False\n    saw_upper = False\n\n    for key in d.keys():\n        # All keys must be strings\n        if not isinstance(key, str):\n            return False\n        # If any character is a letter, we consider case of the key by str.islower/str.isupper\n        # Requirements imply the whole key must be all-lower or all-upper.\n        # Use islower/isupper which return False for strings without cased characters.\n        if key.islower():\n            saw_lower = True\n        elif key.isupper():\n            saw_upper = True\n        else:\n            # Mixed case or contains no cased letters (e.g., \"123\", \"name1\") -> treat as invalid\n            return False\n\n        # If both seen, can early return False\n        if saw_lower and saw_upper:\n            return False\n\n    # At this point, either saw_lower xor saw_upper is True\n    return saw_lower != saw_upper and (saw_lower or saw_upper)\n\n\n# Quick manual tests (will run when file executed)\nif __name__ == \"__main__\":\n    tests = [\n        ({\"a\":\"apple\", \"b\":\"banana\"}, True),\n        ({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}, False),\n        ({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}, False),\n        ({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}, False),\n        ({\"STATE\":\"NC\", \"ZIP\":\"12345\" }, True),\n        ({\"123\":\"num\"}, False),\n        ({\"a1\":\"x\", \"b2\":\"y\"}, False),\n        ({\"A1\":\"x\",\"B2\":\"y\"}, False),\n    ]\n    for inp, expected in tests:\n        result = check_dict_case(inp)\n        print(inp, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 236,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.067797,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

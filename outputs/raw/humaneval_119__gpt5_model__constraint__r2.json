@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:19:39.449876+00:00",
+  "elapsed_seconds": 3.812,
+  "official_prompt": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n\n",
+  "raw_response": "from typing import List\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Determine if two parenthesis-only strings can be concatenated in some order\n    to form a balanced parentheses string.\n    Returns 'Yes' if possible, otherwise 'No'.\n    \"\"\"\n    if not isinstance(lst, list) or len(lst) != 2:\n        raise ValueError(\"Input must be a list of two strings.\")\n    a, b = lst[0], lst[1]\n\n    def is_good(s: str) -> bool:\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False\n        return bal == 0\n\n    # Check both concatenation orders\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    else:\n        return 'No'",
+  "generated_code": "from typing import List\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Determine if two parenthesis-only strings can be concatenated in some order\n    to form a balanced parentheses string.\n    Returns 'Yes' if possible, otherwise 'No'.\n    \"\"\"\n    if not isinstance(lst, list) or len(lst) != 2:\n        raise ValueError(\"Input must be a list of two strings.\")\n    a, b = lst[0], lst[1]\n\n    def is_good(s: str) -> bool:\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False\n        return bal == 0\n\n    # Check both concatenation orders\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    else:\n        return 'No'"
+}

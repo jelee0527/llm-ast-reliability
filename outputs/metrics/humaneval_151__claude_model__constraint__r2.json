@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def double_the_difference(lst):\n    total = 0\n    for num in lst:\n        if isinstance(num, float) and not num.is_integer():\n            continue\n        if isinstance(num, bool):\n            continue\n        if not isinstance(num, (int, float)):\n            continue\n        n = int(num)\n        if n < 0:\n            continue\n        if n % 2 == 1:\n            total += n * n\n    return total",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.119565,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:47:47.810270+00:00",
+  "elapsed_seconds": 4.381,
+  "official_prompt": "\n\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n\n",
+  "raw_response": "import numbers\n\ndef triangle_area(a, h):\n    \"\"\"Return the area of a triangle given base length `a` and height `h`.\n    \n    Both `a` and `h` must be non-negative numbers (int or float). The area is (a * h) / 2.\n    \n    Examples:\n    >>> triangle_area(5, 3)\n    7.5\n    >>> triangle_area(0, 10)\n    0.0\n    \"\"\"\n    # Validate types\n    if not isinstance(a, numbers.Real) or not isinstance(h, numbers.Real):\n        raise TypeError(\"Both base (a) and height (h) must be real numbers.\")\n    # Convert to float for consistent behavior\n    a_val = float(a)\n    h_val = float(h)\n    # Validate values\n    if a_val < 0 or h_val < 0:\n        raise ValueError(\"Base (a) and height (h) must be non-negative.\")\n    # Compute area\n    area = (a_val * h_val) / 2.0\n    return area",
+  "generated_code": "import numbers\n\ndef triangle_area(a, h):\n    \"\"\"Return the area of a triangle given base length `a` and height `h`.\n    \n    Both `a` and `h` must be non-negative numbers (int or float). The area is (a * h) / 2.\n    \n    Examples:\n    >>> triangle_area(5, 3)\n    7.5\n    >>> triangle_area(0, 10)\n    0.0\n    \"\"\"\n    # Validate types\n    if not isinstance(a, numbers.Real) or not isinstance(h, numbers.Real):\n        raise TypeError(\"Both base (a) and height (h) must be real numbers.\")\n    # Convert to float for consistent behavior\n    a_val = float(a)\n    h_val = float(h)\n    # Validate values\n    if a_val < 0 or h_val < 0:\n        raise ValueError(\"Base (a) and height (h) must be non-negative.\")\n    # Compute area\n    area = (a_val * h_val) / 2.0\n    return area"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_081__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_081",
+  "task_id": "HumanEval/81",
+  "problem_name": "Numerical Letter Grade",
+  "entry_point": "numerical_letter_grade",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef numerical_letter_grade(grades: List[float]) -> List[str]:\n    \"\"\"Convert list of GPAs to letter grades according to specified table.\"\"\"\n    mapping = [\n        (4.0, \"A+\"),\n        (3.7, \"A\"),\n        (3.3, \"A-\"),\n        (3.0, \"B+\"),\n        (2.7, \"B\"),\n        (2.3, \"B-\"),\n        (2.0, \"C+\"),\n        (1.7, \"C\"),\n        (1.3, \"C-\"),\n        (1.0, \"D+\"),\n        (0.7, \"D\"),\n        (0.0, \"D-\"),\n    ]\n    result = []\n    for g in grades:\n        # handle exact 4.0 first\n        if g == 4.0:\n            result.append(\"A+\")\n            continue\n        placed = False\n        for threshold, letter in mapping[1:]:  # skip first 4.0 entry already handled\n            if g > threshold:\n                result.append(letter)\n                placed = True\n                break\n        if not placed:\n            # g <= 0.0 => E (per table 0.0 gets E), otherwise g == 0.0 handled here\n            if g == 0.0:\n                result.append(\"E\")\n            else:\n                # If g is <= thresholds but >0.0 it's 0.0 threshold yields D-\n                # according to table >0.0 -> D- ; g >0.0 but <=0.7 handled by loop? loop starts at 0.7\n                # If not placed and g>0.0 must be <=0.7 -> D-\n                if g > 0.0:\n                    result.append(\"D-\")\n                else:\n                    result.append(\"E\")\n    return result",
+  "metrics": {
+    "total_nodes": 175,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.057143,
+    "function_names": [
+      "numerical_letter_grade"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_035__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any, Iterable\n\ndef max_element(l: list) -> Any:\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be an iterable (list), got None\")\n    try:\n        iterator = iter(l)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable (list-like)\")\n\n    try:\n        current_max = next(iterator)\n    except StopIteration:\n        raise ValueError(\"max_element() arg is an empty sequence\")\n\n    for item in iterator:\n        try:\n            if item > current_max:\n                current_max = item\n        except TypeError:\n            # If comparison fails, raise a clear error\n            raise TypeError(f\"Elements are not comparable: {item!r} and {current_max!r}\")\n\n    return current_max\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert max_element([1, 2, 3]) == 3\n    assert max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]) == 123\n    try:\n        max_element([])\n    except ValueError:\n        pass\n    else:\n        raise AssertionError(\"Empty list should raise ValueError\")",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.090323,
+    "function_names": [
+      "max_element"
+    ]
+  }
+}

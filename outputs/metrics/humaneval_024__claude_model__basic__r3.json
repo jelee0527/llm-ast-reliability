@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__claude_model__basic__r3.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.078947,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

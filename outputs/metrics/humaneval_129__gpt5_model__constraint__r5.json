@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import collections\n\ndef minPath(grid, k):\n    \"\"\"\n    Return lexicographically smallest sequence of length k obtainable by a walk on grid.\n    \"\"\"\n    n = len(grid)\n    # map value to position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Precompute neighbors for each cell (positions)\n    neighbors = {}\n    for i in range(n):\n        for j in range(n):\n            neigh = []\n            for di, dj in ((-1,0),(1,0),(0,-1),(0,1)):\n                ni, nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    neigh.append((ni, nj))\n            neighbors[(i,j)] = neigh\n\n    # We'll construct lexicographically minimal sequence iteratively.\n    # At step t (0-based) we want the minimal possible value at position t reachable\n    # from some starting cell allowing future k-t-1 moves (could revisit).\n    # Approach: maintain set of possible current positions after having produced chosen prefix.\n    # Initially possible positions = all cells.\n    all_positions = [(i,j) for i in range(n) for j in range(n)]\n    possible = set(all_positions)\n    result = []\n    for step in range(k):\n        # For each candidate value v in ascending order, check if there exists a position p in possible\n        # such that grid[p]==v. If so, we can pick it immediately. Otherwise, check if we can move to cell with v in one move, etc.\n        # But we must ensure we can still complete remaining steps after selecting a position with this value.\n        # Observation: Since revisiting allowed and grid connectedness by adjacency, the only constraint is reachability within remaining moves.\n        # So for candidate value v, we need whether there exists a pos in possible that can reach the cell of v in <=1 step? Actually we must move exactly one step per step after choosing start?\n        # Clarify: Each step we \"visit\" a cell; starting step (step 0) we pick a starting cell without moving. So transition: at step>0, you must move to neighbor.\n        # We model possible as current positions where we are before choosing step value. For step 0, possible=all cells and we can pick any of them as current cell (no move).\n        # To choose a value v at this step, there must exist a current position p in possible such that grid[p]==v.\n        # After choosing that, update possible for next step: from chosen positions (all positions with that value reachable as required), we can move to their neighbors for next step (except when k finished).\n        chosen_pos = None\n        # iterate values 1..n*n\n        for v in range(1, n*n+1):\n            target = pos[v]\n            # For step 0: we can pick if target in possible (which are starts)\n            if target in possible:\n                chosen_pos = target\n                chosen_val = v\n                break\n        if chosen_pos is None:\n            # If no current possible cell contains any remaining value? This cannot happen since possible contains all cells initially.\n            # But in subsequent steps possible contains neighbor positions; we must pick among them. If none matched by equality we can't pick others.\n            # However correct algorithm: at each step we must pick minimal value among positions in possible (their grid values). So simpler: choose minimal value among grid at positions in possible.\n            min_v = None\n            for p in possible:\n                val = grid[p[0]][p[1]]\n                if min_v is None or val < min_v:\n                    min_v = val\n                    chosen_pos = p\n                    chosen_val = val\n        # Append chosen_val\n        result.append(chosen_val)\n        # Prepare possible for next step: if this was last step, break\n        if step == k-1:\n            break\n        # After choosing a specific position, we must consider all positions we could be in that produced that value.\n        # There may be multiple positions with same value? No, values unique. So chosen_pos is unique.\n        # For next step, we must move to a neighbor of chosen_pos.\n        next_set = set(neighbors[chosen_pos])\n        possible = next_set\n    return result\n\n# Minimal test when run as script\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 429,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.039627,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

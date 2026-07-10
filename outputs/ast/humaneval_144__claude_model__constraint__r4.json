@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_144__claude_model__constraint__r4.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def simplify(x, n):\n    x_num, x_den = x.split('/')\n    n_num, n_den = n.split('/')\n    \n    numerator = int(x_num) * int(n_num)\n    denominator = int(x_den) * int(n_den)\n    \n    return numerator % denominator == 0",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='simplify',\n      args=arguments(\n        args=[\n          arg(arg='x'),\n          arg(arg='n')]),\n      body=[\n        Assign(\n          targets=[\n            Tuple(\n              elts=[\n                Name(id='x_num', ctx=Store()),\n                Name(id='x_den', ctx=Store())],\n              ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Name(id='x', ctx=Load()),\n              attr='split',\n              ctx=Load()),\n            args=[\n              Constant(value='/')])),\n        Assign(\n          targets=[\n            Tuple(\n              elts=[\n                Name(id='n_num', ctx=Store()),\n                Name(id='n_den', ctx=Store())],\n              ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Name(id='n', ctx=Load()),\n              attr='split',\n              ctx=Load()),\n            args=[\n              Constant(value='/')])),\n        Assign(\n          targets=[\n            Name(id='numerator', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='x_num', ctx=Load())]),\n            op=Mult(),\n            right=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='n_num', ctx=Load())]))),\n        Assign(\n          targets=[\n            Name(id='denominator', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='x_den', ctx=Load())]),\n            op=Mult(),\n            right=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='n_den', ctx=Load())]))),\n        Return(\n          value=Compare(\n            left=BinOp(\n              left=Name(id='numerator', ctx=Load()),\n              op=Mod(),\n              right=Name(id='denominator', ctx=Load())),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]))])])"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    sort ascending if sum(first, last) is odd, or descending if even.\n    \"\"\"\n    # Work on a copy so original not modified\n    n = len(array)\n    if n <= 1:\n        return array.copy()\n    total = array[0] + array[-1]\n    # Use sorted with reverse flag\n    ascending = (total % 2 == 1)\n    return sorted(array, reverse=not ascending)",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.037975,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

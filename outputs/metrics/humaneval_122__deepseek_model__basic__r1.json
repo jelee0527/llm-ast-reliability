@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_122__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def add_elements(arr, k):\n    total = 0\n    for i in range(k):\n        if 0 <= arr[i] < 10 or (10 <= arr[i] < 100) or (-10 < arr[i] < 0) or (-100 < arr[i] <= -10):\n            if -100 < arr[i] < 100:\n                total += arr[i]\n    return total",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.041237,
+    "function_names": [
+      "add_elements"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(1) is None\n    True\n    >>> largest_divisor(2)\n    1\n    >>> largest_divisor(16)\n    8\n    >>> largest_divisor(17)\n    1\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n    # Check from largest possible divisor down to 1 for early exit\n    # Largest proper divisor is at most n//2\n    for d in range(n // 2, 0, -1):\n        if n % d == 0:\n            return d\n    return None  # fallback, though loop will always return for n>1\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.108434,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

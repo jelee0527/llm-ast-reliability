@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_162__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_162",
+  "task_id": "HumanEval/162",
+  "problem_name": "String To Md5",
+  "entry_point": "string_to_md5",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import hashlib\n\ndef string_to_md5(text):\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()",
+  "metrics": {
+    "total_nodes": 27,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.111111,
+    "function_names": [
+      "string_to_md5"
+    ]
+  }
+}

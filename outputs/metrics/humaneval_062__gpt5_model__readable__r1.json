@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_062__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef derivative(xs: List[float]) -> List[float]:\n    \"\"\"Return coefficients of the derivative of a polynomial.\n    \n    The input xs represents polynomial coefficients in increasing power order:\n    xs[0] + xs[1]*x + xs[2]*x^2 + ...\n    The returned list has the same format for the derivative.\n    \"\"\"\n    if not xs:\n        return []\n    # Derivative of constant (or empty) is empty list\n    if len(xs) == 1:\n        return []\n    # Compute derivative coefficients: k * xs[k] becomes coefficient for x^(k-1)\n    return [k * xs[k] for k in range(1, len(xs))]\n\nif __name__ == \"__main__\":\n    # Quick self-tests\n    assert derivative([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\n    assert derivative([1, 2, 3]) == [2, 6]\n    assert derivative([]) == []\n    assert derivative([5]) == []\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.046154,
+    "function_names": [
+      "derivative"
+    ]
+  }
+}

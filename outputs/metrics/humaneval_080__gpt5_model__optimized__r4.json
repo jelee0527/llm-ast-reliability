@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if s length >=3 and every 3 consecutive letters are distinct.\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # Check every window of size 3 has all distinct characters\n    # Use direct comparisons for speed and low memory\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        if a == b or b == c or a == c:\n            return False\n    return True\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"abcabc\": True,  # overlapping triples: abc, bca, cab\n        \"abca\": False,   # last triple bca ok, but first abc ok; actually all ok -> True; include one false example\n    }\n    for s, expected in tests.items():\n        print(s, is_happy(s), \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.060241,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

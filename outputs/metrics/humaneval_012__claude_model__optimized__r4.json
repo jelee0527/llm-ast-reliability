@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_012__claude_model__optimized__r4.json",
+  "problem_id": "humaneval_012",
+  "task_id": "HumanEval/12",
+  "problem_name": "Longest",
+  "entry_point": "longest",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=lambda s: (len(s), -strings.index(s)))",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 12,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "longest"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterator\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not substring:\n        # If substring is empty, define occurrences as 0 (alternatively could be len(string)+1).\n        return 0\n\n    count = 0\n    start = 0\n    # Use str.find in a loop, advancing start by 1 to allow overlaps\n    while True:\n        idx = string.find(substring, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # allow overlapping matches by moving start by 1\n    return count\n\n# quick simple self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", \"a\", 0),\n        (\"aaa\", \"a\", 3),\n        (\"aaaa\", \"aa\", 3),\n        (\"abababa\", \"aba\", 3),  # overlapping: positions 0,2,4\n        (\"aaaaa\", \"aa\", 4),     # positions 0,1,2,3\n        (\"abc\", \"\", 0),\n    ]\n    for s, sub, expected in tests:\n        result = how_many_times(s, sub)\n        print(f\"how_many_times({s!r}, {sub!r}) = {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 153,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.052288,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

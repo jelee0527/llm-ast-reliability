@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_035__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any, Iterable\n\ndef max_element(l: list) -> Any:\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if not l:\n        raise ValueError(\"max_element() arg is an empty list\")\n    # Use a simple linear scan, O(n) time, O(1) extra space\n    it = iter(l)\n    try:\n        current_max = next(it)\n    except StopIteration:\n        raise ValueError(\"max_element() arg is an empty list\")\n    for x in it:\n        if x > current_max:\n            current_max = x\n    return current_max",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.102941,
+    "function_names": [
+      "max_element"
+    ]
+  }
+}

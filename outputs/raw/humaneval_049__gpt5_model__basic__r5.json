@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:54:58.480698+00:00",
+  "elapsed_seconds": 4.492,
+  "official_prompt": "\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n\n",
+  "raw_response": "import sys\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"Modulus p must be positive\")\n    if n < 0:\n        # For negative exponents, compute modular inverse of 2 and raise to |n|\n        # Requires that 2 and p are coprime\n        from math import gcd\n        if gcd(2, p) != 1:\n            raise ValueError(\"Modular inverse does not exist for negative exponent when gcd(2,p) != 1\")\n        # compute inverse of 2 mod p using pow since Python 3.8 supports negative exponents for pow with mod\n        return pow(2, n, p)\n    return pow(2, n, p)\n\nif __name__ == \"__main__\":\n    # simple self-test using the docstring examples\n    tests = [\n        (3, 5, 3),\n        (1101, 101, 2),\n        (0, 101, 1),\n        (3, 11, 8),\n        (100, 101, 1),\n    ]\n    for n, p, expected in tests:\n        out = modp(n, p)\n        print(f\"modp({n},{p}) = {out} (expected {expected})\", file=sys.stdout)",
+  "generated_code": "import sys\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"Modulus p must be positive\")\n    if n < 0:\n        # For negative exponents, compute modular inverse of 2 and raise to |n|\n        # Requires that 2 and p are coprime\n        from math import gcd\n        if gcd(2, p) != 1:\n            raise ValueError(\"Modular inverse does not exist for negative exponent when gcd(2,p) != 1\")\n        # compute inverse of 2 mod p using pow since Python 3.8 supports negative exponents for pow with mod\n        return pow(2, n, p)\n    return pow(2, n, p)\n\nif __name__ == \"__main__\":\n    # simple self-test using the docstring examples\n    tests = [\n        (3, 5, 3),\n        (1101, 101, 2),\n        (0, 101, 1),\n        (3, 11, 8),\n        (100, 101, 1),\n    ]\n    for n, p, expected in tests:\n        out = modp(n, p)\n        print(f\"modp({n},{p}) = {out} (expected {expected})\", file=sys.stdout)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_060__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "problem_name": "Sum To N",
+  "entry_point": "sum_to_n",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return sum of integers from 1 to n (inclusive).\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        # If negative, define as sum from 1 to n is 0 (could alternatively raise)\n        return 0\n    return n * (n + 1) // 2",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.104167,
+    "function_names": [
+      "sum_to_n"
+    ]
+  }
+}

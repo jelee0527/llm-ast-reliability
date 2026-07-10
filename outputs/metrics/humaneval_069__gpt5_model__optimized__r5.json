@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_069__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_069",
+  "task_id": "HumanEval/69",
+  "problem_name": "Search",
+  "entry_point": "search",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    '''\n    if not lst:\n        return -1\n    cnt = Counter(lst)\n    # Iterate over unique values sorted descending to find greatest satisfying value\n    for val in sorted(cnt.keys(), reverse=True):\n        if val > 0 and cnt[val] >= val:\n            return val\n    return -1",
+  "metrics": {
+    "total_nodes": 63,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.095238,
+    "function_names": [
+      "search"
+    ]
+  }
+}

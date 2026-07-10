@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:25:25.584870+00:00",
+  "elapsed_seconds": 4.03,
+  "official_prompt": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    # mapping for vowel -> letter 2 places ahead, preserving case of original vowel before swap\n    def shift_vowel(ch):\n        is_upper = ch.isupper()\n        base = ch.lower()\n        # compute letter 2 ahead in alphabet\n        idx = (ord(base) - ord('a') + 2) % 26\n        new = chr(ord('a') + idx)\n        # after replacing vowel we will also swap case of all letters, so return new with case flipped relative to original later\n        return new.upper() if is_upper else new.lower()\n    res_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # first, replace vowel if vowel (based on original)\n            if ch in vowels:\n                ch2 = shift_vowel(ch)\n            else:\n                ch2 = ch\n            # then swap case of all letters\n            ch2 = ch2.swapcase()\n            res_chars.append(ch2)\n        else:\n            # assume only letters per prompt, but keep as-is otherwise\n            res_chars.append(ch)\n    return ''.join(res_chars)\n\nif __name__ == \"__main__\":\n    print(encode('test'))\n    print(encode('This is a message'))",
+  "generated_code": "import string\n\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    # mapping for vowel -> letter 2 places ahead, preserving case of original vowel before swap\n    def shift_vowel(ch):\n        is_upper = ch.isupper()\n        base = ch.lower()\n        # compute letter 2 ahead in alphabet\n        idx = (ord(base) - ord('a') + 2) % 26\n        new = chr(ord('a') + idx)\n        # after replacing vowel we will also swap case of all letters, so return new with case flipped relative to original later\n        return new.upper() if is_upper else new.lower()\n    res_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # first, replace vowel if vowel (based on original)\n            if ch in vowels:\n                ch2 = shift_vowel(ch)\n            else:\n                ch2 = ch\n            # then swap case of all letters\n            ch2 = ch2.swapcase()\n            res_chars.append(ch2)\n        else:\n            # assume only letters per prompt, but keep as-is otherwise\n            res_chars.append(ch)\n    return ''.join(res_chars)\n\nif __name__ == \"__main__\":\n    print(encode('test'))\n    print(encode('This is a message'))"
+}

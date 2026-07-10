@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sort_even(l: list):\n    even_values = sorted([l[i] for i in range(0, len(l), 2)])\n    result = l[:]\n    for i, val in zip(range(0, len(l), 2), even_values):\n        result[i] = val\n    return result",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027027,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

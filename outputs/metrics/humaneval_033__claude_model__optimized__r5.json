@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def sort_third(l: list):\n    thirds = sorted(l[i] for i in range(0, len(l), 3))\n    result = list(l)\n    for i, val in zip(range(0, len(l), 3), thirds):\n        result[i] = val\n    return result",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027027,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

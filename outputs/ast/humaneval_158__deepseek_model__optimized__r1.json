@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_158__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def find_max(words):\n    max_unique = -1\n    best_word = None\n    for word in words:\n        unique_count = len(set(word))\n        if unique_count > max_unique or (unique_count == max_unique and word < best_word):\n            max_unique = unique_count\n            best_word = word\n    return best_word",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='find_max',\n      args=arguments(\n        args=[\n          arg(arg='words')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='max_unique', ctx=Store())],\n          value=UnaryOp(\n            op=USub(),\n            operand=Constant(value=1))),\n        Assign(\n          targets=[\n            Name(id='best_word', ctx=Store())],\n          value=Constant(value=None)),\n        For(\n          target=Name(id='word', ctx=Store()),\n          iter=Name(id='words', ctx=Load()),\n          body=[\n            Assign(\n              targets=[\n                Name(id='unique_count', ctx=Store())],\n              value=Call(\n                func=Name(id='len', ctx=Load()),\n                args=[\n                  Call(\n                    func=Name(id='set', ctx=Load()),\n                    args=[\n                      Name(id='word', ctx=Load())])])),\n            If(\n              test=BoolOp(\n                op=Or(),\n                values=[\n                  Compare(\n                    left=Name(id='unique_count', ctx=Load()),\n                    ops=[\n                      Gt()],\n                    comparators=[\n                      Name(id='max_unique', ctx=Load())]),\n                  BoolOp(\n                    op=And(),\n                    values=[\n                      Compare(\n                        left=Name(id='unique_count', ctx=Load()),\n                        ops=[\n                          Eq()],\n                        comparators=[\n                          Name(id='max_unique', ctx=Load())]),\n                      Compare(\n                        left=Name(id='word', ctx=Load()),\n                        ops=[\n                          Lt()],\n                        comparators=[\n                          Name(id='best_word', ctx=Load())])])]),\n              body=[\n                Assign(\n                  targets=[\n                    Name(id='max_unique', ctx=Store())],\n                  value=Name(id='unique_count', ctx=Load())),\n                Assign(\n                  targets=[\n                    Name(id='best_word', ctx=Store())],\n                  value=Name(id='word', ctx=Load()))])]),\n        Return(\n          value=Name(id='best_word', ctx=Load()))])])"
+}

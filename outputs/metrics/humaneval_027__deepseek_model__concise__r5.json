@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def flip_case(string: str) -> str:\n    return string.swapcase()",
+  "metrics": {
+    "total_nodes": 14,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_063__claude_model__basic__r3.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def fibfib(n: int):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 1\n    \n    a, b, c = 0, 0, 1\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c",
+  "metrics": {
+    "total_nodes": 84,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.095238,
+    "function_names": [
+      "fibfib"
+    ]
+  }
+}

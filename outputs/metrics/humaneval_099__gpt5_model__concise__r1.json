@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    \"\"\"\n    Convert string to float and return nearest integer.\n    If exactly halfway, round away from zero.\n    \"\"\"\n    x = float(value)\n    # standard rounding to nearest integer with ties away from zero\n    if x > 0:\n        return math.floor(x + 0.5)\n    elif x < 0:\n        return math.ceil(x - 0.5)\n    else:\n        return 0\n\n# Quick tests (will run if executed directly)\nif __name__ == \"__main__\":\n    tests = [\"10\", \"15.3\", \"14.5\", \"-14.5\", \"2.5\", \"-2.5\", \"0.0\", \"0.5\", \"-0.5\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.078652,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

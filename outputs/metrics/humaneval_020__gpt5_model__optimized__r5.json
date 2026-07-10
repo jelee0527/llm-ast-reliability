@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \"\"\"\n    if len(numbers) < 2:\n        raise ValueError(\"At least two numbers are required\")\n    # Sort while keeping floats; O(n log n) time, O(n) extra for sorted list\n    nums = sorted(numbers)\n    best_i = 0\n    best_j = 1\n    best_diff = nums[1] - nums[0]\n    # iterate adjacent pairs for minimal difference\n    for i in range(1, len(nums) - 1):\n        a = nums[i]\n        b = nums[i + 1]\n        diff = b - a\n        if diff < best_diff:\n            best_diff = diff\n            best_i = i\n            best_j = i + 1\n            # early exit if zero difference\n            if best_diff == 0.0:\n                break\n    return (nums[best_i], nums[best_j])\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 209,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.038278,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

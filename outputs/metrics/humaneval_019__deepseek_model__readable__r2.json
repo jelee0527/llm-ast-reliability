@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    numeral_to_value = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n    value_to_numeral = {v: k for k, v in numeral_to_value.items()}\n    \n    numeral_list = numbers.split()\n    numeral_list.sort(key=lambda numeral: numeral_to_value[numeral])\n    return ' '.join(numeral_list)",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.011765,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

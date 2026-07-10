@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef solve(N):\n    \"\"\"Given a nonnegative integer N, return the binary representation (as a string)\n    of the sum of its binary digits (the Hamming weight of N).\n    \"\"\"\n    if not isinstance(N, int) or N < 0:\n        raise ValueError(\"N must be a nonnegative integer\")\n    # Count number of 1 bits in binary representation of N\n    ones = 0\n    x = N\n    while x:\n        # Kernighan's algorithm: remove lowest set bit\n        x &= x - 1\n        ones += 1\n    # Convert the count to binary string\n    return bin(ones)[2:] if ones != 0 else \"0\"",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.068493,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

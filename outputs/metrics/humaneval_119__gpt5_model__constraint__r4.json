@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_119__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Determine if two parenthesis-only strings can be concatenated in some order\n    to form a balanced parentheses string.\n    Returns 'Yes' or 'No'.\n    \"\"\"\n    if not isinstance(lst, (list, tuple)) or len(lst) != 2:\n        raise ValueError(\"Input must be a list or tuple of two strings.\")\n    a, b = lst[0], lst[1]\n    # Helper returns (is_good_prefixwise, net_balance, min_balance)\n    def analyze(s: str) -> Tuple[int, int]:\n        bal = 0\n        min_bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < min_bal:\n                min_bal = bal\n        return bal, min_bal\n\n    def can_concat(first: str, second: str) -> bool:\n        bal1, min1 = analyze(first)\n        # while scanning first, min1 >= ? Balanced prefix must not go below 0\n        if min1 < 0:\n            return False\n        # when starting second, initial balance is bal1; scanning second must not drop below 0\n        bal2, min2 = analyze(second)\n        if bal1 + min2 < 0:\n            return False\n        # total balance must be zero\n        if bal1 + bal2 != 0:\n            return False\n        return True\n\n    # We need to consider both orders. However, there is a nuance:\n    # A string may have min_balance < 0 but could be allowed if placed second.\n    # The checks in can_concat account for that by ensuring first's prefixes never go negative\n    # and the combined never goes negative and totals zero.\n    ok = can_concat(a, b) or can_concat(b, a)\n    return \"Yes\" if ok else \"No\"",
+  "metrics": {
+    "total_nodes": 221,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.067873,
+    "function_names": [
+      "match_parens",
+      "analyze",
+      "can_concat"
+    ]
+  }
+}

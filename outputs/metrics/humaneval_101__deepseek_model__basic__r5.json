@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def words_string(s):\n    import re\n    return re.split(r'[,\\s]+', s.strip())",
+  "metrics": {
+    "total_nodes": 18,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

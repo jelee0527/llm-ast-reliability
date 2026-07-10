@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this integer is a cube of some integer number.\n    '''\n    if a == 0:\n        return True\n    # For positive and negative, compute integer cube root via rounding\n    # Use abs then restore sign\n    sign = 1 if a > 0 else -1\n    abs_a = abs(a)\n    # initial guess using floating point cube root\n    # math.pow may introduce tiny errors; use round and verify\n    approx = int(round(abs_a ** (1.0/3.0)))\n    # adjust around approx to ensure correctness\n    for k in (approx - 1, approx, approx + 1, approx + 2):\n        if k >= 0 and (k ** 3) == abs_a:\n            return True if sign == 1 else True\n    return False",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

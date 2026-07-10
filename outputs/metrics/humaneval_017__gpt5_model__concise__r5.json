@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse special ASCII musical notes into beat lengths.\"\"\"\n    # Normalize whitespace and split by spaces\n    tokens = re.findall(r'o\\||o|\\.{\\|}?|\\.|' + r'\\S+', music_string)\n    # Simpler: split by whitespace and filter empties\n    parts = [t for t in music_string.split() if t]\n    result = []\n    for p in parts:\n        if p == 'o':\n            result.append(4)\n        elif p == 'o|':\n            result.append(2)\n        elif p == '.|':\n            result.append(1)\n        else:\n            # In case of unexpected characters, try to map by presence\n            if 'o|' in p:\n                result.append(2)\n            elif p == 'o':\n                result.append(4)\n            elif '.|' in p or p == '.':\n                result.append(1)\n            else:\n                raise ValueError(f\"Unknown token: {p}\")\n    return result",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 15,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.058065,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

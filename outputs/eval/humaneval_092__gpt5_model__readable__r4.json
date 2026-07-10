@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_092__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "This prints if this assert fails 10 (also good for debugging!)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 15, in check\nAssertionError: This prints if this assert fails 10 (also good for debugging!)\n"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_057__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef monotonic(l: List[Any]) -> bool:\n    \"\"\"Return True if list elements are monotonically non-decreasing or non-increasing.\"\"\"\n    if not l or len(l) <= 1:\n        return True\n    non_decreasing = True\n    non_increasing = True\n    for a, b in zip(l, l[1:]):\n        if a < b:\n            non_increasing = False\n        if a > b:\n            non_decreasing = False\n        if not non_decreasing and not non_increasing:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "monotonic"
+    ]
+  }
+}

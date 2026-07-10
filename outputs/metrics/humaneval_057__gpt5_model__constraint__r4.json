@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_057__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef monotonic(l: List[Any]) -> bool:\n    \"\"\"Return True if list elements are monotonically non-decreasing or non-increasing.\n\n    Examples:\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    # Empty list or single-element list is monotonic\n    if l is None:\n        return False\n    n = len(l)\n    if n <= 1:\n        return True\n\n    # Determine direction by finding first unequal pair\n    i = 1\n    while i < n and l[i] == l[i - 1]:\n        i += 1\n    if i == n:\n        # all elements equal\n        return True\n\n    # If increasing expected\n    if l[i] > l[i - 1]:\n        # check non-decreasing\n        for j in range(i + 1, n):\n            if l[j] < l[j - 1]:\n                return False\n        return True\n    else:\n        # check non-increasing\n        for j in range(i + 1, n):\n            if l[j] > l[j - 1]:\n                return False\n        return True\n\n# Optional simple tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 4, 20], True),\n        ([1, 20, 4, 10], False),\n        ([4, 1, 0, -10], True),\n        ([], True),\n        ([5], True),\n        ([2, 2, 2], True),\n        ([1, 1, 0], True),\n        ([0, 1, 1, 0], False),\n    ]\n    for arr, expected in tests:\n        result = monotonic(arr)\n        print(arr, result, \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 283,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.067138,
+    "function_names": [
+      "monotonic"
+    ]
+  }
+}

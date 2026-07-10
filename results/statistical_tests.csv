@@ -1,0 +1,10 @@
+source,test,metric,group_column,num_groups,statistic,p_value,significant_0_05,note
+repeat_stability,Kruskal-Wallis,ssi,model_name,3,1306.2321782597967,2.2661384971779027e-284,True,
+repeat_stability,Kruskal-Wallis,avg_repeat_distance,model_name,3,1306.2340393178843,2.2640307702916334e-284,True,
+repeat_stability,Kruskal-Wallis,success_rate,model_name,3,42.093307715487676,7.236929919493811e-10,True,
+prompt_sensitivity,Kruskal-Wallis,pssi,model_name,3,52.37832437740319,4.228549080428574e-12,True,
+prompt_sensitivity,Kruskal-Wallis,avg_prompt_distance,model_name,3,52.37832437740319,4.228549080428574e-12,True,
+prompt_sensitivity,Kruskal-Wallis,success_rate,model_name,3,9.878878961756085,0.0071586097856441025,True,
+structural_diversity,Kruskal-Wallis,sds,model_name,3,105.3990135907803,1.2968656872207204e-23,True,
+structural_diversity,Kruskal-Wallis,structural_variance,model_name,3,106.32802582884658,8.15009283050415e-24,True,
+structural_diversity,Kruskal-Wallis,success_rate,model_name,3,9.870121072668207,0.0071900256749252555,True,

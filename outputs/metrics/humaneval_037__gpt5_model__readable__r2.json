@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef sort_even(l: List[Any]) -> List[Any]:\n    \"\"\"Return a new list where elements at even indices are sorted,\n    while elements at odd indices remain in their original positions.\n\n    Example:\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    # Copy the original list to avoid mutating the input\n    result = list(l)\n\n    # Extract values at even indices (0, 2, 4, ...)\n    even_values = [result[i] for i in range(0, len(result), 2)]\n\n    # Sort the even-index values\n    even_values.sort()\n\n    # Place sorted even values back into the result at even positions\n    even_iter = iter(even_values)\n    for i in range(0, len(result), 2):\n        result[i] = next(even_iter)\n\n    return result\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(sort_even([1, 2, 3]))\n    print(sort_even([5, 6, 3, 4]))\n    print(sort_even([]))\n    print(sort_even([9]))\n    print(sort_even([7, 8, 5, 2, 1, 4]))",
+  "metrics": {
+    "total_nodes": 159,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.018868,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

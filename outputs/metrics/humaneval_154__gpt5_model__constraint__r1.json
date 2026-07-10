@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import typing\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both arguments must be strings\")\n    # empty pattern is considered a substring\n    if b == \"\":\n        return True\n    # if pattern longer than text, no substring possible\n    if len(b) > len(a):\n        return False\n    # Generate all rotations of b and check if any is in a\n    n = len(b)\n    # If all characters same and b length <= a length, rotations are same as b\n    # Iterate through rotations\n    for i in range(n):\n        rot = b[i:] + b[:i]\n        if rot in a:\n            return True\n    return False\n\n# Example quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n        (\"\", \"\", True),\n        (\"a\", \"\", True),\n        (\"\", \"a\", False),\n    ]\n    for x,y,exp in tests:\n        res = cycpattern_check(x,y)\n        print(f'cycpattern_check({x!r},{y!r}) => {res} (expected {exp})')",
+  "metrics": {
+    "total_nodes": 209,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.057416,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

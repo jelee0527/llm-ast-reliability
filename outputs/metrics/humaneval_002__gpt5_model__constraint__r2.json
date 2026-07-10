@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal part.\n    The decimal part is number - floor(number). For numbers that are\n    very close to an integer due to floating point representation, this\n    function returns a value rounded to a reasonable precision.\n    \"\"\"\n    # Validate input\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if number < 0:\n        raise ValueError(\"number must be non-negative\")\n\n    # Compute integer part explicitly without importing math.floor\n    integer_part = int(number)  # int() truncates toward zero; for non-negative numbers this is floor\n    decimal_part = number - integer_part\n\n    # Guard against tiny negative zeros like -0.0 due to floating point arithmetic\n    if decimal_part < 0 and decimal_part > -1e-15:\n        decimal_part = 0.0\n\n    # Round to a sensible number of decimal places to avoid artifacts\n    return float(round(decimal_part, 15))",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.068182,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

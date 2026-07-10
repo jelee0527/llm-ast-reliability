@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n    \"\"\"\n    try:\n        # Ensure inputs are numbers\n        if x is None or y is None:\n            return -1\n        x_val = float(x)\n        y_val = float(y)\n    except (TypeError, ValueError):\n        return -1\n\n    # If range invalid\n    if x_val > y_val:\n        return -1\n\n    # Find largest integer <= y_val\n    max_int = math.floor(y_val)\n    # Ensure it's within range [x_val, y_val]\n    if max_int < math.ceil(x_val):\n        return -1\n\n    # If max_int is even, return it; otherwise, return previous integer\n    if max_int % 2 == 0:\n        candidate = max_int\n    else:\n        candidate = max_int - 1\n\n    # Check candidate still within [x_val, y_val] and integer >= ceil(x)\n    if candidate < math.ceil(x_val):\n        return -1\n\n    return int(candidate)",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.088889,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

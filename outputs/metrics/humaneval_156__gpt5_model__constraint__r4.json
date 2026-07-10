@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n\n    # Mapping of Roman numerals from largest to smallest\n    pairs: List[Tuple[int, str]] = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I'),\n    ]\n\n    result_parts: List[str] = []\n    remainder = number\n    for value, numeral in pairs:\n        if remainder <= 0:\n            break\n        count = remainder // value\n        if count > 0:\n            result_parts.append(numeral * count)\n            remainder -= value * count\n\n    roman = ''.join(result_parts).lower()\n    return roman\n\n# If run as script, optional quick tests\nif __name__ == \"__main__\":\n    tests = {19: \"xix\", 152: \"clii\", 426: \"cdxxvi\", 1: \"i\", 1000: \"m\", 944: \"cmxliv\"}\n    for n, expected in tests.items():\n        out = int_to_mini_roman(n)\n        print(n, out, \"OK\" if out == expected else \"FAIL expected \"+expected)",
+  "metrics": {
+    "total_nodes": 264,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

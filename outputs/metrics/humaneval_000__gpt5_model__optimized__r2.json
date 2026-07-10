@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_000__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_000",
+  "task_id": "HumanEval/0",
+  "problem_name": "Has Close Elements",
+  "entry_point": "has_close_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    \"\"\"\n    if threshold < 0:\n        raise ValueError(\"threshold must be non-negative\")\n    n = len(numbers)\n    if n < 2:\n        return False\n    # Sort copy to avoid modifying input\n    nums = sorted(numbers)\n    # Check adjacent differences\n    prev = nums[0]\n    for i in range(1, n):\n        curr = nums[i]\n        if curr - prev < threshold:\n            return True\n        prev = curr\n    return False\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 114,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.078947,
+    "function_names": [
+      "has_close_elements"
+    ]
+  }
+}

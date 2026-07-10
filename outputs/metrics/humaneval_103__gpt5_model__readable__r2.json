@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"Compute the average of integers from n through m inclusive, round to nearest integer,\n    and return its binary representation as a string (like Python's bin()).\n    If n > m, return -1.\n    \"\"\"\n    if not (isinstance(n, int) and isinstance(m, int)):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # Number of terms\n    count = m - n + 1\n    # Sum of arithmetic sequence: (first + last) * count // 2 but use exact integer arithmetic\n    total = (n + m) * count // 2\n    # Compute average as float to allow correct rounding for .5 cases:\n    avg = total / count\n    # Round to nearest integer, with halves rounded away from zero as Python's round ties-to-even isn't desired.\n    # The problem statement implies standard rounding to nearest integer; we'll use round() which follows ties-to-even.\n    # To implement ties-away-from-zero for .5, use floor(avg + 0.5)\n    if avg >= 0:\n        rounded = floor(avg + 0.5)\n    else:\n        # for completeness with negative ranges (though inputs are positive per prompt)\n        rounded = -floor(-avg + 0.5)\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.05042,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

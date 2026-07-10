@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\"For a given integer n > 0, return the largest divisor of n that is smaller than n.\n    If n <= 1 return None (no positive divisor smaller than n).\n    Examples:\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(13)\n    1\n    >>> largest_divisor(1) is None\n    True\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # The largest proper divisor is at most n//2, but we can search using factors up to sqrt(n)\n    # to find divisor pairs and track the largest proper divisor < n.\n    largest = 1  # 1 is always a divisor for n > 1\n    limit = int(math.isqrt(n))\n    for d in range(2, limit + 1):\n        if n % d == 0:\n            other = n // d\n            # other is the paired divisor and is >= d\n            if other < n:\n                largest = max(largest, other)\n            if d < n:\n                largest = max(largest, d)\n            # If we already found n//2, that's the maximum possible proper divisor, we can stop early\n            if largest == n // 2:\n                break\n\n    # If no divisor found other than 1, largest remains 1 (for prime n)\n    return largest",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.080292,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

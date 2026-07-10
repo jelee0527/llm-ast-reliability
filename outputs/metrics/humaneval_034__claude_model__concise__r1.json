@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__claude_model__concise__r1.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def unique(l: list):\n    return sorted(set(l))",
+  "metrics": {
+    "total_nodes": 15,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.066667,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

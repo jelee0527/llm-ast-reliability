@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Union, Optional\n\ndef _to_number_and_type(x):\n    \"\"\"\n    Convert input x (int, float, or string) to a float for comparison.\n    Returns tuple (numeric_value: float, original_type: type, original_str: str or None)\n    original_str is provided for string inputs to allow returning original string.\n    \"\"\"\n    if isinstance(x, (int, float)):\n        return float(x), type(x), None\n    if isinstance(x, str):\n        s = x.strip()\n        # Replace comma with dot for decimal separator, but only if comma present.\n        # Also handle cases like \"1,234\" which might be thousands separator vs decimal;\n        # problem statement implies comma can be decimal separator, so convert all commas to dots.\n        s_conv = s.replace(',', '.')\n        try:\n            val = float(s_conv)\n        except ValueError:\n            # If can't parse, raise so caller knows input invalid\n            raise ValueError(f\"Cannot parse '{x}' as a real number\")\n        return val, str, s  # keep original string (unmodified) for return\n    raise TypeError(f\"Unsupported type: {type(x)}\")\n\ndef compare_one(a, b) -> Optional[Union[int, float, str]]:\n    \"\"\"\n    Compare a and b which may be int, float, or string representing real numbers.\n    Return the larger value in its given variable type. If equal, return None.\n    \"\"\"\n    val_a, type_a, orig_a = _to_number_and_type(a)\n    val_b, type_b, orig_b = _to_number_and_type(b)\n\n    # Compare numeric values\n    if abs(val_a - val_b) < 1e-12:\n        return None\n\n    # Determine which is larger numerically\n    if val_a > val_b:\n        # return a in its original form\n        if type_a is str:\n            return orig_a\n        # for ints/floats return as given (preserve int if originally int)\n        if type_a is int:\n            return int(val_a)\n        if type_a is float:\n            return float(val_a)\n    else:\n        if type_b is str:\n            return orig_b\n        if type_b is int:\n            return int(val_b)\n        if type_b is float:\n            return float(val_b)",
+  "metrics": {
+    "total_nodes": 248,
+    "ast_depth": 11,
+    "branch_count": 11,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 22,
+    "control_flow_ratio": 0.08871,
+    "function_names": [
+      "_to_number_and_type",
+      "compare_one"
+    ]
+  }
+}

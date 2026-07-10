@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is an integer power of n (n**k == x for some non-negative integer k).\n    By convention, 1 is a power of any n (n**0 == 1). Only integer x and integer n are considered.\n    \"\"\"\n    # Validate input types\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        # reject non-integer inputs\n        return False\n\n    # Negative base handling:\n    # For negative n, only odd exponents can produce a negative x.\n    # We'll handle using integer math and exponents.\n    if n == 0:\n        # 0**0 is undefined; for k>0, 0**k == 0\n        if x == 0:\n            # x==0 can be represented as 0**k for any k>=1, but not 0**0\n            return True\n        return False\n\n    if x == 1:\n        # n**0 == 1 for any nonzero n\n        return True\n\n    if x == 0:\n        # handled n==0 above; for nonzero n, n**k == 0 never occurs\n        return False\n\n    # Now both x != 0 and n != 0 and x != 1\n    # We look for integer k>=1 such that n**k == x\n    # Use absolute values to bound k, handle sign compatibility.\n    if x < 0 and n < 0:\n        # (-n)**k negative only when k is odd; reduce to positive values and check odd k\n        abs_x = -x\n        abs_n = -n\n        # compute approximate k using logs to bound search\n        try:\n            k_est = int(math.log(abs_x, abs_n))\n        except ValueError:\n            # log domain error\n            return False\n        # search around estimate\n        for k in range(max(1, k_est - 2), k_est + 3):\n            if k % 2 == 1 and pow(n, k) == x:\n                return True\n        return False\n\n    if x < 0 and n > 0:\n        # positive base cannot produce a negative x\n        return False\n\n    if x > 0 and n < 0:\n        # negative base produces positive x only for even k\n        abs_x = x\n        abs_n = -n\n        try:\n            k_est = int(math.log(abs_x, abs_n))\n        except ValueError:\n            return False\n        for k in range(max(1, k_est - 2), k_est + 3):\n            if k % 2 == 0 and pow(n, k) == x:\n                return True\n        return False\n\n    # Now n > 0 and x > 0\n    # If n == 1 handled earlier (would have returned True for x==1; other x cannot)\n    if n == 1:\n        return x == 1\n\n    # estimate exponent k and check around to avoid floating inaccuracies\n    try:\n        k_est = int(math.log(x, n))\n    except ValueError:\n        return False\n\n    for k in range(max(1, k_est - 2), k_est + 3):\n        if pow(n, k) == x:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 338,
+    "ast_depth": 10,
+    "branch_count": 15,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 34,
+    "control_flow_ratio": 0.100592,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

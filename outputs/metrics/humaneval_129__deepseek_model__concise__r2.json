@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    directions = [(0,1),(0,-1),(1,0),(-1,0)]\n    # heap entries: (current_path_list, row, col)\n    # We'll store path as tuple for hashability\n    heap = []\n    for r in range(n):\n        for c in range(n):\n            heapq.heappush(heap, ([grid[r][c]], r, c))\n    \n    visited = {}\n    while heap:\n        path, r, c = heapq.heappop(heap)\n        if len(path) == k:\n            return path\n        key = (r, c, len(path))\n        if key in visited and visited[key] <= path:\n            continue\n        visited[key] = path\n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < n and 0 <= nc < n:\n                new_path = path + [grid[nr][nc]]\n                heapq.heappush(heap, (new_path, nr, nc))\n    return []",
+  "metrics": {
+    "total_nodes": 253,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.039526,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

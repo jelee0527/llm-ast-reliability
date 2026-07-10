@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_003__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_003",
+  "task_id": "HumanEval/3",
+  "problem_name": "Below Zero",
+  "entry_point": "below_zero",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 39,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.102564,
+    "function_names": [
+      "below_zero"
+    ]
+  }
+}

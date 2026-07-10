@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__claude_model__constraint__r4.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def words_string(s):\n    if not s:\n        return []\n    result = []\n    current = []\n    for char in s:\n        if char == ',' or char == ' ':\n            if current:\n                result.append(''.join(current))\n                current = []\n        else:\n            current.append(char)\n    if current:\n        result.append(''.join(current))\n    return result",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.081395,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

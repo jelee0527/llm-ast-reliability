@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Return \"YES\" if by exchanging some elements between lst1 and lst2\n    (any number of elements, positions irrelevant) it's possible to make\n    all elements of lst1 even, otherwise return \"NO\".\n    \"\"\"\n    # Count even and odd elements in both lists\n    ev1 = sum(1 for x in lst1 if x % 2 == 0)\n    od1 = len(lst1) - ev1\n    ev2 = sum(1 for x in lst2 if x % 2 == 0)\n    od2 = len(lst2) - ev2\n\n    # After exchanges, each position in lst1 must hold an even number.\n    # We can only take evens from lst2 to replace odds in lst1.\n    # Each exchange swaps one element from lst1 with one from lst2,\n    # so to convert one odd in lst1 to even we need an even from lst2.\n    # Additionally, when we swap an odd from lst1 into lst2 it may reduce evens in lst2\n    # if we gave away an even, but net effect counted by available evens in lst2.\n    # The necessary and sufficient condition: number of evens available to place into lst1\n    # equals ev1 + ev2 minus ev1 after swaps? Simpler reasoning:\n    # We need at least od1 even numbers total available from current lst2 (ev2)\n    # because only evens from lst2 can occupy odd positions in lst1.\n    # So require ev2 >= od1.\n    if ev2 >= od1:\n        return \"YES\"\n    else:\n        return \"NO\"",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.03,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

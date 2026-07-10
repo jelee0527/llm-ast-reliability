@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:02:06.769203+00:00",
+  "elapsed_seconds": 5.659,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\"For a given positive integer n, return the largest positive integer less than n that divides n evenly.\n    If n <= 1 return None (no divisor smaller than n).\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # The largest proper divisor will be at most n//2, but we can search using factors up to sqrt(n)\n    # and collect factor pairs to find the maximum proper divisor efficiently.\n    max_divisor = 1  # 1 always divides n for n > 1\n    limit = int(math.isqrt(n))\n    for a in range(1, limit + 1):\n        if n % a == 0:\n            b = n // a\n            # consider both a and b if they are proper divisors (< n)\n            if a < n and a > max_divisor:\n                max_divisor = a\n            if b < n and b > max_divisor:\n                max_divisor = b\n\n            # early exit: if we found divisor n//2, that's the largest possible proper divisor\n            if max_divisor == n // 2:\n                break\n\n    return max_divisor\n\n\n# Quick test when run as a script\nif __name__ == \"__main__\":\n    tests = [1, 2, 3, 4, 15, 28, 49, 97]\n    for t in tests:\n        print(f\"largest_divisor({t}) = {largest_divisor(t)}\")",
+  "generated_code": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\"For a given positive integer n, return the largest positive integer less than n that divides n evenly.\n    If n <= 1 return None (no divisor smaller than n).\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # The largest proper divisor will be at most n//2, but we can search using factors up to sqrt(n)\n    # and collect factor pairs to find the maximum proper divisor efficiently.\n    max_divisor = 1  # 1 always divides n for n > 1\n    limit = int(math.isqrt(n))\n    for a in range(1, limit + 1):\n        if n % a == 0:\n            b = n // a\n            # consider both a and b if they are proper divisors (< n)\n            if a < n and a > max_divisor:\n                max_divisor = a\n            if b < n and b > max_divisor:\n                max_divisor = b\n\n            # early exit: if we found divisor n//2, that's the largest possible proper divisor\n            if max_divisor == n // 2:\n                break\n\n    return max_divisor\n\n\n# Quick test when run as a script\nif __name__ == \"__main__\":\n    tests = [1, 2, 3, 4, 15, 28, 49, 97]\n    for t in tests:\n        print(f\"largest_divisor({t}) = {largest_divisor(t)}\")"
+}

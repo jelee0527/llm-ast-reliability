@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:57:44.595589+00:00",
+  "elapsed_seconds": 2.912,
+  "official_prompt": "\ndef decimal_to_binary(decimal):\n    \"\"\"You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n    There will be an extra couple of characters 'db' at the beginning and at the end of the string.\n    The extra characters are there to help with the format.\n\n    Examples:\n    decimal_to_binary(15)   # returns \"db1111db\"\n    decimal_to_binary(32)   # returns \"db100000db\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef decimal_to_binary(decimal):\n    \"\"\"You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n    There will be an extra couple of characters 'db' at the beginning and at the end of the string.\n    The extra characters are there to help with the format.\n\n    Examples:\n    decimal_to_binary(15)   # returns \"db1111db\"\n    decimal_to_binary(32)   # returns \"db100000db\"\n    \"\"\"\n\n",
+  "raw_response": "def decimal_to_binary(decimal):\n    \"\"\"Convert an integer decimal to a binary string wrapped with 'db' at start and end.\n\n    Returns a string like 'db101db'. Handles non-negative integers. For zero returns 'db0db'.\n    \"\"\"\n    # Validate input: allow integers only\n    if not isinstance(decimal, int):\n        raise TypeError(\"Input must be an integer.\")\n    if decimal < 0:\n        raise ValueError(\"Input must be non-negative.\")\n\n    # Special case 0\n    if decimal == 0:\n        return \"db0db\"\n\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append(str(n & 1))\n        n >>= 1\n\n    # bits collected LSB first; reverse to get MSB first\n    binary_str = ''.join(reversed(bits))\n    return \"db\" + binary_str + \"db\"",
+  "generated_code": "def decimal_to_binary(decimal):\n    \"\"\"Convert an integer decimal to a binary string wrapped with 'db' at start and end.\n\n    Returns a string like 'db101db'. Handles non-negative integers. For zero returns 'db0db'.\n    \"\"\"\n    # Validate input: allow integers only\n    if not isinstance(decimal, int):\n        raise TypeError(\"Input must be an integer.\")\n    if decimal < 0:\n        raise ValueError(\"Input must be non-negative.\")\n\n    # Special case 0\n    if decimal == 0:\n        return \"db0db\"\n\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append(str(n & 1))\n        n >>= 1\n\n    # bits collected LSB first; reverse to get MSB first\n    binary_str = ''.join(reversed(bits))\n    return \"db\" + binary_str + \"db\""
+}

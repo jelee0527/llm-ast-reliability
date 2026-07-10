@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_041__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Count collisions between n left-to-right cars and n right-to-left cars,\n    all moving at the same speed on a line, starting from very far apart.\n    Each pair of cars moving in opposite directions will collide exactly once.\n    So total collisions = n * n.\n    \"\"\"\n    return n * n\n\n# Quick test (not required): \nif __name__ == \"__main__\":\n    for i in range(6):\n        print(i, car_race_collision(i))",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='car_race_collision',\n      args=arguments(\n        args=[\n          arg(\n            arg='n',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='\\n    Count collisions between n left-to-right cars and n right-to-left cars,\\n    all moving at the same speed on a line, starting from very far apart.\\n    Each pair of cars moving in opposite directions will collide exactly once.\\n    So total collisions = n * n.\\n    ')),\n        Return(\n          value=BinOp(\n            left=Name(id='n', ctx=Load()),\n            op=Mult(),\n            right=Name(id='n', ctx=Load())))],\n      returns=Name(id='int', ctx=Load())),\n    If(\n      test=Compare(\n        left=Name(id='__name__', ctx=Load()),\n        ops=[\n          Eq()],\n        comparators=[\n          Constant(value='__main__')]),\n      body=[\n        For(\n          target=Name(id='i', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=6)]),\n          body=[\n            Expr(\n              value=Call(\n                func=Name(id='print', ctx=Load()),\n                args=[\n                  Name(id='i', ctx=Load()),\n                  Call(\n                    func=Name(id='car_race_collision', ctx=Load()),\n                    args=[\n                      Name(id='i', ctx=Load())])]))])])])"
+}

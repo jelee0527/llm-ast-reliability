@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \"\"\"\n    # Define vowels\n    vowels_lower = 'aeiou'\n    vowels_upper = 'AEIOU'\n    # Precompute mapping for vowels -> vowel + 2 letters ahead (wrap within alphabet)\n    # According to examples, vowel replacement occurs after case swap? Determine:\n    # Based on example: 'test' -> 'TGST'\n    # 'test' swapcase -> 'TEST'; then replace vowels E -> G, so 'TGST' matches.\n    # So process: swap case first, then if char is vowel (in swapped case) replace by char+2.\n    def shift_char(c):\n        # shift letter by 2 within a-z or A-Z\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 2) % 26 + ord('a'))\n        if 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 2) % 26 + ord('A'))\n        return c\n\n    res_chars = []\n    for ch in message:\n        # Only letters assumed but preserve other chars in case\n        if ch.isalpha():\n            swapped = ch.swapcase()\n            if swapped in vowels_lower or swapped in vowels_upper:\n                res_chars.append(shift_char(swapped))\n            else:\n                res_chars.append(swapped)\n        else:\n            res_chars.append(ch)\n    return ''.join(res_chars)",
+  "metrics": {
+    "total_nodes": 165,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.054545,
+    "function_names": [
+      "encode",
+      "shift_char"
+    ]
+  }
+}

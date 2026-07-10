@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:50:15.386171+00:00",
+  "elapsed_seconds": 4.25,
+  "official_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., x == n**k for some non-negative integer k).\"\"\"\n    # Handle invalid cases\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    # only non-negative integers make sense in this context\n    if x < 1 or n < 1:\n        return False\n    # 1 is n**0 for any n>=1\n    if x == 1:\n        return True\n    # n == 1: only 1 is a power of 1\n    if n == 1:\n        return False\n    # loop multiply to avoid floating errors and large exponent computation\n    power = 1\n    while power < x:\n        power *= n\n    return power == x\n\n# Example tests (can be removed)\nif __name__ == \"__main__\":\n    tests = [\n        (1,4, True),\n        (2,2, True),\n        (8,2, True),\n        (3,2, False),\n        (3,1, False),\n        (5,3, False),\n    ]\n    for x,n,expected in tests:\n        print(x,n, is_simple_power(x,n), \"expected\", expected)",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., x == n**k for some non-negative integer k).\"\"\"\n    # Handle invalid cases\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    # only non-negative integers make sense in this context\n    if x < 1 or n < 1:\n        return False\n    # 1 is n**0 for any n>=1\n    if x == 1:\n        return True\n    # n == 1: only 1 is a power of 1\n    if n == 1:\n        return False\n    # loop multiply to avoid floating errors and large exponent computation\n    power = 1\n    while power < x:\n        power *= n\n    return power == x\n\n# Example tests (can be removed)\nif __name__ == \"__main__\":\n    tests = [\n        (1,4, True),\n        (2,2, True),\n        (8,2, True),\n        (3,2, False),\n        (3,1, False),\n        (5,3, False),\n    ]\n    for x,n,expected in tests:\n        print(x,n, is_simple_power(x,n), \"expected\", expected)"
+}

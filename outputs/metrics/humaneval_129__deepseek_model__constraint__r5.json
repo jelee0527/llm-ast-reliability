@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import defaultdict\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For each cell, we want to find the lexicographically smallest path of length up to k\n    # We'll use a BFS-like approach with a priority queue, but we need to handle cycles.\n    # Since k can be large, we use a DP approach: for each cell, store the best path of length L.\n    # We'll build paths incrementally.\n    \n    # dp[length][(r,c)] = best path list (as tuple) starting from (r,c) of that length\n    # We'll store as tuple for hashability and comparison.\n    \n    # Initialize for length 1\n    dp_prev = {}\n    for r in range(n):\n        for c in range(n):\n            dp_prev[(r,c)] = (grid[r][c],)\n    \n    if k == 1:\n        best = min(dp_prev.values())\n        return list(best)\n    \n    # Iteratively build longer paths\n    for length in range(2, k+1):\n        dp_curr = {}\n        for r in range(n):\n            for c in range(n):\n                best_path = None\n                for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    nr, nc = r + dr, c + dc\n                    if 0 <= nr < n and 0 <= nc < n:\n                        candidate = (grid[r][c],) + dp_prev[(nr,nc)]\n                        if best_path is None or candidate < best_path:\n                            best_path = candidate\n                dp_curr[(r,c)] = best_path\n        dp_prev = dp_curr\n    \n    # Find the overall best path of length k\n    best_overall = min(dp_prev.values())\n    return list(best_overall)",
+  "metrics": {
+    "total_nodes": 297,
+    "ast_depth": 14,
+    "branch_count": 4,
+    "loop_count": 6,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.043771,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

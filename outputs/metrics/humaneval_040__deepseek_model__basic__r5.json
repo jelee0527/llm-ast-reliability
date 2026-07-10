@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_040__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_040",
+  "task_id": "HumanEval/40",
+  "problem_name": "Triples Sum To Zero",
+  "entry_point": "triples_sum_to_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def triples_sum_to_zero(l: list):\n    n = len(l)\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 12,
+    "branch_count": 1,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "triples_sum_to_zero"
+    ]
+  }
+}

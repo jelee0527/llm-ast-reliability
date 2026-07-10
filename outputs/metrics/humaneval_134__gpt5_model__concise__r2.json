@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    # strip only trailing newline/tabs? Problem considers trailing space as separator so do not strip.\n    # If last character is letter and preceded by a space (or it's the only char)\n    last = txt[-1]\n    if last not in string.ascii_letters:\n        return False\n    # If it's the only character, it's not part of a word -> True\n    if len(txt) == 1:\n        return True\n    # If preceding character is space, then last char is a standalone token -> True\n    return txt[-2] == ' '",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.125,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

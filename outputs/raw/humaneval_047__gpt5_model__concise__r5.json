@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:51:44.724628+00:00",
+  "elapsed_seconds": 2.686,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\nimport math\nimport statistics\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        raise ValueError(\"median() arg is an empty list\")\n    # Use statistics.median for correct handling of numeric types\n    return statistics.median(l)",
+  "generated_code": "from typing import List, Any\nimport math\nimport statistics\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        raise ValueError(\"median() arg is an empty list\")\n    # Use statistics.median for correct handling of numeric types\n    return statistics.median(l)"
+}

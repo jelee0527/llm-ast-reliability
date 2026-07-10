@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Sequence, Any\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input cannot be None\")\n    # Ensure we work with a copy and can sort\n    try:\n        seq: List[Any] = list(l)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable\")\n    n = len(seq)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty sequence\")\n    # Sort using built-in sorted for determinism\n    seq.sort()\n    mid = n // 2\n    if n % 2 == 1:\n        return seq[mid]\n    else:\n        a = seq[mid - 1]\n        b = seq[mid]\n        # Return float if necessary (e.g., when a+b is odd or non-integer types)\n        try:\n            return (a + b) / 2\n        except TypeError:\n            # Fallback: if elements don't support addition, return tuple of middle elements\n            return (a, b)",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.080292,
+    "function_names": [
+      "median"
+    ]
+  }
+}

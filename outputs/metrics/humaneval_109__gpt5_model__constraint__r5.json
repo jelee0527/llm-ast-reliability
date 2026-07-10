@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be rotated (right shifts) to become non-decreasing.\"\"\"\n    n = len(arr)\n    if n <= 1:\n        return True\n    # Count number of \"drops\" where a[i] > a[i+1]\n    drops = 0\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            if drops > 1:\n                return False\n    # Also check wrap-around: last to first\n    if arr[-1] > arr[0]:\n        # This is fine only if there were no drops (fully sorted with last<=first)\n        # Actually for rotation to work, if there is exactly one drop, last must be <= first.\n        # If there are zero drops, array already non-decreasing and arr[-1] <= arr[0] may be false only when all equal,\n        # but unique elements mean if zero drops then arr[-1] <= arr[0] implies arr[-1] <= arr[0] possibly false.\n        pass\n    # For rotation to yield non-decreasing, number of drops must be 0 or 1.\n    if drops == 0:\n        return True\n    # If exactly one drop, ensure last element <= first element (so rotation place is between the drop)\n    # Find the index of drop: arr[i] > arr[i+1]\n    drop_index = -1\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drop_index = i\n            break\n    # After rotating right k times we effectively split at drop_index+1 to make arr[drop_index+1:] + arr[:drop_index+1]\n    # This will be non-decreasing iff arr[-1] <= arr[0]\n    return arr[-1] <= arr[0]",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.082278,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

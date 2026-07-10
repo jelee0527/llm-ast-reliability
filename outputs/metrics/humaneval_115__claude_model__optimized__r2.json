@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__claude_model__optimized__r2.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def max_fill(grid, capacity):\n    import math\n    return sum(math.ceil(sum(row) / capacity) for row in grid)",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

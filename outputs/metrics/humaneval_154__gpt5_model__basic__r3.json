@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import collections\n\ndef cycpattern_check(a, b):\n    \"\"\"Return True if b or any rotation of b is a substring in a.\"\"\"\n    if not b:\n        return True if a is not None else False\n    if len(b) > len(a):\n        return False\n    # Generate all rotations of b\n    n = len(b)\n    for i in range(n):\n        rot = b[i:] + b[:i]\n        if rot in a:\n            return True\n    return False\n\n# Optional: simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,exp in tests:\n        print(x, y, cycpattern_check(x,y), \"expected\", exp)",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

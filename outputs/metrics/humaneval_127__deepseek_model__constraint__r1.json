@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_127__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def intersection(interval1, interval2):\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        i = 3\n        while i * i <= n:\n            if n % i == 0:\n                return False\n            i += 2\n        return True\n\n    start1, end1 = interval1\n    start2, end2 = interval2\n\n    inter_start = max(start1, start2)\n    inter_end = min(end1, end2)\n\n    if inter_start > inter_end:\n        return \"NO\"\n\n    length = inter_end - inter_start + 1\n    return \"YES\" if is_prime(length) else \"NO\"",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.10219,
+    "function_names": [
+      "intersection",
+      "is_prime"
+    ]
+  }
+}

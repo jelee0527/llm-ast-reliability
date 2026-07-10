@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def is_simple_power(x, n):\n    if n == 1:\n        return x == 1\n    if x == 1:\n        return True\n    if x < 1 or n < 1:\n        return False\n    power = 0\n    while True:\n        result = n ** power\n        if result == x:\n            return True\n        if result > x:\n            return False\n        power += 1",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 7,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.141026,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

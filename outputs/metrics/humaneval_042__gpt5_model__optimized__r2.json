@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with numeric elements incremented by 1.\n    Preserves non-numeric elements unchanged.\n    \"\"\"\n    # Use list comprehension for time and space efficiency (O(n) time, O(n) space)\n    res = []\n    for x in l:\n        try:\n            # Avoid treating booleans as numbers (since bool is subclass of int)\n            if isinstance(x, bool):\n                res.append(x)\n            else:\n                # Try numeric addition; for non-numeric types this may raise TypeError\n                res.append(x + 1)\n        except Exception:\n            # If addition not supported, preserve original element\n            res.append(x)\n    return res\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(incr_list([1, 2, 3]))  # [2, 3, 4]\n    print(incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123]))  # [6,4,6,3,4,4,10,1,124]\n    print(incr_list([1.5, -1, True, \"a\", None]))  # [2.5, 0, True, \"a\", None]",
+  "metrics": {
+    "total_nodes": 125,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

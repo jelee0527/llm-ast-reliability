@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_078__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_078",
+  "task_id": "HumanEval/78",
+  "problem_name": "Hex Key",
+  "entry_point": "hex_key",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef hex_key(num: str) -> int:\n    prime_hex: Set[str] = {\"2\", \"3\", \"5\", \"7\", \"B\", \"D\"}\n    return sum(1 for ch in num if ch in prime_hex)",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.023256,
+    "function_names": [
+      "hex_key"
+    ]
+  }
+}

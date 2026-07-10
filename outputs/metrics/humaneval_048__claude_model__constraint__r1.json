@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_048__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    n = len(text)\n    for i in range(n // 2):\n        if text[i] != text[n - 1 - i]:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.075472,
+    "function_names": [
+      "is_palindrome"
+    ]
+  }
+}

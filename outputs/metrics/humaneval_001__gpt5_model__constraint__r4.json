@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    result: List[str] = []\n    current_chars: List[str] = []\n    depth = 0\n    for ch in s:\n        if ch not in (\"(\", \")\"):\n            # Ignore any non-parenthesis characters (per instructions only spaces expected)\n            continue\n        if ch == \"(\":\n            depth += 1\n            current_chars.append(ch)\n        elif ch == \")\":\n            if depth == 0:\n                # Unbalanced closing; ignore or treat as start? We'll ignore to be robust.\n                continue\n            current_chars.append(ch)\n            depth -= 1\n            if depth == 0:\n                # completed a top-level group\n                result.append(\"\".join(current_chars))\n                current_chars = []\n    # If leftover characters remain (unbalanced), ignore them.\n    return result\n\nif __name__ == \"__main__\":\n    # simple tests\n    print(separate_paren_groups('( ) (( )) (( )( ))'))  # expected ['()', '(())', '(()())']\n    print(separate_paren_groups('()()'))  # ['()', '()']\n    print(separate_paren_groups(' ( ( ) )  ( ) '))  # ['(())', '()']",
+  "metrics": {
+    "total_nodes": 168,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.059524,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

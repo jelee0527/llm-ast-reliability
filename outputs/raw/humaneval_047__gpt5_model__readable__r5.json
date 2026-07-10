@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:52:07.865339+00:00",
+  "elapsed_seconds": 4.245,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Optional, Union\n\ndef median(l: List[Union[int, float]]) -> Optional[float]:\n    \"\"\"Return median of elements in the list l.\n    If the list is empty, returns None.\n\n    Examples:\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        return None\n\n    # Work on a sorted copy to avoid mutating the input list\n    sorted_list = sorted(l)\n    n = len(sorted_list)\n    mid = n // 2\n\n    if n % 2 == 1:\n        # Odd number of elements: return the middle one (keep type consistent with ints)\n        return sorted_list[mid]\n    else:\n        # Even number: return the average of the two middle values as a float\n        return (sorted_list[mid - 1] + sorted_list[mid]) / 2.0\n\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List, Optional, Union\n\ndef median(l: List[Union[int, float]]) -> Optional[float]:\n    \"\"\"Return median of elements in the list l.\n    If the list is empty, returns None.\n\n    Examples:\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        return None\n\n    # Work on a sorted copy to avoid mutating the input list\n    sorted_list = sorted(l)\n    n = len(sorted_list)\n    mid = n // 2\n\n    if n % 2 == 1:\n        # Odd number of elements: return the middle one (keep type consistent with ints)\n        return sorted_list[mid]\n    else:\n        # Even number: return the average of the two middle values as a float\n        return (sorted_list[mid - 1] + sorted_list[mid]) / 2.0\n\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    import doctest\n    doctest.testmod()"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"db0db\"\n    binary = \"\"\n    n = decimal\n    while n > 0:\n        binary = str(n % 2) + binary\n        n //= 2\n    return \"db\" + binary + \"db\"",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:56:21.022597+00:00",
+  "elapsed_seconds": 1.457,
+  "official_prompt": "\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n\n",
+  "raw_response": "```python\ndef split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for ch in txt:\n            if 'a' <= ch <= 'z':\n                if (ord(ch) - ord('a')) % 2 != 0:\n                    count += 1\n        return count\n```",
+  "generated_code": "def split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for ch in txt:\n            if 'a' <= ch <= 'z':\n                if (ord(ch) - ord('a')) % 2 != 0:\n                    count += 1\n        return count"
+}

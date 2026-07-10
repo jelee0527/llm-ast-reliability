@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__claude_model__concise__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def do_algebra(operator, operand):\n    expression = str(operand[0])\n    for op, num in zip(operator, operand[1:]):\n        expression += op + str(num)\n    return eval(expression)",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.037736,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

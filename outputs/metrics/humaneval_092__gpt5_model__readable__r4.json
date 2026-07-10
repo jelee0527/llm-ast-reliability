@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_092__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Return True if all inputs are integers (no fractional part) and one value equals the sum of the other two.\n    Otherwise return False.\n    \"\"\"\n    # First, ensure all inputs are integers (not floats with fractional part)\n    def is_exact_integer(value: Any) -> bool:\n        # Allow int type directly\n        if isinstance(value, int):\n            return True\n        # Reject booleans (subclass of int) because they are not intended as integers here\n        if isinstance(value, bool):\n            return False\n        # For floats, check if they have no fractional part\n        if isinstance(value, float):\n            return value.is_integer()\n        # Other numeric types (e.g., Decimal) are not accepted\n        return False\n\n    if not (is_exact_integer(x) and is_exact_integer(y) and is_exact_integer(z)):\n        return False\n\n    # Convert to int for exact integer comparison (safe because we've checked .is_integer for floats)\n    xi, yi, zi = int(x), int(y), int(z)\n\n    # Check if any one equals the sum of the other two\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.070423,
+    "function_names": [
+      "any_int",
+      "is_exact_integer"
+    ]
+  }
+}

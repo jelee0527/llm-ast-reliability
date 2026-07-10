@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:40:44.721605+00:00",
+  "elapsed_seconds": 4.29,
+  "official_prompt": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # Validate inputs are strings of 0/1 and same length\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings.\")\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must have the same length.\")\n    valid_chars = {'0', '1'}\n    if not set(a).issubset(valid_chars) or not set(b).issubset(valid_chars):\n        raise ValueError(\"Input strings must consist only of '0' and '1' characters.\")\n\n    # Perform XOR character by character\n    result_chars: List[str] = []\n    for ca, cb in zip(a, b):\n        # XOR: '1' if exactly one of ca, cb is '1'\n        if ca == cb:\n            result_chars.append('0')\n        else:\n            result_chars.append('1')\n\n    return ''.join(result_chars)",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # Validate inputs are strings of 0/1 and same length\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings.\")\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must have the same length.\")\n    valid_chars = {'0', '1'}\n    if not set(a).issubset(valid_chars) or not set(b).issubset(valid_chars):\n        raise ValueError(\"Input strings must consist only of '0' and '1' characters.\")\n\n    # Perform XOR character by character\n    result_chars: List[str] = []\n    for ca, cb in zip(a, b):\n        # XOR: '1' if exactly one of ca, cb is '1'\n        if ca == cb:\n            result_chars.append('0')\n        else:\n            result_chars.append('1')\n\n    return ''.join(result_chars)"
+}

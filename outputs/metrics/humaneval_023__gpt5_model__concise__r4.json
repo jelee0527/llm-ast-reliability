@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_023__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_023",
+  "task_id": "HumanEval/23",
+  "problem_name": "Strlen",
+  "entry_point": "strlen",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    # Using Python's built-in len for efficiency and correctness\n    return len(string)",
+  "metrics": {
+    "total_nodes": 18,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "strlen"
+    ]
+  }
+}

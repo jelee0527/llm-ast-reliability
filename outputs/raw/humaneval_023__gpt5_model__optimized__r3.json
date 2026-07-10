@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_023",
+  "task_id": "HumanEval/23",
+  "problem_name": "Strlen",
+  "entry_point": "strlen",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:00:48.179019+00:00",
+  "elapsed_seconds": 2.0,
+  "official_prompt": "\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterator\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    # Iterate through string and count characters\n    count = 0\n    for _ in string:\n        count += 1\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Iterator\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    # Iterate through string and count characters\n    count = 0\n    for _ in string:\n        count += 1\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

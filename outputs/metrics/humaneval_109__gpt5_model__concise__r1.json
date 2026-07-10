@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    if not arr:\n        return True\n    n = len(arr)\n    # Count places where order decreases (a[i] > a[i+1])\n    drops = 0\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            if drops > 1:\n                return False\n    # Also check wrap-around drop from last to first\n    if arr[-1] > arr[0]:\n        # if there was already a drop inside, can't fix wrap; else it's fine (0 drops)\n        return drops <= 0\n    else:\n        # wrap is non-decreasing (arr[-1] <= arr[0]); overall allowed if drops == 1 or drops == 0\n        # If drops == 0 and wrap is non-decreasing, the array is constant-increasing through wrap => sorted after shifts\n        return drops <= 1",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.088235,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

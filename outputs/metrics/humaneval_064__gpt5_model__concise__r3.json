@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s. Vowels: a e i o u (case-insensitive).\n    'y' counts as a vowel only when it is the last character of the word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    vowels = set(\"aeiou\")\n    count = 0\n    for i, ch in enumerate(s.lower()):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y' and i == len(s) - 1:\n            count += 1\n    return count\n\nif __name__ == \"__main__\":\n    # Some basic tests\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,\n        \"rhythm\": 0,\n        \"play\": 1,\n        \"Y\": 1,\n        \"y\": 1,\n        \"sky\": 1,\n        \"syzygy\": 1,  # only last y counts\n        \"sequence\": 4,\n        \"\": 0,\n        \"  AeIoU  \": 5,\n        \"bcd\": 0,\n        \"yellow\": 2,  # e and o\n        \"crypt\": 0,\n    }\n    for inp, expected in tests.items():\n        out = vowels_count(inp)\n        print(f\"{inp!r}: {out} (expected {expected})\", \"OK\" if out == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.058201,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

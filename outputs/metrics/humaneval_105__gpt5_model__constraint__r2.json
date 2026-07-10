@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef by_length(arr: List[int]) -> List[str]:\n    \"\"\"\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n    \"\"\"\n    # mapping for 1..9\n    names = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\",\n    }\n\n    # Filter only integers between 1 and 9 inclusive\n    filtered = []\n    for x in arr:\n        # ensure x is int (in case of other types) and in range\n        if isinstance(x, int) and 1 <= x <= 9:\n            filtered.append(x)\n\n    # Sort ascending then reverse\n    filtered.sort()\n    filtered.reverse()\n\n    # Map to names\n    result = []\n    for x in filtered:\n        # names dict covers 1..9 so safe to fetch\n        result.append(names[x])\n\n    return result\n\n\n# Example usage (can be removed or commented out if undesired)\nif __name__ == \"__main__\":\n    print(by_length([2, 1, 1, 4, 5, 8, 2, 3]))  # [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"]\n    print(by_length([]))  # []\n    print(by_length([1, -1, 55]))  # [\"One\"]",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.03125,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

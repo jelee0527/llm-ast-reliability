@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__claude_model__readable__r1.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    decoded_characters = []\n    \n    for character in s:\n        original_position = (ord(character) - 5 - ord(\"a\")) % 26\n        decoded_character = chr(original_position + ord(\"a\"))\n        decoded_characters.append(decoded_character)\n    \n    return \"\".join(decoded_characters)",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 13,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.027027,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

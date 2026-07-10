@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_051__claude_model__readable__r2.json",
+  "problem_id": "humaneval_051",
+  "task_id": "HumanEval/51",
+  "problem_name": "Remove Vowels",
+  "entry_point": "remove_vowels",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def remove_vowels(text):\n    vowels = set('aeiouAEIOU')\n    result = ''.join(character for character in text if character not in vowels)\n    return result",
+  "metrics": {
+    "total_nodes": 35,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.028571,
+    "function_names": [
+      "remove_vowels"
+    ]
+  }
+}

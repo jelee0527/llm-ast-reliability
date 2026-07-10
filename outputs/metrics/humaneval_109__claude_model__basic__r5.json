@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__claude_model__basic__r5.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def move_one_ball(arr):\n    if not arr:\n        return True\n    \n    n = len(arr)\n    # Count the number of \"drops\" (places where arr[i] > arr[i+1])\n    drops = 0\n    for i in range(n):\n        if arr[i] > arr[(i + 1) % n]:\n            drops += 1\n    \n    # If there's at most one drop, we can rotate to get sorted order\n    return drops <= 1",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.078125,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

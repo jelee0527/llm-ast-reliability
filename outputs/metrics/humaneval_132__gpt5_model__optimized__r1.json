@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import deque\n\ndef is_nested(string):\n    # We need to determine if there exists a valid subsequence of brackets\n    # (i.e., can pick indices increasing) that forms a balanced bracket string\n    # in which at least one bracket is nested, meaning there exists at least\n    # one '[' whose matching ']' encloses another matched pair.\n    #\n    # Observations:\n    # - A nested structure requires a pattern like '[' ... '[' ... ']' ... ']'\n    #   chosen as subsequence with indices i<j<k<l where s[i]='[', s[j]='[', s[k]=']', s[l]=']'.\n    # - We can ask whether there exist two '[' before two ']' in interleaving order so\n    #   that we can match them as nested. More generally, nested requires at least\n    #   depth 2 in some balanced subsequence.\n    #\n    # Approach:\n    # - Greedily try to build the longest balanced subsequence while tracking max depth.\n    # - Equivalent to scanning the string and treating each '[' as push to a counter,\n    #   and each ']' as pop if there's an available unmatched '[' earlier (we can skip\n    #   unmatched ']' ). This greedy constructs a maximum-depth valid subsequence.\n    # - If at any point the current depth reaches 2, we can return True.\n    #\n    # Implementation:\n    # - Count available opens (opens_available). For each char:\n    #   - If '[', increment opens_available and update max depth.\n    #   - If ']' and opens_available>0, consume one open (opens_available -=1).\n    #   - Track current depth as number of opens currently unmatched in the subsequence.\n    # Note: This greedy is correct because we can always choose to include a '[' to\n    # increase potential nesting, and include a ']' as soon as possible to close the\n    # most recent '[', mimicking stack matching for subsequence.\n    #\n    # Time O(n), space O(1).\n    depth = 0\n    for ch in string:\n        if ch == '[':\n            depth += 1\n            if depth >= 2:\n                return True\n        else:  # ch == ']'\n            if depth > 0:\n                depth -= 1\n            # else unmatched ']' skipped\n    return False\n\n# Optional quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"[[]]\", True),\n        (\"[]]]]]]][[[[[]\", False),\n        (\"[][]\", False),\n        (\"[]\", False),\n        (\"[[][]]\", True),\n        (\"[[]][[\", True),\n    ]\n    for s, exp in tests:\n        print(s, is_nested(s), exp)",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

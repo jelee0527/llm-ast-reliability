@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__claude_model__basic__r4.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def is_nested(string):\n    opening = []\n    closing = []\n    \n    for i, char in enumerate(string):\n        if char == '[':\n            opening.append(i)\n        else:\n            closing.append(i)\n    \n    # We need at least 2 opening and 2 closing brackets\n    # and they must form a valid nested pattern\n    # i.e., we need [[ ]] pattern somewhere\n    \n    # Count valid pairs using stack\n    stack = []\n    pairs = []\n    \n    for i, char in enumerate(string):\n        if char == '[':\n            stack.append(i)\n        elif char == ']' and stack:\n            pairs.append((stack.pop(), i))\n    \n    # Check if any pair is nested within another pair\n    for i in range(len(pairs)):\n        for j in range(len(pairs)):\n            if i != j:\n                # Check if pair i is nested inside pair j\n                if pairs[j][0] < pairs[i][0] and pairs[i][1] < pairs[j][1]:\n                    return True\n    \n    return False",
+  "metrics": {
+    "total_nodes": 185,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.059459,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

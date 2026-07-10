@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of non-negative integers by number of 1s in binary representation (ascending).\n    For same count, sort by decimal value ascending.\n    Negative numbers are handled by their two's complement in Python's bin; to match kata examples,\n    treat negatives by their signed decimal values only (i.e., sort normally).\n    \"\"\"\n    # For non-negative numbers, key is (bitcount, value).\n    # For negatives, example shows simply sorting by value ascending when all negatives present.\n    # To handle mixed negatives and non-negatives robustly, define bitcount for n>=0 as popcount(n),\n    # and for n<0 use bitcount of abs(n) (or possibly treat as 0); but examples only use all-negative list.\n    def bitcount(n: int) -> int:\n        return n.bit_count() if n >= 0 else abs(n).bit_count()\n    return sorted(arr, key=lambda x: (bitcount(x), x))",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "sort_array",
+      "bitcount"
+    ]
+  }
+}

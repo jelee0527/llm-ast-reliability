@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = ''.join(paren_string.split())\n    groups: List[str] = []\n    depth = 0\n    start = None\n    for i, ch in enumerate(s):\n        if ch == '(':\n            if depth == 0:\n                start = i\n            depth += 1\n        elif ch == ')':\n            depth -= 1\n            if depth < 0:\n                raise ValueError(\"Unbalanced parentheses: too many closing )\")\n            if depth == 0:\n                # start must not be None here\n                groups.append(s[start:i+1])\n                start = None\n        else:\n            # ignore other characters or raise? Problem states only parentheses and spaces; ignore others.\n            continue\n    if depth != 0:\n        raise ValueError(\"Unbalanced parentheses: too many opening (\")\n    return groups\n\nif __name__ == \"__main__\":\n    # simple tests\n    print(separate_paren_groups('( ) (( )) (( )( ))'))  # ['()', '(())', '(()())']\n    print(separate_paren_groups('()()'))               # ['()', '()']\n    print(separate_paren_groups(' ( ( ) ) '))          # ['(())']",
+  "metrics": {
+    "total_nodes": 176,
+    "ast_depth": 13,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.068182,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

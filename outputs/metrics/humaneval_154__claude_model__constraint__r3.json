@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def cycpattern_check(a, b):\n    n = len(b)\n    for i in range(n):\n        rotation = b[i:] + b[:i]\n        if rotation in a:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.078431,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

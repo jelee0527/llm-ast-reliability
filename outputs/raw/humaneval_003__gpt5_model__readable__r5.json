@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_003",
+  "task_id": "HumanEval/3",
+  "problem_name": "Below Zero",
+  "entry_point": "below_zero",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:26:23.182665+00:00",
+  "elapsed_seconds": 2.837,
+  "official_prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\"You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Detect if at any point the balance falls below zero. Return True when it does,\n    otherwise return False.\n    \"\"\"\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n\n\n# Simple self-tests when run as a script\nif __name__ == \"__main__\":\n    assert below_zero([1, 2, 3]) is False\n    assert below_zero([1, 2, -4, 5]) is True\n    assert below_zero([]) is False\n    assert below_zero([-1]) is True\n    assert below_zero([5, -3, -2]) is False\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\"You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Detect if at any point the balance falls below zero. Return True when it does,\n    otherwise return False.\n    \"\"\"\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n\n\n# Simple self-tests when run as a script\nif __name__ == \"__main__\":\n    assert below_zero([1, 2, 3]) is False\n    assert below_zero([1, 2, -4, 5]) is True\n    assert below_zero([]) is False\n    assert below_zero([-1]) is True\n    assert below_zero([5, -3, -2]) is False\n    print(\"All tests passed.\")"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_053__claude_model__optimized__r2.json",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def add(x: int, y: int):\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    return x + y",
+  "metrics": {
+    "total_nodes": 18,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "add"
+    ]
+  }
+}

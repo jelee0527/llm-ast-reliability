@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:49:37.822774+00:00",
+  "elapsed_seconds": 5.865,
+  "official_prompt": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute the n-th element of the Fib4 sequence without recursion.\n\n    Definitions:\n      fib4(0) = 0\n      fib4(1) = 0\n      fib4(2) = 2\n      fib4(3) = 0\n      for n >= 4: fib4(n) = fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4)\n\n    Uses an iterative approach with constant memory.\n\n    Args:\n      n: non-negative integer index\n\n    Returns:\n      The integer value of fib4(n)\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Maintain last four values: f0 = fib4(i-4), f1 = fib4(i-3), f2 = fib4(i-2), f3 = fib4(i-1)\n    f0, f1, f2, f3 = 0, 0, 2, 0\n\n    for i in range(4, n + 1):\n        current = f3 + f2 + f1 + f0\n        # shift window\n        f0, f1, f2, f3 = f1, f2, f3, current\n\n    return f3\n\n# Quick sanity tests when run as a script\nif __name__ == \"__main__\":\n    test_values = [0,1,2,3,4,5,6,7,8,9,10]\n    for t in test_values:\n        print(f\"fib4({t}) = {fib4(t)}\")",
+  "generated_code": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute the n-th element of the Fib4 sequence without recursion.\n\n    Definitions:\n      fib4(0) = 0\n      fib4(1) = 0\n      fib4(2) = 2\n      fib4(3) = 0\n      for n >= 4: fib4(n) = fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4)\n\n    Uses an iterative approach with constant memory.\n\n    Args:\n      n: non-negative integer index\n\n    Returns:\n      The integer value of fib4(n)\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Maintain last four values: f0 = fib4(i-4), f1 = fib4(i-3), f2 = fib4(i-2), f3 = fib4(i-1)\n    f0, f1, f2, f3 = 0, 0, 2, 0\n\n    for i in range(4, n + 1):\n        current = f3 + f2 + f1 + f0\n        # shift window\n        f0, f1, f2, f3 = f1, f2, f3, current\n\n    return f3\n\n# Quick sanity tests when run as a script\nif __name__ == \"__main__\":\n    test_values = [0,1,2,3,4,5,6,7,8,9,10]\n    for t in test_values:\n        print(f\"fib4({t}) = {fib4(t)}\")"
+}

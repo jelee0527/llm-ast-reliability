@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:36:57.294029+00:00",
+  "elapsed_seconds": 4.2,
+  "official_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n    \"\"\"\n    if not arr:\n        return None\n    # If any element is zero, the product of signs is zero -> whole result zero\n    for x in arr:\n        if x == 0:\n            return 0\n    # Determine product of signs: -1 for negative count odd, else 1\n    neg_count = sum(1 for x in arr if x < 0)\n    sign_prod = -1 if (neg_count % 2 == 1) else 1\n    # Sum of magnitudes\n    mag_sum = sum(abs(x) for x in arr)\n    return sign_prod * mag_sum\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6  # three negatives -> negative\n    assert prod_signs([1, 2, 3]) == 6\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n    \"\"\"\n    if not arr:\n        return None\n    # If any element is zero, the product of signs is zero -> whole result zero\n    for x in arr:\n        if x == 0:\n            return 0\n    # Determine product of signs: -1 for negative count odd, else 1\n    neg_count = sum(1 for x in arr if x < 0)\n    sign_prod = -1 if (neg_count % 2 == 1) else 1\n    # Sum of magnitudes\n    mag_sum = sum(abs(x) for x in arr)\n    return sign_prod * mag_sum\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6  # three negatives -> negative\n    assert prod_signs([1, 2, 3]) == 6\n    print(\"All tests passed.\")"
+}

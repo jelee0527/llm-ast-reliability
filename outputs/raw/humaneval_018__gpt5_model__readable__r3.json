@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:51:39.089604+00:00",
+  "elapsed_seconds": 4.189,
+  "official_prompt": "\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterator\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not substring:\n        # If substring is empty, define occurrences as 0 (alternatively could be len(string)+1).\n        return 0\n\n    count = 0\n    start = 0\n    # Use str.find in a loop, advancing start by 1 to allow overlaps\n    while True:\n        idx = string.find(substring, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # allow overlapping matches by moving start by 1\n    return count\n\n# quick simple self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", \"a\", 0),\n        (\"aaa\", \"a\", 3),\n        (\"aaaa\", \"aa\", 3),\n        (\"abababa\", \"aba\", 3),  # overlapping: positions 0,2,4\n        (\"aaaaa\", \"aa\", 4),     # positions 0,1,2,3\n        (\"abc\", \"\", 0),\n    ]\n    for s, sub, expected in tests:\n        result = how_many_times(s, sub)\n        print(f\"how_many_times({s!r}, {sub!r}) = {result} (expected {expected})\")",
+  "generated_code": "from typing import Iterator\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not substring:\n        # If substring is empty, define occurrences as 0 (alternatively could be len(string)+1).\n        return 0\n\n    count = 0\n    start = 0\n    # Use str.find in a loop, advancing start by 1 to allow overlaps\n    while True:\n        idx = string.find(substring, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # allow overlapping matches by moving start by 1\n    return count\n\n# quick simple self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", \"a\", 0),\n        (\"aaa\", \"a\", 3),\n        (\"aaaa\", \"aa\", 3),\n        (\"abababa\", \"aba\", 3),  # overlapping: positions 0,2,4\n        (\"aaaaa\", \"aa\", 4),     # positions 0,1,2,3\n        (\"abc\", \"\", 0),\n    ]\n    for s, sub, expected in tests:\n        result = how_many_times(s, sub)\n        print(f\"how_many_times({s!r}, {sub!r}) = {result} (expected {expected})\")"
+}

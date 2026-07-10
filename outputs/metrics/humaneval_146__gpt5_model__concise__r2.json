@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_146__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    def first_last_odd(n: int) -> bool:\n        s = str(abs(n))\n        return int(s[0]) % 2 == 1 and int(s[-1]) % 2 == 1\n\n    return sum(1 for x in nums if x > 10 and first_last_odd(x))",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.022727,
+    "function_names": [
+      "specialFilter",
+      "first_last_odd"
+    ]
+  }
+}

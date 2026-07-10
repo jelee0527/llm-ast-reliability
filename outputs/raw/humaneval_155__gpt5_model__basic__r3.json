@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:57:10.167104+00:00",
+  "elapsed_seconds": 2.945,
+  "official_prompt": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n\n",
+  "raw_response": "from typing import Tuple\n\ndef even_odd_count(num: int) -> Tuple[int, int]:\n    \"\"\"Given an integer, return a tuple with the number of even and odd digits respectively.\n\n    Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Work with absolute value to ignore sign\n    n = abs(int(num))\n    # If number is 0, it's a single even digit\n    if n == 0:\n        return (1, 0)\n    evens = 0\n    odds = 0\n    while n > 0:\n        d = n % 10\n        if d % 2 == 0:\n            evens += 1\n        else:\n            odds += 1\n        n //= 10\n    return (evens, odds)",
+  "generated_code": "from typing import Tuple\n\ndef even_odd_count(num: int) -> Tuple[int, int]:\n    \"\"\"Given an integer, return a tuple with the number of even and odd digits respectively.\n\n    Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Work with absolute value to ignore sign\n    n = abs(int(num))\n    # If number is 0, it's a single even digit\n    if n == 0:\n        return (1, 0)\n    evens = 0\n    odds = 0\n    while n > 0:\n        d = n % 10\n        if d % 2 == 0:\n            evens += 1\n        else:\n            odds += 1\n        n //= 10\n    return (evens, odds)"
+}

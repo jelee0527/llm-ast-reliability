@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"Return the largest even integer in the inclusive range [x, y].\n    If no such integer exists or inputs are invalid (non-positive or x>y),\n    return -1.\n    \"\"\"\n    # Validate inputs: they should be numbers and x <= y\n    try:\n        x_val = float(x)\n        y_val = float(y)\n    except (TypeError, ValueError):\n        return -1\n\n    if x_val > y_val:\n        return -1\n\n    # Find the largest integer <= y\n    max_int_at_most_y = math.floor(y_val)\n\n    # Adjust to largest even integer <= max_int_at_most_y\n    if max_int_at_most_y % 2 != 0:\n        max_even = max_int_at_most_y - 1\n    else:\n        max_even = max_int_at_most_y\n\n    # Ensure max_even is >= ceil(x)\n    min_int_at_least_x = math.ceil(x_val)\n    if max_even >= min_int_at_least_x and max_even >= 0:\n        # The problem statement mentions \"positive numbers x and y\",\n        # but examples allow positive ranges. Return -1 if result is not within [x,y].\n        if max_even >= x_val and max_even <= y_val:\n            return int(max_even)\n\n    return -1\n\n\n# Example quick tests (can be removed if only function is required)\nif __name__ == \"__main__\":\n    tests = [\n        (12, 15),\n        (13, 12),\n        (2.1, 2.9),\n        (3, 3),\n        (4, 4),\n        (0, 5),\n        (-2, 2),\n        (5, 10),\n        (5.5, 7.2),\n    ]\n    for a, b in tests:\n        print(a, b, \"->\", choose_num(a, b))",
+  "metrics": {
+    "total_nodes": 203,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.054187,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

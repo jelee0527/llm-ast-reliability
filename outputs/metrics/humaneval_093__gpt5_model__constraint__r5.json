@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message and encodes it by:\n    - swapping case of all letters\n    - replacing all vowels in the message with the letter that appears 2 places ahead\n      of that vowel in the English alphabet (preserving case after case swap)\n    Assume message contains only letters and spaces (as per examples).\n    \"\"\"\n    # Define vowel mappings for lowercase original vowels -> vowel +2 in alphabet\n    # Vowels: a, e, i, o, u\n    # +2: a->c, e->g, i->k, o->q, u->w\n    vowel_map_lower = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w'}\n    # For uppercase originals, mapping to uppercase result after shift\n    vowel_map_upper = {k.upper(): v.upper() for k, v in vowel_map_lower.items()}\n\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # Swap case first\n            swapped = ch.swapcase()\n            # Determine original vowel status: we need to know if original ch was vowel\n            # as per specification \"replaces all vowels in the message with the letter that appears 2 places ahead\"\n            # That implies we check original character for being a vowel (case-insensitive)\n            if ch in vowel_map_lower:\n                # original was lowercase vowel\n                # After swap, swapped is uppercase of vowel; we need to place mapped letter preserving swapped case\n                mapped = vowel_map_lower[ch]  # lowercase mapped letter\n                # After swap original lowercase -> swapped is uppercase, so produce uppercase mapped\n                result_chars.append(mapped.upper())\n            elif ch in vowel_map_upper:\n                # original was uppercase vowel\n                mapped = vowel_map_upper[ch]  # uppercase mapped letter\n                # After swap original uppercase -> swapped is lowercase, so produce lowercase mapped\n                result_chars.append(mapped.lower())\n            else:\n                # Not a vowel in original: just use swapped character\n                result_chars.append(swapped)\n        else:\n            # Non-alpha characters (e.g., space) pass through unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(encode('test'))               # Expected 'TGST'\n    print(encode('This is a message'))  # Expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 171,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.035088,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_022__claude_model__concise__r3.json",
+  "problem_id": "humaneval_022",
+  "task_id": "HumanEval/22",
+  "problem_name": "Filter Integers",
+  "entry_point": "filter_integers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [v for v in values if isinstance(v, int)]",
+  "metrics": {
+    "total_nodes": 35,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.028571,
+    "function_names": [
+      "filter_integers"
+    ]
+  }
+}

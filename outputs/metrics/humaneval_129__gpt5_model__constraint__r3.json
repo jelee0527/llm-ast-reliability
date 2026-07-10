@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from collections import deque\n\ndef minPath(grid, k):\n    \"\"\"\n    Returns the lexicographically smallest sequence of length k obtainable by\n    walking on grid (can revisit cells), starting at any cell, moving only\n    to orthogonally adjacent cells. Grid contains unique integers 1..N*N.\n    \"\"\"\n    n = len(grid)\n    if n == 0 or k <= 0:\n        return []\n    # Map value to position for quick lookup of minimal starting cells\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Precompute neighbors for each cell\n    neighbors = {}\n    for i in range(n):\n        for j in range(n):\n            nbrs = []\n            if i > 0: nbrs.append((i-1, j))\n            if i < n-1: nbrs.append((i+1, j))\n            if j > 0: nbrs.append((i, j-1))\n            if j < n-1: nbrs.append((i, j+1))\n            neighbors[(i, j)] = nbrs\n\n    # For lexicographic minimal sequence, we perform level-by-level BFS-like expansion:\n    # At step t we maintain the set of reachable positions that can yield the minimal\n    # prefix determined so far. Start by choosing the minimal value(s) among all cells.\n    # But grid has unique values so minimal starting cell is unique.\n    # We'll iteratively choose next value by exploring neighbors of current candidate positions,\n    # selecting the minimal cell value among them, and filtering positions to those with that value.\n    # This greedy is correct because we compare prefixes lexicographically and movement is local.\n    # Initialize current positions as the location(s) of minimal cell value present (unique).\n    # However it's possible that staying in place is allowed (visiting same cell consecutively),\n    # but movement must be to a neighbor each step; staying is allowed only if neighbor includes self,\n    # which it does not. The path counts k cells visited, so first cell is starting cell.\n    # We must consider all possible starting positions; choose the one with minimal value.\n    # There is unique answer per problem statement.\n\n    # Find minimal value and its position\n    min_val = min(pos.keys())\n    start_pos = pos[min_val]\n    result = [min_val]\n    current_positions = {start_pos}\n\n    # For steps 2..k\n    for step in range(1, k):\n        # Collect all neighbor positions reachable from current_positions\n        cand_positions = set()\n        for p in current_positions:\n            for q in neighbors[p]:\n                cand_positions.add(q)\n        # From candidates, find minimal cell value\n        min_candidate_val = None\n        for (i, j) in cand_positions:\n            v = grid[i][j]\n            if min_candidate_val is None or v < min_candidate_val:\n                min_candidate_val = v\n        # If there are no candidates (shouldn't happen for n>=1 and k constraints), break\n        if min_candidate_val is None:\n            break\n        # Filter positions to only those with that minimal value\n        next_positions = set()\n        for (i, j) in cand_positions:\n            if grid[i][j] == min_candidate_val:\n                next_positions.add((i, j))\n        result.append(min_candidate_val)\n        current_positions = next_positions\n\n    return result\n\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expected [1,2,1] per prompt example\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expected [1]",
+  "metrics": {
+    "total_nodes": 440,
+    "ast_depth": 11,
+    "branch_count": 9,
+    "loop_count": 9,
+    "function_count": 1,
+    "control_flow_count": 21,
+    "control_flow_ratio": 0.047727,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_147__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "TypeError",
+  "error_message": "'>=' not supported between instances of 'function' and 'int'",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 3, in check\n  File \"<string>\", line 24, in get_max_triples\n  File \"<string>\", line 18, in c3\nTypeError: '>=' not supported between instances of 'function' and 'int'\n"
+}

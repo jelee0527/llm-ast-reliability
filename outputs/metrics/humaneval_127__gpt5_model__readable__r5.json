@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_127__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Tuple\n\ndef intersection(interval1: Tuple[int, int], interval2: Tuple[int, int]) -> str:\n    \"\"\"\n    Determine whether the length of the intersection of two closed integer intervals\n    is a prime number. Intervals are given as (start, end) with start <= end.\n    Return \"YES\" if the intersection length is prime, otherwise \"NO\".\n    If they don't intersect, return \"NO\".\n    \"\"\"\n    a1, b1 = interval1\n    a2, b2 = interval2\n\n    # Compute intersection boundaries\n    start = max(a1, a2)\n    end = min(b1, b2)\n\n    # If no intersection\n    if start > end:\n        return \"NO\"\n\n    # For closed intervals of integers [start, end], the length (number of integers) is end - start\n    # The problem's examples indicate they mean length = end - start (e.g., (2,3) -> length 1).\n    length = end - start\n\n    # Length must be at least 2 to be prime (primes are >= 2)\n    if length < 2:\n        return \"NO\"\n\n    # Primality test for non-negative integer length\n    if length % 2 == 0:\n        return \"NO\" if length != 2 else \"YES\"\n\n    limit = int(math.isqrt(length))\n    for d in range(3, limit + 1, 2):\n        if length % d == 0:\n            return \"NO\"\n    return \"YES\"",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.070968,
+    "function_names": [
+      "intersection"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_133__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Iterable\n\ndef sum_squares(lst: Iterable[float]) -> int:\n    \"\"\"Return sum of squares after applying ceiling to each element.\"\"\"\n    return sum((math.ceil(x))**2 for x in lst)",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='math')]),\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Iterable')],\n      level=0),\n    FunctionDef(\n      name='sum_squares',\n      args=arguments(\n        args=[\n          arg(\n            arg='lst',\n            annotation=Subscript(\n              value=Name(id='Iterable', ctx=Load()),\n              slice=Name(id='float', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return sum of squares after applying ceiling to each element.')),\n        Return(\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=BinOp(\n                  left=Call(\n                    func=Attribute(\n                      value=Name(id='math', ctx=Load()),\n                      attr='ceil',\n                      ctx=Load()),\n                    args=[\n                      Name(id='x', ctx=Load())]),\n                  op=Pow(),\n                  right=Constant(value=2)),\n                generators=[\n                  comprehension(\n                    target=Name(id='x', ctx=Store()),\n                    iter=Name(id='lst', ctx=Load()),\n                    is_async=0)])]))],\n      returns=Name(id='int', ctx=Load()))])"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__claude_model__basic__r1.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    min_diff = float('inf')\n    result = (0, 0)\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            diff = abs(numbers[i] - numbers[j])\n            if diff < min_diff:\n                min_diff = diff\n                result = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n    return result",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.029851,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    eaten = min(need, remaining)\n    total_eaten = number + eaten\n    left = remaining - eaten\n    return [total_eaten, left]",
+  "metrics": {
+    "total_nodes": 41,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02439,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

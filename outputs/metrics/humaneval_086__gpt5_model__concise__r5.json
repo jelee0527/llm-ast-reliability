@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Reorder characters within each contiguous non-space segment by ASCII ascending,\n    preserving spaces and order of segments.\n    \"\"\"\n    # Split by spaces but keep spaces in result using regex to capture spaces\n    parts = re.split(r'(\\s+)', s)\n    out = []\n    for p in parts:\n        if p == '' or p.isspace():\n            out.append(p)\n        else:\n            out.append(''.join(sorted(p)))\n    return ''.join(out)",
+  "metrics": {
+    "total_nodes": 72,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

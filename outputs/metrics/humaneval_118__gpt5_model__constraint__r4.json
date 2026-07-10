@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef get_closest_vowel(word: str) -> str:\n    \"\"\"You are given a word. Your task is to find the closest vowel that stands between\n    two consonants from the right side of the word (case sensitive).\n\n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition.\n\n    You may assume that the given string contains English letter only.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n\n    vowels: Set[str] = set(\"aeiouAEIOU\")\n\n    # We need a vowel that is between two consonants: so at position i where 0 < i < len-1,\n    # and word[i] is vowel, word[i-1] and word[i+1] are consonants (i.e., letters but not vowels).\n    # We search from right to left and return the first matching vowel (preserve case).\n    n = len(word)\n    for i in range(n - 2, 0, -1):  # i from n-2 down to 1 inclusive\n        ch = word[i]\n        if ch in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if left not in vowels and right not in vowels:\n                return ch\n    return \"\"\n\n\n# Example quick tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"yogurt\", \"u\"),\n        (\"FULL\", \"U\"),\n        (\"quick\", \"\"),\n        (\"ab\", \"\"),\n        (\"aeb\", \"\"),  # vowel at pos1 but right is consonant and left is vowel -> not valid\n        (\"cabdE\", \"a\"),  # 'a' between c and b\n        (\"bAx\", \"A\"),\n    ]\n    for w, exp in tests:\n        res = get_closest_vowel(w)\n        print(w, res, \"OK\" if res == exp else f\"EXPECTED {exp}\")",
+  "metrics": {
+    "total_nodes": 202,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.049505,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

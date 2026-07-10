@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:21:40.275049+00:00",
+  "elapsed_seconds": 3.122,
+  "official_prompt": "\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef solution(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    Positions are zero-based (i.e., index 0 is even).\n    \"\"\"\n    total = 0\n    for idx, val in enumerate(lst):\n        if idx % 2 == 0 and val % 2 != 0:\n            total += val\n    return total\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(solution([5, 8, 7, 1]))    # 12\n    print(solution([3, 3, 3, 3, 3])) # 9\n    print(solution([30, 13, 24, 321])) # 0",
+  "generated_code": "from typing import List\n\ndef solution(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    Positions are zero-based (i.e., index 0 is even).\n    \"\"\"\n    total = 0\n    for idx, val in enumerate(lst):\n        if idx % 2 == 0 and val % 2 != 0:\n            total += val\n    return total\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(solution([5, 8, 7, 1]))    # 12\n    print(solution([3, 3, 3, 3, 3])) # 9\n    print(solution([30, 13, 24, 321])) # 0"
+}

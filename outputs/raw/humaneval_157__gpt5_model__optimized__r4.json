@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:02:21.085820+00:00",
+  "elapsed_seconds": 3.43,
+  "official_prompt": "\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or \n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or \n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''\n\n",
+  "raw_response": "import math\n\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    '''\n    # Validate inputs are numbers\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return False\n\n    # All sides must be positive\n    if any(s <= 0 or math.isinf(s) or math.isnan(s) for s in sides):\n        return False\n\n    sides.sort()\n    x, y, z = sides  # x <= y <= z\n\n    # Triangle inequality: sum of two smaller sides > largest side\n    if x + y <= z:\n        return False\n\n    # Check Pythagorean theorem with tolerance for floating point\n    return math.isclose(x * x + y * y, z * z, rel_tol=1e-9, abs_tol=1e-12)",
+  "generated_code": "import math\n\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    '''\n    # Validate inputs are numbers\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return False\n\n    # All sides must be positive\n    if any(s <= 0 or math.isinf(s) or math.isnan(s) for s in sides):\n        return False\n\n    sides.sort()\n    x, y, z = sides  # x <= y <= z\n\n    # Triangle inequality: sum of two smaller sides > largest side\n    if x + y <= z:\n        return False\n\n    # Check Pythagorean theorem with tolerance for floating point\n    return math.isclose(x * x + y * y, z * z, rel_tol=1e-9, abs_tol=1e-12)"
+}

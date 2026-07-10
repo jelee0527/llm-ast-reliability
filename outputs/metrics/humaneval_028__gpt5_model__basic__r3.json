@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_028__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_028",
+  "task_id": "HumanEval/28",
+  "problem_name": "Concatenate",
+  "entry_point": "concatenate",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    # Validate input: ensure all items are strings\n    if not isinstance(strings, list):\n        raise TypeError(\"Input must be a list of strings\")\n    for i, s in enumerate(strings):\n        if not isinstance(s, str):\n            raise TypeError(f\"All items must be strings; item at index {i} is {type(s).__name__}\")\n    return \"\".join(strings)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.076087,
+    "function_names": [
+      "concatenate"
+    ]
+  }
+}

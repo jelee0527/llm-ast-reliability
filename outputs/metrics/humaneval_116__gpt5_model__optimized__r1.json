@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_116__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of integers by number of 1-bits in their binary representation (ascending).\n    For equal counts, sort by numeric value ascending.\n\n    Non-negative and negative integers are allowed; for negatives, count bits of their\n    absolute value (as typical interpretation for these kata-type problems) — but examples\n    suggest sorting negatives by value only when counts equal. To be safe, count ones in\n    the binary representation of the absolute value.\n    \"\"\"\n    # Use tuple key: (popcount(abs(x)), x)\n    # Python 3.8+ has int.bit_count() which is efficient.\n    return sorted(arr, key=lambda x: (abs(x).bit_count(), x))",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02381,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

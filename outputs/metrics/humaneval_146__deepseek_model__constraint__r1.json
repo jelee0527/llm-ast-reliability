@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_146__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def specialFilter(nums):\n    def first_and_last_odd(num):\n        s = str(abs(num))\n        first_digit = int(s[0])\n        last_digit = int(s[-1])\n        return first_digit % 2 == 1 and last_digit % 2 == 1\n\n    count = 0\n    for num in nums:\n        if num > 10 and first_and_last_odd(num):\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 91,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.043956,
+    "function_names": [
+      "specialFilter",
+      "first_and_last_odd"
+    ]
+  }
+}

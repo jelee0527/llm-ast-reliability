@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def is_nested(string):\n    opening = []\n    closing = []\n    for i, ch in enumerate(string):\n        if ch == '[':\n            opening.append(i)\n        else:\n            closing.append(i)\n    \n    # We need a valid subsequence where at least one bracket is nested\n    # This means we need at least two '[' before two ']' in order\n    # i.e., pattern like [[ ]] exists as subsequence\n    \n    if len(opening) < 2 or len(closing) < 2:\n        return False\n    \n    # Check if there exist indices i1 < i2 < j1 < j2 where\n    # opening[i1], opening[i2] are '[' positions and closing[j1], closing[j2] are ']' positions\n    # Actually we need: open1 < open2 < close1 < close2 (not nested) \n    # OR open1 < open2 < close2 < close1 (nested - this is what we want)\n    # Wait, nested means: open1 < open2 < close2 < close1\n    # But we just need any valid nested subsequence\n    \n    # Simpler: we need open1 < open2 < close1 where open2 < close1\n    # i.e., find two '[' and one ']' such that '[' '[' ']' forms nested start\n    # Actually for full nesting: open1 < open2 < close2 < close1\n    \n    # Use greedy: find the smallest two opening brackets, then check if \n    # there are two closing brackets that come after the second opening\n    # and at least one closing comes before another closing that's after first opening\n    \n    # Simplest valid nested check: does there exist open1 < open2 < close1 < close2\n    # where open1,open2 are '[' and close1,close2 are ']'?\n    # No wait - nested is open1 < open2 < close2 < close1\n    \n    # Let me think again: [[]] -> open1=0, open2=1, close1=2, close2=3\n    # nested means open1 < open2 < close2 < close1? No that's wrong indices\n    # [[]] : positions 0,1,2,3 -> '[','[',']',']'\n    # open1=0 < open2=1 < close1=2 < close2=3 and open2 < close1 means bracket at 1 is closed by 2\n    # and bracket at 0 is closed by 3 -> nested\n    \n    # So we need: two '[' at positions a < b, and two ']' at positions c < d\n    # such that a < b < c < d (this gives [[...]] pattern - nested)\n    # OR a < c < b < d (this gives [[]...] - also nested if b < d)\n    \n    # Actually the simplest sufficient condition: \n    # find if there's a '[' followed by another '[' followed by ']' followed by ']'\n    # as a subsequence -> that's a < b < c < d with a,b = '[' and c,d = ']'\n    \n    # This is equivalent to: opening[0] < opening[1] < closing[0] < closing[1]\n    # No - we need opening[i] < opening[j] < closing[k] < closing[l]\n    # The best case: take the first two openings and last two closings\n    \n    # Take opening[0], opening[1] as the two '[', \n    # then find two ']' both after opening[1]\n    \n    count = 0\n    second_open = opening[1]  # second '[' position\n    for c in closing:\n        if c > second_open:\n            count += 1\n        if count >= 2:\n            return True\n    \n    return False",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.083333,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

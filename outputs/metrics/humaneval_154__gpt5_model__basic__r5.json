@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import *\n    \ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings\")\n    # If b is empty, consider it a substring\n    if b == \"\":\n        return True\n    # If b longer than a, it's still possible (substring must fit), so quick reject\n    if len(b) > len(a):\n        return False\n    # Generate all rotations of b and check if any is in a\n    doubled = b + b\n    seen = set()\n    n = len(b)\n    for i in range(n):\n        rot = doubled[i:i+n]\n        if rot in seen:\n            continue\n        seen.add(rot)\n        if rot in a:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.086957,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

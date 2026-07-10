@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_118__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef get_closest_vowel(word: str) -> str:\n    \"\"\"\n    You are given a word. Your task is to find the closest vowel that stands between \n    two consonants from the right side of the word (case sensitive).\n\n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition. \n\n    You may assume that the given string contains English letter only.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n    vowels_lower: Set[str] = set(\"aeiou\")\n    vowels_upper: Set[str] = set(\"AEIOU\")\n    # Helper to check vowel\n    def is_vowel(ch: str) -> bool:\n        return ch in vowels_lower or ch in vowels_upper\n\n    # Scan from right to left, but vowel must have consonant on both sides.\n    # indices 1..len-2 are valid centers\n    for i in range(len(word) - 2, 0, -1):  # start at len-2 down to 1\n        ch = word[i]\n        if is_vowel(ch):\n            left = word[i - 1]\n            right = word[i + 1]\n            if (not is_vowel(left)) and (not is_vowel(right)):\n                return ch\n    return \"\"\n\n\n# Quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        \"yogurt\": \"u\",\n        \"FULL\": \"U\",\n        \"quick\": \"\",\n        \"ab\": \"\",\n        \"aba\": \"b\",  # note: this is not a vowel; keep for checking but irrelevant\n    }\n    # Adjusted tests to those expected by problem statement\n    print(get_closest_vowel(\"yogurt\"))  # u\n    print(get_closest_vowel(\"FULL\"))    # U\n    print(get_closest_vowel(\"quick\"))   # \"\"\n    print(get_closest_vowel(\"ab\"))      # \"\"",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.043269,
+    "function_names": [
+      "get_closest_vowel",
+      "is_vowel"
+    ]
+  }
+}

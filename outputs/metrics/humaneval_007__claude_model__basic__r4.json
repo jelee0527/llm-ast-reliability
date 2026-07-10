@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_007__claude_model__basic__r4.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    return [s for s in strings if substring in s]",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "filter_by_substring"
+    ]
+  }
+}

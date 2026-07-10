@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def solve(s):\n    has_letter = any(c.isalpha() for c in s)\n    if not has_letter:\n        return s[::-1]\n    return ''.join(c.swapcase() if c.isalpha() else c for c in s)",
+  "metrics": {
+    "total_nodes": 59,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.067797,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

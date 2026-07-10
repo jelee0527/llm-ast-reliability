@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_092__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if all inputs are integers (no fractional part) and one equals sum of other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check numeric and integer-ness: allow int types and floats that are whole numbers\n    def is_whole_number(v):\n        if isinstance(v, int):\n            return True\n        if isinstance(v, float):\n            return math.isfinite(v) and v.is_integer()\n        return False\n\n    if not (is_whole_number(x) and is_whole_number(y) and is_whole_number(z)):\n        return False\n\n    # Convert to int for exact integer arithmetic\n    xi, yi, zi = int(x), int(y), int(z)\n\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)",
+  "metrics": {
+    "total_nodes": 139,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.057554,
+    "function_names": [
+      "any_int",
+      "is_whole_number"
+    ]
+  }
+}

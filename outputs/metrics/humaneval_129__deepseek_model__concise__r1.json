@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    directions = [(0,1),(0,-1),(1,0),(-1,0)]\n    # heap entries: (current_path_tuple, current_row, current_col)\n    # We'll store path as tuple for lexicographic comparison\n    heap = []\n    for i in range(n):\n        for j in range(n):\n            heapq.heappush(heap, (grid[i][j], i, j))\n    for step in range(1, k):\n        new_heap = []\n        while heap:\n            path, r, c = heapq.heappop(heap)\n            for dr, dc in directions:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n:\n                    new_path = path * 10 + grid[nr][nc] if isinstance(path, int) else path + (grid[nr][nc],)\n                    if isinstance(path, int):\n                        new_path = (path, grid[nr][nc])\n                    heapq.heappush(new_heap, (new_path, nr, nc))\n        heap = new_heap\n    best_path = heapq.heappop(heap)[0]\n    if isinstance(best_path, int):\n        return [best_path]\n    return list(best_path)",
+  "metrics": {
+    "total_nodes": 289,
+    "ast_depth": 14,
+    "branch_count": 4,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.038062,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

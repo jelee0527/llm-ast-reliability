@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from datetime import datetime\n\ndef valid_date(date):\n    \"\"\"Validate date string in format mm-dd-yyyy with given rules.\"\"\"\n    if not isinstance(date, str):\n        return False\n    if not date:\n        return False\n\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n\n    month_str, day_str, year_str = parts\n\n    # Disallow empty components and leading/trailing spaces\n    if not month_str or not day_str or not year_str:\n        return False\n    if month_str.strip() != month_str or day_str.strip() != day_str or year_str.strip() != year_str:\n        return False\n\n    # All components must be numeric (allow leading zeros)\n    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):\n        return False\n\n    try:\n        month = int(month_str)\n        day = int(day_str)\n        year = int(year_str)\n    except ValueError:\n        return False\n\n    # Months 1..12\n    if month < 1 or month > 12:\n        return False\n\n    # Years: allow any non-negative integer? The prompt doesn't restrict years, but common sense:\n    if year < 0:\n        return False\n\n    # Days per month based on rules given:\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        max_day = 31\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    elif month == 2:\n        max_day = 29\n    else:\n        return False\n\n    if day < 1 or day > max_day:\n        return False\n\n    # Ensure format mm-dd-yyyy: enforce two-digit month and day and four-digit year?\n    # The examples accept '3-11-2000' ? The prompt example uses '03-11-2000', so require month and day to be 2 digits and year 4 digits.\n    # To be strict to the stated format mm-dd-yyyy, enforce lengths.\n    if len(month_str) != 2 or len(day_str) != 2 or len(year_str) != 4:\n        return False\n\n    # Finally, ensure the string matches a valid calendar date when possible (e.g., Feb 29 allowed regardless of leap year per rules).\n    # According to rule 2 February allows up to 29, so we already accepted Feb 29 even on non-leap years.\n    return True",
+  "metrics": {
+    "total_nodes": 274,
+    "ast_depth": 9,
+    "branch_count": 14,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 27,
+    "control_flow_ratio": 0.09854,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

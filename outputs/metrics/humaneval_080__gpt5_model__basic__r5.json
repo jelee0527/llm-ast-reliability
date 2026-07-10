@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_happy(s: Any) -> bool:\n    \"\"\"You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n    \"\"\"\n    if not isinstance(s, str):\n        # If input isn't a string, it's not considered happy\n        return False\n    n = len(s)\n    if n < 3:\n        return False\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        # every three consecutive letters must be distinct\n        if a == b or b == c or a == c:\n            return False\n    return True\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"xyz\": True,\n        \"aba\": False,  # a and a separated by b -> fails\n        \"\": False,\n        \"ab\": False,\n        \"abcabc\": True,\n    }\n    for inp, expected in tests.items():\n        result = is_happy(inp)\n        print(f\"{inp!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Swap case of all letters, then replace all vowels in the message\n    with the letter that appears 2 places ahead of that vowel in the\n    English alphabet. Assume only letters and spaces/punctuation may be present.\n    \"\"\"\n    # Define vowel mapping for lowercase and uppercase after case swap.\n    # We process: first swap case, then for any vowel (a,e,i,o,u,A,E,I,O,U) replace by letter +2 ahead preserving case.\n    def shift_char(c):\n        # shift only letters; assume ASCII letters\n        if not c.isalpha():\n            return c\n        # determine vowel set (after case swap) and mapping\n        lower = c.lower()\n        if lower in ('a','e','i','o','u'):\n            # compute shifted letter two ahead in alphabet, preserving case\n            # 'a' -> 'c', 'y'->? not relevant since vowels only among a,e,i,o,u\n            base_ord = ord('a') if c.islower() else ord('A')\n            # compute zero-based index for letter\n            idx = ord(lower) - ord('a')\n            new_idx = (idx + 2) % 26\n            new_char = chr(new_idx + (ord('a') if c.islower() else ord('A')))\n            return new_char\n        return c\n\n    # First swap case\n    swapped = message.swapcase()\n    # Then replace vowels in swapped string\n    result_chars = []\n    for ch in swapped:\n        if ch.lower() in ('a','e','i','o','u') and ch.isalpha():\n            # preserve case: ch is already swapped, so check .isupper for case\n            is_upper = ch.isupper()\n            lower = ch.lower()\n            idx = ord(lower) - ord('a')\n            new_idx = (idx + 2) % 26\n            new_char = chr(new_idx + (ord('A') if is_upper else ord('a')))\n            result_chars.append(new_char)\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    # quick tests\n    print(encode('test'))  # expected 'TGST'\n    print(encode('This is a message'))  # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 261,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.045977,
+    "function_names": [
+      "encode",
+      "shift_char"
+    ]
+  }
+}

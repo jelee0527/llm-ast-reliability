@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__claude_model__readable__r1.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    flipped_characters = []\n    \n    for character in string:\n        if character.islower():\n            flipped_characters.append(character.upper())\n        elif character.isupper():\n            flipped_characters.append(character.lower())\n        else:\n            flipped_characters.append(character)\n    \n    return ''.join(flipped_characters)",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.057971,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

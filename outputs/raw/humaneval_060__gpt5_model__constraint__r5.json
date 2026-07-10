@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "problem_name": "Sum To N",
+  "entry_point": "sum_to_n",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:15:31.211271+00:00",
+  "elapsed_seconds": 10.249,
+  "official_prompt": "\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return the sum of integers from 1 to n inclusive.\n\n    Examples:\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n    # Validate input: expect a non-negative integer (n >= 1 per doc examples)\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 1:\n        # Decide behavior: for n == 0 return 0, for negative raise ValueError\n        if n == 0:\n            return 0\n        raise ValueError(\"n must be >= 1\")\n\n    # Use arithmetic series formula for deterministic and efficient result\n    return n * (n + 1) // 2\n\n\nif __name__ == \"__main__\":\n    # Basic self-test using the provided examples\n    tests = [30, 100, 5, 10, 1]\n    for t in tests:\n        print(f\"sum_to_n({t}) = {sum_to_n(t)}\")",
+  "generated_code": "from typing import Optional\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return the sum of integers from 1 to n inclusive.\n\n    Examples:\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n    # Validate input: expect a non-negative integer (n >= 1 per doc examples)\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 1:\n        # Decide behavior: for n == 0 return 0, for negative raise ValueError\n        if n == 0:\n            return 0\n        raise ValueError(\"n must be >= 1\")\n\n    # Use arithmetic series formula for deterministic and efficient result\n    return n * (n + 1) // 2\n\n\nif __name__ == \"__main__\":\n    # Basic self-test using the provided examples\n    tests = [30, 100, 5, 10, 1]\n    for t in tests:\n        print(f\"sum_to_n({t}) = {sum_to_n(t)}\")"
+}

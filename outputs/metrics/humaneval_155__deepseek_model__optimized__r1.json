@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_155__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def even_odd_count(num):\n    num = abs(num)\n    even = odd = 0\n    if num == 0:\n        return (1, 0)\n    while num > 0:\n        digit = num % 10\n        if digit % 2 == 0:\n            even += 1\n        else:\n            odd += 1\n        num //= 10\n    return (even, odd)",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.067568,
+    "function_names": [
+      "even_odd_count"
+    ]
+  }
+}

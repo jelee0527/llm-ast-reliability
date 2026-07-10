@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_096__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def count_up_to(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    result = []\n    for candidate in range(2, n):\n        if is_prime(candidate):\n            result.append(candidate)\n    return result",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.115385,
+    "function_names": [
+      "count_up_to",
+      "is_prime"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    # Calculate how many carrots we can actually eat\n    carrots_to_eat = min(need, remaining)\n    \n    # Update total eaten and remaining carrots\n    total_eaten = number + carrots_to_eat\n    left_after = remaining - carrots_to_eat\n    \n    return [total_eaten, left_after]",
+  "metrics": {
+    "total_nodes": 41,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02439,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

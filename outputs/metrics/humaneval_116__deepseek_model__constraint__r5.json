@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def sort_array(arr):\n    def count_ones(n):\n        count = 0\n        if n < 0:\n            n = -n\n        while n:\n            count += n & 1\n            n >>= 1\n        return count\n    \n    return sorted(arr, key=lambda x: (count_ones(x), x))",
+  "metrics": {
+    "total_nodes": 63,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.063492,
+    "function_names": [
+      "sort_array",
+      "count_ones"
+    ]
+  }
+}

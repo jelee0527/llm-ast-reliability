@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return a list of formatted strings.\n    Each output element describes the count of odd digits in the corresponding input string,\n    but with every occurrence of the letter 'i' in the phrase replaced by the digit count.\n\n    Example:\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    \"\"\"\n    result: List[str] = []\n    template = \"the number of odd elements in the string {n} of the input.\"\n    for s in lst:\n        # Count odd digits in the string\n        odd_count_value = sum(1 for ch in s if ch.isdigit() and int(ch) % 2 == 1)\n        # Build the base phrase with the numeric insertion for {n}\n        phrase = template.format(n=odd_count_value)\n        # Replace every 'i' character with the digit representation of odd_count_value\n        replaced = phrase.replace('i', str(odd_count_value))\n        result.append(replaced)\n    return result\n\nif __name__ == \"__main__\":\n    # simple self-test\n    print(odd_count(['1234567']))\n    print(odd_count(['3', \"11111111\"]))",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.022388,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

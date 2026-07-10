@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    has_alpha = False\n    for ch in s:\n        if ch.isalpha():\n            has_alpha = True\n            break\n    if not has_alpha:\n        return s[::-1]\n    # flip case for letters, keep others\n    # Use list comprehension for efficiency\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read()\n    if not data:\n        # no input; nothing to print\n        pass\n    else:\n        # strip trailing newline only if single-line input desired?\n        # We'll strip only final newline from overall input, but preserve internal newlines.\n        # If input has multiple lines, treat entire content as the string including newlines.\n        # Remove final newline introduced by typical input methods.\n        if data.endswith(\"\\n\"):\n            data = data[:-1]\n        print(solve(data))",
+  "metrics": {
+    "total_nodes": 113,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.088496,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

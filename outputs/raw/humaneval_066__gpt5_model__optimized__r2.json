@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:30:08.908429+00:00",
+  "elapsed_seconds": 3.202,
+  "official_prompt": "\ndef digitSum(s):\n    \"\"\"Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n    Examples:\n        digitSum(\"\") => 0\n        digitSum(\"abAB\") => 131\n        digitSum(\"abcCd\") => 67\n        digitSum(\"helloE\") => 69\n        digitSum(\"woArBld\") => 131\n        digitSum(\"aAaaaXa\") => 153\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef digitSum(s):\n    \"\"\"Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n    Examples:\n        digitSum(\"\") => 0\n        digitSum(\"abAB\") => 131\n        digitSum(\"abcCd\") => 67\n        digitSum(\"helloE\") => 69\n        digitSum(\"woArBld\") => 131\n        digitSum(\"aAaaaXa\") => 153\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef digitSum(s: str) -> int:\n    \"\"\"Return sum of ASCII codes of uppercase letters in the input string.\"\"\"\n    total = 0\n    for ch in s:\n        # fast check: uppercase ASCII range\n        o = ord(ch)\n        if 65 <= o <= 90:\n            total += o\n    return total\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", 0),\n        (\"abAB\", ord('A') + ord('B')),\n        (\"abcCd\", ord('C')),\n        (\"helloE\", ord('E')),\n        (\"woArBld\", ord('A') + ord('B')),\n        (\"aAaaaXa\", ord('A') + ord('X')),\n    ]\n    for inp, expected in tests:\n        out = digitSum(inp)\n        print(inp, out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "generated_code": "import string\n\ndef digitSum(s: str) -> int:\n    \"\"\"Return sum of ASCII codes of uppercase letters in the input string.\"\"\"\n    total = 0\n    for ch in s:\n        # fast check: uppercase ASCII range\n        o = ord(ch)\n        if 65 <= o <= 90:\n            total += o\n    return total\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", 0),\n        (\"abAB\", ord('A') + ord('B')),\n        (\"abcCd\", ord('C')),\n        (\"helloE\", ord('E')),\n        (\"woArBld\", ord('A') + ord('B')),\n        (\"aAaaaXa\", ord('A') + ord('X')),\n    ]\n    for inp, expected in tests:\n        out = digitSum(inp)\n        print(inp, out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")"
+}

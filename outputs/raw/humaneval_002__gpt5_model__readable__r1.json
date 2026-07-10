@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:24:25.253788+00:00",
+  "elapsed_seconds": 3.592,
+  "official_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n    The decimal part is the difference between the number and the largest\n    integer less than or equal to the number (the floor).\n    Assumes number is non-negative.\n    >>> truncate_number(3.5)\n    0.5\n    >>> truncate_number(2.0)\n    0.0\n    >>> truncate_number(0.123)\n    0.123\n    \"\"\"\n    if number < 0:\n        raise ValueError(\"Function expects a non-negative number\")\n    integer_part = math.floor(number)\n    decimal_part = number - integer_part\n    # Guard against tiny negative results due to floating point rounding\n    if abs(decimal_part) < 1e-15:\n        return 0.0\n    return decimal_part",
+  "generated_code": "import math\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n    The decimal part is the difference between the number and the largest\n    integer less than or equal to the number (the floor).\n    Assumes number is non-negative.\n    >>> truncate_number(3.5)\n    0.5\n    >>> truncate_number(2.0)\n    0.0\n    >>> truncate_number(0.123)\n    0.123\n    \"\"\"\n    if number < 0:\n        raise ValueError(\"Function expects a non-negative number\")\n    integer_part = math.floor(number)\n    decimal_part = number - integer_part\n    # Guard against tiny negative results due to floating point rounding\n    if abs(decimal_part) < 1e-15:\n        return 0.0\n    return decimal_part"
+}

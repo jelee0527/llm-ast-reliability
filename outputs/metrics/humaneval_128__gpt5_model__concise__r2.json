@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    if not arr:\n        return None\n    total = 0\n    sign = 1\n    for x in arr:\n        if x == 0:\n            return 0\n        if x < 0:\n            sign *= -1\n        total += abs(x)\n    return sign * total\n\n# Quick tests\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.067227,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

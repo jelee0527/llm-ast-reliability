@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"\n    Return True if x is a simple power of n (i.e., there exists integer k >= 0 with n**k == x).\n    \"\"\"\n    # Validate types and basic cases\n    try:\n        if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n            return False\n    except Exception:\n        return False\n\n    # x must be positive integer (based on examples). If x == 1, it's n**0 for any n != 0.\n    if x == 1:\n        return True\n\n    # n == 0: only 0**k is 0 for k>0; 1 != 0**k for k>0. So only x==0 would be true.\n    if n == 0:\n        return x == 0\n\n    # n == 1: 1**k == 1 for all k, so only x==1 is true (already handled).\n    if n == 1:\n        return False\n\n    # Negative n: powers alternate sign. We only consider integer k >=0.\n    # If x is zero or negative, handle accordingly.\n    if x == 0:\n        return False  # n**k with n!=0 never yields 0 for k>=0\n    if x < 0 and n > 0:\n        return False\n    # For negative base, k must be odd to get negative x.\n    neg_base = n < 0\n    if neg_base and x < 0:\n        target_sign_negative = True\n    elif neg_base and x > 0:\n        target_sign_negative = False\n    else:\n        target_sign_negative = False\n\n    # Work with absolute values for logarithm/iteration\n    ax = abs(x)\n    an = abs(n)\n\n    # If an == 1 handled above; if ax < 1 (i.e., 0) handled above.\n    # Compute maximum possible exponent: floor(log_an(ax))\n    # Use integer loop multiplying by an to avoid floating inaccuracies.\n    val = 1\n    while val < ax:\n        # prevent overflow by checking multiplication\n        if val > ax // an:\n            return False\n        val *= an\n    if val != ax:\n        return False\n\n    # At this point abs(n)**k == abs(x) for some k>=0.\n    # If n is negative, sign must match: negative x requires odd k.\n    if neg_base:\n        # determine k by repeated division\n        k = 0\n        tmp = ax\n        while tmp > 1:\n            tmp //= an\n            k += 1\n        # For ax==1, k==0\n        if x < 0:\n            return (k % 2 == 1)\n        else:\n            return (k % 2 == 0)\n    else:\n        # positive base already matched\n        return True",
+  "metrics": {
+    "total_nodes": 243,
+    "ast_depth": 10,
+    "branch_count": 13,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 27,
+    "control_flow_ratio": 0.111111,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

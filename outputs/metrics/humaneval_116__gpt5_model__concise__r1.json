@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import functools\n\ndef sort_array(arr):\n    \"\"\"\n    Sort array of integers by number of ones in binary representation (ascending).\n    For equal counts, sort by numeric value ascending.\n    \"\"\"\n    def bitcount(x):\n        return bin(x & 0xffffffff).count(\"1\") if x < 0 else bin(x).count(\"1\")\n    return sorted(arr, key=lambda x: (bitcount(x), x))",
+  "metrics": {
+    "total_nodes": 58,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.051724,
+    "function_names": [
+      "sort_array",
+      "bitcount"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_041__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "f-string: unmatched ')' (<unknown>, line 33)",
+  "generated_code": "from typing import List\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Given n cars moving left-to-right and n cars moving right-to-left on\n    a one-dimensional infinite line, all at the same speed, starting from\n    opposite directions and initially far apart, return the number of\n    collisions (each encounter between a left-to-right car and a right-to-left\n    car counts as one collision). Cars pass through each other (do not change\n    trajectories), so every pair consisting of one left-to-right car and one\n    right-to-left car will meet exactly once.\n\n    Since there are n cars in each direction, the total number of collisions\n    is simply n * n.\n\n    Args:\n        n: number of cars in each direction (nonnegative integer)\n\n    Returns:\n        Total number of collisions as an integer.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n\n\n\n# Quick basic tests when run as a script\nif __name__ == \"__main__\":\n    test_values = [0, 1, 2, 3, 10]\n    for val in test_values:\n        print(f\"n={val} -> collisions={car_race_collision(val))}\")"
+}

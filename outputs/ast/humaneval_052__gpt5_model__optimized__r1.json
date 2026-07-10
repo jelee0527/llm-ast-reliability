@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_052__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef below_threshold(l: Iterable[int], t: int) -> bool:\n    \"\"\"Return True if all numbers in the iterable l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"\n    # Use any for short-circuiting: if any element >= t, return False\n    for x in l:\n        if x >= t:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Iterable')],\n      level=0),\n    FunctionDef(\n      name='below_threshold',\n      args=arguments(\n        args=[\n          arg(\n            arg='l',\n            annotation=Subscript(\n              value=Name(id='Iterable', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load())),\n          arg(\n            arg='t',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return True if all numbers in the iterable l are below threshold t.\\n    >>> below_threshold([1, 2, 4, 10], 100)\\n    True\\n    >>> below_threshold([1, 20, 4, 10], 5)\\n    False\\n    ')),\n        For(\n          target=Name(id='x', ctx=Store()),\n          iter=Name(id='l', ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='x', ctx=Load()),\n                ops=[\n                  GtE()],\n                comparators=[\n                  Name(id='t', ctx=Load())]),\n              body=[\n                Return(\n                  value=Constant(value=False))])]),\n        Return(\n          value=Constant(value=True))],\n      returns=Name(id='bool', ctx=Load())),\n    If(\n      test=Compare(\n        left=Name(id='__name__', ctx=Load()),\n        ops=[\n          Eq()],\n        comparators=[\n          Constant(value='__main__')]),\n      body=[\n        Import(\n          names=[\n            alias(name='doctest')]),\n        Expr(\n          value=Call(\n            func=Attribute(\n              value=Name(id='doctest', ctx=Load()),\n              attr='testmod',\n              ctx=Load())))])])"
+}

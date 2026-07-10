@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    s = paren_string.replace(\" \", \"\")\n    res = []\n    buf = []\n    depth = 0\n    for ch in s:\n        if ch not in \"()\":\n            continue\n        if ch == \"(\":\n            depth += 1\n            buf.append(ch)\n        else:  # ch == \")\"\n            if depth <= 0:\n                # unmatched closing, ignore or treat as separate? skip\n                continue\n            buf.append(ch)\n            depth -= 1\n            if depth == 0:\n                res.append(\"\".join(buf))\n                buf = []\n    # If leftover unbalanced open parens, ignore them.\n    return res\n\nif __name__ == \"__main__\":\n    print(separate_paren_groups('( ) (( )) (( )( ))'))",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.069767,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

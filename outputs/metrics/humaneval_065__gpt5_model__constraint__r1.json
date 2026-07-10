@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, preserving sign if present\n    s = str(x)\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # Handle zero or empty\n    if s == '':\n        return sign + s\n    n = len(s)\n    # Normalize shift: if shift > number of digits -> return reversed digits\n    if shift > n:\n        result = s[::-1]\n        return sign + result\n    # Normalize shift to range [0, n)\n    # Shift right by shift means last 'shift' digits move to front\n    shift = shift % n\n    if shift == 0:\n        return sign + s\n    # Perform circular right shift\n    result = s[-shift:] + s[:-shift]\n    return sign + result\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert circular_shift(12,1) == \"21\"\n    assert circular_shift(12,2) == \"12\"\n    assert circular_shift(12345,2) == \"45123\"\n    assert circular_shift(12345,7) == \"54321\"  # 7 > 5 -> reversed\n    assert circular_shift(-123,1) == \"-312\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 197,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.045685,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

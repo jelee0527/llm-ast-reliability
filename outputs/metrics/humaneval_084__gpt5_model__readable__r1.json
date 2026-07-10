@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(N):\n    \"\"\"Given a non-negative integer N, return the sum of its decimal digits\n    expressed as a binary string.\n    \"\"\"\n    # Ensure N is integer and within constraints\n    if not isinstance(N, int):\n        raise TypeError(\"N must be an integer\")\n    if N < 0 or N > 10000:\n        raise ValueError(\"N must be between 0 and 10000 inclusive\")\n    # Sum decimal digits of N\n    total = sum(int(d) for d in str(N))\n    # Convert sum to binary string\n    return bin(total)[2:]\n\n# If run as a script, read from stdin and print result\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data:\n        # No input; do nothing or could print binary of 0\n        print(bin(0)[2:])\n    else:\n        try:\n            n = int(data[0])\n        except:\n            print(bin(0)[2:])\n        else:\n            print(solve(n))",
+  "metrics": {
+    "total_nodes": 144,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

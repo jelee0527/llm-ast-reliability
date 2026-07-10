@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef decimal_to_binary(decimal):\n    \"\"\"Convert a non-negative integer decimal to a binary string wrapped with 'db' markers.\"\"\"\n    # Ensure input is an integer\n    if not isinstance(decimal, int):\n        # Allow floats that are whole numbers\n        if isinstance(decimal, float) and decimal.is_integer():\n            decimal = int(decimal)\n        else:\n            raise TypeError(\"Input must be an integer.\")\n    if decimal < 0:\n        raise ValueError(\"Input must be non-negative.\")\n\n    # Special case for zero\n    if decimal == 0:\n        return \"db0db\"\n\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append('1' if (n & 1) else '0')\n        n >>= 1\n    # bits currently little-endian; reverse to get MSB-first\n    bits.reverse()\n    return \"db\" + ''.join(bits) + \"db\"\n\n\n# Quick tests (will run if this file is executed as a script)\nif __name__ == \"__main__\":\n    test_values = [0, 1, 2, 3, 4, 15, 32, 255, 1024]\n    for v in test_values:\n        print(v, \"->\", decimal_to_binary(v))",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

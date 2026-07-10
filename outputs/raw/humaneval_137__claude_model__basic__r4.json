@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:32:11.420818+00:00",
+  "elapsed_seconds": 2.284,
+  "official_prompt": "\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n\n",
+  "raw_response": "def compare_one(a, b):\n    def to_float(x):\n        if isinstance(x, str):\n            return float(x.replace(',', '.'))\n        return float(x)\n    \n    fa = to_float(a)\n    fb = to_float(b)\n    \n    if fa > fb:\n        return a\n    elif fb > fa:\n        return b\n    else:\n        return None",
+  "generated_code": "def compare_one(a, b):\n    def to_float(x):\n        if isinstance(x, str):\n            return float(x.replace(',', '.'))\n        return float(x)\n    \n    fa = to_float(a)\n    fb = to_float(b)\n    \n    if fa > fb:\n        return a\n    elif fb > fa:\n        return b\n    else:\n        return None"
+}

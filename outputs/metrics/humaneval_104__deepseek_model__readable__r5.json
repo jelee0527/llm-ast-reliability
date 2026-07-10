@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_104__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    result = []\n    for num in x:\n        num_str = str(num)\n        if all(int(digit) % 2 != 0 for digit in num_str):\n            result.append(num)\n    result.sort()\n    return result",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "unique_digits"
+    ]
+  }
+}

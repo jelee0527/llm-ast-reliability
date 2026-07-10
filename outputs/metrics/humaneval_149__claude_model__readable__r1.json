@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__claude_model__readable__r1.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sorted_list_sum(lst):\n    even_length_strings = [word for word in lst if len(word) % 2 == 0]\n    sorted_strings = sorted(even_length_strings, key=lambda word: (len(word), word))\n    return sorted_strings",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

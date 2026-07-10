@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef by_length(arr: List[int]) -> List[str]:\n    digit_names = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\",\n    }\n    if not arr:\n        return []\n    # Sort the array, reverse it, then keep only numbers between 1 and 9 inclusive,\n    # finally map to names preserving the reversed order.\n    sorted_arr = sorted(arr)\n    reversed_arr = list(reversed(sorted_arr))\n    result = []\n    for x in reversed_arr:\n        if isinstance(x, int) and 1 <= x <= 9:\n            result.append(digit_names[x])\n    return result",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.045872,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

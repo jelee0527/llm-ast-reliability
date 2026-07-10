@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_069",
+  "task_id": "HumanEval/69",
+  "problem_name": "Search",
+  "entry_point": "search",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:34:51.841554+00:00",
+  "elapsed_seconds": 4.439,
+  "official_prompt": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n\n",
+  "raw_response": "from collections import Counter\nfrom typing import List\n\ndef search(lst: List[int]) -> int:\n    \"\"\"\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    \"\"\"\n    if not lst:\n        return -1\n    counts = Counter(lst)\n    candidates = [x for x, freq in counts.items() if x > 0 and freq >= x]\n    return max(candidates) if candidates else -1\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(search([4, 1, 2, 2, 3, 1]))  # expected 2\n    print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # expected 3\n    print(search([5, 5, 4, 4, 4]))  # expected -1",
+  "generated_code": "from collections import Counter\nfrom typing import List\n\ndef search(lst: List[int]) -> int:\n    \"\"\"\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    \"\"\"\n    if not lst:\n        return -1\n    counts = Counter(lst)\n    candidates = [x for x, freq in counts.items() if x > 0 and freq >= x]\n    return max(candidates) if candidates else -1\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(search([4, 1, 2, 2, 3, 1]))  # expected 2\n    print(search([1, 2, 2, 3, 3, 3, 4, 4, 4]))  # expected 3\n    print(search([5, 5, 4, 4, 4]))  # expected -1"
+}

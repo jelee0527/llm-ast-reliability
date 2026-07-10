@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    # Parse fractions and multiply\n    fx = Fraction(*map(int, x.split('/')))\n    fn = Fraction(*map(int, n.split('/')))\n    product = fx * fn\n    # Whole number if denominator is 1\n    return product.denominator == 1",
+  "metrics": {
+    "total_nodes": 62,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.016129,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

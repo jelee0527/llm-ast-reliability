@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_051__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_051",
+  "task_id": "HumanEval/51",
+  "problem_name": "Remove Vowels",
+  "entry_point": "remove_vowels",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\\\nghijklm\")\n    'bcdf\\\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    vowels = set('aeiouAEIOU')\n    result_chars = []\n    for ch in text:\n        if ch not in vowels:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    # Simple test runner for the included doctest-like examples\n    tests = [\n        (\"\", \"\"),\n        (\"abcdef\\nghijklm\", \"bcdf\\nghjklm\"),\n        (\"abcdef\", \"bcdf\"),\n        (\"aaaaa\", \"\"),\n        (\"aaBAA\", \"B\"),\n        (\"zbcd\", \"zbcd\"),\n    ]\n    all_ok = True\n    for inp, expected in tests:\n        out = remove_vowels(inp)\n        ok = out == expected\n        print(f\"remove_vowels({inp!r}) -> {out!r}  Expected: {expected!r}  {'OK' if ok else 'FAIL'}\")\n        if not ok:\n            all_ok = False\n    if not all_ok:\n        sys.exit(1)",
+  "metrics": {
+    "total_nodes": 172,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.05814,
+    "function_names": [
+      "remove_vowels"
+    ]
+  }
+}

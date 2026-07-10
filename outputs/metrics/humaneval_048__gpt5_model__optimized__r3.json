@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_048__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_palindrome(text: str) -> bool:\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if text is None:\n        return False\n    # Quick checks\n    n = len(text)\n    # empty or single char\n    if n <= 1:\n        return True\n    # Two-pointer comparison\n    i, j = 0, n - 1\n    while i < j:\n        if text[i] != text[j]:\n            return False\n        i += 1\n        j -= 1\n    return True",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.091954,
+    "function_names": [
+      "is_palindrome"
+    ]
+  }
+}

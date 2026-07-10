@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def decimal_to_binary(decimal):\n    \"\"\"Convert a non-negative integer to a binary string wrapped with 'db' at both ends.\n\n    The function returns a string like 'db101db' for input 5.\n    \"\"\"\n    # Validate input: allow only integers (including 0). If not int, try to convert if it's a whole number.\n    if isinstance(decimal, bool):\n        # bool is subclass of int but likely unintended; handle explicitly\n        decimal = int(decimal)\n    if not isinstance(decimal, int):\n        # Attempt to convert floats that represent integers\n        if isinstance(decimal, float) and decimal.is_integer():\n            decimal = int(decimal)\n        else:\n            raise TypeError(\"Input must be an integer or whole-number float.\")\n    if decimal < 0:\n        raise ValueError(\"Input must be non-negative.\")\n\n    # Special case zero\n    if decimal == 0:\n        return \"db0db\"\n\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append('1' if (n & 1) else '0')\n        n >>= 1\n    bits.reverse()\n    return \"db\" + \"\".join(bits) + \"db\"",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.082707,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

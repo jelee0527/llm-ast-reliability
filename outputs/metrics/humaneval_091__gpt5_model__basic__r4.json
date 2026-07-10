@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Count sentences that start with the word \"I\". Sentences are delimited by '.', '?' or '!'.\n    Leading whitespace before the first word of a sentence is ignored. The comparison is case-sensitive\n    as per examples (looking specifically for \"I\" as a standalone word at sentence start).\n    \"\"\"\n    if not S:\n        return 0\n    # Split on sentence delimiters ., ?, !\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        # Strip leading/trailing whitespace\n        p = part.strip()\n        if not p:\n            continue\n        # Get first token (sequence of non-space characters)\n        # We consider punctuation attached to words; check first word equals \"I\"\n        first = p.split()[0]\n        if first == \"I\":\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.094595,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

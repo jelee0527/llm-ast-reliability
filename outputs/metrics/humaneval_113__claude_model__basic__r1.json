@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__claude_model__basic__r1.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def odd_count(lst):\n    result = []\n    for s in lst:\n        count = sum(1 for c in s if int(c) % 2 != 0)\n        n = str(count)\n        sentence = f\"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n        result.append(sentence)\n    return result",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.025641,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

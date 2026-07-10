@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:58:34.787255+00:00",
+  "elapsed_seconds": 5.059,
+  "official_prompt": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n\n",
+  "raw_response": "from typing import Dict\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n    # Mapping of values to roman numerals\n    vals = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I'),\n    ]\n    result = []\n    n = number\n    for val, sym in vals:\n        if n == 0:\n            break\n        count = n // val\n        if count:\n            result.append(sym * count)\n            n -= val * count\n    return ''.join(result).lower()\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = {19: 'xix', 152: 'clii', 426: 'cdxxvi', 1: 'i', 1000: 'm'}\n    for k, expected in tests.items():\n        out = int_to_mini_roman(k)\n        assert out == expected, f\"{k} -> {out} != {expected}\"\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import Dict\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n    # Mapping of values to roman numerals\n    vals = [\n        (1000, 'M'),\n        (900, 'CM'),\n        (500, 'D'),\n        (400, 'CD'),\n        (100, 'C'),\n        (90, 'XC'),\n        (50, 'L'),\n        (40, 'XL'),\n        (10, 'X'),\n        (9, 'IX'),\n        (5, 'V'),\n        (4, 'IV'),\n        (1, 'I'),\n    ]\n    result = []\n    n = number\n    for val, sym in vals:\n        if n == 0:\n            break\n        count = n // val\n        if count:\n            result.append(sym * count)\n            n -= val * count\n    return ''.join(result).lower()\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = {19: 'xix', 152: 'clii', 426: 'cdxxvi', 1: 'i', 1000: 'm'}\n    for k, expected in tests.items():\n        out = int_to_mini_roman(k)\n        assert out == expected, f\"{k} -> {out} != {expected}\"\n    print(\"All tests passed.\")"
+}

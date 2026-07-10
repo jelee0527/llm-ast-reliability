@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"\n    Parse special ASCII music notation into beat lengths.\n    'o' -> 4, 'o|' -> 2, '.|' -> 1\n    \"\"\"\n    token_map = {'o': 4, 'o|': 2, '.|': 1}\n    # Split by whitespace and ignore empty tokens\n    tokens = re.findall(r'o\\||\\.\\\\\\||o|\\.\\\\|\\.|\\S+', music_string)  # fallback pattern won't match incorrectly\n    # Simpler: split on whitespace\n    tokens = [t for t in music_string.split() if t]\n    return [token_map[t] for t in tokens]",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.014706,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

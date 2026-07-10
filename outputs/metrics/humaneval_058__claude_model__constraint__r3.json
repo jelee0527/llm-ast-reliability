@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_058__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n    result = []\n    set2 = set(l2)\n    seen = set()\n    for elem in l1:\n        if elem in set2 and elem not in seen:\n            result.append(elem)\n            seen.add(elem)\n    result.sort()\n    return result",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "common"
+    ]
+  }
+}

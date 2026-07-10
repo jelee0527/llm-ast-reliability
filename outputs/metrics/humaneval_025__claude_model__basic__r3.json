@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_025__claude_model__basic__r3.json",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1:\n        factors.append(n)\n    return factors",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "factorize"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:30:35.797523+00:00",
+  "elapsed_seconds": 2.192,
+  "official_prompt": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any, Dict\n\ndef check_dict_case(d: Dict[Any, Any]) -> bool:\n    if not d:\n        return False\n    keys = list(d.keys())\n    # All keys must be strings\n    if not all(isinstance(k, str) for k in keys):\n        return False\n    # Check if all are lowercase or all are uppercase\n    all_lower = all(k == k.lower() for k in keys)\n    all_upper = all(k == k.upper() for k in keys)\n    return all_lower or all_upper",
+  "generated_code": "from typing import Any, Dict\n\ndef check_dict_case(d: Dict[Any, Any]) -> bool:\n    if not d:\n        return False\n    keys = list(d.keys())\n    # All keys must be strings\n    if not all(isinstance(k, str) for k in keys):\n        return False\n    # Check if all are lowercase or all are uppercase\n    all_lower = all(k == k.lower() for k in keys)\n    all_upper = all(k == k.upper() for k in keys)\n    return all_lower or all_upper"
+}

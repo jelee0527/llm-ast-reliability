@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Iterable, Any\n\ndef unique(l: list) -> List[Any]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    try:\n        return sorted(set(l))\n    except TypeError:\n        # Fallback for unhashable items: preserve order of first occurrences then sort if possible\n        seen = []\n        for item in l:\n            if not any(item == s for s in seen):\n                seen.append(item)\n        try:\n            return sorted(seen)\n        except TypeError:\n            return seen",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.0875,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_071",
+  "task_id": "HumanEval/71",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:41:00.713021+00:00",
+  "elapsed_seconds": 5.595,
+  "official_prompt": "\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n\n",
+  "raw_response": "import math\n\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n    # Validate inputs are numbers\n    for side in (a, b, c):\n        if not isinstance(side, (int, float)):\n            return -1\n\n    # Non-positive sides cannot form a triangle\n    if a <= 0 or b <= 0 or c <= 0:\n        return -1\n\n    # Triangle inequality: sum of any two sides greater than the third\n    if not (a + b > c and a + c > b and b + c > a):\n        return -1\n\n    # Heron's formula\n    s = (a + b + c) / 2.0\n    # numerical guard for small negative due to floating point\n    area_sq = s * (s - a) * (s - b) * (s - c)\n    if area_sq < 0:\n        if area_sq > -1e-12:\n            area_sq = 0.0\n        else:\n            return -1\n\n    area = math.sqrt(area_sq)\n    # Round to 2 decimal places and format as float with exactly two decimals\n    return float(f\"{area:.2f}\")",
+  "generated_code": "import math\n\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n    # Validate inputs are numbers\n    for side in (a, b, c):\n        if not isinstance(side, (int, float)):\n            return -1\n\n    # Non-positive sides cannot form a triangle\n    if a <= 0 or b <= 0 or c <= 0:\n        return -1\n\n    # Triangle inequality: sum of any two sides greater than the third\n    if not (a + b > c and a + c > b and b + c > a):\n        return -1\n\n    # Heron's formula\n    s = (a + b + c) / 2.0\n    # numerical guard for small negative due to floating point\n    area_sq = s * (s - a) * (s - b) * (s - c)\n    if area_sq < 0:\n        if area_sq > -1e-12:\n            area_sq = 0.0\n        else:\n            return -1\n\n    area = math.sqrt(area_sq)\n    # Round to 2 decimal places and format as float with exactly two decimals\n    return float(f\"{area:.2f}\")"
+}

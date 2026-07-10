@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sort_array(array):\n    if not array:\n        return []\n    if len(array) == 1:\n        return array[:]\n    first = array[0]\n    last = array[-1]\n    if (first + last) % 2 == 1:\n        return sorted(array)\n    else:\n        return sorted(array, reverse=True)",
+  "metrics": {
+    "total_nodes": 72,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.097222,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

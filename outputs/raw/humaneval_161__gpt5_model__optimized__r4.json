@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:11:44.541334+00:00",
+  "elapsed_seconds": 2.959,
+  "official_prompt": "\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n\n",
+  "raw_response": "import sys\n\ndef solve(s):\n    has_alpha = False\n    for ch in s:\n        if ch.isalpha():\n            has_alpha = True\n            break\n    if not has_alpha:\n        return s[::-1]\n    # flip case for letters, keep others\n    # Use list comprehension for efficiency\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read()\n    if not data:\n        # no input; nothing to print\n        pass\n    else:\n        # strip trailing newline only if single-line input desired?\n        # We'll strip only final newline from overall input, but preserve internal newlines.\n        # If input has multiple lines, treat entire content as the string including newlines.\n        # Remove final newline introduced by typical input methods.\n        if data.endswith(\"\\n\"):\n            data = data[:-1]\n        print(solve(data))",
+  "generated_code": "import sys\n\ndef solve(s):\n    has_alpha = False\n    for ch in s:\n        if ch.isalpha():\n            has_alpha = True\n            break\n    if not has_alpha:\n        return s[::-1]\n    # flip case for letters, keep others\n    # Use list comprehension for efficiency\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read()\n    if not data:\n        # no input; nothing to print\n        pass\n    else:\n        # strip trailing newline only if single-line input desired?\n        # We'll strip only final newline from overall input, but preserve internal newlines.\n        # If input has multiple lines, treat entire content as the string including newlines.\n        # Remove final newline introduced by typical input methods.\n        if data.endswith(\"\\n\"):\n            data = data[:-1]\n        print(solve(data))"
+}

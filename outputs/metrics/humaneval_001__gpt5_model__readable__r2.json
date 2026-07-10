@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    # Remove spaces first\n    s = paren_string.replace(\" \", \"\")\n    groups: List[str] = []\n    current = []\n    depth = 0\n\n    for ch in s:\n        if ch not in (\"(\", \")\"):\n            # Ignore any non-parenthesis characters (robustness)\n            continue\n        if ch == \"(\":\n            depth += 1\n            current.append(ch)\n        else:  # ch == \")\"\n            # If we get a closing when depth is zero, it's unmatched; skip or start new?\n            # We'll append it to current to keep behavior, but only finalize when depth returns to zero.\n            current.append(ch)\n            depth -= 1\n            if depth == 0:\n                # Completed one balanced group\n                groups.append(\"\".join(current))\n                current = []\n        # Note: if depth becomes negative, we reset to avoid cascading errors\n        if depth < 0:\n            # Reset state\n            depth = 0\n            current = []\n\n    # If leftover incomplete group, ignore it (as groups are balanced per spec)\n    return groups\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(separate_paren_groups('( ) (( )) (( )( ))'))  # ['()', '(())', '(()())']\n    print(separate_paren_groups('()()'))               # ['()', '()']\n    print(separate_paren_groups(' ( ( ) )  ( ) '))     # ['(())', '()']",
+  "metrics": {
+    "total_nodes": 164,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.04878,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

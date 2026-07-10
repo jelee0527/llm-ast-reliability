@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef file_name_check(file_name):\n    \"\"\"Return 'Yes' if file_name is valid per specified rules, else 'No'.\"\"\"\n    if file_name.count('.') != 1:\n        return 'No'\n    name, ext = file_name.split('.', 1)\n    if not name:\n        return 'No'\n    if not re.match(r'^[A-Za-z]', name):\n        return 'No'\n    if ext not in {'txt', 'exe', 'dll'}:\n        return 'No'\n    digits = sum(ch.isdigit() for ch in file_name)\n    if digits > 3:\n        return 'No'\n    return 'Yes'",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.119565,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

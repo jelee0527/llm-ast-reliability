@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def choose_num(x, y):\n    if x > y:\n        return -1\n    if y % 2 == 0:\n        return y\n    elif y - 1 >= x:\n        return y - 1\n    else:\n        return -1",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.145833,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, preserving possible negative sign? spec implies integer digits only.\n    s = str(x)\n    # Handle optional negative numbers: treat the '-' as not a digit; apply shift to digits only.\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # If x has only one digit, shifting yields same digit (unless reversed by rule when shift > n)\n    n = len(s)\n    # If no digits (shouldn't happen), return original representation\n    if n == 0:\n        return sign + s\n    # Normalize shift: if shift is negative, treat as left shift by abs(shift)\n    if shift < 0:\n        # Convert negative right shift to equivalent positive right shift\n        # right by -k is left by k; compute positive right shift value\n        k = (-shift) % n\n        # left by k equals right by n-k\n        shift = (n - k) % n\n    # If shift > number of digits, rule says return digits reversed.\n    if shift > n:\n        result_digits = s[::-1]\n        return sign + result_digits\n    # For shift equal to n, example shows circular_shift(12,2) -> \"12\" so shift == n behaves like normal modulo n\n    # Apply effective shift modulo n\n    shift = shift % n\n    if shift == 0:\n        return sign + s\n    # Right circular shift by shift: take last 'shift' chars to front\n    result_digits = s[-shift:] + s[:-shift]\n    return sign + result_digits\n\n# Quick basic tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (12,1,\"21\"),\n        (12,2,\"12\"),\n        (12345,2,\"45123\"),\n        (12345,7,\"54321\"),  # shift>n -> reversed\n        (-123,1,\"-312\"),\n        (5,10,\"5\"),         # single digit; shift>n -> reversed same\n        (1200,1,\"0120\"),    # preserve zeros in string form\n        (1200,4,\"1200\"),\n        (1200,5,\"0021\"),    # reversed when shift>n yields \"0021\"\n    ]\n    for x, sh, expected in tests:\n        out = circular_shift(x, sh)\n        print(x, sh, out, \"OK\" if out == expected else \"FAIL expected \"+expected)",
+  "metrics": {
+    "total_nodes": 271,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.04428,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:29:04.520571+00:00",
+  "elapsed_seconds": 6.274,
+  "official_prompt": "\n\ndef fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n    count = 0\n    # iterate over multiples of 11 and 13 below n, avoiding double-counting\n    seen = set()\n    # multiples of 11\n    k = 11\n    while k < n:\n        if k not in seen:\n            seen.add(k)\n            count += str(k).count('7')\n        k += 11\n    # multiples of 13\n    k = 13\n    while k < n:\n        if k not in seen:\n            seen.add(k)\n            count += str(k).count('7')\n        k += 13\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Iterable\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n    count = 0\n    # iterate over multiples of 11 and 13 below n, avoiding double-counting\n    seen = set()\n    # multiples of 11\n    k = 11\n    while k < n:\n        if k not in seen:\n            seen.add(k)\n            count += str(k).count('7')\n        k += 11\n    # multiples of 13\n    k = 13\n    while k < n:\n        if k not in seen:\n            seen.add(k)\n            count += str(k).count('7')\n        k += 13\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

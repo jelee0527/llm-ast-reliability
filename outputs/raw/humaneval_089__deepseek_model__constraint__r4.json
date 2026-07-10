@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:29:10.622440+00:00",
+  "elapsed_seconds": 1.404,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef encrypt(s):\n    result = []\n    for char in s:\n        if 'a' <= char <= 'z':\n            shifted = (ord(char) - ord('a') + 4) % 26\n            result.append(chr(ord('a') + shifted))\n        elif 'A' <= char <= 'Z':\n            shifted = (ord(char) - ord('A') + 4) % 26\n            result.append(chr(ord('A') + shifted))\n        else:\n            result.append(char)\n    return ''.join(result)\n```",
+  "generated_code": "def encrypt(s):\n    result = []\n    for char in s:\n        if 'a' <= char <= 'z':\n            shifted = (ord(char) - ord('a') + 4) % 26\n            result.append(chr(ord('a') + shifted))\n        elif 'A' <= char <= 'Z':\n            shifted = (ord(char) - ord('A') + 4) % 26\n            result.append(chr(ord('A') + shifted))\n        else:\n            result.append(char)\n    return ''.join(result)"
+}

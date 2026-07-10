@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    # If last char is space -> not valid\n    if txt[-1].isspace():\n        return False\n    # Last character must be a letter\n    last = txt[-1]\n    if not last.isalpha():\n        return False\n    # It must be a standalone token (separated by spaces)\n    # Either the string has no space before last char (single token) -> then it's part of a word -> False\n    # Or the char before is a space -> True\n    if len(txt) == 1:\n        # single-letter string counts as a word, so it's not \"not part of a word\" -> False\n        return False\n    return txt[-2].isspace()",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.132353,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

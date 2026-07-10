@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_116__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by number of 1s in their binary representation (ascending).\n    For equal number of 1s, sort by numeric value ascending.\n\n    Negative numbers are handled by considering their binary representation of the absolute value:\n    the examples indicate treating negatives by their absolute magnitude when counting ones\n    (e.g., -2, -3, -4, -5, -6 sorted to [-6, -5, -4, -3, -2]).\n    We'll count ones in bin(abs(x)).\n    \"\"\"\n    # Use Python's built-in bin and count; stable sort ensures tie-breaker by value when using tuple key\n    return sorted(arr, key=lambda x: (bin(abs(x)).count(\"1\"), x))",
+  "metrics": {
+    "total_nodes": 46,
+    "ast_depth": 13,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

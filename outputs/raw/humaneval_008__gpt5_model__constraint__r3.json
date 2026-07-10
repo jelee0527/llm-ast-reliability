@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_008",
+  "task_id": "HumanEval/8",
+  "problem_name": "Sum Product",
+  "entry_point": "sum_product",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:35:51.454867+00:00",
+  "elapsed_seconds": 3.994,
+  "official_prompt": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n    total = 0\n    product = 1\n    # If list is empty, total remains 0 and product remains 1 per specification\n    for n in numbers:\n        total += n\n        product *= n\n    return total, product\n\nif __name__ == \"__main__\":\n    # Basic self-tests\n    assert sum_product([]) == (0, 1)\n    assert sum_product([1, 2, 3, 4]) == (10, 24)\n    assert sum_product([0, 5]) == (5, 0)\n    assert sum_product([-1, 2]) == (1, -2)\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n    total = 0\n    product = 1\n    # If list is empty, total remains 0 and product remains 1 per specification\n    for n in numbers:\n        total += n\n        product *= n\n    return total, product\n\nif __name__ == \"__main__\":\n    # Basic self-tests\n    assert sum_product([]) == (0, 1)\n    assert sum_product([1, 2, 3, 4]) == (10, 24)\n    assert sum_product([0, 5]) == (5, 0)\n    assert sum_product([-1, 2]) == (1, -2)\n    print(\"All tests passed.\")"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_143__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_143",
+  "task_id": "HumanEval/143",
+  "problem_name": "Words In Sentence",
+  "entry_point": "words_in_sentence",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef words_in_sentence(sentence):\n    \"\"\"\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n    \"\"\"\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0:\n            return False\n        r = int(math.isqrt(n))\n        for i in range(3, r + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    if not sentence:\n        return \"\"\n    words = sentence.split()\n    result = [w for w in words if is_prime(len(w))]\n    return \" \".join(result)",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.109244,
+    "function_names": [
+      "words_in_sentence",
+      "is_prime"
+    ]
+  }
+}

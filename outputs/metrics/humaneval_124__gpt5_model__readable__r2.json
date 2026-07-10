@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef valid_date(date):\n    \"\"\"\n    Validate a date string in format mm-dd-yyyy.\n    Rules:\n    - Non-empty string.\n    - Format exactly two digits for month, a hyphen, one or two digits for day? \n      (Spec says mm-dd-yyyy so expect two-digit month and day; examples treat '04-0-2040' as invalid.)\n      We'll enforce two digits for month and day, and four digits for year.\n    - Month 1..12\n    - Day ranges:\n        months 1,3,5,7,8,10,12 -> 1..31\n        months 4,6,9,11 -> 1..30\n        month 2 -> 1..29\n    - No other separators allowed.\n    \"\"\"\n    # Rule 1: not empty and must be a string\n    if not isinstance(date, str) or not date:\n        return False\n\n    # Match exact format mm-dd-yyyy where mm and dd are exactly two digits and yyyy is four digits\n    m = re.fullmatch(r'(\\d{2})-(\\d{2})-(\\d{4})', date)\n    if not m:\n        return False\n\n    month_str, day_str, year_str = m.group(1), m.group(2), m.group(3)\n\n    # Convert to integers (leading zeros allowed)\n    try:\n        month = int(month_str)\n        day = int(day_str)\n        year = int(year_str)\n    except ValueError:\n        return False\n\n    # Rule 3: months 1..12\n    if month < 1 or month > 12:\n        return False\n\n    # Rule 2: day ranges based on month\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        max_day = 31\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    elif month == 2:\n        max_day = 29\n    else:\n        return False  # defensive\n\n    if day < 1 or day > max_day:\n        return False\n\n    # Year can be any four-digit number according to the specification (no bounds given)\n    # But ensure year has four digits (already enforced by regex) and non-negative\n    if year < 0:\n        return False\n\n    return True",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 8,
+    "branch_count": 9,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.089947,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

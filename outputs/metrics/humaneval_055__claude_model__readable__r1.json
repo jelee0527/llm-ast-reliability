@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_055__claude_model__readable__r1.json",
+  "problem_id": "humaneval_055",
+  "task_id": "HumanEval/55",
+  "problem_name": "Fib",
+  "entry_point": "fib",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    \n    if n == 1 or n == 2:\n        return 1\n    \n    previous = 1\n    current = 1\n    \n    for _ in range(2, n):\n        next_fibonacci = previous + current\n        previous = current\n        current = next_fibonacci\n    \n    return current\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.08046,
+    "function_names": [
+      "fib"
+    ]
+  }
+}

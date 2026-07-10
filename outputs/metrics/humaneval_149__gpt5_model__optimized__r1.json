@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import typing\n\ndef sorted_list_sum(lst: typing.List[str]) -> typing.List[str]:\n    \"\"\"\n    Deletes strings with odd lengths and returns the resulting list sorted\n    ascending by length, then alphabetically for equal lengths.\n\n    Note: The docstring says \"You may assume that all words will have the same length.\"\n    but examples contradict that. This implementation handles mixed lengths as described.\n\n    Time complexity: O(n log n) due to sorting.\n    Space complexity: O(n) for the filtered list.\n    \"\"\"\n    if not lst:\n        return []\n    # Filter out strings with odd length\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    # Sort by (length, lexicographically)\n    filtered.sort(key=lambda s: (len(s), s))\n    return filtered\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    assert sorted_list_sum([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert sorted_list_sum([\"ab\", \"a\", \"aaa\", \"cd\"]) == [\"ab\", \"cd\"]\n    assert sorted_list_sum([]) == []\n    assert sorted_list_sum([\"zz\",\"aa\",\"bb\"]) == [\"aa\",\"bb\",\"zz\"]\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 143,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.027972,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

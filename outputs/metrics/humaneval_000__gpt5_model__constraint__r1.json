@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_000__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_000",
+  "task_id": "HumanEval/0",
+  "problem_name": "Has Close Elements",
+  "entry_point": "has_close_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    # Handle trivial cases\n    if threshold < 0:\n        # Negative threshold makes no sense; treat as no pair can be closer than negative\n        return False\n    n = len(numbers)\n    if n < 2:\n        return False\n\n    # Sort a copy to compare neighbors only; this reduces comparisons to O(n log n)\n    nums_sorted = sorted(numbers)\n\n    # Compare adjacent elements for difference strictly less than threshold\n    for i in range(1, n):\n        if abs(nums_sorted[i] - nums_sorted[i - 1]) < threshold:\n            return True\n    return False\n\nif __name__ == \"__main__\":\n    # Basic tests\n    assert has_close_elements([1.0, 2.0, 3.0], 0.5) is False\n    assert has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3) is True\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.069767,
+    "function_names": [
+      "has_close_elements"
+    ]
+  }
+}

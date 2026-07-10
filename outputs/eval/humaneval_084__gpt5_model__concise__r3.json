@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_084__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "Error",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 5, in check\nAssertionError: Error\n"
+}

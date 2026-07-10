@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:41:05.836056+00:00",
+  "elapsed_seconds": 2.893,
+  "official_prompt": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # If lengths differ, pad the shorter with leading zeros\n    la, lb = len(a), len(b)\n    if la < lb:\n        a = \"0\" * (lb - la) + a\n    elif lb < la:\n        b = \"0\" * (la - lb) + b\n    # Use list comprehension for efficiency\n    res_chars = [\"1\" if ac != bc else \"0\" for ac, bc in zip(a, b)]\n    return \"\".join(res_chars)",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # If lengths differ, pad the shorter with leading zeros\n    la, lb = len(a), len(b)\n    if la < lb:\n        a = \"0\" * (lb - la) + a\n    elif lb < la:\n        b = \"0\" * (la - lb) + b\n    # Use list comprehension for efficiency\n    res_chars = [\"1\" if ac != bc else \"0\" for ac, bc in zip(a, b)]\n    return \"\".join(res_chars)"
+}

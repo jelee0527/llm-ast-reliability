@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    def get_neighbors(r, c):\n        neighbors = []\n        for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < n and 0 <= nc < n:\n                neighbors.append((nr, nc))\n        return neighbors\n    \n    # For each cell, find the minimum neighbor value\n    # Use BFS/dynamic programming approach\n    # dp[step][r][c] = minimum path list of length step ending at (r,c)\n    # But storing full lists is expensive, so we compare lexicographically\n    \n    # Instead, use the fact that we want lexicographically minimum path\n    # At each step, we greedily want the smallest possible value\n    \n    # dp approach: dp[r][c] = best path of current length ending at (r,c)\n    # Initialize with length 1\n    \n    # Store dp as list of lists for comparison\n    dp = [[None]*n for _ in range(n)]\n    \n    for i in range(n):\n        for j in range(n):\n            dp[i][j] = [grid[i][j]]\n    \n    for step in range(1, k):\n        new_dp = [[None]*n for _ in range(n)]\n        for i in range(n):\n            for j in range(n):\n                # Can come from any neighbor\n                best = None\n                for nr, nc in get_neighbors(i, j):\n                    candidate = dp[nr][nc] + [grid[i][j]]\n                    if best is None or candidate < best:\n                        best = candidate\n                # Also consider staying... wait, we can't stay, we move to neighbors\n                # Actually we start at any cell, so at step 0 we're at (i,j)\n                # At step 1 we move to a neighbor\n                new_dp[i][j] = best\n        dp = new_dp\n    \n    # Find the overall minimum path\n    result = None\n    for i in range(n):\n        for j in range(n):\n            if dp[i][j] is not None:\n                if result is None or dp[i][j] < result:\n                    result = dp[i][j]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 403,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 11,
+    "function_count": 2,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.042184,
+    "function_names": [
+      "minPath",
+      "get_neighbors"
+    ]
+  }
+}

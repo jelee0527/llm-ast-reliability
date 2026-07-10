@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_092__deepseek_model__concise__r4.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def any_int(x, y, z):\n    if not all(isinstance(n, int) for n in (x, y, z)):\n        return False\n    return x + y == z or x + z == y or y + z == x",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='any_int',\n      args=arguments(\n        args=[\n          arg(arg='x'),\n          arg(arg='y'),\n          arg(arg='z')]),\n      body=[\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='all', ctx=Load()),\n              args=[\n                GeneratorExp(\n                  elt=Call(\n                    func=Name(id='isinstance', ctx=Load()),\n                    args=[\n                      Name(id='n', ctx=Load()),\n                      Name(id='int', ctx=Load())]),\n                  generators=[\n                    comprehension(\n                      target=Name(id='n', ctx=Store()),\n                      iter=Tuple(\n                        elts=[\n                          Name(id='x', ctx=Load()),\n                          Name(id='y', ctx=Load()),\n                          Name(id='z', ctx=Load())],\n                        ctx=Load()),\n                      is_async=0)])])),\n          body=[\n            Return(\n              value=Constant(value=False))]),\n        Return(\n          value=BoolOp(\n            op=Or(),\n            values=[\n              Compare(\n                left=BinOp(\n                  left=Name(id='x', ctx=Load()),\n                  op=Add(),\n                  right=Name(id='y', ctx=Load())),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Name(id='z', ctx=Load())]),\n              Compare(\n                left=BinOp(\n                  left=Name(id='x', ctx=Load()),\n                  op=Add(),\n                  right=Name(id='z', ctx=Load())),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Name(id='y', ctx=Load())]),\n              Compare(\n                left=BinOp(\n                  left=Name(id='y', ctx=Load()),\n                  op=Add(),\n                  right=Name(id='z', ctx=Load())),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Name(id='x', ctx=Load())])]))])])"
+}

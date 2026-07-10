@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import operator as op\n\n_ops = {\n    '+': op.add,\n    '-': op.sub,\n    '*': op.mul,\n    '//': lambda a, b: a // b,\n    '**': pow\n}\n\ndef do_algebra(operator, operand):\n    if not operator or not operand or len(operator) != len(operand) - 1:\n        raise ValueError(\"Invalid input lengths\")\n    # Build expression by left-to-right applying operators; handle exponentiation and floor division as normal Python binary ops\n    result = operand[0]\n    for i, oper in enumerate(operator, 1):\n        fn = _ops.get(oper)\n        if fn is None:\n            raise ValueError(f\"Unsupported operator: {oper}\")\n        result = fn(result, operand[i])\n    return result",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

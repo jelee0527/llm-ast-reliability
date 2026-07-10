@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Determine if by exchanging elements between lst1 and lst2 (any number)\n    we can make all elements of lst1 even.\n    Return \"YES\" if possible, otherwise \"NO\".\n    \"\"\"\n    # Count parity of elements in each list\n    evens1 = sum(1 for x in lst1 if x % 2 == 0)\n    odds1 = len(lst1) - evens1\n    evens2 = sum(1 for x in lst2 if x % 2 == 0)\n    odds2 = len(lst2) - evens2\n\n    # To make all lst1 elements even, we need to ensure there are at least len(lst1) even numbers\n    # available between both lists, because exchanges are unrestricted.\n    total_evens = evens1 + evens2\n    return \"YES\" if total_evens >= len(lst1) else \"NO\"",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.018018,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

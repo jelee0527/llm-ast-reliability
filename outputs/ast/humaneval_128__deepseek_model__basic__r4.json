@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_128__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def prod_signs(arr):\n    if not arr:\n        return None\n    product = 1\n    sum_magnitudes = 0\n    for x in arr:\n        if x > 0:\n            product *= 1\n        elif x < 0:\n            product *= -1\n        else:\n            product *= 0\n        sum_magnitudes += abs(x)\n    return sum_magnitudes * product",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='prod_signs',\n      args=arguments(\n        args=[\n          arg(arg='arr')]),\n      body=[\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='arr', ctx=Load())),\n          body=[\n            Return(\n              value=Constant(value=None))]),\n        Assign(\n          targets=[\n            Name(id='product', ctx=Store())],\n          value=Constant(value=1)),\n        Assign(\n          targets=[\n            Name(id='sum_magnitudes', ctx=Store())],\n          value=Constant(value=0)),\n        For(\n          target=Name(id='x', ctx=Store()),\n          iter=Name(id='arr', ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='x', ctx=Load()),\n                ops=[\n                  Gt()],\n                comparators=[\n                  Constant(value=0)]),\n              body=[\n                AugAssign(\n                  target=Name(id='product', ctx=Store()),\n                  op=Mult(),\n                  value=Constant(value=1))],\n              orelse=[\n                If(\n                  test=Compare(\n                    left=Name(id='x', ctx=Load()),\n                    ops=[\n                      Lt()],\n                    comparators=[\n                      Constant(value=0)]),\n                  body=[\n                    AugAssign(\n                      target=Name(id='product', ctx=Store()),\n                      op=Mult(),\n                      value=UnaryOp(\n                        op=USub(),\n                        operand=Constant(value=1)))],\n                  orelse=[\n                    AugAssign(\n                      target=Name(id='product', ctx=Store()),\n                      op=Mult(),\n                      value=Constant(value=0))])]),\n            AugAssign(\n              target=Name(id='sum_magnitudes', ctx=Store()),\n              op=Add(),\n              value=Call(\n                func=Name(id='abs', ctx=Load()),\n                args=[\n                  Name(id='x', ctx=Load())]))]),\n        Return(\n          value=BinOp(\n            left=Name(id='sum_magnitudes', ctx=Load()),\n            op=Mult(),\n            right=Name(id='product', ctx=Load())))])])"
+}

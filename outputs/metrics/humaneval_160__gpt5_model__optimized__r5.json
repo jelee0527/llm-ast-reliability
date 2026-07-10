@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_160__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\nimport operator as op\nimport math\n\nops = {\n    '+': lambda a, b: a + b,\n    '-': lambda a, b: a - b,\n    '*': lambda a, b: a * b,\n    '//': lambda a, b: a // b if not (b == 0) else (_raise_zero()),\n    '**': lambda a, b: a ** b,\n}\n\ndef _raise_zero():\n    raise ZeroDivisionError(\"integer division or modulo by zero\")\n\ndef do_algebra(operator: List[str], operand: List[int]) -> int:\n    # Shunting-yard style evaluation with operator precedence and left/right associativity\n    # Define precedence and associativity\n    prec = {'+': 1, '-': 1, '*': 2, '//': 2, '**': 3}\n    # '**' is right-associative, others are left-associative\n    right_assoc = {'**'}\n\n    # Convert tokens: operands and operators interleaved\n    # We'll use two stacks: values and operators\n    values = []\n    opers = []\n\n    # helper to apply top operator\n    def apply_top():\n        if not opers:\n            return\n        oper_sym = opers.pop()\n        # pop two values: left then right\n        if len(values) < 2:\n            raise ValueError(\"Insufficient operands\")\n        b = values.pop()\n        a = values.pop()\n        # apply\n        func = ops.get(oper_sym)\n        if func is None:\n            raise ValueError(f\"Unknown operator {oper_sym}\")\n        values.append(func(a, b))\n\n    n_ops = len(operator)\n    n_vals = len(operand)\n    # push first operand\n    values.append(int(operand[0]))\n    for i in range(n_ops):\n        op_sym = operator[i]\n        # ensure operator string matches keys: normalize possible symbols\n        if op_sym not in prec:\n            raise ValueError(f\"Unsupported operator: {op_sym}\")\n        # while there is operator on stack with greater precedence or equal (and left-assoc), apply it\n        while opers:\n            top = opers[-1]\n            if (top in prec and\n                ((top not in right_assoc and prec[top] >= prec[op_sym]) or\n                 (top in right_assoc and prec[top] > prec[op_sym]))):\n                apply_top()\n            else:\n                break\n        opers.append(op_sym)\n        # push next operand\n        values.append(int(operand[i+1]))\n\n    # apply remaining operators\n    while opers:\n        apply_top()\n\n    if len(values) != 1:\n        raise ValueError(\"Error in evaluation\")\n    return values[0]",
+  "metrics": {
+    "total_nodes": 404,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 3,
+    "function_count": 3,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.044554,
+    "function_names": [
+      "_raise_zero",
+      "do_algebra",
+      "apply_top"
+    ]
+  }
+}

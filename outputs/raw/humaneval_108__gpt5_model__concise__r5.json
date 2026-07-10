@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:56:41.126423+00:00",
+  "elapsed_seconds": 3.817,
+  "official_prompt": "\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef count_nums(arr: Iterable[int]) -> int:\n    \"\"\"\n    Return the number of elements whose sum of digits > 0.\n    For negative numbers, the first digit is negative (e.g., -123 -> -1 + 2 + 3 = 4? Actually -1+2+3 = 4).\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        if n == 0:\n            return 0\n        s = 0\n        sign = -1 if n < 0 else 1\n        n_abs_str = str(abs(n))\n        for i, ch in enumerate(n_abs_str):\n            d = ord(ch) - 48\n            if i == 0:\n                s += sign * d\n            else:\n                s += d\n        return s\n\n    return sum(1 for x in arr if signed_digit_sum(int(x)) > 0)",
+  "generated_code": "from typing import Iterable\n\ndef count_nums(arr: Iterable[int]) -> int:\n    \"\"\"\n    Return the number of elements whose sum of digits > 0.\n    For negative numbers, the first digit is negative (e.g., -123 -> -1 + 2 + 3 = 4? Actually -1+2+3 = 4).\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        if n == 0:\n            return 0\n        s = 0\n        sign = -1 if n < 0 else 1\n        n_abs_str = str(abs(n))\n        for i, ch in enumerate(n_abs_str):\n            d = ord(ch) - 48\n            if i == 0:\n                s += sign * d\n            else:\n                s += d\n        return s\n\n    return sum(1 for x in arr if signed_digit_sum(int(x)) > 0)"
+}

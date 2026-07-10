@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_008__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_008",
+  "task_id": "HumanEval/8",
+  "problem_name": "Sum Product",
+  "entry_point": "sum_product",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    total_sum = 0\n    total_product = 1\n    for n in numbers:\n        total_sum += n\n        total_product *= n\n    return (total_sum, total_product)",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.036364,
+    "function_names": [
+      "sum_product"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"\n    Given a list of strings consisting only of digits, return a list of strings.\n    Each output string describes the number of odd digits in the corresponding\n    input string, but with all occurrences of the digit character for that count\n    substituted into the template in place of the letter 'i'.\n\n    Example:\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    \"\"\"\n    results: List[str] = []\n    template = \"the number of odd elements {d}n the str{d}ng {d} of the {d}nput.\"\n\n    for s in lst:\n        # Count odd digits in the string\n        count = sum(1 for ch in s if (ch in '13579'))\n        d = str(count)\n        results.append(template.format(d=d))\n\n    return results\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3', \"11111111\"]))",
+  "metrics": {
+    "total_nodes": 110,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.027273,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

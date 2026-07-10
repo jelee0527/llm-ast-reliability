@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_136__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    negs = [x for x in lst if isinstance(x, int) and x < 0]\n    poss = [x for x in lst if isinstance(x, int) and x > 0]\n    a = max(negs) if negs else None\n    b = min(poss) if poss else None\n    return (a, b)",
+  "metrics": {
+    "total_nodes": 113,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.026549,
+    "function_names": [
+      "largest_smallest_integers"
+    ]
+  }
+}

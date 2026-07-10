@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef _to_number_and_type(x):\n    \"\"\"\n    Converts input x (int, float, or numeric string with . or ,) to float for comparison.\n    Returns tuple (numeric_value: float, original_type: type, original_repr: original value)\n    \"\"\"\n    # If already int or float\n    if isinstance(x, (int, float)) and not isinstance(x, bool):\n        return float(x), type(x), x\n    # If string: normalize comma to dot, but preserve original string for return\n    if isinstance(x, str):\n        s = x.strip()\n        # Replace commas only as decimal separators, not thousands. We'll convert all commas to dots.\n        s_norm = s.replace(',', '.')\n        # Validate numeric pattern (optional sign, digits, optional decimal part)\n        if re.fullmatch(r'[+-]?(\\d+(\\.\\d*)?|\\.\\d+)', s_norm):\n            try:\n                return float(s_norm), str, x\n            except ValueError:\n                pass\n    # For unsupported types, raise TypeError\n    raise TypeError(\"Unsupported input type: {}\".format(type(x)))\n\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n    \"\"\"\n    va, ta, ra = _to_number_and_type(a)\n    vb, tb, rb = _to_number_and_type(b)\n    # Compare numeric values\n    if va == vb:\n        return None\n    # Return the original representation (preserve type and original value)\n    if va > vb:\n        return ra\n    else:\n        return rb\n\n# Example usages (for quick manual testing)\nif __name__ == \"__main__\":\n    print(compare_one(1, 2.5))      # 2.5\n    print(compare_one(1, \"2,3\"))    # \"2,3\"\n    print(compare_one(\"5,1\", \"6\"))  # \"6\"\n    print(compare_one(\"1\", 1))      # None",
+  "metrics": {
+    "total_nodes": 209,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.062201,
+    "function_names": [
+      "_to_number_and_type",
+      "compare_one"
+    ]
+  }
+}

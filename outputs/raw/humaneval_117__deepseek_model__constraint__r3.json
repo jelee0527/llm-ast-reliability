@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:50:13.017707+00:00",
+  "elapsed_seconds": 1.282,
+  "official_prompt": "\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef select_words(s, n):\n    \"\"\"Given a string s and a natural number n, you have been tasked to implement \n    a function that returns a list of all words from string s that contain exactly \n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef select_words(s, n):\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    words = s.split()\n    result = []\n    for word in words:\n        consonant_count = 0\n        for ch in word:\n            if ch.isalpha() and ch not in vowels:\n                consonant_count += 1\n        if consonant_count == n:\n            result.append(word)\n    return result\n```",
+  "generated_code": "def select_words(s, n):\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    words = s.split()\n    result = []\n    for word in words:\n        consonant_count = 0\n        for ch in word:\n            if ch.isalpha() and ch not in vowels:\n                consonant_count += 1\n        if consonant_count == n:\n            result.append(word)\n    return result"
+}

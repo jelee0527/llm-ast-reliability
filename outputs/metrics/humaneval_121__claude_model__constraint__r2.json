@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_121__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def solution(lst):\n    total = 0\n    for i in range(0, len(lst), 2):\n        if lst[i] % 2 != 0:\n            total += lst[i]\n    return total",
+  "metrics": {
+    "total_nodes": 47,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06383,
+    "function_names": [
+      "solution"
+    ]
+  }
+}

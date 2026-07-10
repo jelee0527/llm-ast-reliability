@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def sort_third(l: list):\n    indices = [i for i in range(len(l)) if i % 3 == 0]\n    values = sorted([l[i] for i in indices])\n    result = l[:]\n    for i, val in zip(indices, values):\n        result[i] = val\n    return result",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.024096,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

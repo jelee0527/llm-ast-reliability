@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Count how many integers in arr have a sum of digits > 0.\n    For negative numbers, the sign applies only to the first (most significant) digit.\n    Examples:\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        if n == 0:\n            return 0\n        sign = -1 if n < 0 else 1\n        s = str(abs(n))\n        # first digit gets sign, the rest are positive\n        total = sign * int(s[0])\n        for ch in s[1:]:\n            total += int(ch)\n        return total\n\n    count = 0\n    for num in arr:\n        if signed_digit_sum(num) > 0:\n            count += 1\n    return count\n\nif __name__ == \"__main__\":\n    # quick self-test\n    assert count_nums([]) == 0\n    assert count_nums([-1, 11, -11]) == 1\n    assert count_nums([1, 1, 2]) == 3\n    assert count_nums([0, -10, 10, -101, 99]) == 3  # 0 ->0, -10 -> -1+0=-1, 10->1+0=1, -101->-1+0+1=0, 99->18\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 183,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.04918,
+    "function_names": [
+      "count_nums",
+      "signed_digit_sum"
+    ]
+  }
+}

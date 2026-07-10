@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_057__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef monotonic(l: List[Any]) -> bool:\n    \"\"\"Return True if list elements are monotonically non-decreasing or non-increasing.\n    Examples:\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    # Empty or single-element list is monotonic\n    if l is None:\n        return False\n    n = len(l)\n    if n <= 1:\n        return True\n\n    # Determine direction by finding first unequal pair\n    i = 1\n    direction = 0  # 0 unknown, 1 non-decreasing, -1 non-increasing\n    while i < n and direction == 0:\n        if l[i] > l[i-1]:\n            direction = 1\n        elif l[i] < l[i-1]:\n            direction = -1\n        i += 1\n\n    # If all equal elements\n    if direction == 0:\n        return True\n\n    # Check rest according to direction\n    for j in range(1, n):\n        if direction == 1 and l[j] < l[j-1]:\n            return False\n        if direction == -1 and l[j] > l[j-1]:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 203,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.078818,
+    "function_names": [
+      "monotonic"
+    ]
+  }
+}

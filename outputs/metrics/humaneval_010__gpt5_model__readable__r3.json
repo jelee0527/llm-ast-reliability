@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm:\n    - Find the longest suffix of the supplied string that is a palindrome.\n    - Append to the end of the string the reverse of the prefix that comes before that palindromic suffix.\n    \"\"\"\n    # Empty string is already a palindrome\n    if not string:\n        return \"\"\n\n    n = len(string)\n    # Search for longest palindromic suffix starting at position i\n    # We want the minimal addition, so maximize length of palindromic suffix\n    for i in range(n):\n        suffix = string[i:]\n        if is_palindrome(suffix):\n            # prefix before the palindromic suffix\n            prefix = string[:i]\n            # append reverse of prefix\n            return string + prefix[::-1]\n    # Fallback: if no palindromic suffix found (shouldn't happen because last char is palindrome of length1)\n    return string + string[:-1][::-1]\n\n\n# Quick tests when run as a script\nif __name__ == \"__main__\":\n    tests: List[str] = [\n        \"\", \"a\", \"ab\", \"aba\", \"abba\", \"cat\", \"cata\", \"race\", \"racecar\", \"palindrome\"\n    ]\n    for t in tests:\n        print(f\"'{t}' -> '{make_palindrome(t)}'\")",
+  "metrics": {
+    "total_nodes": 164,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.054878,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

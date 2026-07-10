@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import sys\nimport typing\n\ndef solve(s: str) -> str:\n    \"\"\"Transform string s:\n    - If s contains any alphabetic letters, invert the case of each letter (lower->upper, upper->lower).\n      Non-letters remain unchanged.\n    - If s contains no alphabetic letters, return the reversed string.\n    \"\"\"\n    if any(ch.isalpha() for ch in s):\n        # Flip case for letters, leave other characters as-is\n        return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n    else:\n        # No letters: reverse the whole string\n        return s[::-1]\n\nif __name__ == \"__main__\":\n    # Read input from stdin, strip trailing newline but preserve other whitespace\n    data = sys.stdin.read()\n    if not data:\n        # nothing to do\n        sys.exit(0)\n    # If multiple lines, treat entire input as the string including newlines\n    # Remove a trailing single newline that often comes from input methods\n    if data.endswith('\\n'):\n        data = data[:-1]\n    result = solve(data)\n    sys.stdout.write(result)",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

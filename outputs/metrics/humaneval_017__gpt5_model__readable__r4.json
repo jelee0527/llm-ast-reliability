@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a space-separated ASCII representation of notes into beat lengths.\n\n    Legend:\n    'o'  -> whole note -> 4 beats\n    'o|' -> half note  -> 2 beats\n    '.|' -> quarter note-> 1 beat\n    \"\"\"\n    # Define mapping from token to beat count\n    token_to_beats = {\n        'o': 4,\n        'o|': 2,\n        '.|': 1,\n    }\n\n    # Split the input by whitespace to get tokens.\n    # Filter out any empty tokens that could arise from extra spaces.\n    tokens = [t for t in music_string.split() if t]\n\n    # Convert tokens to beats, raising ValueError for unknown tokens.\n    beats: List[int] = []\n    for t in tokens:\n        if t in token_to_beats:\n            beats.append(token_to_beats[t])\n        else:\n            raise ValueError(f\"Unknown note token: {t!r}\")\n\n    return beats\n\n# Example usage (can be removed/commented out if not desired):\nif __name__ == \"__main__\":\n    example = 'o o| .| o| o| .| .| .| .| o o'\n    print(parse_music(example))",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.046296,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

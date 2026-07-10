@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:51:18.278581+00:00",
+  "elapsed_seconds": 4.267,
+  "official_prompt": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') ➞ True\n    is_nested('[]]]]]]][[[[[]') ➞ False\n    is_nested('[][]') ➞ False\n    is_nested('[]') ➞ False\n    is_nested('[[][]]') ➞ True\n    is_nested('[[]][[') ➞ True\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') ➞ True\n    is_nested('[]]]]]]][[[[[]') ➞ False\n    is_nested('[][]') ➞ False\n    is_nested('[]') ➞ False\n    is_nested('[[][]]') ➞ True\n    is_nested('[[]][[') ➞ True\n    '''\n\n",
+  "raw_response": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    # We need a subsequence (not necessarily contiguous) of brackets that forms a valid bracket string\n    # and has at least one nested pair, i.e., contains pattern like '[' ... '[' ... ']' ... ']'.\n    # Equivalent: there exist indices i<j<k<l with s[i]='[', s[k]='[', s[l]=']', s[j]=']' and nesting order i<k<l<j OR i<k<j<l?\n    # Simpler approach: try to greedily build a valid bracket subsequence while tracking max depth reached.\n    depth = 0\n    max_depth = 0\n    # Greedy: scan string, take '[' to increase depth, take ']' to decrease if depth>0 (matching previous '[').\n    for ch in string:\n        if ch == '[':\n            depth += 1\n            if depth > max_depth:\n                max_depth = depth\n        elif ch == ']':\n            if depth > 0:\n                depth -= 1\n    return max_depth >= 2\n\n# Quick test block (can be removed if strict output required)\nif __name__ == \"__main__\":\n    tests = ['[[]]', '[]]]]]]][[[[[]', '[][]', '[]', '[[][]]', '[[]][[']\n    for t in tests:\n        print(t, is_nested(t))",
+  "generated_code": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    # We need a subsequence (not necessarily contiguous) of brackets that forms a valid bracket string\n    # and has at least one nested pair, i.e., contains pattern like '[' ... '[' ... ']' ... ']'.\n    # Equivalent: there exist indices i<j<k<l with s[i]='[', s[k]='[', s[l]=']', s[j]=']' and nesting order i<k<l<j OR i<k<j<l?\n    # Simpler approach: try to greedily build a valid bracket subsequence while tracking max depth reached.\n    depth = 0\n    max_depth = 0\n    # Greedy: scan string, take '[' to increase depth, take ']' to decrease if depth>0 (matching previous '[').\n    for ch in string:\n        if ch == '[':\n            depth += 1\n            if depth > max_depth:\n                max_depth = depth\n        elif ch == ']':\n            if depth > 0:\n                depth -= 1\n    return max_depth >= 2\n\n# Quick test block (can be removed if strict output required)\nif __name__ == \"__main__\":\n    tests = ['[[]]', '[]]]]]]][[[[[]', '[][]', '[]', '[[][]]', '[[]][[']\n    for t in tests:\n        print(t, is_nested(t))"
+}

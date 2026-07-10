@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def how_many_times(string: str, substring: str) -> int:\n    count = 0\n    start = 0\n    while True:\n        start = string.find(substring, start)\n        if start == -1:\n            break\n        count += 1\n        start += 1\n    return count",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.072727,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

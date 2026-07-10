@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_075__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a is the product of exactly three prime numbers (counting multiplicity), False otherwise.\n    Assumes a is an integer (and the problem states a < 100).\n    \"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n\n    # simple primality test for small numbers\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0:\n            return False\n        r = int(math.isqrt(n))\n        for i in range(3, r + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    # Factorize by dividing out primes, count multiplicity until we reach 3 or fail\n    remaining = a\n    prime_factors_count = 0\n\n    # check factor 2 separately\n    while remaining % 2 == 0:\n        prime_factors_count += 1\n        remaining //= 2\n        if prime_factors_count > 3:\n            return False\n\n    # check odd factors\n    p = 3\n    while p * p <= remaining and prime_factors_count < 3:\n        while remaining % p == 0:\n            prime_factors_count += 1\n            remaining //= p\n            if prime_factors_count > 3:\n                return False\n        p += 2\n\n    # if remaining > 1 it's a prime factor\n    if remaining > 1:\n        prime_factors_count += 1\n\n    return prime_factors_count == 3\n\n# Example quick tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    tests = [30, 8, 27, 18, 1, 2, 60, 49, 70, 97]\n    for t in tests:\n        print(t, is_multiply_prime(t))",
+  "metrics": {
+    "total_nodes": 243,
+    "ast_depth": 9,
+    "branch_count": 9,
+    "loop_count": 5,
+    "function_count": 2,
+    "control_flow_count": 23,
+    "control_flow_ratio": 0.09465,
+    "function_names": [
+      "is_multiply_prime",
+      "is_prime"
+    ]
+  }
+}

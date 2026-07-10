@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from math import floor, isfinite\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal (fractional) part.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if not isfinite(number):\n        raise ValueError(\"number must be a finite value\")\n    # Ensure positive as docstring implies; handle negative consistently by returning fractional part magnitude\n    # For positive numbers: fractional = number - floor(number)\n    # For negative numbers: fractional part typically number - floor(number) gives non-negative fractional in [0,1)\n    return number - floor(number)",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

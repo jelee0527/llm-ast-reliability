@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_048__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import unicodedata\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if text is None:\n        return False\n    # Normalize unicode, remove non-letter/digit characters, and ignore case\n    normalized = unicodedata.normalize('NFKC', text)\n    filtered = ''.join(ch.lower() for ch in normalized if ch.isalnum())\n    return filtered == filtered[::-1]",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.046154,
+    "function_names": [
+      "is_palindrome"
+    ]
+  }
+}

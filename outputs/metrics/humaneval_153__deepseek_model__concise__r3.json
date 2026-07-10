@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__deepseek_model__concise__r3.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def Strongest_Extension(class_name, extensions):\n    best_ext = extensions[0]\n    best_strength = sum(1 for c in best_ext if c.isupper()) - sum(1 for c in best_ext if c.islower())\n    for ext in extensions[1:]:\n        cap = sum(1 for c in ext if c.isupper())\n        sm = sum(1 for c in ext if c.islower())\n        strength = cap - sm\n        if strength > best_strength:\n            best_strength = strength\n            best_ext = ext\n    return f\"{class_name}.{best_ext}\"",
+  "metrics": {
+    "total_nodes": 128,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.023438,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

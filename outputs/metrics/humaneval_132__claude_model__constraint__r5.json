@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def is_nested(string):\n    opening = []\n    closing = []\n    \n    for i, ch in enumerate(string):\n        if ch == '[':\n            opening.append(i)\n        elif ch == ']':\n            closing.append(i)\n    \n    # We need to find a valid sequence of brackets where at least one is nested\n    # This means we need at least two '[' before two ']' in proper order\n    # i.e., we need positions i1 < i2 < j2 < j1 (nested) or i1 < i2 < j1 < j2 (two separate but we need nested)\n    # Actually we need: exists i1 < i2 and j1 < j2 such that i1 < j1 and i2 < j2 and i1 < i2 < j2 and i2 < j1\n    # Nested means: i1 < i2 < j2 < j1 (one pair inside another)\n    \n    # Use a stack-based approach to find valid pairs, then check if any pair contains another\n    stack = []\n    pairs = []\n    \n    for i, ch in enumerate(string):\n        if ch == '[':\n            stack.append(i)\n        elif ch == ']':\n            if stack:\n                open_idx = stack.pop()\n                pairs.append((open_idx, i))\n    \n    # Check if any pair is nested inside another\n    for i in range(len(pairs)):\n        for j in range(len(pairs)):\n            if i != j:\n                # Check if pair j is nested inside pair i\n                if pairs[i][0] < pairs[j][0] and pairs[j][1] < pairs[i][1]:\n                    return True\n    \n    return False",
+  "metrics": {
+    "total_nodes": 195,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.066667,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

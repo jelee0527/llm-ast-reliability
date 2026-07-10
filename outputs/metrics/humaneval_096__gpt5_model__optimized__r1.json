@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_096__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef count_up_to(n: int) -> List[int]:\n    \"\"\"Return a list of all prime numbers less than n.\"\"\"\n    if not isinstance(n, int) or n <= 2:\n        return [] if n <= 1 else [2] if n == 2 else []\n    # Sieve of Eratosthenes up to n-1\n    limit = n - 1\n    sieve = bytearray(b'\\x01') * (limit + 1)  # True=potential prime\n    sieve[0:2] = b'\\x00\\x00'  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start:limit+1:step] = b'\\x00' * (((limit - start) // step) + 1)\n    return [i for i in range(2, n) if sieve[i]]",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.039548,
+    "function_names": [
+      "count_up_to"
+    ]
+  }
+}

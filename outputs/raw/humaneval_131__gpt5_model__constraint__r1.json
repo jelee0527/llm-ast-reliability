@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:49:33.409334+00:00",
+  "elapsed_seconds": 5.424,
+  "official_prompt": "\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef digits(n: int) -> int:\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    \"\"\"\n    # Ensure n is non-negative integer; treat negatives by absolute value\n    try:\n        n_int = int(n)\n    except Exception:\n        raise TypeError(\"n must be an integer\")\n    if n_int < 0:\n        n_int = -n_int\n\n    product = 1\n    found_odd = False\n    if n_int == 0:\n        # 0 has one digit which is even, so return 0\n        return 0\n\n    while n_int > 0:\n        d = n_int % 10\n        if d % 2 == 1:\n            product *= d\n            found_odd = True\n        n_int //= 10\n\n    return product if found_odd else 0\n\n# Quick sanity tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        1: 1,\n        4: 0,\n        235: 15,\n        0: 0,\n        2468: 0,\n        13579: 1*3*5*7*9,\n        -357: 3*5*7,\n        10203: 1*3,\n    }\n    for k, expected in tests.items():\n        result = digits(k)\n        print(k, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "generated_code": "from typing import Any\n\ndef digits(n: int) -> int:\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    \"\"\"\n    # Ensure n is non-negative integer; treat negatives by absolute value\n    try:\n        n_int = int(n)\n    except Exception:\n        raise TypeError(\"n must be an integer\")\n    if n_int < 0:\n        n_int = -n_int\n\n    product = 1\n    found_odd = False\n    if n_int == 0:\n        # 0 has one digit which is even, so return 0\n        return 0\n\n    while n_int > 0:\n        d = n_int % 10\n        if d % 2 == 1:\n            product *= d\n            found_odd = True\n        n_int //= 10\n\n    return product if found_odd else 0\n\n# Quick sanity tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        1: 1,\n        4: 0,\n        235: 15,\n        0: 0,\n        2468: 0,\n        13579: 1*3*5*7*9,\n        -357: 3*5*7,\n        10203: 1*3,\n    }\n    for k, expected in tests.items():\n        result = digits(k)\n        print(k, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")"
+}

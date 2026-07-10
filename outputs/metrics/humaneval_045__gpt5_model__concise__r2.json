@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_045__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef triangle_area(a: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    try:\n        return float(a) * float(h) / 2.0\n    except (TypeError, ValueError):\n        raise TypeError(\"Inputs must be numbers\")",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "triangle_area"
+    ]
+  }
+}

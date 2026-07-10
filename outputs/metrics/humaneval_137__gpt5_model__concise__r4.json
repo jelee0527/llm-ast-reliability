@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Optional, Union\n\ndef _to_float_and_type(x):\n    if isinstance(x, str):\n        s = x.replace(',', '.')\n        try:\n            return float(s), 'str'\n        except ValueError:\n            raise ValueError(f\"Cannot parse string as number: {x!r}\")\n    elif isinstance(x, (int, float)):\n        return float(x), type(x).__name__\n    else:\n        raise TypeError(f\"Unsupported type: {type(x)}\")\n\ndef compare_one(a, b) -> Optional[Union[int, float, str]]:\n    fa, ta = _to_float_and_type(a)\n    fb, tb = _to_float_and_type(b)\n    if fa == fb:\n        return None\n    if fa > fb:\n        return a\n    else:\n        return b",
+  "metrics": {
+    "total_nodes": 152,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.078947,
+    "function_names": [
+      "_to_float_and_type",
+      "compare_one"
+    ]
+  }
+}

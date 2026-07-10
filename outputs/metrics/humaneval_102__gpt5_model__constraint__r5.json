@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from math import ceil, floor, isnan, isfinite\n\ndef choose_num(x, y):\n    \"\"\"Return the largest even integer within [x, y] inclusive, or -1 if none.\n\n    Both x and y are expected to be numbers. If x > y, return -1.\n    \"\"\"\n    # Validate numeric inputs\n    try:\n        # Check for NaN or infinite values\n        if not (isfinite(x) and isfinite(y)):\n            return -1\n    except Exception:\n        return -1\n\n    # If interval empty\n    if x > y:\n        return -1\n\n    # Find the largest integer <= y\n    y_int = floor(y)\n    # Ensure it's even: if it's odd, step down by 1\n    if y_int % 2 != 0:\n        y_int -= 1\n\n    # Now check if y_int is still >= smallest integer >= x\n    # Find smallest integer >= x\n    x_int = ceil(x)\n\n    # If x_int is odd, the next even is x_int +1\n    if x_int % 2 != 0:\n        x_even = x_int + 1\n    else:\n        x_even = x_int\n\n    # The largest even <= y is y_int; if y_int >= x_even then return y_int\n    if y_int >= x_even:\n        return int(y_int)\n    else:\n        return -1\n\n\n# Example quick tests (will run when module is executed)\nif __name__ == \"__main__\":\n    tests = [\n        (12, 15, 14),\n        (13, 12, -1),\n        (2.0, 2.0, 2),\n        (2.1, 3.9, -1),\n        (3, 7, 6),\n        (4.5, 8.2, 8),\n        (-3, 1, 0),\n        (-5.5, -2.1, -4),\n        (0, 0, 0),\n        (1, 1, -1),\n    ]\n    for a, b, expect in tests:\n        res = choose_num(a, b)\n        print(f\"choose_num({a}, {b}) = {res}  expected {expect}\")",
+  "metrics": {
+    "total_nodes": 236,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.055085,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_152__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"Return list of absolute differences between corresponding elements of game and guess.\"\"\"\n    if len(game) != len(guess):\n        raise ValueError(\"game and guess must have the same length\")\n    # Use list comprehension for efficiency\n    return [abs(g - v) for g, v in zip(game, guess)]",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='compare',\n      args=arguments(\n        args=[\n          arg(\n            arg='game',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load())),\n          arg(\n            arg='guess',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return list of absolute differences between corresponding elements of game and guess.')),\n        If(\n          test=Compare(\n            left=Call(\n              func=Name(id='len', ctx=Load()),\n              args=[\n                Name(id='game', ctx=Load())]),\n            ops=[\n              NotEq()],\n            comparators=[\n              Call(\n                func=Name(id='len', ctx=Load()),\n                args=[\n                  Name(id='guess', ctx=Load())])]),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='ValueError', ctx=Load()),\n                args=[\n                  Constant(value='game and guess must have the same length')]))]),\n        Return(\n          value=ListComp(\n            elt=Call(\n              func=Name(id='abs', ctx=Load()),\n              args=[\n                BinOp(\n                  left=Name(id='g', ctx=Load()),\n                  op=Sub(),\n                  right=Name(id='v', ctx=Load()))]),\n            generators=[\n              comprehension(\n                target=Tuple(\n                  elts=[\n                    Name(id='g', ctx=Store()),\n                    Name(id='v', ctx=Store())],\n                  ctx=Store()),\n                iter=Call(\n                  func=Name(id='zip', ctx=Load()),\n                  args=[\n                    Name(id='game', ctx=Load()),\n                    Name(id='guess', ctx=Load())]),\n                is_async=0)]))],\n      returns=Subscript(\n        value=Name(id='List', ctx=Load()),\n        slice=Name(id='int', ctx=Load()),\n        ctx=Load()))])"
+}

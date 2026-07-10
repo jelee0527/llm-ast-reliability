@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_104__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    result = []\n    for num in x:\n        temp = num\n        has_even = False\n        if temp == 0:\n            has_even = True\n        else:\n            while temp > 0:\n                digit = temp % 10\n                if digit % 2 == 0:\n                    has_even = True\n                    break\n                temp //= 10\n        if not has_even:\n            result.append(num)\n    result.sort()\n    return result",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.079545,
+    "function_names": [
+      "unique_digits"
+    ]
+  }
+}

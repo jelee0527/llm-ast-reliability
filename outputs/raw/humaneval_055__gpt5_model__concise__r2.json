@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_055",
+  "task_id": "HumanEval/55",
+  "problem_name": "Fib",
+  "entry_point": "fib",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:04:36.047319+00:00",
+  "elapsed_seconds": 2.504,
+  "official_prompt": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n\n",
+  "raw_response": "from functools import lru_cache\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    @lru_cache(None)\n    def _f(k):\n        if k == 0:\n            return 0\n        if k == 1:\n            return 1\n        return _f(k-1) + _f(k-2)\n    return _f(n)",
+  "generated_code": "from functools import lru_cache\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    @lru_cache(None)\n    def _f(k):\n        if k == 0:\n            return 0\n        if k == 1:\n            return 1\n        return _f(k-1) + _f(k-2)\n    return _f(n)"
+}

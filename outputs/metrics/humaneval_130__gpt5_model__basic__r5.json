@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef tri(n):\n    \"\"\"Return a list of the first n+1 Tribonacci numbers as defined.\n    tri(0) is assumed to be 1 based on examples that start at index 1 -> value 3.\n    However the docstring example shows tri(3) = [1, 3, 2, 8], implying:\n      index 0 -> 1\n      index 1 -> 3\n      index 2 -> 2\n      index 3 -> 8\n    We'll implement according to that indexing: tri(1)=3, and tri(0)=1.\n    Recurrence:\n      tri(1) = 3\n      tri(n) = 1 + n/2      if n is even (for n>=2)\n      tri(n) = tri(n-1)+tri(n-2)+tri(n+1)   if n is odd\n    Because odd terms depend on tri(n+1), we compute values using recursion with memoization.\n    \"\"\"\n    # validate n\n    if not isinstance(n, int) or n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    # use cache\n    @lru_cache(maxsize=None)\n    def t(k):\n        if k == 0:\n            return 1\n        if k == 1:\n            return 3\n        if k % 2 == 0:\n            # even\n            return 1 + k / 2\n        else:\n            # odd: depends on k+1 (which may be even), so recursion converges\n            return t(k-1) + t(k-2) + t(k+1)\n    # build list for 0..n\n    res = []\n    for i in range(0, n+1):\n        val = t(i)\n        # if value is integer-like, convert to int\n        if isinstance(val, float) and val.is_integer():\n            val = int(val)\n        res.append(val)\n    return res",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.075,
+    "function_names": [
+      "tri",
+      "t"
+    ]
+  }
+}

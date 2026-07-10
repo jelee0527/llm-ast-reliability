@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_071__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_071",
+  "task_id": "HumanEval/71",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef triangle_area(a, b, c):\n    \"\"\"\n    Given the lengths of the three sides of a triangle, return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1.\n\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    \"\"\"\n    # Validate that inputs are numbers and positive\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return -1\n\n    # All sides must be positive\n    if any(s <= 0 for s in sides):\n        return -1\n\n    x, y, z = sides\n\n    # Check triangle inequality: sum of any two sides must be greater than the third\n    if not (x + y > z and x + z > y and y + z > x):\n        return -1\n\n    # Use Heron's formula\n    s = (x + y + z) / 2.0\n    # Numeric guard: the expression inside sqrt should be non-negative\n    area_squared = s * (s - x) * (s - y) * (s - z)\n    if area_squared < 0:\n        # Treat tiny negative due to floating point as zero\n        if area_squared > -1e-12:\n            area_squared = 0.0\n        else:\n            return -1\n\n    area = math.sqrt(area_squared)\n    # Round to 2 decimal places and format as float with two decimals\n    return float(f\"{area:.2f}\")",
+  "metrics": {
+    "total_nodes": 198,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "triangle_area"
+    ]
+  }
+}

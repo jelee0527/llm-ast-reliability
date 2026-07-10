@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in the string s.\n    Vowels are 'a', 'e', 'i', 'o', 'u' (case-insensitive).\n    'y' is considered a vowel only when it is the last character of the word.\n    Non-letter characters are ignored except for position of 'y'.\n\n    Examples:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_lower = s.lower()\n    count = 0\n    vowels = set(\"aeiou\")\n    for i, ch in enumerate(s_lower):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y':\n            if i == len(s_lower) - 1:\n                count += 1\n    return count\n\nif __name__ == \"__main__\":\n    # Basic tests\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"\", 0),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"rhythm\", 0),       # no terminal y\n        (\"rhythmy\", 1),      # terminal y counts\n        (\"AEIOU\", 5),\n        (\"aeiouy\", 6),\n        (\"bcd\", 0),\n        (\"sky\", 1),\n        (\"flyby\", 1),        # terminal y only\n        (\"yellow\", 2),       # y at start not counted, e and o counted\n        (\"why?\", 1),         # punctuation: last char is '?', so 'y' not last -> 0 vowels? but 'y' not last; only 'y' before '?' => 0\n        (\"why\", 1),\n        (\"co-operate\", 5),   # hyphen ignored; vowels: o o e a e -> 5\n        (\"naïve\", 3),        # includes ï; since not in set it'll be ignored -> counts: a,i,e -> 3 (ï lower-case remains ï not i)\n    ]\n    for s, expected in tests:\n        result = vowels_count(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 222,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.04955,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

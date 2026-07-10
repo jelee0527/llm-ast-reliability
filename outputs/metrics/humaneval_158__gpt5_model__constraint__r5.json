@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"Return the word with the maximum number of unique characters.\n    If multiple strings tie, return the lexicographically smallest among them.\n    If the list is empty, return an empty string.\n    \"\"\"\n    if not words:\n        return \"\"\n    best_word = None\n    best_count = -1\n    for w in words:\n        # Count unique characters deterministically\n        unique_count = len(set(w))\n        if unique_count > best_count:\n            best_count = unique_count\n            best_word = w\n        elif unique_count == best_count:\n            # choose lexicographically smaller\n            if best_word is None or w < best_word:\n                best_word = w\n    return best_word",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.073684,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

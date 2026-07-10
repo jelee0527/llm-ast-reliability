@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"\n    Return a list of the first n+1 Tribonacci numbers as defined:\n      tri(1) = 3\n      tri(n) = 1 + n/2  if n is even\n      tri(n) = tri(n-1) + tri(n-2) + tri(n+1)  if n is odd\n\n    The sequence is defined for positive integer indices. The function returns\n    values for indices 0..n inclusive. For index 0 (not defined in the prompt),\n    we'll return 1 to make the sequence start sensible (so tri(0)=1),\n    matching typical examples where tri(3) -> [1,3,2,8].\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n\n    # We'll build values for indices 0..n. Use a dictionary to allow forward reference\n    # for tri(n+1) when computing odd indices.\n    vals = {}\n\n    # Define tri(0) to match example: example tri(3) -> [1,3,2,8], so tri(0)=1.\n    vals[0] = 1\n    if n == 0:\n        return [vals[0]]\n\n    # tri(1) is given as 3\n    vals[1] = 3\n    # Compute iteratively from 2 up to n, but odd indices require tri(k+1) which may be unknown.\n    # We will compute in increasing order, and when an odd k needs tri(k+1) we'll compute that even value directly.\n    def compute_index(k: int) -> int:\n        if k in vals:\n            return vals[k]\n        if k % 2 == 0:\n            # even: tri(k) = 1 + k/2  (k is int, result should be int)\n            val = 1 + k // 2\n            vals[k] = val\n            return val\n        else:\n            # odd: tri(k) = tri(k-1) + tri(k-2) + tri(k+1)\n            # Ensure tri(k+1) is available (k+1 is even) -> compute directly\n            t_k_minus_1 = compute_index(k - 1)\n            t_k_minus_2 = compute_index(k - 2)\n            t_k_plus_1 = compute_index(k + 1)\n            val = t_k_minus_1 + t_k_minus_2 + t_k_plus_1\n            vals[k] = val\n            return val\n\n    # Fill up to n\n    for i in range(2, n + 1):\n        compute_index(i)\n\n    # Build result list for indices 0..n\n    return [vals[i] for i in range(0, n + 1)]",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.052885,
+    "function_names": [
+      "tri",
+      "compute_index"
+    ]
+  }
+}

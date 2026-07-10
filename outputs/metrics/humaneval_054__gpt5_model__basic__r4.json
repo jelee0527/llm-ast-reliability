@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef same_chars(s0: str, s1: str) -> bool:\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    return set(s0) == set(s1)",
+  "metrics": {
+    "total_nodes": 28,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.035714,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

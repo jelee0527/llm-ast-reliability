@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:37:34.477908+00:00",
+  "elapsed_seconds": 5.236,
+  "official_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Return None for empty arr.\n\n    Examples:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n    if not arr:\n        return None\n\n    total_magnitude = 0\n    overall_sign = 1  # will be 1, -1, or 0 if any element is zero\n\n    for num in arr:\n        # Update magnitude sum\n        total_magnitude += abs(num)\n\n        # Update overall sign\n        if num == 0:\n            overall_sign = 0\n            # once overall_sign is zero, product remains zero; we can continue summing magnitudes\n        else:\n            # If overall_sign is already zero, keep it zero\n            if overall_sign != 0:\n                overall_sign *= 1 if num > 0 else -1\n\n    return None if total_magnitude is None else overall_sign * total_magnitude\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([5, -3, -2]) == -10  # magnitudes 5+3+2=10, signs product = -1\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Return None for empty arr.\n\n    Examples:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n    if not arr:\n        return None\n\n    total_magnitude = 0\n    overall_sign = 1  # will be 1, -1, or 0 if any element is zero\n\n    for num in arr:\n        # Update magnitude sum\n        total_magnitude += abs(num)\n\n        # Update overall sign\n        if num == 0:\n            overall_sign = 0\n            # once overall_sign is zero, product remains zero; we can continue summing magnitudes\n        else:\n            # If overall_sign is already zero, keep it zero\n            if overall_sign != 0:\n                overall_sign *= 1 if num > 0 else -1\n\n    return None if total_magnitude is None else overall_sign * total_magnitude\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([5, -3, -2]) == -10  # magnitudes 5+3+2=10, signs product = -1\n    print(\"All tests passed.\")"
+}

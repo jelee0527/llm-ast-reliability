@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:30:47.428978+00:00",
+  "elapsed_seconds": 4.983,
+  "official_prompt": "\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef sort_even(l: List[Any]) -> List[Any]:\n    \"\"\"Return a list where elements at even indices are sorted, odd indices unchanged.\n\n    Even indices use Python's 0-based indexing (0, 2, 4, ...).\n    The relative positions of odd-indexed elements are preserved.\n\n    Examples:\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    # Defensive copy to avoid mutating the input list\n    result = list(l)\n\n    # Extract values at even indices\n    even_indices = list(range(0, len(result), 2))\n    even_values = [result[i] for i in even_indices]\n\n    # Sort the even-index values\n    even_values.sort()\n\n    # Place sorted values back into their even positions\n    for idx, val in zip(even_indices, even_values):\n        result[idx] = val\n\n    return result\n\n\nif __name__ == \"__main__\":\n    # Simple self-test\n    test_cases = [\n        ([1, 2, 3], [1, 2, 3]),\n        ([5, 6, 3, 4], [3, 6, 5, 4]),\n        ([], []),\n        ([7], [7]),\n        ([9,8,7,6,5], [5,8,7,6,9]),\n    ]\n    for inp, expected in test_cases:\n        out = sort_even(inp)\n        print(inp, \"->\", out, \"OK\" if out == expected else \"FAIL, expected \"+str(expected))",
+  "generated_code": "from typing import List, Any\n\ndef sort_even(l: List[Any]) -> List[Any]:\n    \"\"\"Return a list where elements at even indices are sorted, odd indices unchanged.\n\n    Even indices use Python's 0-based indexing (0, 2, 4, ...).\n    The relative positions of odd-indexed elements are preserved.\n\n    Examples:\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    # Defensive copy to avoid mutating the input list\n    result = list(l)\n\n    # Extract values at even indices\n    even_indices = list(range(0, len(result), 2))\n    even_values = [result[i] for i in even_indices]\n\n    # Sort the even-index values\n    even_values.sort()\n\n    # Place sorted values back into their even positions\n    for idx, val in zip(even_indices, even_values):\n        result[idx] = val\n\n    return result\n\n\nif __name__ == \"__main__\":\n    # Simple self-test\n    test_cases = [\n        ([1, 2, 3], [1, 2, 3]),\n        ([5, 6, 3, 4], [3, 6, 5, 4]),\n        ([], []),\n        ([7], [7]),\n        ([9,8,7,6,5], [5,8,7,6,9]),\n    ]\n    for inp, expected in test_cases:\n        out = sort_even(inp)\n        print(inp, \"->\", out, \"OK\" if out == expected else \"FAIL, expected \"+str(expected))"
+}

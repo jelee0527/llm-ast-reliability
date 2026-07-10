@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_122__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n    # Validate inputs (explicit control flow)\n    if not isinstance(arr, list):\n        raise TypeError(\"arr must be a list of integers\")\n    if not isinstance(k, int):\n        raise TypeError(\"k must be an integer\")\n    n = len(arr)\n    if n == 0:\n        raise ValueError(\"arr must be non-empty\")\n    if k < 1 or k > n:\n        raise ValueError(\"k must be between 1 and len(arr) inclusive\")\n\n    total = 0\n    # iterate over the first k elements\n    for i in range(k):\n        val = arr[i]\n        if not isinstance(val, int):\n            raise TypeError(\"all elements of arr must be integers\")\n        # count digits in absolute value\n        abs_val = abs(val)\n        # numbers with at most two digits: 0-99 inclusive\n        if abs_val <= 99:\n            total += val\n    return total\n\n# Example usage (can be removed if only function is desired)\nif __name__ == \"__main__\":\n    print(add_elements([111,21,3,4000,5,6,7,8,9], 4))  # expected 24",
+  "metrics": {
+    "total_nodes": 171,
+    "ast_depth": 8,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.081871,
+    "function_names": [
+      "add_elements"
+    ]
+  }
+}

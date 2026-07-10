@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_062__claude_model__concise__r4.json",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def derivative(xs: list):\n    return [i * x for i, x in enumerate(xs) if i > 0]",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "derivative"
+    ]
+  }
+}

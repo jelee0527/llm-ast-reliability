@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_146__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef specialFilter(nums):\n    \"\"\"Return the count of numbers in nums that are:\n       - greater than 10\n       - have both first and last decimal digits odd (1,3,5,7,9)\n    Negative numbers are considered by absolute value for digit extraction,\n    but the \"> 10\" requirement applies to the original number.\n    \"\"\"\n    odd_digits = {'1', '3', '5', '7', '9'}\n    count = 0\n    for n in nums:\n        if n <= 10:\n            continue\n        # Work with absolute value for digit extraction\n        abs_n = abs(n)\n        # Convert to integer by truncation in case of floats\n        # If the number is not finite (NaN/inf) skip it\n        if not (isinstance(abs_n, (int, float)) and math.isfinite(abs_n)):\n            continue\n        try:\n            int_n = int(abs_n)\n        except Exception:\n            continue\n        s = str(int_n)\n        if len(s) == 0:\n            continue\n        first, last = s[0], s[-1]\n        if first in odd_digits and last in odd_digits:\n            count += 1\n    return count\n\n# Example tests\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))       # => 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))# => 2",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.065934,
+    "function_names": [
+      "specialFilter"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    # n-digit numbers range from 10^(n-1) to 10^n - 1\n    # Count numbers that start with 1: from 10^(n-1) to 2*10^(n-1) - 1\n    # That's 10^(n-1) numbers\n    # Count numbers that end with 1: every 10th number in the range\n    # That's 10^(n-1) numbers (from 10^(n-1)+1 to 10^n-1, step 10, plus 10^(n-1) itself if it ends in 1)\n    # Use inclusion-exclusion: |start with 1| + |end with 1| - |start and end with 1|\n    \n    start_with_1 = 10 ** (n - 1)\n    end_with_1 = 10 ** (n - 1)\n    # Numbers that start AND end with 1: first digit is 1, last digit is 1\n    # Form: 1 _ _ ... _ 1 where middle (n-2) digits can be anything\n    # Count = 10^(n-2) for n >= 2\n    if n == 1:\n        start_and_end = 1\n    else:\n        start_and_end = 10 ** (n - 2)\n    \n    return start_with_1 + end_with_1 - start_and_end",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.060606,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

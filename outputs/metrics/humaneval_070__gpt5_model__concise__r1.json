@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_070__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_070",
+  "task_id": "HumanEval/70",
+  "problem_name": "Strange Sort List",
+  "entry_point": "strange_sort_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef strange_sort_list(lst: List[int]) -> List[int]:\n    if not lst:\n        return []\n    arr = sorted(lst)\n    res = []\n    i, j = 0, len(arr) - 1\n    take_min = True\n    while i <= j:\n        if take_min:\n            res.append(arr[i]); i += 1\n        else:\n            res.append(arr[j]); j -= 1\n        take_min = not take_min\n    return res",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "strange_sort_list"
+    ]
+  }
+}

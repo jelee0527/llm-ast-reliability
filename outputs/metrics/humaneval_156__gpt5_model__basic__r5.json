@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Dict, List\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if not (1 <= number <= 1000):\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n\n    # Map of values to roman numerals, ordered from largest to smallest.\n    val_map: List[tuple] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n\n    result_parts: List[str] = []\n    n = number\n    for val, roman in val_map:\n        if n == 0:\n            break\n        count = n // val\n        if count:\n            result_parts.append(roman * count)\n            n -= val * count\n\n    return \"\".join(result_parts).lower()\n\n\n# Quick internal tests when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        1: \"i\",\n        4: \"iv\",\n        9: \"ix\",\n        19: \"xix\",\n        44: \"xliv\",\n        152: \"clii\",\n        399: \"cccxcix\",\n        400: \"cd\",\n        426: \"cdxxvi\",\n        944: \"cmxliv\",\n        1000: \"m\",\n    }\n    for k, expected in tests.items():\n        res = int_to_mini_roman(k)\n        assert res == expected, f\"{k} -> {res} != {expected}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 258,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.042636,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

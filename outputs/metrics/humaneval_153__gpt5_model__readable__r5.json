@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_153__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef Strongest_Extension(class_name: str, extensions: List[str]) -> str:\n    \"\"\"\n    Find the extension with the maximum strength and return \"ClassName.ExtensionName\".\n    Strength = (number of uppercase letters) - (number of lowercase letters).\n    Ties are broken by earliest occurrence in the list.\n    \"\"\"\n    if not extensions:\n        return f\"{class_name}.\"  # no extension given, return class with trailing dot\n\n    def strength(ext: str) -> int:\n        # Count uppercase and lowercase letters only\n        upper_count = sum(1 for ch in ext if 'A' <= ch <= 'Z')\n        lower_count = sum(1 for ch in ext if 'a' <= ch <= 'z')\n        return upper_count - lower_count\n\n    best_index = 0\n    best_strength = strength(extensions[0])\n    for idx, ext in enumerate(extensions[1:], start=1):\n        s = strength(ext)\n        if s > best_strength:\n            best_strength = s\n            best_index = idx\n    return f\"{class_name}.{extensions[best_index]}\"",
+  "metrics": {
+    "total_nodes": 157,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.038217,
+    "function_names": [
+      "Strongest_Extension",
+      "strength"
+    ]
+  }
+}

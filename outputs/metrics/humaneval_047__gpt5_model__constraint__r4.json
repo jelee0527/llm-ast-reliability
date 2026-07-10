@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Sequence, Any\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, Sequence):\n        raise TypeError(\"Input must be a sequence (list or similar).\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty sequence\")\n    # Work on a copy to avoid mutating input\n    arr = list(l)\n    # Ensure elements are comparable and numeric for arithmetic when needed.\n    # Use sorting for simplicity and determinism.\n    try:\n        arr.sort()\n    except TypeError:\n        # If elements are not directly comparable, raise a clear error\n        raise TypeError(\"Elements of the sequence are not comparable\")\n    mid = n // 2\n    if n % 2 == 1:\n        return arr[mid]\n    else:\n        # For even count, return arithmetic mean of two middle values.\n        a = arr[mid - 1]\n        b = arr[mid]\n        try:\n            return (a + b) / 2\n        except TypeError:\n            # If + or / not supported, return tuple of the two middle elements\n            return (a, b)",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.081481,
+    "function_names": [
+      "median"
+    ]
+  }
+}

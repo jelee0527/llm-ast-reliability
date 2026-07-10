@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n\n    N: integer 0 ≤ N ≤ 10000\n    Returns: string representing the sum of decimal digits of N in binary.\n    \"\"\"\n    # Ensure integer input\n    try:\n        n = int(N)\n    except Exception:\n        raise ValueError(\"Input must be an integer\")\n    if n < 0:\n        raise ValueError(\"N must be non-negative\")\n    # Sum decimal digits\n    s = 0\n    temp = n\n    if temp == 0:\n        s = 0\n    else:\n        while temp > 0:\n            s += temp % 10\n            temp //= 10\n    # Convert sum to binary string\n    if s == 0:\n        return \"0\"\n    bits = []\n    while s > 0:\n        bits.append(str(s & 1))\n        s >>= 1\n    bits.reverse()\n    return \"\".join(bits)\n\n# If run as script, read integer from stdin and print result\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data:\n        # No input; do nothing\n        sys.exit(0)\n    try:\n        value = int(data[0])\n    except Exception:\n        print(\"0\")\n        sys.exit(0)\n    print(solve(value))",
+  "metrics": {
+    "total_nodes": 196,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.066327,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

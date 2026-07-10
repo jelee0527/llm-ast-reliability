@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_146__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    \"\"\"\n    Returns the count of numbers in the input list that are:\n    - greater than 10\n    - both their first and last decimal digits are odd (1,3,5,7,9)\n    Negative numbers are treated by their absolute value for digit extraction,\n    but the value must be greater than 10 (so negatives are excluded).\n    \"\"\"\n    def first_and_last_digits_are_odd(n: int) -> bool:\n        # n is non-negative integer\n        last = n % 10\n        # get first digit\n        while n >= 10:\n            n //= 10\n        first = n\n        odd_digits = {1,3,5,7,9}\n        return first in odd_digits and last in odd_digits\n\n    count = 0\n    for x in nums:\n        # require number to be greater than 10\n        if x <= 10:\n            continue\n        # use absolute value for digit checks (sign doesn't affect digits)\n        if first_and_last_digits_are_odd(abs(int(x))):\n            count += 1\n    return count\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))  # => 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))  # => 2",
+  "metrics": {
+    "total_nodes": 151,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.05298,
+    "function_names": [
+      "specialFilter",
+      "first_and_last_digits_are_odd"
+    ]
+  }
+}

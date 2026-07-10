@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    parts: list[str] = []\n    for ch in string:\n        # Explicit control flow: check categories\n        if 'a' <= ch <= 'z':\n            parts.append(chr(ord(ch) - 32))  # to uppercase\n        elif 'A' <= ch <= 'Z':\n            parts.append(chr(ord(ch) + 32))  # to lowercase\n        else:\n            parts.append(ch)\n    return ''.join(parts)\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    print(flip_case(\"Hello\"))  # expected 'hELLO'\n    print(flip_case(\"123 AbC!\"))  # expected '123 aBc!'",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.053846,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

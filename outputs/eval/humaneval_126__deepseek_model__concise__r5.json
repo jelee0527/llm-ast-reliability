@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_126__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "ValueError",
+  "error_message": "max() arg is an empty sequence",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 10, in check\n  File \"<string>\", line 6, in is_sorted\nValueError: max() arg is an empty sequence\n"
+}

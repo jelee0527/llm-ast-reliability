@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_082__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_082",
+  "task_id": "HumanEval/82",
+  "problem_name": "Prime Length",
+  "entry_point": "prime_length",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def prime_length(string):\n    length = len(string)\n    if length <= 1:\n        return False\n    if length <= 3:\n        return True\n    if length % 2 == 0 or length % 3 == 0:\n        return False\n    i = 5\n    while i * i <= length:\n        if length % i == 0 or length % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.103093,
+    "function_names": [
+      "prime_length"
+    ]
+  }
+}

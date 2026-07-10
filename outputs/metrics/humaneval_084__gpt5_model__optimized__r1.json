@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary as a string.\"\"\"\n    # Sum of decimal digits of N\n    s = 0\n    # handle integer or string input\n    if isinstance(N, int):\n        n = N\n        while n:\n            s += n % 10\n            n //= 10\n    else:\n        # assume string-like\n        for ch in str(N):\n            if ch.isdigit():\n                s += ord(ch) - 48\n    return bin(s)[2:]\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data:\n        # no input; do nothing or print 0 for N=0\n        print(\"0\")\n    else:\n        # take first token as integer\n        try:\n            N = int(data[0])\n        except:\n            N = data[0]\n        print(solve(N))",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.057143,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

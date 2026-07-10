@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:44:22.312422+00:00",
+  "elapsed_seconds": 3.516,
+  "official_prompt": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n    \"\"\"\n    try:\n        # Coerce to floats\n        x_f = float(x)\n        y_f = float(y)\n    except Exception:\n        return -1\n\n    # If bounds invalid\n    if x_f > y_f:\n        return -1\n\n    # Compute largest integer <= y\n    y_floor = math.floor(y_f)\n    # Ensure even: if odd, subtract 1\n    if y_floor % 2 != 0:\n        y_floor -= 1\n    # Now y_floor is the largest even integer <= y\n    if y_floor < math.ceil(x_f):\n        return -1\n    return int(y_floor)",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n    \"\"\"\n    try:\n        # Coerce to floats\n        x_f = float(x)\n        y_f = float(y)\n    except Exception:\n        return -1\n\n    # If bounds invalid\n    if x_f > y_f:\n        return -1\n\n    # Compute largest integer <= y\n    y_floor = math.floor(y_f)\n    # Ensure even: if odd, subtract 1\n    if y_floor % 2 != 0:\n        y_floor -= 1\n    # Now y_floor is the largest even integer <= y\n    if y_floor < math.ceil(x_f):\n        return -1\n    return int(y_floor)"
+}

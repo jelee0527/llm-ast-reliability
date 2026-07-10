@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:11:02.166665+00:00",
+  "elapsed_seconds": 3.961,
+  "official_prompt": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Iterable\n\ndef common(l1: List, l2: List) -> List:\n    \"\"\"Return sorted unique common elements for two lists.\"\"\"\n    # Convert smaller list to set for memory efficiency\n    if len(l1) < len(l2):\n        s1, s2 = set(l1), l2\n    else:\n        s1, s2 = set(l2), l1\n    # Use set comprehension to get unique common elements\n    result_set = {x for x in s1 if x in set(s2)}  # convert s2 to set for O(1) lookups\n    try:\n        return sorted(result_set)\n    except TypeError:\n        # If elements are not directly comparable, return list in insertion order of appearance in s2 filtered by s1\n        seen = []\n        s1 = set(s1)\n        for x in s2:\n            if x in s1 and x not in seen:\n                seen.append(x)\n        return seen",
+  "generated_code": "from typing import List, Iterable\n\ndef common(l1: List, l2: List) -> List:\n    \"\"\"Return sorted unique common elements for two lists.\"\"\"\n    # Convert smaller list to set for memory efficiency\n    if len(l1) < len(l2):\n        s1, s2 = set(l1), l2\n    else:\n        s1, s2 = set(l2), l1\n    # Use set comprehension to get unique common elements\n    result_set = {x for x in s1 if x in set(s2)}  # convert s2 to set for O(1) lookups\n    try:\n        return sorted(result_set)\n    except TypeError:\n        # If elements are not directly comparable, return list in insertion order of appearance in s2 filtered by s1\n        seen = []\n        s1 = set(s1)\n        for x in s2:\n            if x in s1 and x not in seen:\n                seen.append(x)\n        return seen"
+}

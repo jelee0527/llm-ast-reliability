@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef get_row(lst: List[List[int]], x: int) -> List[Tuple[int, int]]:\n    \"\"\"\n    Find all occurrences of integer x in a 2D list (rows may have varying lengths).\n    Return list of (row_index, col_index) tuples sorted by:\n      - row index ascending\n      - within each row, column indices descending\n    \"\"\"\n    results: List[Tuple[int, int]] = []\n    for row_idx, row in enumerate(lst):\n        if not row:\n            continue\n        # collect column indices where value equals x\n        cols = [col_idx for col_idx, val in enumerate(row) if val == x]\n        if cols:\n            # sort column indices in descending order as required\n            cols.sort(reverse=True)\n            for col in cols:\n                results.append((row_idx, col))\n    return results\n\n# Quick self-check when run as script (not required by the task, but harmless)\nif __name__ == \"__main__\":\n    assert get_row([\n        [1,2,3,4,5,6],\n        [1,2,3,4,1,6],\n        [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]\n    assert get_row([], 1) == []\n    assert get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]",
+  "metrics": {
+    "total_nodes": 225,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.031111,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:47:48.830417+00:00",
+  "elapsed_seconds": 5.976,
+  "official_prompt": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a is the product of exactly three primes (not necessarily distinct).\"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n    # Generate primes up to a using simple sieve\n    limit = max(2, a)\n    sieve = [True] * (limit + 1)\n    sieve[0:2] = [False, False]\n    for i in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[i]:\n            for j in range(i*i, limit+1, i):\n                sieve[j] = False\n    primes = [i for i, is_p in enumerate(sieve) if is_p]\n    # Try factorizations into three primes (with repetition)\n    # Since a < 100, brute force over primes is fine\n    n = a\n    for i in range(len(primes)):\n        p = primes[i]\n        if p > n:\n            break\n        if n % p != 0:\n            continue\n        n1 = n // p\n        for j in range(i, len(primes)):  # allow same or larger primes to avoid duplicates but repetition allowed\n            q = primes[j]\n            if q > n1:\n                break\n            if n1 % q != 0:\n                continue\n            r = n1 // q\n            # r must be prime\n            if r >= 2 and r <= limit and sieve[r]:\n                return True\n    return False\n\n# Optional small tests when run as main\nif __name__ == \"__main__\":\n    test_values = [30, 8, 27, 1, 6, 49, 125, 2*3*17, 2*2*2, 97]\n    for v in test_values:\n        print(v, is_multiply_prime(v))",
+  "generated_code": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a is the product of exactly three primes (not necessarily distinct).\"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n    # Generate primes up to a using simple sieve\n    limit = max(2, a)\n    sieve = [True] * (limit + 1)\n    sieve[0:2] = [False, False]\n    for i in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[i]:\n            for j in range(i*i, limit+1, i):\n                sieve[j] = False\n    primes = [i for i, is_p in enumerate(sieve) if is_p]\n    # Try factorizations into three primes (with repetition)\n    # Since a < 100, brute force over primes is fine\n    n = a\n    for i in range(len(primes)):\n        p = primes[i]\n        if p > n:\n            break\n        if n % p != 0:\n            continue\n        n1 = n // p\n        for j in range(i, len(primes)):  # allow same or larger primes to avoid duplicates but repetition allowed\n            q = primes[j]\n            if q > n1:\n                break\n            if n1 % q != 0:\n                continue\n            r = n1 // q\n            # r must be prime\n            if r >= 2 and r <= limit and sieve[r]:\n                return True\n    return False\n\n# Optional small tests when run as main\nif __name__ == \"__main__\":\n    test_values = [30, 8, 27, 1, 6, 49, 125, 2*3*17, 2*2*2, 97]\n    for v in test_values:\n        print(v, is_multiply_prime(v))"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:51:21.879969+00:00",
+  "elapsed_seconds": 3.202,
+  "official_prompt": "\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n\n",
+  "raw_response": "def how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not string or not substring:\n        return 0\n    \n    count = 0\n    substring_length = len(substring)\n    \n    for index in range(len(string) - substring_length + 1):\n        current_slice = string[index:index + substring_length]\n        if current_slice == substring:\n            count += 1\n    \n    return count",
+  "generated_code": "def how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not string or not substring:\n        return 0\n    \n    count = 0\n    substring_length = len(substring)\n    \n    for index in range(len(string) - substring_length + 1):\n        current_slice = string[index:index + substring_length]\n        if current_slice == substring:\n            count += 1\n    \n    return count"
+}

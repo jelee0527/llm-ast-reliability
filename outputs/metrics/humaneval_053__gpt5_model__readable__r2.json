@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_053__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two integers x and y and return the sum.\n\n    Examples:\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Validate inputs are integers (or at least numbers that support addition)\n    if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):\n        raise TypeError(\"add expects numeric types (int or float) for x and y\")\n    return x + y\n\n# Optional simple tests when run as a script\nif __name__ == \"__main__\":\n    print(add(2, 3))  # 5\n    print(add(5, 7))  # 12",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "add"
+    ]
+  }
+}

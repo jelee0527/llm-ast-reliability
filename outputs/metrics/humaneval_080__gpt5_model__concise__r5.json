@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def is_happy(s):\n    \"\"\"Return True if s length >=3 and every 3 consecutive letters are distinct.\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"s must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        if a == b or b == c or a == c:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.074074,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

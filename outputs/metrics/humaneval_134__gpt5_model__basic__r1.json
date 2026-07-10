@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n    '''\n    if not txt:\n        return False\n    # If last character is space -> False\n    if txt[-1] == ' ':\n        return False\n    # If last character is not a letter -> False\n    if txt[-1] not in string.ascii_letters:\n        return False\n    # Check preceding character: if it's space or there is no preceding char -> True\n    if len(txt) == 1:\n        return True\n    return txt[-2] == ' '",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 7,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.136364,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

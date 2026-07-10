@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_045__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    # Validate inputs: must be numbers and non-negative\n    try:\n        a_val = float(a)\n        h_val = float(h)\n    except (TypeError, ValueError):\n        raise TypeError(\"a and h must be numbers\")\n    if a_val < 0 or h_val < 0:\n        raise ValueError(\"a and h must be non-negative\")\n    return 0.5 * a_val * h_val",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.078125,
+    "function_names": [
+      "triangle_area"
+    ]
+  }
+}

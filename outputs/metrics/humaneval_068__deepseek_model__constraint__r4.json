@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def pluck(arr):\n    if not arr:\n        return []\n    smallest_even = None\n    smallest_index = None\n    for i, val in enumerate(arr):\n        if val % 2 == 0:\n            if smallest_even is None or val < smallest_even:\n                smallest_even = val\n                smallest_index = i\n    if smallest_even is None:\n        return []\n    return [smallest_even, smallest_index]",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.098765,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

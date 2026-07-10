@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n    if any(ch.isalpha() for ch in s):\n        # Flip case for letters, keep other characters unchanged\n        return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n    else:\n        # No letters: return reversed string\n        return s[::-1]\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        # nothing to do\n        pass\n    else:\n        # If multiple lines, process each line and print results line by line\n        for i, line in enumerate(data):\n            # Print without adding extra blank line at end\n            print(solve(line))",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.068627,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

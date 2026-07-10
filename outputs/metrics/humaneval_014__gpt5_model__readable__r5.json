@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_014__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_014",
+  "task_id": "HumanEval/14",
+  "problem_name": "All Prefixes",
+  "entry_point": "all_prefixes",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    # If input is empty, return empty list\n    if not string:\n        return []\n    # Build prefixes from length 1 up to full length\n    prefixes: List[str] = []\n    for end in range(1, len(string) + 1):\n        prefixes.append(string[:end])\n    return prefixes\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "all_prefixes"
+    ]
+  }
+}

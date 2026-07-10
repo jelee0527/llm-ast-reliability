@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Swap case of all letters, and replace vowels with the letter 2 positions ahead in the alphabet.\n    Assumes only letters and spaces/punctuation may be present (but problem statement says assume only letters).\n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n    # mapping for vowels (lowercase and uppercase)\n    # vowels: a e i o u -> shift two positions ahead: c g k q w\n    vowel_map = {\n        'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w',\n        'A': 'C', 'E': 'G', 'I': 'K', 'O': 'Q', 'U': 'W'\n    }\n\n    result_chars = []\n    for ch in message:\n        # If ch is a vowel, replace with mapped letter, then swap case of that mapped letter\n        if ch in vowel_map:\n            mapped = vowel_map[ch]\n            # Now swap case of mapped letter\n            result_chars.append(mapped.swapcase())\n        else:\n            # For non-vowels, simply swap case if it's a letter; otherwise keep as is\n            if ch.isalpha():\n                result_chars.append(ch.swapcase())\n            else:\n                result_chars.append(ch)\n\n    return ''.join(result_chars)\n\n\nif __name__ == \"__main__\":\n    # Quick tests\n    print(encode('test'))               # expected TGST\n    print(encode('This is a message'))  # expected tHKS KS C MGSSCGG",
+  "metrics": {
+    "total_nodes": 123,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.04065,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

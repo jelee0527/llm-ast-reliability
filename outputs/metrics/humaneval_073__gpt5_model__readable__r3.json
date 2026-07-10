@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, return the minimum number of elements\n    that need to be changed to make the array palindromic.\n    \"\"\"\n    n = len(arr)\n    # Count mismatched pairs where a[i] != a[j] for symmetric indices\n    mismatches = Counter()\n    total_mismatch_pairs = 0\n\n    # For each pair (i, j) with i<j symmetric, if values differ record the pair\n    for i in range(n // 2):\n        j = n - 1 - i\n        a, b = arr[i], arr[j]\n        if a != b:\n            total_mismatch_pairs += 1\n            # Represent the unordered pair of values as a frozenset key\n            key = tuple(sorted((a, b)))\n            mismatches[key] += 1\n\n    # If no mismatches, no changes needed\n    if total_mismatch_pairs == 0:\n        return 0\n\n    # Build frequency of individual numbers among mismatched positions\n    value_freq = Counter()\n    for (x, y), count in mismatches.items():\n        value_freq[x] += count\n        value_freq[y] += count\n\n    # The problem is equivalent to choosing target values for each mismatched pair;\n    # changing one element in a mismatched pair fixes that pair. However, if we\n    # choose a value that appears frequently among mismatched positions we can\n    # sometimes fix multiple pairs by changing the other side to that frequent value.\n    #\n    # The minimal number of changes equals total_mismatch_pairs minus the maximum\n    # number of pairs that can be fixed without changing their already matching side.\n    # For each value v, the number of pairs that can be resolved by making the pair\n    # equal to v without changing both sides is value_freq[v] (each occurrence in a pair\n    # contributes one side that already equals v). But converting a pair to v requires\n    # changing the opposite side for each pair where only one side is v; thus the\n    # achievable saving is value_freq[v] (we turn those pairs into matches by one change).\n    #\n    # The best we can do is pick the value v with highest value_freq[v], which gives\n    # the maximum number of pairs that can be fixed by changing the opposite elements.\n    max_value_sides = max(value_freq.values()) if value_freq else 0\n\n    # Minimum changes is total pairs minus how many pairs can be fixed by aligning to best value\n    min_changes = total_mismatch_pairs - max_value_sides + 0\n    # However, note: Each counted value_freq[v] counts sides, but a single pair can contribute\n    # both sides if both values are v (which cannot happen since we only counted mismatches),\n    # so value_freq[v] <= total_mismatch_pairs.\n    # The formula above gives correct minimal number of single-element changes required.\n    return min_changes\n\n# Quick self-tests\nif __name__ == \"__main__\":\n    assert smallest_change([1,2,3,5,4,7,9,6]) == 4\n    assert smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    assert smallest_change([1, 2, 3, 2, 1]) == 0\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 244,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.032787,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

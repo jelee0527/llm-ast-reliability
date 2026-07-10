@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    # Increment numeric elements by 1. For non-numeric, raise TypeError.\n    result = []\n    for x in l:\n        try:\n            result.append(x + 1)\n        except TypeError:\n            raise TypeError(f\"Element {x!r} is not incrementable\")\n    return result",
+  "metrics": {
+    "total_nodes": 59,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.067797,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

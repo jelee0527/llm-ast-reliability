@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\nfrom typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"\n    Return a list of the first n+1 Tribonacci numbers according to the problem statement.\n    tri(0) should return the list containing tri(0) through tri(0) (so length 1).\n    The recurrence given:\n      tri(1) = 3\n      if n is even: tri(n) = 1 + n/2\n      if n is odd:  tri(n) = tri(n-1) + tri(n-2) + tri(n+1)\n    We interpret tri values as integers. The examples imply integer division for n/2\n    when n is even (which produces an integer result).\n    \"\"\"\n\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n\n    # We will compute values for indices from 0..n inclusive.\n    # The recurrence is unusual because odd indices depend on tri(n+1).\n    # To handle forward dependency, compute values by solving small systems or\n    # using memoization with recursion and handling base/known values.\n    #\n    # Known base provided: tri(1) = 3.\n    # For even k, tri(k) = 1 + k//2 (integer).\n    # For odd k, tri(k) = tri(k-1) + tri(k-2) + tri(k+1) -> rearrange to express tri(k+1)\n    # when k is odd: tri(k+1) = tri(k) - tri(k-1) - tri(k-2)\n    #\n    # That gives a way to compute forward: whenever we know tri at three consecutive indices\n    # i-2, i-1, i and i-1 is odd, we can get i+? But simpler approach:\n    # - Fill even indices directly.\n    # - Use recurrence to compute odd indices by solving small linear relations iteratively.\n    #\n    # Strategy:\n    # - Initialize dict for values and set all even indices <= n via formula.\n    # - Set tri(1)=3 if within range.\n    # - Then iterate increasing index and whenever an odd index value is missing try to compute it\n    #   using the relation tri(k) = tri(k-1)+tri(k-2)+tri(k+1) which requires tri(k+1).\n    #   But rearranged: tri(k+1) = tri(k) - tri(k-1) - tri(k-2).\n    # - To bootstrap, note that for odd k, k+1 is even, and even value is known. So we can compute tri(k)\n    #   directly as tri(k) = tri(k-1) + tri(k-2) + tri(k+1) because tri(k+1) known.\n    #\n    # So algorithm:\n    # 1. Fill all even indices (including 0 treated as even: tri(0) = 1 + 0//2 = 1).\n    # 2. Set tri(1)=3 if needed.\n    # 3. For odd k from 3..n step 2, compute tri(k) = tri(k-1)+tri(k-2)+tri(k+1) (tri(k+1) is even and known).\n    #\n    # Finally, assemble list 0..n.\n    values = {}\n\n    # Fill even indices including 0\n    for i in range(0, n + 1, 2):\n        values[i] = 1 + (i // 2)\n\n    # Set tri(1) if in range\n    if n >= 1:\n        values[1] = 3\n\n    # Compute odd indices >=3 using relation and known even k+1\n    # Also handle possible odd = 1 already set.\n    for k in range(3, n + 1, 2):\n        # tri(k+1) is even and should be known (k+1 <= n may be true)\n        # If k+1 > n then we cannot directly use given relation because it references beyond desired range.\n        # But if k is odd and k <= n and k+1 > n, we still must compute tri(k) using tri(k+1).\n        # However tri(k+1) is even; if it's beyond n we can still compute it by formula and use it.\n        kp1 = k + 1\n        tri_kp1 = 1 + (kp1 // 2)  # even formula applies for kp1\n        tri_k_minus_1 = values.get(k - 1)\n        tri_k_minus_2 = values.get(k - 2)\n        # Both k-1 and k-2 should have been computed already (they are even and odd smaller).\n        if tri_k_minus_1 is None or tri_k_minus_2 is None:\n            # Fallback: compute recursively (shouldn't normally happen with this order)\n            # But safe-guard using recursion with memoization\n            @lru_cache(maxsize=None)\n            def get_val(idx: int) -> int:\n                if idx % 2 == 0:\n                    return 1 + (idx // 2)\n                if idx == 1:\n                    return 3\n                # odd idx: tri(idx) = tri(idx-1) + tri(idx-2) + tri(idx+1)\n                return get_val(idx - 1) + get_val(idx - 2) + get_val(idx + 1)\n            values[k] = get_val(k)\n        else:\n            values[k] = tri_k_minus_1 + tri_k_minus_2 + tri_kp1\n\n    # Build result list for indices 0..n\n    result = [values[i] for i in range(0, n + 1)]\n    return result\n\n\n# Example quick test when run directly\nif __name__ == \"__main__\":\n    # Provided example: tri(3) -> [1,3,2,8]\n    print(tri(3))",
+  "metrics": {
+    "total_nodes": 280,
+    "ast_depth": 12,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.046429,
+    "function_names": [
+      "tri",
+      "get_val"
+    ]
+  }
+}

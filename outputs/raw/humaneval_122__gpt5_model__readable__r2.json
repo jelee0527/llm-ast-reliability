@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:24:06.620836+00:00",
+  "elapsed_seconds": 4.333,
+  "official_prompt": "\ndef add_elements(arr, k):\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Example:\n\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\n        Output: 24 # sum of 21 + 3\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef add_elements(arr, k):\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Example:\n\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\n        Output: 24 # sum of 21 + 3\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    if not isinstance(arr, list):\n        raise TypeError(\"arr must be a list of integers\")\n    if not isinstance(k, int):\n        raise TypeError(\"k must be an integer\")\n    if k < 1 or k > len(arr):\n        raise ValueError(\"k must be between 1 and len(arr) inclusive\")\n\n    total = 0\n    for i in range(k):\n        value = arr[i]\n        if not isinstance(value, int):\n            raise TypeError(\"all elements of arr must be integers\")\n        # Count digits using absolute value\n        digit_count = len(str(abs(value)))\n        if digit_count <= 2:\n            total += value\n    return total\n\n# Example usage:\nif __name__ == \"__main__\":\n    print(add_elements([111, 21, 3, 4000, 5, 6, 7, 8, 9], 4))  # Expected 24 (21 + 3)",
+  "generated_code": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    if not isinstance(arr, list):\n        raise TypeError(\"arr must be a list of integers\")\n    if not isinstance(k, int):\n        raise TypeError(\"k must be an integer\")\n    if k < 1 or k > len(arr):\n        raise ValueError(\"k must be between 1 and len(arr) inclusive\")\n\n    total = 0\n    for i in range(k):\n        value = arr[i]\n        if not isinstance(value, int):\n            raise TypeError(\"all elements of arr must be integers\")\n        # Count digits using absolute value\n        digit_count = len(str(abs(value)))\n        if digit_count <= 2:\n            total += value\n    return total\n\n# Example usage:\nif __name__ == \"__main__\":\n    print(add_elements([111, 21, 3, 4000, 5, 6, 7, 8, 9], 4))  # Expected 24 (21 + 3)"
+}

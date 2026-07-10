@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_066__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def digitSum(s):\n    \"\"\"Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n    Examples:\n        digitSum(\"\") => 0\n        digitSum(\"abAB\") => 131\n        digitSum(\"abcCd\") => 67\n        digitSum(\"helloE\") => 69\n        digitSum(\"woArBld\") => 131\n        digitSum(\"aAaaaXa\") => 153\n    \"\"\"\n    total = 0\n    for ch in s:\n        if 'A' <= ch <= 'Z':\n            total += ord(ch)\n    return total",
+  "metrics": {
+    "total_nodes": 35,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.085714,
+    "function_names": [
+      "digitSum"
+    ]
+  }
+}

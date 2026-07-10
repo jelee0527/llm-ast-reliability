@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__claude_model__readable__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def fruit_distribution(s, n):\n    import re\n    \n    numbers_in_string = re.findall(r'\\d+', s)\n    \n    number_of_apples = int(numbers_in_string[0])\n    number_of_oranges = int(numbers_in_string[1])\n    \n    number_of_mangoes = n - number_of_apples - number_of_oranges\n    \n    return number_of_mangoes",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.017857,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

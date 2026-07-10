@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_112__claude_model__readable__r2.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def reverse_delete(s, c):\n    chars_to_delete = set(c)\n    filtered_string = ''.join(char for char in s if char not in chars_to_delete)\n    is_palindrome = filtered_string == filtered_string[::-1]\n    return (filtered_string, is_palindrome)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='reverse_delete',\n      args=arguments(\n        args=[\n          arg(arg='s'),\n          arg(arg='c')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='chars_to_delete', ctx=Store())],\n          value=Call(\n            func=Name(id='set', ctx=Load()),\n            args=[\n              Name(id='c', ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='filtered_string', ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Constant(value=''),\n              attr='join',\n              ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Name(id='char', ctx=Load()),\n                generators=[\n                  comprehension(\n                    target=Name(id='char', ctx=Store()),\n                    iter=Name(id='s', ctx=Load()),\n                    ifs=[\n                      Compare(\n                        left=Name(id='char', ctx=Load()),\n                        ops=[\n                          NotIn()],\n                        comparators=[\n                          Name(id='chars_to_delete', ctx=Load())])],\n                    is_async=0)])])),\n        Assign(\n          targets=[\n            Name(id='is_palindrome', ctx=Store())],\n          value=Compare(\n            left=Name(id='filtered_string', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Subscript(\n                value=Name(id='filtered_string', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())])),\n        Return(\n          value=Tuple(\n            elts=[\n              Name(id='filtered_string', ctx=Load()),\n              Name(id='is_palindrome', ctx=Load())],\n            ctx=Load()))])])"
+}

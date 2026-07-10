@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    \"\"\"\n    Return True if integer a is a perfect cube of some integer, else False.\n    \"\"\"\n    # Handle zero explicitly\n    if a == 0:\n        return True\n    # For negative numbers, work with absolute value and restore sign\n    sign = 1\n    n = a\n    if a < 0:\n        sign = -1\n        n = -a\n    # Compute cube root estimate using float, then round to nearest integer\n    root_est = round(n ** (1.0 / 3.0))\n    # Because of floating point inaccuracies, check a small neighborhood\n    for candidate in range(max(0, root_est - 2), root_est + 3):\n        if candidate ** 3 == n:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.076087,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

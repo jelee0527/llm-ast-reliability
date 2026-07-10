@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        print(\"\")\n    else:\n        # If multiple lines, process each line separately and print with newlines\n        out = [solve(line) for line in data]\n        print(\"\\n\".join(out))",
+  "metrics": {
+    "total_nodes": 114,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

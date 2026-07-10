@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    # Handle edge cases\n    if k <= 0:\n        return []\n    n = len(arr)\n    if k >= n:\n        return sorted(arr)\n    # Use a simple selection algorithm: maintain a min-heap of size k\n    # But to avoid imports beyond typing, implement heap manually using heapq\n    import heapq\n    heap = []\n    # Build initial heap with first k elements\n    for i in range(k):\n        heapq.heappush(heap, arr[i])\n    # For remaining elements, if element > smallest in heap, replace\n    for i in range(k, n):\n        if arr[i] > heap[0]:\n            heapq.heapreplace(heap, arr[i])\n    # heap now contains k largest elements but unsorted; return sorted list\n    return sorted(heap)",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.063492,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

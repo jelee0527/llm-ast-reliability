@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_072__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    \"\"\"\n    Return True if list q is palindromic (balanced) and the sum of its elements\n    is less than or equal to w. Otherwise return False.\n    \"\"\"\n    if not isinstance(q, list):\n        raise TypeError(\"q must be a list\")\n    # Balanced: palindrome\n    if q != q[::-1]:\n        return False\n    # Weight check\n    return sum(q) <= w",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='will_it_fly',\n      args=arguments(\n        args=[\n          arg(\n            arg='q',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load())),\n          arg(\n            arg='w',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='\\n    Return True if list q is palindromic (balanced) and the sum of its elements\\n    is less than or equal to w. Otherwise return False.\\n    ')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='q', ctx=Load()),\n                Name(id='list', ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='TypeError', ctx=Load()),\n                args=[\n                  Constant(value='q must be a list')]))]),\n        If(\n          test=Compare(\n            left=Name(id='q', ctx=Load()),\n            ops=[\n              NotEq()],\n            comparators=[\n              Subscript(\n                value=Name(id='q', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())]),\n          body=[\n            Return(\n              value=Constant(value=False))]),\n        Return(\n          value=Compare(\n            left=Call(\n              func=Name(id='sum', ctx=Load()),\n              args=[\n                Name(id='q', ctx=Load())]),\n            ops=[\n              LtE()],\n            comparators=[\n              Name(id='w', ctx=Load())]))],\n      returns=Name(id='bool', ctx=Load()))])"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def is_happy(s):\n    \"\"\"Return True if string s is 'happy' per the specification:\n    - length at least 3\n    - every 3 consecutive letters are all distinct\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    for i in range(n - 2):\n        a, b, c = s[i], s[i + 1], s[i + 2]\n        # If any pair among the three are equal, the triplet is not distinct\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"\": False,\n        \"abc\": True,\n        \"abca\": False,  # because 'a' repeats in triplet 'bca' -> b,c,a are distinct actually; but 'abc' ok, 'bca' ok; this test demonstrates behavior\n    }\n    for inp, expected in tests.items():\n        result = is_happy(inp)\n        print(f\"is_happy({inp!r}) => {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 174,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.057471,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

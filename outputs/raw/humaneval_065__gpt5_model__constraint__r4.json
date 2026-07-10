@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:28:59.301971+00:00",
+  "elapsed_seconds": 5.425,
+  "official_prompt": "\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, handle negative numbers by preserving sign\n    s = str(x)\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # Edge cases: empty or single digit\n    if s == '':\n        return sign + s\n    n = len(s)\n    # If shift greater than number of digits, return reversed digits\n    if shift > n:\n        return sign + s[::-1]\n    # Normalize shift to non-negative integer\n    # Right shift by k means take last k digits to front\n    k = shift % n  # keep within [0, n-1]\n    if k == 0:\n        return sign + s\n    # Perform rotation\n    rotated = s[-k:] + s[:-k]\n    return sign + rotated\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(circular_shift(12,1))   # \"21\"\n    print(circular_shift(12,2))   # \"12\"\n    print(circular_shift(12345,2))# \"45123\"\n    print(circular_shift(12345,7))# reversed \"54321\"\n    print(circular_shift(-123,1)) # \"-312\"\n    print(circular_shift(0,5))    # \"0\"",
+  "generated_code": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string of digits, handle negative numbers by preserving sign\n    s = str(x)\n    sign = ''\n    if s.startswith('-'):\n        sign = '-'\n        s = s[1:]\n    # Edge cases: empty or single digit\n    if s == '':\n        return sign + s\n    n = len(s)\n    # If shift greater than number of digits, return reversed digits\n    if shift > n:\n        return sign + s[::-1]\n    # Normalize shift to non-negative integer\n    # Right shift by k means take last k digits to front\n    k = shift % n  # keep within [0, n-1]\n    if k == 0:\n        return sign + s\n    # Perform rotation\n    rotated = s[-k:] + s[:-k]\n    return sign + rotated\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(circular_shift(12,1))   # \"21\"\n    print(circular_shift(12,2))   # \"12\"\n    print(circular_shift(12345,2))# \"45123\"\n    print(circular_shift(12345,7))# reversed \"54321\"\n    print(circular_shift(-123,1)) # \"-312\"\n    print(circular_shift(0,5))    # \"0\""
+}

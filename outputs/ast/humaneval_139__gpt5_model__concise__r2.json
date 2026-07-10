@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_139__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_139",
+  "task_id": "HumanEval/139",
+  "problem_name": "Special Factorial",
+  "entry_point": "special_factorial",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef special_factorial(n):\n    \"\"\"Compute Brazilian factorial: product_{k=1..n} k!\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 1:\n        raise ValueError(\"n must be > 0\")\n    prod = 1\n    # compute iteratively to avoid repeated factorial calls\n    current_fact = 1\n    for k in range(1, n + 1):\n        current_fact *= k\n        prod *= current_fact\n    return prod",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='math')]),\n    FunctionDef(\n      name='special_factorial',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Expr(\n          value=Constant(value='Compute Brazilian factorial: product_{k=1..n} k!')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='n', ctx=Load()),\n                Name(id='int', ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='TypeError', ctx=Load()),\n                args=[\n                  Constant(value='n must be an integer')]))]),\n        If(\n          test=Compare(\n            left=Name(id='n', ctx=Load()),\n            ops=[\n              Lt()],\n            comparators=[\n              Constant(value=1)]),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='ValueError', ctx=Load()),\n                args=[\n                  Constant(value='n must be > 0')]))]),\n        Assign(\n          targets=[\n            Name(id='prod', ctx=Store())],\n          value=Constant(value=1)),\n        Assign(\n          targets=[\n            Name(id='current_fact', ctx=Store())],\n          value=Constant(value=1)),\n        For(\n          target=Name(id='k', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=1),\n              BinOp(\n                left=Name(id='n', ctx=Load()),\n                op=Add(),\n                right=Constant(value=1))]),\n          body=[\n            AugAssign(\n              target=Name(id='current_fact', ctx=Store()),\n              op=Mult(),\n              value=Name(id='k', ctx=Load())),\n            AugAssign(\n              target=Name(id='prod', ctx=Store()),\n              op=Mult(),\n              value=Name(id='current_fact', ctx=Load()))]),\n        Return(\n          value=Name(id='prod', ctx=Load()))])])"
+}

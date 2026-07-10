@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:05:46.125156+00:00",
+  "elapsed_seconds": 3.917,
+  "official_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef is_equal_to_sum_even(n: Any) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Returns True if there exist positive even integers e1, e2, e3, e4 (each >= 2)\n    such that e1 + e2 + e3 + e4 == n. Otherwise returns False.\n\n    Examples:\n    is_equal_to_sum_even(4) -> False\n    is_equal_to_sum_even(6) -> False\n    is_equal_to_sum_even(8) -> True\n    \"\"\"\n    # Validate input is an integer\n    if not isinstance(n, int):\n        return False\n\n    # The smallest positive even number is 2.\n    # Sum of four positive evens minimal value is 2*4 = 8.\n    # Also n must be even because sum of even numbers is even.\n    if n < 8 or (n % 2) != 0:\n        return False\n\n    # For any even n >= 8, we can represent n as sum of four positive even numbers.\n    # Example constructive proof: use 2, 2, 2, n-6 (n-6 is even and >=2 when n>=8).\n    return True",
+  "generated_code": "from typing import Any\n\ndef is_equal_to_sum_even(n: Any) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Returns True if there exist positive even integers e1, e2, e3, e4 (each >= 2)\n    such that e1 + e2 + e3 + e4 == n. Otherwise returns False.\n\n    Examples:\n    is_equal_to_sum_even(4) -> False\n    is_equal_to_sum_even(6) -> False\n    is_equal_to_sum_even(8) -> True\n    \"\"\"\n    # Validate input is an integer\n    if not isinstance(n, int):\n        return False\n\n    # The smallest positive even number is 2.\n    # Sum of four positive evens minimal value is 2*4 = 8.\n    # Also n must be even because sum of even numbers is even.\n    if n < 8 or (n % 2) != 0:\n        return False\n\n    # For any even n >= 8, we can represent n as sum of four positive even numbers.\n    # Example constructive proof: use 2, 2, 2, n-6 (n-6 is even and >=2 when n>=8).\n    return True"
+}

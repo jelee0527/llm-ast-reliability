@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def car_race_collision(n: int):\n    return n ** 2",
+  "metrics": {
+    "total_nodes": 12,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.083333,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

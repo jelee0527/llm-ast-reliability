@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    if a == 0:\n        return True\n    # compute cube root with sign\n    sign = 1 if a > 0 else -1\n    x = round(abs(a) ** (1.0/3.0))\n    # adjust in case of rounding issues\n    for k in (x-1, x, x+1):\n        if k >= 0 and sign * (k**3) == a:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.081395,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

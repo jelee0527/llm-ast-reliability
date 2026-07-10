@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_071__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_071",
+  "task_id": "HumanEval/71",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef triangle_area(a, b, c):\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1.\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n    \"\"\"\n    # Validate inputs are numbers (int or float)\n    try:\n        a = float(a)\n        b = float(b)\n        c = float(c)\n    except (TypeError, ValueError):\n        return -1\n\n    # Sides must be positive\n    if a <= 0 or b <= 0 or c <= 0:\n        return -1\n\n    # Triangle inequality: sum of any two sides greater than the third\n    if not (a + b > c and a + c > b and b + c > a):\n        return -1\n\n    # Heron's formula\n    s = (a + b + c) / 2.0\n    area_sq = s * (s - a) * (s - b) * (s - c)\n    # Numerical safety: area_sq should be non-negative\n    if area_sq < 0:\n        # If tiny negative due to floating point, clamp to zero\n        if area_sq > -1e-12:\n            area_sq = 0.0\n        else:\n            return -1\n\n    area = math.sqrt(area_sq)\n    # Round to 2 decimal places as a float\n    return round(area, 2)",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.052356,
+    "function_names": [
+      "triangle_area"
+    ]
+  }
+}

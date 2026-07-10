@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_123__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_123",
+  "task_id": "HumanEval/123",
+  "problem_name": "Get Odd Collatz",
+  "entry_point": "get_odd_collatz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef get_odd_collatz(n: int) -> List[int]:\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    seen = set()\n    odds = set()\n    x = n\n    while True:\n        if x % 2 == 1:\n            odds.add(x)\n        if x == 1:\n            break\n        # Next collatz term\n        if x % 2 == 0:\n            x = x // 2\n        else:\n            x = 3 * x + 1\n        # safety: although conjecture expects termination, protect against unexpected loops\n        if x in seen:\n            break\n        seen.add(x)\n    return sorted(odds)",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.077519,
+    "function_names": [
+      "get_odd_collatz"
+    ]
+  }
+}

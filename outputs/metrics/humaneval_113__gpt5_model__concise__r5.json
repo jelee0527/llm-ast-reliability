@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_113__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    def transform(s: str) -> str:\n        n = sum(1 for ch in s if ch.isdigit() and int(ch) % 2 == 1)\n        return re.sub(r'i', str(n), \"the number of odd elements in the string {} of the input.\".replace(\"{}\", str(n)))\n    return [transform(s) for s in lst]",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 13,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "odd_count",
+      "transform"
+    ]
+  }
+}

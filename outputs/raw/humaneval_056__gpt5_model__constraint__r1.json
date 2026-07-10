@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:07:25.607976+00:00",
+  "elapsed_seconds": 3.794,
+  "official_prompt": "\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n\n",
+  "raw_response": "def correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n    # Use a counter as stack depth: increment for '<', decrement for '>'\n    depth = 0\n    for ch in brackets:\n        if ch == '<':\n            depth += 1\n        elif ch == '>':\n            depth -= 1\n        else:\n            # If other characters appear, treat as invalid\n            return False\n        # At no point should closing exceed openings\n        if depth < 0:\n            return False\n    # All openings must be closed\n    return depth == 0\n\n\nif __name__ == \"__main__\":\n    # Basic tests\n    tests = [\n        (\"<\", False),\n        (\"<>\", True),\n        (\"<<><>>\", True),\n        (\"><<>\", False),\n        (\"\", True),\n        (\"<<<<>>>>\", True),\n        (\"<><><>\", True),\n        (\"<<>>><\", False),\n        (\"abc\", False),\n    ]\n    for s, expected in tests:\n        result = correct_bracketing(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "generated_code": "def correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n    # Use a counter as stack depth: increment for '<', decrement for '>'\n    depth = 0\n    for ch in brackets:\n        if ch == '<':\n            depth += 1\n        elif ch == '>':\n            depth -= 1\n        else:\n            # If other characters appear, treat as invalid\n            return False\n        # At no point should closing exceed openings\n        if depth < 0:\n            return False\n    # All openings must be closed\n    return depth == 0\n\n\nif __name__ == \"__main__\":\n    # Basic tests\n    tests = [\n        (\"<\", False),\n        (\"<>\", True),\n        (\"<<><>>\", True),\n        (\"><<>\", False),\n        (\"\", True),\n        (\"<<<<>>>>\", True),\n        (\"<><><>\", True),\n        (\"<<>>><\", False),\n        (\"abc\", False),\n    ]\n    for s, expected in tests:\n        result = correct_bracketing(s)\n        print(f\"{s!r}: {result} (expected {expected})\")"
+}

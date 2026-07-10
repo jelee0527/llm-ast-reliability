@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"Compute average of integers from n through m inclusive, rounded to nearest integer,\n    and return its binary representation as a string (like bin()). If n > m return -1.\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(m, int):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # number of terms\n    count = m - n + 1\n    # sum of arithmetic sequence: (first + last) * count // 2, but keep exact using integers\n    total = (n + m) * count\n    # average = total / (2*count) = (n + m)/2 ; but keep as rational: total / (2*count)\n    # average_value = total / (2*count)\n    # To round to nearest integer: compute integer division and remainder\n    numerator = total\n    denominator = 2 * count\n    # Compute floor division\n    q = numerator // denominator\n    r = numerator % denominator\n    # Decide rounding: if remainder*2 >= denominator then round up\n    if r * 2 >= denominator:\n        rounded = q + 1\n    else:\n        rounded = q\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 131,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.045802,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

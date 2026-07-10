@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_122__claude_model__optimized__r1.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def add_elements(arr, k):\n    return sum(x for x in arr[:k] if -99 <= x <= 99)",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "add_elements"
+    ]
+  }
+}

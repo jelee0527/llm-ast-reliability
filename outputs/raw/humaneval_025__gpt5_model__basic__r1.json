@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:03:13.951984+00:00",
+  "elapsed_seconds": 5.871,
+  "official_prompt": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    if n < 0:\n        # include -1 as a factor then factorize the positive part\n        return [-1] + factorize(-n)\n    factors: List[int] = []\n    # handle 2s\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # handle odd factors up to sqrt(n)\n    p = 3\n    max_p = math.isqrt(n) + 1\n    while p <= max_p and n > 1:\n        while n % p == 0:\n            factors.append(p)\n            n //= p\n            max_p = math.isqrt(n) + 1\n        p += 2\n    if n > 1:\n        factors.append(n)\n    return factors\n\n# Quick sanity tests when run as a script\nif __name__ == \"__main__\":\n    print(factorize(8))   # [2,2,2]\n    print(factorize(25))  # [5,5]\n    print(factorize(70))  # [2,5,7]\n    print(factorize(1))   # []",
+  "generated_code": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    if n < 0:\n        # include -1 as a factor then factorize the positive part\n        return [-1] + factorize(-n)\n    factors: List[int] = []\n    # handle 2s\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # handle odd factors up to sqrt(n)\n    p = 3\n    max_p = math.isqrt(n) + 1\n    while p <= max_p and n > 1:\n        while n % p == 0:\n            factors.append(p)\n            n //= p\n            max_p = math.isqrt(n) + 1\n        p += 2\n    if n > 1:\n        factors.append(n)\n    return factors\n\n# Quick sanity tests when run as a script\nif __name__ == \"__main__\":\n    print(factorize(8))   # [2,2,2]\n    print(factorize(25))  # [5,5]\n    print(factorize(70))  # [2,5,7]\n    print(factorize(1))   # []"
+}

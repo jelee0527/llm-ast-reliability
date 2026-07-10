@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:23:57.975873+00:00",
+  "elapsed_seconds": 3.58,
+  "official_prompt": "\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n\n",
+  "raw_response": "import math\nfrom typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if all inputs are integers (no fractional part) and one equals sum of other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check numeric and integer-ness: allow int types and floats that are whole numbers\n    def is_whole_number(v):\n        if isinstance(v, int):\n            return True\n        if isinstance(v, float):\n            return math.isfinite(v) and v.is_integer()\n        return False\n\n    if not (is_whole_number(x) and is_whole_number(y) and is_whole_number(z)):\n        return False\n\n    # Convert to int for exact integer arithmetic\n    xi, yi, zi = int(x), int(y), int(z)\n\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)",
+  "generated_code": "import math\nfrom typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if all inputs are integers (no fractional part) and one equals sum of other two.\n    Otherwise returns False.\n    \"\"\"\n    # Check numeric and integer-ness: allow int types and floats that are whole numbers\n    def is_whole_number(v):\n        if isinstance(v, int):\n            return True\n        if isinstance(v, float):\n            return math.isfinite(v) and v.is_integer()\n        return False\n\n    if not (is_whole_number(x) and is_whole_number(y) and is_whole_number(z)):\n        return False\n\n    # Convert to int for exact integer arithmetic\n    xi, yi, zi = int(x), int(y), int(z)\n\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef count_nums(arr: Iterable[int]) -> int:\n    \"\"\"\n    Return the number of elements whose sum of digits > 0.\n    For negative numbers, the first digit is negative (e.g., -123 -> -1 + 2 + 3 = 4? Actually -1+2+3 = 4).\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        if n == 0:\n            return 0\n        s = 0\n        sign = -1 if n < 0 else 1\n        n_abs_str = str(abs(n))\n        for i, ch in enumerate(n_abs_str):\n            d = ord(ch) - 48\n            if i == 0:\n                s += sign * d\n            else:\n                s += d\n        return s\n\n    return sum(1 for x in arr if signed_digit_sum(int(x)) > 0)",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.054264,
+    "function_names": [
+      "count_nums",
+      "signed_digit_sum"
+    ]
+  }
+}

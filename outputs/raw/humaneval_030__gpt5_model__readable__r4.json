@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_030",
+  "task_id": "HumanEval/30",
+  "problem_name": "Get Positive",
+  "entry_point": "get_positive",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:11:50.487388+00:00",
+  "elapsed_seconds": 3.763,
+  "official_prompt": "\n\ndef get_positive(l: list):\n    \"\"\"Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef get_positive(l: list):\n    \"\"\"Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef get_positive(l: List[float]) -> List[float]:\n    \"\"\"Return only positive numbers in the list, preserving order.\n    Zero and negative numbers are excluded.\n\n    Examples:\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    if l is None:\n        return []\n    positive_numbers: List[float] = []\n    for item in l:\n        try:\n            # Treat values that can be compared to 0 as numbers\n            if item > 0:\n                positive_numbers.append(item)\n        except TypeError:\n            # Skip non-comparable / non-numeric items\n            continue\n    return positive_numbers\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod(verbose=True)",
+  "generated_code": "from typing import List\n\ndef get_positive(l: List[float]) -> List[float]:\n    \"\"\"Return only positive numbers in the list, preserving order.\n    Zero and negative numbers are excluded.\n\n    Examples:\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    if l is None:\n        return []\n    positive_numbers: List[float] = []\n    for item in l:\n        try:\n            # Treat values that can be compared to 0 as numbers\n            if item > 0:\n                positive_numbers.append(item)\n        except TypeError:\n            # Skip non-comparable / non-numeric items\n            continue\n    return positive_numbers\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod(verbose=True)"
+}

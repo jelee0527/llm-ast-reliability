@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:05:37.797546+00:00",
+  "elapsed_seconds": 4.661,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "from math import pow\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    # For n = 1: digits 1 through 9; those that start or end with 1 are just the digit 1 -> count 1\n    if n == 1:\n        return 1\n\n    # Count of n-digit numbers: from 10^(n-1) to 10^n - 1\n\n    # Count that start with 1:\n    # First digit fixed to 1, remaining (n-1) digits can be anything 0-9 => 10^(n-1)\n    start_with_1 = 10 ** (n - 1)\n\n    # Count that end with 1:\n    # Last digit fixed to 1, first digit can be 1-9 (cannot be 0), remaining (n-2) digits 0-9\n    # => 9 * 10^(n-2)\n    end_with_1 = 9 * (10 ** (n - 2))\n\n    # Overlap: numbers that both start and end with 1:\n    # First digit 1, last digit 1, middle (n-2) digits free => 10^(n-2)\n    overlap = 10 ** (n - 2)\n\n    # By inclusion-exclusion:\n    total = start_with_1 + end_with_1 - overlap\n    return total",
+  "generated_code": "from math import pow\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    # For n = 1: digits 1 through 9; those that start or end with 1 are just the digit 1 -> count 1\n    if n == 1:\n        return 1\n\n    # Count of n-digit numbers: from 10^(n-1) to 10^n - 1\n\n    # Count that start with 1:\n    # First digit fixed to 1, remaining (n-1) digits can be anything 0-9 => 10^(n-1)\n    start_with_1 = 10 ** (n - 1)\n\n    # Count that end with 1:\n    # Last digit fixed to 1, first digit can be 1-9 (cannot be 0), remaining (n-2) digits 0-9\n    # => 9 * 10^(n-2)\n    end_with_1 = 9 * (10 ** (n - 2))\n\n    # Overlap: numbers that both start and end with 1:\n    # First digit 1, last digit 1, middle (n-2) digits free => 10^(n-2)\n    overlap = 10 ** (n - 2)\n\n    # By inclusion-exclusion:\n    total = start_with_1 + end_with_1 - overlap\n    return total"
+}

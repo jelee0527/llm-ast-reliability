@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    s = value.strip()\n    try:\n        x = float(s)\n    except Exception:\n        # try to handle commas as decimal separators\n        s2 = s.replace(',', '.')\n        x = float(s2)\n    # get floor and ceil\n    f = math.floor(x)\n    c = math.ceil(x)\n    # if exactly integer\n    if f == c:\n        return int(x)\n    # distances\n    df = abs(x - f)\n    dc = abs(c - x)\n    if df < dc:\n        return int(f)\n    if dc < df:\n        return int(c)\n    # equidistant: choose away from zero\n    if x >= 0:\n        return int(c)\n    else:\n        return int(f)",
+  "metrics": {
+    "total_nodes": 145,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.068966,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

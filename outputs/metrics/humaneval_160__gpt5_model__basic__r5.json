@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import operator as _op\nimport functools\n\n_ops = {\n    '+': _op.add,\n    '-': _op.sub,\n    '*': _op.mul,\n    '//': lambda a, b: a // b,\n    '**': _op.pow,\n}\n\n_precedence = {\n    '+': 1,\n    '-': 1,\n    '*': 2,\n    '//': 2,\n    '**': 3,\n}\n\ndef do_algebra(operator, operand):\n    # Shunting-yard to convert to RPN, then evaluate\n    if not operator or not operand:\n        raise ValueError(\"operator and operand must be non-empty\")\n    # Token lists: operands and operators interleaved\n    tokens = []\n    for i, op in enumerate(operator):\n        tokens.append(str(operand[i]))\n        tokens.append(op)\n    tokens.append(str(operand[-1]))\n    # Convert to RPN\n    output = []\n    stack = []\n    i = 0\n    while i < len(tokens):\n        tok = tokens[i]\n        if tok in _ops:\n            # operator\n            while stack:\n                top = stack[-1]\n                if top in _ops and (_precedence[top] > _precedence[tok] or (_precedence[top] == _precedence[tok] and tok != '**')):\n                    output.append(stack.pop())\n                else:\n                    break\n            stack.append(tok)\n        else:\n            # operand\n            output.append(tok)\n        i += 1\n    while stack:\n        output.append(stack.pop())\n    # Evaluate RPN\n    valstack = []\n    for tok in output:\n        if tok in _ops:\n            b = valstack.pop()\n            a = valstack.pop()\n            valstack.append(_ops[tok](a, b))\n        else:\n            valstack.append(int(tok))\n    return valstack[0]",
+  "metrics": {
+    "total_nodes": 343,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.034985,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

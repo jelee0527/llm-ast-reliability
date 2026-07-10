@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_066__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef digitSum(s):\n    \"\"\"Return the sum of ASCII codes of uppercase characters in the input string.\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    total = 0\n    for ch in s:\n        if 'A' <= ch <= 'Z':\n            total += ord(ch)\n    return total\n\n# Quick self-tests (will run if file executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", 0),\n        (\"abAB\", ord('A') + ord('B')),\n        (\"abcCd\", ord('C')),\n        (\"helloE\", ord('E')),\n        (\"woArBld\", ord('A') + ord('B')),\n        (\"aAaaaXa\", ord('A') + ord('X') + ord('A')),  # note two 'A's\n    ]\n    for inp, expected in tests:\n        result = digitSum(inp)\n        print(f\"{inp!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.04375,
+    "function_names": [
+      "digitSum"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:59:16.086761+00:00",
+  "elapsed_seconds": 8.992,
+  "official_prompt": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not (1 <= number <= 1000):\n        raise ValueError(\"number out of range (1..1000)\")\n    vals: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    res_chars: List[str] = []\n    n = number\n    for v, s in vals:\n        if n == 0:\n            break\n        q = n // v\n        if q:\n            res_chars.append(s * q)\n            n -= v * q\n    return \"\".join(res_chars).lower()\n\n# quick tests\nif __name__ == \"__main__\":\n    assert int_to_mini_roman(19) == \"xix\"\n    assert int_to_mini_roman(152) == \"clii\"\n    assert int_to_mini_roman(426) == \"cdxxvi\"\n    assert int_to_mini_roman(1000) == \"m\"",
+  "generated_code": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not (1 <= number <= 1000):\n        raise ValueError(\"number out of range (1..1000)\")\n    vals: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    res_chars: List[str] = []\n    n = number\n    for v, s in vals:\n        if n == 0:\n            break\n        q = n // v\n        if q:\n            res_chars.append(s * q)\n            n -= v * q\n    return \"\".join(res_chars).lower()\n\n# quick tests\nif __name__ == \"__main__\":\n    assert int_to_mini_roman(19) == \"xix\"\n    assert int_to_mini_roman(152) == \"clii\"\n    assert int_to_mini_roman(426) == \"cdxxvi\"\n    assert int_to_mini_roman(1000) == \"m\""
+}

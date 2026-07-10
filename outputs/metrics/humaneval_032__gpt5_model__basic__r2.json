@@ -1,0 +1,29 @@
+{
+  "source_file": "humaneval_032__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef poly(xs: list, x: float):\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n    \"\"\"\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\n\ndef find_zero(xs: list):\n    \"\"\" xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n    \"\"\"\n    # Use Newton-Raphson with multiple random starts to find a real root.\n    # Assumptions: len(xs) is even and leading coefficient non-zero.\n    if not xs:\n        raise ValueError(\"Coefficient list is empty\")\n    # Remove trailing zeros (highest degree zeros)\n    while len(xs) > 1 and abs(xs[-1]) < 1e-16:\n        xs = xs[:-1]\n    n = len(xs) - 1\n    if n < 0:\n        raise ValueError(\"Zero polynomial\")\n    # Build derivative coefficients\n    dxs = [i * xs[i] for i in range(1, len(xs))]\n    def f(x):\n        return poly(xs, x)\n    def df(x):\n        return poly(dxs, x)\n    # Try a sequence of initial guesses\n    initials = [0.0, 1.0, -1.0, 2.0, -2.0, 10.0, -10.0]\n    # Add scaled guesses based on coefficients magnitudes\n    maxc = max(abs(c) for c in xs) if xs else 1.0\n    initials += [maxc, -maxc, math.sqrt(maxc + 1), -math.sqrt(maxc + 1)]\n    eps = 1e-12\n    max_iter = 200\n    for x0 in initials:\n        x = float(x0)\n        for _ in range(max_iter):\n            fx = f(x)\n            if abs(fx) < 1e-14:\n                return x\n            dfx = df(x)\n            if abs(dfx) < 1e-16:\n                break\n            x_new = x - fx / dfx\n            if math.isnan(x_new) or math.isinf(x_new):\n                break\n            if abs(x_new - x) < eps:\n                x = x_new\n                break\n            x = x_new\n        if abs(f(x)) < 1e-10:\n            return x\n    # If Newton-Raphson fails, fallback to bisection over expanding interval\n    # Find interval where sign changes\n    left, right = -1.0, 1.0\n    fleft, fright = f(left), f(right)\n    expand = 1.0\n    attempts = 0\n    while fleft * fright > 0 and attempts < 200:\n        expand *= 2\n        left, right = -expand, expand\n        fleft, fright = f(left), f(right)\n        attempts += 1\n    if fleft * fright <= 0:\n        for _ in range(1000):\n            mid = (left + right) / 2.0\n            fmid = f(mid)\n            if abs(fmid) < 1e-14 or (right - left) / 2.0 < 1e-12:\n                return mid\n            if fleft * fmid <= 0:\n                right = mid\n                fright = fmid\n            else:\n                left = mid\n                fleft = fmid\n    # As a last resort, try to find a root among real roots from quadratic or linear reduction\n    # If polynomial degree is 1, return linear root\n    if len(xs) == 2:\n        a0, a1 = xs\n        if abs(a1) < 1e-16:\n            raise ValueError(\"No root or infinite roots\")\n        return -a0 / a1\n    # Try sampling for sign change finely\n    scan_range = 1.0\n    for scale in [1, 10, 100, 1000]:\n        step = 0.1 * scale\n        x = -scan_range * scale\n        end = scan_range * scale\n        prev = f(x)\n        while x <= end:\n            x += step\n            curr = f(x)\n            if prev * curr <= 0:\n                # bisection in [x-step, x]\n                a, b = x - step, x\n                fa, fb = f(a), f(b)\n                for _ in range(200):\n                    m = (a + b) / 2.0\n                    fm = f(m)\n                    if abs(fm) < 1e-12 or (b - a) / 2.0 < 1e-12:\n                        return m\n                    if fa * fm <= 0:\n                        b = m\n                        fb = fm\n                    else:\n                        a = m\n                        fa = fm\n                return (a + b) / 2.0\n            prev = curr\n        # continue scanning larger ranges\n    # If still not found, raise\n    raise RuntimeError(\"Failed to find a real root\")",
+  "metrics": {
+    "total_nodes": 830,
+    "ast_depth": 13,
+    "branch_count": 16,
+    "loop_count": 8,
+    "function_count": 4,
+    "control_flow_count": 40,
+    "control_flow_ratio": 0.048193,
+    "function_names": [
+      "poly",
+      "find_zero",
+      "f",
+      "df"
+    ]
+  }
+}

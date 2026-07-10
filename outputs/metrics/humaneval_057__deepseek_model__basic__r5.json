@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_057__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    if len(l) <= 2:\n        return True\n    increasing = True\n    decreasing = True\n    for i in range(1, len(l)):\n        if l[i] > l[i-1]:\n            decreasing = False\n        elif l[i] < l[i-1]:\n            increasing = False\n        if not increasing and not decreasing:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 98,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.081633,
+    "function_names": [
+      "monotonic"
+    ]
+  }
+}

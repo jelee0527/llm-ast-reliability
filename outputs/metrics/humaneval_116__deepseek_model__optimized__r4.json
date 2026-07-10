@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_116__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))",
+  "metrics": {
+    "total_nodes": 27,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.037037,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

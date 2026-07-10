@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_upper = s.upper()\n    count = 0\n    vowels = set(\"AEIOU\")\n    for i, ch in enumerate(s_upper):\n        if ch in vowels:\n            count += 1\n        elif ch == 'Y':\n            # count 'y' only if it's the last character of the word\n            if i == len(s_upper) - 1:\n                count += 1\n    return count\n\n# Additional tests\nif __name__ == \"__main__\":\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,        # A, E, Y(at end)\n        \"rhythm\": 0,       # y not at end -> not counted\n        \"fly\": 1,          # y at end -> counted\n        \"Y\": 1,            # single letter Y at end -> counted\n        \"\": 0,             # empty string\n        \"AEIOU\": 5,\n        \"aeiouy\": 6,       # y at end\n        \"aeiouY \": 6,      # trailing space trimmed\n        \"bcd\": 0,\n        \"why?\": 0,         # punctuation means last char not y\n        \"sky\": 1,\n        \"SYZYGY\": 2,       # Y at end and middle Ys not counted\n        \"pythOn\": 1,       # O only\n    }\n    for word, expected in tests.items():\n        result = vowels_count(word)\n        print(f\"{word!r}: expected {expected}, got {result}, {'OK' if result==expected else 'FAIL'}\")",
+  "metrics": {
+    "total_nodes": 194,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.061856,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def reverse_delete(s, c):\n    # Delete all characters from s that appear in c\n    result = ''.join(ch for ch in s if ch not in c)\n    \n    # Check if the result string is a palindrome\n    is_palindrome = result == result[::-1]\n    \n    return (result, is_palindrome)",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020833,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

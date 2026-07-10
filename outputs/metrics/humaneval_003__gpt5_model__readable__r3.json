@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_003__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_003",
+  "task_id": "HumanEval/3",
+  "problem_name": "Below Zero",
+  "entry_point": "below_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\"You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Detect if at any point the balance falls below zero. Return True if it does, otherwise False.\n    \"\"\"\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert below_zero([1, 2, 3]) is False\n    assert below_zero([1, 2, -4, 5]) is True\n    assert below_zero([]) is False\n    assert below_zero([-1]) is True\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "below_zero"
+    ]
+  }
+}

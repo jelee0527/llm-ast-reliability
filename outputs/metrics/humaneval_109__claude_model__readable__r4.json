@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__claude_model__readable__r4.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def move_one_ball(arr):\n    if not arr:\n        return True\n    \n    n = len(arr)\n    \n    # Count the number of \"breakpoints\" where an element is greater than the next element\n    # In a valid rotated sorted array, there can be at most one such breakpoint\n    num_breakpoints = 0\n    \n    for i in range(n):\n        current_element = arr[i]\n        next_element = arr[(i + 1) % n]  # Wrap around to check last element against first\n        \n        if current_element > next_element:\n            num_breakpoints += 1\n    \n    # If there is at most one breakpoint, the array can be sorted by right shifts\n    return num_breakpoints <= 1",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.067568,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

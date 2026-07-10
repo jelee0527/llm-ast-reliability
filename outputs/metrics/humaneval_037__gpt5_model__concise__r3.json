@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_even(l: List):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    if not isinstance(l, list):\n        l = list(l)\n    evens = sorted((l[i] for i in range(0, len(l), 2)))\n    res = []\n    ei = 0\n    for i in range(len(l)):\n        if i % 2 == 0:\n            res.append(evens[ei]); ei += 1\n        else:\n            res.append(l[i])\n    return res",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.034783,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

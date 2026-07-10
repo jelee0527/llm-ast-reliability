@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_131__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from functools import reduce\nimport operator\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    \"\"\"\n    if n <= 0:\n        return 0\n    odds = [int(d) for d in str(n) if int(d) % 2 == 1]\n    return reduce(operator.mul, odds, 1) if odds else 0",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='functools',\n      names=[\n        alias(name='reduce')],\n      level=0),\n    Import(\n      names=[\n        alias(name='operator')]),\n    FunctionDef(\n      name='digits',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Expr(\n          value=Constant(value='Given a positive integer n, return the product of the odd digits.\\n    Return 0 if all digits are even.\\n    ')),\n        If(\n          test=Compare(\n            left=Name(id='n', ctx=Load()),\n            ops=[\n              LtE()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Constant(value=0))]),\n        Assign(\n          targets=[\n            Name(id='odds', ctx=Store())],\n          value=ListComp(\n            elt=Call(\n              func=Name(id='int', ctx=Load()),\n              args=[\n                Name(id='d', ctx=Load())]),\n            generators=[\n              comprehension(\n                target=Name(id='d', ctx=Store()),\n                iter=Call(\n                  func=Name(id='str', ctx=Load()),\n                  args=[\n                    Name(id='n', ctx=Load())]),\n                ifs=[\n                  Compare(\n                    left=BinOp(\n                      left=Call(\n                        func=Name(id='int', ctx=Load()),\n                        args=[\n                          Name(id='d', ctx=Load())]),\n                      op=Mod(),\n                      right=Constant(value=2)),\n                    ops=[\n                      Eq()],\n                    comparators=[\n                      Constant(value=1)])],\n                is_async=0)])),\n        Return(\n          value=IfExp(\n            test=Name(id='odds', ctx=Load()),\n            body=Call(\n              func=Name(id='reduce', ctx=Load()),\n              args=[\n                Attribute(\n                  value=Name(id='operator', ctx=Load()),\n                  attr='mul',\n                  ctx=Load()),\n                Name(id='odds', ctx=Load()),\n                Constant(value=1)]),\n            orelse=Constant(value=0)))])])"
+}

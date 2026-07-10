@@ -1,0 +1,49 @@
+basic: |
+  Complete the following Python programming task.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}
+
+concise: |
+  Complete the following Python programming task using a concise implementation.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}
+
+readable: |
+  Complete the following Python programming task using readable code,
+  clear variable names, and an understandable structure.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}
+
+optimized: |
+  Complete the following Python programming task with attention to
+  time and space efficiency.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}
+
+constraint: |
+  Complete the following Python programming task.
+
+  Use explicit control flow where appropriate, avoid unnecessary external
+  dependencies, and produce deterministic executable code.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}

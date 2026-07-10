@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Iterator\n\ndef fix_spaces(text: str) -> str:\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with '-'\n    \"\"\"\n    if not text:\n        return text\n    res_chars = []\n    i = 0\n    n = len(text)\n    while i < n:\n        if text[i] != ' ':\n            res_chars.append(text[i])\n            i += 1\n            continue\n        # found a space, count run length\n        j = i + 1\n        while j < n and text[j] == ' ':\n            j += 1\n        run = j - i\n        if run > 2:\n            res_chars.append('-')\n        else:\n            # replace each space with underscore\n            res_chars.extend('_' * run)\n        i = j\n    return ''.join(res_chars)\n\n\n# Quick simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"Example\", \"Example\"),\n        (\"Example 1\", \"Example_1\"),\n        (\" Example 2\", \"_Example_2\"),\n        (\" Example   3\", \"_Example-3\"),\n        (\"A  B\", \"A__B\"),\n        (\"A   B\", \"A-B\"),\n        (\"\", \"\"),\n        (\"  \", \"__\"),\n        (\"   \", \"-\"),\n        (\" x  y   z    w\", \"_x__y-z-w\"),\n    ]\n    for inp, expected in tests:\n        out = fix_spaces(inp)\n        print(repr(inp), \"->\", repr(out), \"OK\" if out == expected else \"FAIL expected \"+repr(expected))",
+  "metrics": {
+    "total_nodes": 247,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.044534,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

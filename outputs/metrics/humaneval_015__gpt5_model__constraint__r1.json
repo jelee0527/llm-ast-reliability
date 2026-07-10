@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_015__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_015",
+  "task_id": "HumanEval/15",
+  "problem_name": "String Sequence",
+  "entry_point": "string_sequence",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        # For negative n, follow intuitive behavior: return empty string or raise?\n        # Here we raise ValueError to indicate invalid input.\n        raise ValueError(\"n must be non-negative\")\n    # Build list of stringified numbers\n    parts: List[str] = []\n    i = 0\n    while i <= n:\n        parts.append(str(i))\n        i += 1\n    return \" \".join(parts)",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.072289,
+    "function_names": [
+      "string_sequence"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def smallest_change(arr):\n    n = len(arr)\n    # dp[i][j] = minimum changes to make arr[i:j+1] palindrome\n    dp = [[0] * n for _ in range(n)]\n    \n    for length in range(2, n + 1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            if arr[i] == arr[j]:\n                dp[i][j] = dp[i + 1][j - 1]\n            else:\n                dp[i][j] = 1 + min(dp[i + 1][j], dp[i][j - 1])\n    \n    return dp[0][n - 1]",
+  "metrics": {
+    "total_nodes": 168,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.02381,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_039__claude_model__optimized__r2.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from sympy import isprime\n\ndef prime_fib(n: int):\n    count = 0\n    a, b = 1, 1\n    while True:\n        a, b = b, a + b\n        if isprime(a):\n            count += 1\n            if count == n:\n                return a",
+  "metrics": {
+    "total_nodes": 63,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.063492,
+    "function_names": [
+      "prime_fib"
+    ]
+  }
+}

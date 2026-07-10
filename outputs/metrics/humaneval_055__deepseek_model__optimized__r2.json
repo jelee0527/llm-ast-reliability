@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_055__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_055",
+  "task_id": "HumanEval/55",
+  "problem_name": "Fib",
+  "entry_point": "fib",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.089552,
+    "function_names": [
+      "fib"
+    ]
+  }
+}

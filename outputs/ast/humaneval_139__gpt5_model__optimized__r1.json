@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_139__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_139",
+  "task_id": "HumanEval/139",
+  "problem_name": "Special Factorial",
+  "entry_point": "special_factorial",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nimport functools\nimport operator\n\ndef special_factorial(n):\n    \"\"\"Compute Brazilian factorial: product of k! for k=1..n\"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 1:\n        raise ValueError(\"n must be >= 1\")\n    # We can compute iteratively: accumulate factorial and multiply into result\n    res = 1\n    curr_fact = 1\n    for k in range(1, n + 1):\n        curr_fact *= k\n        res *= curr_fact\n    return res",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='math')]),\n    Import(\n      names=[\n        alias(name='functools')]),\n    Import(\n      names=[\n        alias(name='operator')]),\n    FunctionDef(\n      name='special_factorial',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Expr(\n          value=Constant(value='Compute Brazilian factorial: product of k! for k=1..n')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='n', ctx=Load()),\n                Name(id='int', ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='TypeError', ctx=Load()),\n                args=[\n                  Constant(value='n must be an integer')]))]),\n        If(\n          test=Compare(\n            left=Name(id='n', ctx=Load()),\n            ops=[\n              Lt()],\n            comparators=[\n              Constant(value=1)]),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='ValueError', ctx=Load()),\n                args=[\n                  Constant(value='n must be >= 1')]))]),\n        Assign(\n          targets=[\n            Name(id='res', ctx=Store())],\n          value=Constant(value=1)),\n        Assign(\n          targets=[\n            Name(id='curr_fact', ctx=Store())],\n          value=Constant(value=1)),\n        For(\n          target=Name(id='k', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=1),\n              BinOp(\n                left=Name(id='n', ctx=Load()),\n                op=Add(),\n                right=Constant(value=1))]),\n          body=[\n            AugAssign(\n              target=Name(id='curr_fact', ctx=Store()),\n              op=Mult(),\n              value=Name(id='k', ctx=Load())),\n            AugAssign(\n              target=Name(id='res', ctx=Store()),\n              op=Mult(),\n              value=Name(id='curr_fact', ctx=Load()))]),\n        Return(\n          value=Name(id='res', ctx=Load()))])])"
+}

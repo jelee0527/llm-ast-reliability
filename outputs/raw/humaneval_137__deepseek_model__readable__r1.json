@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:06:37.714154+00:00",
+  "elapsed_seconds": 1.338,
+  "official_prompt": "\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef compare_one(a, b):\n    \"\"\"\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n    compare_one(1, 2.5) ➞ 2.5\n    compare_one(1, \"2,3\") ➞ \"2,3\"\n    compare_one(\"5,1\", \"6\") ➞ \"6\"\n    compare_one(\"1\", 1) ➞ None\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef compare_one(a, b):\n    def parse_value(v):\n        if isinstance(v, str):\n            v = v.replace(\",\", \".\")\n            return float(v)\n        return float(v)\n    \n    val_a = parse_value(a)\n    val_b = parse_value(b)\n    \n    if val_a > val_b:\n        return a\n    elif val_b > val_a:\n        return b\n    else:\n        return None\n```",
+  "generated_code": "def compare_one(a, b):\n    def parse_value(v):\n        if isinstance(v, str):\n            v = v.replace(\",\", \".\")\n            return float(v)\n        return float(v)\n    \n    val_a = parse_value(a)\n    val_b = parse_value(b)\n    \n    if val_a > val_b:\n        return a\n    elif val_b > val_a:\n        return b\n    else:\n        return None"
+}

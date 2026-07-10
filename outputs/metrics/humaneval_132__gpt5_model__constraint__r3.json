@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\n\ndef is_nested(string):\n    '''\n    Return True iff there exists a valid subsequence of brackets (balanced sequence)\n    where at least one bracket in the subsequence is nested (i.e., some pair encloses another pair).\n    Input string contains only '[' and ']'.\n    '''\n    # Basic checks\n    if not string:\n        return False\n\n    # We need to determine if there exists a balanced subsequence with nesting.\n    # Equivalent: Are there indices i<j<k<l such that string[i]=='[', string[j]=='[', string[k]==']', string[l]==']'\n    # and we can choose them to form two pairs where the inner pair is nested inside outer pair.\n    # In other words, does there exist two opening brackets '[' with positions a < b and two closing brackets ']' with positions c < d\n    # such that a < b < c < d and we can pair them as (a,d) outer and (b,c) inner forming nesting.\n    #\n    # We can search for pattern: find '[' at a, then another '[' at b>a, then a ']' at c>b, then another ']' at d>c.\n    # That suffices because subsequence can pick those four chars to make nested pairs.\n    #\n    # So algorithm: scan for first '[', then for second '[', then for ']' after second, then for another ']' after that.\n    # But there might be many choices; we should check existence efficiently.\n    s = string\n    n = len(s)\n\n    # Precompute positions of '[' and ']' for quick traversal if desired.\n    opens = [i for i, ch in enumerate(s) if ch == '[']\n    closes = [i for i, ch in enumerate(s) if ch == ']']\n\n    # Need at least two opens and two closes\n    if len(opens) < 2 or len(closes) < 2:\n        return False\n\n    # For each pair of opens a < b, check if there exist two closes c < d with b < c < d\n    # Efficient approach: For each b (second open), check if there is an open before it (a), and two closes after it.\n    # Precompute suffix counts of closes to know if at least two closes exist after index b.\n    suff_closes_count = [0] * (n + 1)\n    for i in range(n - 1, -1, -1):\n        suff_closes_count[i] = suff_closes_count[i + 1] + (1 if s[i] == ']' else 0)\n\n    # Precompute if any open exists before index i\n    pref_open_exists = [False] * (n + 1)\n    found = False\n    for i in range(n):\n        pref_open_exists[i] = found\n        if s[i] == '[':\n            found = True\n    pref_open_exists[n] = found\n\n    # Now check each position b where s[b] == '[' and there exists a previous open, and at least two closes after b.\n    for b in range(n):\n        if s[b] != '[':\n            continue\n        if not pref_open_exists[b]:\n            continue\n        if suff_closes_count[b + 1] >= 2:\n            # There are at least two closes after b; thus we can pick c and d after b with c<d.\n            # That gives indices a < b < c < d with a some previous '[' and c,d both ']'.\n            return True\n\n    return False\n\n\n# If run as script, optionally allow simple interactive tests (not required).\nif __name__ == \"__main__\":\n    tests = [\n        ('[[]]', True),\n        ('[]]]]]]][[[[[]', False),\n        ('[][]', False),\n        ('[]', False),\n        ('[[][]]', True),\n        ('[[]][[', True),\n    ]\n    for inp, exp in tests:\n        out = is_nested(inp)\n        print(inp, out, 'OK' if out == exp else f'WRONG (expected {exp})')",
+  "metrics": {
+    "total_nodes": 332,
+    "ast_depth": 10,
+    "branch_count": 9,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.057229,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

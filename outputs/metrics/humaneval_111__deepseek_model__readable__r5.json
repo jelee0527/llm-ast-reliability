@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def histogram(test):\n    if not test:\n        return {}\n    \n    words = test.split()\n    frequency = {}\n    \n    for letter in words:\n        frequency[letter] = frequency.get(letter, 0) + 1\n    \n    max_count = max(frequency.values())\n    \n    result = {letter: count for letter, count in frequency.items() if count == max_count}\n    \n    return result",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.046512,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def fix_spaces(text):\n    result = []\n    space_count = 0\n    for ch in text:\n        if ch == ' ':\n            space_count += 1\n        else:\n            if space_count > 0:\n                if space_count > 2:\n                    result.append('-')\n                else:\n                    result.append('_' * space_count)\n                space_count = 0\n            result.append(ch)\n    if space_count > 0:\n        if space_count > 2:\n            result.append('-')\n        else:\n            result.append('_' * space_count)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.064815,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

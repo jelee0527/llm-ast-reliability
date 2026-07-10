@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_117__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef select_words(s: str, n: int) -> List[str]:\n    \"\"\"Return list of words from s that contain exactly n consonants.\"\"\"\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    words = s.split()\n    result = []\n    for w in words:\n        # Count letters that are consonants (letters not in vowels)\n        consonant_count = sum(1 for ch in w if ch.isalpha() and ch not in vowels)\n        if consonant_count == n:\n            result.append(w)\n    return result\n\n# Simple tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"Mary had a little lamb\", 4, [\"little\"]),\n        (\"Mary had a little lamb\", 3, [\"Mary\", \"lamb\"]),\n        (\"simple white space\", 2, []),\n        (\"Hello world\", 4, [\"world\"]),\n        (\"Uncle sam\", 3, [\"Uncle\"]),\n        (\"\", 1, []),\n    ]\n    for s, n, expected in tests:\n        out = select_words(s, n)\n        print(s, n, \"->\", out, \"OK\" if out == expected else \"FAIL (expected {})\".format(expected))",
+  "metrics": {
+    "total_nodes": 196,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.040816,
+    "function_names": [
+      "select_words"
+    ]
+  }
+}

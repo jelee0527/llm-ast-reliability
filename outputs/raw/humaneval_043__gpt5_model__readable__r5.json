@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_043",
+  "task_id": "HumanEval/43",
+  "problem_name": "Pairs Sum To Zero",
+  "entry_point": "pairs_sum_to_zero",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:44:08.931152+00:00",
+  "elapsed_seconds": 5.474,
+  "official_prompt": "\n\ndef pairs_sum_to_zero(l):\n    \"\"\"\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef pairs_sum_to_zero(l):\n    \"\"\"\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef pairs_sum_to_zero(numbers: List[int]) -> bool:\n    \"\"\"\n    Return True if there exist two distinct elements in `numbers` whose sum is zero.\n    Distinct means they are at different indices; the same value may be used twice only if it\n    appears at least twice in the list (e.g., [0,0] or [2,-2,...]).\n    \"\"\"\n    seen = {}\n    for index, value in enumerate(numbers):\n        complement = -value\n        # If complement has been seen at a different index, we have a pair\n        if complement in seen:\n            return True\n        # Record this value's index (only first occurrence needed)\n        if value not in seen:\n            seen[value] = index\n    return False\n\n# Quick self-tests when run as a script\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 3, 5, 0], False),\n        ([1, 3, -2, 1], False),\n        ([1, 2, 3, 7], False),\n        ([2, 4, -5, 3, 5, 7], True),\n        ([1], False),\n        ([0, 0], True),\n        ([5, -5], True),\n        ([5, 5, -5], True),\n    ]\n    for inp, expected in test_cases:\n        result = pairs_sum_to_zero(inp)\n        print(f\"{inp} -> {result} (expected {expected})\")",
+  "generated_code": "from typing import List\n\ndef pairs_sum_to_zero(numbers: List[int]) -> bool:\n    \"\"\"\n    Return True if there exist two distinct elements in `numbers` whose sum is zero.\n    Distinct means they are at different indices; the same value may be used twice only if it\n    appears at least twice in the list (e.g., [0,0] or [2,-2,...]).\n    \"\"\"\n    seen = {}\n    for index, value in enumerate(numbers):\n        complement = -value\n        # If complement has been seen at a different index, we have a pair\n        if complement in seen:\n            return True\n        # Record this value's index (only first occurrence needed)\n        if value not in seen:\n            seen[value] = index\n    return False\n\n# Quick self-tests when run as a script\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 3, 5, 0], False),\n        ([1, 3, -2, 1], False),\n        ([1, 2, 3, 7], False),\n        ([2, 4, -5, 3, 5, 7], True),\n        ([1], False),\n        ([0, 0], True),\n        ([5, -5], True),\n        ([5, 5, -5], True),\n    ]\n    for inp, expected in test_cases:\n        result = pairs_sum_to_zero(inp)\n        print(f\"{inp} -> {result} (expected {expected})\")"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    \"\"\"\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vice versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n    has_letter = False\n    for ch in s:\n        if ('a' <= ch <= 'z') or ('A' <= ch <= 'Z'):\n            has_letter = True\n            break\n    if not has_letter:\n        return s[::-1]\n    # flip case for letters, leave others unchanged\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # to uppercase\n            result_chars.append(chr(ord(ch) - (ord('a') - ord('A'))))\n        elif 'A' <= ch <= 'Z':\n            # to lowercase\n            result_chars.append(chr(ord(ch) + (ord('a') - ord('A'))))\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        # no input; do nothing / print nothing\n        pass\n    else:\n        # treat entire input as first line string\n        # join lines with newline if multiple lines present\n        inp = \"\\n\".join(data)\n        sys.stdout.write(solve(inp))",
+  "metrics": {
+    "total_nodes": 193,
+    "ast_depth": 13,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.056995,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

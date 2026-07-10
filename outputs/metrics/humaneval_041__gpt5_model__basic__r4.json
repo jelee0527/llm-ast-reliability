@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    # Every left-to-right car will eventually meet every right-to-left car exactly once.\n    # Thus collisions = n * n\n    return n * n\n\n# Quick simple self-test when run as script\nif __name__ == \"__main__\":\n    # basic checks\n    test_values = [0, 1, 2, 3, 10, 100]\n    for v in test_values:\n        print(v, car_race_collision(v))",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

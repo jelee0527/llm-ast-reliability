@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def reverse_delete(s,c):\n    result = \"\"\n    for char in s:\n        if char not in c:\n            result += char\n    is_palindrome = result == result[::-1]\n    return (result, is_palindrome)",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.061224,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    paren_string = paren_string.replace(' ', '')\n    result = []\n    start = 0\n    balance = 0\n    for i, ch in enumerate(paren_string):\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        if balance == 0:\n            result.append(paren_string[start:i+1])\n            start = i + 1\n    return result",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.04717,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

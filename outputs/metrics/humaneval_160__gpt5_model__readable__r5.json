@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_160__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Callable\nimport operator as op\nimport math\n\ndef do_algebra(operators: List[str], operands: List[int]) -> int:\n    \"\"\"\n    Build and evaluate an algebraic expression from operators and operands lists.\n    operators: list of operator symbols, length = len(operands) - 1\n    operands: list of non-negative integers\n    Supported operators: '+', '-', '*', '//', '**'\n    Evaluation respects Python operator semantics and left-to-right order for given sequence.\n    \"\"\"\n    if not operators or not operands or len(operators) != len(operands) - 1:\n        raise ValueError(\"Invalid input lengths: len(operators) must be len(operands)-1 and non-empty.\")\n\n    # Map symbol to function that takes two integers and returns integer result\n    def safe_pow(a: int, b: int) -> int:\n        # Python's pow for integers can be large; keep as int\n        return a ** b\n\n    op_map: dict = {\n        '+': op.add,\n        '-': op.sub,\n        '*': op.mul,\n        '//': lambda a, b: a // b,\n        '**': safe_pow\n    }\n\n    # Start with the first operand\n    result = operands[0]\n\n    for idx, symbol in enumerate(operators):\n        if symbol not in op_map:\n            raise ValueError(f\"Unsupported operator: {symbol}\")\n        func: Callable = op_map[symbol]\n        right = operands[idx + 1]\n        # For floor division, mimic Python's behavior (works for non-negative ints)\n        result = func(result, right)\n\n    return result\n\n\n# Example quick tests (will run when module executed)\nif __name__ == \"__main__\":\n    assert do_algebra(['+', '*', '-'], [2,3,4,5]) == 9\n    assert do_algebra(['**', '+'], [2,3,4]) == (2**3) + 4\n    assert do_algebra(['//', '*'], [10,3,2]) == (10//3)*2\n    print(\"Basic tests passed.\")",
+  "metrics": {
+    "total_nodes": 256,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.03125,
+    "function_names": [
+      "do_algebra",
+      "safe_pow"
+    ]
+  }
+}

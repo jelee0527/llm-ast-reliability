@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    if x <= 0 or n <= 0:\n        return False\n    if x == 1:\n        return True  # 1 == n**0 for any n>0, considered simple power per examples\n    if n == 1:\n        return False  # only 1**k ==1, so other x>1 are not simple powers of 1\n    # compute integer k such that n**k == x\n    # use logarithm to get candidate k, but verify with integer powers to avoid floating errors\n    k = int(round(math.log(x, n)))\n    # check a small neighborhood to be safe\n    for cand in (k-1, k, k+1, k+2):\n        if cand >= 0 and pow(n, cand) == x:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 128,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.09375,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

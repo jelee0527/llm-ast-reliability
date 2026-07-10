@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_049__claude_model__readable__r1.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n    result = pow(2, n, p)\n    return result",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='modp',\n      args=arguments(\n        args=[\n          arg(\n            arg='n',\n            annotation=Name(id='int', ctx=Load())),\n          arg(\n            arg='p',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return 2^n modulo p (be aware of numerics).\\n    >>> modp(3, 5)\\n    3\\n    >>> modp(1101, 101)\\n    2\\n    >>> modp(0, 101)\\n    1\\n    >>> modp(3, 11)\\n    8\\n    >>> modp(100, 101)\\n    1\\n    ')),\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=Call(\n            func=Name(id='pow', ctx=Load()),\n            args=[\n              Constant(value=2),\n              Name(id='n', ctx=Load()),\n              Name(id='p', ctx=Load())])),\n        Return(\n          value=Name(id='result', ctx=Load()))])])"
+}

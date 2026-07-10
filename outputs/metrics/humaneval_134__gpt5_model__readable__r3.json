@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    \"\"\"\n    Return True if the last character of txt is an alphabetical character\n    and is not part of a word (i.e., it is a single-letter token separated by spaces).\n    Return False otherwise.\n    \"\"\"\n    if not txt:\n        return False\n\n    # Trim any trailing spaces: if there are trailing spaces, last char isn't a character token\n    if txt[-1].isspace():\n        return False\n\n    # Split by spaces to get tokens\n    tokens = txt.split(' ')\n\n    # If last token is empty (can happen with multiple spaces), ignore empties from end\n    # Find last non-empty token\n    last_token = None\n    for token in reversed(tokens):\n        if token != '':\n            last_token = token\n            break\n\n    if last_token is None:\n        return False\n\n    # Return True only if last_token is a single alphabetical character (A-Z or a-z)\n    return len(last_token) == 1 and last_token.isalpha()",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.117647,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

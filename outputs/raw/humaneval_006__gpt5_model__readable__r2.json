@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_006",
+  "task_id": "HumanEval/6",
+  "problem_name": "Parse Nested Parens",
+  "entry_point": "parse_nested_parens",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:31:50.545529+00:00",
+  "elapsed_seconds": 3.775,
+  "official_prompt": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input is a string containing multiple groups of nested parentheses separated by spaces.\n    For each group, return the maximum depth of nesting.\n\n    Examples:\n    parse_nested_parens('(()()) ((())) () ((())()())') -> [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    groups = paren_string.split()\n    depths: List[int] = []\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for ch in group:\n            if ch == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            elif ch == ')':\n                # decrement but ensure it doesn't go negative for malformed groups\n                current_depth = max(0, current_depth - 1)\n            else:\n                # ignore any other characters (robustness)\n                continue\n        depths.append(max_depth)\n\n    return depths\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(parse_nested_parens('(()()) ((())) () ((())()())'))  # expected [2, 3, 1, 3]",
+  "generated_code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input is a string containing multiple groups of nested parentheses separated by spaces.\n    For each group, return the maximum depth of nesting.\n\n    Examples:\n    parse_nested_parens('(()()) ((())) () ((())()())') -> [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    groups = paren_string.split()\n    depths: List[int] = []\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for ch in group:\n            if ch == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            elif ch == ')':\n                # decrement but ensure it doesn't go negative for malformed groups\n                current_depth = max(0, current_depth - 1)\n            else:\n                # ignore any other characters (robustness)\n                continue\n        depths.append(max_depth)\n\n    return depths\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(parse_nested_parens('(()()) ((())) () ((())()())'))  # expected [2, 3, 1, 3]"
+}

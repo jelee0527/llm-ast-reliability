@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    \"\"\"\n    if not (isinstance(n, int) and isinstance(m, int)):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # number of terms\n    count = m - n + 1\n    # sum of arithmetic sequence\n    total = (n + m) * count // 2\n    # If (n+m)*count is odd, integer division truncated; compute exact float average for proper rounding\n    # Use fractional logic to avoid floating point inaccuracies\n    numerator = (n + m) * count\n    # nearest integer: (numerator/count) rounded = floor((numerator + count/2)/count)\n    rounded = (numerator + count // 2) // count\n    # If count is even, adding count//2 is exact. If count is odd, need to add count//2 and handle tie via remainder.\n    # To correctly round halves (.5) up, adjust using remainder:\n    rem = numerator % count\n    if rem * 2 >= count:\n        # previous integer computed by floor((numerator)/count) is total//count when total used integer division\n        rounded = numerator // count + 1\n    else:\n        rounded = numerator // count\n    # However above makes standard rounding where .5 rounds up.\n    # Convert to binary string with 0b prefix\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 147,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.040816,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

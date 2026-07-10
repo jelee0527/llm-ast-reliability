@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    \"\"\"\n    Return True if list q is palindromic (reads same forwards and backwards)\n    and the sum of its elements is less than or equal to w.\n    Otherwise return False.\n    \"\"\"\n    # Check palindrome property\n    is_palindrome = q == q[::-1]\n    # Check weight limit\n    total_weight = sum(q)\n    return is_palindrome and total_weight <= w\n\n# Optional simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2], 5, False),\n        ([3, 2, 3], 1, False),\n        ([3, 2, 3], 9, True),\n        ([3], 5, True),\n    ]\n    for arr, max_w, expected in tests:\n        result = will_it_fly(arr, max_w)\n        print(f\"will_it_fly({arr}, {max_w}) -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.021429,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

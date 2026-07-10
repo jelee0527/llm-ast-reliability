@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef solve(s: str) -> str:\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vice versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function returns the resulting string.\n    \"\"\"\n    if not isinstance(s, str):\n        # If input isn't a string, coerce to string\n        s = str(s)\n\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n\n    # For strings with letters, swap case for letters, keep others unchanged\n    result_chars = []\n    for ch in s:\n        if ch.isalpha():\n            # swap case\n            result_chars.append(ch.swapcase())\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Simple quick tests when running the module directly\nif __name__ == \"__main__\":\n    tests = [\n        (\"1234\", \"4321\"),\n        (\"ab\", \"AB\"),\n        (\"#a@C\", \"#A@c\"),\n        (\"\", \"\"),            # empty\n        (\"123a\", \"123A\"),\n        (\"!@#\", \"#@!\"),\n        (\"AaBb\", \"aAbB\"),\n    ]\n    for inp, expected in tests:\n        out = solve(inp)\n        print(inp, \"=>\", out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.049451,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_097__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef multiply(a: int, b: int) -> int:\n    \"\"\"Return product of unit digits of two integers.\"\"\"\n    return (abs(a) % 10) * (abs(b) % 10)",
+  "metrics": {
+    "total_nodes": 34,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.029412,
+    "function_names": [
+      "multiply"
+    ]
+  }
+}

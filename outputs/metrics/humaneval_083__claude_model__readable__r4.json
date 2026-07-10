@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__claude_model__readable__r4.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n == 1:\n        return 1\n    \n    # Count numbers that start with 1: 1 * 10^(n-1)\n    starts_with_one = 10 ** (n - 1)\n    \n    # Count numbers that end with 1: 9 * 10^(n-2)\n    # (first digit can be 2-9, remaining n-2 digits can be anything, last digit is 1)\n    ends_with_one = 9 * (10 ** (n - 2))\n    \n    # Subtract overlap: numbers that both start AND end with 1\n    # First digit is 1, last digit is 1, middle n-2 digits can be anything: 10^(n-2)\n    both_start_and_end_with_one = 10 ** (n - 2)\n    \n    # Apply inclusion-exclusion principle\n    total_count = starts_with_one + ends_with_one - both_start_and_end_with_one\n    \n    return total_count",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    '''\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return False\n    # sides must be positive\n    if any(s <= 0 or math.isinf(s) or math.isnan(s) for s in sides):\n        return False\n    sides.sort()\n    x, y, z = sides\n    # triangle inequality: sum of smaller two > largest\n    if x + y <= z:\n        return False\n    # Compare squares with tolerance to handle floating point inputs\n    return abs(x*x + y*y - z*z) <= max(1e-12, 1e-12 * max(x*x, y*y, z*z))",
+  "metrics": {
+    "total_nodes": 159,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.044025,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

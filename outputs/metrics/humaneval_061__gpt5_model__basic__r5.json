@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n    # simple counter approach: increment for '(' and decrement for ')'.\n    # If counter ever negative, there's a closing without matching opening.\n    # At end counter must be zero.\n    count = 0\n    for ch in brackets:\n        if ch == '(':\n            count += 1\n        elif ch == ')':\n            count -= 1\n        else:\n            # ignore other characters or could raise; per spec only '(' and ')'\n            continue\n        if count < 0:\n            return False\n    return count == 0\n\n\n# Optional simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\"(\", \"()\", \"(()())\", \")(()\", \"\", \"())(\", \"((()))\", \"(()\"]\n    for t in tests:\n        print(f\"{t!r}: {correct_bracketing(t)}\")",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.096774,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

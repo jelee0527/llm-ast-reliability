@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_136__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    \"\"\"\n    Return tuple (largest_negative, smallest_positive) from lst.\n    If no negative or no positive integers are present, their place is None.\n    Zero is neither positive nor negative.\n    Time: O(n), Space: O(1)\n    \"\"\"\n    largest_neg = None\n    smallest_pos = None\n    for x in lst:\n        if x < 0:\n            if (largest_neg is None) or (x > largest_neg):\n                largest_neg = x\n        elif x > 0:\n            if (smallest_pos is None) or (x < smallest_pos):\n                smallest_pos = x\n    return (largest_neg, smallest_pos)",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "largest_smallest_integers"
+    ]
+  }
+}

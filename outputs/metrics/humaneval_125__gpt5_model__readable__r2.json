@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List, Union\n\ndef split_words(txt: str) -> Union[List[str], int]:\n    \"\"\"\n    Given a string of words, return a list of words split on whitespace.\n    If no whitespace exists in the text, split on commas ','.\n    If no commas exist either, return the number of lower-case letters with odd order\n    in the alphabet, where ord('a') = 0, ord('b') = 1, ..., ord('z') = 25.\n    Examples:\n    split_words(\"Hello world!\") -> [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") -> [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n    \"\"\"\n    if any(ch.isspace() for ch in txt):\n        # Split on any whitespace sequence\n        # Use regex to match one or more whitespace characters\n        parts = re.split(r'\\s+', txt.strip())\n        # If txt was only whitespace, return empty list\n        return [p for p in parts if p != ''] if parts != [''] else []\n    if ',' in txt:\n        # Split on commas, strip surrounding whitespace from each part\n        parts = [part.strip() for part in txt.split(',')]\n        # Remove empty parts resulting from consecutive commas or leading/trailing commas\n        return [p for p in parts if p != '']\n    # No whitespace and no commas: count lowercase letters with odd order\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            order = ord(ch) - ord('a')  # a -> 0, b -> 1, ...\n            if order % 2 == 1:\n                count += 1\n    return count\n\n# Example usage (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    examples = [\"Hello world!\", \"Hello,world!\", \"abcdef\", \"a b,c\", \"  \", \"x,y,z\", \"azbycxdwevfugthsirjqkplomn\"]\n    for ex in examples:\n        print(repr(ex), \"->\", split_words(ex))",
+  "metrics": {
+    "total_nodes": 204,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.053922,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

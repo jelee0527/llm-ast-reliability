@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    # strip trailing whitespace? Problem: trailing space means False per examples.\n    # So if last char is space -> False\n    last = txt[-1]\n    if not last.isalpha():\n        return False\n    # Now check that it's not part of a word: previous char must be space or absent\n    if len(txt) == 1:\n        return True\n    return txt[-2] == ' '",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.127273,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

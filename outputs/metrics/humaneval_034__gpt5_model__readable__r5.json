@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Iterable, TypeVar\n\nT = TypeVar(\"T\")\n\ndef unique(l: List[T]) -> List[T]:\n    \"\"\"Return sorted unique elements in a list.\n\n    Preserves type comparability: elements must be comparable for sorting.\n    Example:\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use a set to remove duplicates, then sort the result.\n    # If elements are unhashable (e.g., lists), fall back to a stable manual dedupe.\n    try:\n        unique_set = set(l)\n        return sorted(unique_set)\n    except TypeError:\n        # Elements unhashable: preserve first occurrence, then sort the unique values.\n        seen = []\n        seen_set = []\n        for item in l:\n            # linear search in seen_set because items may be unhashable\n            if item not in seen_set:\n                seen_set.append(item)\n                seen.append(item)\n        return sorted(seen)",
+  "metrics": {
+    "total_nodes": 91,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.054945,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

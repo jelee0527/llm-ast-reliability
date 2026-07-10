@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    \"\"\"\n    Given two lists operator and operand, build the algebraic expression\n    by inserting operators between operands from left to right and return\n    the evaluated result following Python operator semantics.\n\n    Operators supported: '+', '-', '*', '//', '**'\n    \"\"\"\n    if not operator or not operand:\n        raise ValueError(\"Operator and operand lists must be provided\")\n    if len(operator) != len(operand) - 1:\n        raise ValueError(\"Length of operator must be one less than length of operand\")\n\n    # Start with the first operand as current result\n    result = operand[0]\n\n    for op, value in zip(operator, operand[1:]):\n        if op == '+':\n            result = result + value\n        elif op == '-':\n            result = result - value\n        elif op == '*':\n            result = result * value\n        elif op == '//':\n            # Floor division: handle division by zero explicitly\n            if value == 0:\n                raise ZeroDivisionError(\"integer division or modulo by zero\")\n            # Python's // with negative numbers floors toward -inf; operands are non-negative per spec\n            result = result // value\n        elif op == '**':\n            # Exponentiation: use pow\n            result = result ** value\n        else:\n            raise ValueError(f\"Unsupported operator: {op}\")\n\n    return result\n\n\n# Example usage:\nif __name__ == \"__main__\":\n    # Basic test\n    ops = ['+', '*', '-']\n    vals = [2, 3, 4, 5]\n    print(do_algebra(ops, vals))  # Expected 9 (2 + 3*4 - 5)",
+  "metrics": {
+    "total_nodes": 216,
+    "ast_depth": 14,
+    "branch_count": 9,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.069444,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

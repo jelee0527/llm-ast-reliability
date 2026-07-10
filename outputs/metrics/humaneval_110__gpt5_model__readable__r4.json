@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of swaps)\n    it is possible to make every element of lst1 even. Otherwise return \"NO\".\n    \"\"\"\n    # Count even and odd numbers in each list\n    evens1 = sum(1 for x in lst1 if x % 2 == 0)\n    odds1 = len(lst1) - evens1\n    evens2 = sum(1 for x in lst2 if x % 2 == 0)\n    odds2 = len(lst2) - evens2\n\n    # We need to turn all elements in lst1 even.\n    # Each odd in lst1 must be replaced by an even from lst2, or we can swap pairs of odds (odd from lst1 with odd from lst2)\n    # Swapping an odd in lst1 with an even in lst2 directly fixes one odd in lst1.\n    # Swapping two odds (one from each list) doesn't change parity counts in lst1 (still odd), so it's not helpful.\n    # Therefore, the only useful exchange to reduce odds1 is to bring evens from lst2 into lst1.\n    # We need at least odds1 evens available in lst2 to replace all odd elements of lst1.\n    if evens2 >= odds1:\n        return \"YES\"\n    else:\n        return \"NO\"",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.03,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

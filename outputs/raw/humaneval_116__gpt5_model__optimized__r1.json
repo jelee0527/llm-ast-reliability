@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:13:11.958344+00:00",
+  "elapsed_seconds": 3.081,
+  "official_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of integers by number of 1-bits in their binary representation (ascending).\n    For equal counts, sort by numeric value ascending.\n\n    Non-negative and negative integers are allowed; for negatives, count bits of their\n    absolute value (as typical interpretation for these kata-type problems) — but examples\n    suggest sorting negatives by value only when counts equal. To be safe, count ones in\n    the binary representation of the absolute value.\n    \"\"\"\n    # Use tuple key: (popcount(abs(x)), x)\n    # Python 3.8+ has int.bit_count() which is efficient.\n    return sorted(arr, key=lambda x: (abs(x).bit_count(), x))",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of integers by number of 1-bits in their binary representation (ascending).\n    For equal counts, sort by numeric value ascending.\n\n    Non-negative and negative integers are allowed; for negatives, count bits of their\n    absolute value (as typical interpretation for these kata-type problems) — but examples\n    suggest sorting negatives by value only when counts equal. To be safe, count ones in\n    the binary representation of the absolute value.\n    \"\"\"\n    # Use tuple key: (popcount(abs(x)), x)\n    # Python 3.8+ has int.bit_count() which is efficient.\n    return sorted(arr, key=lambda x: (abs(x).bit_count(), x))"
+}

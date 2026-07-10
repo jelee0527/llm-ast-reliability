@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\nNUM_WORDS: List[str] = [\n    \"zero\",\n    \"one\",\n    \"two\",\n    \"three\",\n    \"four\",\n    \"five\",\n    \"six\",\n    \"seven\",\n    \"eight\",\n    \"nine\",\n]\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numerals from 'zero' to 'nine'.\n    Return the string with numbers sorted from smallest to largest.\n    \"\"\"\n    if numbers is None:\n        return \"\"\n    s = numbers.strip()\n    if s == \"\":\n        return \"\"\n    parts = s.split()\n    # Map words to their numeric value; validate entries\n    mapped: List[int] = []\n    for p in parts:\n        if p not in NUM_WORDS:\n            raise ValueError(f\"Invalid numeral: {p!r}\")\n        mapped.append(NUM_WORDS.index(p))\n    # Sort numeric values\n    mapped.sort()\n    # Map back to words\n    result_parts: List[str] = [NUM_WORDS[v] for v in mapped]\n    return \" \".join(result_parts)\n\n\nif __name__ == \"__main__\":\n    # Simple self-test\n    tests = [\n        (\"three one five\", \"one three five\"),\n        (\"nine zero two\", \"zero two nine\"),\n        (\"\", \"\"),\n        (\"  four  two one \", \"one two four\"),\n    ]\n    for inp, expected in tests:\n        out = sort_numbers(inp)\n        print(repr(inp), \"->\", repr(out), \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 217,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.050691,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:34:45.954831+00:00",
+  "elapsed_seconds": 1.656,
+  "official_prompt": "\ndef multiply(a, b):\n    \"\"\"Complete the function that takes two integers and returns \n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef multiply(a, b):\n    \"\"\"Complete the function that takes two integers and returns \n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef multiply(a: int, b: int) -> int:\n    \"\"\"Return product of unit digits of two integers.\"\"\"\n    return (abs(a) % 10) * (abs(b) % 10)",
+  "generated_code": "from typing import Any\n\ndef multiply(a: int, b: int) -> int:\n    \"\"\"Return product of unit digits of two integers.\"\"\"\n    return (abs(a) % 10) * (abs(b) % 10)"
+}

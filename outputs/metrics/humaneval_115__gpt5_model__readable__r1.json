@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef max_fill(grid: List[List[int]], capacity: int) -> int:\n    \"\"\"\n    Compute the number of times buckets must be lowered to remove all water units from wells.\n    Each row in grid represents a well; each 1 is a unit of water. Each bucket can hold up to 'capacity' units.\n    For each well (row), you need ceil(number_of_ones / capacity) lowers. Sum across all wells.\n    \"\"\"\n    if capacity <= 0:\n        raise ValueError(\"capacity must be a positive integer\")\n    total_lowers = 0\n    for row in grid:\n        # Count water units in this well\n        units = 0\n        for cell in row:\n            if cell:\n                units += 1\n        if units > 0:\n            lowers = (units + capacity - 1) // capacity  # integer ceil division\n            total_lowers += lowers\n    return total_lowers\n\n# Example quick tests (will run if module executed directly)\nif __name__ == \"__main__\":\n    print(max_fill([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1))  # expected 6\n    print(max_fill([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2))  # expected 5\n    print(max_fill([[0,0,0], [0,0,0]], 5))  # expected 0",
+  "metrics": {
+    "total_nodes": 181,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.044199,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

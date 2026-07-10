@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be rotated (right shifts) to become non-decreasing.\"\"\"\n    n = len(arr)\n    if n <= 1:\n        return True\n    # Count number of \"drops\" where arr[i] > arr[i+1]\n    drops = 0\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            if drops > 1:\n                return False\n    # If there's no drop, already sorted\n    if drops == 0:\n        return True\n    # Exactly one drop: check wrap-around compatibility\n    # Find index i where arr[i] > arr[i+1], rotation point is at i+1\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            # After rotating so arr[i+1] becomes first, last element will be arr[i]\n            # Need arr[-1] <= arr[0] after rotation which translates to arr[i] <= arr[0]\n            return arr[-1] <= arr[0] or arr[i] <= arr[0]  # safe fallback, but check below\n    # Fallback (shouldn't reach)\n    return True",
+  "metrics": {
+    "total_nodes": 147,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.081633,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

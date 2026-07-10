@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import *\nimport collections\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if the second word b or any of its rotations is a substring in the first word a.\"\"\"\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings\")\n    # Empty pattern: treat as True if empty string is substring\n    if b == \"\":\n        return True\n    # If pattern longer than text, impossible\n    if len(b) > len(a):\n        return False\n    # Generate all rotations of b\n    # An efficient trick: check if any rotation is substring of a by checking substrings of b+b of length len(b)\n    doubled = b + b\n    seen = set()\n    for i in range(len(b)):\n        rot = doubled[i:i+len(b)]\n        if rot in seen:\n            continue\n        seen.add(rot)\n        if rot in a:\n            return True\n    return False\n\n# Example quick tests (will not run when imported but useful if executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,exp in tests:\n        print(x,y, cycpattern_check(x,y), \"expected\", exp)",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.067308,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

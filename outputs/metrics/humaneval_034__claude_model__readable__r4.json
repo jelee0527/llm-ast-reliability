@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__claude_model__readable__r4.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    unique_elements = list(set(l))\n    sorted_elements = sorted(unique_elements)\n    return sorted_elements",
+  "metrics": {
+    "total_nodes": 30,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.033333,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

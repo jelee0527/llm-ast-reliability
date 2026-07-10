@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_063__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef fibfib(n: int):\n    \"\"\"Compute n-th FibFib number where:\n    F(0)=0, F(1)=0, F(2)=1, F(n)=F(n-1)+F(n-2)+F(n-3).\n    Works for n>=0, returns int.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n    # Fast doubling-like via matrix exponentiation for linear recurrence of order 3.\n    # Transition matrix:\n    # [1 1 1]\n    # [1 0 0]\n    # [0 1 0]\n    def mat_mult(A, B):\n        return (\n            (A[0]*B[0] + A[1]*B[3] + A[2]*B[6],\n             A[0]*B[1] + A[1]*B[4] + A[2]*B[7],\n             A[0]*B[2] + A[1]*B[5] + A[2]*B[8]),\n            (A[3]*B[0] + A[4]*B[3] + A[5]*B[6],\n             A[3]*B[1] + A[4]*B[4] + A[5]*B[7],\n             A[3]*B[2] + A[4]*B[5] + A[5]*B[8]),\n            (A[6]*B[0] + A[7]*B[3] + A[8]*B[6],\n             A[6]*B[1] + A[7]*B[4] + A[8]*B[7],\n             A[6]*B[2] + A[7]*B[5] + A[8]*B[8])\n        )\n    # represent matrices as flat 9-tuple in row-major for speed\n    M = (1,1,1, 1,0,0, 0,1,0)\n    def mat_pow(mat, e):\n        # identity\n        res = (1,0,0, 0,1,0, 0,0,1)\n        base = mat\n        while e:\n            if e & 1:\n                # multiply res *= base\n                r = mat_mult((res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]),\n                             (base[0],base[1],base[2],base[3],base[4],base[5],base[6],base[7],base[8]))\n                res = (r[0][0],r[0][1],r[0][2], r[1][0],r[1][1],r[1][2], r[2][0],r[2][1],r[2][2])\n            b = mat_mult((base[0],base[1],base[2],base[3],base[4],base[5],base[6],base[7],base[8]),\n                         (base[0],base[1],base[2],base[3],base[4],base[5],base[6],base[7],base[8]))\n            base = (b[0][0],b[0][1],b[0][2], b[1][0],b[1][1],b[1][2], b[2][0],b[2][1],b[2][2])\n            e >>= 1\n        return res\n    # We have vector [F(n),F(n-1),F(n-2)]^T = M^(n-2) * [F(2),F(1),F(0)]^T\n    # base vector = [1,0,0]\n    P = mat_pow(M, n-2)\n    # result is first row dot base = P[0]*1 + P[1]*0 + P[2]*0 = P[0]\n    return P[0]",
+  "metrics": {
+    "total_nodes": 844,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.013033,
+    "function_names": [
+      "fibfib",
+      "mat_mult",
+      "mat_pow"
+    ]
+  }
+}

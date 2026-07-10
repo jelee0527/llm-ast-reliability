@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_136__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n    if not lst:\n        return (None, None)\n\n    largest_negative = None\n    smallest_positive = None\n\n    for value in lst:\n        if not isinstance(value, int):\n            # Skip non-integer values\n            continue\n        if value < 0:\n            if (largest_negative is None) or (value > largest_negative):\n                largest_negative = value\n        elif value > 0:\n            if (smallest_positive is None) or (value < smallest_positive):\n                smallest_positive = value\n        # ignore zeros\n\n    return (largest_negative, smallest_positive)",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.103093,
+    "function_names": [
+      "largest_smallest_integers"
+    ]
+  }
+}

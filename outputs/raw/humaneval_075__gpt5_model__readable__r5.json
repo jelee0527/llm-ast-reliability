@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:48:43.583146+00:00",
+  "elapsed_seconds": 5.212,
+  "official_prompt": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if integer a (<100) is product of exactly three primes (not necessarily distinct).\"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n    # simple primality test\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0:\n            return False\n        r = int(math.isqrt(n))\n        for i in range(3, r + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    # Try factoring by primes, counting prime factors with multiplicity until 3\n    remaining = a\n    count = 0\n    # handle factor 2\n    while remaining % 2 == 0:\n        remaining //= 2\n        count += 1\n        if count > 3:\n            return False\n    # handle odd factors\n    f = 3\n    while f * f <= remaining and count < 3:\n        while remaining % f == 0:\n            remaining //= f\n            count += 1\n            if count > 3:\n                return False\n        f += 2\n    # if anything left >1 it's a prime factor\n    if remaining > 1:\n        count += 1\n    return count == 3\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    tests = [30, 8, 12, 27, 1, 7, 46, 2*2*3, 2*3*5, 3*3*3, 97]\n    for t in tests:\n        print(t, is_multiply_prime(t))",
+  "generated_code": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if integer a (<100) is product of exactly three primes (not necessarily distinct).\"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n    # simple primality test\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0:\n            return False\n        r = int(math.isqrt(n))\n        for i in range(3, r + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    # Try factoring by primes, counting prime factors with multiplicity until 3\n    remaining = a\n    count = 0\n    # handle factor 2\n    while remaining % 2 == 0:\n        remaining //= 2\n        count += 1\n        if count > 3:\n            return False\n    # handle odd factors\n    f = 3\n    while f * f <= remaining and count < 3:\n        while remaining % f == 0:\n            remaining //= f\n            count += 1\n            if count > 3:\n                return False\n        f += 2\n    # if anything left >1 it's a prime factor\n    if remaining > 1:\n        count += 1\n    return count == 3\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    tests = [30, 8, 12, 27, 1, 7, 46, 2*2*3, 2*3*5, 3*3*3, 97]\n    for t in tests:\n        print(t, is_multiply_prime(t))"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_113__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    def replace_with_n(s: str, n: int) -> str:\n        return s.replace('a', str(n)).replace('o', str(n))\n    template = \"the number of odd elements in the string {i} of the input.\"\n    out = []\n    for s in lst:\n        n = sum(1 for ch in s if ch.isdigit() and int(ch) % 2 == 1)\n        # build string then replace 'in', 'string', 'input' letters 'i' -> number\n        # but examples show replacing 'i' characters where they appear as letter 'i' and digit '1' overlapping:\n        # Instead reproduce exact transformation: replace every 'i' letter with number\n        transformed = template.replace('i', str(n))\n        out.append(transformed)\n    return out",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 13,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02521,
+    "function_names": [
+      "odd_count",
+      "replace_with_n"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__basic__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # dp[pos][steps] = best path list (as tuple) ending at pos with given steps\n    # We'll use dictionary for memory efficiency\n    dp = {}\n    for i in range(n):\n        for j in range(n):\n            dp[(i, j)] = {1: (grid[i][j],)}\n    \n    for step in range(2, k + 1):\n        new_dp = {}\n        for i in range(n):\n            for j in range(n):\n                best = None\n                for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    ni, nj = i + di, j + dj\n                    if 0 <= ni < n and 0 <= nj < n:\n                        if step-1 in dp[(ni, nj)]:\n                            candidate = dp[(ni, nj)][step-1] + (grid[i][j],)\n                            if best is None or candidate < best:\n                                best = candidate\n                if best is not None:\n                    new_dp[(i, j)][step] = best\n        dp = new_dp\n    \n    best_path = None\n    for i in range(n):\n        for j in range(n):\n            if k in dp[(i, j)]:\n                if best_path is None or dp[(i, j)][k] < best_path:\n                    best_path = dp[(i, j)][k]\n    return list(best_path)",
+  "metrics": {
+    "total_nodes": 376,
+    "ast_depth": 15,
+    "branch_count": 7,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.045213,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

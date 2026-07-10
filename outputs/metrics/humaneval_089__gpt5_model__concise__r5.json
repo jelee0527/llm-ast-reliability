@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    alpha = string.ascii_lowercase\n    trans = {}\n    for i,ch in enumerate(alpha):\n        # shift down by two multiplied to two places: interpret as shift = (i+1)*2? \n        # Determine mapping so that 'h'->'l' : h index7 -> l index11 => shift +4\n        # 'i'->'m' i8->m12 => +4. So constant +4.\n        # check 'a'->'e' a0->e4 matches example 'asdfghjkl' -> 'ewhjklnop'\n        # Thus simple Caesar shift +4.\n        trans[ch] = alpha[(i+4) % 26]\n    # preserve lowercase only; if uppercase convert accordingly\n    result = []\n    for ch in s:\n        if ch.islower():\n            result.append(trans.get(ch, ch))\n        elif ch.isupper():\n            low = ch.lower()\n            mapped = trans.get(low, low)\n            result.append(mapped.upper())\n        else:\n            result.append(ch)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 131,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.038168,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

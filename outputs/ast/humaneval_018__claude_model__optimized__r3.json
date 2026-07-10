@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_018__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def how_many_times(string: str, substring: str) -> int:\n    if not string or not substring:\n        return 0\n    count = 0\n    start = 0\n    while True:\n        pos = string.find(substring, start)\n        if pos == -1:\n            break\n        count += 1\n        start = pos + 1\n    return count",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='how_many_times',\n      args=arguments(\n        args=[\n          arg(\n            arg='string',\n            annotation=Name(id='str', ctx=Load())),\n          arg(\n            arg='substring',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        If(\n          test=BoolOp(\n            op=Or(),\n            values=[\n              UnaryOp(\n                op=Not(),\n                operand=Name(id='string', ctx=Load())),\n              UnaryOp(\n                op=Not(),\n                operand=Name(id='substring', ctx=Load()))]),\n          body=[\n            Return(\n              value=Constant(value=0))]),\n        Assign(\n          targets=[\n            Name(id='count', ctx=Store())],\n          value=Constant(value=0)),\n        Assign(\n          targets=[\n            Name(id='start', ctx=Store())],\n          value=Constant(value=0)),\n        While(\n          test=Constant(value=True),\n          body=[\n            Assign(\n              targets=[\n                Name(id='pos', ctx=Store())],\n              value=Call(\n                func=Attribute(\n                  value=Name(id='string', ctx=Load()),\n                  attr='find',\n                  ctx=Load()),\n                args=[\n                  Name(id='substring', ctx=Load()),\n                  Name(id='start', ctx=Load())])),\n            If(\n              test=Compare(\n                left=Name(id='pos', ctx=Load()),\n                ops=[\n                  Eq()],\n                comparators=[\n                  UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))]),\n              body=[\n                Break()]),\n            AugAssign(\n              target=Name(id='count', ctx=Store()),\n              op=Add(),\n              value=Constant(value=1)),\n            Assign(\n              targets=[\n                Name(id='start', ctx=Store())],\n              value=BinOp(\n                left=Name(id='pos', ctx=Load()),\n                op=Add(),\n                right=Constant(value=1)))]),\n        Return(\n          value=Name(id='count', ctx=Load()))],\n      returns=Name(id='int', ctx=Load()))])"
+}

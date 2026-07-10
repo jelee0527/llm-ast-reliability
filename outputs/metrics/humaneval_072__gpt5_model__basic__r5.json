@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    \"\"\"\n    Returns True if q is a palindromic list (balanced) and the sum of its elements\n    is less than or equal to w. Otherwise returns False.\n    \"\"\"\n    if not isinstance(q, list):\n        raise TypeError(\"q must be a list\")\n    # Check palindrome\n    if q != q[::-1]:\n        return False\n    # Check weight limit\n    return sum(q) <= w",
+  "metrics": {
+    "total_nodes": 59,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.084746,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

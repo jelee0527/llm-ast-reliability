@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+  "metrics": {
+    "total_nodes": 18,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

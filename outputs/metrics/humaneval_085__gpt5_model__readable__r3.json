@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_085__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_085",
+  "task_id": "HumanEval/85",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef add(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers lst, add the even elements that are at odd indices.\n    \n    Example:\n        add([4, 2, 6, 7]) -> 2  (only element at index 1 is 2 and even)\n    \"\"\"\n    total = 0\n    for index, value in enumerate(lst):\n        if index % 2 == 1 and value % 2 == 0:\n            total += value\n    return total\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    print(add([4, 2, 6, 7]))  # 2\n    print(add([1, 2, 3, 4, 5, 6]))  # 2 + 4 + 6? indices 1,3,5 -> values 2,4,6 => sum 12\n    print(add([0]))  # 0 (no odd index)\n    print(add([9, 8, 7]))  # 8\n    print(add([-2, -4, 3, 2]))  # -4 + 2? indices 1 and 3 => -4 + 2 = -2",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.030075,
+    "function_names": [
+      "add"
+    ]
+  }
+}

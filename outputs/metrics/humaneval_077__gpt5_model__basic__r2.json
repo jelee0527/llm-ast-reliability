@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle negative values by taking cube root sign into account\n    if a == 0:\n        return True\n    # Compute real cube root\n    if a > 0:\n        root = round(a ** (1.0/3.0))\n    else:\n        root = -round(abs(a) ** (1.0/3.0))\n    return root**3 == a\n\n# Optional simple tests\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,125,126,-125]\n    for t in tests:\n        print(t, iscube(t))",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.055046,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

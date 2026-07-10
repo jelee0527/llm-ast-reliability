@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:26:41.090203+00:00",
+  "elapsed_seconds": 0.945,
+  "official_prompt": "\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n\n",
+  "raw_response": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    result = []\n    for number in range(lower, upper + 1):\n        if number % 2 == 0:\n            result.append(number)\n    return result",
+  "generated_code": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    result = []\n    for number in range(lower, upper + 1):\n        if number % 2 == 0:\n            result.append(number)\n    return result"
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_002__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from math import floor, isfinite\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal (fractional) part.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if not isfinite(number):\n        raise ValueError(\"number must be a finite value\")\n    # Ensure positive as docstring implies; handle negative consistently by returning fractional part magnitude\n    # For positive numbers: fractional = number - floor(number)\n    # For negative numbers: fractional part typically number - floor(number) gives non-negative fractional in [0,1)\n    return number - floor(number)",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='math',\n      names=[\n        alias(name='floor'),\n        alias(name='isfinite')],\n      level=0),\n    FunctionDef(\n      name='truncate_number',\n      args=arguments(\n        args=[\n          arg(\n            arg='number',\n            annotation=Name(id='float', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=' Given a positive floating point number, return the decimal (fractional) part.\\n    >>> truncate_number(3.5)\\n    0.5\\n    ')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='number', ctx=Load()),\n                Tuple(\n                  elts=[\n                    Name(id='int', ctx=Load()),\n                    Name(id='float', ctx=Load())],\n                  ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='TypeError', ctx=Load()),\n                args=[\n                  Constant(value='number must be an int or float')]))]),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isfinite', ctx=Load()),\n              args=[\n                Name(id='number', ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='ValueError', ctx=Load()),\n                args=[\n                  Constant(value='number must be a finite value')]))]),\n        Return(\n          value=BinOp(\n            left=Name(id='number', ctx=Load()),\n            op=Sub(),\n            right=Call(\n              func=Name(id='floor', ctx=Load()),\n              args=[\n                Name(id='number', ctx=Load())])))],\n      returns=Name(id='float', ctx=Load()))])"
+}

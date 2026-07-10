@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_007__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    result = []\n    for string in strings:\n        if substring in string:\n            result.append(string)\n    return result",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "filter_by_substring"
+    ]
+  }
+}

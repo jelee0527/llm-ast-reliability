@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_135__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] < arr[i-1].\n    If no such element exists return -1.\n    Assumes no duplicate values.\n    \"\"\"\n    # iterate from end to start, find first position where current < previous\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Example tests (can be removed when used as module)\nif __name__ == \"__main__\":\n    print(can_arrange([1,2,4,3,5]))  # expected 3\n    print(can_arrange([1,2,3]))      # expected -1",
+  "metrics": {
+    "total_nodes": 91,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.054945,
+    "function_names": [
+      "can_arrange"
+    ]
+  }
+}

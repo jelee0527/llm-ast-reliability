@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:56:23.831991+00:00",
+  "elapsed_seconds": 2.784,
+  "official_prompt": "\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n\n",
+  "raw_response": "from collections import deque\n\ndef cycpattern_check(a, b):\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if b == \"\":\n        return True  # empty string is substring\n    if len(b) > len(a):\n        return False\n    # Check direct substring first\n    if b in a:\n        return True\n    # Use rotation check: generate rotations of b efficiently\n    # To avoid generating more than needed, iterate through rotations and test membership\n    # Use deque for efficient rotations\n    dq = deque(b)\n    seen = set([b])\n    for _ in range(1, len(b)):\n        dq.rotate(1)  # rotate right by 1\n        rot = ''.join(dq)\n        if rot in seen:\n            continue\n        seen.add(rot)\n        if rot in a:\n            return True\n    return False\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,exp in tests:\n        print(x,y, cycpattern_check(x,y), \"expected\", exp)",
+  "generated_code": "from collections import deque\n\ndef cycpattern_check(a, b):\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if b == \"\":\n        return True  # empty string is substring\n    if len(b) > len(a):\n        return False\n    # Check direct substring first\n    if b in a:\n        return True\n    # Use rotation check: generate rotations of b efficiently\n    # To avoid generating more than needed, iterate through rotations and test membership\n    # Use deque for efficient rotations\n    dq = deque(b)\n    seen = set([b])\n    for _ in range(1, len(b)):\n        dq.rotate(1)  # rotate right by 1\n        rot = ''.join(dq)\n        if rot in seen:\n            continue\n        seen.add(rot)\n        if rot in a:\n            return True\n    return False\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,exp in tests:\n        print(x,y, cycpattern_check(x,y), \"expected\", exp)"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def count_nums(arr):\n    def digit_sum(n):\n        if n < 0:\n            digits = [int(d) for d in str(n)[1:]]\n            digits[0] = -digits[0]\n            return sum(digits)\n        else:\n            return sum(int(d) for d in str(n))\n    \n    count = 0\n    for n in arr:\n        if digit_sum(n) > 0:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.061856,
+    "function_names": [
+      "count_nums",
+      "digit_sum"
+    ]
+  }
+}

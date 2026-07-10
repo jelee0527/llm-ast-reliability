@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    has_letter = False\n    res_chars = []\n    for ch in s:\n        if ch.isalpha():\n            has_letter = True\n            if ch.islower():\n                res_chars.append(ch.upper())\n            else:\n                res_chars.append(ch.lower())\n        else:\n            res_chars.append(ch)\n    if not has_letter:\n        return s[::-1]\n    return ''.join(res_chars)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        print(\"\")\n    else:\n        # If multiple lines, process each line and print with newline\n        out = []\n        for i, line in enumerate(data):\n            # For typical single-line input, join all lines with newline is not desired.\n            # Treat each read line as a separate test case.\n            out.append(solve(line))\n        sys.stdout.write(\"\\n\".join(out))",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.056962,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_101__claude_model__readable__r3.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n    if not s:\n        return []\n    \n    normalized_string = s.replace(',', ' ')\n    words = [word for word in normalized_string.split(' ') if word]\n    \n    return words",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='words_string',\n      args=arguments(\n        args=[\n          arg(arg='s')]),\n      body=[\n        Expr(\n          value=Constant(value='\\n    You will be given a string of words separated by commas or spaces. Your task is\\n    to split the string into words and return an array of the words.\\n    \\n    For example:\\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\\n    ')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='s', ctx=Load())),\n          body=[\n            Return(\n              value=List(ctx=Load()))]),\n        Assign(\n          targets=[\n            Name(id='normalized_string', ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Name(id='s', ctx=Load()),\n              attr='replace',\n              ctx=Load()),\n            args=[\n              Constant(value=','),\n              Constant(value=' ')])),\n        Assign(\n          targets=[\n            Name(id='words', ctx=Store())],\n          value=ListComp(\n            elt=Name(id='word', ctx=Load()),\n            generators=[\n              comprehension(\n                target=Name(id='word', ctx=Store()),\n                iter=Call(\n                  func=Attribute(\n                    value=Name(id='normalized_string', ctx=Load()),\n                    attr='split',\n                    ctx=Load()),\n                  args=[\n                    Constant(value=' ')]),\n                ifs=[\n                  Name(id='word', ctx=Load())],\n                is_async=0)])),\n        Return(\n          value=Name(id='words', ctx=Load()))])])"
+}

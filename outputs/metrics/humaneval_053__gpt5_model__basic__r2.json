@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_053__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    return x + y\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert add(2, 3) == 5\n    assert add(5, 7) == 12\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.039216,
+    "function_names": [
+      "add"
+    ]
+  }
+}

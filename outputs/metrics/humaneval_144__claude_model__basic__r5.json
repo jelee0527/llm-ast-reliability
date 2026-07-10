@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__claude_model__basic__r5.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    fx = Fraction(x)\n    fn = Fraction(n)\n    result = fx * fn\n    return result.denominator == 1",
+  "metrics": {
+    "total_nodes": 40,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.025,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

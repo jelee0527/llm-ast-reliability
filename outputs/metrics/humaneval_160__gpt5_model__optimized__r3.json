@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport operator as pyop\nimport math\n\n_ops = {\n    '+': (lambda a, b: a + b, 1),\n    '-': (lambda a, b: a - b, 1),\n    '*': (lambda a, b: a * b, 2),\n    '//': (lambda a, b: a // b if not (a < 0) else -((-a) // b), 2),  # emulate floor division for negatives if occurs\n    '**': (lambda a, b: a ** b, 3),\n}\n\ndef do_algebra(operator: List[str], operand: List[int]) -> int:\n    # Shunting-yard style: convert to RPN based on precedence, left-associative except '**' is right-associative\n    # Define associativity: '**' right-assoc, others left\n    prec = {op: _ops[op][1] for op in _ops}\n    right_assoc = {'**'}\n    # Build tokens: alternating operand, operator...\n    tokens = []\n    n_ops = len(operator)\n    # tokens sequence: operand0, op0, operand1, op1, operand2, ...\n    for i, val in enumerate(operand):\n        tokens.append(val)\n        if i < n_ops:\n            tokens.append(operator[i])\n    # Convert to RPN\n    output = []\n    stack = []\n    for t in tokens:\n        if isinstance(t, int):\n            output.append(t)\n        else:\n            while stack:\n                top = stack[-1]\n                if top not in prec:\n                    break\n                if ( (t in right_assoc and prec[t] < prec[top]) or\n                     (t not in right_assoc and prec[t] <= prec[top]) ):\n                    output.append(stack.pop())\n                else:\n                    break\n            stack.append(t)\n    while stack:\n        output.append(stack.pop())\n    # Evaluate RPN\n    val_stack = []\n    for tok in output:\n        if isinstance(tok, int):\n            val_stack.append(tok)\n        else:\n            b = val_stack.pop()\n            a = val_stack.pop()\n            func = _ops[tok][0]\n            # Safe exponentiation and floor division handling\n            if tok == '//':\n                # floor division as Python's // already does floor; ensure b != 0\n                if b == 0:\n                    raise ZeroDivisionError(\"integer division or modulo by zero\")\n                res = a // b\n            elif tok == '**':\n                res = a ** b\n            else:\n                res = func(a, b)\n            val_stack.append(res)\n    return val_stack[0]",
+  "metrics": {
+    "total_nodes": 446,
+    "ast_depth": 12,
+    "branch_count": 9,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.040359,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:40:28.011676+00:00",
+  "elapsed_seconds": 2.822,
+  "official_prompt": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n\n",
+  "raw_response": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Return the number of collisions between two sets of n cars each,\n    one set moving left-to-right and the other right-to-left on an infinite line,\n    when all cars move at the same speed and start far apart.\n\n    For every pair consisting of one L->R car and one R->L car, they will meet exactly once.\n    Thus the total number of collisions is n * n.\n    \"\"\"\n    return n * n\n\n# Quick standalone test when run as script\nif __name__ == \"__main__\":\n    import sys\n    try:\n        arg = int(sys.argv[1]) if len(sys.argv) > 1 else 3\n    except Exception:\n        arg = 3\n    print(car_race_collision(arg))",
+  "generated_code": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Return the number of collisions between two sets of n cars each,\n    one set moving left-to-right and the other right-to-left on an infinite line,\n    when all cars move at the same speed and start far apart.\n\n    For every pair consisting of one L->R car and one R->L car, they will meet exactly once.\n    Thus the total number of collisions is n * n.\n    \"\"\"\n    return n * n\n\n# Quick standalone test when run as script\nif __name__ == \"__main__\":\n    import sys\n    try:\n        arg = int(sys.argv[1]) if len(sys.argv) > 1 else 3\n    except Exception:\n        arg = 3\n    print(car_race_collision(arg))"
+}

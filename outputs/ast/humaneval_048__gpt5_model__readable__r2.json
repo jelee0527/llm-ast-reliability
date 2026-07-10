@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_048__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import AnyStr\n\ndef is_palindrome(text: AnyStr) -> bool:\n    \"\"\"\n    Checks if given string is a palindrome\n\n    Examples:\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if text is None:\n        return False\n    # Ensure we are working with a string type\n    s = str(text)\n    # A string is a palindrome if it equals its reverse\n    return s == s[::-1]",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='AnyStr')],\n      level=0),\n    FunctionDef(\n      name='is_palindrome',\n      args=arguments(\n        args=[\n          arg(\n            arg='text',\n            annotation=Name(id='AnyStr', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\"\\n    Checks if given string is a palindrome\\n\\n    Examples:\\n    >>> is_palindrome('')\\n    True\\n    >>> is_palindrome('aba')\\n    True\\n    >>> is_palindrome('aaaaa')\\n    True\\n    >>> is_palindrome('zbcd')\\n    False\\n    \")),\n        If(\n          test=Compare(\n            left=Name(id='text', ctx=Load()),\n            ops=[\n              Is()],\n            comparators=[\n              Constant(value=None)]),\n          body=[\n            Return(\n              value=Constant(value=False))]),\n        Assign(\n          targets=[\n            Name(id='s', ctx=Store())],\n          value=Call(\n            func=Name(id='str', ctx=Load()),\n            args=[\n              Name(id='text', ctx=Load())])),\n        Return(\n          value=Compare(\n            left=Name(id='s', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Subscript(\n                value=Name(id='s', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())]))],\n      returns=Name(id='bool', ctx=Load()))])"
+}

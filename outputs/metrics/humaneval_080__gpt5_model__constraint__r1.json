@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def is_happy(s):\n    \"\"\"You are given a string s.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct.\n    \"\"\"\n    # Ensure input is a string\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # Check each window of three characters\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        # If any two of the three are equal, not happy\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n\n# Quick informal tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"abc\": True,\n        \"aba\": False,  # a repeats in window\n        \"abca\": False, # window bca is fine, but abc ok, bca ok, so actually abca -> check: a b c -> distinct, b c a -> distinct => True\n    }\n    # Adjusted expected for \"abca\" to actual result\n    tests[\"abca\"] = True\n    for s, expected in tests.items():\n        result = is_happy(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

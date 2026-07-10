@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    an integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    # Validate input\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    # Convert ints to float for consistent behavior\n    num = float(number)\n    # For negative numbers, behavior not specified; handle by using fractional part relative to floor\n    # but the docstring says given a positive floating point number, so we enforce positivity.\n    if num < 0:\n        raise ValueError(\"number must be non-negative\")\n    # Compute integer part using int() which truncates toward zero for non-negative numbers equals floor\n    integer_part = int(num)\n    decimal_part = num - integer_part\n    # Guard against tiny negative results due to floating point rounding\n    if abs(decimal_part) < 1e-15:\n        decimal_part = 0.0\n    return decimal_part\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [3.5, 0.0, 2.9999999999999996, 1.234567, 10.0, 5.000000000000001]\n    for t in tests:\n        print(t, \"->\", truncate_number(t))",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.068376,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

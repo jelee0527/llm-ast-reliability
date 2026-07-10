@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_086__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef anti_shuffle(s: str) -> str:\n    # Split into words and spaces, preserving spaces\n    parts = re.split(r'(\\s+)', s)\n    def sort_word(w):\n        if w == \"\":\n            return w\n        # If word has any non-letter characters, treat them as separate tokens?\n        # Problem examples show \"World!!!\" -> \"!!!Wdlor\"\n        # That implies trailing punctuation becomes leading after sorting by ASCII.\n        return ''.join(sorted(w))\n    return ''.join(sort_word(p) if not p.isspace() else p for p in parts)",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.072464,
+    "function_names": [
+      "anti_shuffle",
+      "sort_word"
+    ]
+  }
+}

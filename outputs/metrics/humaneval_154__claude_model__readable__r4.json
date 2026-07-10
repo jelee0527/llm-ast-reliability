@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__claude_model__readable__r4.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def cycpattern_check(a, b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n    length_of_b = len(b)\n    \n    all_rotations_of_b = []\n    for rotation_start in range(length_of_b):\n        rotated_version = b[rotation_start:] + b[:rotation_start]\n        all_rotations_of_b.append(rotated_version)\n    \n    for rotation in all_rotations_of_b:\n        if rotation in a:\n            return True\n    \n    return False",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.070423,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

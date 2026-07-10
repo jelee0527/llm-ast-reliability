@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Given a string like \"5 apples and 6 oranges\" and total n, return number of mangoes.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"s must be a string\")\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    # Find all integers in the string (including negative, though unlikely)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # try to be permissive: maybe words like \"zero\" appear (not required by prompt)\n        raise ValueError(\"Could not find two integers for apples and oranges in the string\")\n    try:\n        apples = int(nums[0])\n        oranges = int(nums[1])\n    except Exception as e:\n        raise ValueError(\"Invalid integer values in string\") from e\n    mangoes = n - apples - oranges\n    return mangoes\n\n# Example usage (can be removed or commented out in production)\nif __name__ == \"__main__\":\n    print(fruit_distribution(\"5 apples and 6 oranges\", 19))  # expected 8\n    print(fruit_distribution(\"0 apples and 1 oranges\", 3))   # expected 2\n    print(fruit_distribution(\"2 apples and 3 oranges\", 100)) # expected 95\n    print(fruit_distribution(\"100 apples and 1 oranges\", 120)) # expected 19",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.064516,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

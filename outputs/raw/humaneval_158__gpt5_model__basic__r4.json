@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:03:06.992602+00:00",
+  "elapsed_seconds": 2.897,
+  "official_prompt": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"Return the word with maximum number of unique characters.\n    If multiple strings tie, return the lexicographically smallest one.\n    \"\"\"\n    if not words:\n        return \"\"\n    # For each word compute (unique_count, word)\n    # We want maximum unique_count, and among ties lexicographically smallest.\n    # So we can sort by (-unique_count, word) or iterate keeping best accordingly.\n    best_word = None\n    best_count = -1\n    for w in words:\n        count = len(set(w))\n        if count > best_count:\n            best_count = count\n            best_word = w\n        elif count == best_count:\n            # choose lexicographically smaller\n            if w < best_word:\n                best_word = w\n    return best_word if best_word is not None else \"\"",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"Return the word with maximum number of unique characters.\n    If multiple strings tie, return the lexicographically smallest one.\n    \"\"\"\n    if not words:\n        return \"\"\n    # For each word compute (unique_count, word)\n    # We want maximum unique_count, and among ties lexicographically smallest.\n    # So we can sort by (-unique_count, word) or iterate keeping best accordingly.\n    best_word = None\n    best_count = -1\n    for w in words:\n        count = len(set(w))\n        if count > best_count:\n            best_count = count\n            best_word = w\n        elif count == best_count:\n            # choose lexicographically smaller\n            if w < best_word:\n                best_word = w\n    return best_word if best_word is not None else \"\""
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def largest_divisor(n: int) -> int:\n    for i in range(n // 2, 0, -1):\n        if n % i == 0:\n            return i\n    return 1",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.105263,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

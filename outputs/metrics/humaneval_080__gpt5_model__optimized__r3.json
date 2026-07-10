@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if string s is 'happy': length >= 3 and every 3 consecutive letters are distinct.\"\"\"\n    if not isinstance(s, str):\n        return False\n    n = len(s)\n    if n < 3:\n        return False\n    # For every window of length 3, check all three characters are distinct\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n# Quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"abcabc\": True,  # overlapping windows all distinct triples\n        \"abca\": False,   # window 'bca' ok, 'abc' ok, but earlier length >=3 fine; actually 'abca' should be True? check: windows 'abc','bca' both distinct => True\n    }\n    for s, expected in tests.items():\n        print(s, is_happy(s), \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 163,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.06135,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

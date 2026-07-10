@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:27:21.412881+00:00",
+  "elapsed_seconds": 6.785,
+  "official_prompt": "\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string, preserving sign if any\n    s = str(x)\n    sign = ''\n    if s.startswith(('+', '-')):\n        sign = s[0]\n        s = s[1:]\n    # If s is not digits (e.g., floats), still treat characters similarly\n    n = len(s)\n    if n == 0:\n        return sign\n    # If shift greater than number of digits, return digits reversed\n    if shift > n:\n        res = s[::-1]\n        return sign + res\n    # Normalize shift to range [0, n)\n    # Right shift by k means take last k characters to front\n    k = shift % n\n    if k == 0:\n        res = s\n    else:\n        res = s[-k:] + s[:-k]\n    return sign + res\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Any\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert to string, preserving sign if any\n    s = str(x)\n    sign = ''\n    if s.startswith(('+', '-')):\n        sign = s[0]\n        s = s[1:]\n    # If s is not digits (e.g., floats), still treat characters similarly\n    n = len(s)\n    if n == 0:\n        return sign\n    # If shift greater than number of digits, return digits reversed\n    if shift > n:\n        res = s[::-1]\n        return sign + res\n    # Normalize shift to range [0, n)\n    # Right shift by k means take last k characters to front\n    k = shift % n\n    if k == 0:\n        res = s\n    else:\n        res = s[-k:] + s[:-k]\n    return sign + res\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__claude_model__readable__r5.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n    base_cases = {0: 0, 1: 0, 2: 2, 3: 0}\n    \n    if n in base_cases:\n        return base_cases[n]\n    \n    previous_four = [0, 0, 2, 0]\n    \n    for i in range(4, n + 1):\n        next_value = sum(previous_four)\n        previous_four = [previous_four[1], previous_four[2], previous_four[3], next_value]\n    \n    return previous_four[-1]",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.043011,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

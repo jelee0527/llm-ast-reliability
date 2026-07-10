@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef reverse_delete(s: str, c: str) -> Tuple[str, bool]:\n    \"\"\"\n    Remove all characters from s that appear in c, then check if the resulting string is a palindrome.\n    Returns a tuple (result_string, is_palindrome).\n    \"\"\"\n    remove_set = set(c)\n    result = ''.join(ch for ch in s if ch not in remove_set)\n    is_pal = result == result[::-1]\n    return result, is_pal\n\n\n# Example usage (for testing):\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", \"ae\"),\n        (\"abcdef\", \"b\"),\n        (\"abcdedcba\", \"ab\"),\n        (\"\", \"a\"),\n        (\"a\", \"\"),\n        (\"racecar\", \"x\"),\n        (\"abccba\", \"b\"),\n    ]\n    for s, c in tests:\n        print(s, c, \"->\", reverse_delete(s, c))",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

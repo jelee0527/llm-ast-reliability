@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_005",
+  "task_id": "HumanEval/5",
+  "problem_name": "Intersperse",
+  "entry_point": "intersperse",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:29:31.990904+00:00",
+  "elapsed_seconds": 4.329,
+  "official_prompt": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n    # Handle empty list quickly\n    if not numbers:\n        return []\n\n    # Build result by iterating and adding delimiter between elements\n    result: List[int] = []\n    for i, value in enumerate(numbers):\n        result.append(value)\n        # Add delimiter after every element except the last\n        if i != len(numbers) - 1:\n            result.append(delimeter)\n    return result\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert intersperse([], 4) == []\n    assert intersperse([1], 9) == [1]\n    assert intersperse([1, 2, 3], 4) == [1, 4, 2, 4, 3]\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n    # Handle empty list quickly\n    if not numbers:\n        return []\n\n    # Build result by iterating and adding delimiter between elements\n    result: List[int] = []\n    for i, value in enumerate(numbers):\n        result.append(value)\n        # Add delimiter after every element except the last\n        if i != len(numbers) - 1:\n            result.append(delimeter)\n    return result\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert intersperse([], 4) == []\n    assert intersperse([1], 9) == [1]\n    assert intersperse([1, 2, 3], 4) == [1, 4, 2, 4, 3]\n    print(\"All tests passed.\")"
+}

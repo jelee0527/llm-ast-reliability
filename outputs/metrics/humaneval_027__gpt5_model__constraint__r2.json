@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    # Build result using list for efficiency\n    result_chars: list[str] = []\n    for ch in string:\n        # Use str methods to determine case and flip\n        if 'a' <= ch <= 'z':\n            result_chars.append(ch.upper())\n        elif 'A' <= ch <= 'Z':\n            result_chars.append(ch.lower())\n        else:\n            # Non-alphabetic characters remain unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello\", \"hELLO\"),\n        (\"\", \"\"),\n        (\"ABCdef123!?\", \"abcDEF123!?\"),\n        (\"Already LOWER and UPPER\", \"aLREADY lower AND upper\"),\n        (\"MiXeD123\", \"mIxEd123\"),\n    ]\n    for inp, expected in tests:\n        out = flip_case(inp)\n        assert out == expected, f\"flip_case({inp!r})=={out!r}, expected {expected!r}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 169,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.047337,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

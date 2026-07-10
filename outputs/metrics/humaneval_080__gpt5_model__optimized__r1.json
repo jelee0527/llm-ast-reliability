@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if string s is 'happy' per definition:\n    length at least 3 and every 3 consecutive letters are distinct.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # For each window of size 3, check all three characters are distinct\n    # This is O(n) time and O(1) extra space.\n    for i in range(n - 2):\n        a, b, c = s[i], s[i + 1], s[i + 2]\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        \"a\": False,\n        \"aa\": False,\n        \"abcd\": True,\n        \"aabb\": False,\n        \"adb\": True,\n        \"xyy\": False,\n        \"abcabc\": True,\n        \"abca\": False,  # window 'bca' ok, but 'abc' ok, 'bca' ok, 'cab' ok? actually 'abca' -> windows: 'abc','bca' both distinct -> True\n    }\n    # Adjust expected for 'abca' to True\n    tests[\"abca\"] = True\n    for s, exp in tests.items():\n        res = is_happy(s)\n        print(f\"{s!r}: {res} (expected {exp})\")",
+  "metrics": {
+    "total_nodes": 184,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.054348,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

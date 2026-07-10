@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:00:12.877019+00:00",
+  "elapsed_seconds": 3.748,
+  "official_prompt": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n\n",
+  "raw_response": "from typing import Dict, List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n    # Map of values to numerals from largest to smallest, including subtractive forms\n    vals: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    res_parts: List[str] = []\n    n = number\n    for val, sym in vals:\n        if n == 0:\n            break\n        q = n // val\n        if q:\n            res_parts.append(sym * q)\n            n -= val * q\n    return \"\".join(res_parts).lower()",
+  "generated_code": "from typing import Dict, List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n    # Map of values to numerals from largest to smallest, including subtractive forms\n    vals: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n    res_parts: List[str] = []\n    n = number\n    for val, sym in vals:\n        if n == 0:\n            break\n        q = n // val\n        if q:\n            res_parts.append(sym * q)\n            n -= val * q\n    return \"\".join(res_parts).lower()"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_026__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_026",
+  "task_id": "HumanEval/26",
+  "problem_name": "Remove Duplicates",
+  "entry_point": "remove_duplicates",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    from collections import Counter\n    counts = Counter(numbers)\n    return [num for num in numbers if counts[num] == 1]",
+  "metrics": {
+    "total_nodes": 46,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "remove_duplicates"
+    ]
+  }
+}

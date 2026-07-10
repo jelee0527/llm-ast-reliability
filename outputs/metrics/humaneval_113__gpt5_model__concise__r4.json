@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_113__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    def replace_with_count(s: str, count: int) -> str:\n        return s.replace('i', str(count)).replace('I', str(count))\n    out = []\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # But based on examples, original template: \"the number of odd elements i n the str i ng i of the i nput.\"\n    # However examples show: \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n    # That indicates replacing 'i' occurrences in the phrase \"the number of odd elements in the string i of the input.\"\n    # To match examples precisely, build base and then replace 'i' characters in that base string.\n    base = \"the number of odd elements in the string i of the input.\"\n    for s in lst:\n        count = sum(1 for ch in s if ch in '13579')\n        # Replace every occurrence of letter 'i' with count (character 'i' only, lowercase)\n        res = ''.join(str(count) if ch == 'i' else ch for ch in base)\n        out.append(res)\n    return out\n\n# quick test when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "metrics": {
+    "total_nodes": 149,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.033557,
+    "function_names": [
+      "odd_count",
+      "replace_with_count"
+    ]
+  }
+}

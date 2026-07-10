@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_127__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Tuple\nimport math\n\ndef intersection(interval1: Tuple[int, int], interval2: Tuple[int, int]) -> str:\n    a1, b1 = interval1\n    a2, b2 = interval2\n\n    # Find overlap\n    start = max(a1, a2)\n    end = min(b1, b2)\n    if start > end:\n        return \"NO\"\n\n    # For closed intervals, length is end - start\n    length = end - start\n    # If length <= 1, not prime (0 or 1)\n    if length <= 1:\n        return \"NO\"\n\n    # Check primality\n    if length % 2 == 0:\n        return \"YES\" if length == 2 else \"NO\"\n    limit = int(math.isqrt(length))\n    for p in range(3, limit + 1, 2):\n        if length % p == 0:\n            return \"NO\"\n    return \"YES\"",
+  "metrics": {
+    "total_nodes": 153,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.071895,
+    "function_names": [
+      "intersection"
+    ]
+  }
+}

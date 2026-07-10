@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import collections\nimport heapq\n\ndef minPath(grid, k):\n    N = len(grid)\n    # Map value to position for quick lookup\n    pos = {}\n    for i in range(N):\n        for j in range(N):\n            pos[grid[i][j]] = (i, j)\n    # Directions: up, down, left, right\n    dirs = [(-1,0),(1,0),(0,-1),(0,1)]\n    # For k == 1 return minimal value cell\n    if k == 1:\n        # smallest value is 1 guaranteed but generalize\n        minv = min(pos.keys())\n        return [minv]\n    # BFS layers from all positions with their cell value sequences implicitly\n    # We want lexicographically minimal sequence of cell values length k.\n    # Approach: greedy by position sets per prefix:\n    # At step t (1..k) maintain set of reachable positions that can realize\n    # the best prefix seen so far. Start: all positions are candidates for first value.\n    # For first element choose minimal cell value among all positions -> value v1\n    # Candidates = positions with that value.\n    # For subsequent steps, from current candidate positions, consider all neighbors (including staying? problem says visiting exactly k cells may revisit but moves must be to neighbor cells; cannot stay in place unless neighbor includes same cell; so staying is not allowed). So must move to adjacent.\n    # For each neighbor collect minimal value reachable; choose minimal value for next element that is reachable from any candidate; update candidates to those neighbor positions with that chosen value.\n    # Repeat until length k.\n    # This greedy is correct because lexicographic minimality chooses smallest possible next value consistent with reachability from some candidate realizing previous prefix.\n    # Implementation uses boolean grids for candidate sets.\n    # Initialize candidates for first value:\n    min_val = min(pos.keys())\n    # But there may be multiple cells with same value? Problem said permutation 1..N^2 so unique. Still generalize.\n    candidates = [[False]*N for _ in range(N)]\n    for v,p in pos.items():\n        if v == min_val:\n            i,j = p\n            candidates[i][j] = True\n    result = [min_val]\n    # For steps 2..k\n    for step in range(2, k+1):\n        # Explore neighbors of current candidates\n        # For each neighbor track minimal value present among them\n        best = None\n        # We'll gather next candidate boolean grid\n        next_cand = [[False]*N for _ in range(N)]\n        for i in range(N):\n            rowc = candidates[i]\n            for j in range(N):\n                if not rowc[j]:\n                    continue\n                for di,dj in dirs:\n                    ni,nj = i+di, j+dj\n                    if 0 <= ni < N and 0 <= nj < N:\n                        val = grid[ni][nj]\n                        if best is None or val < best:\n                            best = val\n        # best must exist because grid connectedness may not guarantee but from any cell there is at least one neighbor unless N=1 which problem excludes N>=2\n        if best is None:\n            # no move possible; shouldn't happen\n            break\n        # Now set next candidates to neighbors having value == best\n        for i in range(N):\n            rowc = candidates[i]\n            for j in range(N):\n                if not rowc[j]:\n                    continue\n                for di,dj in dirs:\n                    ni,nj = i+di, j+dj\n                    if 0 <= ni < N and 0 <= nj < N and grid[ni][nj] == best:\n                        next_cand[ni][nj] = True\n        candidates = next_cand\n        result.append(best)\n    return result\n\n# Quick sanity tests (not executed here):\n# print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1] but grid has unique positions so may not return 1 at third step because can't move back to 1? For given example path 1->2->1 requires moving back; allowed because revisiting allowed. This code allows that because neighbors include back step.\n# print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 466,
+    "ast_depth": 13,
+    "branch_count": 8,
+    "loop_count": 10,
+    "function_count": 1,
+    "control_flow_count": 23,
+    "control_flow_ratio": 0.049356,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

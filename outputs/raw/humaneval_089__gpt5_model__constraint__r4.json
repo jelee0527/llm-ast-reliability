@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:18:16.588286+00:00",
+  "elapsed_seconds": 6.275,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions forward in the alphabet (shift down by two multiplied to two places).\n    Non-letter characters are left unchanged. Case of letters is preserved.\n    Examples:\n    encrypt('hi') -> 'lm'\n    encrypt('asdfghjkl') -> 'ewhjklnop'\n    encrypt('gf') -> 'kj'\n    encrypt('et') -> 'ix'\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # shift forward by 4 with wraparound\n            orig_idx = ord(ch) - ord('a')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('a')))\n        elif 'A' <= ch <= 'Z':\n            orig_idx = ord(ch) - ord('A')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('A')))\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions forward in the alphabet (shift down by two multiplied to two places).\n    Non-letter characters are left unchanged. Case of letters is preserved.\n    Examples:\n    encrypt('hi') -> 'lm'\n    encrypt('asdfghjkl') -> 'ewhjklnop'\n    encrypt('gf') -> 'kj'\n    encrypt('et') -> 'ix'\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # shift forward by 4 with wraparound\n            orig_idx = ord(ch) - ord('a')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('a')))\n        elif 'A' <= ch <= 'Z':\n            orig_idx = ord(ch) - ord('A')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('A')))\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)"
+}

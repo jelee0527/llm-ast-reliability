@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\nWORD_TO_VALUE = {\n    \"zero\": 0,\n    \"one\": 1,\n    \"two\": 2,\n    \"three\": 3,\n    \"four\": 4,\n    \"five\": 5,\n    \"six\": 6,\n    \"seven\": 7,\n    \"eight\": 8,\n    \"nine\": 9,\n}\n\nVALUE_TO_WORD = {v: k for k, v in WORD_TO_VALUE.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\"Sort a space-delimited string of number words from smallest to largest.\n    Valid inputs: 'zero'...'nine'. Returns a space-delimited sorted string.\n    \"\"\"\n    if not numbers:\n        return \"\"\n    tokens: List[str] = numbers.split()\n    # Map words to values, ignoring any empty tokens\n    values: List[int] = []\n    for tok in tokens:\n        low = tok.strip().lower()\n        if low == \"\":\n            continue\n        if low not in WORD_TO_VALUE:\n            raise ValueError(f\"Invalid number word: {tok}\")\n        values.append(WORD_TO_VALUE[low])\n    values.sort()\n    sorted_words = [VALUE_TO_WORD[v] for v in values]\n    return \" \".join(sorted_words)",
+  "metrics": {
+    "total_nodes": 167,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.047904,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

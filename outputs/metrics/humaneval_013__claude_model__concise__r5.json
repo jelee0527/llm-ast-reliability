@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_013__claude_model__concise__r5.json",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from math import gcd\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)",
+  "metrics": {
+    "total_nodes": 21,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.047619,
+    "function_names": [
+      "greatest_common_divisor"
+    ]
+  }
+}

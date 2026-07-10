@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute the n-th element of the fib4 sequence iteratively.\n\n    Definitions:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4) for n >= 4\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Use a sliding window of the last four values\n    a0 = 0  # fib4(n-4)\n    a1 = 0  # fib4(n-3)\n    a2 = 2  # fib4(n-2)\n    a3 = 0  # fib4(n-1)\n\n    # iterate from 4 up to n\n    for _ in range(4, n + 1):\n        cur = a3 + a2 + a1 + a0\n        # shift window\n        a0, a1, a2, a3 = a1, a2, a3, cur\n\n    return a3\n\n# Quick tests if run as script\nif __name__ == \"__main__\":\n    print(fib4(5))  # 4\n    print(fib4(6))  # 8\n    print(fib4(7))  # 14",
+  "metrics": {
+    "total_nodes": 153,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.071895,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

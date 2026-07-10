@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Return the number of sentences in S that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    Leading whitespace is ignored for each sentence; the first token must be exactly \"I\".\n    \"\"\"\n    if not S:\n        return 0\n    # Split by sentence delimiters ., ?, !\n    # Keep it simple: split and strip whitespace\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        part = part.lstrip()\n        if not part:\n            continue\n        # Check if the first word is exactly \"I\"\n        # Word boundary: either end of string or followed by whitespace or punctuation\n        # We can split on whitespace to get first token\n        first_token = part.split(None, 1)[0]\n        if first_token == \"I\":\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.092105,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

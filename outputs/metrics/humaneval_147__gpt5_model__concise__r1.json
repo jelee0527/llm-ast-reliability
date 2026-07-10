@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_147__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from itertools import combinations\nimport sys\n\ndef get_max_triples(n):\n    # Values a[i] = i^2 - i + 1. Compute residues mod 3.\n    # Observe i mod 3 -> a mod3 mapping:\n    # i%3==0 -> a%3 == 1\n    # i%3==1 -> a%3 == 1\n    # i%3==2 -> a%3 == 0\n    # Let's verify: compute formula directly to be safe for any n.\n    counts = [0,0,0]\n    for i in range(1, n+1):\n        r = (i*i - i + 1) % 3\n        counts[r] += 1\n    c0, c1, c2 = counts\n    # Triples summing to 0 mod3:\n    # (0,0,0), (1,1,1), (2,2,2), (0,1,2)\n    def comb3(x):\n        return x*(x-1)*(x-2)//6 if x>=3 else 0\n    def comb2(x):\n        return x*(x-1)//2 if x>=2 else 0\n    total = comb3(c0) + comb3(c1) + comb3(c2) + c0*c1*c2\n    return total\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data: \n        print()\n    else:\n        n = int(data[0])\n        print(get_max_triples(n))",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "get_max_triples",
+      "comb3",
+      "comb2"
+    ]
+  }
+}

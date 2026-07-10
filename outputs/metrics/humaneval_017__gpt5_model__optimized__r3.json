@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse music string into beats per note.\n    Legend:\n    'o'  -> 4 beats (whole)\n    'o|' -> 2 beats (half)\n    '.|' -> 1 beat (quarter)\n    \"\"\"\n    if not music_string:\n        return []\n    # Split on whitespace\n    tokens = music_string.split()\n    result = []\n    for tok in tokens:\n        if tok == 'o':\n            result.append(4)\n        elif tok == 'o|':\n            result.append(2)\n        elif tok == '.|':\n            result.append(1)\n        else:\n            # Allow for tokens possibly with punctuation or adjacent chars;\n            # try to extract known symbols using regex\n            # Look for exact occurrences of 'o|', '.|', or 'o' in the token in order\n            i = 0\n            n = len(tok)\n            while i < n:\n                if tok.startswith('o|', i):\n                    result.append(2)\n                    i += 2\n                elif tok.startswith('.|', i):\n                    result.append(1)\n                    i += 2\n                elif tok.startswith('o', i):\n                    result.append(4)\n                    i += 1\n                else:\n                    # skip any unknown character\n                    i += 1\n    return result\n\nif __name__ == \"__main__\":\n    # Quick test\n    print(parse_music('o o| .| o| o| .| .| .| .| o o'))  # [4,2,1,2,2,1,1,1,1,4,4]",
+  "metrics": {
+    "total_nodes": 187,
+    "ast_depth": 15,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.064171,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

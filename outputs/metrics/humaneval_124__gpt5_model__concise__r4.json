@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from datetime import datetime\n\ndef valid_date(date):\n    if not isinstance(date, str) or not date:\n        return False\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    mm, dd, yyyy = parts\n    if not (mm.isdigit() and dd.isdigit() and yyyy.isdigit()):\n        return False\n    if len(mm) not in (1,2) or len(dd) not in (1,2) or len(yyyy) != 4:\n        return False\n    try:\n        m = int(mm); d = int(dd); y = int(yyyy)\n    except ValueError:\n        return False\n    if not (1 <= m <= 12):\n        return False\n    # Days per month (Feb up to 29 as per spec)\n    if m in (1,3,5,7,8,10,12):\n        maxd = 31\n    elif m in (4,6,9,11):\n        maxd = 30\n    else:\n        maxd = 29\n    return 1 <= d <= maxd",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 9,
+    "branch_count": 8,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.075,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

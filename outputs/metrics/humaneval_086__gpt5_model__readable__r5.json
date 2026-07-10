@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef anti_shuffle(s: str) -> str:\n    \"\"\"\n    Reorder characters inside each word of the input string `s` such that\n    characters in a word are sorted in ascending ASCII order. Words are\n    sequences of non-space characters separated by space characters.\n    All spaces (including multiple consecutive spaces) and the order of words\n    are preserved.\n\n    Examples:\n    anti_shuffle('Hi') -> 'Hi'\n    anti_shuffle('hello') -> 'ehllo'\n    anti_shuffle('Hello World!!!') -> 'Hello !!!Wdlor'\n    \"\"\"\n    if s == \"\":\n        return s\n\n    result_parts: List[str] = []\n    current_token_chars: List[str] = []\n    in_space = s[0].isspace()\n\n    for ch in s:\n        if ch.isspace():\n            # If we encounter a space and we were building a non-space token, flush it\n            if current_token_chars and not in_space:\n                token = \"\".join(sorted(current_token_chars))\n                result_parts.append(token)\n                current_token_chars = []\n            # Append the space character as its own part to preserve exact spacing\n            result_parts.append(ch)\n            in_space = True\n        else:\n            # Non-space character\n            if in_space and result_parts and result_parts[-1].isspace():\n                # We're starting a new word after spaces; just collect characters\n                pass\n            current_token_chars.append(ch)\n            in_space = False\n\n    # Flush any remaining token at end of string\n    if current_token_chars:\n        token = \"\".join(sorted(current_token_chars))\n        result_parts.append(token)\n\n    return \"\".join(result_parts)\n\n\n# Quick simple tests (can be removed if only the function is needed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hi\", \"Hi\"),\n        (\"hello\", \"ehllo\"),\n        (\"Hello World!!!\", \"Hello !!!Wdlor\"),\n        (\"\", \"\"),\n        (\"  leading\", \"  adegiln\"),\n        (\"trailing  \", \"agilnrt  \"),\n        (\"multiple   spaces\", \"elmpitu   acepss\"),\n    ]\n    for inp, expected in tests:\n        out = anti_shuffle(inp)\n        print(repr(inp), \"->\", repr(out), \"OK\" if out == expected else \"FAIL, expected \" + repr(expected))",
+  "metrics": {
+    "total_nodes": 258,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.042636,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

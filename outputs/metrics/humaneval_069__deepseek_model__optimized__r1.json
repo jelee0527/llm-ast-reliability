@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_069__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_069",
+  "task_id": "HumanEval/69",
+  "problem_name": "Search",
+  "entry_point": "search",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def search(lst):\n    freq = {}\n    for num in lst:\n        freq[num] = freq.get(num, 0) + 1\n    result = -1\n    for num, count in freq.items():\n        if count >= num:\n            result = max(result, num)\n    return result",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.057971,
+    "function_names": [
+      "search"
+    ]
+  }
+}

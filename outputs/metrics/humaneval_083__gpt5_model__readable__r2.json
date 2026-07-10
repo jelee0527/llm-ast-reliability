@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef starts_one_ends(n: int) -> int:\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n\n    n-digit positive integers range from 10^(n-1) to 10^n - 1 for n >= 1.\n    Count those that start with 1 OR end with 1 (inclusive OR).\n\n    Approach:\n    - Count numbers that start with 1: their first digit is 1, remaining (n-1)\n      digits can be anything (0-9), so 10^(n-1) numbers, except when n=1 need\n      to ensure we count only digits 1-9 for single-digit numbers (but start=1\n      for 1-digit is just the number 1).\n    - Count numbers that end with 1: last digit is 1, first digit cannot be 0,\n      so for n=1 that's again just 1; for n>1, first digit choices are 1-9 (9),\n      middle (n-2) digits are 0-9 each.\n    - Subtract intersection (numbers that both start and end with 1): first=1,\n      last=1, middle (n-2) digits free.\n\n    Edge cases:\n    - n must be positive integer.\n\n    Returns integer count.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    # n == 1: digits from 1..9. Those that start or end with 1 are just the digit 1 (count 1).\n    if n == 1:\n        return 1\n\n    # Numbers that start with 1:\n    # First digit fixed to 1, remaining n-1 digits can be 0-9 => 10^(n-1)\n    start_with_1 = 10 ** (n - 1)\n\n    # Numbers that end with 1:\n    # Last digit fixed to 1. First digit can be 1-9 (9 choices), middle n-2 digits 0-9.\n    end_with_1 = 9 * (10 ** (n - 2))\n\n    # Numbers that both start and end with 1:\n    # First=1, last=1, middle n-2 digits free => 10^(n-2)\n    both = 10 ** (n - 2)\n\n    # Inclusion-exclusion\n    return start_with_1 + end_with_1 - both\n\n\n# Optional simple tests when run as script\nif __name__ == \"__main__\":\n    test_ns = [1, 2, 3, 4, 5]\n    for t in test_ns:\n        print(f\"n={t}, count={starts_one_ends(t)}\")",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "source_file": "humaneval_032__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef poly(xs: list, x: float):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: list):\n    if len(xs) % 2 != 0:\n        raise ValueError(\"xs must have an even number of coefficients\")\n    if xs[-1] == 0:\n        raise ValueError(\"Largest non-zero coefficient must be non-zero\")\n    \n    n = len(xs) - 1\n    a_n = xs[-1]\n    a_0 = xs[0]\n    \n    # Use bounds based on Cauchy's bound for real roots\n    bound = 1 + max(abs(coeff / a_n) for coeff in xs[:-1])\n    \n    # Use Newton's method with multiple starting points\n    def f(x):\n        return poly(xs, x)\n    \n    def f_prime(x):\n        return sum([i * coeff * math.pow(x, i-1) for i, coeff in enumerate(xs) if i > 0])\n    \n    candidates = []\n    for start in [-bound, -bound/2, 0, bound/2, bound]:\n        x = start\n        for _ in range(100):\n            fx = f(x)\n            if abs(fx) < 1e-12:\n                break\n            fpx = f_prime(x)\n            if abs(fpx) < 1e-12:\n                break\n            x = x - fx / fpx\n        if abs(f(x)) < 1e-10:\n            candidates.append(x)\n    \n    if not candidates:\n        # Fallback: use bisection method\n        low = -bound\n        high = bound\n        f_low = f(low)\n        f_high = f(high)\n        \n        if f_low * f_high > 0:\n            # Try to find sign change\n            step = bound / 100\n            found = False\n            for i in range(200):\n                a = -bound + i * step\n                b = a + step\n                if f(a) * f(b) <= 0:\n                    low, high = a, b\n                    found = True\n                    break\n            if not found:\n                return 0.0\n        \n        for _ in range(100):\n            mid = (low + high) / 2\n            f_mid = f(mid)\n            if abs(f_mid) < 1e-12:\n                return mid\n            if f(low) * f_mid <= 0:\n                high = mid\n            else:\n                low = mid\n        return (low + high) / 2\n    \n    # Return the candidate with smallest absolute function value\n    best = min(candidates, key=lambda x: abs(f(x)))\n    return best",
+  "metrics": {
+    "total_nodes": 526,
+    "ast_depth": 11,
+    "branch_count": 11,
+    "loop_count": 4,
+    "function_count": 4,
+    "control_flow_count": 27,
+    "control_flow_ratio": 0.051331,
+    "function_names": [
+      "poly",
+      "find_zero",
+      "f",
+      "f_prime"
+    ]
+  }
+}

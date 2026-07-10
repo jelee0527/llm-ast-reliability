@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:30:12.207092+00:00",
+  "elapsed_seconds": 3.864,
+  "official_prompt": "\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n\n",
+  "raw_response": "import re\nfrom typing import List, Union\n\ndef split_words(txt: str) -> Union[List[str], int]:\n    # If any whitespace exists, split on whitespace\n    if re.search(r'\\s', txt):\n        return txt.split()\n    # Else if any comma exists, split on commas\n    if ',' in txt:\n        # split and strip possible surrounding whitespace\n        return [part.strip() for part in txt.split(',')]\n    # Else return count of lowercase letters with odd order in alphabet\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            if (ord(ch) - ord('a')) % 2 == 1:\n                count += 1\n    return count",
+  "generated_code": "import re\nfrom typing import List, Union\n\ndef split_words(txt: str) -> Union[List[str], int]:\n    # If any whitespace exists, split on whitespace\n    if re.search(r'\\s', txt):\n        return txt.split()\n    # Else if any comma exists, split on commas\n    if ',' in txt:\n        # split and strip possible surrounding whitespace\n        return [part.strip() for part in txt.split(',')]\n    # Else return count of lowercase letters with odd order in alphabet\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            if (ord(ch) - ord('a')) % 2 == 1:\n                count += 1\n    return count"
+}

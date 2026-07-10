@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef check_dict_case(d: dict) -> bool:\n    if not isinstance(d, dict):\n        raise TypeError(\"Input must be a dictionary\")\n    if len(d) == 0:\n        return False\n    saw_lower = False\n    saw_upper = False\n    for k in d.keys():\n        if not isinstance(k, str):\n            return False\n        # If string has any lowercase letter and any uppercase letter? We only need overall case.\n        # Consider key acceptable if it's all lower or all upper. Mixed-case keys cause False.\n        if k.islower():\n            saw_lower = True\n            if saw_upper:\n                return False\n        elif k.isupper():\n            saw_upper = True\n            if saw_lower:\n                return False\n        else:\n            # contains neither lower nor upper (e.g., digits, punctuation, empty string) - counts as mixed/unacceptable\n            return False\n    return saw_lower ^ saw_upper  # True if exactly one of them is True, False otherwise.",
+  "metrics": {
+    "total_nodes": 103,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.145631,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import operator as _operator\nimport math\n\n_ops = {\n    '+': (lambda a, b: a + b),\n    '-': (lambda a, b: a - b),\n    '*': (lambda a, b: a * b),\n    '//': (lambda a, b: a // b),\n    '**': (lambda a, b: a ** b),\n}\n\n# Define precedence and associativity: higher number means higher precedence.\n_precedence = {\n    '+': (1, 'L'),\n    '-': (1, 'L'),\n    '*': (2, 'L'),\n    '//': (2, 'L'),\n    '**': (3, 'R'),\n}\n\ndef do_algebra(operator, operand):\n    # Shunting-yard algorithm to convert to RPN then evaluate\n    # Normalize operators (ensure '//' and '**' are kept as tokens)\n    ops = list(operator)\n    vals = list(operand)\n    if len(vals) < 2 or len(ops) != len(vals) - 1:\n        raise ValueError(\"Invalid input lengths\")\n    # Build token sequence: alternating value and operator starting with value\n    tokens = []\n    for i, v in enumerate(vals):\n        tokens.append(v)\n        if i < len(ops):\n            tokens.append(ops[i])\n    # Shunting-yard\n    output_queue = []\n    op_stack = []\n    for tok in tokens:\n        if isinstance(tok, int):\n            output_queue.append(tok)\n        else:\n            # operator token\n            if tok not in _precedence:\n                raise ValueError(\"Unsupported operator: {}\".format(tok))\n            prec, assoc = _precedence[tok]\n            while op_stack:\n                top = op_stack[-1]\n                if top not in _precedence:\n                    break\n                top_prec, top_assoc = _precedence[top]\n                if (top_prec > prec) or (top_prec == prec and assoc == 'L'):\n                    output_queue.append(op_stack.pop())\n                else:\n                    break\n            op_stack.append(tok)\n    while op_stack:\n        output_queue.append(op_stack.pop())\n    # Evaluate RPN\n    stack = []\n    for tok in output_queue:\n        if isinstance(tok, int):\n            stack.append(tok)\n        else:\n            if len(stack) < 2:\n                raise ValueError(\"Invalid expression\")\n            b = stack.pop()\n            a = stack.pop()\n            # For floor division, mimic Python's behavior with negative numbers as well.\n            if tok == '//':\n                # Ensure integer floor division\n                if b == 0:\n                    raise ZeroDivisionError(\"integer division by zero\")\n                res = a // b\n            else:\n                res = _ops[tok](a, b)\n            stack.append(res)\n    if len(stack) != 1:\n        raise ValueError(\"Invalid evaluation\")\n    return stack[0]",
+  "metrics": {
+    "total_nodes": 466,
+    "ast_depth": 12,
+    "branch_count": 11,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 24,
+    "control_flow_ratio": 0.051502,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_070__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_070",
+  "task_id": "HumanEval/70",
+  "problem_name": "Strange Sort List",
+  "entry_point": "strange_sort_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from collections import deque\n\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n    '''\n    if not lst:\n        return []\n    # Sort list\n    s = sorted(lst)\n    dq = deque(s)\n    res = []\n    take_min = True\n    while dq:\n        if take_min:\n            res.append(dq.popleft())\n        else:\n            res.append(dq.pop())\n        take_min = not take_min\n    return res",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.063291,
+    "function_names": [
+      "strange_sort_list"
+    ]
+  }
+}

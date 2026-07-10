@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is an exact power of n (i.e., there exists non-negative integer k with n**k == x).\n    Edge cases:\n    - x must be an integer >= 1.\n    - n must be an integer >= 1.\n    - By convention, 1 is n**0 for any n>=1, so is_simple_power(1, n) is True for n>=1.\n    - If n == 1, only x == 1 is a power (1**k == 1), so other x return False.\n    \"\"\"\n    # Validate types and basic ranges\n    if not isinstance(x, int) or not isinstance(n, int):\n        return False\n    if x < 1 or n < 1:\n        return False\n\n    # handle n == 1: only 1 is a power of 1\n    if n == 1:\n        return x == 1\n\n    # handle x == 1: 1 == n**0 for any n>=1\n    if x == 1:\n        return True\n\n    # Iteratively divide x by n while divisible\n    value = x\n    while value % n == 0:\n        value //= n\n        if value == 1:\n            return True\n\n    return False\n\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (1,4, True),\n        (2,2, True),\n        (8,2, True),\n        (3,2, False),\n        (3,1, False),\n        (5,3, False),\n        (27,3, True),\n        (16,4, True),\n        (0,2, False),\n        (1,1, True),\n    ]\n    for x,n,expected in tests:\n        result = is_simple_power(x,n)\n        print((x,n), result, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 195,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.071795,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

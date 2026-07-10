@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_035__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef max_element(l: List[Any]):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    # Validate input is a list or iterable with length\n    if l is None:\n        raise TypeError(\"Input must be a non-empty list\")\n    if not hasattr(l, \"__iter__\"):\n        raise TypeError(\"Input must be an iterable\")\n    # Convert to list to handle generators and check emptiness\n    try:\n        seq = list(l)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable\")\n    if len(seq) == 0:\n        raise ValueError(\"max_element() arg is an empty sequence\")\n    # Initialize maximum with first element\n    current_max = seq[0]\n    for item in seq[1:]:\n        # Rely on Python comparison; allow exceptions to propagate for incompatible types\n        if item > current_max:\n            current_max = item\n    return current_max\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.102564,
+    "function_names": [
+      "max_element"
+    ]
+  }
+}

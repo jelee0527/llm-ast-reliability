@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from heapq import heappush, heappop\n\ndef minPath(grid, k):\n    n = len(grid)\n    # For each cell, we store the best path (as tuple) for each length up to k\n    # dp[i][j][l] = tuple of values for the best path of length l ending at (i,j)\n    dp = [[None for _ in range(n)] for _ in range(n)]\n    \n    # Initialize with paths of length 1\n    for i in range(n):\n        for j in range(n):\n            dp[i][j] = {1: (grid[i][j],)}\n    \n    # Build paths of increasing length\n    for length in range(2, k + 1):\n        for i in range(n):\n            for j in range(n):\n                best_path = None\n                for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    ni, nj = i + di, j + dj\n                    if 0 <= ni < n and 0 <= nj < n:\n                        if length - 1 in dp[ni][nj]:\n                            candidate = dp[ni][nj][length - 1] + (grid[i][j],)\n                            if best_path is None or candidate < best_path:\n                                best_path = candidate\n                if best_path is not None:\n                    dp[i][j][length] = best_path\n    \n    # Find the overall best path of length k\n    best_overall = None\n    for i in range(n):\n        for j in range(n):\n            if k in dp[i][j]:\n                if best_overall is None or dp[i][j][k] < best_overall:\n                    best_overall = dp[i][j][k]\n    \n    return list(best_overall)",
+  "metrics": {
+    "total_nodes": 358,
+    "ast_depth": 15,
+    "branch_count": 6,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.041899,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

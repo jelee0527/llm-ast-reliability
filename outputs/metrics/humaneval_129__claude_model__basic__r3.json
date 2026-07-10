@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__claude_model__basic__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    def get_neighbors(i, j):\n        neighbors = []\n        for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            ni, nj = i + di, j + dj\n            if 0 <= ni < n and 0 <= nj < n:\n                neighbors.append((ni, nj))\n        return neighbors\n    \n    # BFS/dynamic programming approach\n    # dp[i][j] = list of minimum paths of current length starting considerations\n    # Use iterative approach: maintain best path ending at each cell\n    \n    # For each cell, store the minimum path of length k starting from that cell\n    # We'll use a greedy approach with BFS\n    \n    # At each step, for each cell, we know the minimum path of length step ending at that cell\n    # dp[i][j] = minimum path of current length that ends at cell (i,j)\n    \n    # Initialize: paths of length 1\n    dp = {}\n    for i in range(n):\n        for j in range(n):\n            dp[(i, j)] = [grid[i][j]]\n    \n    for step in range(k - 1):\n        new_dp = {}\n        for i in range(n):\n            for j in range(n):\n                # Consider moving to (i, j) from any neighbor\n                best = None\n                for ni, nj in get_neighbors(i, j):\n                    candidate = dp[(ni, nj)] + [grid[i][j]]\n                    if best is None or candidate < best:\n                        best = candidate\n                new_dp[(i, j)] = best\n        dp = new_dp\n    \n    # Find the overall minimum path\n    result = None\n    for i in range(n):\n        for j in range(n):\n            if result is None or dp[(i, j)] < result:\n                result = dp[(i, j)]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 361,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 11,
+    "function_count": 2,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.044321,
+    "function_names": [
+      "minPath",
+      "get_neighbors"
+    ]
+  }
+}

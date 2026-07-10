@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_008__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_008",
+  "task_id": "HumanEval/8",
+  "problem_name": "Sum Product",
+  "entry_point": "sum_product",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    total_sum = sum(numbers)\n    total_product = 1\n    for num in numbers:\n        total_product *= num\n    return (total_sum, total_product)",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List'),\n        alias(name='Tuple')],\n      level=0),\n    FunctionDef(\n      name='sum_product',\n      args=arguments(\n        args=[\n          arg(\n            arg='numbers',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='numbers', ctx=Load())),\n          body=[\n            Return(\n              value=Tuple(\n                elts=[\n                  Constant(value=0),\n                  Constant(value=1)],\n                ctx=Load()))]),\n        Assign(\n          targets=[\n            Name(id='total_sum', ctx=Store())],\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              Name(id='numbers', ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='total_product', ctx=Store())],\n          value=Constant(value=1)),\n        For(\n          target=Name(id='num', ctx=Store()),\n          iter=Name(id='numbers', ctx=Load()),\n          body=[\n            AugAssign(\n              target=Name(id='total_product', ctx=Store()),\n              op=Mult(),\n              value=Name(id='num', ctx=Load()))]),\n        Return(\n          value=Tuple(\n            elts=[\n              Name(id='total_sum', ctx=Load()),\n              Name(id='total_product', ctx=Load())],\n            ctx=Load()))],\n      returns=Subscript(\n        value=Name(id='Tuple', ctx=Load()),\n        slice=Tuple(\n          elts=[\n            Name(id='int', ctx=Load()),\n            Name(id='int', ctx=Load())],\n          ctx=Load()),\n        ctx=Load()))])"
+}

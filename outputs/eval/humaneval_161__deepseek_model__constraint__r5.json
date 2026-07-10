@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_161__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

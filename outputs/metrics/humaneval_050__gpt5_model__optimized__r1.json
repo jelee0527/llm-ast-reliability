@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Lowercase letters a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    # Precompute translation table for lowercase a-z shift by 5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({a: b for a, b in zip(src, dst)})\n    return s.translate(table)\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Reverses the shift of 5 for lowercase letters; other characters are left unchanged.\n    \"\"\"\n    # Precompute reverse translation table for lowercase a-z shift by -5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({b: a for a, b in zip(src, dst)})\n    return s.translate(table)",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.014815,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

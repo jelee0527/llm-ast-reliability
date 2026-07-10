@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_160__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    \"\"\"\n    Evaluate an arithmetic expression built from operator list and operand list.\n    Operators supported: '+', '-', '*', '//', '**'\n    operator length is len(operand) - 1\n    All operands are non-negative integers.\n    Integer floor division '//' follows Python semantics.\n    Exponentiation has higher precedence than *, +, - and is right-associative.\n    Multiplication has higher precedence than addition/subtraction.\n    \"\"\"\n    # Validate inputs minimally\n    if not isinstance(operator, list) or not isinstance(operand, list):\n        raise TypeError(\"operator and operand must be lists\")\n    if len(operator) != len(operand) - 1:\n        raise ValueError(\"operator length must be one less than operand length\")\n    if any(op not in {'+', '-', '*', '//', '**'} for op in operator):\n        raise ValueError(\"unsupported operator found\")\n    # We'll implement a shunting-yard-like evaluator producing result directly.\n    # Define operator precedence and associativity\n    prec = {'+': 1, '-': 1, '*': 2, '//': 2, '**': 3}\n    # Associativity: left for +,-,*,// ; right for **\n    right_assoc = {'**'}\n    # Apply operator function\n    def apply_op(a, b, op):\n        if op == '+':\n            return a + b\n        if op == '-':\n            return a - b\n        if op == '*':\n            return a * b\n        if op == '//':\n            # floor division: mimic Python's // for integers\n            # operands are non-negative per spec, but handle generally\n            if b == 0:\n                raise ZeroDivisionError(\"integer division by zero\")\n            return a // b\n        if op == '**':\n            # exponentiation\n            return a ** b\n        raise ValueError(\"unknown operator\")\n    # We'll iterate through tokens: operand0, op0, operand1, op1, ...\n    values = []  # value stack\n    ops = []     # operator stack\n    # helper to process operators from ops stack based on precedence\n    def process_ops_until(cond):\n        while ops and cond(ops[-1]):\n            op = ops.pop()\n            b = values.pop()\n            a = values.pop()\n            values.append(apply_op(a, b, op))\n    # push first operand\n    values.append(int(operand[0]))\n    n_ops = len(operator)\n    for i in range(n_ops):\n        op = operator[i]\n        # Decide whether to process operators on stack before pushing this op\n        if ops:\n            top = ops[-1]\n            if top in right_assoc:\n                top_prec = prec[top]\n                # If top is right-assoc, we only process when top_prec > prec[op]\n                if top_prec > prec[op]:\n                    process_ops_until(lambda t: prec[t] > prec[op])\n            else:\n                # left-assoc: process while top_prec >= prec[op]\n                process_ops_until(lambda t: prec[t] >= prec[op])\n        ops.append(op)\n        # push next operand\n        values.append(int(operand[i+1]))\n    # process remaining operators\n    process_ops_until(lambda t: True)\n    if len(values) != 1:\n        raise ValueError(\"evaluation error\")\n    return values[0]",
+  "metrics": {
+    "total_nodes": 440,
+    "ast_depth": 13,
+    "branch_count": 13,
+    "loop_count": 2,
+    "function_count": 3,
+    "control_flow_count": 27,
+    "control_flow_ratio": 0.061364,
+    "function_names": [
+      "do_algebra",
+      "apply_op",
+      "process_ops_until"
+    ]
+  }
+}

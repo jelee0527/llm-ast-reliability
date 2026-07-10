@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_005__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_005",
+  "task_id": "HumanEval/5",
+  "problem_name": "Intersperse",
+  "entry_point": "intersperse",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    return result",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.064103,
+    "function_names": [
+      "intersperse"
+    ]
+  }
+}

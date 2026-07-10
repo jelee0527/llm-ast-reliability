@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:11:30.156176+00:00",
+  "elapsed_seconds": 4.285,
+  "official_prompt": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef common(l1: list, l2: list) -> List:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use a set for membership testing and avoid duplicates\n    set1 = set()\n    for item in l1:\n        set1.add(item)\n    common_set = set()\n    for item in l2:\n        if item in set1:\n            common_set.add(item)\n    # Return a sorted list of the common elements\n    try:\n        return sorted(common_set)\n    except TypeError:\n        # If elements are not directly comparable, return a list in deterministic order:\n        # sort by their string representation then by their repr to make deterministic\n        return sorted(common_set, key=lambda x: (str(x), repr(x)))",
+  "generated_code": "from typing import List\n\ndef common(l1: list, l2: list) -> List:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use a set for membership testing and avoid duplicates\n    set1 = set()\n    for item in l1:\n        set1.add(item)\n    common_set = set()\n    for item in l2:\n        if item in set1:\n            common_set.add(item)\n    # Return a sorted list of the common elements\n    try:\n        return sorted(common_set)\n    except TypeError:\n        # If elements are not directly comparable, return a list in deterministic order:\n        # sort by their string representation then by their repr to make deterministic\n        return sorted(common_set, key=lambda x: (str(x), repr(x)))"
+}

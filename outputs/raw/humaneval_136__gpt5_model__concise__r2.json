@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:59:59.554309+00:00",
+  "elapsed_seconds": 2.784,
+  "official_prompt": "\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n\n",
+  "raw_response": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    negs = [x for x in lst if isinstance(x, int) and x < 0]\n    poss = [x for x in lst if isinstance(x, int) and x > 0]\n    a = max(negs) if negs else None\n    b = min(poss) if poss else None\n    return (a, b)",
+  "generated_code": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    negs = [x for x in lst if isinstance(x, int) and x < 0]\n    poss = [x for x in lst if isinstance(x, int) and x > 0]\n    a = max(negs) if negs else None\n    b = min(poss) if poss else None\n    return (a, b)"
+}

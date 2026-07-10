@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:14:19.052864+00:00",
+  "elapsed_seconds": 2.453,
+  "official_prompt": "\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int) and a >= 0 and b >= 0):\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = min(a, b), max(a, b)\n    return [n for n in range(lo, hi + 1) if 0 <= n <= 9 and n % 2 == 0]",
+  "generated_code": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int) and a >= 0 and b >= 0):\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = min(a, b), max(a, b)\n    return [n for n in range(lo, hi + 1) if 0 <= n <= 9 and n % 2 == 0]"
+}

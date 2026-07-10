@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_014__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_014",
+  "task_id": "HumanEval/14",
+  "problem_name": "All Prefixes",
+  "entry_point": "all_prefixes",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    if string is None:\n        raise TypeError(\"Input must be a string, got None\")\n    if not isinstance(string, str):\n        raise TypeError(f\"Input must be a string, got {type(string).__name__}\")\n    prefixes: List[str] = []\n    # iterate i from 1 to len(string) inclusive to get prefixes of increasing length\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    return prefixes",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.064516,
+    "function_names": [
+      "all_prefixes"
+    ]
+  }
+}

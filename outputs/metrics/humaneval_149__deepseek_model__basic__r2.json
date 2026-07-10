@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__deepseek_model__basic__r2.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def sorted_list_sum(lst):\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    filtered.sort(key=lambda x: (len(x), x))\n    return filtered",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020833,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

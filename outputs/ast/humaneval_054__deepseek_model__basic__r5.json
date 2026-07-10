@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_054__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    from collections import Counter\n    return Counter(s0) == Counter(s1)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='same_chars',\n      args=arguments(\n        args=[\n          arg(\n            arg='s0',\n            annotation=Name(id='str', ctx=Load())),\n          arg(\n            arg='s1',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\"\\n    Check if two words have the same characters.\\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\\n    True\\n    >>> same_chars('abcd', 'dddddddabc')\\n    True\\n    >>> same_chars('dddddddabc', 'abcd')\\n    True\\n    >>> same_chars('eabcd', 'dddddddabc')\\n    False\\n    >>> same_chars('abcd', 'dddddddabce')\\n    False\\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\\n    False\\n    \")),\n        ImportFrom(\n          module='collections',\n          names=[\n            alias(name='Counter')],\n          level=0),\n        Return(\n          value=Compare(\n            left=Call(\n              func=Name(id='Counter', ctx=Load()),\n              args=[\n                Name(id='s0', ctx=Load())]),\n            ops=[\n              Eq()],\n            comparators=[\n              Call(\n                func=Name(id='Counter', ctx=Load()),\n                args=[\n                  Name(id='s1', ctx=Load())])]))])])"
+}

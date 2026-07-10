@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import itertools\n\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, return a list of length n representing a pile.\n    First level has n stones. Each subsequent level uses the next odd number\n    if current is odd, or the next even number if current is even.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # If n is odd, sequence is n, n+2, n+4, ... ; if even, n, n+2, n+4, ...\n    # In both cases it's arithmetic progression with difference 2.\n    return [n + 2*i for i in range(n)]",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.061224,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

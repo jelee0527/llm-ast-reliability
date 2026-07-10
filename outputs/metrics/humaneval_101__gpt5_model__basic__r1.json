@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef words_string(s: str) -> List[str]:\n    \"\"\"\n    Split a string of words separated by commas or spaces into a list of words.\n    \"\"\"\n    if s is None:\n        return []\n    # Split on any sequence of commas and/or whitespace\n    parts = re.split(r'[,\\s]+', s.strip())\n    # Filter out empty strings\n    return [p for p in parts if p != '']",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.054545,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

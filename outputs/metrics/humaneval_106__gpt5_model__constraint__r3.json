@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_106__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "problem_name": "F",
+  "entry_point": "f",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef f(n: int) -> List[int]:\n    \"\"\"Return a list of size n where element at index i (1-based) is:\n    - factorial(i) if i is even\n    - sum from 1 to i if i is odd\n    Example: f(5) -> [1, 2, 6, 24, 15]\n    \"\"\"\n    if n <= 0:\n        return []\n    result: List[int] = []\n    fact = 1\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            # update factorial incrementally for even i (but maintain across all i)\n            fact *= i\n            result.append(fact)\n        else:\n            # ensure factorial is up-to-date for odd i by multiplying by i if needed\n            # (this keeps fact as factorial(i) when next even is encountered)\n            fact *= i\n            # sum from 1 to i = i*(i+1)//2\n            s = i * (i + 1) // 2\n            result.append(s)\n    return result\n\n# Simple self-test when run as script\nif __name__ == \"__main__\":\n    print(f(5))  # expected [1,2,6,24,15]\n    print(f(1))  # [1]\n    print(f(2))  # [1,2]",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.043796,
+    "function_names": [
+      "f"
+    ]
+  }
+}

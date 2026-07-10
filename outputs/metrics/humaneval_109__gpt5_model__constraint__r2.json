@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be rotated (right shifts) to become non-decreasing.\"\"\"\n    # Empty or single-element arrays are already sorted\n    if not arr or len(arr) <= 1:\n        return True\n\n    n = len(arr)\n    # Count the number of places where a decrease occurs (arr[i] > arr[i+1])\n    drops = 0\n    drop_index = -1\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            drop_index = i\n            if drops > 1:\n                return False\n\n    # If no drops, already non-decreasing\n    if drops == 0:\n        return True\n\n    # Exactly one drop at index drop_index: check that rotating after drop_index fixes the array.\n    # After rotation, the last element (arr[drop_index]) will be at the end and arr[drop_index+1] at start.\n    # Need to ensure arr[-1] <= arr[0] after rotation and that the rest is non-decreasing,\n    # but having exactly one drop guarantees internal non-decreasing except the wrap.\n    # So check wrap condition: last element <= first element after rotation.\n    return arr[-1] <= arr[0] or arr[drop_index] <= arr[(drop_index + 1) % n] and arr[-1] <= arr[0]",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.05625,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

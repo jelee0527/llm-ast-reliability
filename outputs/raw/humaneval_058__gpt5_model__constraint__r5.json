@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:11:45.154161+00:00",
+  "elapsed_seconds": 4.494,
+  "official_prompt": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef common(l1: List[Any], l2: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use sets to find unique intersection, then return sorted list\n    if l1 is None or l2 is None:\n        return []\n    try:\n        s1 = set(l1)\n        s2 = set(l2)\n    except TypeError:\n        # If unhashable items, fall back to manual approach preserving uniqueness via list\n        uniq1 = []\n        for x in l1:\n            if x not in uniq1:\n                uniq1.append(x)\n        uniq2 = []\n        for x in l2:\n            if x not in uniq2:\n                uniq2.append(x)\n        inter = [x for x in uniq1 if x in uniq2]\n        try:\n            return sorted(inter)\n        except TypeError:\n            # If elements not mutually comparable, return in insertion order of uniq1 filtered by uniq2\n            return inter\n    inter = s1.intersection(s2)\n    try:\n        return sorted(inter)\n    except TypeError:\n        # Elements not comparable; return sorted by their string representation to be deterministic\n        return sorted(inter, key=lambda x: str(x))",
+  "generated_code": "from typing import List, Any\n\ndef common(l1: List[Any], l2: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use sets to find unique intersection, then return sorted list\n    if l1 is None or l2 is None:\n        return []\n    try:\n        s1 = set(l1)\n        s2 = set(l2)\n    except TypeError:\n        # If unhashable items, fall back to manual approach preserving uniqueness via list\n        uniq1 = []\n        for x in l1:\n            if x not in uniq1:\n                uniq1.append(x)\n        uniq2 = []\n        for x in l2:\n            if x not in uniq2:\n                uniq2.append(x)\n        inter = [x for x in uniq1 if x in uniq2]\n        try:\n            return sorted(inter)\n        except TypeError:\n            # If elements not mutually comparable, return in insertion order of uniq1 filtered by uniq2\n            return inter\n    inter = s1.intersection(s2)\n    try:\n        return sorted(inter)\n    except TypeError:\n        # Elements not comparable; return sorted by their string representation to be deterministic\n        return sorted(inter, key=lambda x: str(x))"
+}

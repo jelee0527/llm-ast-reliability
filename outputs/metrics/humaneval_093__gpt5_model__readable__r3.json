@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Dict\n\ndef encode(message: str) -> str:\n    \"\"\"\n    Takes a message (letters and spaces) and encodes it by:\n    - Swapping case of all letters.\n    - Replacing all vowels in the message with the letter that appears\n      2 places ahead of that vowel in the English alphabet (preserving case after swap).\n    Assumes input contains only letters and spaces.\n    \"\"\"\n    # Define vowels and their +2 mapping for lowercase\n    vowel_forward: Dict[str, str] = {\n        'a': 'c',\n        'e': 'g',\n        'i': 'k',\n        'o': 'q',\n        'u': 'w',\n    }\n\n    result_chars = []\n    for ch in message:\n        if ch == ' ':\n            result_chars.append(ch)\n            continue\n\n        # Swap case\n        swapped = ch.swapcase()\n\n        # After swapping case, check if it's a vowel (lowercase or uppercase)\n        # We want to replace vowels in the original message; specification\n        # indicates \"replaces all vowels in the message\" then \"swaps case\".\n        # But examples show swap case first, then vowel transformation on the result.\n        # So we perform vowel replacement on the swapped character.\n        lower_swapped = swapped.lower()\n        if lower_swapped in vowel_forward:\n            mapped = vowel_forward[lower_swapped]\n            # Preserve case of swapped character\n            if swapped.isupper():\n                result_chars.append(mapped.upper())\n            else:\n                result_chars.append(mapped)\n        else:\n            result_chars.append(swapped)\n\n    return ''.join(result_chars)\n\n\n# Quick internal tests (will not run unless executed)\nif __name__ == \"__main__\":\n    print(encode('test'))               # Expected 'TGST'\n    print(encode('This is a message'))  # Expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.045161,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

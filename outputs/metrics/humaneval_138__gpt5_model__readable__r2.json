@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_138__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_equal_to_sum_even(n: int) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Examples:\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # Each positive even number is at least 2. Sum of four positive evens is at least 8.\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 8:\n        return False\n    # Sum of even numbers is even, so n must be even.\n    return n % 2 == 0\n\n# Optional simple tests when run as script\nif __name__ == \"__main__\":\n    test_values: List[int] = [4, 6, 7, 8, 10, 12, 13, 14]\n    for v in test_values:\n        print(f\"{v}: {is_equal_to_sum_even(v)}\")",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.078652,
+    "function_names": [
+      "is_equal_to_sum_even"
+    ]
+  }
+}

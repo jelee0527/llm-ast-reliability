@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__deepseek_model__concise__r4.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def will_it_fly(q, w):\n    return q == q[::-1] and sum(q) <= w",
+  "metrics": {
+    "total_nodes": 29,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.034483,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:54:00.352600+00:00",
+  "elapsed_seconds": 4.201,
+  "official_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\n_WORD_TO_DIGIT = {\n    'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n    'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n}\n_DIGIT_TO_WORD = {v: k for k, v in _WORD_TO_DIGIT.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    if not numbers:\n        return ''\n    parts = numbers.split()\n    # Map to digits, ignore any unexpected tokens by raising ValueError\n    try:\n        digits = [_WORD_TO_DIGIT[p] for p in parts]\n    except KeyError as e:\n        raise ValueError(f\"Invalid numeral: {e.args[0]}\") from None\n    digits.sort()\n    return ' '.join(_DIGIT_TO_WORD[d] for d in digits)",
+  "generated_code": "from typing import List\n\n_WORD_TO_DIGIT = {\n    'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n    'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n}\n_DIGIT_TO_WORD = {v: k for k, v in _WORD_TO_DIGIT.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    if not numbers:\n        return ''\n    parts = numbers.split()\n    # Map to digits, ignore any unexpected tokens by raising ValueError\n    try:\n        digits = [_WORD_TO_DIGIT[p] for p in parts]\n    except KeyError as e:\n        raise ValueError(f\"Invalid numeral: {e.args[0]}\") from None\n    digits.sort()\n    return ' '.join(_DIGIT_TO_WORD[d] for d in digits)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def get_row(lst, x):\n    result = []\n    for row_idx, row in enumerate(lst):\n        for col_idx, val in enumerate(row):\n            if val == x:\n                result.append((row_idx, col_idx))\n    result.sort(key=lambda t: (t[0], -t[1]))\n    return result",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

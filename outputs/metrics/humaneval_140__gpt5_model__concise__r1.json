@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores, \n    and if a string has more than 2 consecutive spaces, \n    then replace all consecutive spaces with -\n    \"\"\"\n    if not text:\n        return text\n    # Replace groups of 3 or more spaces with a single '-'\n    text = re.sub(r' {3,}', '-', text)\n    # Replace remaining single or double spaces with underscores (each space becomes underscore)\n    # So groups of 1 or 2 spaces turn into that many underscores\n    text = re.sub(r' {1,2}', lambda m: '_' * len(m.group(0)), text)\n    return text",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

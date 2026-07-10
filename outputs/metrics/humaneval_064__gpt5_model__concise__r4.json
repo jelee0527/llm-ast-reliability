@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s. Vowels: a,e,i,o,u (case-insensitive).\n    'y' counts only if it is the last character of the word.\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    vowels = set(\"aeiou\")\n    count = 0\n    lower = s.lower()\n    for i, ch in enumerate(lower):\n        if ch in vowels:\n            count += 1\n        elif ch == 'y' and i == len(lower) - 1:\n            count += 1\n    return count\n\n# Basic tests when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,\n        \"rhythm\": 0,\n        \"happy\": 1,\n        \"sky\": 1,\n        \"y\": 1,\n        \"Y\": 1,\n        \"AEIOU\": 5,\n        \"\": 0,\n        \"   \": 0,\n        \"bcd\": 0,\n        \"appley\": 2,  # a, y at end\n        \"applex\": 2,  # a,e\n        \"crypt\": 0,\n        \"toy\": 1,     # o and y at end? only count y if at end; toy ends with y so both o and y => 2\n    }\n    # fix the \"toy\" expected value to 2\n    tests[\"toy\"] = 2\n    for s, expected in tests.items():\n        result = vowels_count(s)\n        print(f\"{s!r}: {result} (expected {expected})\", \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 203,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.054187,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

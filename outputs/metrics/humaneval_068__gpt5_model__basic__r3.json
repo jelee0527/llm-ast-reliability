@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pluck(arr: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integer nodes, pluck one node with the smallest even value.\n    If multiple nodes share that smallest even value, return the one with the smallest index.\n    Return [value, index] or [] if no even values or input is empty.\n    \"\"\"\n    if not arr:\n        return []\n    best_value = None\n    best_index = -1\n    for i, v in enumerate(arr):\n        if v % 2 == 0:\n            if best_value is None or v < best_value:\n                best_value = v\n                best_index = i\n                # If we find a zero, it's the smallest possible even; can return immediately.\n                if best_value == 0:\n                    return [0, best_index]\n    if best_value is None:\n        return []\n    return [best_value, best_index]",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.09009,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

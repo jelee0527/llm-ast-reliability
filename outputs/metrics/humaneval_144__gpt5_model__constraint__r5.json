@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_144__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if the product of fractions x and n is a whole number, else False.\n    x and n are strings like 'numerator/denominator' with positive integers.\n    \"\"\"\n    # Parse input strings into Fraction objects\n    def parse_frac(s):\n        if '/' not in s:\n            raise ValueError(\"Invalid fraction format\")\n        num_str, den_str = s.split('/', 1)\n        num = int(num_str)\n        den = int(den_str)\n        if den == 0:\n            raise ZeroDivisionError(\"Denominator cannot be zero\")\n        return Fraction(num, den)\n    fx = parse_frac(x)\n    fn = parse_frac(n)\n    product = fx * fn\n    # A Fraction is whole if denominator equals 1\n    return product.denominator == 1\n\n# Quick self-test (not required, but harmless)\nif __name__ == \"__main__\":\n    tests = [\n        (\"1/5\", \"5/1\", True),\n        (\"1/6\", \"2/1\", False),\n        (\"7/10\", \"10/2\", False),\n        (\"3/4\", \"4/3\", True),\n        (\"6/7\", \"7/3\", True),\n    ]\n    for a, b, expected in tests:\n        result = simplify(a, b)\n        print(a, \"*\", b, \"=>\", result, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.045198,
+    "function_names": [
+      "simplify",
+      "parse_frac"
+    ]
+  }
+}

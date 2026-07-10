@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef by_length(arr: List[int]) -> List[str]:\n    \"\"\"\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n    \"\"\"\n    if not arr:\n        return []\n    # Filter values that are integers between 1 and 9 inclusive\n    valid = []\n    for x in arr:\n        try:\n            # ensure x is an int (not float like 1.0) and in range\n            if isinstance(x, bool):\n                # exclude booleans\n                continue\n            if isinstance(x, int) and 1 <= x <= 9:\n                valid.append(x)\n        except Exception:\n            continue\n    # sort ascending\n    valid.sort()\n    # reverse\n    valid.reverse()\n    name_map = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\",\n    }\n    result = []\n    for v in valid:\n        result.append(name_map.get(v, \"\"))\n    return result\n\n\n# Example quick tests (will run if this module executed directly)\nif __name__ == \"__main__\":\n    print(by_length([2, 1, 1, 4, 5, 8, 2, 3]))  # [\"Eight\",\"Five\",\"Four\",\"Three\",\"Two\",\"Two\",\"One\",\"One\"]\n    print(by_length([]))  # []\n    print(by_length([1, -1, 55]))  # [\"One\"]",
+  "metrics": {
+    "total_nodes": 184,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.059783,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

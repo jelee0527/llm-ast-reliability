@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:24:38.410529+00:00",
+  "elapsed_seconds": 3.245,
+  "official_prompt": "\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef unique(l: List[Any]):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    try:\n        return sorted(set(l))\n    except TypeError:\n        # Fallback for unhashable items: preserve uniqueness by equality\n        uniq = []\n        for item in l:\n            found = False\n            for u in uniq:\n                if item == u:\n                    found = True\n                    break\n            if not found:\n                uniq.append(item)\n        try:\n            return sorted(uniq)\n        except TypeError:\n            # If items are not comparable, return in first-seen order of uniqueness\n            return uniq",
+  "generated_code": "from typing import List, Any\n\ndef unique(l: List[Any]):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    try:\n        return sorted(set(l))\n    except TypeError:\n        # Fallback for unhashable items: preserve uniqueness by equality\n        uniq = []\n        for item in l:\n            found = False\n            for u in uniq:\n                if item == u:\n                    found = True\n                    break\n            if not found:\n                uniq.append(item)\n        try:\n            return sorted(uniq)\n        except TypeError:\n            # If items are not comparable, return in first-seen order of uniqueness\n            return uniq"
+}

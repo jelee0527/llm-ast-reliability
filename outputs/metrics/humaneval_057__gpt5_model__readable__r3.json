@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_057__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef monotonic(l: List) -> bool:\n    \"\"\"Return True if list elements are monotonically increasing or decreasing.\n    Works for lists with comparable elements. Equal adjacent elements are allowed.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n    # Empty list or single element is monotonic\n    if len(l) <= 1:\n        return True\n\n    increasing = True\n    decreasing = True\n\n    for i in range(1, len(l)):\n        if l[i] > l[i - 1]:\n            decreasing = False\n        if l[i] < l[i - 1]:\n            increasing = False\n        # Early exit: if neither possible, not monotonic\n        if not increasing and not decreasing:\n            return False\n\n    return True\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.077586,
+    "function_names": [
+      "monotonic"
+    ]
+  }
+}

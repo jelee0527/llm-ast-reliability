@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_063__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fibfib(n: int) -> int:\n    \"\"\"Compute the n-th FibFib number:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3) for n >= 3\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n    # Iterative efficient computation (linear time, constant space)\n    a, b, c = 0, 0, 1  # fibfib(0), fibfib(1), fibfib(2)\n    # compute up to n\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c\n\n# Optional simple test when run as a script\nif __name__ == \"__main__\":\n    import sys\n    tests = [1, 5, 8, 0, 2, 3, 10]\n    for t in tests:\n        print(f\"fibfib({t}) = {fibfib(t)}\")\n    # allow command-line argument\n    if len(sys.argv) > 1:\n        try:\n            x = int(sys.argv[1])\n            print(fibfib(x))\n        except Exception as e:\n            print(\"Error:\", e)",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.07,
+    "function_names": [
+      "fibfib"
+    ]
+  }
+}

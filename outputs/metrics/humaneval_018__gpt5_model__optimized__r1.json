@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import *\nimport sys\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    \"\"\"\n    if not substring:\n        # define behavior: empty substring occurs 0 times in this context\n        return 0\n    n, m = len(string), len(substring)\n    if m > n:\n        return 0\n    # Use Knuth-Morris-Pratt to count overlapping occurrences efficiently O(n+m)\n    # Build lps (longest proper prefix which is also suffix) array\n    lps = [0] * m\n    length = 0\n    i = 1\n    while i < m:\n        if substring[i] == substring[length]:\n            length += 1\n            lps[i] = length\n            i += 1\n        else:\n            if length != 0:\n                length = lps[length - 1]\n            else:\n                lps[i] = 0\n                i += 1\n    # Search\n    count = 0\n    i = 0  # index for string\n    j = 0  # index for substring\n    while i < n:\n        if string[i] == substring[j]:\n            i += 1\n            j += 1\n            if j == m:\n                count += 1\n                # For overlapping, continue from lps[j-1]\n                j = lps[j - 1]\n        else:\n            if j != 0:\n                j = lps[j - 1]\n            else:\n                i += 1\n    return count\n\nif __name__ == \"__main__\":\n    # quick tests\n    assert how_many_times('', 'a') == 0\n    assert how_many_times('aaa', 'a') == 3\n    assert how_many_times('aaaa', 'aa') == 3\n    print(\"OK\")",
+  "metrics": {
+    "total_nodes": 274,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.047445,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

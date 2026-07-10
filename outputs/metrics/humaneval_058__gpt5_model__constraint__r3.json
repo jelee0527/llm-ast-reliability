@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_058__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef common(l1: List, l2: List) -> List:\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use sets to find unique common elements, then return sorted list.\n    if l1 is None or l2 is None:\n        return []\n    # Build sets explicitly to avoid issues with unhashable items; handle only hashable elements.\n    s1 = set()\n    for item in l1:\n        try:\n            s1.add(item)\n        except TypeError:\n            # unhashable, skip\n            continue\n    s2 = set()\n    for item in l2:\n        try:\n            s2.add(item)\n        except TypeError:\n            continue\n    common_set = s1.intersection(s2)\n    # Sorting: rely on Python's default ordering; if incomparable types occur, filter to comparable.\n    try:\n        return sorted(common_set)\n    except TypeError:\n        # Separate by type name and value to produce deterministic ordering\n        def key_fn(x):\n            return (type(x).__name__, repr(x))\n        return sorted(common_set, key=key_fn)",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.095238,
+    "function_names": [
+      "common",
+      "key_fn"
+    ]
+  }
+}

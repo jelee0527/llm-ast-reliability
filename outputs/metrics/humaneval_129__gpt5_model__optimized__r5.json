@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import deque\nimport heapq\n\ndef minPath(grid, k):\n    \"\"\"\n    Returns the lexicographically smallest sequence of length k obtainable by\n    walking on grid (can start anywhere), moving up/down/left/right, visiting\n    exactly k cells (cells can repeat).\n    \"\"\"\n    n = len(grid)\n    if n == 0:\n        return []\n    # Map values to positions for quick access to minimal starting cells\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Precompute neighbors\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    def neighbors(i,j):\n        for di,dj in dirs:\n            ni, nj = i+di, j+dj\n            if 0 <= ni < n and 0 <= nj < n:\n                yield ni, nj\n\n    # For k == 1, return global minimum value\n    if k == 1:\n        minv = min(pos.keys())\n        return [minv]\n\n    # We will build the sequence step by step greedily:\n    # At each step t (1-based), among all reachable positions after t-1 steps\n    # that have been fixed to match previous chosen values, pick the minimal\n    # possible next cell value such that it's still possible to complete to length k.\n    # To check reachability to complete length k from a set of positions, we ensure\n    # that from at least one current position we can perform remaining steps (always true on connected grid),\n    # but since repeats allowed and grid is connected, existence only depends on having any position.\n    # However, constraints come from lexicographic minimality: we must ensure that by choosing a candidate next value v,\n    # there exists at least one path of length k starting with the prefix chosen + [v].\n    # Because repeats allowed and movement local, existence reduces to ability to continue steps from positions having value v.\n    # Since from any cell you can always take additional steps (you can oscillate between neighbors), continuation is always possible.\n    # Therefore greedy: choose smallest possible next value that is adjacent to any current positions.\n\n    # Initialize current positions: any cell can be start; but we must pick minimal first value globally.\n    # There may be multiple cells with same minimal value? Values are unique per problem statement.\n    # So unique.\n    min_val = min(pos.keys())\n    si, sj = pos[min_val]\n    seq = [min_val]\n    # Current frontier: set of positions we could be at after following chosen prefix exactly.\n    frontier = {(si, sj)}\n    # For next steps 2..k:\n    for step in range(2, k+1):\n        # Collect candidate neighbors from frontier\n        cand_vals = []\n        cand_map = {}  # val -> set of positions with that val reachable as next\n        for (i,j) in frontier:\n            for ni,nj in neighbors(i,j):\n                v = grid[ni][nj]\n                if v not in cand_map:\n                    cand_map[v] = {(ni,nj)}\n                    cand_vals.append(v)\n                else:\n                    cand_map[v].add((ni,nj))\n        # It's possible frontier empty only if no moves; but grid size >=2 ensures moves exist.\n        # Choose smallest candidate value\n        next_val = min(cand_vals)\n        seq.append(next_val)\n        frontier = cand_map[next_val]\n        # Note: also possible to stay at same cell? Problem defines move to neighbor cells only, so cannot stay.\n        # Continue loop\n    return seq\n\n# Quick self-test when run directly\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expected [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expected [1]",
+  "metrics": {
+    "total_nodes": 404,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 6,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.034653,
+    "function_names": [
+      "minPath",
+      "neighbors"
+    ]
+  }
+}

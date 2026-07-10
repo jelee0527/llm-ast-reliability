@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    if not arr:\n        return True\n    n = len(arr)\n    # Count positions where current element > next element (wrap around)\n    drops = 0\n    for i in range(n):\n        if arr[i] > arr[(i + 1) % n]:\n            drops += 1\n            if drops > 1:\n                return False\n    return True and drops <= 1\n\n# Quick tests (can be removed)\nif __name__ == \"__main__\":\n    print(move_one_ball([3,4,5,1,2]))  # True\n    print(move_one_ball([3,5,4,1,2]))  # False\n    print(move_one_ball([]))           # True\n    print(move_one_ball([1,2,3]))      # True",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.057143,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from collections import Counter\nfrom typing import List\n\ndef is_sorted(lst: List[int]) -> bool:\n    \"\"\"\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n    \"\"\"\n    # Empty list or single element is sorted\n    n = len(lst)\n    if n <= 1:\n        return True\n\n    # Check non-decreasing order and also count occurrences\n    prev = lst[0]\n    counts = {prev: 1}\n    for x in lst[1:]:\n        # must be >= previous for ascending (non-decreasing)\n        if x < prev:\n            return False\n        prev = x\n        counts[x] = counts.get(x, 0) + 1\n        if counts[x] > 2:\n            return False\n\n    # If any number occurs more than twice already checked; now ensure no number occurs >2 overall\n    # (above loop already enforces >2). But need to ensure duplicates allowed only up to 2 total.\n    # Also need to ensure no number occurs more than twice even if first element repeated later:\n    # counts tracked that.\n    return True",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

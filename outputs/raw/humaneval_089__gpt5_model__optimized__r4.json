@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:17:50.647763+00:00",
+  "elapsed_seconds": 4.703,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate each lowercase and uppercase letter forward by 4 positions (2 multiplied by 2).\n    Non-letter characters are left unchanged.\"\"\"\n    # shift = 2 multiplied to two places -> interpreted as 2 * 2 = 4\n    shift = 4\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n    l_map = {c: lower[(i + shift) % 26] for i, c in enumerate(lower)}\n    u_map = {c: upper[(i + shift) % 26] for i, c in enumerate(upper)}\n    res = []\n    for ch in s:\n        if ch in l_map:\n            res.append(l_map[ch])\n        elif ch in u_map:\n            res.append(u_map[ch])\n        else:\n            res.append(ch)\n    return ''.join(res)\n\n# Quick examples for verification (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(encrypt('hi'))         # expected 'lm'\n    print(encrypt('asdfghjkl'))  # expected 'ewhjklnop'\n    print(encrypt('gf'))         # expected 'kj'\n    print(encrypt('et'))         # expected 'ix'",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate each lowercase and uppercase letter forward by 4 positions (2 multiplied by 2).\n    Non-letter characters are left unchanged.\"\"\"\n    # shift = 2 multiplied to two places -> interpreted as 2 * 2 = 4\n    shift = 4\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n    l_map = {c: lower[(i + shift) % 26] for i, c in enumerate(lower)}\n    u_map = {c: upper[(i + shift) % 26] for i, c in enumerate(upper)}\n    res = []\n    for ch in s:\n        if ch in l_map:\n            res.append(l_map[ch])\n        elif ch in u_map:\n            res.append(u_map[ch])\n        else:\n            res.append(ch)\n    return ''.join(res)\n\n# Quick examples for verification (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(encrypt('hi'))         # expected 'lm'\n    print(encrypt('asdfghjkl'))  # expected 'ewhjklnop'\n    print(encrypt('gf'))         # expected 'kj'\n    print(encrypt('et'))         # expected 'ix'"
+}

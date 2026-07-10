@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def int_to_mini_roman(number):\n    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    syms = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']\n    result = ''\n    for i in range(len(val)):\n        while number >= val[i]:\n            result += syms[i]\n            number -= val[i]\n    return result.lower()",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.032609,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

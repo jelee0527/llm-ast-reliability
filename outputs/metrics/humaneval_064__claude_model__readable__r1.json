@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_064__claude_model__readable__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    if not s:\n        return 0\n\n    standard_vowels = set('aeiouAEIOU')\n    word = s.lower()\n    count = 0\n\n    for char in word:\n        if char in standard_vowels:\n            count += 1\n\n    if word[-1] == 'y':\n        count += 1\n\n    return count\n\n\ndef run_tests():\n    test_cases = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"rhythm\", 0),\n        (\"sky\", 1),\n        (\"happy\", 2),\n        (\"aeiou\", 5),\n        (\"AEIOU\", 5),\n        (\"bcdfg\", 0),\n        (\"y\", 1),\n        (\"Yellow\", 2),\n        (\"fly\", 1),\n        (\"bye\", 2),\n        (\"gymnasium\", 4),\n        (\"cryptography\", 3),\n        (\"a\", 1),\n        (\"b\", 0),\n        (\"\", 0),\n        (\"Yummy\", 2),\n        (\"eye\", 3),\n        (\"syzygy\", 1),\n    ]\n\n    all_passed = True\n    for word, expected in test_cases:\n        result = vowels_count(word)\n        status = \"PASS\" if result == expected else \"FAIL\"\n        if status == \"FAIL\":\n            all_passed = False\n        print(f\"{status}: vowels_count({word!r}) = {result}, expected {expected}\")\n\n    if all_passed:\n        print(\"\\nAll tests passed!\")\n    else:\n        print(\"\\nSome tests failed.\")\n\n\nif __name__ == \"__main__\":\n    run_tests()",
+  "metrics": {
+    "total_nodes": 241,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.045643,
+    "function_names": [
+      "vowels_count",
+      "run_tests"
+    ]
+  }
+}

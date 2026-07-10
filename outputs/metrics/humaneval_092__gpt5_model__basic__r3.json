@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_092__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \"\"\"\n    # Check that all are instances of int (not booleans)\n    if not all(isinstance(v, int) and not isinstance(v, bool) for v in (x, y, z)):\n        return False\n    return x == y + z or y == x + z or z == x + y\n\n# Quick tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    print(any_int(5, 2, 7))    # True\n    print(any_int(3, 2, 2))    # False\n    print(any_int(3, -2, 1))   # True\n    print(any_int(3.6, -2.2, 2))# False",
+  "metrics": {
+    "total_nodes": 139,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.028777,
+    "function_names": [
+      "any_int"
+    ]
+  }
+}

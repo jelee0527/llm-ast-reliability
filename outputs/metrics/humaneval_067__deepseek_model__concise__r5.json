@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    numbers = list(map(int, re.findall(r'\\d+', s)))\n    return n - numbers[0] - numbers[1]",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.023256,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

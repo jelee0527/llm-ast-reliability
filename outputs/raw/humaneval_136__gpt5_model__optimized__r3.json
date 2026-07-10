@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:00:51.984144+00:00",
+  "elapsed_seconds": 3.667,
+  "official_prompt": "\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n\n",
+  "raw_response": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    \"\"\"\n    Return a tuple (a, b):\n      - a is the largest negative integer in lst (or None if none)\n      - b is the smallest positive integer in lst (or None if none)\n    Zero is neither positive nor negative.\n    \"\"\"\n    largest_neg = None\n    smallest_pos = None\n    for x in lst:\n        if x < 0:\n            if largest_neg is None or x > largest_neg:\n                largest_neg = x\n        elif x > 0:\n            if smallest_pos is None or x < smallest_pos:\n                smallest_pos = x\n    return (largest_neg, smallest_pos)\n\n# Quick tests\nif __name__ == \"__main__\":\n    assert largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    assert largest_smallest_integers([]) == (None, None)\n    assert largest_smallest_integers([0]) == (None, None)\n    assert largest_smallest_integers([-5, -2, -10, 1, 2, 3]) == (-2, 1)\n    assert largest_smallest_integers([-1, 0, 1]) == (-1, 1)\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List, Optional, Tuple\n\ndef largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:\n    \"\"\"\n    Return a tuple (a, b):\n      - a is the largest negative integer in lst (or None if none)\n      - b is the smallest positive integer in lst (or None if none)\n    Zero is neither positive nor negative.\n    \"\"\"\n    largest_neg = None\n    smallest_pos = None\n    for x in lst:\n        if x < 0:\n            if largest_neg is None or x > largest_neg:\n                largest_neg = x\n        elif x > 0:\n            if smallest_pos is None or x < smallest_pos:\n                smallest_pos = x\n    return (largest_neg, smallest_pos)\n\n# Quick tests\nif __name__ == \"__main__\":\n    assert largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    assert largest_smallest_integers([]) == (None, None)\n    assert largest_smallest_integers([0]) == (None, None)\n    assert largest_smallest_integers([-5, -2, -10, 1, 2, 3]) == (-2, 1)\n    assert largest_smallest_integers([-1, 0, 1]) == (-1, 1)\n    print(\"All tests passed.\")"
+}

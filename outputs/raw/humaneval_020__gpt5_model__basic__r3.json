@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:54:50.046613+00:00",
+  "elapsed_seconds": 3.844,
+  "official_prompt": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n    if numbers is None:\n        raise ValueError(\"numbers must be a list with at least two elements\")\n    n = len(numbers)\n    if n < 2:\n        raise ValueError(\"numbers must contain at least two elements\")\n    # Sort a copy to preserve original order\n    sorted_nums = sorted(numbers)\n    best_diff = float('inf')\n    best_pair = (sorted_nums[0], sorted_nums[1])\n    for i in range(n - 1):\n        a = sorted_nums[i]\n        b = sorted_nums[i + 1]\n        diff = b - a\n        if diff < best_diff:\n            best_diff = diff\n            best_pair = (a, b)\n            if best_diff == 0:\n                break\n    return best_pair",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n    if numbers is None:\n        raise ValueError(\"numbers must be a list with at least two elements\")\n    n = len(numbers)\n    if n < 2:\n        raise ValueError(\"numbers must contain at least two elements\")\n    # Sort a copy to preserve original order\n    sorted_nums = sorted(numbers)\n    best_diff = float('inf')\n    best_pair = (sorted_nums[0], sorted_nums[1])\n    for i in range(n - 1):\n        a = sorted_nums[i]\n        b = sorted_nums[i + 1]\n        diff = b - a\n        if diff < best_diff:\n            best_diff = diff\n            best_pair = (a, b)\n            if best_diff == 0:\n                break\n    return best_pair"
+}

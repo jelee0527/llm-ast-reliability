@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:32:29.490038+00:00",
+  "elapsed_seconds": 1.809,
+  "official_prompt": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n\n",
+  "raw_response": "```python\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for char in message:\n        if char in vowels:\n            if char.islower():\n                new_char = chr(ord(char) + 2)\n                if new_char in 'aeiou':\n                    new_char = chr(ord(new_char) + 2)\n                result.append(new_char.upper())\n            else:\n                new_char = chr(ord(char) + 2)\n                if new_char in 'AEIOU':\n                    new_char = chr(ord(new_char) + 2)\n                result.append(new_char.lower())\n        else:\n            if char.islower():\n                result.append(char.upper())\n            elif char.isupper():\n                result.append(char.lower())\n            else:\n                result.append(char)\n    return ''.join(result)\n```",
+  "generated_code": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for char in message:\n        if char in vowels:\n            if char.islower():\n                new_char = chr(ord(char) + 2)\n                if new_char in 'aeiou':\n                    new_char = chr(ord(new_char) + 2)\n                result.append(new_char.upper())\n            else:\n                new_char = chr(ord(char) + 2)\n                if new_char in 'AEIOU':\n                    new_char = chr(ord(new_char) + 2)\n                result.append(new_char.lower())\n        else:\n            if char.islower():\n                result.append(char.upper())\n            elif char.isupper():\n                result.append(char.lower())\n            else:\n                result.append(char)\n    return ''.join(result)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    # Handle non-positive or zero p\n    if p == 0:\n        raise ValueError(\"Modulo p must be non-zero\")\n    # Python's pow supports modular exponent efficiently and handles large n\n    return pow(2, n, p)",
+  "metrics": {
+    "total_nodes": 35,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.085714,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

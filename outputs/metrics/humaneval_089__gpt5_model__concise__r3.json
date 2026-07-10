@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    alpha = string.ascii_lowercase\n    n = 4  # \"two multiplied to two\" -> 2*2 = 4\n    trans = str.maketrans(alpha, alpha[n:]+alpha[:n])\n    return s.translate(trans)",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.019608,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

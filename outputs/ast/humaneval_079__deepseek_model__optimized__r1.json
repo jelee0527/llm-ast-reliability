@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_079__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"db0db\"\n    binary = \"\"\n    n = decimal\n    while n > 0:\n        binary = str(n & 1) + binary\n        n >>= 1\n    return \"db\" + binary + \"db\"",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='decimal_to_binary',\n      args=arguments(\n        args=[\n          arg(arg='decimal')]),\n      body=[\n        If(\n          test=Compare(\n            left=Name(id='decimal', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Constant(value='db0db'))]),\n        Assign(\n          targets=[\n            Name(id='binary', ctx=Store())],\n          value=Constant(value='')),\n        Assign(\n          targets=[\n            Name(id='n', ctx=Store())],\n          value=Name(id='decimal', ctx=Load())),\n        While(\n          test=Compare(\n            left=Name(id='n', ctx=Load()),\n            ops=[\n              Gt()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Assign(\n              targets=[\n                Name(id='binary', ctx=Store())],\n              value=BinOp(\n                left=Call(\n                  func=Name(id='str', ctx=Load()),\n                  args=[\n                    BinOp(\n                      left=Name(id='n', ctx=Load()),\n                      op=BitAnd(),\n                      right=Constant(value=1))]),\n                op=Add(),\n                right=Name(id='binary', ctx=Load()))),\n            AugAssign(\n              target=Name(id='n', ctx=Store()),\n              op=RShift(),\n              value=Constant(value=1))]),\n        Return(\n          value=BinOp(\n            left=BinOp(\n              left=Constant(value='db'),\n              op=Add(),\n              right=Name(id='binary', ctx=Load())),\n            op=Add(),\n            right=Constant(value='db')))])])"
+}

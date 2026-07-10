@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_155__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n    # Ensure input is integer\n    try:\n        n = int(num)\n    except (TypeError, ValueError):\n        raise ValueError(\"Input must be an integer or convertible to int\")\n\n    # Work with absolute value to ignore sign\n    n = abs(n)\n\n    # Special case: if number is 0, it has one digit which is even\n    if n == 0:\n        return (1, 0)\n\n    evens = 0\n    odds = 0\n\n    while n > 0:\n        digit = n % 10\n        if digit % 2 == 0:\n            evens += 1\n        else:\n            odds += 1\n        n //= 10\n\n    return (evens, odds)\n\n\n# Example quick tests when run as a script\nif __name__ == \"__main__\":\n    tests = [(-12, (1, 1)), (123, (1, 2)), (0, (1, 0)), (2468, (4, 0)), (13579, (0, 5)), (1001, (3, 1))]\n    for inp, expected in tests:\n        result = even_odd_count(inp)\n        print(f\"even_odd_count({inp}) => {result}  expected: {expected}\")",
+  "metrics": {
+    "total_nodes": 188,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.047872,
+    "function_names": [
+      "even_odd_count"
+    ]
+  }
+}

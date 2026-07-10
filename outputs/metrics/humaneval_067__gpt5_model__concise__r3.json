@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parses counts of apples and oranges from string s and returns mango count = n - apples - oranges.\n    \"\"\"\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # Fallback: try to extract words then digits\n        parts = re.findall(r'(\\d+)\\s*apples.*?(\\d+)\\s*oranges', s, flags=re.IGNORECASE)\n        if parts:\n            a, o = parts[0]\n            apples = int(a); oranges = int(o)\n        else:\n            apples = int(nums[0]) if nums else 0\n            oranges = 0\n    else:\n        apples, oranges = int(nums[0]), int(nums[1])\n    return n - apples - oranges",
+  "metrics": {
+    "total_nodes": 131,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.030534,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

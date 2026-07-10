@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_104__claude_model__basic__r4.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    def has_no_even_digit(n):\n        for ch in str(n):\n            if int(ch) % 2 == 0:\n                return False\n        return True\n    \n    return sorted([n for n in x if has_no_even_digit(n)])",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='unique_digits',\n      args=arguments(\n        args=[\n          arg(arg='x')]),\n      body=[\n        FunctionDef(\n          name='has_no_even_digit',\n          args=arguments(\n            args=[\n              arg(arg='n')]),\n          body=[\n            For(\n              target=Name(id='ch', ctx=Store()),\n              iter=Call(\n                func=Name(id='str', ctx=Load()),\n                args=[\n                  Name(id='n', ctx=Load())]),\n              body=[\n                If(\n                  test=Compare(\n                    left=BinOp(\n                      left=Call(\n                        func=Name(id='int', ctx=Load()),\n                        args=[\n                          Name(id='ch', ctx=Load())]),\n                      op=Mod(),\n                      right=Constant(value=2)),\n                    ops=[\n                      Eq()],\n                    comparators=[\n                      Constant(value=0)]),\n                  body=[\n                    Return(\n                      value=Constant(value=False))])]),\n            Return(\n              value=Constant(value=True))]),\n        Return(\n          value=Call(\n            func=Name(id='sorted', ctx=Load()),\n            args=[\n              ListComp(\n                elt=Name(id='n', ctx=Load()),\n                generators=[\n                  comprehension(\n                    target=Name(id='n', ctx=Store()),\n                    iter=Name(id='x', ctx=Load()),\n                    ifs=[\n                      Call(\n                        func=Name(id='has_no_even_digit', ctx=Load()),\n                        args=[\n                          Name(id='n', ctx=Load())])],\n                    is_async=0)])]))])])"
+}

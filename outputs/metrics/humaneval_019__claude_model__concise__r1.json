@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__claude_model__concise__r1.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    order = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']\n    return ' '.join(sorted(numbers.split(), key=lambda x: order.index(x)))",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020408,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

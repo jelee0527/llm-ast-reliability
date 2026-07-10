@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\n\ndef valid_date(date: Optional[str]) -> bool:\n    \"\"\"Validate date string in format mm-dd-yyyy with specific rules.\"\"\"\n    if not isinstance(date, str):\n        return False\n    if not date:\n        return False\n\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n\n    mm_str, dd_str, yyyy_str = parts\n\n    # Disallow leading/trailing spaces\n    if mm_str.strip() != mm_str or dd_str.strip() != dd_str or yyyy_str.strip() != yyyy_str:\n        return False\n\n    # Each component must be digits only\n    if not (mm_str.isdigit() and dd_str.isdigit() and yyyy_str.isdigit()):\n        return False\n\n    # No empty components\n    if mm_str == '' or dd_str == '' or yyyy_str == '':\n        return False\n\n    try:\n        month = int(mm_str)\n        day = int(dd_str)\n        year = int(yyyy_str)\n    except ValueError:\n        return False\n\n    # Months 1..12\n    if month < 1 or month > 12:\n        return False\n\n    # Days minimal bound\n    if day < 1:\n        return False\n\n    # Year: accept any non-negative integer? The prompt doesn't restrict year sign, but typical dates use positive years.\n    if year < 0:\n        return False\n\n    # Days per month according to the problem:\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        max_day = 31\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    elif month == 2:\n        max_day = 29\n    else:\n        return False  # should not happen\n\n    if day > max_day:\n        return False\n\n    return True\n\n\n# Optional simple tests when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        '03-11-2000': True,\n        '15-01-2012': False,\n        '04-0-2040': False,\n        '06-04-2020': True,\n        '06/04/2020': False,\n        '02-29-2021': True,   # per rules month 2 allows up to 29 (no leap-year check)\n        '02-30-2020': False,\n        '00-10-2000': False,\n        '01-32-2000': False,\n        '1-1-2000': True,     # single-digit allowed since digits only\n        ' 01-01-2000': False,\n        '01-01-2000 ': False,\n        '': False,\n        None: False,\n    }\n    for s, expected in tests.items():\n        result = valid_date(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 332,
+    "ast_depth": 9,
+    "branch_count": 15,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 29,
+    "control_flow_ratio": 0.087349,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

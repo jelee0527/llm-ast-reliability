@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:48:58.840826+00:00",
+  "elapsed_seconds": 5.88,
+  "official_prompt": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute n-th Fib4 number iteratively.\n    fib4(0)=0, fib4(1)=0, fib4(2)=2, fib4(3)=0\n    fib4(n)=fib4(n-1)+fib4(n-2)+fib4(n-3)+fib4(n-4) for n>=4\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    # Use a sliding window of size 4\n    a, b, c, d = 0, 0, 2, 0  # corresponds to fib4(0), fib4(1), fib4(2), fib4(3)\n    for i in range(4, n + 1):\n        e = a + b + c + d\n        a, b, c, d = b, c, d, e\n    return d\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    import sys\n    tests = [5, 6, 7, 0, 1, 2, 3, 10]\n    for t in tests:\n        print(f\"fib4({t}) = {fib4(t)}\")\n    # If a command-line argument provided, compute that too\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(f\"fib4({n}) = {fib4(n)}\")\n        except Exception as e:\n            print(\"Error:\", e)",
+  "generated_code": "from typing import List\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute n-th Fib4 number iteratively.\n    fib4(0)=0, fib4(1)=0, fib4(2)=2, fib4(3)=0\n    fib4(n)=fib4(n-1)+fib4(n-2)+fib4(n-3)+fib4(n-4) for n>=4\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n    # Use a sliding window of size 4\n    a, b, c, d = 0, 0, 2, 0  # corresponds to fib4(0), fib4(1), fib4(2), fib4(3)\n    for i in range(4, n + 1):\n        e = a + b + c + d\n        a, b, c, d = b, c, d, e\n    return d\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    import sys\n    tests = [5, 6, 7, 0, 1, 2, 3, 10]\n    for t in tests:\n        print(f\"fib4({t}) = {fib4(t)}\")\n    # If a command-line argument provided, compute that too\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(f\"fib4({n}) = {fib4(n)}\")\n        except Exception as e:\n            print(\"Error:\", e)"
+}

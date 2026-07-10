@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import *\nimport sys\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases. \"\"\"\n    if not substring:\n        # define behavior: empty substring occurs 0 times (consistent with examples expecting 0 for empty main string)\n        return 0\n    # Use a simple sliding search with str.find and start index incremented by 1 for overlaps.\n    count = 0\n    start = 0\n    s = string\n    sub = substring\n    # Use while with str.find for efficiency (C-level search)\n    while True:\n        idx = s.find(sub, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # allow overlapping matches\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.073684,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

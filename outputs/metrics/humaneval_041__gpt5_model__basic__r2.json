@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Given n cars going left->right and n cars going right->left on a line,\n    all at the same speed and starting \"very far\" from each other (two groups\n    approaching), count the number of pairwise collisions between cars\n    moving in opposite directions. Cars pass through each other (no change),\n    but each pair of opposite-direction cars colliding counts once.\n\n    For n cars on each side, every car from the left-moving group will meet\n    every car from the right-moving group exactly once, so the total is n*n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n\n\n# Example usage:\nif __name__ == \"__main__\":\n    for i in range(6):\n        print(i, car_race_collision(i))",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.101449,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

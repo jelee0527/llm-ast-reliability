@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_004__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_004",
+  "task_id": "HumanEval/4",
+  "problem_name": "Mean Absolute Deviation",
+  "entry_point": "mean_absolute_deviation",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\nimport math\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        raise ValueError(\"numbers must be a non-empty list\")\n    n = len(numbers)\n    mean = sum(numbers) / n\n    return sum(abs(x - mean) for x in numbers) / n\n\nif __name__ == \"__main__\":\n    # quick test\n    print(mean_absolute_deviation([1.0, 2.0, 3.0, 4.0]))  # should print 1.0",
+  "metrics": {
+    "total_nodes": 90,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.044444,
+    "function_names": [
+      "mean_absolute_deviation"
+    ]
+  }
+}

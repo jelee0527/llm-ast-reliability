@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def right_angle_triangle(a, b, c):\n    return (a**2 + b**2 == c**2 or \n            a**2 + c**2 == b**2 or \n            b**2 + c**2 == a**2)",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.015152,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

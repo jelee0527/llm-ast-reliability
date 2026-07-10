@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:26:20.942161+00:00",
+  "elapsed_seconds": 2.939,
+  "official_prompt": "\ndef sorted_list_sum(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sorted_list_sum(lst):\n    \"\"\"Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sorted_list_sum(lst: List[str]) -> List[str]:\n    \"\"\"\n    Accepts a list of strings, removes strings with odd lengths,\n    and returns the list sorted ascending by length, breaking ties alphabetically.\n    \"\"\"\n    # Filter out strings with odd length\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    # Sort by (length, alphabetically)\n    return sorted(filtered, key=lambda s: (len(s), s))\n\n\n# Example simple tests (will not run unless called)\nif __name__ == \"__main__\":\n    assert sorted_list_sum([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert sorted_list_sum([\"ab\", \"a\", \"aaa\", \"cd\"]) == [\"ab\", \"cd\"]\n    assert sorted_list_sum([\"bbb\", \"aa\", \"cc\", \"dddd\", \"ee\"]) == [\"aa\", \"cc\", \"dddd\"]",
+  "generated_code": "from typing import List\n\ndef sorted_list_sum(lst: List[str]) -> List[str]:\n    \"\"\"\n    Accepts a list of strings, removes strings with odd lengths,\n    and returns the list sorted ascending by length, breaking ties alphabetically.\n    \"\"\"\n    # Filter out strings with odd length\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    # Sort by (length, alphabetically)\n    return sorted(filtered, key=lambda s: (len(s), s))\n\n\n# Example simple tests (will not run unless called)\nif __name__ == \"__main__\":\n    assert sorted_list_sum([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert sorted_list_sum([\"ab\", \"a\", \"aaa\", \"cd\"]) == [\"ab\", \"cd\"]\n    assert sorted_list_sum([\"bbb\", \"aa\", \"cc\", \"dddd\", \"ee\"]) == [\"aa\", \"cc\", \"dddd\"]"
+}

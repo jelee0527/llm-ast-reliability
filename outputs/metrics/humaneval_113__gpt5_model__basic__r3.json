@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return transformed strings where each\n    occurrence of the letter 'o' in the template is replaced by the count of odd\n    digits in the corresponding input string. The provided examples show the\n    intended template with 'o' replaced by the number (e.g., \"the number of odd\n    elements n the strng n of the nput.\" with n -> count).\"\"\"\n    result = []\n    template = \"the number of odd elements on the string o of the oinput.\"\n    # But examples suggest replacing letter 'o' occurrences with the count,\n    # specifically they want: \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n    # Construct final string accordingly.\n    for s in lst:\n        # count odd digits\n        count = sum(1 for ch in s if ch in '13579')\n        n = str(count)\n        # Build according to examples:\n        # \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n        out = f\"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n        result.append(out)\n    return result\n\n# Simple tests when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02521,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

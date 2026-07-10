@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parse string for number of apples and oranges, return mango count = n - apples - oranges.\n    \"\"\"\n    # Find all integers in the string (handles negative though not expected)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # If not enough numbers, attempt to parse words like \"zero\", \"one\", etc.\n        word_to_num = {\n            'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n            'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9,\n            'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13,\n            'fourteen': 14, 'fifteen': 15, 'sixteen': 16, 'seventeen': 17,\n            'eighteen': 18, 'nineteen': 19, 'twenty': 20, 'hundred': 100\n        }\n        words = re.findall(r'[A-Za-z]+', s.lower())\n        found = []\n        for w in words:\n            if w in word_to_num:\n                found.append(word_to_num[w])\n            # handle combinations like \"twenty one\" not expected here\n            if len(found) >= 2:\n                break\n        if len(found) >= 2:\n            apples, oranges = found[0], found[1]\n        else:\n            # fallback to zeros\n            apples = int(nums[0]) if nums else 0\n            oranges = int(nums[1]) if len(nums) > 1 else 0\n    else:\n        apples = int(nums[0])\n        oranges = int(nums[1])\n    return n - apples - oranges",
+  "metrics": {
+    "total_nodes": 227,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.039648,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

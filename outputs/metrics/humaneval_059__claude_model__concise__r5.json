@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_059__claude_model__concise__r5.json",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def largest_prime_factor(n: int):\n    largest = 1\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            largest = d\n            n //= d\n        d += 1\n    if n > 1:\n        largest = n\n    return largest",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.061538,
+    "function_names": [
+      "largest_prime_factor"
+    ]
+  }
+}

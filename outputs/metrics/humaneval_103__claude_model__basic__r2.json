@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__claude_model__basic__r2.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    avg = round((n + m) / 2)\n    return bin(avg)",
+  "metrics": {
+    "total_nodes": 37,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

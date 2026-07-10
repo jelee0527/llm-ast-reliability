@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_135__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def can_arrange(arr):\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1",
+  "metrics": {
+    "total_nodes": 47,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.085106,
+    "function_names": [
+      "can_arrange"
+    ]
+  }
+}

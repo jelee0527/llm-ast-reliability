@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_106__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "problem_name": "F",
+  "entry_point": "f",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from math import prod\nfrom typing import List\n\ndef f(n: int) -> List[int]:\n    \"\"\"\n    Returns a list of size n, where element at index i-1 corresponds to i (1-based):\n    - if i is even: factorial(i)\n    - if i is odd: sum of numbers from 1 to i\n    Example: f(5) => [1, 2, 6, 24, 15]\n    \"\"\"\n    if n <= 0:\n        return []\n    res = []\n    fact = 1\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            fact *= i\n            res.append(fact)\n        else:\n            # sum 1..i = i*(i+1)//2\n            res.append(i * (i + 1) // 2)\n            # update factorial for next even if needed\n            fact *= i\n    return res",
+  "metrics": {
+    "total_nodes": 98,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05102,
+    "function_names": [
+      "f"
+    ]
+  }
+}

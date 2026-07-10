@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:17:53.606930+00:00",
+  "elapsed_seconds": 2.455,
+  "official_prompt": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase alphabet letters by 4 places (2 multiplied by 2).\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    if not s:\n        return s\n    # Create translation table for lowercase letters shifted by 4\n    lower = string.ascii_lowercase\n    shifted = lower[4:] + lower[:4]\n    table = str.maketrans(lower, shifted)\n    return s.translate(table)",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase alphabet letters by 4 places (2 multiplied by 2).\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    if not s:\n        return s\n    # Create translation table for lowercase letters shifted by 4\n    lower = string.ascii_lowercase\n    shifted = lower[4:] + lower[:4]\n    table = str.maketrans(lower, shifted)\n    return s.translate(table)"
+}

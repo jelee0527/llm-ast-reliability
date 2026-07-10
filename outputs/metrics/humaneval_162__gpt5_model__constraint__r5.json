@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_162__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_162",
+  "task_id": "HumanEval/162",
+  "problem_name": "String To Md5",
+  "entry_point": "string_to_md5",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import hashlib\nfrom typing import Optional\n\ndef string_to_md5(text: str) -> Optional[str]:\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n    if text == \"\":\n        return None\n    if text is None:\n        # If None is passed, treat as invalid input and return None\n        return None\n    if not isinstance(text, str):\n        # Convert non-string inputs to string deterministically\n        text = str(text)\n    m = hashlib.md5()\n    m.update(text.encode('utf-8'))\n    return m.hexdigest()",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "string_to_md5"
+    ]
+  }
+}

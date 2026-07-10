@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef decimal_to_binary(decimal):\n    \"\"\"Convert integer decimal to binary string wrapped with 'db' at both ends.\"\"\"\n    # Handle special case zero\n    if decimal == 0:\n        return \"db0db\"\n    # Handle negative numbers by prefixing '-' inside db...? Problem examples show positives only.\n    # We'll handle negatives by including '-' before the binary digits.\n    negative = decimal < 0\n    n = -decimal if negative else decimal\n    bits = []\n    while n:\n        bits.append('1' if (n & 1) else '0')\n        n >>= 1\n    bits.reverse()\n    s = ''.join(bits)\n    if negative:\n        s = '-' + s\n    return \"db\" + s + \"db\"",
+  "metrics": {
+    "total_nodes": 98,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

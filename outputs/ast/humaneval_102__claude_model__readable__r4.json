@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_102__claude_model__readable__r4.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n    if x > y:\n        return -1\n    \n    if y % 2 == 0:\n        return y\n    \n    if y - 1 >= x:\n        return y - 1\n    \n    return -1",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='choose_num',\n      args=arguments(\n        args=[\n          arg(arg='x'),\n          arg(arg='y')]),\n      body=[\n        Expr(\n          value=Constant(value=\"This function takes two positive numbers x and y and returns the\\n    biggest even integer number that is in the range [x, y] inclusive. If \\n    there's no such number, then the function should return -1.\\n\\n    For example:\\n    choose_num(12, 15) = 14\\n    choose_num(13, 12) = -1\\n    \")),\n        If(\n          test=Compare(\n            left=Name(id='x', ctx=Load()),\n            ops=[\n              Gt()],\n            comparators=[\n              Name(id='y', ctx=Load())]),\n          body=[\n            Return(\n              value=UnaryOp(\n                op=USub(),\n                operand=Constant(value=1)))]),\n        If(\n          test=Compare(\n            left=BinOp(\n              left=Name(id='y', ctx=Load()),\n              op=Mod(),\n              right=Constant(value=2)),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Name(id='y', ctx=Load()))]),\n        If(\n          test=Compare(\n            left=BinOp(\n              left=Name(id='y', ctx=Load()),\n              op=Sub(),\n              right=Constant(value=1)),\n            ops=[\n              GtE()],\n            comparators=[\n              Name(id='x', ctx=Load())]),\n          body=[\n            Return(\n              value=BinOp(\n                left=Name(id='y', ctx=Load()),\n                op=Sub(),\n                right=Constant(value=1)))]),\n        Return(\n          value=UnaryOp(\n            op=USub(),\n            operand=Constant(value=1)))])])"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:53:42.888687+00:00",
+  "elapsed_seconds": 3.014,
+  "official_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n\n",
+  "raw_response": "import math\n\ndef iscube(a):\n    '''\n    Return True if integer a is a perfect cube of some integer, else False.\n    '''\n    # For negative numbers, take cube root of absolute and check sign\n    # Use round of the real cube root and verify by integer power to avoid float errors.\n    if a == 0:\n        return True\n    # Compute approximate cube root using math.copysign and abs\n    approx = round(math.copysign(abs(a) ** (1.0/3.0), a))\n    # Verify by integer power\n    return approx ** 3 == a\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,125,126,-125]\n    for t in tests:\n        print(t, iscube(t))",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Return True if integer a is a perfect cube of some integer, else False.\n    '''\n    # For negative numbers, take cube root of absolute and check sign\n    # Use round of the real cube root and verify by integer power to avoid float errors.\n    if a == 0:\n        return True\n    # Compute approximate cube root using math.copysign and abs\n    approx = round(math.copysign(abs(a) ** (1.0/3.0), a))\n    # Verify by integer power\n    return approx ** 3 == a\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,125,126,-125]\n    for t in tests:\n        print(t, iscube(t))"
+}

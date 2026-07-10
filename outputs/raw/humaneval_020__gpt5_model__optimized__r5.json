@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:56:01.081107+00:00",
+  "elapsed_seconds": 4.265,
+  "official_prompt": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \"\"\"\n    if len(numbers) < 2:\n        raise ValueError(\"At least two numbers are required\")\n    # Sort while keeping floats; O(n log n) time, O(n) extra for sorted list\n    nums = sorted(numbers)\n    best_i = 0\n    best_j = 1\n    best_diff = nums[1] - nums[0]\n    # iterate adjacent pairs for minimal difference\n    for i in range(1, len(nums) - 1):\n        a = nums[i]\n        b = nums[i + 1]\n        diff = b - a\n        if diff < best_diff:\n            best_diff = diff\n            best_i = i\n            best_j = i + 1\n            # early exit if zero difference\n            if best_diff == 0.0:\n                break\n    return (nums[best_i], nums[best_j])\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \"\"\"\n    if len(numbers) < 2:\n        raise ValueError(\"At least two numbers are required\")\n    # Sort while keeping floats; O(n log n) time, O(n) extra for sorted list\n    nums = sorted(numbers)\n    best_i = 0\n    best_j = 1\n    best_diff = nums[1] - nums[0]\n    # iterate adjacent pairs for minimal difference\n    for i in range(1, len(nums) - 1):\n        a = nums[i]\n        b = nums[i + 1]\n        diff = b - a\n        if diff < best_diff:\n            best_diff = diff\n            best_i = i\n            best_j = i + 1\n            # early exit if zero difference\n            if best_diff == 0.0:\n                break\n    return (nums[best_i], nums[best_j])\n\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    print(\"Tests passed.\")"
+}

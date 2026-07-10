@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_138__claude_model__readable__r2.json",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n    # The minimum sum of 4 positive even numbers is 2+2+2+2 = 8\n    # Any even number >= 8 can be written as sum of exactly 4 positive even numbers\n    # because we can always add 2 to one of the numbers while keeping the rest as 2\n    \n    is_even = n % 2 == 0\n    is_large_enough = n >= 8\n    \n    return is_even and is_large_enough",
+  "metrics": {
+    "total_nodes": 32,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.03125,
+    "function_names": [
+      "is_equal_to_sum_even"
+    ]
+  }
+}

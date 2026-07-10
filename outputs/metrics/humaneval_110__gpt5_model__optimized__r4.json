@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef exchange(lst1, lst2):\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of swaps)\n    it's possible to make all elements of lst1 even; otherwise \"NO\".\n    \"\"\"\n    # Count parity occurrences\n    cnt1 = Counter(x % 2 for x in lst1)\n    cnt2 = Counter(x % 2 for x in lst2)\n    # Number of odd elements in lst1 must be removable by swapping with even elements from lst2\n    odd_in_1 = cnt1.get(1, 0)\n    even_in_2 = cnt2.get(0, 0)\n    return \"YES\" if odd_in_1 <= even_in_2 else \"NO\"",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027397,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

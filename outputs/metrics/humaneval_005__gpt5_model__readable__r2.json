@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_005__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_005",
+  "task_id": "HumanEval/5",
+  "problem_name": "Intersperse",
+  "entry_point": "intersperse",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n    if not numbers:\n        return []\n    # Preallocate result list size: len(numbers) + (len(numbers)-1) if len>0\n    result_length = len(numbers) * 2 - 1\n    result: List[int] = []\n    # Build result by appending element and delimiter when needed\n    for i, value in enumerate(numbers):\n        result.append(value)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    return result\n\n# Simple tests when run as a script\nif __name__ == \"__main__\":\n    assert intersperse([], 4) == []\n    assert intersperse([1], 9) == [1]\n    assert intersperse([1, 2, 3], 4) == [1, 4, 2, 4, 3]\n    assert intersperse([5, 6], 0) == [5, 0, 6]\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.035294,
+    "function_names": [
+      "intersperse"
+    ]
+  }
+}

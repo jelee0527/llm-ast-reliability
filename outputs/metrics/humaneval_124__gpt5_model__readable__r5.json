@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef valid_date(date):\n    \"\"\"Validate date string in format mm-dd-yyyy.\n    Returns True if valid according to rules; otherwise False.\n    \"\"\"\n    if not isinstance(date, str):\n        return False\n    if date == \"\":\n        return False\n\n    # Match exact format mm-dd-yyyy where mm and dd are 1-2 digits, yyyy is 1-4+ digits\n    # But we require two-digit month and day per examples, so enforce two digits for mm and dd.\n    pattern = r'^\\d{2}-\\d{2}-\\d{4}$'\n    if not re.match(pattern, date):\n        return False\n\n    try:\n        month_str, day_str, year_str = date.split('-')\n        month = int(month_str)\n        day = int(day_str)\n        year = int(year_str)\n    except Exception:\n        return False\n\n    # Month must be between 1 and 12\n    if month < 1 or month > 12:\n        return False\n\n    # Day must be at least 1\n    if day < 1:\n        return False\n\n    # Days per month (February allowed up to 29 per specification)\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        max_day = 31\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    elif month == 2:\n        max_day = 29\n    else:\n        return False\n\n    if day > max_day:\n        return False\n\n    # Year: allow any positive integer (year zero or negative considered invalid)\n    if year <= 0:\n        return False\n\n    return True",
+  "metrics": {
+    "total_nodes": 178,
+    "ast_depth": 8,
+    "branch_count": 11,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 21,
+    "control_flow_ratio": 0.117978,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

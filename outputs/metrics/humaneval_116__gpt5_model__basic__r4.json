@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_116__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of non-negative integers according to number of ones in binary representation ascending.\n    For equal count of ones, sort by decimal value ascending.\n    Negative numbers: preserve usual integer ordering (their binary ones count uses two's complement in Python,\n    but the kata examples expect simple numeric sorting for negatives). To match examples, treat negatives by their value.\n    \"\"\"\n    if not arr:\n        return []\n    # Separate negatives and non-negatives to match expected behavior in examples:\n    negatives = [x for x in arr if x < 0]\n    nonnegatives = [x for x in arr if x >= 0]\n    # Sort negatives by numeric value ascending\n    negatives.sort()\n    # Sort non-negatives by (count of ones in binary, value)\n    nonnegatives.sort(key=lambda x: (bin(x).count(\"1\"), x))\n    # Combine: negatives first (as in example), then sorted non-negatives\n    return negatives + nonnegatives\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.021978,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

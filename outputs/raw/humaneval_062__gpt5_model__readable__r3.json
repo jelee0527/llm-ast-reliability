@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:18:06.637055+00:00",
+  "elapsed_seconds": 3.335,
+  "official_prompt": "\n\ndef derivative(xs: list):\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef derivative(xs: list):\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef derivative(xs: List[float]) -> List[float]:\n    \"\"\"Return coefficients of the derivative of a polynomial.\n    xs represent coefficients in increasing power order:\n      xs[0] + xs[1]*x + xs[2]*x^2 + ...\n    The derivative has coefficients:\n      xs[1]*1 + xs[2]*2*x + xs[3]*3*x^2 + ...\n    Examples:\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n    # If polynomial has 0 or 1 coefficient, its derivative is zero polynomial -> empty list\n    if not xs or len(xs) < 2:\n        return []\n    # Compute derivative coefficients: multiply each coefficient by its power index\n    return [coefficient * power for power, coefficient in enumerate(xs)][1:]",
+  "generated_code": "from typing import List\n\ndef derivative(xs: List[float]) -> List[float]:\n    \"\"\"Return coefficients of the derivative of a polynomial.\n    xs represent coefficients in increasing power order:\n      xs[0] + xs[1]*x + xs[2]*x^2 + ...\n    The derivative has coefficients:\n      xs[1]*1 + xs[2]*2*x + xs[3]*3*x^2 + ...\n    Examples:\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n    # If polynomial has 0 or 1 coefficient, its derivative is zero polynomial -> empty list\n    if not xs or len(xs) < 2:\n        return []\n    # Compute derivative coefficients: multiply each coefficient by its power index\n    return [coefficient * power for power, coefficient in enumerate(xs)][1:]"
+}

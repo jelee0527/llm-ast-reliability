@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \"\"\"\n    # Define vowels (both cases) and mapping two letters ahead within alphabet\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n\n    # Build mapping for lowercase letters two ahead wrapping z->b\n    two_ahead_lower = {}\n    for i, ch in enumerate(lower):\n        two_ahead_lower[ch] = lower[(i + 2) % 26]\n    # Same for uppercase\n    two_ahead_upper = {}\n    for i, ch in enumerate(upper):\n        two_ahead_upper[ch] = upper[(i + 2) % 26]\n\n    vowels_lower = set('aeiou')\n    vowels_upper = set('AEIOU')\n\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # swap case\n            if ch.islower():\n                swapped = ch.upper()\n            else:\n                swapped = ch.lower()\n            # After swapping, check if swapped is a vowel (original consonant could become vowel after swap only by case change; vowels remain vowels just different case)\n            # The spec: \"swaps case of all letters, replaces all vowels in the message with the letter that appears 2 places ahead\"\n            # It implies operate on original vowels. So we should check original ch for vowel and replace that letter (after case swap) with two-ahead counterpart in same case as swapped.\n            if ch in vowels_lower:\n                # original lower vowel -> compute two ahead in lowercase, then make it same case as swapped (which is upper)\n                two = two_ahead_lower[ch]  # lowercase two-ahead\n                # swapped is uppercase, so make two uppercase\n                result_chars.append(two.upper())\n            elif ch in vowels_upper:\n                two = two_ahead_upper[ch]  # uppercase two-ahead\n                # swapped is lowercase, so make two lowercase\n                result_chars.append(two.lower())\n            else:\n                # not a vowel: just append swapped\n                result_chars.append(swapped)\n        else:\n            # Non-alpha characters left as-is (though prompt assumed only letters)\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Example tests\nif __name__ == \"__main__\":\n    print(encode('test'))            # expected 'TGST'\n    print(encode('This is a message'))  # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 243,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.037037,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

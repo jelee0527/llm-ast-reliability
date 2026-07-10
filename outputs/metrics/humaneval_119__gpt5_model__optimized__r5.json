@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import deque\n\ndef match_parens(lst):\n    s1, s2 = lst\n    def check(a, b):\n        bal = 0\n        for ch in a:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False\n        for ch in b:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < 0:\n                return False\n        return bal == 0\n    return 'Yes' if check(s1, s2) or check(s2, s1) else 'No'",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.102804,
+    "function_names": [
+      "match_parens",
+      "check"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_028__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_028",
+  "task_id": "HumanEval/28",
+  "problem_name": "Concatenate",
+  "entry_point": "concatenate",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    # Ensure input is a list of strings; convert non-strings to string representation\n    if strings is None:\n        return ''\n    result_parts: List[str] = []\n    for item in strings:\n        if isinstance(item, str):\n            result_parts.append(item)\n        else:\n            # Explicit conversion to string for non-str items\n            result_parts.append(str(item))\n    return ''.join(result_parts)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.068182,
+    "function_names": [
+      "concatenate"
+    ]
+  }
+}

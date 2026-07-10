@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_122__claude_model__readable__r5.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def add_elements(arr, k):\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Example:\n\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\n        Output: 24 # sum of 21 + 3\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n    first_k_elements = arr[:k]\n    \n    total = sum(\n        number for number in first_k_elements\n        if -99 <= number <= 99\n    )\n    \n    return total",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='add_elements',\n      args=arguments(\n        args=[\n          arg(arg='arr'),\n          arg(arg='k')]),\n      body=[\n        Expr(\n          value=Constant(value='\\n    Given a non-empty array of integers arr and an integer k, return\\n    the sum of the elements with at most two digits from the first k elements of arr.\\n\\n    Example:\\n\\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\\n        Output: 24 # sum of 21 + 3\\n\\n    Constraints:\\n        1. 1 <= len(arr) <= 100\\n        2. 1 <= k <= len(arr)\\n    ')),\n        Assign(\n          targets=[\n            Name(id='first_k_elements', ctx=Store())],\n          value=Subscript(\n            value=Name(id='arr', ctx=Load()),\n            slice=Slice(\n              upper=Name(id='k', ctx=Load())),\n            ctx=Load())),\n        Assign(\n          targets=[\n            Name(id='total', ctx=Store())],\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Name(id='number', ctx=Load()),\n                generators=[\n                  comprehension(\n                    target=Name(id='number', ctx=Store()),\n                    iter=Name(id='first_k_elements', ctx=Load()),\n                    ifs=[\n                      Compare(\n                        left=UnaryOp(\n                          op=USub(),\n                          operand=Constant(value=99)),\n                        ops=[\n                          LtE(),\n                          LtE()],\n                        comparators=[\n                          Name(id='number', ctx=Load()),\n                          Constant(value=99)])],\n                    is_async=0)])])),\n        Return(\n          value=Name(id='total', ctx=Load()))])])"
+}

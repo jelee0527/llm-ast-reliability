@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef eat(number: int, need: int, remaining: int) -> List[int]:\n    \"\"\"\n    Return [total_eaten_after_meals, remaining_carrots_after_meals].\n    If remaining carrots are insufficient to meet need, eat all remaining.\n    \"\"\"\n    to_eat = min(need, remaining)\n    total_eaten = number + to_eat\n    remaining_after = remaining - to_eat\n    return [total_eaten, remaining_after]",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.017544,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_085__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_085",
+  "task_id": "HumanEval/85",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def add(lst):\n    total = 0\n    for i in range(1, len(lst), 2):\n        if lst[i] % 2 == 0:\n            total += lst[i]\n    return total",
+  "metrics": {
+    "total_nodes": 47,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06383,
+    "function_names": [
+      "add"
+    ]
+  }
+}

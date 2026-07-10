@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def iscube(a):\n    if a < 0:\n        a = -a\n        sign = -1\n    else:\n        sign = 1\n    # Use integer cube root via rounding and checking\n    root = round(a ** (1/3))\n    # Check nearby integers due to floating point inaccuracies\n    for candidate in (root - 1, root, root + 1):\n        if candidate ** 3 == a:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 72,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.069444,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

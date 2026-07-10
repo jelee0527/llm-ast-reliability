@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    # We need a subsequence (not necessarily contiguous) of brackets that forms a valid bracket string\n    # and has at least one nested pair, i.e., contains pattern like '[' ... '[' ... ']' ... ']'.\n    # Equivalent: there exist indices i<j<k<l with s[i]='[', s[k]='[', s[l]=']', s[j]=']' and nesting order i<k<l<j OR i<k<j<l?\n    # Simpler approach: try to greedily build a valid bracket subsequence while tracking max depth reached.\n    depth = 0\n    max_depth = 0\n    # Greedy: scan string, take '[' to increase depth, take ']' to decrease if depth>0 (matching previous '[').\n    for ch in string:\n        if ch == '[':\n            depth += 1\n            if depth > max_depth:\n                max_depth = depth\n        elif ch == ']':\n            if depth > 0:\n                depth -= 1\n    return max_depth >= 2\n\n# Quick test block (can be removed if strict output required)\nif __name__ == \"__main__\":\n    tests = ['[[]]', '[]]]]]]][[[[[]', '[][]', '[]', '[[][]]', '[[]][[']\n    for t in tests:\n        print(t, is_nested(t))",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.078431,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

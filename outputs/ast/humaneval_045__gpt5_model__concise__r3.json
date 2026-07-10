@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_045__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef triangle_area(a: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    try:\n        return float(a) * float(h) / 2.0\n    except (TypeError, ValueError):\n        raise TypeError(\"a and h must be numbers\")",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Union')],\n      level=0),\n    FunctionDef(\n      name='triangle_area',\n      args=arguments(\n        args=[\n          arg(\n            arg='a',\n            annotation=Subscript(\n              value=Name(id='Union', ctx=Load()),\n              slice=Tuple(\n                elts=[\n                  Name(id='int', ctx=Load()),\n                  Name(id='float', ctx=Load())],\n                ctx=Load()),\n              ctx=Load())),\n          arg(\n            arg='h',\n            annotation=Subscript(\n              value=Name(id='Union', ctx=Load()),\n              slice=Tuple(\n                elts=[\n                  Name(id='int', ctx=Load()),\n                  Name(id='float', ctx=Load())],\n                ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Given length of a side and high return area for a triangle.\\n    >>> triangle_area(5, 3)\\n    7.5\\n    ')),\n        Try(\n          body=[\n            Return(\n              value=BinOp(\n                left=BinOp(\n                  left=Call(\n                    func=Name(id='float', ctx=Load()),\n                    args=[\n                      Name(id='a', ctx=Load())]),\n                  op=Mult(),\n                  right=Call(\n                    func=Name(id='float', ctx=Load()),\n                    args=[\n                      Name(id='h', ctx=Load())])),\n                op=Div(),\n                right=Constant(value=2.0)))],\n          handlers=[\n            ExceptHandler(\n              type=Tuple(\n                elts=[\n                  Name(id='TypeError', ctx=Load()),\n                  Name(id='ValueError', ctx=Load())],\n                ctx=Load()),\n              body=[\n                Raise(\n                  exc=Call(\n                    func=Name(id='TypeError', ctx=Load()),\n                    args=[\n                      Constant(value='a and h must be numbers')]))])])],\n      returns=Name(id='float', ctx=Load()))])"
+}

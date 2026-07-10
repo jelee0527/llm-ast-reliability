@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is an exact integer power of n: x == n**k for some non-negative integer k.\n    By convention 1 is n**0 for any n (including n == 1).\n    \"\"\"\n    # Validate inputs: x must be positive integer, n must be integer >= 1\n    try:\n        xi = int(x)\n        ni = int(n)\n    except Exception:\n        return False\n    if xi < 1 or ni < 1:\n        return False\n    # Special case n == 1: only 1 is a power of 1\n    if ni == 1:\n        return xi == 1\n    # xi == 1 is n**0\n    if xi == 1:\n        return True\n    # For n >= 2 and xi >= 2, repeatedly divide\n    while xi % ni == 0:\n        xi //= ni\n        if xi == 1:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 92,
+    "ast_depth": 7,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.130435,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

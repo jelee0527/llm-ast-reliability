@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(N):\n    s = bin(N).count(\"1\")\n    return bin(s)[2:]\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data:\n        # example default? print for 0\n        print(solve(0))\n    else:\n        for token in data:\n            try:\n                n = int(token)\n            except:\n                continue\n            print(solve(n))",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.068182,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

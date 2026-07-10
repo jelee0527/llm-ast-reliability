@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:12:20.037815+00:00",
+  "elapsed_seconds": 5.131,
+  "official_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of non-negative integers according to number of ones in binary representation ascending.\n    For equal count of ones, sort by decimal value ascending.\n    Negative numbers: preserve usual integer ordering (their binary ones count uses two's complement in Python,\n    but the kata examples expect simple numeric sorting for negatives). To match examples, treat negatives by their value.\n    \"\"\"\n    if not arr:\n        return []\n    # Separate negatives and non-negatives to match expected behavior in examples:\n    negatives = [x for x in arr if x < 0]\n    nonnegatives = [x for x in arr if x >= 0]\n    # Sort negatives by numeric value ascending\n    negatives.sort()\n    # Sort non-negatives by (count of ones in binary, value)\n    nonnegatives.sort(key=lambda x: (bin(x).count(\"1\"), x))\n    # Combine: negatives first (as in example), then sorted non-negatives\n    return negatives + nonnegatives\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of non-negative integers according to number of ones in binary representation ascending.\n    For equal count of ones, sort by decimal value ascending.\n    Negative numbers: preserve usual integer ordering (their binary ones count uses two's complement in Python,\n    but the kata examples expect simple numeric sorting for negatives). To match examples, treat negatives by their value.\n    \"\"\"\n    if not arr:\n        return []\n    # Separate negatives and non-negatives to match expected behavior in examples:\n    negatives = [x for x in arr if x < 0]\n    nonnegatives = [x for x in arr if x >= 0]\n    # Sort negatives by numeric value ascending\n    negatives.sort()\n    # Sort non-negatives by (count of ones in binary, value)\n    nonnegatives.sort(key=lambda x: (bin(x).count(\"1\"), x))\n    # Combine: negatives first (as in example), then sorted non-negatives\n    return negatives + nonnegatives\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]"
+}

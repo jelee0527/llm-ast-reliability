@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def solve(N):\n    return bin(sum(int(d) for d in str(N)))[2:]",
+  "metrics": {
+    "total_nodes": 29,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.034483,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

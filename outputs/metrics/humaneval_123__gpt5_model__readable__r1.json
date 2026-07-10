@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_123__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_123",
+  "task_id": "HumanEval/123",
+  "problem_name": "Get Odd Collatz",
+  "entry_point": "get_odd_collatz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef get_odd_collatz(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a sorted list of the distinct odd numbers\n    that appear in the Collatz sequence starting from n.\n\n    Collatz sequence rule:\n      - if current term is even, next = current // 2\n      - if current term is odd, next = 3 * current + 1\n    Sequence ends when it reaches 1 (include 1).\n\n    Returns list sorted in increasing order.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    odd_values = set()\n    current = n\n    while True:\n        if current % 2 == 1:\n            odd_values.add(current)\n        if current == 1:\n            break\n        if current % 2 == 0:\n            current = current // 2\n        else:\n            current = 3 * current + 1\n\n    return sorted(odd_values)",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.073394,
+    "function_names": [
+      "get_odd_collatz"
+    ]
+  }
+}

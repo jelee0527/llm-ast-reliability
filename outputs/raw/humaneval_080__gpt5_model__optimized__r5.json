@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:59:34.881473+00:00",
+  "elapsed_seconds": 4.264,
+  "official_prompt": "\ndef is_happy(s):\n    \"\"\"You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_happy(s):\n    \"\"\"You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if string s is 'happy' per specification:\n    length at least 3 and every 3 consecutive letters are all distinct.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # Check every window of length 3 has all distinct characters\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        # Fast check using comparisons instead of set allocation\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n# If run as a script, simple test (optional)\nif __name__ == \"__main__\":\n    tests = [\"a\", \"aa\", \"abcd\", \"aabb\", \"adb\", \"xyy\", \"xyz\", \"aba\", \"abca\"]\n    for t in tests:\n        print(f\"{t!r}: {is_happy(t)}\")",
+  "generated_code": "from typing import Any\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if string s is 'happy' per specification:\n    length at least 3 and every 3 consecutive letters are all distinct.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # Check every window of length 3 has all distinct characters\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        # Fast check using comparisons instead of set allocation\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n# If run as a script, simple test (optional)\nif __name__ == \"__main__\":\n    tests = [\"a\", \"aa\", \"abcd\", \"aabb\", \"adb\", \"xyy\", \"xyz\", \"aba\", \"abca\"]\n    for t in tests:\n        print(f\"{t!r}: {is_happy(t)}\")"
+}

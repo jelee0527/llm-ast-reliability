@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    # Parse input to float\n    try:\n        x = float(value)\n    except Exception as e:\n        raise ValueError(f\"Invalid numeric value: {value}\") from e\n\n    # If already integer-valued, return that integer\n    if x == math.trunc(x):\n        return int(x)\n\n    # Get floor and ceil integers\n    if x > 0:\n        lower = math.floor(x)  # <= x\n        upper = math.ceil(x)   # >= x\n    else:\n        # For negative numbers floor is more negative\n        lower = math.floor(x)\n        upper = math.ceil(x)\n\n    # Distances to the two nearest integers\n    dist_lower = abs(x - lower)\n    dist_upper = abs(upper - x)\n\n    if dist_lower < dist_upper:\n        return int(lower)\n    if dist_upper < dist_lower:\n        return int(upper)\n\n    # Equidistant: choose the one farther from zero (round away from zero)\n    # For positive numbers away from zero is the larger integer (upper)\n    # For negative numbers away from zero is the smaller integer (lower)\n    if x >= 0:\n        return int(upper)\n    else:\n        return int(lower)",
+  "metrics": {
+    "total_nodes": 163,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.07362,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

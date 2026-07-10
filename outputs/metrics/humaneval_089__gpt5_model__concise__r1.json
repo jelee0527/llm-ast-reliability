@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_089__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"\n    Rotate letters shifting down by two multiplied to two places.\n    Examples:\n    'hi' -> 'lm' : h->l (shift +4), i->m (+4)\n    'asdfghjkl' -> 'ewhjklnop' etc.\n    Interpretation: shift each letter forward by 4 positions in alphabet, preserving case.\n    Non-letter characters are left unchanged.\n    \"\"\"\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n    def shift_char(ch):\n        if ch in lower:\n            return lower[(lower.index(ch) + 4) % 26]\n        if ch in upper:\n            return upper[(upper.index(ch) + 4) % 26]\n        return ch\n    return ''.join(shift_char(c) for c in s)",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.06383,
+    "function_names": [
+      "encrypt",
+      "shift_char"
+    ]
+  }
+}

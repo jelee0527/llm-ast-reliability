@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\nimport operator as op\nimport math\n\n_ops = {\n    '+': lambda a, b: a + b,\n    '-': lambda a, b: a - b,\n    '*': lambda a, b: a * b,\n    '//': lambda a, b: a // b,\n    '**': lambda a, b: a ** b,\n}\n\n# Define operator precedence and associativity\n_precedence = {\n    '+': (1, 'L'),\n    '-': (1, 'L'),\n    '*': (2, 'L'),\n    '//': (2, 'L'),\n    '**': (3, 'R'),\n}\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    # Build tokens: operand and operator alternating, starting with operand\n    # Example: operands [2,3,4,5], ops ['+','*','-'] -> [2,'+',3,'*',4,'-',5]\n    tokens = []\n    n_ops = len(operator)\n    for i, val in enumerate(operand):\n        tokens.append(val)\n        if i < n_ops:\n            tokens.append(operator[i])\n\n    # Shunting-yard to convert to RPN\n    output = []\n    stack = []\n    for tok in tokens:\n        if isinstance(tok, int):\n            output.append(tok)\n        else:\n            # operator token\n            prec, assoc = _precedence[tok]\n            while stack:\n                top = stack[-1]\n                if top not in _precedence:\n                    break\n                tprec, tassoc = _precedence[top]\n                if (tprec > prec) or (tprec == prec and assoc == 'L'):\n                    output.append(stack.pop())\n                else:\n                    break\n            stack.append(tok)\n    while stack:\n        output.append(stack.pop())\n\n    # Evaluate RPN\n    eval_stack = []\n    for tok in output:\n        if isinstance(tok, int):\n            eval_stack.append(tok)\n        else:\n            b = eval_stack.pop()\n            a = eval_stack.pop()\n            # Perform operation; handle floor division by zero per Python semantics (will raise)\n            res = _ops[tok](a, b)\n            eval_stack.append(res)\n    return eval_stack[0]",
+  "metrics": {
+    "total_nodes": 367,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.035422,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

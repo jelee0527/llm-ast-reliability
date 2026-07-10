@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_148__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\nPLANETS = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    try:\n        i = PLANETS.index(planet1)\n        j = PLANETS.index(planet2)\n    except ValueError:\n        return tuple()\n    if i == j:\n        return tuple()\n    if i < j:\n        between = PLANETS[i+1:j]\n    else:\n        between = PLANETS[j+1:i]\n    return tuple(between)",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.052174,
+    "function_names": [
+      "bf"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef max_fill(grid, capacity):\n    \"\"\"\n    Returns the number of times buckets must be lowered to remove all water units from wells.\n    Each row in grid is a well; each 1 is a unit of water. A bucket of given capacity can\n    remove up to 'capacity' units in one lowering from a single well.\n    \"\"\"\n    if not grid:\n        return 0\n    total_lowerings = 0\n    for row in grid:\n        water_units = sum(1 for v in row if v == 1)\n        if water_units > 0:\n            total_lowerings += math.ceil(water_units / capacity)\n    return total_lowerings",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.074627,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

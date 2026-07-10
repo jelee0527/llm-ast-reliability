@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom decimal import Decimal, InvalidOperation, getcontext\n\n# Increase precision to handle many decimal places accurately\ngetcontext().prec = 50\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    if not isinstance(value, str):\n        raise TypeError(\"Input must be a string\")\n    try:\n        d = Decimal(value.strip())\n    except (InvalidOperation, ValueError):\n        raise ValueError(\"Invalid numeric string\")\n    # Separate sign and absolute value\n    sign = 1 if d >= 0 else -1\n    ad = d.copy_abs()\n    # Get integer part and fractional part\n    int_part = int(ad.to_integral_value(rounding=\"ROUND_FLOOR\"))\n    frac = ad - Decimal(int_part)\n    half = Decimal('0.5')\n    if frac < half:\n        result = int_part\n    elif frac > half:\n        result = int_part + 1\n    else:\n        # exactly .5 -> round away from zero\n        result = int_part + 1\n    return sign * result\n\n# Quick tests when run as a script (not required)\nif __name__ == \"__main__\":\n    tests = [\"10\", \"15.3\", \"14.5\", \"-14.5\", \"0.5\", \"-0.5\", \"2.499999999999999999999\", \"2.5\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.05291,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

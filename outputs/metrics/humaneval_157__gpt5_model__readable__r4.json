@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Tuple\n\ndef right_angle_triangle(a: float, b: float, c: float) -> bool:\n    \"\"\"\n    Given the lengths of the three sides of a triangle, return True if the sides\n    form a right-angled triangle, False otherwise.\n\n    The function:\n    - Validates that the inputs are positive numbers.\n    - Validates the triangle inequality (each side < sum of other two).\n    - Checks whether any permutation satisfies the Pythagorean theorem within\n      a small tolerance to handle floating point values.\n\n    Examples:\n    right_angle_triangle(3, 4, 5) -> True\n    right_angle_triangle(1, 2, 3) -> False\n    \"\"\"\n    # Ensure sides are numbers and positive\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return False\n\n    if any(side <= 0 or math.isinf(side) or math.isnan(side) for side in sides):\n        return False\n\n    # Triangle inequality: each side must be less than sum of the other two\n    x, y, z = sides\n    if not (x + y > z and x + z > y and y + z > x):\n        return False\n\n    # Sort sides so that the largest is considered the hypotenuse candidate\n    s1, s2, hyp = sorted(sides)\n\n    # Use a relative tolerance to handle floating point imprecision\n    # For typical values, relative tolerance of 1e-9 is sufficient; also include small absolute tolerance\n    rel_tol = 1e-9\n    abs_tol = 1e-12\n\n    return math.isclose(s1 * s1 + s2 * s2, hyp * hyp, rel_tol=rel_tol, abs_tol=abs_tol)",
+  "metrics": {
+    "total_nodes": 185,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.037838,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n    # Handle zero directly\n    if a == 0:\n        return True\n    # Work with absolute value then restore sign to find integer cube root\n    sign = 1\n    if a < 0:\n        sign = -1\n    n = abs(a)\n    # Compute integer cube root candidate using round of floating estimate,\n    # but ensure correctness by checking neighbors to avoid floating errors.\n    # Use pow with fraction to get initial estimate\n    # For large integers, use integer binary search to be safe.\n    lo = 0\n    hi = int(max(1, n))\n    # Set hi to a bound where hi**3 >= n\n    # Start with hi=1 and double until cube >= n\n    hi = 1\n    while hi**3 < n:\n        hi <<= 1\n    # Binary search for integer cube root floor\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        cube = mid**3\n        if cube == n:\n            return True\n        if cube < n:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return False\n\n# Quick simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,27,-27,28,1000000,1000001,-1000000]\n    for t in tests:\n        print(t, iscube(t))",
+  "metrics": {
+    "total_nodes": 181,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.060773,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

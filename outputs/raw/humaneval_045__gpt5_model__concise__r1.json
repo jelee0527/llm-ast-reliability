@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:47:18.278751+00:00",
+  "elapsed_seconds": 2.772,
+  "official_prompt": "\n\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Union\n\ndef triangle_area(a: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    try:\n        return float(a) * float(h) / 2.0\n    except (TypeError, ValueError):\n        raise TypeError(\"Inputs must be numbers\")",
+  "generated_code": "from typing import Union\n\ndef triangle_area(a: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    try:\n        return float(a) * float(h) / 2.0\n    except (TypeError, ValueError):\n        raise TypeError(\"Inputs must be numbers\")"
+}

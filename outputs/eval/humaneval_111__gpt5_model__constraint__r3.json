@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_111__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

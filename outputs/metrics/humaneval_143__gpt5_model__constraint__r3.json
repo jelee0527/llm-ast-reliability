@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_143__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_143",
+  "task_id": "HumanEval/143",
+  "problem_name": "Words In Sentence",
+  "entry_point": "words_in_sentence",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef words_in_sentence(sentence):\n    \"\"\"\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n    \"\"\"\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        r = int(math.isqrt(n))\n        for i in range(3, r + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    if not sentence:\n        return \"\"\n\n    # split by spaces (assumes words separated by single spaces as per prompt)\n    words = sentence.split(\" \")\n    result_words = []\n    for w in words:\n        # length of word; sentence contains only letters per constraints\n        if is_prime(len(w)):\n            result_words.append(w)\n    return \" \".join(result_words)\n\n\n# Example usage and simple tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"This is a test\", \"is\"),\n        (\"lets go for swimming\", \"go for\"),\n        (\"a bb ccc dddd eeeee\", \"bb ccc eeeee\"),  # lengths 1,2,3,4,5\n        (\"\", \"\"),\n        (\"prime lengths only\", \"prime lengths only\"),  # \"prime\"(5) \"lengths\"(7) \"only\"(4) -> only two primes, but last not prime\n    ]\n    for inp, expected in tests:\n        out = words_in_sentence(inp)\n        print(repr(inp), \"->\", repr(out), \" expected:\", repr(expected))",
+  "metrics": {
+    "total_nodes": 197,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.086294,
+    "function_names": [
+      "words_in_sentence",
+      "is_prime"
+    ]
+  }
+}

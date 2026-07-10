@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_016__claude_model__readable__r1.json",
+  "problem_id": "humaneval_016",
+  "task_id": "HumanEval/16",
+  "problem_name": "Count Distinct Characters",
+  "entry_point": "count_distinct_characters",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    lowercase_string = string.lower()\n    distinct_characters = set(lowercase_string)\n    return len(distinct_characters)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='count_distinct_characters',\n      args=arguments(\n        args=[\n          arg(\n            arg='string',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\" Given a string, find out how many distinct characters (regardless of case) does it consist of\\n    >>> count_distinct_characters('xyzXYZ')\\n    3\\n    >>> count_distinct_characters('Jerry')\\n    4\\n    \")),\n        Assign(\n          targets=[\n            Name(id='lowercase_string', ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Name(id='string', ctx=Load()),\n              attr='lower',\n              ctx=Load()))),\n        Assign(\n          targets=[\n            Name(id='distinct_characters', ctx=Store())],\n          value=Call(\n            func=Name(id='set', ctx=Load()),\n            args=[\n              Name(id='lowercase_string', ctx=Load())])),\n        Return(\n          value=Call(\n            func=Name(id='len', ctx=Load()),\n            args=[\n              Name(id='distinct_characters', ctx=Load())]))],\n      returns=Name(id='int', ctx=Load()))])"
+}

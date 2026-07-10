@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_happy(s: str) -> bool:\n    \"\"\"Return True if string s is 'happy' per specification:\n    length at least 3 and every 3 consecutive letters are all distinct.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    n = len(s)\n    if n < 3:\n        return False\n    # Check every window of length 3 has all distinct characters\n    for i in range(n - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        # Fast check using comparisons instead of set allocation\n        if a == b or a == c or b == c:\n            return False\n    return True\n\n# If run as a script, simple test (optional)\nif __name__ == \"__main__\":\n    tests = [\"a\", \"aa\", \"abcd\", \"aabb\", \"adb\", \"xyy\", \"xyz\", \"aba\", \"abca\"]\n    for t in tests:\n        print(f\"{t!r}: {is_happy(t)}\")",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.064935,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

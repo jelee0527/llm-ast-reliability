@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T18:06:58.180319+00:00",
+  "elapsed_seconds": 2.219,
+  "official_prompt": "\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n\n",
+  "raw_response": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    result = []\n    for i in range(lower, upper + 1):\n        if i >= 0 and i <= 9 and i % 2 == 0:\n            result.append(i)\n    return result",
+  "generated_code": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    result = []\n    for i in range(lower, upper + 1):\n        if i >= 0 and i <= 9 and i % 2 == 0:\n            result.append(i)\n    return result"
+}

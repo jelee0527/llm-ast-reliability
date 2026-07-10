@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from datetime import datetime\n\ndef valid_date(date):\n    \"\"\"Validate date in format mm-dd-yyyy with rules:\n    - Non-empty string\n    - Format exactly mm-dd-yyyy with hyphens\n    - Month 1-12\n    - Day range: 1-31 for months 1,3,5,7,8,10,12; 1-30 for 4,6,9,11; 1-29 for February\n    - Year can be any integer (allow leading zeros)\n    \"\"\"\n    if not isinstance(date, str) or not date:\n        return False\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    mm, dd, yyyy = parts\n    # Reject empty components or non-digit characters (allow leading zeros)\n    if not (mm.isdigit() and dd.isdigit() and yyyy.isdigit()):\n        return False\n    try:\n        month = int(mm)\n        day = int(dd)\n        year = int(yyyy)\n    except ValueError:\n        return False\n    if month < 1 or month > 12:\n        return False\n    # Days per month per problem statement: Feb up to 29 (always allow 29)\n    if month == 2:\n        max_day = 29\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    else:\n        max_day = 31\n    if day < 1 or day > max_day:\n        return False\n    # Year: ensure YYYY has exactly 4 digits? Problem examples show 4-digit years.\n    # Accept any number of digits but require at least 1. Also disallow leading plus/minus handled above.\n    # Additionally enforce that yyyy string length is 4 to match format mm-dd-yyyy\n    if len(yyyy) != 4:\n        return False\n    return True",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 9,
+    "branch_count": 9,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.093407,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

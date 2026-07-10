@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n    \"\"\"\n    # Split on spaces but keep them so we can reconstruct exactly\n    parts = re.split(r'( )', s)\n    result_parts = []\n    for part in parts:\n        if part == ' ':\n            result_parts.append(part)\n        else:\n            # For each contiguous non-space sequence (word), sort characters by ASCII\n            # Stable sort of characters by ord\n            sorted_chars = ''.join(sorted(part, key=lambda ch: ord(ch)))\n            result_parts.append(sorted_chars)\n    return ''.join(result_parts)",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 12,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.037975,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

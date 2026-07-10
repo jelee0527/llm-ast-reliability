@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    if not array:\n        return []\n    if len(array) == 1:\n        return array.copy()\n    total = array[0] + array[-1]\n    return sorted(array, reverse=(total % 2 == 0))",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.068493,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

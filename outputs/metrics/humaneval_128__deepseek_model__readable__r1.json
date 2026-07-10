@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def prod_signs(arr):\n    if not arr:\n        return None\n    \n    product_of_signs = 1\n    sum_of_magnitudes = 0\n    \n    for num in arr:\n        if num > 0:\n            product_of_signs *= 1\n        elif num < 0:\n            product_of_signs *= -1\n        else:\n            product_of_signs *= 0\n        \n        sum_of_magnitudes += abs(num)\n    \n    return sum_of_magnitudes * product_of_signs",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.086957,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

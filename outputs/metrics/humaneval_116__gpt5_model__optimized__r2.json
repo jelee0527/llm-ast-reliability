@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_116__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of non-negative integers (and allow negatives as per examples)\n    by number of 1s in binary representation (ascending). For ties, sort by value.\n    \"\"\"\n    # Python's bin(x).count('1') works for non-negative. For negatives, use two's complement\n    # behavior isn't specified, but examples show negatives sorted by value only;\n    # compute bitcount of abs(n) to be consistent (so negatives with same abs have same count).\n    return sorted(arr, key=lambda x: (bin(x if x >= 0 else -x).count('1'), x))",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 14,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.037736,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

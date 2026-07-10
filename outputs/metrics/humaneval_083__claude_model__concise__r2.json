@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__claude_model__concise__r2.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    return 18 * (10 ** (n - 2))",
+  "metrics": {
+    "total_nodes": 24,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.125,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

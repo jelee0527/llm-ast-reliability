@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if x * n is a whole number, False otherwise.\n    x and n are strings of form 'numerator/denominator' with positive integers.\"\"\"\n    try:\n        fx = Fraction(int(x.split('/')[0]), int(x.split('/')[1]))\n        fn = Fraction(int(n.split('/')[0]), int(n.split('/')[1]))\n    except Exception:\n        # If parsing fails, propagate as ValueError\n        raise\n    product = fx * fn\n    return product.denominator == 1\n\n# Quick tests (can be removed)\nif __name__ == \"__main__\":\n    assert simplify(\"1/5\", \"5/1\") is True\n    assert simplify(\"1/6\", \"2/1\") is False\n    assert simplify(\"7/10\", \"10/2\") is False\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.031008,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

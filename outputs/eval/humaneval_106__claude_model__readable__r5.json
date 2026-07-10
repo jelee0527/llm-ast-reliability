@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_106__claude_model__readable__r5.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 3, in check\nAssertionError\n"
+}

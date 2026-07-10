@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\n\n    Examples:\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n    \"\"\"\n    # Normalize inputs to strings\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings\")\n\n    # Quick checks\n    if b == \"\":\n        return True  # empty string is substring of any string\n    if len(b) > len(a):\n        return False\n\n    # Generate all rotations of b and check if any is substring of a.\n    # Use the trick: all rotations of b are substrings of b+b (for non-empty b).\n    doubled = b + b\n    # Iterate over possible rotations of length len(b)\n    for start in range(len(b)):\n        candidate = doubled[start:start + len(b)]\n        if candidate in a:\n            return True\n    return False\n\n\n# Optional simple tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,expected in tests:\n        result = cycpattern_check(x,y)\n        print(f\"cycpattern_check({x!r},{y!r}) => {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 198,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.060606,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

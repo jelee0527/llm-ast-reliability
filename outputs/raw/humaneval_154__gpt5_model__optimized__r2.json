@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:56:20.545877+00:00",
+  "elapsed_seconds": 2.566,
+  "official_prompt": "\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef cycpattern_check(a , b):\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n    \"\"\"\n\n",
+  "raw_response": "import collections\n\ndef cycpattern_check(a, b):\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not b:\n        return True  # empty pattern is substring\n    if not a:\n        return False\n    # Quick check: if length of b > length of a, no substring possible\n    if len(b) > len(a):\n        return False\n    # Use rotations of b: there are len(b) distinct rotations (may be fewer if periodic)\n    # To avoid creating duplicates for periodic strings, iterate offsets up to len(b)\n    ab = b + b\n    # For efficiency, use Python's in operator which is optimized (Boyer-Moore-esque)\n    for i in range(len(b)):\n        rot = ab[i:i+len(b)]\n        if rot in a:\n            return True\n    return False",
+  "generated_code": "import collections\n\ndef cycpattern_check(a, b):\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not b:\n        return True  # empty pattern is substring\n    if not a:\n        return False\n    # Quick check: if length of b > length of a, no substring possible\n    if len(b) > len(a):\n        return False\n    # Use rotations of b: there are len(b) distinct rotations (may be fewer if periodic)\n    # To avoid creating duplicates for periodic strings, iterate offsets up to len(b)\n    ab = b + b\n    # For efficiency, use Python's in operator which is optimized (Boyer-Moore-esque)\n    for i in range(len(b)):\n        rot = ab[i:i+len(b)]\n        if rot in a:\n            return True\n    return False"
+}

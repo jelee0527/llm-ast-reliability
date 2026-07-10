@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\nWORD_TO_DIGIT = {\n    \"zero\": 0, \"one\": 1, \"two\": 2, \"three\": 3, \"four\": 4,\n    \"five\": 5, \"six\": 6, \"seven\": 7, \"eight\": 8, \"nine\": 9\n}\nDIGIT_TO_WORD = {v: k for k, v in WORD_TO_DIGIT.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\"Sort space-delimited number words from 'zero'..'nine' ascending.\"\"\"\n    if not numbers:\n        return \"\"\n    parts = numbers.split()\n    # Map to digits, ignore unknown tokens (or could raise). We'll raise on invalid.\n    try:\n        digits = [WORD_TO_DIGIT[p] for p in parts]\n    except KeyError as e:\n        raise ValueError(f\"Invalid number word: {e.args[0]}\") from None\n    digits.sort()\n    return \" \".join(DIGIT_TO_WORD[d] for d in digits)",
+  "metrics": {
+    "total_nodes": 128,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.039062,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

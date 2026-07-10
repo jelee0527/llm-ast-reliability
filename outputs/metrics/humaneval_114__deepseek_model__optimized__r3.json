@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_114__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minSubArraySum(nums):\n    min_ending_here = nums[0]\n    min_so_far = nums[0]\n    for x in nums[1:]:\n        min_ending_here = min(x, min_ending_here + x)\n        min_so_far = min(min_so_far, min_ending_here)\n    return min_so_far",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.035714,
+    "function_names": [
+      "minSubArraySum"
+    ]
+  }
+}

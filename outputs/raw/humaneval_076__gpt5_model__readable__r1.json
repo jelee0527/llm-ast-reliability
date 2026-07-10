@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:50:42.755972+00:00",
+  "elapsed_seconds": 4.757,
+  "official_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., there exists an integer k >= 0 with n**k == x).\n    Handles integers and non-negative values appropriately.\n    \"\"\"\n    # Validate inputs: x and n must be integers and n >= 1, x >= 1 for meaningful powers as described.\n    try:\n        xi = int(x)\n        ni = int(n)\n    except Exception:\n        return False\n\n    # If original values weren't exact integers, not considered a simple integer power\n    if xi != x or ni != n:\n        return False\n\n    x = xi\n    n = ni\n\n    # Special handling:\n    # By convention in the examples, 1 is a power of any n (n**0 == 1).\n    if x == 1:\n        return True\n\n    # If base n is 1: 1**k == 1 for any k, but only x==1 should be True (example shows is_simple_power(3,1) => False).\n    if n == 1:\n        return False\n\n    # n must be at least 2 and x must be positive to be a power; negative or zero cases are not considered here.\n    if n <= 0 or x <= 0:\n        return False\n\n    # Repeatedly divide x by n while divisible\n    current = x\n    while current % n == 0:\n        current //= n\n        if current == 1:\n            return True\n\n    return False",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., there exists an integer k >= 0 with n**k == x).\n    Handles integers and non-negative values appropriately.\n    \"\"\"\n    # Validate inputs: x and n must be integers and n >= 1, x >= 1 for meaningful powers as described.\n    try:\n        xi = int(x)\n        ni = int(n)\n    except Exception:\n        return False\n\n    # If original values weren't exact integers, not considered a simple integer power\n    if xi != x or ni != n:\n        return False\n\n    x = xi\n    n = ni\n\n    # Special handling:\n    # By convention in the examples, 1 is a power of any n (n**0 == 1).\n    if x == 1:\n        return True\n\n    # If base n is 1: 1**k == 1 for any k, but only x==1 should be True (example shows is_simple_power(3,1) => False).\n    if n == 1:\n        return False\n\n    # n must be at least 2 and x must be positive to be a power; negative or zero cases are not considered here.\n    if n <= 0 or x <= 0:\n        return False\n\n    # Repeatedly divide x by n while divisible\n    current = x\n    while current % n == 0:\n        current //= n\n        if current == 1:\n            return True\n\n    return False"
+}

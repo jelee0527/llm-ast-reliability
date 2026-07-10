@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List, Union\n\ndef split_words(txt: str) -> Union[List[str], int]:\n    \"\"\"\n    Given a string of words, return a list of words split on whitespace.\n    If no whitespace exists in the text, split on commas ','.\n    If neither whitespace nor commas exist, return the number of lower-case letters\n    with odd order in the alphabet (ord('a') = 0, ord('b') = 1, ... ord('z') = 25).\n\n    Examples:\n    split_words(\"Hello world!\") -> [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") -> [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n    \"\"\"\n    if any(c.isspace() for c in txt):\n        # Split on any whitespace sequence\n        return re.split(r'\\s+', txt.strip())\n    if ',' in txt:\n        # Split on commas, remove surrounding whitespace from each part\n        parts = [part.strip() for part in txt.split(',')]\n        return parts\n    # No whitespace and no commas: count lower-case letters with odd order\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            order = ord(ch) - ord('a')  # a->0, b->1, ...\n            if order % 2 == 1:\n                count += 1\n    return count\n\n\n# Quick tests when run as a script (not required, but helpful)\nif __name__ == \"__main__\":\n    assert split_words(\"Hello world!\") == [\"Hello\", \"world!\"]\n    assert split_words(\"Hello,world!\") == [\"Hello\", \"world!\"]\n    assert split_words(\"Hello, world! , test\") == [\"Hello\", \"world!\", \"test\"]\n    assert split_words(\"abcdef\") == 3\n    assert split_words(\"ACE\") == 0\n    print(\"All self-tests passed.\")",
+  "metrics": {
+    "total_nodes": 190,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.047368,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

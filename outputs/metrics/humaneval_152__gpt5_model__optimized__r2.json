@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"Return list of absolute differences between corresponding elements of game and guess.\"\"\"\n    if len(game) != len(guess):\n        raise ValueError(\"Input lists must have the same length\")\n    # Use list comprehension for efficiency\n    return [abs(g - s) for s, g in zip(game, guess)]",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.042857,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

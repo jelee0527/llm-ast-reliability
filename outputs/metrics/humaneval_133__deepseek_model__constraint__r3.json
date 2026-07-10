@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_133__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef sum_squares(lst):\n    total = 0\n    for x in lst:\n        total += math.ceil(x) ** 2\n    return total",
+  "metrics": {
+    "total_nodes": 32,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

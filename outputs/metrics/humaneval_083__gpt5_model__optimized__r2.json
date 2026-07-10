@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    if n == 1:\n        return 1  # only '1'\n    # Count of n-digit numbers starting with 1: 10^(n-1)\n    # Count of n-digit numbers ending with 1: 9 * 10^(n-2)\n    # Overlap (both start and end with 1): 10^(n-2)\n    # Total = 10^(n-1) + 9*10^(n-2) - 10^(n-2) = 10^(n-1) + 8*10^(n-2)\n    return 10**(n-1) + 8 * 10**(n-2)",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.083333,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

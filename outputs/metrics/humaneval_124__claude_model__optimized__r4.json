@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__claude_model__optimized__r4.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def valid_date(date):\n    if not date:\n        return False\n    \n    try:\n        parts = date.split('-')\n        if len(parts) != 3:\n            return False\n        \n        month_str, day_str, year_str = parts\n        \n        if len(month_str) != 2 or len(day_str) != 2 or len(year_str) != 4:\n            return False\n        \n        month = int(month_str)\n        day = int(day_str)\n        year = int(year_str)\n        \n        if month < 1 or month > 12:\n            return False\n        \n        if month in [1, 3, 5, 7, 8, 10, 12]:\n            max_days = 31\n        elif month in [4, 6, 9, 11]:\n            max_days = 30\n        else:\n            max_days = 29\n        \n        if day < 1 or day > max_days:\n            return False\n        \n        return True\n    \n    except (ValueError, AttributeError):\n        return False",
+  "metrics": {
+    "total_nodes": 175,
+    "ast_depth": 9,
+    "branch_count": 8,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.085714,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

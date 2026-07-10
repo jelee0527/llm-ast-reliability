@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import typing\n\ndef reverse_delete(s: str, c: str) -> typing.Tuple[str, bool]:\n    \"\"\"\n    Remove all characters from s that appear in c, then check if the resulting string is a palindrome.\n    Return a tuple (result_string, is_palindrome).\n    \"\"\"\n    remove_set = set(c)\n    result = ''.join(ch for ch in s if ch not in remove_set)\n    is_palindrome = result == result[::-1]\n    return result, is_palindrome",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.013158,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

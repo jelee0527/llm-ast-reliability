@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_072__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def will_it_fly(q, w):\n    '''\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n    '''\n    # Check palindromic (balanced)\n    if q != q[::-1]:\n        return False\n    # Check weight\n    return sum(q) <= w",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='will_it_fly',\n      args=arguments(\n        args=[\n          arg(arg='q'),\n          arg(arg='w')]),\n      body=[\n        Expr(\n          value=Constant(value=\"\\n    Write a function that returns True if the object q will fly, and False otherwise.\\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\\n    \")),\n        If(\n          test=Compare(\n            left=Name(id='q', ctx=Load()),\n            ops=[\n              NotEq()],\n            comparators=[\n              Subscript(\n                value=Name(id='q', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())]),\n          body=[\n            Return(\n              value=Constant(value=False))]),\n        Return(\n          value=Compare(\n            left=Call(\n              func=Name(id='sum', ctx=Load()),\n              args=[\n                Name(id='q', ctx=Load())]),\n            ops=[\n              LtE()],\n            comparators=[\n              Name(id='w', ctx=Load())]))])])"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:57:25.102255+00:00",
+  "elapsed_seconds": 3.623,
+  "official_prompt": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n\n",
+  "raw_response": "import string\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Lowercase letters a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    # Precompute translation table for lowercase a-z shift by 5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({a: b for a, b in zip(src, dst)})\n    return s.translate(table)\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Reverses the shift of 5 for lowercase letters; other characters are left unchanged.\n    \"\"\"\n    # Precompute reverse translation table for lowercase a-z shift by -5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({b: a for a, b in zip(src, dst)})\n    return s.translate(table)",
+  "generated_code": "import string\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Lowercase letters a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    # Precompute translation table for lowercase a-z shift by 5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({a: b for a, b in zip(src, dst)})\n    return s.translate(table)\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Reverses the shift of 5 for lowercase letters; other characters are left unchanged.\n    \"\"\"\n    # Precompute reverse translation table for lowercase a-z shift by -5\n    src = string.ascii_lowercase\n    dst = src[5:] + src[:5]\n    table = str.maketrans({b: a for a, b in zip(src, dst)})\n    return s.translate(table)"
+}

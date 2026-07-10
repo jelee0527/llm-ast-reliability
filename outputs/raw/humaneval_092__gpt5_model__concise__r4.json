@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:23:23.391680+00:00",
+  "elapsed_seconds": 3.107,
+  "official_prompt": "\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n\n",
+  "raw_response": "from numbers import Integral\n\ndef any_int(x, y, z):\n    \"\"\"\n    Returns True if one of the numbers equals the sum of the other two,\n    and all numbers are integers. Otherwise returns False.\n    \"\"\"\n    if not all(isinstance(n, Integral) for n in (x, y, z)):\n        return False\n    return x == y + z or y == x + z or z == x + y\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n    ]\n    for a,b,c,exp in tests:\n        print((a,b,c), any_int(a,b,c), \"expected\", exp)",
+  "generated_code": "from numbers import Integral\n\ndef any_int(x, y, z):\n    \"\"\"\n    Returns True if one of the numbers equals the sum of the other two,\n    and all numbers are integers. Otherwise returns False.\n    \"\"\"\n    if not all(isinstance(n, Integral) for n in (x, y, z)):\n        return False\n    return x == y + z or y == x + z or z == x + y\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n    ]\n    for a,b,c,exp in tests:\n        print((a,b,c), any_int(a,b,c), \"expected\", exp)"
+}

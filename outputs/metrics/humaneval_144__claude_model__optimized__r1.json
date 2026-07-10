@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__claude_model__optimized__r1.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from math import gcd\n\ndef simplify(x, n):\n    x_num, x_den = map(int, x.split('/'))\n    n_num, n_den = map(int, n.split('/'))\n    numerator = x_num * n_num\n    denominator = x_den * n_den\n    return numerator % denominator == 0",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.014085,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

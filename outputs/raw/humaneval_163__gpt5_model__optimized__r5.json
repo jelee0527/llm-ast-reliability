@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:15:08.716364+00:00",
+  "elapsed_seconds": 2.524,
+  "official_prompt": "\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Even digits: numbers from 0-9 that are even? Based on examples, they mean even single-digit integers\n    between a and b inclusive. So only values 0,2,4,6,8 that fall in [min(a,b), max(a,b)].\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    lo = min(a, b)\n    hi = max(a, b)\n    evens = [0,2,4,6,8]\n    res = []\n    for d in evens:\n        if lo <= d <= hi:\n            res.append(d)\n    return res",
+  "generated_code": "import math\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Even digits: numbers from 0-9 that are even? Based on examples, they mean even single-digit integers\n    between a and b inclusive. So only values 0,2,4,6,8 that fall in [min(a,b), max(a,b)].\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    lo = min(a, b)\n    hi = max(a, b)\n    evens = [0,2,4,6,8]\n    res = []\n    for d in evens:\n        if lo <= d <= hi:\n            res.append(d)\n    return res"
+}

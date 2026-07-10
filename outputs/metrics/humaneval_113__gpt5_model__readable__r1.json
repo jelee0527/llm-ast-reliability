@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's are replaced by the number\n    of odd digits in the i'th string of the input.\n    \"\"\"\n    results: List[str] = []\n    for s in lst:\n        # Count digits that are odd\n        odd_digits = sum(1 for ch in s if ch.isdigit() and (int(ch) % 2 == 1))\n        # Replace every occurrence of the letter 'i' in the template words with the count.\n        # The example shows replacing the letter 'i' in specific words:\n        # \"the number of odd elements in the string i of the input.\"\n        # becomes with 4: \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n        # So replace 'i' with the number in the words that contain 'i'.\n        # Simpler: take the template and replace every 'i' character with the number.\n        template = \"the number of odd elements in the string i of the input.\"\n        replaced = template.replace('i', str(odd_digits))\n        results.append(replaced)\n    return results\n\n# quick manual test when run as a script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3', \"11111111\"]))",
+  "metrics": {
+    "total_nodes": 123,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02439,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:54:09.276119+00:00",
+  "elapsed_seconds": 3.287,
+  "official_prompt": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n\n",
+  "raw_response": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle zero directly\n    if a == 0:\n        return True\n    # For negative numbers work with absolute value, preserve sign\n    sign = 1\n    if a < 0:\n        sign = -1\n    x = abs(a)\n    # Compute integer cube root via rounding of float estimate\n    # Use pow with fractional exponent to get initial estimate, then adjust\n    # Ensure we avoid floating inaccuracies by checking neighbors\n    est = int(round(x ** (1.0 / 3.0)))\n    # Correct potential negative rounding issues\n    if est < 0:\n        est = 0\n    # Check a few neighbors around estimate\n    for k in (est-2, est-1, est, est+1, est+2):\n        if k >= 0:\n            if sign * (k**3) == a:\n                return True\n    return False",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle zero directly\n    if a == 0:\n        return True\n    # For negative numbers work with absolute value, preserve sign\n    sign = 1\n    if a < 0:\n        sign = -1\n    x = abs(a)\n    # Compute integer cube root via rounding of float estimate\n    # Use pow with fractional exponent to get initial estimate, then adjust\n    # Ensure we avoid floating inaccuracies by checking neighbors\n    est = int(round(x ** (1.0 / 3.0)))\n    # Correct potential negative rounding issues\n    if est < 0:\n        est = 0\n    # Check a few neighbors around estimate\n    for k in (est-2, est-1, est, est+1, est+2):\n        if k >= 0:\n            if sign * (k**3) == a:\n                return True\n    return False"
+}

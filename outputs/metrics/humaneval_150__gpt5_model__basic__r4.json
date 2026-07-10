@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_150__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_150",
+  "task_id": "HumanEval/150",
+  "problem_name": "X Or Y",
+  "entry_point": "x_or_y",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef x_or_y(n, x, y):\n    \"\"\"Return x if n is prime, otherwise return y.\"\"\"\n    # Handle edge cases: integers less than 2 are not prime\n    try:\n        # Ensure n is an integer (allow numeric types that are integral)\n        if isinstance(n, float) and n.is_integer():\n            n_int = int(n)\n        else:\n            n_int = int(n)\n    except Exception:\n        # If n cannot be converted to int, treat as not prime\n        return y\n\n    if n_int < 2:\n        return y\n    if n_int == 2:\n        return x\n    if n_int % 2 == 0:\n        return y\n\n    limit = int(math.isqrt(n_int))\n    for i in range(3, limit + 1, 2):\n        if n_int % i == 0:\n            return y\n    return x",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.108333,
+    "function_names": [
+      "x_or_y"
+    ]
+  }
+}

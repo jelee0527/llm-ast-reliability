@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_144__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number, else False.\n    x and n are strings like 'numerator/denominator' with positive integers.\n    \"\"\"\n    # parse fraction strings\n    def parse(frac_str):\n        parts = frac_str.split('/')\n        if len(parts) != 2:\n            raise ValueError(\"Invalid fraction format\")\n        num = int(parts[0])\n        den = int(parts[1])\n        if den == 0:\n            raise ValueError(\"Denominator cannot be zero\")\n        return num, den\n\n    xn, xd = parse(x)\n    nn, nd = parse(n)\n\n    # multiply numerators and denominators\n    num = xn * nn\n    den = xd * nd\n\n    # reduce fraction and check if denominator divides numerator\n    # Use gcd to avoid floating point\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a\n\n    g = gcd(num, den)\n    num //= g\n    den //= g\n\n    return den == 1\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    assert simplify(\"1/5\", \"5/1\") == True\n    assert simplify(\"1/6\", \"2/1\") == False\n    assert simplify(\"7/10\", \"10/2\") == False\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 210,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.042857,
+    "function_names": [
+      "simplify",
+      "parse",
+      "gcd"
+    ]
+  }
+}

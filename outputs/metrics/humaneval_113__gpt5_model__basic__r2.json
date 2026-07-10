@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return each formatted sentence where\n    every occurrence of the digit character representing the count of odd digits\n    in that string replaces occurrences of the letter 'o' in the template words\n    as shown in examples.\n    \"\"\"\n    results = []\n    template = \"the number of odd elements in the string {} of the input.\"\n    # For each string, count odd digits\n    for s in lst:\n        count = sum(1 for ch in s if ch in \"13579\")\n        # Convert count to string; then replace 'o' in specific words with that digit\n        cnt_str = str(count)\n        # Words in template that should have 'o' replaced: \"on\" letters shown in examples:\n        # Examples show replacing 'o' in \"on\" positions: \"in\" -> \"1n\", \"string\" -> \"str1ng\", \"input\" -> \"1nput\"\n        # That corresponds to replacing the letter 'i' in \"in\",\"string\",\"input\"? Actually examples replace 'o' in \"of\" -> unchanged.\n        # Observing examples: \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n        # It replaced 'i' in \"in\" with 4 -> \"4n\", replaced 'i' in \"string\" -> \"str4ng\", replaced 'i' in \"input\" -> \"4nput\".\n        # So replace letter 'i' with count digit in the template for those words.\n        # Build sentence then replace 'i' occurrences in those words.\n        sentence = template.format(cnt_str)\n        # Replace 'i' characters only in the words \"in\", \"string\", and \"input\".\n        # Do targeted replacements to avoid changing other 'i's (though template only has those).\n        sentence = sentence.replace(\" in the string \" + cnt_str + \" of the \", lambda: None) if False else sentence\n        # Simpler: perform explicit replacements for \" in \", \"string\", \"input\" occurrences.\n        sentence = sentence.replace(\" in \", f\" {cnt_str}n \")\n        sentence = sentence.replace(\"string\", f\"str{cnt_str}ng\")\n        sentence = sentence.replace(\"input\", f\"{cnt_str}nput\")\n        results.append(sentence)\n    return results",
+  "metrics": {
+    "total_nodes": 150,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_015__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_015",
+  "task_id": "HumanEval/15",
+  "problem_name": "String Sequence",
+  "entry_point": "string_sequence",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n    if n is None:\n        raise TypeError(\"n must be an integer\")\n    if not isinstance(n, int):\n        try:\n            n = int(n)\n        except Exception:\n            raise TypeError(\"n must be an integer\")\n    if n < 0:\n        # If negative, follow natural interpretation: return empty or raise? Choose empty string.\n        return \"\"\n    return \" \".join(str(i) for i in range(0, n+1))",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.098765,
+    "function_names": [
+      "string_sequence"
+    ]
+  }
+}

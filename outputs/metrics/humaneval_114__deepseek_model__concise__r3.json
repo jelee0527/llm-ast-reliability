@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_114__deepseek_model__concise__r3.json",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minSubArraySum(nums):\n    min_sum = float('inf')\n    current_sum = 0\n    for num in nums:\n        current_sum += num\n        if current_sum < min_sum:\n            min_sum = current_sum\n        if current_sum > 0:\n            current_sum = 0\n    return min_sum",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.078431,
+    "function_names": [
+      "minSubArraySum"
+    ]
+  }
+}

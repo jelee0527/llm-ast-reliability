@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_056__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import *\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n    # Use a counter to track unmatched opening brackets.\n    # Increment for '<', decrement for '>' and ensure it never goes negative.\n    count = 0\n    for ch in brackets:\n        if ch == '<':\n            count += 1\n        elif ch == '>':\n            count -= 1\n            if count < 0:\n                return False\n        else:\n            # If other characters appear, consider invalid input; treat as False\n            return False\n    return count == 0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.112676,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

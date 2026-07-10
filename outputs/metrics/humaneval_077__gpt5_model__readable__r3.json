@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Return True if integer a is a perfect cube of some integer, else False.\n    '''\n    # Handle zero explicitly\n    if a == 0:\n        return True\n    # For negative numbers handle sign and work with absolute value\n    sign = 1\n    if a < 0:\n        sign = -1\n    n = abs(a)\n    # Compute integer cube root candidate using round on the floating cube root\n    # Use math.copysign to preserve sign for negative values if needed\n    # We compute candidate = int(round(n ** (1.0/3))) but rounding can be off due to floating precision\n    candidate = int(round(n ** (1.0/3)))\n    # Adjust candidate in case of rounding errors\n    # Check a few neighbors around candidate to be safe\n    for k in range(max(0, candidate - 2), candidate + 3):\n        if sign * (k ** 3) == a:\n            return True\n    return False\n\n# Quick manual tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    tests = [1,2,-1,64,0,180,-27,27,28,729,730]\n    for t in tests:\n        print(t, iscube(t))",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.065693,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

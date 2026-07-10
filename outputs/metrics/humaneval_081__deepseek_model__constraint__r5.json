@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_081__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_081",
+  "task_id": "HumanEval/81",
+  "problem_name": "Numerical Letter Grade",
+  "entry_point": "numerical_letter_grade",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def numerical_letter_grade(grades):\n    result = []\n    for gpa in grades:\n        if gpa == 4.0:\n            result.append('A+')\n        elif gpa > 3.7:\n            result.append('A')\n        elif gpa > 3.3:\n            result.append('A-')\n        elif gpa > 3.0:\n            result.append('B+')\n        elif gpa > 2.7:\n            result.append('B')\n        elif gpa > 2.3:\n            result.append('B-')\n        elif gpa > 2.0:\n            result.append('C+')\n        elif gpa > 1.7:\n            result.append('C')\n        elif gpa > 1.3:\n            result.append('C-')\n        elif gpa > 1.0:\n            result.append('D+')\n        elif gpa > 0.7:\n            result.append('D')\n        elif gpa > 0.0:\n            result.append('D-')\n        else:\n            result.append('E')\n    return result",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 20,
+    "branch_count": 12,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.077778,
+    "function_names": [
+      "numerical_letter_grade"
+    ]
+  }
+}

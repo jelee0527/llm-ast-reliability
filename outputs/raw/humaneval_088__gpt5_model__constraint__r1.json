@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:16:14.331864+00:00",
+  "elapsed_seconds": 2.815,
+  "official_prompt": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy sorted:\n    - ascending if sum(first element, last element) is odd\n    - descending if that sum is even\n\n    The original array must not be modified.\n    \"\"\"\n    # Defensive copy\n    arr_copy = list(array)\n\n    # Handle empty array or single element: just return copy\n    if not arr_copy or len(arr_copy) == 1:\n        return arr_copy\n\n    first = arr_copy[0]\n    last = arr_copy[-1]\n\n    total = first + last\n\n    # If sum is odd -> ascending; if even -> descending\n    if total % 2 == 1:\n        # ascending\n        return sorted(arr_copy)\n    else:\n        # descending\n        return sorted(arr_copy, reverse=True)",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy sorted:\n    - ascending if sum(first element, last element) is odd\n    - descending if that sum is even\n\n    The original array must not be modified.\n    \"\"\"\n    # Defensive copy\n    arr_copy = list(array)\n\n    # Handle empty array or single element: just return copy\n    if not arr_copy or len(arr_copy) == 1:\n        return arr_copy\n\n    first = arr_copy[0]\n    last = arr_copy[-1]\n\n    total = first + last\n\n    # If sum is odd -> ascending; if even -> descending\n    if total % 2 == 1:\n        # ascending\n        return sorted(arr_copy)\n    else:\n        # descending\n        return sorted(arr_copy, reverse=True)"
+}

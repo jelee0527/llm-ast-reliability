@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\nNAME = {\n    1: \"One\",\n    2: \"Two\",\n    3: \"Three\",\n    4: \"Four\",\n    5: \"Five\",\n    6: \"Six\",\n    7: \"Seven\",\n    8: \"Eight\",\n    9: \"Nine\",\n}\n\ndef by_length(arr: List[int]) -> List[str]:\n    # Filter values between 1 and 9 inclusive\n    filtered = [x for x in arr if 1 <= x <= 9]\n    if not filtered:\n        return []\n    # Sort then reverse (or sort descending directly)\n    filtered.sort(reverse=True)\n    # Map to names\n    return [NAME[x] for x in filtered]",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.034483,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

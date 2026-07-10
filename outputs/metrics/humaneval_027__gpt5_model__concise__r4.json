@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Callable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    return ''.join(ch.lower() if ch.isupper() else ch.upper() if ch.islower() else ch for ch in string)\n\n# Quick test\nif __name__ == \"__main__\":\n    print(flip_case('Hello'))  # hELLO",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.065574,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

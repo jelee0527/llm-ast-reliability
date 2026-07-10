@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\n\ndef closest_integer(value):\n    # Use Decimal for precise rounding behavior and to handle large/small numbers accurately.\n    # Set precision sufficiently high based on input length.\n    s = value.strip()\n    # Determine needed precision: number of digits excluding sign and decimal point + a few guard digits\n    digits = sum(1 for ch in s if ch.isdigit())\n    prec = max(28, digits + 5)\n    getcontext().prec = prec\n\n    d = Decimal(s)\n    # Separate integer part and fractional part\n    sign = 1 if d >= 0 else -1\n    absd = d.copy_abs()\n    int_part = int(absd // 1)\n    frac = absd - int_part\n\n    # If fractional part < 0.5 -> round down (toward zero)\n    if frac < Decimal('0.5'):\n        return sign * int_part\n    # If fractional part > 0.5 -> round up (away from zero)\n    if frac > Decimal('0.5'):\n        return sign * (int_part + 1)\n    # frac == 0.5 -> tie, round away from zero\n    return sign * (int_part + 1)",
+  "metrics": {
+    "total_nodes": 151,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.039735,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

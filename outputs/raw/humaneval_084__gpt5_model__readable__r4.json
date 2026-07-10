@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:07:36.570719+00:00",
+  "elapsed_seconds": 4.822,
+  "official_prompt": "\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n\n",
+  "raw_response": "import sys\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary as a string.\n    \n    N: integer, 0 ≤ N ≤ 10000\n    Returns: string representing the binary of the sum of decimal digits of N\n    \"\"\"\n    # Ensure N is integer\n    try:\n        n = int(N)\n    except Exception:\n        raise ValueError(\"Input must be an integer\")\n    if n < 0:\n        raise ValueError(\"N must be non-negative\")\n    # Sum decimal digits\n    digit_sum = sum(int(ch) for ch in str(n))\n    # Convert sum to binary string\n    return bin(digit_sum)[2:]\n\n# If run as script, read from stdin and print result\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip()\n    if data == \"\":\n        # no input; do nothing or print 0 for empty?\n        # We'll assume no input means nothing to output.\n        pass\n    else:\n        # Try parse first token as integer\n        token = data.split()[0]\n        try:\n            N = int(token)\n        except Exception:\n            raise ValueError(\"Input must be an integer\")\n        print(solve(N))",
+  "generated_code": "import sys\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary as a string.\n    \n    N: integer, 0 ≤ N ≤ 10000\n    Returns: string representing the binary of the sum of decimal digits of N\n    \"\"\"\n    # Ensure N is integer\n    try:\n        n = int(N)\n    except Exception:\n        raise ValueError(\"Input must be an integer\")\n    if n < 0:\n        raise ValueError(\"N must be non-negative\")\n    # Sum decimal digits\n    digit_sum = sum(int(ch) for ch in str(n))\n    # Convert sum to binary string\n    return bin(digit_sum)[2:]\n\n# If run as script, read from stdin and print result\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip()\n    if data == \"\":\n        # no input; do nothing or print 0 for empty?\n        # We'll assume no input means nothing to output.\n        pass\n    else:\n        # Try parse first token as integer\n        token = data.split()[0]\n        try:\n            N = int(token)\n        except Exception:\n            raise ValueError(\"Input must be an integer\")\n        print(solve(N))"
+}

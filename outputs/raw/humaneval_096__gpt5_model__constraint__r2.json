@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:34:00.534938+00:00",
+  "elapsed_seconds": 4.018,
+  "official_prompt": "\ndef count_up_to(n):\n    \"\"\"Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_up_to(n):\n    \"\"\"Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\nimport math\n\ndef count_up_to(n: int) -> List[int]:\n    \"\"\"Return a list of prime numbers that are less than n.\n\n    The description was slightly ambiguous about \"first n integers that are prime numbers and less than n\",\n    but examples indicate the intended behavior is: return all prime numbers strictly less than n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 2:\n        return []\n    limit = n - 1\n    sieve = bytearray(b\"\\x01\") * (n)  # indices 0..n-1\n    sieve[0:2] = b\"\\x00\\x00\"  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start: n: step] = b\"\\x00\" * ((n - 1 - start) // step + 1)\n    primes = [i for i in range(2, n) if sieve[i]]\n    return primes\n\n# Quick manual tests (will run only if executed directly)\nif __name__ == \"__main__\":\n    tests = [5, 11, 0, 20, 1, 18]\n    for t in tests:\n        print(t, \"->\", count_up_to(t))",
+  "generated_code": "from typing import List\nimport math\n\ndef count_up_to(n: int) -> List[int]:\n    \"\"\"Return a list of prime numbers that are less than n.\n\n    The description was slightly ambiguous about \"first n integers that are prime numbers and less than n\",\n    but examples indicate the intended behavior is: return all prime numbers strictly less than n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 2:\n        return []\n    limit = n - 1\n    sieve = bytearray(b\"\\x01\") * (n)  # indices 0..n-1\n    sieve[0:2] = b\"\\x00\\x00\"  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start: n: step] = b\"\\x00\" * ((n - 1 - start) // step + 1)\n    primes = [i for i in range(2, n) if sieve[i]]\n    return primes\n\n# Quick manual tests (will run only if executed directly)\nif __name__ == \"__main__\":\n    tests = [5, 11, 0, 20, 1, 18]\n    for t in tests:\n        print(t, \"->\", count_up_to(t))"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__claude_model__optimized__r2.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def check_if_last_char_is_a_letter(txt):\n    if not txt:\n        return False\n    last_word = txt.split(' ')[-1]\n    return len(last_word) == 1 and last_word.isalpha()",
+  "metrics": {
+    "total_nodes": 41,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.073171,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

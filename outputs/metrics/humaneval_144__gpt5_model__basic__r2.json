@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number, else False.\n    x and n are strings like \"numerator/denominator\" with positive integers.\n    \"\"\"\n    fx = Fraction(int(x.split('/')[0]), int(x.split('/')[1]))\n    fn = Fraction(int(n.split('/')[0]), int(n.split('/')[1]))\n    product = fx * fn\n    return product.denominator == 1\n\n# Optional simple tests\nif __name__ == \"__main__\":\n    print(simplify(\"1/5\", \"5/1\"))  # True\n    print(simplify(\"1/6\", \"2/1\"))  # False\n    print(simplify(\"7/10\", \"10/2\")) # False",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.016807,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

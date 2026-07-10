@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef valid_date(date):\n    if not date:\n        return False\n    pattern = r'^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\\d{4}$'\n    if not re.match(pattern, date):\n        return False\n    month, day, year = date.split('-')\n    month = int(month)\n    day = int(day)\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        return 1 <= day <= 31\n    elif month in (4, 6, 9, 11):\n        return 1 <= day <= 30\n    elif month == 2:\n        return 1 <= day <= 29\n    return False",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.092437,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

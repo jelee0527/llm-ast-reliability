@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Takes a string and returns an ordered version of it where each word's\n    characters are sorted in ascending ASCII order. Words are sequences of\n    non-space characters. Spaces (including multiple consecutive spaces) are\n    preserved exactly in their positions relative to words.\n    \"\"\"\n    # Split string into tokens of words and spaces, preserving separators\n    # Use regex to find sequences of non-space characters or sequences of spaces\n    tokens = re.findall(r'\\S+|\\s+', s)\n    result_parts = []\n    for tok in tokens:\n        if tok.isspace():\n            # preserve spaces as-is\n            result_parts.append(tok)\n        else:\n            # sort characters by ASCII (default behavior of sorted)\n            sorted_tok = ''.join(sorted(tok))\n            result_parts.append(sorted_tok)\n    return ''.join(result_parts)",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.042857,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

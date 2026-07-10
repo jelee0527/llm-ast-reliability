@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_057",
+  "task_id": "HumanEval/57",
+  "problem_name": "Monotonic",
+  "entry_point": "monotonic",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:09:40.857836+00:00",
+  "elapsed_seconds": 6.513,
+  "official_prompt": "\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef monotonic(l: List) -> bool:\n    \"\"\"Return True if list elements are monotonically increasing or decreasing.\n\n    Monotonic here means non-decreasing or non-increasing (equal adjacent values allowed).\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n <= 1:\n        return True\n    # Determine direction by finding first unequal pair\n    i = 1\n    direction = 0  # 0 unknown, 1 increasing, -1 decreasing\n    while i < n:\n        if l[i] > l[i - 1]:\n            direction = 1\n            break\n        if l[i] < l[i - 1]:\n            direction = -1\n            break\n        i += 1\n    if direction == 0:\n        # All equal\n        return True\n    # Check remaining elements follow direction\n    for j in range(i + 1, n):\n        if direction == 1 and l[j] < l[j - 1]:\n            return False\n        if direction == -1 and l[j] > l[j - 1]:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert monotonic([1, 2, 4, 20]) is True\n    assert monotonic([1, 20, 4, 10]) is False\n    assert monotonic([4, 1, 0, -10]) is True\n    assert monotonic([]) is True\n    assert monotonic([5]) is True\n    assert monotonic([2,2,2]) is True\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List\n\ndef monotonic(l: List) -> bool:\n    \"\"\"Return True if list elements are monotonically increasing or decreasing.\n\n    Monotonic here means non-decreasing or non-increasing (equal adjacent values allowed).\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n <= 1:\n        return True\n    # Determine direction by finding first unequal pair\n    i = 1\n    direction = 0  # 0 unknown, 1 increasing, -1 decreasing\n    while i < n:\n        if l[i] > l[i - 1]:\n            direction = 1\n            break\n        if l[i] < l[i - 1]:\n            direction = -1\n            break\n        i += 1\n    if direction == 0:\n        # All equal\n        return True\n    # Check remaining elements follow direction\n    for j in range(i + 1, n):\n        if direction == 1 and l[j] < l[j - 1]:\n            return False\n        if direction == -1 and l[j] > l[j - 1]:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert monotonic([1, 2, 4, 20]) is True\n    assert monotonic([1, 20, 4, 10]) is False\n    assert monotonic([4, 1, 0, -10]) is True\n    assert monotonic([]) is True\n    assert monotonic([5]) is True\n    assert monotonic([2,2,2]) is True\n    print(\"All tests passed.\")"
+}

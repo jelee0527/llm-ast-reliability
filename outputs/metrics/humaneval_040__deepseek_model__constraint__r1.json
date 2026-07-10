@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_040__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_040",
+  "task_id": "HumanEval/40",
+  "problem_name": "Triples Sum To Zero",
+  "entry_point": "triples_sum_to_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def triples_sum_to_zero(l: list):\n    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n    n = len(l)\n    if n < 3:\n        return False\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "triples_sum_to_zero"
+    ]
+  }
+}

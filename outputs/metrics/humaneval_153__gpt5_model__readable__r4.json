@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef Strongest_Extension(class_name: str, extensions: List[str]) -> str:\n    \"\"\"\n    Determine the strongest extension from a list and return \"ClassName.ExtensionName\".\n    Strength = number_of_uppercase_letters - number_of_lowercase_letters.\n    If multiple extensions share max strength, the first in the list is chosen.\n    \"\"\"\n    if not extensions:\n        # If there are no extensions, return just the class name (no extension).\n        return class_name\n    \n    best_index = 0\n    best_strength = None\n    \n    for idx, ext in enumerate(extensions):\n        caps = sum(1 for ch in ext if ch.isupper())\n        lowers = sum(1 for ch in ext if ch.islower())\n        strength = caps - lowers\n        \n        if best_strength is None or strength > best_strength:\n            best_strength = strength\n            best_index = idx\n        # if strength == best_strength, keep the earlier one (no change)\n    \n    return f\"{class_name}.{extensions[best_index]}\"\n\n\n# Example quick test when run as a script\nif __name__ == \"__main__\":\n    print(Strongest_Extension('my_class', ['AA', 'Be', 'CC']))  # expected my_class.AA\n    print(Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']))  # expected Slices.SErviNGSliCes",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.037267,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

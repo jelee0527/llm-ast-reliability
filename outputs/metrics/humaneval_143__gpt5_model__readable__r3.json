@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_143__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_143",
+  "task_id": "HumanEval/143",
+  "problem_name": "Words In Sentence",
+  "entry_point": "words_in_sentence",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef words_in_sentence(sentence: str) -> str:\n    \"\"\"\n    Return a string with words from the input sentence whose lengths are prime numbers,\n    preserving original order and separated by a single space.\n    \"\"\"\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0:\n            return False\n        limit = int(math.isqrt(n))\n        for i in range(3, limit + 1, 2):\n            if n % i == 0:\n                return False\n        return True\n\n    if not sentence:\n        return \"\"\n\n    words = sentence.split()\n    prime_length_words = [w for w in words if is_prime(len(w))]\n    return \" \".join(prime_length_words)",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.102362,
+    "function_names": [
+      "words_in_sentence",
+      "is_prime"
+    ]
+  }
+}

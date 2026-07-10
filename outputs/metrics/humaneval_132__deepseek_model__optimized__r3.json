@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def is_nested(string):\n    open_count = 0\n    close_count = 0\n    has_nested = False\n    for ch in string:\n        if ch == '[':\n            open_count += 1\n        else:\n            if open_count > 0:\n                open_count -= 1\n                has_nested = True\n            else:\n                close_count += 1\n    return has_nested and open_count == 0 and close_count == 0",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.059701,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

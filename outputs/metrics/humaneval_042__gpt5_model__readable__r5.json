@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n\n    Works for lists containing numbers. Non-numeric elements will raise a TypeError.\n\n    Examples:\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be a list, got None\")\n    if not isinstance(l, list):\n        raise TypeError(f\"Input must be a list, got {type(l).__name__}\")\n    result: List[Any] = []\n    for index, item in enumerate(l):\n        try:\n            incremented = item + 1\n        except TypeError as exc:\n            raise TypeError(f\"Element at index {index} is not a number: {item!r}\") from exc\n        result.append(incremented)\n    return result\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    import doctest\n    doctest.testmod(verbose=False)",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.067669,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

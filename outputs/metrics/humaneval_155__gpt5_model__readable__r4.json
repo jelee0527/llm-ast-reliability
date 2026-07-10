@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_155__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef even_odd_count(num):\n    \"\"\"Given an integer, return a tuple (even_count, odd_count) for its digits.\n\n    Examples:\n        even_odd_count(-12) -> (1, 1)\n        even_odd_count(123) -> (1, 2)\n    \"\"\"\n    # Ensure input is an integer\n    if not isinstance(num, int):\n        raise TypeError(\"Input must be an integer\")\n\n    # Work with absolute value to ignore sign\n    n = abs(num)\n\n    # Special case: if number is 0, it has one digit which is even\n    if n == 0:\n        return (1, 0)\n\n    even_count = 0\n    odd_count = 0\n\n    while n > 0:\n        digit = n % 10\n        if digit % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n        n //= 10\n\n    return (even_count, odd_count)",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.073684,
+    "function_names": [
+      "even_odd_count"
+    ]
+  }
+}

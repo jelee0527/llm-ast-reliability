@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_096__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef count_up_to(n: int) -> List[int]:\n    \"\"\"Return a list of prime numbers that are less than n.\n\n    The function accepts a non-negative integer n and returns all primes p such that 0 <= p < n.\n    Examples:\n      count_up_to(5)  -> [2, 3]\n      count_up_to(11) -> [2, 3, 5, 7]\n      count_up_to(0)  -> []\n      count_up_to(1)  -> []\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 2:\n        return []\n\n    limit = n - 1\n    size = n  # we'll use indices up to n-1\n    sieve = bytearray(b\"\\x01\") * size  # True means \"potentially prime\"\n    sieve[0:2] = b\"\\x00\\x00\"  # 0 and 1 are not prime\n\n    sqrt_n = int(math.isqrt(limit))\n    for p in range(2, sqrt_n + 1):\n        if sieve[p]:\n            step_start = p * p\n            sieve[step_start:size: p] = b\"\\x00\" * (((size - 1 - step_start) // p) + 1)\n\n    primes = [i for i in range(2, n) if sieve[i]]\n    return primes\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    test_values = [0, 1, 5, 11, 18, 20]\n    for val in test_values:\n        print(val, \"->\", count_up_to(val))",
+  "metrics": {
+    "total_nodes": 205,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.043902,
+    "function_names": [
+      "count_up_to"
+    ]
+  }
+}

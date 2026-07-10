@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def odd_count(lst):\n    result = []\n    for i, s in enumerate(lst):\n        count = sum(1 for ch in s if int(ch) % 2 == 1)\n        result.append(\n            f\"the number of odd elements {count}n the str{count}ng {count} of the {count}nput.\"\n        )\n    return result",
+  "metrics": {
+    "total_nodes": 72,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027778,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

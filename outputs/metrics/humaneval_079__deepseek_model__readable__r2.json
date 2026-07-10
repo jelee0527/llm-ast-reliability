@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"db0db\"\n    binary_digits = []\n    number = decimal\n    while number > 0:\n        remainder = number % 2\n        binary_digits.append(str(remainder))\n        number = number // 2\n    binary_string = ''.join(reversed(binary_digits))\n    return \"db\" + binary_string + \"db\"",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

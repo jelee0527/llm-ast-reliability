@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef is_sorted(lst):\n    \"\"\"\n    Return True if list is sorted in non-decreasing (ascending) order and\n    no number appears more than twice. If any number appears more than twice,\n    return False. Assumes only non-negative integers.\n    \"\"\"\n    if not lst:\n        return True\n    # check ascending (allow equal adjacent)\n    for a, b in zip(lst, lst[1:]):\n        if a > b:\n            return False\n    # check counts: no element appears more than twice\n    counts = Counter(lst)\n    return all(v <= 2 for v in counts.values())",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.088235,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

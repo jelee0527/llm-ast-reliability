@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_117__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef select_words(s: str, n: int) -> List[str]:\n    if not s:\n        return []\n    vowels = set(\"aeiouAEIOU\")\n    words = s.split()\n    res = []\n    for w in words:\n        consonants = sum(1 for ch in w if ch.isalpha() and ch not in vowels)\n        if consonants == n:\n            res.append(w)\n    return res",
+  "metrics": {
+    "total_nodes": 96,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.052083,
+    "function_names": [
+      "select_words"
+    ]
+  }
+}

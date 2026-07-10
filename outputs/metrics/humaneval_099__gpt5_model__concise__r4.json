@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    \"\"\"\n    Parse string value to float and return the closest integer.\n    If exactly halfway (.5), round away from zero.\n    \"\"\"\n    x = float(value)\n    # For halfway cases and general rounding away from zero on .5\n    # use math.floor/ceil depending on sign when fractional part is exactly 0.5\n    # Otherwise use round to nearest with ties to even is not wanted; handle manually.\n    frac, whole = math.modf(x)\n    # modf returns fractional part with sign of x\n    if abs(frac) != 0.5:\n        # not exactly halfway: use built-in rounding to nearest\n        return int(math.floor(x + 0.5)) if x >= 0 else int(math.ceil(x - 0.5))\n    else:\n        # exactly halfway: round away from zero\n        return int(math.ceil(x)) if x > 0 else int(math.floor(x))",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef poly(xs: list, x: float):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: list):\n    low = -10.0\n    high = 10.0\n    mid = 0.0\n    for _ in range(100):\n        mid = (low + high) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if poly(xs, low) * f_mid < 0:\n            high = mid\n        else:\n            low = mid\n    return mid",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.046512,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

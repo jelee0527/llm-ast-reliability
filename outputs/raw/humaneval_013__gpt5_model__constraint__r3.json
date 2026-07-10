@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:44:43.641356+00:00",
+  "elapsed_seconds": 4.833,
+  "official_prompt": "\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    # Handle None types defensively (though signature expects int)\n    if a is None or b is None:\n        raise TypeError(\"Inputs must be integers\")\n    # Ensure integers\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"Inputs must be integers\")\n    # gcd defined for integers; handle negatives by absolute value\n    a = abs(a)\n    b = abs(b)\n    # If both zero, mathematically gcd(0,0) is undefined; return 0 for convenience\n    if a == 0 and b == 0:\n        return 0\n    # Use Euclidean algorithm\n    while b != 0:\n        a, b = b, a % b\n    return a\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert greatest_common_divisor(3, 5) == 1\n    assert greatest_common_divisor(25, 15) == 5\n    assert greatest_common_divisor(0, 5) == 5\n    assert greatest_common_divisor(0, 0) == 0\n    assert greatest_common_divisor(-12, 18) == 6\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import Optional\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    # Handle None types defensively (though signature expects int)\n    if a is None or b is None:\n        raise TypeError(\"Inputs must be integers\")\n    # Ensure integers\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"Inputs must be integers\")\n    # gcd defined for integers; handle negatives by absolute value\n    a = abs(a)\n    b = abs(b)\n    # If both zero, mathematically gcd(0,0) is undefined; return 0 for convenience\n    if a == 0 and b == 0:\n        return 0\n    # Use Euclidean algorithm\n    while b != 0:\n        a, b = b, a % b\n    return a\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert greatest_common_divisor(3, 5) == 1\n    assert greatest_common_divisor(25, 15) == 5\n    assert greatest_common_divisor(0, 5) == 5\n    assert greatest_common_divisor(0, 0) == 0\n    assert greatest_common_divisor(-12, 18) == 6\n    print(\"All tests passed.\")"
+}

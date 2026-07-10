@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_118__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef get_closest_vowel(word: str) -> str:\n    \"\"\"Return the closest vowel that stands between two consonants from the right side of the word.\n    Vowels at the beginning or end do not count. Return empty string if none found.\n    Case sensitive: treat uppercase and lowercase letters separately when returning.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n    vowels_lower: Set[str] = set(\"aeiou\")\n    vowels_upper: Set[str] = set(\"AEIOU\")\n    # Helper to check vowel\n    def is_vowel(ch: str) -> bool:\n        return ch in vowels_lower or ch in vowels_upper\n    # Helper to check consonant (English letters only per problem)\n    def is_consonant(ch: str) -> bool:\n        if not ch.isalpha():\n            return False\n        return not is_vowel(ch)\n    # Scan from right to left, but vowels at last index or first index are invalid.\n    # For an index i to be valid: 0 < i < len(word)-1 and word[i] is vowel and both neighbors are consonants.\n    for i in range(len(word) - 2, 0, -1):  # start at len-2 down to 1\n        ch = word[i]\n        if is_vowel(ch):\n            left = word[i - 1]\n            right = word[i + 1]\n            if is_consonant(left) and is_consonant(right):\n                return ch\n    return \"\"\n\n\n# Example quick self-test (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"yogurt\", \"u\"),\n        (\"FULL\", \"U\"),\n        (\"quick\", \"\"),\n        (\"ab\", \"\"),\n        (\"a\", \"\"),\n        (\"bcd\", \"\"),\n        (\"bAceD\", \"e\"),  # 'e' between C and D? Actually A c e D -> index 3 'e' between 'c' and 'D' yes return 'e'\n    ]\n    for w, expected in tests:\n        result = get_closest_vowel(w)\n        print(w, result, \"OK\" if result == expected else f\"EXPECTED {expected}\")",
+  "metrics": {
+    "total_nodes": 254,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 3,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.055118,
+    "function_names": [
+      "get_closest_vowel",
+      "is_vowel",
+      "is_consonant"
+    ]
+  }
+}

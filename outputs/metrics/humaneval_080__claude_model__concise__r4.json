@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__claude_model__concise__r4.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def is_happy(s):\n    if len(s) < 3:\n        return False\n    return all(len(set(s[i:i+3])) == 3 for i in range(len(s)-2))",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.054545,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

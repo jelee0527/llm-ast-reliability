@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Union\nimport math\n\ndef right_angle_triangle(a: Union[int, float], b: Union[int, float], c: Union[int, float]) -> bool:\n    \"\"\"\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n\n    A right-angled triangle is a triangle in which one angle is a right angle (90 degrees).\n\n    The function:\n    - Validates inputs are positive numbers.\n    - Checks triangle inequality (each side less than sum of other two).\n    - Uses the Pythagorean theorem with a tolerance for floating point comparisons.\n\n    Examples:\n    right_angle_triangle(3, 4, 5) -> True\n    right_angle_triangle(1, 2, 3) -> False\n    \"\"\"\n    # Validate numeric inputs\n    try:\n        sides = [float(a), float(b), float(c)]\n    except (TypeError, ValueError):\n        return False\n\n    # All sides must be positive and non-zero\n    if any(side <= 0 or math.isinf(side) or math.isnan(side) for side in sides):\n        return False\n\n    # Check triangle inequality: each side must be less than sum of the other two\n    x, y, z = sides\n    if not (x + y > z and x + z > y and y + z > x):\n        return False\n\n    # Sort sides so largest is hypotenuse candidate\n    sides.sort()\n    leg1, leg2, hypotenuse = sides\n\n    # Use relative tolerance to account for floating point rounding\n    # Check leg1^2 + leg2^2 == hypotenuse^2 within tolerance\n    return math.isclose(leg1 * leg1 + leg2 * leg2, hypotenuse * hypotenuse, rel_tol=1e-9, abs_tol=1e-12)",
+  "metrics": {
+    "total_nodes": 202,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.034653,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

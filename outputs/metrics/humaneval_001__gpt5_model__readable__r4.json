@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    # Remove whitespace\n    s = ''.join(paren_string.split())\n    groups: List[str] = []\n    depth = 0\n    start_idx = None\n\n    for i, ch in enumerate(s):\n        if ch == '(':\n            if depth == 0:\n                # start of a new top-level group\n                start_idx = i\n            depth += 1\n        elif ch == ')':\n            depth -= 1\n            if depth == 0 and start_idx is not None:\n                groups.append(s[start_idx:i+1])\n                start_idx = None\n        else:\n            # ignore any other characters (though per problem there shouldn't be)\n            continue\n\n    # If input was empty or had only spaces, return empty list\n    return groups\n\n# Quick self-test when module run directly\nif __name__ == \"__main__\":\n    examples = [\n        '( ) (( )) (( )( ))',\n        '',\n        '()()',\n        ' ( ( ) )  ( ) ',\n        '((()))',\n        '() (()) (()())'\n    ]\n    for ex in examples:\n        print(repr(ex), '->', separate_paren_groups(ex))",
+  "metrics": {
+    "total_nodes": 168,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.053571,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_104__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef unique_digits(x: List[int]) -> List[int]:\n    \"\"\"Given a list of positive integers x, return a sorted list of all\n    elements that don't have any even digit.\n\n    Returned list is sorted in increasing order.\n    \"\"\"\n    result = []\n    for n in x:\n        # Ensure n is an integer and positive per spec; treat non-positive as not matching\n        try:\n            num = int(n)\n        except Exception:\n            continue\n        if num <= 0:\n            continue\n        s = str(abs(num))\n        has_even = False\n        for ch in s:\n            if ch in '02468':\n                has_even = True\n                break\n        if not has_even:\n            result.append(num)\n    result.sort()\n    return result\n\n# Quick tests when run as script\nif __name__ == \"__main__\":\n    print(unique_digits([15, 33, 1422, 1]))  # [1, 15, 33]\n    print(unique_digits([152, 323, 1422, 10]))  # []",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.081481,
+    "function_names": [
+      "unique_digits"
+    ]
+  }
+}

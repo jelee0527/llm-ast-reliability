@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def digits(n):\n    product = 1\n    found_odd = False\n    for ch in str(n):\n        d = int(ch)\n        if d % 2 != 0:\n            product *= d\n            found_odd = True\n    if not found_odd:\n        return 0\n    return product",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.087719,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

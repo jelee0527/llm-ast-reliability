@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__claude_model__concise__r3.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef words_string(s):\n    return re.split(r'[\\s,]+', s) if s else []",
+  "metrics": {
+    "total_nodes": 20,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.1,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

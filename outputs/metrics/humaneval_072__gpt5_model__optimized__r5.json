@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef will_it_fly(q, w):\n    '''\n    Return True if list/iterable q is palindromic and its sum <= w.\n    '''\n    # Convert to list to allow multiple passes and sum; if already list this is O(1) extra.\n    arr = list(q)\n    # Check palindrome: compare with reversed\n    if arr != arr[::-1]:\n        return False\n    # Check sum less than or equal to w\n    return sum(arr) <= w\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2], 5, False),\n        ([3, 2, 3], 1, False),\n        ([3, 2, 3], 9, True),\n        ([3], 5, True),\n        ([], 0, True),  # empty considered palindrome with sum 0\n    ]\n    for q, w, expected in tests:\n        result = will_it_fly(q, w)\n        print(q, w, result, \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 132,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

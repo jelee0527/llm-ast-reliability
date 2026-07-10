@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Returns the number of sentences that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'. Leading/trailing whitespace\n    around sentences is ignored. The match is case-sensitive and only counts\n    when the first token of the sentence equals \"I\".\n    \"\"\"\n    if not S:\n        return 0\n    # Split on sentence delimiters ., ?, !\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        part = part.strip()\n        if not part:\n            continue\n        # Extract first word (sequence of non-space characters)\n        # But ensure punctuation attached to the word is removed\n        m = re.match(r'^(\\S+)', part)\n        if not m:\n            continue\n        first = m.group(1).strip()\n        # Remove leading/trailing punctuation from the token except internal apostrophes/hyphens\n        first = re.sub(r'^[^A-Za-z0-9\\']+|[^A-Za-z0-9\\']+$', '', first)\n        if first == 'I':\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.086538,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:53:03.934634+00:00",
+  "elapsed_seconds": 2.826,
+  "official_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\nWORD_ORDER = {\n    \"zero\": 0, \"one\": 1, \"two\": 2, \"three\": 3, \"four\": 4,\n    \"five\": 5, \"six\": 6, \"seven\": 7, \"eight\": 8, \"nine\": 9\n}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Return the string with numbers sorted from smallest to largest.\n    \"\"\"\n    if not numbers:\n        return \"\"\n    parts = numbers.split()\n    # Filter out any empty tokens (robustness) and validate\n    parts = [p for p in parts if p]\n    sorted_parts = sorted(parts, key=lambda w: WORD_ORDER.get(w, 100))\n    return \" \".join(sorted_parts)",
+  "generated_code": "from typing import List\n\nWORD_ORDER = {\n    \"zero\": 0, \"one\": 1, \"two\": 2, \"three\": 3, \"four\": 4,\n    \"five\": 5, \"six\": 6, \"seven\": 7, \"eight\": 8, \"nine\": 9\n}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Return the string with numbers sorted from smallest to largest.\n    \"\"\"\n    if not numbers:\n        return \"\"\n    parts = numbers.split()\n    # Filter out any empty tokens (robustness) and validate\n    parts = [p for p in parts if p]\n    sorted_parts = sorted(parts, key=lambda w: WORD_ORDER.get(w, 100))\n    return \" \".join(sorted_parts)"
+}

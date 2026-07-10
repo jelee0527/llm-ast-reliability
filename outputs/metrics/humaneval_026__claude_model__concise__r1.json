@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_026__claude_model__concise__r1.json",
+  "problem_id": "humaneval_026",
+  "task_id": "HumanEval/26",
+  "problem_name": "Remove Duplicates",
+  "entry_point": "remove_duplicates",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\nfrom collections import Counter\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    counts = Counter(numbers)\n    return [x for x in numbers if counts[x] == 1]",
+  "metrics": {
+    "total_nodes": 46,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.021739,
+    "function_names": [
+      "remove_duplicates"
+    ]
+  }
+}

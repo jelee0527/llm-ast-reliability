@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef tri(n):\n    \"\"\"Return list of first n+1 Tribonacci numbers as described.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    @lru_cache(None)\n    def t(k):\n        if k == 0:\n            return 1\n        if k == 1:\n            return 3\n        if k % 2 == 0:\n            return 1 + k // 2 if k % 2 == 0 and isinstance(k, int) else 1 + k/2\n        # odd and k>=3\n        return t(k-1) + t(k-2) + t(k+1)\n    # compute sequence from 0..n by evaluating t for needed indices; handle recursion depth by dynamic programming\n    # We'll compute progressively using memoization; ensure t(k+1) available by calling t for increasing k\n    seq = []\n    for k in range(0, n+1):\n        seq.append(t(k))\n    return seq",
+  "metrics": {
+    "total_nodes": 146,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.082192,
+    "function_names": [
+      "tri",
+      "t"
+    ]
+  }
+}

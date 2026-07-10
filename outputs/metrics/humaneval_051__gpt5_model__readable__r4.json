@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_051__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_051",
+  "task_id": "HumanEval/51",
+  "problem_name": "Remove Vowels",
+  "entry_point": "remove_vowels",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef remove_vowels(text: str) -> str:\n    \"\"\"\n    remove_vowels is a function that takes a string and returns the string with all vowels removed.\n    Vowels considered are a, e, i, o, u in both lowercase and uppercase.\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    # Use regular expression to remove both lowercase and uppercase vowels\n    return re.sub(r'[aeiouAEIOU]', '', text)",
+  "metrics": {
+    "total_nodes": 37,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "remove_vowels"
+    ]
+  }
+}

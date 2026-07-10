@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p == 1:\n        return 0\n    # Use Python's built-in pow with modular exponent which is efficient\n    return pow(2, n, p)\n\nif __name__ == \"__main__\":\n    # Quick tests from the docstring\n    tests = [\n        (3, 5, 3),\n        (1101, 101, 2),\n        (0, 101, 1),\n        (3, 11, 8),\n        (100, 101, 1),\n    ]\n    for n, p, expected in tests:\n        res = modp(n, p)\n        print(n, p, res, \"OK\" if res == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.054054,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

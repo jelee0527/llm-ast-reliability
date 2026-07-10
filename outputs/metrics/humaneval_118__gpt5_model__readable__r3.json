@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_118__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef get_closest_vowel(word: str) -> str:\n    \"\"\"Return the closest vowel (from the right) that is between two consonants.\n    Vowels at the beginning or end do not count. Case sensitive.\n    If none found, return empty string.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n    vowels = set(\"aeiouAEIOU\")\n    # Helper to check if a character is a consonant (English letter and not vowel)\n    def is_consonant(ch: str) -> bool:\n        return ch.isalpha() and ch not in vowels\n\n    # Scan from right to left, but only consider vowels that are not first or last char\n    for i in range(len(word) - 2, 0, -1):  # indices from len-2 down to 1\n        ch = word[i]\n        if ch in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if is_consonant(left) and is_consonant(right):\n                return ch\n    return \"\"\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"yogurt\", \"u\"),\n        (\"FULL\", \"U\"),\n        (\"quick\", \"\"),\n        (\"ab\", \"\"),\n        (\"bAcE\", \"c\" ),  # placeholder; not an asserted expected result\n    ]\n    for inp, _ in tests:\n        print(inp, \"->\", get_closest_vowel(inp))",
+  "metrics": {
+    "total_nodes": 185,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.054054,
+    "function_names": [
+      "get_closest_vowel",
+      "is_consonant"
+    ]
+  }
+}

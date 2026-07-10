@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_004__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_004",
+  "task_id": "HumanEval/4",
+  "problem_name": "Mean Absolute Deviation",
+  "entry_point": "mean_absolute_deviation",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    n = len(numbers)\n    if n == 0:\n        return 0.0\n    mean = sum(numbers) / n\n    total = 0.0\n    for x in numbers:\n        total += abs(x - mean)\n    return total / n",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='mean_absolute_deviation',\n      args=arguments(\n        args=[\n          arg(\n            arg='numbers',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='float', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='n', ctx=Store())],\n          value=Call(\n            func=Name(id='len', ctx=Load()),\n            args=[\n              Name(id='numbers', ctx=Load())])),\n        If(\n          test=Compare(\n            left=Name(id='n', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Constant(value=0.0))]),\n        Assign(\n          targets=[\n            Name(id='mean', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='sum', ctx=Load()),\n              args=[\n                Name(id='numbers', ctx=Load())]),\n            op=Div(),\n            right=Name(id='n', ctx=Load()))),\n        Assign(\n          targets=[\n            Name(id='total', ctx=Store())],\n          value=Constant(value=0.0)),\n        For(\n          target=Name(id='x', ctx=Store()),\n          iter=Name(id='numbers', ctx=Load()),\n          body=[\n            AugAssign(\n              target=Name(id='total', ctx=Store()),\n              op=Add(),\n              value=Call(\n                func=Name(id='abs', ctx=Load()),\n                args=[\n                  BinOp(\n                    left=Name(id='x', ctx=Load()),\n                    op=Sub(),\n                    right=Name(id='mean', ctx=Load()))]))]),\n        Return(\n          value=BinOp(\n            left=Name(id='total', ctx=Load()),\n            op=Div(),\n            right=Name(id='n', ctx=Load())))],\n      returns=Name(id='float', ctx=Load()))])"
+}

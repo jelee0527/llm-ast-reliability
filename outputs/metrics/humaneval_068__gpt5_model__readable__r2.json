@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pluck(arr: List[int]) -> List[int]:\n    \"\"\"\n    Return the smallest even value from arr and its index as [value, index].\n    If multiple smallest even values exist, return the one with the smallest index.\n    If no even values or arr is empty, return [].\n    \"\"\"\n    best_value = None\n    best_index = -1\n\n    for idx, val in enumerate(arr):\n        # consider only even non-negative integers (problem states non-negative)\n        if val % 2 == 0:\n            if best_value is None or val < best_value:\n                best_value = val\n                best_index = idx\n            # if equal value found, we keep the earlier index (so do nothing)\n\n    if best_value is None:\n        return []\n    return [best_value, best_index]\n\n\n# Example quick tests (will run when module executed)\nif __name__ == \"__main__\":\n    tests = [\n        ([4, 2, 3], [2, 1]),\n        ([1, 2, 3], [2, 1]),\n        ([], []),\n        ([5, 0, 3, 0, 4, 2], [0, 1]),\n        ([7, 9, 11], []),\n        ([6, 6, 2, 2], [2, 2]),\n    ]\n\n    for inp, expected in tests:\n        out = pluck(inp)\n        print(f\"input: {inp} -> output: {out} (expected: {expected})\")",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

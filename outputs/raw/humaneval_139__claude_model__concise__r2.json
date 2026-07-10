@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_139",
+  "task_id": "HumanEval/139",
+  "problem_name": "Special Factorial",
+  "entry_point": "special_factorial",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:34:50.903856+00:00",
+  "elapsed_seconds": 5.449,
+  "official_prompt": "\ndef special_factorial(n):\n    \"\"\"The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n    For example:\n    >>> special_factorial(4)\n    288\n\n    The function will receive an integer as input and should return the special\n    factorial of this integer.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef special_factorial(n):\n    \"\"\"The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n    For example:\n    >>> special_factorial(4)\n    288\n\n    The function will receive an integer as input and should return the special\n    factorial of this integer.\n    \"\"\"\n\n",
+  "raw_response": "def special_factorial(n):\n    from math import factorial\n    result = 1\n    for i in range(1, n + 1):\n        result *= factorial(i)\n    return result",
+  "generated_code": "def special_factorial(n):\n    from math import factorial\n    result = 1\n    for i in range(1, n + 1):\n        result *= factorial(i)\n    return result"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef histogram(test):\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \"\"\"\n    if not isinstance(test, str):\n        raise TypeError(\"Input must be a string\")\n    s = test.strip()\n    if s == \"\":\n        return {}\n    parts = s.split()\n    # Filter out any empty tokens (robustness)\n    parts = [p for p in parts if p != \"\"]\n    if not parts:\n        return {}\n    counts = Counter(parts)\n    # Find maximum count\n    max_count = max(counts.values())\n    # Collect all letters with that count\n    result = {k: v for k, v in counts.items() if v == max_count}\n    return result",
+  "metrics": {
+    "total_nodes": 118,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.059322,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

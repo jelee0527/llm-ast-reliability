@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_043__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_043",
+  "task_id": "HumanEval/43",
+  "problem_name": "Pairs Sum To Zero",
+  "entry_point": "pairs_sum_to_zero",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def pairs_sum_to_zero(l):\n    for i in range(len(l)):\n        for j in range(i + 1, len(l)):\n            if l[i] + l[j] == 0:\n                return True\n    return False",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.09434,
+    "function_names": [
+      "pairs_sum_to_zero"
+    ]
+  }
+}

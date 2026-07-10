@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__claude_model__concise__r4.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    num = float(value)\n    if num >= 0:\n        if num - math.floor(num) == 0.5:\n            return math.ceil(num)\n        return round(num)\n    else:\n        if math.ceil(num) - num == 0.5:\n            return math.floor(num)\n        return round(num)",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.089744,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

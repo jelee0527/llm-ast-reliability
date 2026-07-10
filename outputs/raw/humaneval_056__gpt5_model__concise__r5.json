@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:06:33.622574+00:00",
+  "elapsed_seconds": 2.506,
+  "official_prompt": "\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n\n",
+  "raw_response": "from typing import *\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n    \"\"\"\n    balance = 0\n    for ch in brackets:\n        if ch == \"<\":\n            balance += 1\n        elif ch == \">\":\n            balance -= 1\n        else:\n            # invalid character: treat as failure\n            return False\n        if balance < 0:\n            return False\n    return balance == 0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import *\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n    \"\"\"\n    balance = 0\n    for ch in brackets:\n        if ch == \"<\":\n            balance += 1\n        elif ch == \">\":\n            balance -= 1\n        else:\n            # invalid character: treat as failure\n            return False\n        if balance < 0:\n            return False\n    return balance == 0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

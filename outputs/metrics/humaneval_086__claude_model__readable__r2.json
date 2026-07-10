@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__claude_model__readable__r2.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def anti_shuffle(s):\n    words = s.split(' ')\n    sorted_words = [''.join(sorted(word)) for word in words]\n    return ' '.join(sorted_words)",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

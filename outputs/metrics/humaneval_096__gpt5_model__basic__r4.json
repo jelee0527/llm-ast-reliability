@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_096__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef count_up_to(n):\n    \"\"\"Return a list of prime numbers less than n.\"\"\"\n    if not isinstance(n, int) or n <= 1:\n        return []\n    limit = n - 1\n    sieve = bytearray(b\"\\x01\") * (n)  # indices 0..n-1\n    sieve[0:2] = b\"\\x00\\x00\" if n > 1 else b\"\\x00\"  # 0 and 1 not prime\n    for i in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[i]:\n            step = i\n            start = i * i\n            sieve[start:n:step] = b\"\\x00\" * (((n - 1 - start) // step) + 1)\n    return [i for i in range(2, n) if sieve[i]]",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.038961,
+    "function_names": [
+      "count_up_to"
+    ]
+  }
+}

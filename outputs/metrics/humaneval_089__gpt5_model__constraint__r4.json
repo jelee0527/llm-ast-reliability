@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions forward in the alphabet (shift down by two multiplied to two places).\n    Non-letter characters are left unchanged. Case of letters is preserved.\n    Examples:\n    encrypt('hi') -> 'lm'\n    encrypt('asdfghjkl') -> 'ewhjklnop'\n    encrypt('gf') -> 'kj'\n    encrypt('et') -> 'ix'\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # shift forward by 4 with wraparound\n            orig_idx = ord(ch) - ord('a')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('a')))\n        elif 'A' <= ch <= 'Z':\n            orig_idx = ord(ch) - ord('A')\n            new_idx = (orig_idx + 4) % 26\n            result_chars.append(chr(new_idx + ord('A')))\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)",
+  "metrics": {
+    "total_nodes": 148,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.040541,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

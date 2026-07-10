@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\nfrom typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"Return a list of the first n+1 Tribonacci numbers as defined:\n    tri(1) = 3\n    tri(n) = 1 + n / 2, if n is even.\n    tri(n) = tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\n    The function returns integers; note that for even n the formula yields an integer because n/2 is integer for even n.\n    The returned list is indexed from 0..n where tri(0) is included as per examples (tri(0) = 1).\n    Example: tri(3) -> [1, 3, 2, 8]\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n\n    # Based on the example tri(3) == [1,3,2,8], we infer:\n    # tri(0) = 1\n    # tri(1) = 3\n    # For even k>=2: tri(k) = 1 + k//2\n    # For odd k>=3: tri(k) = tri(k-1) + tri(k-2) + tri(k+1)\n    # The definition for odd k references tri(k+1) (a higher index). We'll compute values iteratively\n    # by resolving even indices directly and solving odd indices by pairing with the next even index.\n    #\n    # Observations and strategy:\n    # - For any odd m >= 3, the recurrence is tri(m) = tri(m-1) + tri(m-2) + tri(m+1).\n    #   Rearranged, tri(m+1) = tri(m) - tri(m-1) - tri(m-2).\n    #   But tri(m+1) is even (since odd+1 = even), and for even we have closed form: 1 + (m+1)/2.\n    #   So we can use the known even formula to solve for tri(m) when needed:\n    #   tri(m) = tri(m-1) + tri(m-2) + tri(m+1)\n    #   -> tri(m) = tri(m-1) + tri(m-2) + (1 + (m+1)//2)\n    # - Thus odd indices can be computed using previously known lower indices and the closed form for the next even index.\n    #\n    # We'll compute values from 0 up to n in increasing order:\n    # - tri(0) = 1 (inferred from example)\n    # - tri(1) = 3\n    # - For k >= 2:\n    #   if k is even: tri(k) = 1 + k//2\n    #   else (k odd): tri(k) = tri(k-1) + tri(k-2) + tri(k+1) where tri(k+1) is even and equals 1 + (k+1)//2,\n    #                 so tri(k) = tri(k-1) + tri(k-2) + 1 + (k+1)//2\n    result: List[int] = []\n\n    # Base values\n    # Using example tri(3) = [1,3,2,8] implies:\n    # index 0 -> 1\n    # index 1 -> 3\n    # index 2 -> 2  (which matches 1 + 2/2 = 2)\n    # index 3 -> 8\n    result.append(1)  # tri(0)\n    if n == 0:\n        return result\n    result.append(3)  # tri(1)\n    if n == 1:\n        return result\n\n    # Compute sequentially up to n\n    for k in range(2, n + 1):\n        if k % 2 == 0:\n            # even\n            value = 1 + (k // 2)\n        else:\n            # odd: use tri(k) = tri(k-1) + tri(k-2) + tri(k+1)\n            # and tri(k+1) = 1 + (k+1)//2 (since k+1 is even)\n            next_even = 1 + ((k + 1) // 2)\n            value = result[k - 1] + result[k - 2] + next_even\n        result.append(value)\n\n    return result",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

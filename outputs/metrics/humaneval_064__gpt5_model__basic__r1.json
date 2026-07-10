@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in the string s.\n    Vowels: a, e, i, o, u (case-insensitive). 'y' counts as a vowel only\n    when it appears at the end of the given word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_lower = s.lower()\n    # Count regular vowels\n    count = sum(1 for ch in s_lower if ch in \"aeiou\")\n    # Count trailing 'y' if present\n    if s_lower.endswith('y'):\n        count += 1\n    return count\n\n# Basic tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"\", 0),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"crypt\", 0),\n        (\"sly\", 1),\n        (\"rhythm\", 0),  # 'y' not at end -> not counted\n        (\"sky\", 1),\n        (\"AEIOU\", 5),\n        (\"Queue\", 4),   # q u e u e -> u,e,u,e => 4\n        (\"bcd\", 0),\n        (\"happy\", 2),   # a + trailing y\n        (\"Happy\", 2),\n        (\"mythology\", 3), # o,o + trailing y? Actually 'mythology' ends with 'y' so +1; vowels: o,o + y = 3\n        (\"syzygy\", 1),  # ends with y only one y counted; other y not counted\n        (\"toy\", 2),     # o + trailing y\n        (\"YaY\", 2),     # Y at start not counted, trailing Y counted + a? Actually letters Y a Y -> a + trailing y =2\n    ]\n    for inp, expected in tests:\n        result = vowels_count(inp)\n        print(f\"{inp!r}: {result} (expected {expected})\")\n        assert result == expected, f\"Test failed for {inp}: got {result}, expected {expected}\"",
+  "metrics": {
+    "total_nodes": 217,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.036866,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

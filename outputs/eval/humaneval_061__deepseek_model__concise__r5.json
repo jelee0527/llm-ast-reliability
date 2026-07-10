@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_061__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    has_alpha = any(c.isalpha() for c in s)\n    if not has_alpha:\n        return s[::-1]\n    # Swap case for letters, leave others unchanged\n    return ''.join(c.swapcase() if c.isalpha() else c for c in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        # no input\n        pass\n    else:\n        # join lines with newline if multiple lines were provided\n        # treat entire input as one string similar to typical contest style\n        inp = '\\n'.join(data)\n        # print result\n        sys.stdout.write(solve(inp))",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_027__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\"For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n\n    Examples:\n    >>> flip_case('Hello')\n    'hELLO'\n    >>> flip_case('123! AbC')\n    '123! aBc'\n    \"\"\"\n    # Use list comprehension and swapcase for clarity and performance.\n    # Python str.swapcase() does exactly what's needed: flips case for letters, leaves others unchanged.\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    return string.swapcase()",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Iterable')],\n      level=0),\n    FunctionDef(\n      name='flip_case',\n      args=arguments(\n        args=[\n          arg(\n            arg='string',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\"For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\\n\\n    Examples:\\n    >>> flip_case('Hello')\\n    'hELLO'\\n    >>> flip_case('123! AbC')\\n    '123! aBc'\\n    \")),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Call(\n              func=Name(id='isinstance', ctx=Load()),\n              args=[\n                Name(id='string', ctx=Load()),\n                Name(id='str', ctx=Load())])),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='TypeError', ctx=Load()),\n                args=[\n                  Constant(value='Input must be a string')]))]),\n        Return(\n          value=Call(\n            func=Attribute(\n              value=Name(id='string', ctx=Load()),\n              attr='swapcase',\n              ctx=Load())))],\n      returns=Name(id='str', ctx=Load()))])"
+}

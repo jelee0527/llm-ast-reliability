@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:51:41.847893+00:00",
+  "elapsed_seconds": 2.634,
+  "official_prompt": "\ndef double_the_difference(lst):\n    '''\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n    \n    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) == 0\n    double_the_difference([9, -2]) == 81\n    double_the_difference([0]) == 0  \n   \n    If the input list is empty, return 0.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef double_the_difference(lst):\n    '''\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n    \n    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) == 0\n    double_the_difference([9, -2]) == 81\n    double_the_difference([0]) == 0  \n   \n    If the input list is empty, return 0.\n    '''\n\n",
+  "raw_response": "def double_the_difference(lst):\n    if not lst:\n        return 0\n    \n    total = 0\n    for number in lst:\n        if isinstance(number, float) and not number.is_integer():\n            continue\n        if not isinstance(number, (int, float)):\n            continue\n        if number < 0:\n            continue\n        integer_value = int(number)\n        if integer_value % 2 != 0:\n            total += integer_value ** 2\n    \n    return total",
+  "generated_code": "def double_the_difference(lst):\n    if not lst:\n        return 0\n    \n    total = 0\n    for number in lst:\n        if isinstance(number, float) and not number.is_integer():\n            continue\n        if not isinstance(number, (int, float)):\n            continue\n        if number < 0:\n            continue\n        integer_value = int(number)\n        if integer_value % 2 != 0:\n            total += integer_value ** 2\n    \n    return total"
+}

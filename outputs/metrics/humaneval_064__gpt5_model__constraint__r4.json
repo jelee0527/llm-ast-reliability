@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    s = s.strip()\n    if s == \"\":\n        return 0\n    s_up = s.upper()\n    vowels = set(\"AEIOU\")\n    count = 0\n    for i, ch in enumerate(s_up):\n        if ch in vowels:\n            count += 1\n        elif ch == 'Y':\n            # 'y' counts only if it's the last character of the word\n            if i == len(s_up) - 1:\n                count += 1\n    return count\n\n# Additional simple tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"\", 0),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"gym\", 0),\n        (\"play\", 1),\n        (\"rhythm\", 0),\n        (\"rhythmy\", 1),\n        (\"AEIOU\", 5),\n        (\"Bcdfg\", 0),\n        (\"queue\", 4),\n        (\"syzygy\", 1),  # only last y counts\n        (\"happy\", 1),\n        (\"Happy\", 1),\n        (\"   a e i   \", 3),\n    ]\n    for inp, expected in tests:\n        out = vowels_count(inp)\n        print(f\"{inp!r}: {out} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 218,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.050459,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

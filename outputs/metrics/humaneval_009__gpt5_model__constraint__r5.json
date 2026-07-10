@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_009__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_009",
+  "task_id": "HumanEval/9",
+  "problem_name": "Rolling Max",
+  "entry_point": "rolling_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    if numbers is None:\n        raise TypeError(\"numbers must be a list, got None\")\n    result: List[int] = []\n    current_max = None\n    for idx, value in enumerate(numbers):\n        if not isinstance(value, int):\n            # allow ints only as specified by typing; raise for invalid items\n            raise TypeError(f\"numbers[{idx}] is not an int: {value!r}\")\n        if current_max is None or value > current_max:\n            current_max = value\n        result.append(current_max)\n    return result\n\nif __name__ == \"__main__\":\n    # simple self-test\n    print(rolling_max([1, 2, 3, 2, 3, 4, 2]))  # expected [1,2,3,3,3,4,4]",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.059701,
+    "function_names": [
+      "rolling_max"
+    ]
+  }
+}

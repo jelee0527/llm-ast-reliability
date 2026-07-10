@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__concise__r4.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef poly(xs: list, x: float):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: list):\n    n = len(xs) - 1\n    if n == 1:\n        return -xs[0] / xs[1]\n    # Use Newton's method starting from 0\n    x = 0.0\n    for _ in range(1000):\n        f = poly(xs, x)\n        if abs(f) < 1e-12:\n            return x\n        # derivative\n        f_prime = sum([i * coeff * math.pow(x, i-1) for i, coeff in enumerate(xs) if i > 0])\n        if f_prime == 0:\n            break\n        x -= f / f_prime\n    # Fallback: try another starting point\n    x = 1.0\n    for _ in range(1000):\n        f = poly(xs, x)\n        if abs(f) < 1e-12:\n            return x\n        f_prime = sum([i * coeff * math.pow(x, i-1) for i, coeff in enumerate(xs) if i > 0])\n        if f_prime == 0:\n            break\n        x -= f / f_prime\n    return x",
+  "metrics": {
+    "total_nodes": 269,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.052045,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

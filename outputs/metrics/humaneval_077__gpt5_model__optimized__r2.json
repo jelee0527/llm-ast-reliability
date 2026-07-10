@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    '''\n    # Handle zero directly\n    if a == 0:\n        return True\n    # For negative numbers work with absolute value, preserve sign\n    sign = 1\n    if a < 0:\n        sign = -1\n    x = abs(a)\n    # Compute integer cube root via rounding of float estimate\n    # Use pow with fractional exponent to get initial estimate, then adjust\n    # Ensure we avoid floating inaccuracies by checking neighbors\n    est = int(round(x ** (1.0 / 3.0)))\n    # Correct potential negative rounding issues\n    if est < 0:\n        est = 0\n    # Check a few neighbors around estimate\n    for k in (est-2, est-1, est, est+1, est+2):\n        if k >= 0:\n            if sign * (k**3) == a:\n                return True\n    return False",
+  "metrics": {
+    "total_nodes": 118,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.076271,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__claude_model__concise__r5.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def prod_signs(arr):\n    if not arr:\n        return None\n    if 0 in arr:\n        return 0\n    sign = 1\n    for x in arr:\n        if x < 0:\n            sign *= -1\n    return sign * sum(abs(x) for x in arr)",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.116667,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

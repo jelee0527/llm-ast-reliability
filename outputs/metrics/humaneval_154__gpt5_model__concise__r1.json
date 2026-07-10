@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not b:\n        return True\n    if not a:\n        return False\n    n = len(b)\n    # generate rotations of b (including b itself)\n    seen = set()\n    s = b\n    for i in range(n):\n        if s in a:\n            return True\n        # rotate left by 1\n        s = s[1:] + s[0]\n        if s in seen:\n            break\n        seen.add(s)\n    return False\n\n# Quick manual tests (can be removed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x,y,exp in tests:\n        print(x,y, cycpattern_check(x,y), \"expected\", exp)",
+  "metrics": {
+    "total_nodes": 169,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.071006,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"\n    Return a list of the first n+1 Tribonacci numbers as defined:\n    tri(1) = 3\n    tri(n) = 1 + n/2 if n is even\n    tri(n) = tri(n-1) + tri(n-2) + tri(n+1) if n is odd\n\n    Note: Input n is non-negative integer. We produce values for indices 0..n.\n    The problem examples imply tri(0)=1 (since tri(1)=3 and example tri(3) = [1,3,2,8]).\n    We'll treat tri(0)=1 to match the example.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # We'll compute indices starting at 0 up to n inclusive.\n    # Base values inferred: tri(0)=1, tri(1)=3\n    res = [0] * (n + 1)\n    # handle small n explicitly\n    if n >= 0:\n        res[0] = 1\n    if n >= 1:\n        res[1] = 3\n    # For even indices >=2, tri(i)=1 + i/2\n    # For odd indices, recurrence is tri(i)=tri(i-1)+tri(i-2)+tri(i+1)\n    # That recurrence references tri(i+1) (an even index), so compute even indices first\n    # We'll iterate increasing i and fill evens using formula, and odds using solved linear relation:\n    # For odd k: tri(k) = tri(k-1) + tri(k-2) + tri(k+1) => tri(k+1) = tri(k) - tri(k-1) - tri(k-2)\n    # But k+1 is even; however easier: compute all even indices using formula, then compute odds by:\n    # tri(k) + tri(k+1) = tri(k-1) + tri(k-2) + 2*tri(k+1) => messy.\n    # Simpler approach: fill even indices using formula, then for odd indices solve:\n    # For odd i: tri(i) = tri(i-1) + tri(i-2) + tri(i+1) => tri(i+1) = tri(i) - tri(i-1) - tri(i-2)\n    # This expresses even (i+1) in terms of previous values; but we already have even formula.\n    # So instead compute in increasing order using system: when at odd i, tri(i+1) known by even formula,\n    # so tri(i) = tri(i-1)+tri(i-2)+tri(i+1) -> we can compute tri(i).\n    # Thus compute evens first whenever encountered.\n    for i in range(2, n + 1):\n        if i % 2 == 0:\n            # even\n            # use integer division if i even -> i/2 is integer but spec used division; examples show integers\n            res[i] = 1 + (i // 2)\n        else:\n            # odd: tri(i) = tri(i-1) + tri(i-2) + tri(i+1)\n            # tri(i+1) is even and has been computed (since i+1 > i and even; ensure it's computed by formula now)\n            # But loop is increasing; for odd i, i+1 is even and not yet processed. So compute tri(i+1) first.\n            if i + 1 <= n:\n                res[i+1] = 1 + ((i+1) // 2)\n            # Now compute tri(i)\n            # Ensure tri(i-1) and tri(i-2) exist (they do for i>=3; for i==1 handled earlier)\n            res[i] = res[i-1] + res[i-2] + (res[i+1] if i+1 <= n else 0)\n    return res",
+  "metrics": {
+    "total_nodes": 185,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.048649,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\n\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    Returns encoded string by shifting every lowercase alphabetic character by 5 positions.\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if \"a\" <= ch <= \"z\":\n            shifted = chr(((ord(ch) - ord(\"a\") + 5) % 26) + ord(\"a\"))\n            result_chars.append(shifted)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    Takes as input a string encoded with encode_shift function. Returns decoded string.\n    Shifts lowercase alphabetic characters back by 5 positions. Non-lowercase letters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if \"a\" <= ch <= \"z\":\n            shifted = chr(((ord(ch) - ord(\"a\") - 5) % 26) + ord(\"a\"))\n            result_chars.append(shifted)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\n# Optional quick test when run as a script\nif __name__ == \"__main__\":\n    examples = [\n        \"abcxyz\",\n        \"hello world!\",\n        \"shiftme\",\n        \"python3.9\",\n        \"a z\",\n    ]\n    for ex in examples:\n        encoded = encode_shift(ex)\n        decoded = decode_shift(encoded)\n        print(f\"original: {ex!r}, encoded: {encoded!r}, decoded: {decoded!r}\")",
+  "metrics": {
+    "total_nodes": 215,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.037209,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport heapq\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    if k <= 0:\n        return []\n    # Use a min-heap of size k to track the k largest elements\n    heap = []\n    for num in arr:\n        if len(heap) < k:\n            heapq.heappush(heap, num)\n        else:\n            if num > heap[0]:\n                heapq.heapreplace(heap, num)\n    result = sorted(heap)\n    return result\n\n# Example quick tests (can be removed if only function is desired)\nif __name__ == \"__main__\":\n    print(maximum([-3, -4, 5], 3))        # [-4, -3, 5]\n    print(maximum([4, -4, 4], 2))         # [4, 4]\n    print(maximum([-3, 2, 1, 2, -1, -2, 1], 1))  # [2]",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.044872,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

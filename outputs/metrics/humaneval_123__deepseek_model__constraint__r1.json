@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_123__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_123",
+  "task_id": "HumanEval/123",
+  "problem_name": "Get Odd Collatz",
+  "entry_point": "get_odd_collatz",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def get_odd_collatz(n):\n    sequence = []\n    while n != 1:\n        if n % 2 == 1:\n            sequence.append(n)\n            n = 3 * n + 1\n        else:\n            n = n // 2\n    sequence.append(1)\n    sequence.sort()\n    return sequence",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "get_odd_collatz"
+    ]
+  }
+}

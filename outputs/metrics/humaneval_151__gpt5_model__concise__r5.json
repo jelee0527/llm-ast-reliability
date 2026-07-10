@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef double_the_difference(lst: List[object]) -> int:\n    total = 0\n    for x in lst:\n        if isinstance(x, bool):\n            continue\n        if isinstance(x, int):\n            val = x\n        else:\n            # allow numeric types that are integer-valued (e.g. float 3.0)\n            if isinstance(x, (float,)) and math.isfinite(x) and x.is_integer():\n                val = int(x)\n            else:\n                continue\n        if val < 0:\n            continue\n        if val % 2 != 0:\n            total += val * val\n    return total",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.091743,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

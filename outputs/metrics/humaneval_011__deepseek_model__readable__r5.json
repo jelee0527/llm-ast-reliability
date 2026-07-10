@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    result_chars = []\n    for char_a, char_b in zip(a, b):\n        if char_a != char_b:\n            result_chars.append('1')\n        else:\n            result_chars.append('0')\n    return ''.join(result_chars)",
+  "metrics": {
+    "total_nodes": 62,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.048387,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__claude_model__concise__r3.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\n\ndef poly(xs: list, x: float):\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\n\ndef find_zero(xs: list):\n    lo, hi = -1e6, 1e6\n    while poly(xs, lo) * poly(xs, hi) > 0:\n        lo *= 2\n        hi *= 2\n    for _ in range(1000):\n        mid = (lo + hi) / 2\n        if poly(xs, lo) * poly(xs, mid) <= 0:\n            hi = mid\n        else:\n            lo = mid\n    return (lo + hi) / 2",
+  "metrics": {
+    "total_nodes": 148,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.033784,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

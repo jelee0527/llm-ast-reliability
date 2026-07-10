@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary.\n    \n    Example\n        For N = 1000, the sum of digits will be 1 the output should be \"1\".\n        For N = 150, the sum of digits will be 6 the output should be \"110\".\n        For N = 147, the sum of digits will be 12 the output should be \"1100\".\n    \n    Variables:\n        @N integer\n             Constraints: 0 ≤ N ≤ 10000.\n    Output:\n         a string of binary number\n    \"\"\"\n    digit_sum = 0\n    temp = N\n    while temp > 0:\n        digit_sum += temp % 10\n        temp //= 10\n    \n    if digit_sum == 0:\n        return \"0\"\n    \n    binary_digits = []\n    while digit_sum > 0:\n        binary_digits.append(str(digit_sum % 2))\n        digit_sum //= 2\n    \n    return ''.join(reversed(binary_digits))",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.060241,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_159__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    eaten = min(need, remaining)\n    total_eaten = number + eaten\n    left = remaining - eaten\n    return [total_eaten, left]",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='eat',\n      args=arguments(\n        args=[\n          arg(arg='number'),\n          arg(arg='need'),\n          arg(arg='remaining')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='eaten', ctx=Store())],\n          value=Call(\n            func=Name(id='min', ctx=Load()),\n            args=[\n              Name(id='need', ctx=Load()),\n              Name(id='remaining', ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='total_eaten', ctx=Store())],\n          value=BinOp(\n            left=Name(id='number', ctx=Load()),\n            op=Add(),\n            right=Name(id='eaten', ctx=Load()))),\n        Assign(\n          targets=[\n            Name(id='left', ctx=Store())],\n          value=BinOp(\n            left=Name(id='remaining', ctx=Load()),\n            op=Sub(),\n            right=Name(id='eaten', ctx=Load()))),\n        Return(\n          value=List(\n            elts=[\n              Name(id='total_eaten', ctx=Load()),\n              Name(id='left', ctx=Load())],\n            ctx=Load()))])])"
+}

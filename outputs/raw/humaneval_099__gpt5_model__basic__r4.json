@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:37:48.733341+00:00",
+  "elapsed_seconds": 5.434,
+  "official_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n\n",
+  "raw_response": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n    '''\n    # Parse input to float\n    x = float(value)\n    # Standard nearest integer\n    lower = math.floor(x)\n    upper = math.ceil(x)\n    # If already integer\n    if lower == upper:\n        return int(x)\n    # Distances to neighbors\n    d_lower = abs(x - lower)\n    d_upper = abs(upper - x)\n    if d_lower < d_upper:\n        return int(lower)\n    if d_upper < d_lower:\n        return int(upper)\n    # Equidistant: choose away from zero\n    if x > 0:\n        return int(upper)\n    if x < 0:\n        return int(lower)  # lower is more negative -> farther from zero\n    # x == 0 (should be handled above), but fallback\n    return 0",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n    '''\n    # Parse input to float\n    x = float(value)\n    # Standard nearest integer\n    lower = math.floor(x)\n    upper = math.ceil(x)\n    # If already integer\n    if lower == upper:\n        return int(x)\n    # Distances to neighbors\n    d_lower = abs(x - lower)\n    d_upper = abs(upper - x)\n    if d_lower < d_upper:\n        return int(lower)\n    if d_upper < d_lower:\n        return int(upper)\n    # Equidistant: choose away from zero\n    if x > 0:\n        return int(upper)\n    if x < 0:\n        return int(lower)  # lower is more negative -> farther from zero\n    # x == 0 (should be handled above), but fallback\n    return 0"
+}

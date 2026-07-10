@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:39:23.184000+00:00",
+  "elapsed_seconds": 4.447,
+  "official_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n\n",
+  "raw_response": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    # Parse the string to a float; raise ValueError on invalid input\n    x = float(value)\n\n    # If x is positive or zero, use math.floor/ceil logic\n    if x >= 0:\n        lower = math.floor(x)\n        upper = math.ceil(x)\n    else:\n        # For negative numbers, floor is more negative\n        lower = math.floor(x)\n        upper = math.ceil(x)\n\n    # If it's already an integer, return it\n    if x == lower == upper:\n        return int(x)\n\n    # Compute distances\n    dist_lower = abs(x - lower)\n    dist_upper = abs(upper - x)\n\n    if dist_lower < dist_upper:\n        return int(lower)\n    elif dist_upper < dist_lower:\n        return int(upper)\n    else:\n        # Equidistant: round away from zero\n        if x >= 0:\n            return int(upper)\n        else:\n            return int(lower)",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    # Parse the string to a float; raise ValueError on invalid input\n    x = float(value)\n\n    # If x is positive or zero, use math.floor/ceil logic\n    if x >= 0:\n        lower = math.floor(x)\n        upper = math.ceil(x)\n    else:\n        # For negative numbers, floor is more negative\n        lower = math.floor(x)\n        upper = math.ceil(x)\n\n    # If it's already an integer, return it\n    if x == lower == upper:\n        return int(x)\n\n    # Compute distances\n    dist_lower = abs(x - lower)\n    dist_upper = abs(upper - x)\n\n    if dist_lower < dist_upper:\n        return int(lower)\n    elif dist_upper < dist_lower:\n        return int(upper)\n    else:\n        # Equidistant: round away from zero\n        if x >= 0:\n            return int(upper)\n        else:\n            return int(lower)"
+}

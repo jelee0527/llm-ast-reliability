@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef will_it_fly(q: List[Any], w: float) -> bool:\n    \"\"\"\n    Return True if list q is a palindrome (balanced) and sum(q) <= w, otherwise False.\n    Elements of q are expected to be numeric for summation; if not numeric, a TypeError will be raised.\n    \"\"\"\n    # Check palindrome: list equals its reverse\n    if q != q[::-1]:\n        return False\n\n    # Compute sum and compare to w\n    total = 0\n    for item in q:\n        total += item\n\n    return total <= w\n\n\n# Quick internal tests (will not run when imported as module, but execute if run directly)\nif __name__ == \"__main__\":\n    tests = [\n        (([1, 2], 5), False),\n        (([3, 2, 3], 1), False),\n        (([3, 2, 3], 9), True),\n        (([3], 5), True),\n        (([], 0), True),  # empty list is palindromic and sum 0 <= 0\n    ]\n    for args, expected in tests:\n        result = will_it_fly(*args)\n        print(f\"will_it_fly{args} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.038961,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

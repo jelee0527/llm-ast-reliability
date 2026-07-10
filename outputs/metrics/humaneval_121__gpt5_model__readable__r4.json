@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_121__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef solution(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    Positions are zero-based (index 0 is even).\n    \"\"\"\n    total = 0\n    for index, value in enumerate(lst):\n        if index % 2 == 0 and value % 2 != 0:\n            total += value\n    return total\n\n# Quick self-test (will not run when imported elsewhere)\nif __name__ == \"__main__\":\n    assert solution([5, 8, 7, 1]) == 12\n    assert solution([3, 3, 3, 3, 3]) == 9\n    assert solution([30, 13, 24, 321]) == 0\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.036036,
+    "function_names": [
+      "solution"
+    ]
+  }
+}

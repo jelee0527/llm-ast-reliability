@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter(s) with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n    Examples:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n    \"\"\"\n    # Handle empty or whitespace-only input\n    if test is None:\n        return {}\n    s = test.strip()\n    if s == \"\":\n        return {}\n\n    parts = s.split()\n    counts: Dict[str, int] = {}\n    for token in parts:\n        # Only consider single lowercase letter tokens as per description.\n        # If token is empty skip; if longer than 1 treat each token as given (count token as key).\n        # The prompt implies single letters separated by spaces, so we'll count tokens as-is.\n        if token in counts:\n            counts[token] += 1\n        else:\n            counts[token] = 1\n\n    # Find the maximum count\n    if not counts:\n        return {}\n    max_count = None\n    for v in counts.values():\n        if max_count is None or v > max_count:\n            max_count = v\n\n    # Collect all keys that have the maximum count\n    result: Dict[str, int] = {}\n    for k, v in counts.items():\n        if v == max_count:\n            result[k] = v\n\n    return result",
+  "metrics": {
+    "total_nodes": 178,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.073034,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

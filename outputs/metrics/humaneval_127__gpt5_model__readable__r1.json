@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_127__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from math import isqrt\n\ndef intersection(interval1, interval2):\n    \"\"\"Return \"YES\" if the length of the closed intersection of two integer intervals\n    is a prime number, otherwise return \"NO\".\n\n    Each interval is a tuple (start, end) with start <= end. Intervals are closed\n    and contain both endpoints. Length is defined as end - start for the intersection.\n    \"\"\"\n    a1, b1 = interval1\n    a2, b2 = interval2\n\n    # Compute intersection endpoints\n    start = max(a1, a2)\n    end = min(b1, b2)\n\n    # If they don't intersect (including touching at a point where length 0), return \"NO\"\n    if start >= end:\n        return \"NO\"\n\n    length = end - start  # positive integer\n\n    # Check primality for length\n    if length < 2:\n        return \"NO\"\n    if length % 2 == 0:\n        return \"YES\" if length == 2 else \"NO\"\n\n    # test odd divisors up to sqrt(length)\n    limit = isqrt(length)\n    for d in range(3, limit + 1, 2):\n        if length % d == 0:\n            return \"NO\"\n    return \"YES\"",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.087302,
+    "function_names": [
+      "intersection"
+    ]
+  }
+}

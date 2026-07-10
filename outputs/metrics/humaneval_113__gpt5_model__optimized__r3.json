@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return transformed strings where every\n    letter 'i' in the template is replaced by the count of odd digits in each input string.\n    \"\"\"\n    template = \"the number of odd elements in the string {n} of the input.\"\n    out = []\n    for s in lst:\n        # count odd digits\n        cnt = 0\n        for ch in s:\n            # ch is a digit char; check odd by numeric value & 1\n            if (ord(ch) - 48) & 1:\n                cnt += 1\n        # replace 'i' occurrences in the template with the count as string,\n        # but according to examples, digits replace letter 'i' in words like \"in\", \"string\", \"input\"\n        # So build by replacing 'i' characters in the template\n        nstr = str(cnt)\n        # perform character-wise replacement: every 'i' -> nstr\n        res_chars = []\n        for ch in template:\n            if ch == 'i':\n                res_chars.append(nstr)\n            else:\n                res_chars.append(ch)\n        out.append(''.join(res_chars))\n    return out\n\nif __name__ == \"__main__\":\n    # simple tests\n    print(odd_count(['1234567']))  # [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    print(odd_count(['3',\"11111111\"]))  # [\"the number of odd elements 1n the str1ng 1 of the 1nput.\", ...]",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.049296,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

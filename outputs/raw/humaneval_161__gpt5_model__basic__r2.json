@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:10:39.646204+00:00",
+  "elapsed_seconds": 29.652,
+  "official_prompt": "\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n\n",
+  "raw_response": "import sys\n\ndef solve(s):\n    # Check if there is any letter in the string\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n    # Flip case for letters, keep others unchanged\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read()\n    if not data:\n        # nothing to do\n        sys.exit(0)\n    # strip trailing newlines but preserve other whitespace\n    s = data.rstrip('\\n')\n    # If input contains multiple lines, consider entire input as the string\n    # If need to only process first line, uncomment next line:\n    # s = s.splitlines()[0]\n    print(solve(s))",
+  "generated_code": "import sys\n\ndef solve(s):\n    # Check if there is any letter in the string\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n    # Flip case for letters, keep others unchanged\n    return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read()\n    if not data:\n        # nothing to do\n        sys.exit(0)\n    # strip trailing newlines but preserve other whitespace\n    s = data.rstrip('\\n')\n    # If input contains multiple lines, consider entire input as the string\n    # If need to only process first line, uncomment next line:\n    # s = s.splitlines()[0]\n    print(solve(s))"
+}

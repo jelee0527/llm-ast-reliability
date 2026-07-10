@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not isinstance(txt, str):\n        return False\n    if txt == \"\":\n        return False\n    # If last character is space -> False\n    last_char = txt[-1]\n    if last_char == \" \":\n        return False\n    # Must be an alphabetical character\n    if last_char not in string.ascii_letters:\n        return False\n    # Determine whether that character is alone as a token separated by spaces.\n    # Split by spaces; consecutive spaces produce empty tokens, but we can strip trailing spaces already handled.\n    parts = txt.split(\" \")\n    # Find last non-empty token from the right (since trailing spaces are already excluded, last token is relevant)\n    # But if there are multiple spaces producing empty tokens, that's fine; we want the last token.\n    if len(parts) == 0:\n        return False\n    last_token = parts[-1]\n    # If last token length is 1 and it's alphabetical, it's not part of a word\n    return len(last_token) == 1 and last_token in string.ascii_letters\n\n# Example quick tests (will run when module is executed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"apple pie\", False),\n        (\"apple pi e\", True),\n        (\"apple pi e \", False),\n        (\"\", False),\n        (\"a\", True),\n        (\"ab\", False),\n        (\"ab \", False),\n        (\"ab c\", True),\n        (\"ab c1\", False),\n        (\"ab c!\", False),\n        (\"ab  c\", False),  # last token 'c' but double space produces empty token? split yields ['ab','','c'] -> last is 'c' -> True expected? but original definition says words separated by space; this should be True\n    ]\n    for s, expected in tests:\n        result = check_if_last_char_is_a_letter(s)\n        print(repr(s), result, expected)",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.068063,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

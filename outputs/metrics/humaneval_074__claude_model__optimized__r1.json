@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_074__claude_model__optimized__r1.json",
+  "problem_id": "humaneval_074",
+  "task_id": "HumanEval/74",
+  "problem_name": "Total Match",
+  "entry_point": "total_match",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def total_match(lst1, lst2):\n    count1 = sum(len(s) for s in lst1)\n    count2 = sum(len(s) for s in lst2)\n    return lst1 if count1 <= count2 else lst2",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.039216,
+    "function_names": [
+      "total_match"
+    ]
+  }
+}

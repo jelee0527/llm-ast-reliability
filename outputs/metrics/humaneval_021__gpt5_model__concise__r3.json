@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_021__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_021",
+  "task_id": "HumanEval/21",
+  "problem_name": "Rescale To Unit",
+  "entry_point": "rescale_to_unit",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n    if not numbers:\n        return []\n    lo = min(numbers)\n    hi = max(numbers)\n    if hi == lo:\n        # all same: map to 0.0 for all\n        return [0.0 for _ in numbers]\n    span = hi - lo\n    return [(x - lo) / span for x in numbers]",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "rescale_to_unit"
+    ]
+  }
+}

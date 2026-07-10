@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:59:25.504136+00:00",
+  "elapsed_seconds": 3.429,
+  "official_prompt": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number out of range (1..1000)\")\n    vals: List[Tuple[int, str]] = [\n        (1000, 'm'), (900, 'cm'), (500, 'd'), (400, 'cd'),\n        (100, 'c'), (90, 'xc'), (50, 'l'), (40, 'xl'),\n        (10, 'x'), (9, 'ix'), (5, 'v'), (4, 'iv'), (1, 'i')\n    ]\n    res = []\n    n = number\n    for v, s in vals:\n        if n == 0:\n            break\n        q = n // v\n        if q:\n            res.append(s * q)\n            n -= v * q\n    return ''.join(res)",
+  "generated_code": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number out of range (1..1000)\")\n    vals: List[Tuple[int, str]] = [\n        (1000, 'm'), (900, 'cm'), (500, 'd'), (400, 'cd'),\n        (100, 'c'), (90, 'xc'), (50, 'l'), (40, 'xl'),\n        (10, 'x'), (9, 'ix'), (5, 'v'), (4, 'iv'), (1, 'i')\n    ]\n    res = []\n    n = number\n    for v, s in vals:\n        if n == 0:\n            break\n        q = n // v\n        if q:\n            res.append(s * q)\n            n -= v * q\n    return ''.join(res)"
+}

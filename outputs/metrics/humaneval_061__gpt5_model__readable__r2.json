@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\"Return True if the parentheses string is correctly balanced.\n\n    The string should contain only '(' and ')' characters. The function\n    returns True when every opening parenthesis has a matching closing\n    parenthesis in the correct order (well-formed parentheses).\n    \"\"\"\n    # Use a simple counter: increment for '(', decrement for ')'.\n    # If the counter ever goes negative, a closing parenthesis appeared\n    # without a matching opening one. At the end the counter must be zero.\n    balance = 0\n    for ch in brackets:\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        else:\n            # If other characters appear, treat as invalid input.\n            # Alternatively, you could skip or raise an error; here we\n            # treat it as not correctly bracketed.\n            return False\n        if balance < 0:\n            return False\n    return balance == 0\n\nif __name__ == \"__main__\":\n    # Quick self-tests\n    tests = [\"(\", \"()\", \"(()())\", \")(()\", \"\", \"((()))\", \"())(\", \"())\", \"(()\"]\n    for t in tests:\n        print(f\"{t!r}: {correct_bracketing(t)}\")",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

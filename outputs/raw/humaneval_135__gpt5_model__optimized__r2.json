@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:58:41.199625+00:00",
+  "elapsed_seconds": 3.762,
+  "official_prompt": "\ndef can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] < arr[i-1].\n    If no such index exists, return -1.\n    Assumes no duplicate values.\n    \"\"\"\n    # iterate from end to start to find the largest index where arr[i] < arr[i-1]\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Example tests\nif __name__ == \"__main__\":\n    print(can_arrange([1,2,4,3,5]))  # 3\n    print(can_arrange([1,2,3]))      # -1",
+  "generated_code": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] < arr[i-1].\n    If no such index exists, return -1.\n    Assumes no duplicate values.\n    \"\"\"\n    # iterate from end to start to find the largest index where arr[i] < arr[i-1]\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Example tests\nif __name__ == \"__main__\":\n    print(can_arrange([1,2,4,3,5]))  # 3\n    print(can_arrange([1,2,3]))      # -1"
+}

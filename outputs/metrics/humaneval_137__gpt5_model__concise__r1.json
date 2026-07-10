@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Optional, Union\n\nNumberLike = Union[int, float, str]\n\ndef _to_float_and_type(x: NumberLike):\n    if isinstance(x, (int, float)):\n        return float(x), type(x), x\n    if isinstance(x, str):\n        s = x.replace(',', '.')\n        try:\n            return float(s), str, x\n        except ValueError:\n            raise ValueError(f\"Cannot parse '{x}' as a real number\")\n    raise TypeError(\"Unsupported type\")\n\ndef compare_one(a: NumberLike, b: NumberLike) -> Optional[NumberLike]:\n    fa, ta, orig_a = _to_float_and_type(a)\n    fb, tb, orig_b = _to_float_and_type(b)\n    if abs(fa - fb) < 1e-12:\n        return None\n    if fa > fb:\n        return orig_a\n    return orig_b",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.070588,
+    "function_names": [
+      "_to_float_and_type",
+      "compare_one"
+    ]
+  }
+}

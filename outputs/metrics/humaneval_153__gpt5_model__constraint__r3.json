@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def Strongest_Extension(class_name, extensions):\n    \"\"\"Return 'ClassName.StrongestExtensionName' where strongest extension\n    is one with maximum (CAP - SM) where CAP is count of uppercase letters\n    and SM count of lowercase letters. Tie-breaker: first in list.\n    \"\"\"\n    # Handle empty extensions list: return class_name. (Not specified, but reasonable)\n    if not extensions:\n        return class_name + '.'\n    best_idx = None\n    best_score = None\n    for idx, ext in enumerate(extensions):\n        cap = 0\n        sm = 0\n        for ch in ext:\n            if 'A' <= ch <= 'Z':\n                cap += 1\n            elif 'a' <= ch <= 'z':\n                sm += 1\n            # Other characters ignored\n        score = cap - sm\n        if best_score is None or score > best_score:\n            best_score = score\n            best_idx = idx\n        # tie: keep earlier (do nothing)\n    # Compose result\n    chosen = extensions[best_idx] if best_idx is not None else ''\n    return class_name + '.' + chosen",
+  "metrics": {
+    "total_nodes": 136,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.066176,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

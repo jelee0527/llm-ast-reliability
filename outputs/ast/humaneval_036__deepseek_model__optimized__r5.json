@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_036__deepseek_model__optimized__r5.json",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    count = 0\n    for i in range(1, n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='fizz_buzz',\n      args=arguments(\n        args=[\n          arg(\n            arg='n',\n            annotation=Name(id='int', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\\n    >>> fizz_buzz(50)\\n    0\\n    >>> fizz_buzz(78)\\n    2\\n    >>> fizz_buzz(79)\\n    3\\n    ')),\n        Assign(\n          targets=[\n            Name(id='count', ctx=Store())],\n          value=Constant(value=0)),\n        For(\n          target=Name(id='i', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=1),\n              Name(id='n', ctx=Load())]),\n          body=[\n            If(\n              test=BoolOp(\n                op=Or(),\n                values=[\n                  Compare(\n                    left=BinOp(\n                      left=Name(id='i', ctx=Load()),\n                      op=Mod(),\n                      right=Constant(value=11)),\n                    ops=[\n                      Eq()],\n                    comparators=[\n                      Constant(value=0)]),\n                  Compare(\n                    left=BinOp(\n                      left=Name(id='i', ctx=Load()),\n                      op=Mod(),\n                      right=Constant(value=13)),\n                    ops=[\n                      Eq()],\n                    comparators=[\n                      Constant(value=0)])]),\n              body=[\n                AugAssign(\n                  target=Name(id='count', ctx=Store()),\n                  op=Add(),\n                  value=Call(\n                    func=Attribute(\n                      value=Call(\n                        func=Name(id='str', ctx=Load()),\n                        args=[\n                          Name(id='i', ctx=Load())]),\n                      attr='count',\n                      ctx=Load()),\n                    args=[\n                      Constant(value='7')]))])]),\n        Return(\n          value=Name(id='count', ctx=Load()))])])"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_058__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef common(l1: List, l2: List):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use set intersection for time and space efficiency, then return sorted list.\n    if not l1 or not l2:\n        return []\n    # Convert smaller list to set first to reduce memory/create set from smaller input\n    if len(l1) < len(l2):\n        s1, s2 = set(l1), l2\n        result = [x for x in s1 if x in set(s2)]\n    else:\n        s1, s2 = set(l2), l1\n        result = [x for x in s1 if x in set(s2)]\n    return sorted(result)",
+  "metrics": {
+    "total_nodes": 118,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.033898,
+    "function_names": [
+      "common"
+    ]
+  }
+}

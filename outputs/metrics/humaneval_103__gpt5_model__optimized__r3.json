@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef rounded_avg(n, m):\n    \"\"\"Return binary string of rounded average of integers from n to m inclusive.\n    If n > m return -1.\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(m, int):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # Count of terms\n    k = m - n + 1\n    # Sum of arithmetic sequence: k*(n+m)/2\n    # To avoid floating, compute numerator = k*(n+m)\n    numerator = k * (n + m)\n    # Average = numerator / (2*k) = (n+m)/2 but we want rounded to nearest integer.\n    # Rounded average = floor((numerator + k) / (2*k))  for rounding half up.\n    # However Python's round ties to even; better to implement exact half-up:\n    # Compute integer division and remainder to decide rounding.\n    base = numerator // (2 * k)\n    rem = numerator % (2 * k)\n    if rem * 2 >= 2 * k:  # rem >= k -> round up\n        avg = base + 1\n    else:\n        avg = base\n    # Alternatively, simpler: average of integers from n..m is (n+m)/2 exactly (may be .5).\n    # For half .5 we want to round up (as typical rounding). Implemented above.\n    return bin(avg)",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.047244,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

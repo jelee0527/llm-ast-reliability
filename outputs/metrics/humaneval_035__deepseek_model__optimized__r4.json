@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_035__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if not l:\n        raise ValueError(\"List is empty\")\n    max_val = l[0]\n    for x in l[1:]:\n        if x > max_val:\n            max_val = x\n    return max_val",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.1,
+    "function_names": [
+      "max_element"
+    ]
+  }
+}

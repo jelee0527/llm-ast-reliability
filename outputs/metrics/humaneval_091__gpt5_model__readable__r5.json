@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Count the number of sentences that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    Leading/trailing whitespace around sentences is ignored.\n    A sentence \"starts with the word 'I'\" means the first token after trimming\n    begins exactly with 'I' followed by either whitespace, punctuation, or end.\n    \"\"\"\n    if S is None:\n        return 0\n\n    # Split by sentence delimiters ., ?, !\n    # Keep using regex to split on those characters\n    parts = re.split(r'[.?!]', S)\n\n    count = 0\n    for part in parts:\n        trimmed = part.strip()\n        if not trimmed:\n            continue\n        # Check if the first word is exactly \"I\"\n        # Find first token (sequence of non-space)\n        first_token_match = re.match(r'^(\\S+)', trimmed)\n        if not first_token_match:\n            continue\n        first_token = first_token_match.group(1)\n        # Consider punctuation attached to the token, strip surrounding punctuation\n        # But we want to ensure the core word is exactly \"I\"\n        core = re.sub(r'^[^\\w]*|[^\\w]*$', '', first_token)\n        # For single-letter \"I\" we accept uppercase I only as per examples\n        if core == 'I':\n            count += 1\n\n    return count\n\n\n# Quick manual tests when run as script\nif __name__ == '__main__':\n    tests = [\n        (\"Hello world\", 0),\n        (\"The sky is blue. The sun is shining. I love this weather\", 1),\n        (\"I went home. I ate. you did? I!\", 3),\n        (\"...I...! ?I\", 2),\n        (\"Is this I? No. I\", 2),\n    ]\n    for s, expected in tests:\n        result = is_bored(s)\n        print(f\"{s!r} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 167,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.065868,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

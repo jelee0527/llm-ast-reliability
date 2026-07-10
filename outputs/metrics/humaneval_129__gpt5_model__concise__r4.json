@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import deque\nimport heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Build adjacency for values: from value v, neighbors' values list sorted\n    neigh = {}\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    for v,(i,j) in pos.items():\n        lst = []\n        for di,dj in dirs:\n            ni, nj = i+di, j+dj\n            if 0 <= ni < n and 0 <= nj < n:\n                lst.append(grid[ni][nj])\n        neigh[v] = sorted(lst)\n    # We need lexicographically minimal sequence length k; we can start at any value.\n    # Model as BFS over steps selecting minimal possible next value reachable.\n    # At step 1, candidates are all values; pick minimal value(s) that can lead to completion of length k.\n    # We need to ensure reachability of remaining steps; since graph is connected via moves, but grid may not be fully connected? It is connected.\n    # We'll iteratively choose minimal next value such that there exists a path of length remaining-1 starting from that node (allowing repeats).\n    # Existence is always true because you can always move to neighbors; but need to ensure from chosen cell you can continue for remaining steps.\n    # That is true unless isolated, which doesn't occur except 1x1 (n>=2). So simply greedy: at each step choose minimal reachable neighbor value among all current frontier positions; starting step allow any cell so pick global minimal value.\n    # However start can be anywhere, and next must be neighbor of start. But path can revisit; greedy must consider set of current positions that achieve prefix.\n    # We'll maintain set of positions (values) that match the chosen prefix. Initially all values.\n    # At each step t, we choose minimal possible next value x such that there exists a position in current set equal to x (for t=1) or reachable neighbor value x from some position in current set. Then update current set to positions that are value x and are reachable (for t=1 it's positions where value==x; for t>1 it's neighbor positions with value==x of any pos in prev set).\n    # Repeat k times.\n    current_positions = set(pos.values())  # set of coordinates\n    # But easier: represent by set of values that are possible current cell values (since values unique per cell)\n    current_values = set(grid[i][j] for i in range(n) for j in range(n))\n    result = []\n    for step in range(k):\n        # possible next values are:\n        if step == 0:\n            candidates = current_values\n        else:\n            cand = set()\n            for v in current_values:\n                for u in neigh[v]:\n                    cand.add(u)\n            candidates = cand\n        # choose minimal candidate\n        x = min(candidates)\n        result.append(x)\n        # update current_values to those positions with value x (i.e., single value x)\n        # But must track actual positions (values unique) so current_values becomes {x}\n        current_values = {x}\n    return result",
+  "metrics": {
+    "total_nodes": 311,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 7,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.032154,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

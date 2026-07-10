@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:06:27.133497+00:00",
+  "elapsed_seconds": 6.14,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef starts_one_ends(n: int) -> int:\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # For n = 1, the n-digit positive integers are 1..9; those that start or end with 1\n    # are just the single digit 1 -> count = 1\n    if n == 1:\n        return 1\n    # For n >= 2:\n    # Count numbers that start with 1: first digit fixed as 1, remaining n-1 digits can be 0-9 => 10^(n-1)\n    # But n-digit numbers cannot have leading zero; starting with 1 is valid and yields 10^(n-1) numbers.\n    start_with_1 = 10 ** (n - 1)\n    # Count numbers that end with 1: last digit fixed as 1, first digit can be 1-9 (cannot be 0), middle n-2 digits 0-9\n    # That yields 9 * 10^(n-2) numbers for n>=2\n    end_with_1 = 9 * (10 ** (n - 2))\n    # Overlap: numbers that both start and end with 1: first digit 1, last digit 1, middle n-2 digits free => 10^(n-2)\n    overlap = 10 ** (n - 2)\n    # Use inclusion-exclusion\n    return start_with_1 + end_with_1 - overlap\n\n# Example quick tests (will run only when module executed directly)\nif __name__ == \"__main__\":\n    tests = [1,2,3,4,5]\n    for t in tests:\n        print(t, starts_one_ends(t))",
+  "generated_code": "from typing import Optional\n\ndef starts_one_ends(n: int) -> int:\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # For n = 1, the n-digit positive integers are 1..9; those that start or end with 1\n    # are just the single digit 1 -> count = 1\n    if n == 1:\n        return 1\n    # For n >= 2:\n    # Count numbers that start with 1: first digit fixed as 1, remaining n-1 digits can be 0-9 => 10^(n-1)\n    # But n-digit numbers cannot have leading zero; starting with 1 is valid and yields 10^(n-1) numbers.\n    start_with_1 = 10 ** (n - 1)\n    # Count numbers that end with 1: last digit fixed as 1, first digit can be 1-9 (cannot be 0), middle n-2 digits 0-9\n    # That yields 9 * 10^(n-2) numbers for n>=2\n    end_with_1 = 9 * (10 ** (n - 2))\n    # Overlap: numbers that both start and end with 1: first digit 1, last digit 1, middle n-2 digits free => 10^(n-2)\n    overlap = 10 ** (n - 2)\n    # Use inclusion-exclusion\n    return start_with_1 + end_with_1 - overlap\n\n# Example quick tests (will run only when module executed directly)\nif __name__ == \"__main__\":\n    tests = [1,2,3,4,5]\n    for t in tests:\n        print(t, starts_one_ends(t))"
+}

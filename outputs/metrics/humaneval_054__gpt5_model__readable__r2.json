@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef same_chars(s0: str, s1: str) -> bool:\n    \"\"\"\n    Check if two words have the same characters.\n\n    The function returns True iff the set of distinct characters appearing in s0\n    is identical to the set of distinct characters appearing in s1.\n\n    Examples:\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    set0: Set[str] = set(s0)\n    set1: Set[str] = set(s1)\n    return set0 == set1\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.03125,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

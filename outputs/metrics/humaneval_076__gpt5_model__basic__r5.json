@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a simple power of n (i.e., x == n**k for some non-negative integer k).\"\"\"\n    # Handle invalid cases\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    # only non-negative integers make sense in this context\n    if x < 1 or n < 1:\n        return False\n    # 1 is n**0 for any n>=1\n    if x == 1:\n        return True\n    # n == 1: only 1 is a power of 1\n    if n == 1:\n        return False\n    # loop multiply to avoid floating errors and large exponent computation\n    power = 1\n    while power < x:\n        power *= n\n    return power == x\n\n# Example tests (can be removed)\nif __name__ == \"__main__\":\n    tests = [\n        (1,4, True),\n        (2,2, True),\n        (8,2, True),\n        (3,2, False),\n        (3,1, False),\n        (5,3, False),\n    ]\n    for x,n,expected in tests:\n        print(x,n, is_simple_power(x,n), \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.074534,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

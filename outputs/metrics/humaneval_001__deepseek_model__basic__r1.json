@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    paren_string = paren_string.replace(\" \", \"\")\n    result = []\n    current = \"\"\n    balance = 0\n    for ch in paren_string:\n        current += ch\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        if balance == 0:\n            result.append(current)\n            current = \"\"\n    return result",
+  "metrics": {
+    "total_nodes": 93,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.053763,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

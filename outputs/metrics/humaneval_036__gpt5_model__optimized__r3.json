@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_036__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\nfrom typing import Iterator\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\"\"\"\n    if n <= 0:\n        return 0\n    def gen_divisible(limit: int) -> Iterator[int]:\n        # yield numbers < limit divisible by 11 or 13 without duplicates\n        seen = set()\n        for d in (11, 13):\n            if d >= limit:\n                continue\n            # start at d, step d\n            for x in range(d, limit, d):\n                if x not in seen:\n                    seen.add(x)\n                    yield x\n    count = 0\n    for x in gen_divisible(n):\n        count += str(x).count('7')\n    return count\n\nif __name__ == \"__main__\":\n    # simple CLI for testing\n    if len(sys.argv) > 1:\n        try:\n            val = int(sys.argv[1])\n        except:\n            print(\"Provide integer\")\n            sys.exit(1)\n        print(fizz_buzz(val))\n    else:\n        # run doctest-like checks\n        assert fizz_buzz(50) == 0\n        assert fizz_buzz(78) == 2\n        assert fizz_buzz(79) == 3\n        print(\"Checks passed.\")",
+  "metrics": {
+    "total_nodes": 195,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.061538,
+    "function_names": [
+      "fizz_buzz",
+      "gen_divisible"
+    ]
+  }
+}

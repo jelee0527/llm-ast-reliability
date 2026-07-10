@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_028__claude_model__concise__r1.json",
+  "problem_id": "humaneval_028",
+  "task_id": "HumanEval/28",
+  "problem_name": "Concatenate",
+  "entry_point": "concatenate",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    return ''.join(strings)",
+  "metrics": {
+    "total_nodes": 23,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "concatenate"
+    ]
+  }
+}

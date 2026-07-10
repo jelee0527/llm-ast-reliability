@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    Returns None for n <= 1 since no proper positive divisors exist.\n    Examples:\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(16)\n    8\n    >>> largest_divisor(17)\n    1\n    >>> largest_divisor(1) is None\n    True\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # Check from largest possible proper divisor downwards for early exit\n    # Largest proper divisor is at most n//2, but we can do better by checking factors.\n    # We'll search for the smallest factor >1, then compute its paired large factor.\n    # If n is prime, largest proper divisor is 1.\n    # Iterate up to int(sqrt(n)) to find smallest factor.\n    import math\n    limit = int(math.isqrt(n))\n    smallest_factor = None\n    for i in range(2, limit + 1):\n        if n % i == 0:\n            smallest_factor = i\n            break\n\n    if smallest_factor is None:\n        # n is prime => largest proper divisor is 1\n        return 1\n\n    # Paired factor is n // smallest_factor, which is the largest proper divisor\n    return n // smallest_factor\n\nif __name__ == \"__main__\":\n    # simple tests\n    test_values = [1, 2, 3, 4, 6, 15, 16, 17, 100, 101]\n    for v in test_values:\n        print(v, '->', largest_divisor(v))",
+  "metrics": {
+    "total_nodes": 139,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.086331,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: List[float]) -> float:\n    n = len(xs) - 1\n    # Use Newton's method starting from a reasonable initial guess\n    # The leading coefficient is guaranteed to be non-zero\n    leading_coeff = xs[-1]\n    \n    # Initial guess: use the fact that for large |x|, poly(x) ≈ leading_coeff * x^n\n    # So a root is near 0 if constant term is small, otherwise near -constant/leading for linear\n    if n == 1:\n        return -xs[0] / xs[1]\n    \n    # For higher degree polynomials, start with a guess based on the ratio of coefficients\n    # Use the fact that roots are bounded by |root| <= 1 + max(|a_i|/|a_n|)\n    bound = 1 + max(abs(c) for c in xs[:-1]) / abs(leading_coeff)\n    x = bound * 0.5  # start somewhere inside the bound\n    \n    # Newton's method with fallback\n    for _ in range(100):\n        f = poly(xs, x)\n        if abs(f) < 1e-12:\n            return x\n        \n        # Compute derivative\n        deriv = sum([(i * coeff) * math.pow(x, i-1) for i, coeff in enumerate(xs) if i > 0])\n        if abs(deriv) < 1e-12:\n            # Derivative too small, try different starting point\n            x = -x if x != 0 else 1.0\n            continue\n        \n        x_new = x - f / deriv\n        if abs(x_new - x) < 1e-12:\n            return x_new\n        x = x_new\n    \n    # Fallback: binary search on the real line\n    # Find interval where sign changes\n    step = 0.1\n    left = -bound\n    right = bound\n    \n    f_left = poly(xs, left)\n    f_right = poly(xs, right)\n    \n    # If no sign change in [-bound, bound], expand search\n    if f_left * f_right > 0:\n        # Try to find a sign change by scanning\n        for start in [-bound, 0, bound]:\n            for direction in [-1, 1]:\n                x_test = start\n                for _ in range(1000):\n                    f_test = poly(xs, x_test)\n                    if abs(f_test) < 1e-12:\n                        return x_test\n                    if f_test * poly(xs, x_test + direction * step) < 0:\n                        left = x_test\n                        right = x_test + direction * step\n                        break\n                    x_test += direction * step\n                else:\n                    continue\n                break\n            else:\n                continue\n            break\n    \n    # Binary search\n    for _ in range(100):\n        mid = (left + right) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if f_mid * poly(xs, left) < 0:\n            right = mid\n        else:\n            left = mid\n    \n    return (left + right) / 2",
+  "metrics": {
+    "total_nodes": 507,
+    "ast_depth": 14,
+    "branch_count": 10,
+    "loop_count": 5,
+    "function_count": 2,
+    "control_flow_count": 28,
+    "control_flow_ratio": 0.055227,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

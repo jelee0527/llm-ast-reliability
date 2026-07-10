@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \"\"\"\n    # Define vowels\n    vowels_lower = 'aeiou'\n    vowels_upper = 'AEIOU'\n    # Map each vowel to the letter 2 places ahead (wrapping within alphabet)\n    def shift_char(c):\n        if c in vowels_lower:\n            # find position in alphabet and shift by 2\n            idx = ord(c) - ord('a')\n            new_idx = (idx + 2) % 26\n            return chr(ord('a') + new_idx)\n        if c in vowels_upper:\n            idx = ord(c) - ord('A')\n            new_idx = (idx + 2) % 26\n            return chr(ord('A') + new_idx)\n        return c\n\n    result_chars = []\n    for ch in message:\n        # swap case\n        swapped = ch.swapcase()\n        # after swapping, check if the original letter (before swap) was a vowel?\n        # The requirement: \"replaces all vowels in the message with the letter that appears 2 places ahead\"\n        # So replacement should be applied to the original vowel, then case swapped.\n        # To achieve that, if original char is vowel, compute shifted char, then swap its case accordingly.\n        orig = ch\n        if orig in vowels_lower or orig in vowels_upper:\n            shifted = shift_char(orig)\n            # now swap case of shifted according to original case swap: swapcase of original gives opposite case\n            shifted_swapped = shifted.swapcase()\n            result_chars.append(shifted_swapped)\n        else:\n            # non-vowel: just swap case of original\n            result_chars.append(swapped)\n    return ''.join(result_chars)\n\n# If run as script, simple tests\nif __name__ == \"__main__\":\n    print(encode('test'))             # expected 'TGST'\n    print(encode('This is a message'))  # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 209,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.043062,
+    "function_names": [
+      "encode",
+      "shift_char"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n    # Parse the string to a float\n    try:\n        x = float(value)\n    except Exception as e:\n        raise ValueError(f\"Invalid numeric string: {value}\") from e\n\n    # Split into integer and fractional parts\n    # Use math.modf: returns (fractional_part, integer_part) with sign of x on fractional\n    frac, integer = math.modf(x)\n    # integer is float; convert to int toward zero\n    int_part = int(integer)\n\n    # Determine absolute fractional distance\n    abs_frac = abs(frac)\n\n    if abs_frac < 0.5:\n        return int_part\n    elif abs_frac > 0.5:\n        # round toward nearest integer in direction of sign\n        if x > 0:\n            return int_part + 1\n        elif x < 0:\n            return int_part - 1\n        else:\n            return 0\n    else:\n        # exactly 0.5 -> round away from zero\n        if x >= 0:\n            return int_part + 1\n        else:\n            return int_part - 1\n\n# Quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\"10\", \"15.3\", \"14.5\", \"-14.5\", \"2.5\", \"-2.5\", \"0.5\", \"-0.5\", \"3.4999\", \"-3.5001\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.094937,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_sorted(lst: List[int]) -> bool:\n    \"\"\"\n    Given a list of integers (non-negative), return whether they are sorted in\n    non-decreasing (ascending) order. If any value appears more than twice\n    (i.e., 3 or more occurrences) return False. Otherwise allow duplicates up\n    to twice. Assumes only integers and no negative numbers.\n    \"\"\"\n    if not lst:\n        return True\n\n    # Check non-decreasing order\n    for i in range(1, len(lst)):\n        if lst[i] < lst[i - 1]:\n            return False\n\n    # Count occurrences and ensure no value appears more than twice\n    counts = {}\n    for value in lst:\n        counts[value] = counts.get(value, 0) + 1\n        if counts[value] > 2:\n            return False\n\n    return True\n\n\n# Quick self-tests (will run only if this file is executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        ([5], True),\n        ([1, 2, 3, 4, 5], True),\n        ([1, 3, 2, 4, 5], False),\n        ([1, 2, 3, 4, 5, 6], True),\n        ([1, 2, 3, 4, 5, 6, 7], True),\n        ([1, 3, 2, 4, 5, 6, 7], False),\n        ([1, 2, 2, 3, 3, 4], True),\n        ([1, 2, 2, 2, 3, 4], False),\n        ([], True),\n        ([0, 0], True),\n        ([0, 0, 0], False),\n    ]\n    for inp, expected in tests:\n        result = is_sorted(inp)\n        print(f\"is_sorted({inp}) = {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 245,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.044898,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message (string of letters and spaces) and returns an encoded version:\n    - Swap case of all letters.\n    - Replace all vowels in the message with the vowel that is 2 places ahead in the English alphabet,\n      preserving the case after the case swap.\n    Assumes only letters and spaces.\n    \"\"\"\n    # Mapping for vowels shifted 2 places ahead (in lowercase)\n    vowel_shift = {\n        'a': 'c',\n        'e': 'g',\n        'i': 'k',\n        'o': 'q',\n        'u': 'w',\n        'A': 'C',\n        'E': 'G',\n        'I': 'K',\n        'O': 'Q',\n        'U': 'W'\n    }\n\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # swap case first\n            swapped = ch.swapcase()\n            # if the swapped character is a vowel (consider uppercase/lowercase), replace it\n            replaced = vowel_shift.get(swapped, swapped)\n            result_chars.append(replaced)\n        else:\n            # keep non-letter characters as-is (e.g., spaces)\n            result_chars.append(ch)\n\n    return ''.join(result_chars)\n\n\nif __name__ == \"__main__\":\n    # quick tests from the prompt\n    print(encode('test'))               # expected 'TGST'\n    print(encode('This is a message'))  # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 113,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.035398,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_042__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_042",
+  "task_id": "HumanEval/42",
+  "problem_name": "Incr List",
+  "entry_point": "incr_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef incr_list(l: List[Any]) -> List[Any]:\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n    result: List[Any] = []\n    for item in l:\n        # Only try to increment numeric types (int, float); otherwise raise TypeError\n        if isinstance(item, (int, bool)):\n            # In Python, bool is subclass of int; treat True/False as 1/0 and increment accordingly\n            result.append(item + 1)\n        elif isinstance(item, float):\n            result.append(item + 1)\n        else:\n            # If item doesn't support addition with 1, raise an error for explicitness\n            try:\n                result.append(item + 1)\n            except Exception as e:\n                raise TypeError(f\"Elements must support addition with 1, got element {item!r}\") from e\n    return result\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(incr_list([1,2,3]))\n    print(incr_list([5,3,5,2,3,3,9,0,123]))",
+  "metrics": {
+    "total_nodes": 144,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.048611,
+    "function_names": [
+      "incr_list"
+    ]
+  }
+}

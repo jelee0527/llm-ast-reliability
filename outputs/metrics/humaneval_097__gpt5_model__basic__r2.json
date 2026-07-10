@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_097__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef multiply(a, b):\n    \"\"\"Return the product of the unit digits of two integers.\"\"\"\n    # Get absolute values to handle negative numbers, then extract last digit\n    ua = abs(a) % 10\n    ub = abs(b) % 10\n    return ua * ub\n\n# Optional: simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [(148, 412, 16), (19, 28, 72), (2020, 1851, 0), (14, -15, 20)]\n    for x, y, expected in tests:\n        result = multiply(x, y)\n        print(f\"multiply({x}, {y}) = {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 114,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "multiply"
+    ]
+  }
+}

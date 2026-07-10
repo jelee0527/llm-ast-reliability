@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    \"\"\"\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    Return a list [total_eaten_after_meals, carrots_left_after_meals].\n    If there are not enough remaining carrots to satisfy the need, eat all remaining carrots.\n\n    Parameters:\n    - number (int): carrots already eaten\n    - need (int): carrots you still need to eat\n    - remaining (int): carrots available in stock\n\n    Returns:\n    - list: [total_eaten_after_meals, carrots_left_after_meals]\n    \"\"\"\n    # Ensure inputs are non-negative integers within constraints\n    if number < 0 or need < 0 or remaining < 0:\n        raise ValueError(\"Inputs must be non-negative integers.\")\n    # Determine how many carrots can actually be eaten from remaining stock\n    to_eat_from_stock = min(need, remaining)\n    total_eaten = number + to_eat_from_stock\n    carrots_left = remaining - to_eat_from_stock\n    return [total_eaten, carrots_left]",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

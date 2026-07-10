@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__claude_model__readable__r2.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def compare_one(a, b):\n    def to_float(value):\n        if isinstance(value, str):\n            normalized = value.replace(',', '.')\n            return float(normalized)\n        return float(value)\n\n    float_a = to_float(a)\n    float_b = to_float(b)\n\n    if float_a == float_b:\n        return None\n    elif float_a > float_b:\n        return a\n    else:\n        return b",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.105263,
+    "function_names": [
+      "compare_one",
+      "to_float"
+    ]
+  }
+}

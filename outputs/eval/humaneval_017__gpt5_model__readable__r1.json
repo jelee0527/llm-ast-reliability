@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_017__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "AssertionError",
+  "error_message": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 12, in check\nAssertionError\n"
+}

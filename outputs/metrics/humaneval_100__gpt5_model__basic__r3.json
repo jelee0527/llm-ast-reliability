@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import itertools\n\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, return list of length n where first element is n,\n    and each subsequent element is the next odd if previous was odd, or next even if previous was even.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    result = []\n    current = n\n    for _ in range(n):\n        result.append(current)\n        current += 2\n    return result\n\nif __name__ == \"__main__\":\n    # quick tests\n    print(make_a_pile(3))  # [3,5,7]\n    print(make_a_pile(4))  # [4,6,8,10]\n    print(make_a_pile(1))  # [1]",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.053191,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

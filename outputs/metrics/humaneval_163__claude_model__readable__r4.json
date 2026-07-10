@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__claude_model__readable__r4.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    \n    even_digits = [num for num in range(lower, upper + 1) if num % 2 == 0 and 0 <= num <= 9]\n    \n    return even_digits",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.015625,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

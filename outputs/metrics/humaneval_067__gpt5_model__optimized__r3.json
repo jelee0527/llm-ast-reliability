@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Given a string s like \"5 apples and 6 oranges\" and integer n total fruits,\n    return number of mangoes = n - apples - oranges.\n    \"\"\"\n    # Find all integers in the string (including negative, though not expected)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # If not enough numbers found, assume missing values are zero\n        nums = (nums + ['0', '0'])[:2]\n    apples, oranges = int(nums[0]), int(nums[1])\n    return n - apples - oranges",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.025,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_142__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_142",
+  "task_id": "HumanEval/142",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def sum_squares(lst):\n    total = 0\n    for i, val in enumerate(lst):\n        if i % 3 == 0:\n            total += val * val\n        elif i % 4 == 0:\n            total += val * val * val\n        else:\n            total += val\n    return total",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.056338,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

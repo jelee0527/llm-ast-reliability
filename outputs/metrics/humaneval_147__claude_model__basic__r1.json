@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_147__claude_model__basic__r1.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def get_max_triples(n):\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    count = 0\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            for k in range(j + 1, len(a)):\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.042735,
+    "function_names": [
+      "get_max_triples"
+    ]
+  }
+}

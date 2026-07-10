@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__claude_model__readable__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    encoded_message = []\n    \n    for character in message:\n        if character.isalpha():\n            # First swap the case\n            swapped = character.swapcase()\n            # Then check if the swapped character is a vowel and replace it\n            if swapped in vowels:\n                encoded_char = chr(ord(swapped) + 2)\n            else:\n                encoded_char = swapped\n        else:\n            encoded_char = character\n        \n        encoded_message.append(encoded_char)\n    \n    return ''.join(encoded_message)",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.051282,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

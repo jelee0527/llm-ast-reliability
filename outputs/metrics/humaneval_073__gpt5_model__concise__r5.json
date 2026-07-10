@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\nfrom collections import Counter\n\ndef smallest_change(arr: List[int]) -> int:\n    n = len(arr)\n    if n <= 1:\n        return 0\n    # Count mismatched pairs and frequency of values among mismatched positions\n    mismatches = []\n    for i in range(n // 2):\n        j = n - 1 - i\n        if arr[i] != arr[j]:\n            mismatches.append(arr[i])\n            mismatches.append(arr[j])\n    if not mismatches:\n        return 0\n    # For each value, how many of the mismatched positions already have that value\n    freq = Counter(mismatches)\n    # Number of mismatched pairs\n    pairs = len(mismatches) // 2\n    # To minimize changes, pick a target value for each pair that maximizes matches.\n    # Globally, best strategy is to choose a value that appears most among mismatched positions;\n    # Changing other elements in those pairs to that value costs: total mismatched positions - max_count\n    max_same = max(freq.values())\n    # But each pair needs at most 1 change (convert the other element to match), so minimal changes is pairs - number_of_pairs_already_matching_target + remaining...\n    # Simpler correct formula: minimal changes = pairs - number_of_pairs_already_same\n    # Where number_of_pairs_already_same for chosen value v is floor(freq[v]/2)\n    best = 10**18\n    for v, c in freq.items():\n        changes = pairs - (c // 2)\n        if changes < best:\n            best = changes\n    return best",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.049451,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

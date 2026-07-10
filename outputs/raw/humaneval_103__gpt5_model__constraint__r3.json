@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:46:37.663927+00:00",
+  "elapsed_seconds": 4.936,
+  "official_prompt": "\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n\n",
+  "raw_response": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"Compute average of integers from n through m inclusive, rounded to nearest integer,\n    and return its binary representation as a string (like bin()). If n > m return -1.\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(m, int):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # number of terms\n    count = m - n + 1\n    # sum of arithmetic sequence: (first + last) * count // 2, but keep exact using integers\n    total = (n + m) * count\n    # average = total / (2*count) = (n + m)/2 ; but keep as rational: total / (2*count)\n    # average_value = total / (2*count)\n    # To round to nearest integer: compute integer division and remainder\n    numerator = total\n    denominator = 2 * count\n    # Compute floor division\n    q = numerator // denominator\n    r = numerator % denominator\n    # Decide rounding: if remainder*2 >= denominator then round up\n    if r * 2 >= denominator:\n        rounded = q + 1\n    else:\n        rounded = q\n    return bin(rounded)",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"Compute average of integers from n through m inclusive, rounded to nearest integer,\n    and return its binary representation as a string (like bin()). If n > m return -1.\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(m, int):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # number of terms\n    count = m - n + 1\n    # sum of arithmetic sequence: (first + last) * count // 2, but keep exact using integers\n    total = (n + m) * count\n    # average = total / (2*count) = (n + m)/2 ; but keep as rational: total / (2*count)\n    # average_value = total / (2*count)\n    # To round to nearest integer: compute integer division and remainder\n    numerator = total\n    denominator = 2 * count\n    # Compute floor division\n    q = numerator // denominator\n    r = numerator % denominator\n    # Decide rounding: if remainder*2 >= denominator then round up\n    if r * 2 >= denominator:\n        rounded = q + 1\n    else:\n        rounded = q\n    return bin(rounded)"
+}

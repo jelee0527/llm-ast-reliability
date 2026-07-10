@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def exchange(lst1, lst2):\n    odd_in_lst1 = sum(1 for x in lst1 if x % 2 != 0)\n    even_in_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n    if even_in_lst2 >= odd_in_lst1:\n        return \"YES\"\n    return \"NO\"",
+  "metrics": {
+    "total_nodes": 58,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.051724,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

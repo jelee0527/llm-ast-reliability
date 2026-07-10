@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_006__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_006",
+  "task_id": "HumanEval/6",
+  "problem_name": "Parse Nested Parens",
+  "entry_point": "parse_nested_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input: string with multiple groups of nested parentheses separated by spaces.\n    Returns list of deepest nesting level for each group.\n    \"\"\"\n    if not paren_string:\n        return []\n    groups = paren_string.split()\n    result: List[int] = []\n    for g in groups:\n        depth = 0\n        max_depth = 0\n        for ch in g:\n            if ch == '(':\n                depth += 1\n                if depth > max_depth:\n                    max_depth = depth\n            elif ch == ')':\n                depth -= 1\n                if depth < 0:\n                    # unmatched closing parenthesis; treat as zero and continue\n                    depth = 0\n            else:\n                # ignore other characters\n                continue\n        result.append(max_depth)\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 131,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.083969,
+    "function_names": [
+      "parse_nested_parens"
+    ]
+  }
+}

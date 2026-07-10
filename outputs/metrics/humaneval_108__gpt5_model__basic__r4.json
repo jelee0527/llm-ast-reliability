@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    \"\"\"\n    def sum_signed_digits(n: int) -> int:\n        if n == 0:\n            return 0\n        s = 0\n        sign = -1 if n < 0 else 1\n        n_abs = abs(n)\n        # get digits from most significant to least significant\n        digits = []\n        while n_abs > 0:\n            digits.append(n_abs % 10)\n            n_abs //= 10\n        digits = digits[::-1]  # now most significant first\n        # apply sign to first digit only\n        if digits:\n            s += sign * digits[0]\n            for d in digits[1:]:\n                s += d\n        return s\n\n    count = 0\n    for x in arr:\n        if sum_signed_digits(x) > 0:\n            count += 1\n    return count\n\nif __name__ == \"__main__\":\n    # quick tests\n    assert count_nums([]) == 0\n    assert count_nums([-1, 11, -11]) == 1\n    assert count_nums([1, 1, 2]) == 3\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 202,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.054455,
+    "function_names": [
+      "count_nums",
+      "sum_signed_digits"
+    ]
+  }
+}

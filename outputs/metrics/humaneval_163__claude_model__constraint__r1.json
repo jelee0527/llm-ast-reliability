@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def generate_integers(a, b):\n    lower = min(a, b)\n    upper = max(a, b)\n    result = []\n    for i in range(lower, upper + 1):\n        if i >= 0 and i <= 9 and i % 2 == 0:\n            result.append(i)\n    return result",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.04,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

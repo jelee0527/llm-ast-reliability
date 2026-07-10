@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_154__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def cycpattern_check(a , b):\n    if len(b) == 0:\n        return True\n    double_a = a + a\n    for i in range(len(b)):\n        rotated = b[i:] + b[:i]\n        if rotated in double_a:\n            return True\n    return False",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='cycpattern_check',\n      args=arguments(\n        args=[\n          arg(arg='a'),\n          arg(arg='b')]),\n      body=[\n        If(\n          test=Compare(\n            left=Call(\n              func=Name(id='len', ctx=Load()),\n              args=[\n                Name(id='b', ctx=Load())]),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Constant(value=True))]),\n        Assign(\n          targets=[\n            Name(id='double_a', ctx=Store())],\n          value=BinOp(\n            left=Name(id='a', ctx=Load()),\n            op=Add(),\n            right=Name(id='a', ctx=Load()))),\n        For(\n          target=Name(id='i', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Call(\n                func=Name(id='len', ctx=Load()),\n                args=[\n                  Name(id='b', ctx=Load())])]),\n          body=[\n            Assign(\n              targets=[\n                Name(id='rotated', ctx=Store())],\n              value=BinOp(\n                left=Subscript(\n                  value=Name(id='b', ctx=Load()),\n                  slice=Slice(\n                    lower=Name(id='i', ctx=Load())),\n                  ctx=Load()),\n                op=Add(),\n                right=Subscript(\n                  value=Name(id='b', ctx=Load()),\n                  slice=Slice(\n                    upper=Name(id='i', ctx=Load())),\n                  ctx=Load()))),\n            If(\n              test=Compare(\n                left=Name(id='rotated', ctx=Load()),\n                ops=[\n                  In()],\n                comparators=[\n                  Name(id='double_a', ctx=Load())]),\n              body=[\n                Return(\n                  value=Constant(value=True))])]),\n        Return(\n          value=Constant(value=False))])])"
+}

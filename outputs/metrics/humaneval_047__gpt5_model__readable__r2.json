@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Optional, Union\n\ndef median(l: List[Union[int, float]]) -> Optional[float]:\n    \"\"\"Return median of elements in the list l.\n    If list is empty, returns None.\n\n    Examples:\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        return None\n    # Make a sorted copy so original list is not modified\n    sorted_list = sorted(l)\n    n = len(sorted_list)\n    mid = n // 2\n    if n % 2 == 1:\n        # odd number of elements: return the middle one (as int if input ints)\n        return sorted_list[mid]\n    else:\n        # even number: average the two middle values -> return float when necessary\n        return (sorted_list[mid - 1] + sorted_list[mid]) / 2.0\n\nif __name__ == \"__main__\":\n    # Quick internal tests\n    assert median([3, 1, 2, 4, 5]) == 3\n    assert median([-10, 4, 6, 1000, 10, 20]) == 15.0\n    assert median([]) is None\n    assert median([1, 2]) == 1.5\n    assert median([1]) == 1\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.035294,
+    "function_names": [
+      "median"
+    ]
+  }
+}

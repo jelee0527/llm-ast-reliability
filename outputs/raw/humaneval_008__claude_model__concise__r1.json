@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_008",
+  "task_id": "HumanEval/8",
+  "problem_name": "Sum Product",
+  "entry_point": "sum_product",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:38:02.589105+00:00",
+  "elapsed_seconds": 2.203,
+  "official_prompt": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\nfrom functools import reduce\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    return (sum(numbers), reduce(lambda x, y: x * y, numbers, 1))",
+  "generated_code": "from typing import List, Tuple\nfrom functools import reduce\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    return (sum(numbers), reduce(lambda x, y: x * y, numbers, 1))"
+}

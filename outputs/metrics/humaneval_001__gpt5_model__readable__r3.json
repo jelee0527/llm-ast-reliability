@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    groups: List[str] = []\n    current = []\n    depth = 0\n\n    for ch in s:\n        if ch not in ('(', ')'):\n            # ignore any other characters\n            continue\n        if ch == '(':\n            depth += 1\n            current.append(ch)\n        elif ch == ')':\n            depth -= 1\n            current.append(ch)\n            if depth < 0:\n                # unmatched closing bracket; treat by resetting\n                # clear current and reset depth to 0\n                current = []\n                depth = 0\n                continue\n            if depth == 0:\n                groups.append(''.join(current))\n                current = []\n\n    # If there's leftover with non-zero depth, it's unbalanced; ignore it\n    return groups\n\n\nif __name__ == \"__main__\":\n    # quick manual test\n    examples = [\n        \"( ) (( )) (( )( ))\",\n        \"()(())\",\n        \" ( ( ) ) ( ) \",\n        \"((())()) ()\",\n        \"\"\n    ]\n    for ex in examples:\n        print(repr(ex), \"->\", separate_paren_groups(ex))",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.062147,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

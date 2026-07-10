@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef valid_date(date: Optional[str]) -> bool:\n    \"\"\"Validate date string in format mm-dd-yyyy per rules described.\"\"\"\n    if not isinstance(date, str):\n        return False\n    if date == \"\":\n        return False\n    # Must be exactly mm-dd-yyyy with two dashes and digits in correct places\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    mm_s, dd_s, yyyy_s = parts\n    # Month and day should have at least one digit; year should be 1+ digits\n    if not (mm_s.isdigit() and dd_s.isdigit() and yyyy_s.isdigit()):\n        return False\n    # Prevent leading/trailing spaces disguised as digits\n    # Check that original formatting uses exactly the substrings (no extra chars)\n    # lengths: mm and dd should be 1 or 2 digits, year at least 1 (but typical is 4)\n    if len(mm_s) < 1 or len(mm_s) > 2:\n        return False\n    if len(dd_s) < 1 or len(dd_s) > 2:\n        return False\n    if len(yyyy_s) < 1:\n        return False\n    try:\n        month = int(mm_s)\n        day = int(dd_s)\n        year = int(yyyy_s)\n    except ValueError:\n        return False\n    # Month rule\n    if month < 1 or month > 12:\n        return False\n    # Day rule depending on month\n    if month in (1,3,5,7,8,10,12):\n        max_day = 31\n    elif month in (4,6,9,11):\n        max_day = 30\n    elif month == 2:\n        max_day = 29  # per problem statement, February allowed up to 29 (no leap-year check)\n    else:\n        return False\n    if day < 1 or day > max_day:\n        return False\n    # Year can be any non-negative integer? Problem doesn't restrict; disallow negative and zero? keep >=0\n    if year < 0:\n        return False\n    return True",
+  "metrics": {
+    "total_nodes": 258,
+    "ast_depth": 9,
+    "branch_count": 14,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 27,
+    "control_flow_ratio": 0.104651,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

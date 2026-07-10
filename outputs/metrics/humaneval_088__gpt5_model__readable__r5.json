@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting.\n    Sort ascending if the sum(first element, last element) is odd,\n    or sort descending if that sum is even.\n    The original array must not be modified.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    # Make a shallow copy so original is not modified\n    result = list(array)\n\n    # Empty or single-element array: copy is already correct\n    if len(result) <= 1:\n        return result\n\n    # Determine sum of first and last elements\n    total = result[0] + result[-1]\n\n    # If sum is odd -> ascending, else (even) -> descending\n    if total % 2 == 1:\n        return sorted(result)\n    else:\n        return sorted(result, reverse=True)",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

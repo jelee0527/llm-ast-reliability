@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:22:49.199244+00:00",
+  "elapsed_seconds": 4.807,
+  "official_prompt": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    \"\"\"\n    if S is None:\n        return 0\n    # Split sentences by delimiters ., ?, !\n    # Keep things deterministic: use regex to split on those characters.\n    parts = re.split(r'[\\.?!]', S)\n    count = 0\n    for part in parts:\n        # Strip leading/trailing whitespace\n        s = part.strip()\n        if not s:\n            continue\n        # Get first word\n        # Split on whitespace; if empty continue\n        words = s.split()\n        if not words:\n            continue\n        # Count if first word is exactly \"I\"\n        if words[0] == \"I\":\n            count += 1\n    return count\n\n# Example quick tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello world\", 0),\n        (\"The sky is blue. The sun is shining. I love this weather\", 1),\n        (\"I am. You are? I!\", 2),\n        (\"  I am here.  i am not counted. I.\", 2),\n        (\"\", 0),\n        (None, 0),\n    ]\n    for s, expected in tests:\n        result = is_bored(s)\n        print(repr(s), \"=>\", result, \"expected\", expected)",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    \"\"\"\n    if S is None:\n        return 0\n    # Split sentences by delimiters ., ?, !\n    # Keep things deterministic: use regex to split on those characters.\n    parts = re.split(r'[\\.?!]', S)\n    count = 0\n    for part in parts:\n        # Strip leading/trailing whitespace\n        s = part.strip()\n        if not s:\n            continue\n        # Get first word\n        # Split on whitespace; if empty continue\n        words = s.split()\n        if not words:\n            continue\n        # Count if first word is exactly \"I\"\n        if words[0] == \"I\":\n            count += 1\n    return count\n\n# Example quick tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello world\", 0),\n        (\"The sky is blue. The sun is shining. I love this weather\", 1),\n        (\"I am. You are? I!\", 2),\n        (\"  I am here.  i am not counted. I.\", 2),\n        (\"\", 0),\n        (None, 0),\n    ]\n    for s, expected in tests:\n        result = is_bored(s)\n        print(repr(s), \"=>\", result, \"expected\", expected)"
+}

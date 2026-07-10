@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:34:49.777118+00:00",
+  "elapsed_seconds": 5.376,
+  "official_prompt": "\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n\n",
+  "raw_response": "import math\nfrom typing import Iterator\n\ndef is_prime(k: int) -> bool:\n    if k <= 1:\n        return False\n    if k <= 3:\n        return True\n    if k % 2 == 0:\n        return False\n    r = int(math.isqrt(k))\n    i = 3\n    while i <= r:\n        if k % i == 0:\n            return False\n        i += 2\n    return True\n\ndef fib_generator() -> Iterator[int]:\n    a, b = 0, 1\n    while True:\n        a, b = b, a + b\n        yield a\n\ndef prime_fib(n: int) -> int:\n    if n <= 0:\n        raise ValueError(\"n must be positive\")\n    gen = fib_generator()\n    count = 0\n    for f in gen:\n        if is_prime(f):\n            count += 1\n            if count == n:\n                return f\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "import math\nfrom typing import Iterator\n\ndef is_prime(k: int) -> bool:\n    if k <= 1:\n        return False\n    if k <= 3:\n        return True\n    if k % 2 == 0:\n        return False\n    r = int(math.isqrt(k))\n    i = 3\n    while i <= r:\n        if k % i == 0:\n            return False\n        i += 2\n    return True\n\ndef fib_generator() -> Iterator[int]:\n    a, b = 0, 1\n    while True:\n        a, b = b, a + b\n        yield a\n\ndef prime_fib(n: int) -> int:\n    if n <= 0:\n        raise ValueError(\"n must be positive\")\n    gen = fib_generator()\n    count = 0\n    for f in gen:\n        if is_prime(f):\n            count += 1\n            if count == n:\n                return f\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

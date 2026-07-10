@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__claude_model__readable__r3.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def is_sorted(lst):\n    # Check if any number appears more than twice (more than 1 duplicate)\n    for number in lst:\n        if lst.count(number) > 2:\n            return False\n    \n    # Check if the list is sorted in ascending order\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n    \n    return True",
+  "metrics": {
+    "total_nodes": 58,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.12069,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

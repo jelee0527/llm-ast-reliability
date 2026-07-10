@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_029__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_029",
+  "task_id": "HumanEval/29",
+  "problem_name": "Filter By Prefix",
+  "entry_point": "filter_by_prefix",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n    \"\"\"\n    if not isinstance(prefix, str):\n        raise TypeError(\"prefix must be a string\")\n    if prefix == \"\":\n        # If prefix is empty, return all strings (they all start with empty prefix)\n        return list(strings)\n    result: List[str] = []\n    for s in strings:\n        if not isinstance(s, str):\n            # Skip non-string entries\n            continue\n        if s.startswith(prefix):\n            result.append(s)\n    return result\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert filter_by_prefix([], 'a') == []\n    assert filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a') == ['abc', 'array']\n    assert filter_by_prefix(['', 'a', 'ab'], '') == ['', 'a', 'ab']\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 152,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.065789,
+    "function_names": [
+      "filter_by_prefix"
+    ]
+  }
+}

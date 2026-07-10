@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def check_dict_case(dict):\n    if not dict:\n        return False\n    lower = True\n    upper = True\n    for key in dict:\n        if not isinstance(key, str):\n            return False\n        if key != key.lower():\n            lower = False\n        if key != key.upper():\n            upper = False\n        if not lower and not upper:\n            return False\n    return lower or upper",
+  "metrics": {
+    "total_nodes": 84,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.119048,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

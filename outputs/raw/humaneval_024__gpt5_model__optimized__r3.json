@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:02:30.489802+00:00",
+  "elapsed_seconds": 4.97,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from math import isqrt\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # If even, largest proper divisor is n//2\n    if n % 2 == 0:\n        return n // 2\n    # For odd n, search for smallest factor >1 up to sqrt(n)\n    # Track largest proper divisor found by pairing factor with n//factor\n    max_div = 1\n    limit = isqrt(n)\n    for i in range(3, limit + 1, 2):\n        if n % i == 0:\n            pair = n // i\n            # pair will be >= i; prefer the larger pair\n            if pair < n and pair > max_div:\n                max_div = pair\n            if i < n and i > max_div:\n                max_div = i\n            # early exit: if we found a divisor pair where pair is n//smallest_factor,\n            # the pair is the largest proper divisor possible for that factor; if pair equals n//3 etc.\n            # but continue to ensure we didn't miss a larger pair from a smaller factor.\n    # If no divisor found, n is prime; largest proper divisor is 1\n    return max_div",
+  "generated_code": "from math import isqrt\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # If even, largest proper divisor is n//2\n    if n % 2 == 0:\n        return n // 2\n    # For odd n, search for smallest factor >1 up to sqrt(n)\n    # Track largest proper divisor found by pairing factor with n//factor\n    max_div = 1\n    limit = isqrt(n)\n    for i in range(3, limit + 1, 2):\n        if n % i == 0:\n            pair = n // i\n            # pair will be >= i; prefer the larger pair\n            if pair < n and pair > max_div:\n                max_div = pair\n            if i < n and i > max_div:\n                max_div = i\n            # early exit: if we found a divisor pair where pair is n//smallest_factor,\n            # the pair is the largest proper divisor possible for that factor; if pair equals n//3 etc.\n            # but continue to ensure we didn't miss a larger pair from a smaller factor.\n    # If no divisor found, n is prime; largest proper divisor is 1\n    return max_div"
+}

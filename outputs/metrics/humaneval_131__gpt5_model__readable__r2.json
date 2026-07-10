@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from functools import reduce\nimport operator\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    odd_digits = [int(ch) for ch in str(n) if int(ch) % 2 == 1]\n    if not odd_digits:\n        return 0\n    return reduce(operator.mul, odd_digits, 1)",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.074627,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

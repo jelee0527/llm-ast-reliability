@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef skjkasdkd(lst):\n    \"\"\"Return sum of digits of the largest prime in lst. If no prime, return 0.\"\"\"\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        r = int(math.isqrt(n))\n        i = 5\n        while i <= r:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    max_p = None\n    for x in lst:\n        if isinstance(x, int) and x > 1:\n            if is_prime(x):\n                if max_p is None or x > max_p:\n                    max_p = x\n    if max_p is None:\n        return 0\n    return sum(int(d) for d in str(abs(max_p)))",
+  "metrics": {
+    "total_nodes": 183,
+    "ast_depth": 11,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.092896,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

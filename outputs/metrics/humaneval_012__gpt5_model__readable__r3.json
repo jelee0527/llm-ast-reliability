@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_012__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_012",
+  "task_id": "HumanEval/12",
+  "problem_name": "Longest",
+  "entry_point": "longest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\"Out of a list of strings, return the longest one.\n    Return the first one in case of multiple strings of the same length.\n    Return None if the input list is empty.\n    \"\"\"\n    if not strings:\n        return None\n\n    # Initialize with the first string\n    longest_string = strings[0]\n    longest_length = len(longest_string)\n\n    for s in strings[1:]:\n        current_length = len(s)\n        if current_length > longest_length:\n            longest_string = s\n            longest_length = current_length\n\n    return longest_string\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert longest([]) is None\n    assert longest(['a', 'b', 'c']) == 'a'\n    assert longest(['a', 'bb', 'ccc']) == 'ccc'\n    assert longest(['aa', 'b', 'cc', 'dd']) == 'aa'  # first of longest ties\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "longest"
+    ]
+  }
+}

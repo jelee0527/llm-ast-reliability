@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    # Determine set of unique characters in each string\n    set0: Set[str] = set(s0)\n    set1: Set[str] = set(s1)\n    # They must be exactly equal\n    if set0 != set1:\n        return False\n    # For each character, presence in both is already established.\n    # Now ensure the counts of characters that appear more than once are consistent:\n    # The intention from examples: multiplicity doesn't need to match except that characters\n    # that appear multiple times in one string may or may not in the other, but examples indicate\n    # a failure when a character that is repeated in both overall counts differs in parity?\n    # However the tests show that only exact set equality and that no character appears more than once\n    # in one string while not appearing at all in the other. Since set equality covers that,\n    # we must also ensure that for any character that appears multiple times in both strings,\n    # their multiplicities do not enforce additional constraints. The given examples imply:\n    # - 'eabcdzzzz' vs 'dddzzzzzzzddeddabc' -> True (z repeated many times, d appears many times in s1 but not in s0; yet True because set match)\n    # - 'eabcdzzzz' vs 'dddzzzzzzzddddabc' -> False (extra 'd' introduced in s1? But d is not in s0 so set mismatch)\n    # Therefore set equality is sufficient.\n    return True",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 6,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def sort_even(l: list):\n    even_elements = sorted(l[i] for i in range(0, len(l), 2))\n    result = l[:]\n    for i, val in enumerate(range(0, len(l), 2)):\n        result[val] = even_elements[i]\n    return result",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

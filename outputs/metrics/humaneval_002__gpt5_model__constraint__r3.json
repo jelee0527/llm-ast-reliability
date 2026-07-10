@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Union\nimport math\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    an integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    # Validate input type\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    # Convert ints to float\n    num = float(number)\n    if num < 0:\n        raise ValueError(\"number must be positive\")\n    # Use math.floor to get the integer part for non-negative numbers\n    integer_part = math.floor(num)\n    decimal_part = num - integer_part\n    # Guard against floating point tiny negatives like -0.0\n    if decimal_part < 0:\n        decimal_part = 0.0\n    return decimal_part\n\n\n# Simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [3.5, 0.75, 2.0, 0.0, 123456.789, float(5)]\n    for t in tests:\n        print(f\"{t} -> {truncate_number(t)}\")",
+  "metrics": {
+    "total_nodes": 124,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.064516,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

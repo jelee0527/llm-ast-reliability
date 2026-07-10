@@ -1,0 +1,29 @@
+{
+  "source_file": "humaneval_032__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    # Use Newton-Raphson with fallback to bisection on sign changes.\n    if not xs:\n        raise ValueError(\"Empty coefficient list\")\n    # Trim trailing zeros (highest degrees)\n    while len(xs) > 1 and abs(xs[-1]) == 0:\n        xs = xs[:-1]\n    n = len(xs) - 1\n    # Derivative coefficients\n    dcoeffs = [i * xs[i] for i in range(1, len(xs))]\n    def f(x): return poly(xs, x)\n    def df(x): return poly(dcoeffs, x)\n    # Try simple closed-form for linear\n    if n == 1:\n        a0, a1 = xs[0], xs[1]\n        if a1 == 0:\n            raise ValueError(\"No root for constant polynomial\")\n        return -a0 / a1\n    # Find interval with sign change starting from center and expanding\n    max_expand = 100\n    step = 1.0\n    left = -step\n    right = step\n    fL = f(left)\n    fR = f(right)\n    for _ in range(max_expand):\n        if fL == 0:\n            return left\n        if fR == 0:\n            return right\n        if fL * fR < 0:\n            break\n        step *= 2\n        left = -step\n        right = step\n        fL = f(left)\n        fR = f(right)\n    else:\n        # If no sign change found, try Newton from multiple starts\n        starts = [0.0, 1.0, -1.0, 2.0, -2.0]\n        for s in starts:\n            x = s\n            for _ in range(200):\n                fx = f(x)\n                if abs(fx) < 1e-12:\n                    return x\n                dfx = df(x)\n                if dfx == 0:\n                    break\n                x = x - fx / dfx\n            if abs(f(x)) < 1e-9:\n                return x\n        raise RuntimeError(\"Failed to bracket or converge to a root\")\n    # Bisection on [left, right]\n    a, b = left, right\n    fa, fb = fL, fR\n    for _ in range(100):\n        m = (a + b) / 2.0\n        fm = f(m)\n        if abs(fm) < 1e-12 or (b - a) / 2 < 1e-12:\n            return m\n        if fa * fm <= 0:\n            b, fb = m, fm\n        else:\n            a, fa = m, fm\n    return (a + b) / 2.0\n\nif __name__ == \"__main__\":\n    # Quick tests from docstring\n    print(round(find_zero([1, 2]), 2))\n    print(round(find_zero([-6, 11, -6, 1]), 2))",
+  "metrics": {
+    "total_nodes": 578,
+    "ast_depth": 10,
+    "branch_count": 12,
+    "loop_count": 5,
+    "function_count": 4,
+    "control_flow_count": 32,
+    "control_flow_ratio": 0.055363,
+    "function_names": [
+      "poly",
+      "find_zero",
+      "f",
+      "df"
+    ]
+  }
+}

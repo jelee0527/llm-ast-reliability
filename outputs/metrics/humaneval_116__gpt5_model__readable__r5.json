@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by:\n      1) number of 1s in their binary representation (ascending)\n      2) for ties, by their numeric value (ascending)\n\n    Non-negative and negative integers are supported. For negative integers,\n    Python's bin() representation includes a '-' sign; we count ones from the\n    absolute value's binary form so that -3 and 3 have the same popcount for tie-breaking.\n    \"\"\"\n    def ones_count(n: int) -> int:\n        return bin(abs(n)).count('1')\n\n    return sorted(arr, key=lambda x: (ones_count(x), x))\n\n\n# Quick self-check examples (can be removed if not desired)\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]\n    print(\"Checks passed.\")",
+  "metrics": {
+    "total_nodes": 150,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02,
+    "function_names": [
+      "sort_array",
+      "ones_count"
+    ]
+  }
+}

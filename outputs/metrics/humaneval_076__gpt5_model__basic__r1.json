@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is a power of n (i.e., exists integer k >= 0 with n**k == x).\n    Special cases:\n    - x must be a positive integer.\n    - n must be an integer greater than 1 for meaningful powers (n==1 only produces 1).\n    \"\"\"\n    # Validate inputs: require integers\n    if not isinstance(x, int) or not isinstance(n, int):\n        return False\n    # x must be positive\n    if x <= 0:\n        return False\n    # Handle n == 1: only 1 is a power of 1\n    if n == 1:\n        return x == 1\n    # Handle n <= 0: not supported for this definition\n    if n <= 0:\n        return False\n    # Now n >= 2 and x >=1\n    # Repeatedly divide x by n while divisible\n    val = x\n    while val % n == 0:\n        val //= n\n    return val == 1\n\n# Optional: simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (1,4,True),\n        (2,2,True),\n        (8,2,True),\n        (3,2,False),\n        (3,1,False),\n        (5,3,False),\n        (27,3,True),\n        (0,2,False),\n        (1,1,True),\n        (16,4,True),\n        (18,3,False),\n    ]\n    for x,n,exp in tests:\n        print(x, n, is_simple_power(x,n), \"expected\", exp)",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.065934,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

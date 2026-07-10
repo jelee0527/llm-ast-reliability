@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_023__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_023",
+  "task_id": "HumanEval/23",
+  "problem_name": "Strlen",
+  "entry_point": "strlen",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    # Validate input type\n    if not isinstance(string, str):\n        # Follow Python's behavior of raising TypeError for wrong types in len()\n        raise TypeError(f\"strlen() expected a str, got {type(string).__name__}\")\n    count = 0\n    for _ in string:\n        count += 1\n    return count\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.074627,
+    "function_names": [
+      "strlen"
+    ]
+  }
+}

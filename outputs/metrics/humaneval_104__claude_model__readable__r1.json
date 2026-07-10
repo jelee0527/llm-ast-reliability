@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_104__claude_model__readable__r1.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n    def has_only_odd_digits(number):\n        for digit in str(number):\n            if int(digit) % 2 == 0:\n                return False\n        return True\n    \n    result = [num for num in x if has_only_odd_digits(num)]\n    return sorted(result)",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "unique_digits",
+      "has_only_odd_digits"
+    ]
+  }
+}

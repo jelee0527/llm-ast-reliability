@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import statistics\n\ndef median(l: list):\n    return statistics.median(l)",
+  "metrics": {
+    "total_nodes": 16,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "median"
+    ]
+  }
+}

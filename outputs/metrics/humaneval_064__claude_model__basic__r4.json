@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_064__claude_model__basic__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    vowels = set('aeiouAEIOU')\n    count = sum(1 for c in s if c in vowels)\n    if s and s[-1].lower() == 'y':\n        count += 1\n    return count\n\ndef check():\n    assert vowels_count(\"abcde\") == 2\n    assert vowels_count(\"ACEDY\") == 3\n    assert vowels_count(\"y\") == 1\n    assert vowels_count(\"Y\") == 1\n    assert vowels_count(\"sky\") == 1\n    assert vowels_count(\"SKY\") == 1\n    assert vowels_count(\"rhythm\") == 0\n    assert vowels_count(\"rhythmy\") == 1\n    assert vowels_count(\"hello\") == 2\n    assert vowels_count(\"HELLO\") == 2\n    assert vowels_count(\"aeiou\") == 5\n    assert vowels_count(\"AEIOU\") == 5\n    assert vowels_count(\"bcdfg\") == 0\n    assert vowels_count(\"bcdfgy\") == 1\n    assert vowels_count(\"\") == 0\n    assert vowels_count(\"easy\") == 3\n    assert vowels_count(\"EASY\") == 3\n    assert vowels_count(\"boy\") == 2\n    assert vowels_count(\"BOY\") == 2\n    assert vowels_count(\"yell\") == 1\n    assert vowels_count(\"YELL\") == 1\n    print(\"All tests passed!\")\n\ncheck()",
+  "metrics": {
+    "total_nodes": 237,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.008439,
+    "function_names": [
+      "vowels_count",
+      "check"
+    ]
+  }
+}

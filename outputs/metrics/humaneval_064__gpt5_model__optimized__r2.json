@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s.\n    Vowels: a, e, i, o, u (case-insensitive).\n    'y' counts only when it is the last character of the word.\n    \"\"\"\n    if not s:\n        return 0\n    s = s.strip()\n    if not s:\n        return 0\n    s_upper = s.upper()\n    # Count a,e,i,o,u\n    count = 0\n    for ch in s_upper:\n        if ch in ('A','E','I','O','U'):\n            count += 1\n    # Count trailing y/Y if last character is y\n    if s_upper[-1] == 'Y':\n        count += 1\n    return count\n\n# Optional quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"rhythm\", 0),\n        (\"sky\", 1),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"Yellow\", 2),  # e + o; y at start doesn't count\n        (\"\", 0),\n        (\"   \", 0),\n        (\"AEIOU\", 5),\n        (\"aeiouy\", 6),\n        (\"bcdY\", 1),\n        (\"by\", 1),\n        (\"toy\", 2),  # o + trailing y\n    ]\n    for s, expected in tests:\n        result = vowels_count(s)\n        print(f\"{s!r}: {result} (expected {expected})\", \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 193,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.056995,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

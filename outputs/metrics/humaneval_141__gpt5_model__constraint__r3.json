@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef file_name_check(file_name):\n    \"\"\"Return 'Yes' if file_name is valid per specified rules, else 'No'.\"\"\"\n    if not isinstance(file_name, str):\n        return 'No'\n    # Exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    name, ext = file_name.split('.', 1)\n    # name before dot should not be empty\n    if len(name) == 0:\n        return 'No'\n    # first character of name must be a latin letter\n    first = name[0]\n    if first not in string.ascii_letters:\n        return 'No'\n    # extension must be one of allowed\n    if ext not in ('txt', 'exe', 'dll'):\n        return 'No'\n    # count digits in entire file_name (including extension? Problem statement: \"in the file's name\"\n    # Interpret as entire string. If intended only before dot, adjust accordingly.)\n    digit_count = sum(1 for ch in file_name if ch.isdigit())\n    if digit_count > 3:\n        return 'No'\n    return 'Yes'\n\n# Example tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"example.txt\", 'Yes'),\n        (\"1example.dll\", 'No'),\n        (\"ex4mple12.txt\", 'Yes'),\n        (\"ex4mple1234.txt\", 'No'),\n        (\".txt\", 'No'),\n        (\"file.tar.gz\", 'No'),\n        (\"File.exe\", 'Yes'),\n        (\"file.doc\", 'No'),\n        (\"f1i2l3e.dll\", 'Yes'),\n        (\"f1i2l3e4.dll\", 'No'),\n    ]\n    for fname, expected in tests:\n        result = file_name_check(fname)\n        print(fname, result, \"OK\" if result == expected else f\"EXPECTED {expected}\")",
+  "metrics": {
+    "total_nodes": 205,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.078049,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

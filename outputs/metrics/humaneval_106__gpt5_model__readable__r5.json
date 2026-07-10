@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_106__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "problem_name": "F",
+  "entry_point": "f",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef f(n: int) -> List[int]:\n    \"\"\"Return a list of size n (1-based indexing for i),\n    where element at index i-1 is:\n      - factorial(i) if i is even\n      - sum(1..i) if i is odd\n    Example: f(5) == [1, 2, 6, 24, 15]\n    \"\"\"\n    if n <= 0:\n        return []\n    result: List[int] = []\n    # We'll compute factorial incrementally to avoid repeated work.\n    current_factorial = 1\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            # update factorial from previous value\n            current_factorial *= i\n            result.append(current_factorial)\n        else:\n            # sum of 1..i = i*(i+1)//2\n            result.append(i * (i + 1) // 2)\n            # Also update factorial for next even i if next step will be even:\n            # If next i is even, we need factorial up to next i; multiply current_factorial by i (odd)\n            # But since current_factorial currently holds factorial up to previous even number,\n            # multiply by this odd i to be ready for next even (i+1).\n            # If current_factorial is still 1 (no previous even), multiply by i to start.\n            current_factorial *= i\n    return result",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.04902,
+    "function_names": [
+      "f"
+    ]
+  }
+}

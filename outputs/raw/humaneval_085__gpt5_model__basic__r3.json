@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_085",
+  "task_id": "HumanEval/85",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:08:32.502773+00:00",
+  "elapsed_seconds": 2.414,
+  "official_prompt": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n\n",
+  "raw_response": "import typing\n\ndef add(lst: typing.List[int]) -> int:\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices.\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n    total = 0\n    for idx in range(1, len(lst), 2):\n        val = lst[idx]\n        if val % 2 == 0:\n            total += val\n    return total",
+  "generated_code": "import typing\n\ndef add(lst: typing.List[int]) -> int:\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices.\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n    total = 0\n    for idx in range(1, len(lst), 2):\n        val = lst[idx]\n        if val % 2 == 0:\n            total += val\n    return total"
+}

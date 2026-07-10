@@ -1,0 +1,29 @@
+{
+  "source_file": "humaneval_032__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    # Use Newton-Raphson with fallback to bisection on an interval found by sampling.\n    if not xs:\n        raise ValueError(\"Empty coefficient list\")\n    # Remove trailing zeros (highest-degree zeros)\n    while len(xs) > 1 and abs(xs[-1]) == 0:\n        xs = xs[:-1]\n    n = len(xs) - 1\n    if n < 0:\n        return 0.0\n    # derivative coefficients\n    dxs = [i * xs[i] for i in range(1, len(xs))]\n    def p(x): return poly(xs, x)\n    def dp(x): return poly(dxs, x) if dxs else 0.0\n    # Try to find sign change by expanding interval\n    left, right = -1.0, 1.0\n    fleft, fright = p(left), p(right)\n    max_expand = 60\n    expand_count = 0\n    while fleft == 0.0:\n        return left\n    while fright == 0.0:\n        return right\n    while fleft * fright > 0 and expand_count < max_expand:\n        expand_count += 1\n        left *= 2\n        right *= 2\n        fleft, fright = p(left), p(right)\n    # If sign change found, use bisection for robustness\n    if fleft * fright <= 0:\n        a, b = left, right\n        fa, fb = fleft, fright\n        for _ in range(100):\n            m = 0.5 * (a + b)\n            fm = p(m)\n            if fm == 0:\n                return m\n            if fa * fm < 0:\n                b, fb = m, fm\n            else:\n                a, fa = m, fm\n        return 0.5 * (a + b)\n    # No sign change found: try Newton starting from multiple initial guesses\n    starts = [0.0, 1.0, -1.0, 2.0, -2.0, left, right]\n    for x0 in starts:\n        x = x0\n        for _ in range(200):\n            fx = p(x)\n            if abs(fx) < 1e-12:\n                return x\n            dfx = dp(x)\n            if dfx == 0:\n                break\n            x_new = x - fx / dfx\n            if not math.isfinite(x_new):\n                break\n            if abs(x_new - x) < 1e-14:\n                x = x_new\n                break\n            x = x_new\n        if abs(p(x)) < 1e-9:\n            return x\n    # As a last resort, search across a grid and use bisection on small intervals where sign change occurs\n    span = 1.0\n    for _ in range(10):\n        pts = [(-span + i * (2 * span) / 200) for i in range(201)]\n        vals = [p(t) for t in pts]\n        for i in range(len(pts) - 1):\n            if vals[i] == 0:\n                return pts[i]\n            if vals[i] * vals[i + 1] < 0:\n                a, b = pts[i], pts[i + 1]\n                fa, fb = vals[i], vals[i + 1]\n                for _ in range(60):\n                    m = 0.5 * (a + b)\n                    fm = p(m)\n                    if fm == 0:\n                        return m\n                    if fa * fm < 0:\n                        b, fb = m, fm\n                    else:\n                        a, fa = m, fm\n                return 0.5 * (a + b)\n        span *= 2\n    # If still not found, return NaN\n    return float('nan')\n\nif __name__ == \"__main__\":\n    # quick tests from docstring\n    print(round(find_zero([1, 2]), 2))\n    print(round(find_zero([-6, 11, -6, 1]), 2))",
+  "metrics": {
+    "total_nodes": 822,
+    "ast_depth": 11,
+    "branch_count": 16,
+    "loop_count": 10,
+    "function_count": 4,
+    "control_flow_count": 44,
+    "control_flow_ratio": 0.053528,
+    "function_names": [
+      "poly",
+      "find_zero",
+      "p",
+      "dp"
+    ]
+  }
+}

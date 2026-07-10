@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_112__deepseek_model__basic__r3.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def reverse_delete(s, c):\n    result = ''.join(ch for ch in s if ch not in c)\n    is_palindrome = result == result[::-1]\n    return (result, is_palindrome)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='reverse_delete',\n      args=arguments(\n        args=[\n          arg(arg='s'),\n          arg(arg='c')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=Call(\n            func=Attribute(\n              value=Constant(value=''),\n              attr='join',\n              ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Name(id='ch', ctx=Load()),\n                generators=[\n                  comprehension(\n                    target=Name(id='ch', ctx=Store()),\n                    iter=Name(id='s', ctx=Load()),\n                    ifs=[\n                      Compare(\n                        left=Name(id='ch', ctx=Load()),\n                        ops=[\n                          NotIn()],\n                        comparators=[\n                          Name(id='c', ctx=Load())])],\n                    is_async=0)])])),\n        Assign(\n          targets=[\n            Name(id='is_palindrome', ctx=Store())],\n          value=Compare(\n            left=Name(id='result', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Subscript(\n                value=Name(id='result', ctx=Load()),\n                slice=Slice(\n                  step=UnaryOp(\n                    op=USub(),\n                    operand=Constant(value=1))),\n                ctx=Load())])),\n        Return(\n          value=Tuple(\n            elts=[\n              Name(id='result', ctx=Load()),\n              Name(id='is_palindrome', ctx=Load())],\n            ctx=Load()))])])"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:19:57.286741+00:00",
+  "elapsed_seconds": 4.234,
+  "official_prompt": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional, List\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list, or None if it doesn't exist.\n    \"\"\"\n    if not lst:\n        return None\n    # Track smallest and second smallest distinct values\n    min1 = None\n    min2 = None\n    for x in lst:\n        if min1 is None or x < min1:\n            # x becomes new smallest; shift previous smallest to second if distinct\n            if min1 is None or x != min1:\n                min2 = min1\n            min1 = x\n        elif x != min1:\n            if min2 is None or x < min2:\n                min2 = x\n    return min2\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    assert next_smallest([1,2,3,4,5]) == 2\n    assert next_smallest([5,1,4,3,2]) == 2\n    assert next_smallest([]) is None\n    assert next_smallest([1,1]) is None\n    assert next_smallest([1,2,1,2]) == 2\n    assert next_smallest([2,1]) == 2\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import Optional, List\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list, or None if it doesn't exist.\n    \"\"\"\n    if not lst:\n        return None\n    # Track smallest and second smallest distinct values\n    min1 = None\n    min2 = None\n    for x in lst:\n        if min1 is None or x < min1:\n            # x becomes new smallest; shift previous smallest to second if distinct\n            if min1 is None or x != min1:\n                min2 = min1\n            min1 = x\n        elif x != min1:\n            if min2 is None or x < min2:\n                min2 = x\n    return min2\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    assert next_smallest([1,2,3,4,5]) == 2\n    assert next_smallest([5,1,4,3,2]) == 2\n    assert next_smallest([]) is None\n    assert next_smallest([1,1]) is None\n    assert next_smallest([1,2,1,2]) == 2\n    assert next_smallest([2,1]) == 2\n    print(\"Tests passed.\")"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_122__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    # Only consider first k elements\n    total = 0\n    for x in arr[:k]:\n        # Count digits in absolute value\n        if abs(x) <= 99:\n            total += x\n    return total\n\n# Example usage:\n# print(add_elements([111,21,3,4000,5,6,7,8,9], 4))  # Output: 24",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "add_elements"
+    ]
+  }
+}

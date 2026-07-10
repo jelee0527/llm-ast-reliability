@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm:\n    - Find the longest suffix of the supplied string that is a palindrome.\n    - Append to the end the reverse of the prefix that comes before that palindromic suffix.\n    \"\"\"\n    if not string:\n        return \"\"\n    n = len(string)\n    # Check each possible suffix starting from the longest\n    for start in range(0, n):\n        suffix = string[start:]\n        if is_palindrome(suffix):\n            # prefix before this suffix is string[:start]\n            to_append = string[:start][::-1]\n            return string + to_append\n    # Fallback (shouldn't happen because at least last char is palindrome)\n    return string + string[:-1][::-1]",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.060345,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

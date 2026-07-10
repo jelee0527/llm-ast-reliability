@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def encode(message):\n    vowels = set('aeiouAEIOU')\n    result = []\n    for ch in message:\n        if ch.isupper():\n            ch = ch.lower()\n        elif ch.islower():\n            ch = ch.upper()\n        if ch in vowels:\n            ch = chr(ord(ch) + 2)\n        result.append(ch)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:45:22.529792+00:00",
+  "elapsed_seconds": 4.748,
+  "official_prompt": "\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n    For example:\n    smallest_change([1,2,3,5,4,7,9,6]) == 4\n    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    smallest_change([1, 2, 3, 2, 1]) == 0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef smallest_change(arr):\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n    For example:\n    smallest_change([1,2,3,5,4,7,9,6]) == 4\n    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\n    smallest_change([1, 2, 3, 2, 1]) == 0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef smallest_change(arr: List[int]) -> int:\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n    \"\"\"\n    # Compare symmetric pairs; each mismatched pair requires one change (change one element to the other)\n    n = len(arr)\n    changes = 0\n    left = 0\n    right = n - 1\n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    return changes\n\n\n# Optional quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,5,4,7,9,6], 4),\n        ([1, 2, 3, 4, 3, 2, 2], 1),\n        ([1, 2, 3, 2, 1], 0),\n        ([], 0),\n        ([1], 0),\n        ([1,2], 1),\n        ([1,1,2,1,1], 0),\n    ]\n    for arr, expected in tests:\n        result = smallest_change(arr)\n        print(arr, result, \"OK\" if result == expected else f\"EXPECTED {expected}\")",
+  "generated_code": "from typing import List\n\ndef smallest_change(arr: List[int]) -> int:\n    \"\"\"\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n    \"\"\"\n    # Compare symmetric pairs; each mismatched pair requires one change (change one element to the other)\n    n = len(arr)\n    changes = 0\n    left = 0\n    right = n - 1\n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    return changes\n\n\n# Optional quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,5,4,7,9,6], 4),\n        ([1, 2, 3, 4, 3, 2, 2], 1),\n        ([1, 2, 3, 2, 1], 0),\n        ([], 0),\n        ([1], 0),\n        ([1,2], 1),\n        ([1,1,2,1,1], 0),\n    ]\n    for arr, expected in tests:\n        result = smallest_change(arr)\n        print(arr, result, \"OK\" if result == expected else f\"EXPECTED {expected}\")"
+}

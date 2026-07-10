@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__claude_model__concise__r2.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    text = re.sub(r' {3,}', '-', text)\n    text = text.replace(' ', '_')\n    return text",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

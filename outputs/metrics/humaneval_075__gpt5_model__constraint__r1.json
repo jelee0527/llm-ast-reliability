@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_075__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0:\n        return False\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a is product of exactly three primes (not necessarily distinct), False otherwise.\n    Assumes a < 100 (but works generally for positive integers).\"\"\"\n    if not isinstance(a, int):\n        return False\n    if a <= 0:\n        return False\n    # Try all combinations of three primes p <= q <= r with p*q*r == a\n    # Since a is small, brute-force factorization is fine.\n    # Generate primes up to a\n    primes = []\n    for n in range(2, a + 1):\n        if is_prime(n):\n            primes.append(n)\n    L = len(primes)\n    for i in range(L):\n        p = primes[i]\n        if p * p * p > a:\n            # still might have p <= q <= r but if p^3 > a, any q>=p leads to product > a\n            # so break early\n            break\n        for j in range(i, L):\n            q = primes[j]\n            if p * q * q > a:\n                # r >= q so product >= p*q*q; if that exceeds a, further j will only increase q\n                break\n            if (a % (p * q)) != 0:\n                continue\n            r = a // (p * q)\n            if r < q:\n                continue\n            if is_prime(r):\n                return True\n    return False\n\n# Optional simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [30, 8, 27, 1, 2, 6, 100, 46, 105]\n    for t in tests:\n        print(t, is_multiply_prime(t))",
+  "metrics": {
+    "total_nodes": 287,
+    "ast_depth": 10,
+    "branch_count": 13,
+    "loop_count": 5,
+    "function_count": 2,
+    "control_flow_count": 31,
+    "control_flow_ratio": 0.108014,
+    "function_names": [
+      "is_prime",
+      "is_multiply_prime"
+    ]
+  }
+}

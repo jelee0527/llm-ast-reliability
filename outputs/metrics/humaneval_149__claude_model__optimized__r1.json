@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__claude_model__optimized__r1.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sorted_list_sum(lst):\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    return sorted(filtered, key=lambda s: (len(s), s))",
+  "metrics": {
+    "total_nodes": 45,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.022222,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

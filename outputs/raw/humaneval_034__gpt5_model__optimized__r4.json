@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:25:33.276393+00:00",
+  "elapsed_seconds": 2.898,
+  "official_prompt": "\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef unique(l: list):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Iterable, TypeVar\n\nT = TypeVar(\"T\")\n\ndef unique(l: List[T]) -> List[T]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use set for uniqueness (O(n) average), then sort (O(k log k))\n    # This works for comparable and hashable elements.\n    if not l:\n        return []\n    seen = set(l)\n    try:\n        return sorted(seen)\n    except TypeError:\n        # If elements are not directly comparable, preserve first occurrence order\n        # and return list of unique elements in that order.\n        out = []\n        seen2 = set()\n        for x in l:\n            if x not in seen2:\n                out.append(x)\n                seen2.add(x)\n        return out",
+  "generated_code": "from typing import List, Iterable, TypeVar\n\nT = TypeVar(\"T\")\n\ndef unique(l: List[T]) -> List[T]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use set for uniqueness (O(n) average), then sort (O(k log k))\n    # This works for comparable and hashable elements.\n    if not l:\n        return []\n    seen = set(l)\n    try:\n        return sorted(seen)\n    except TypeError:\n        # If elements are not directly comparable, preserve first occurrence order\n        # and return list of unique elements in that order.\n        out = []\n        seen2 = set()\n        for x in l:\n            if x not in seen2:\n                out.append(x)\n                seen2.add(x)\n        return out"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p == 1:\n        return 0\n    if n < 0:\n        # For negative exponents, compute modular inverse of 2^|n| if exists.\n        # Since task examples use non-negative n, raise for negatives to keep behavior explicit.\n        raise ValueError(\"n must be non-negative\")\n    # Use Python's built-in pow with modulus for efficiency and correctness\n    return pow(2, n, p)\n\nif __name__ == \"__main__\":\n    # Quick self-tests based on the docstring examples\n    tests = [\n        (3, 5, 3),\n        (1101, 101, 2),\n        (0, 101, 1),\n        (3, 11, 8),\n        (100, 101, 1),\n    ]\n    for n, p, expected in tests:\n        result = modp(n, p)\n        assert result == expected, f\"modp({n}, {p}) == {result}, expected {expected}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.054264,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

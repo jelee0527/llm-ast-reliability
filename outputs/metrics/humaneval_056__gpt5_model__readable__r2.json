@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_056__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\"Return True if every opening '<' has a corresponding closing '>' and\n    the brackets are properly nested and ordered.\n    brackets: a string containing only '<' and '>'.\n    \"\"\"\n    # Use a counter as a stack depth: increment for '<', decrement for '>'.\n    depth = 0\n    for ch in brackets:\n        if ch == '<':\n            depth += 1\n        elif ch == '>':\n            depth -= 1\n            # If we ever close more than we've opened, it's invalid.\n            if depth < 0:\n                return False\n        else:\n            # If other characters are present, treat as invalid input.\n            return False\n    # All opens must be closed.\n    return depth == 0\n\nif __name__ == \"__main__\":\n    # Quick simple tests (will run when script executed directly)\n    tests = {\n        \"<\": False,\n        \"<>\": True,\n        \"<<><>>\": True,\n        \"><<>\": False,\n        \"\": True,\n        \"<<<>>>\": True,\n        \"<><><>\": True,\n        \">>\": False,\n    }\n    for s, expected in tests.items():\n        result = correct_bracketing(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 122,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.07377,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

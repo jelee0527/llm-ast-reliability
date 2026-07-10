@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__claude_model__readable__r2.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def sort_array(array):\n    if not array:\n        return []\n    \n    first_element = array[0]\n    last_element = array[-1]\n    sum_of_ends = first_element + last_element\n    \n    sorted_copy = sorted(array)\n    \n    if sum_of_ends % 2 == 0:\n        return sorted_copy[::-1]\n    else:\n        return sorted_copy",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.073529,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

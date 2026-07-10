@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:13:19.978893+00:00",
+  "elapsed_seconds": 3.953,
+  "official_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by the number of ones in their binary representation (ascending).\n    For equal counts of ones, sort by numeric value (ascending).\n    \"\"\"\n    # key: (number of 1 bits in binary representation of absolute value? Problem statement says non-negative,\n    # but examples include negatives; Python's bin for negative includes a '-' so handle via two's complement?\n    # The examples sort negatives by their decimal value only; treat count of ones for negative numbers using\n    # their absolute value's binary ones (common interpretation). We'll use the count of ones in binary of abs(n).\n    return sorted(arr, key=lambda x: (bin(abs(x)).count(\"1\"), x))\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by the number of ones in their binary representation (ascending).\n    For equal counts of ones, sort by numeric value (ascending).\n    \"\"\"\n    # key: (number of 1 bits in binary representation of absolute value? Problem statement says non-negative,\n    # but examples include negatives; Python's bin for negative includes a '-' so handle via two's complement?\n    # The examples sort negatives by their decimal value only; treat count of ones for negative numbers using\n    # their absolute value's binary ones (common interpretation). We'll use the count of ones in binary of abs(n).\n    return sorted(arr, key=lambda x: (bin(abs(x)).count(\"1\"), x))\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    assert sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    assert sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]\n    print(\"Tests passed.\")"
+}

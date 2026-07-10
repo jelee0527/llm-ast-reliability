@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_025__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    factors: List[int] = []\n    # Handle negative numbers: include -1 as a factor once, make n positive\n    if n < 0:\n        factors.append(-1)\n        n = -n\n    # Handle 1 separately: 1 has no prime factors, return [] (but keep -1 if negative one)\n    if n == 1:\n        return factors\n    # Factor out 2s\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # Factor odd candidates up to sqrt(n)\n    # We only need to check up to sqrt(n) and update limit as n decreases\n    i = 3\n    # Use integer sqrt each loop to be safe\n    while i * i <= n:\n        while n % i == 0:\n            factors.append(i)\n            n //= i\n        i += 2\n    # If remaining n > 1, it's prime\n    if n > 1:\n        factors.append(n)\n    return factors\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "factorize"
+    ]
+  }
+}

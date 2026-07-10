@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_133__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Iterable\n\ndef sum_squares(lst: Iterable[float]) -> int:\n    \"\"\"Return the sum of squared numbers after applying ceiling to each element.\n    \n    Each element in lst is first rounded up using math.ceil, then squared,\n    and the squares are summed. The result is returned as an integer.\n    \"\"\"\n    total = 0\n    for x in lst:\n        # Ensure numeric; let math.ceil raise TypeError for invalid types\n        c = math.ceil(x)\n        total += c * c\n    return total\n\n# Quick tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3], 14),\n        ([1,4,9], 98),\n        ([1,3,5,7], 84),\n        ([1.4,4.2,0], 29),\n        ([-2.4,1,1], 6),\n    ]\n    for inp, expected in tests:\n        out = sum_squares(inp)\n        print(inp, out, \"OK\" if out == expected else f\"EXPECTED {expected}\")",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.035211,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

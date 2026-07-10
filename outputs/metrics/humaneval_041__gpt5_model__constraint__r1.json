@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_041__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "f-string: unmatched ')' (<unknown>, line 19)",
+  "generated_code": "from typing import List\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Given n cars moving left-to-right and another n cars moving right-to-left on an infinite line,\n    all at the same speed and starting very far from each other, count the number of pairwise collisions.\n    Each left-to-right car will meet every right-to-left car exactly once, so total collisions = n * n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n\n\n# Simple self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [0, 1, 2, 5, 10]\n    for t in tests:\n        print(f\"n={t} -> collisions={car_race_collision(t))\")"
+}

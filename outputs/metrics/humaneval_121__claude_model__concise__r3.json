@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_121__claude_model__concise__r3.json",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def solution(lst):\n    return sum(x for i, x in enumerate(lst) if i % 2 == 0 and x % 2 != 0)",
+  "metrics": {
+    "total_nodes": 41,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02439,
+    "function_names": [
+      "solution"
+    ]
+  }
+}

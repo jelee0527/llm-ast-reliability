@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef split_words(txt):\n    # If contains any whitespace, split on whitespace\n    if re.search(r'\\s', txt):\n        return txt.split()\n    # Else if contains comma\n    if ',' in txt:\n        # Split on commas possibly surrounded by spaces\n        return [p for p in (part.strip() for part in txt.split(',')) if p != '']\n    # Else count lowercase letters with odd order: a->0, b->1, ... so odd ord difference\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            if (ord(ch) - ord('a')) % 2 == 1:\n                count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.082474,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

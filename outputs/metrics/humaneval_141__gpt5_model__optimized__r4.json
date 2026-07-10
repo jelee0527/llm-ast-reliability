@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef file_name_check(file_name):\n    \"\"\"Return 'Yes' if file_name is valid per rules, else 'No'.\"\"\"\n    if not isinstance(file_name, str):\n        return 'No'\n    # Exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    name, ext = file_name.rsplit('.', 1)\n    # Name before dot non-empty and starts with latin letter\n    if not name or not re.match(r'^[A-Za-z]', name):\n        return 'No'\n    # Extension must be one of allowed\n    if ext not in ('txt', 'exe', 'dll'):\n        return 'No'\n    # At most three digits in entire file name\n    digit_count = sum(c.isdigit() for c in file_name)\n    if digit_count > 3:\n        return 'No'\n    return 'Yes'",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.105769,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_098__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_098",
+  "task_id": "HumanEval/98",
+  "problem_name": "Count Upper",
+  "entry_point": "count_upper",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef count_upper(s: str) -> int:\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n\n    Examples:\n    count_upper('aBCdEf') -> 1\n    count_upper('abcdefg') -> 0\n    count_upper('dBBE') -> 0\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n\n    uppercase_vowels = {'A', 'E', 'I', 'O', 'U'}\n    count = 0\n    # Even indices: 0, 2, 4, ...\n    for idx in range(0, len(s), 2):\n        if s[idx] in uppercase_vowels:\n            count += 1\n    return count\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"aBCdEf\", 1),\n        (\"abcdefg\", 0),\n        (\"dBBE\", 0),\n        (\"A\", 1),\n        (\"AaAeI\", 3),  # indices 0:A,2:A,4:I\n    ]\n    for inp, expected in tests:\n        result = count_upper(inp)\n        print(f\"{inp!r} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.051095,
+    "function_names": [
+      "count_upper"
+    ]
+  }
+}

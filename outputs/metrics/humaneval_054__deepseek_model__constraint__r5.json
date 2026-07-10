@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    if len(s0) != len(s1):\n        return False\n    count0 = {}\n    count1 = {}\n    for c in s0:\n        count0[c] = count0.get(c, 0) + 1\n    for c in s1:\n        count1[c] = count1.get(c, 0) + 1\n    return count0 == count1",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.057471,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

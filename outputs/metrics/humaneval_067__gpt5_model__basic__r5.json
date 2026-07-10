@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Return number of mangoes given string like \"5 apples and 6 oranges\" and total n.\n    \"\"\"\n    # Find all integer numbers in the string\n    nums = re.findall(r'-?\\d+', s)\n    # Convert to integers\n    nums = [int(x) for x in nums]\n    # Expect first is apples, second is oranges. If missing, treat as 0.\n    apples = nums[0] if len(nums) > 0 else 0\n    oranges = nums[1] if len(nums) > 1 else 0\n    return n - apples - oranges\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(fruit_distribution(\"5 apples and 6 oranges\", 19))  # 8\n    print(fruit_distribution(\"0 apples and 1 oranges\",3))   # 2\n    print(fruit_distribution(\"2 apples and 3 oranges\", 100))# 95\n    print(fruit_distribution(\"100 apples and 1 oranges\",120))# 19",
+  "metrics": {
+    "total_nodes": 123,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.03252,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

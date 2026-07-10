@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a string of ASCII music tokens into beat lengths.\n    Legend:\n    'o'  -> whole note (4 beats)\n    'o|' -> half note  (2 beats)\n    '.|' -> quarter note (1 beat)\n    \"\"\"\n    if not music_string:\n        return []\n    # Split by whitespace\n    tokens = re.findall(r'\\S+', music_string)\n    mapping = {'o': 4, 'o|': 2, '.|': 1}\n    result: List[int] = []\n    for t in tokens:\n        if t in mapping:\n            result.append(mapping[t])\n        else:\n            # If token contains multiple note symbols glued without spaces (e.g., \"o o|\")\n            # attempt to parse sequentially from left to right matching known patterns.\n            i = 0\n            n = len(t)\n            while i < n:\n                # Try two-character token first\n                if i + 2 <= n and t[i:i+2] in mapping:\n                    result.append(mapping[t[i:i+2]])\n                    i += 2\n                elif t[i] in mapping:\n                    result.append(mapping[t[i]])\n                    i += 1\n                else:\n                    # If unknown char (like stray separators), skip it\n                    i += 1\n    return result",
+  "metrics": {
+    "total_nodes": 196,
+    "ast_depth": 14,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.040816,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

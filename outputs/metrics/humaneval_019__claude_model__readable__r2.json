@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__claude_model__readable__r2.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    word_to_number = {\n        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n\n    number_to_word = {value: key for key, value in word_to_number.items()}\n\n    if not numbers.strip():\n        return ''\n\n    word_list = numbers.split()\n\n    sorted_numbers = sorted(word_list, key=lambda word: word_to_number[word])\n\n    return ' '.join(sorted_numbers)",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.030303,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

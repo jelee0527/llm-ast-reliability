@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_147__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef get_max_triples(n):\n    \"\"\"\n    Return the number of triples (a[i], a[j], a[k]) with i<j<k from array\n    a where a[i] = i*i - i + 1, such that the sum is divisible by 3.\n    \"\"\"\n    # Observe a[i] modulo 3 depends on i modulo 3.\n    # Compute residues for indices 1..n:\n    # r = (i*i - i + 1) % 3\n    # But we can compute directly pattern for i mod 3:\n    # i % 3 == 0 -> r = (0 - 0 + 1) %3 = 1\n    # i % 3 == 1 -> r = (1 - 1 + 1) %3 = 1\n    # i % 3 == 2 -> r = (4 - 2 + 1)=3 %3 = 0\n    # So residues: i%3 in {0,1} -> 1 ; i%3==2 -> 0\n    count_mod = [0, 0, 0]  # counts of values with residue 0,1,2\n    # residue 2 never occurs\n    # Count indices with i%3 == 2 => residue 0\n    # Count indices with i%3 == 0 or 1 => residue 1\n    # Compute counts:\n    cnt_mod0_indices = n // 3  # i %3 ==0\n    cnt_mod1_indices = n // 3 + (1 if n % 3 >= 1 else 0)  # i %3 ==1\n    cnt_mod2_indices = n // 3 + (1 if n % 3 == 2 else 0)  # i %3 ==2\n\n    # Map to residues:\n    count_mod[0] = cnt_mod2_indices  # residue 0 from i%3==2\n    count_mod[1] = cnt_mod0_indices + cnt_mod1_indices  # residue 1 from i%3==0 or 1\n    count_mod[2] = 0\n\n    def comb2(x):\n        return x * (x - 1) // 2 if x >= 2 else 0\n\n    def comb3(x):\n        return x * (x - 1) * (x - 2) // 6 if x >= 3 else 0\n\n    # Triples summing to 0 mod 3 come from:\n    # (0,0,0) and (1,1,1) and (0,1,2) but residue 2 count is zero so last is impossible.\n    total = 0\n    total += comb3(count_mod[0])\n    total += comb3(count_mod[1])\n    # count_mod[2] is zero, so combinations involving it are zero\n    return total\n\n# Example usage:\n# print(get_max_triples(5))  # Expected output: 1",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 3,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.039548,
+    "function_names": [
+      "get_max_triples",
+      "comb2",
+      "comb3"
+    ]
+  }
+}

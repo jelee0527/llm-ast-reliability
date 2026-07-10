@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_028__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_028",
+  "task_id": "HumanEval/28",
+  "problem_name": "Concatenate",
+  "entry_point": "concatenate",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    result = \"\"\n    for string in strings:\n        result += string\n    return result",
+  "metrics": {
+    "total_nodes": 34,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "concatenate"
+    ]
+  }
+}

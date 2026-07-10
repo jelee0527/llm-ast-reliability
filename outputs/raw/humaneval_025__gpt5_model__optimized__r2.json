@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:04:42.901860+00:00",
+  "elapsed_seconds": 5.225,
+  "official_prompt": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    if n < 0:\n        # include -1 as factor to keep product equal to n\n        return [-1] + factorize(-n)\n    factors: List[int] = []\n    # handle factor 2\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # factor odd numbers up to sqrt(n)\n    p = 3\n    # iterate while p*p <= n\n    # increment by 2 to check only odd p\n    while p * p <= n:\n        if n % p == 0:\n            factors.append(p)\n            n //= p\n        else:\n            p += 2\n    if n > 1:\n        factors.append(n)\n    return factors",
+  "generated_code": "from typing import List\nimport math\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    if n == 0:\n        raise ValueError(\"Cannot factorize zero\")\n    if n < 0:\n        # include -1 as factor to keep product equal to n\n        return [-1] + factorize(-n)\n    factors: List[int] = []\n    # handle factor 2\n    while n % 2 == 0:\n        factors.append(2)\n        n //= 2\n    # factor odd numbers up to sqrt(n)\n    p = 3\n    # iterate while p*p <= n\n    # increment by 2 to check only odd p\n    while p * p <= n:\n        if n % p == 0:\n            factors.append(p)\n            n //= p\n        else:\n            p += 2\n    if n > 1:\n        factors.append(n)\n    return factors"
+}

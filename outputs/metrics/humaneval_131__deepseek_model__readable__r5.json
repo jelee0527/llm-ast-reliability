@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n    product = 1\n    found_odd = False\n    \n    for char in str(n):\n        digit = int(char)\n        if digit % 2 == 1:\n            product *= digit\n            found_odd = True\n    \n    return product if found_odd else 0",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

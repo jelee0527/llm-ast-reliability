@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    def sum_signed_digits(n: int) -> int:\n        s = str(abs(n))\n        if not s:\n            return 0\n        digits = [int(ch) for ch in s]\n        if n < 0 and digits:\n            digits[0] = -digits[0]\n        return sum(digits)\n    return sum(1 for x in arr if sum_signed_digits(x) > 0)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.052174,
+    "function_names": [
+      "count_nums",
+      "sum_signed_digits"
+    ]
+  }
+}

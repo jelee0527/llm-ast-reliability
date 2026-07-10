@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_063__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fibfib(n: int) -> int:\n    \"\"\"Compute the n-th FibFib number where\n    fibfib(0)=0, fibfib(1)=0, fibfib(2)=1 and for n>=3:\n    fibfib(n) = fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n\n    # Use matrix exponentiation to achieve O(log n) time.\n    # Recurrence vector: [F(n), F(n-1), F(n-2)]^T\n    # Transition matrix M:\n    # [1 1 1]\n    # [1 0 0]\n    # [0 1 0]\n    def mat_mult(A: List[List[int]], B: List[List[int]]) -> List[List[int]]:\n        # Multiply 3x3 matrices\n        return [\n            [\n                A[0][0]*B[0][0] + A[0][1]*B[1][0] + A[0][2]*B[2][0],\n                A[0][0]*B[0][1] + A[0][1]*B[1][1] + A[0][2]*B[2][1],\n                A[0][0]*B[0][2] + A[0][1]*B[1][2] + A[0][2]*B[2][2],\n            ],\n            [\n                A[1][0]*B[0][0] + A[1][1]*B[1][0] + A[1][2]*B[2][0],\n                A[1][0]*B[0][1] + A[1][1]*B[1][1] + A[1][2]*B[2][1],\n                A[1][0]*B[0][2] + A[1][1]*B[1][2] + A[1][2]*B[2][2],\n            ],\n            [\n                A[2][0]*B[0][0] + A[2][1]*B[1][0] + A[2][2]*B[2][0],\n                A[2][0]*B[0][1] + A[2][1]*B[1][1] + A[2][2]*B[2][1],\n                A[2][0]*B[0][2] + A[2][1]*B[1][2] + A[2][2]*B[2][2],\n            ],\n        ]\n\n    def mat_pow(M: List[List[int]], exp: int) -> List[List[int]]:\n        # Exponentiate 3x3 matrix by integer exp >= 0\n        # Binary exponentiation\n        # Initialize result as identity\n        result = [[1,0,0],[0,1,0],[0,0,1]]\n        base = [row[:] for row in M]\n        e = exp\n        while e > 0:\n            if e & 1:\n                result = mat_mult(result, base)\n            base = mat_mult(base, base)\n            e >>= 1\n        return result\n\n    M = [\n        [1,1,1],\n        [1,0,0],\n        [0,1,0],\n    ]\n    # We have vector V2 = [fibfib(2), fibfib(1), fibfib(0)] = [1,0,0]\n    # For n >= 2, Vn = M^(n-2) * V2, and fibfib(n) is first component.\n    P = mat_pow(M, n-2)\n    # Multiply P by V2 = [1,0,0] simply picks first column of P\n    fn = P[0][0]*1 + P[0][1]*0 + P[0][2]*0\n    return fn\n\nif __name__ == \"__main__\":\n    # Basic tests\n    assert fibfib(0) == 0\n    assert fibfib(1) == 0\n    assert fibfib(2) == 1\n    assert fibfib(3) == 1  # 1+0+0\n    assert fibfib(4) == 2  # 1+1+0\n    assert fibfib(5) == 4\n    assert fibfib(6) == 7\n    assert fibfib(8) == 24\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 882,
+    "ast_depth": 13,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.015873,
+    "function_names": [
+      "fibfib",
+      "mat_mult",
+      "mat_pow"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    \"\"\"\n    Returns [total eaten after attempting to eat 'need' carrots, carrots left in stock].\n    \"\"\"\n    to_eat = min(need, remaining)\n    return [number + to_eat, remaining - to_eat]",
+  "metrics": {
+    "total_nodes": 33,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.030303,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

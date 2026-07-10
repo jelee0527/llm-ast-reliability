@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:52:33.452592+00:00",
+  "elapsed_seconds": 3.346,
+  "official_prompt": "\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n\n",
+  "raw_response": "from typing import *\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if substring == \"\":\n        # By convention, empty substring occurs len(string)+1 times,\n        # but typical expectations for this function likely treat it as zero.\n        return 0\n    if not string or len(substring) > len(string):\n        return 0\n    count = 0\n    i = 0\n    n = len(string)\n    m = len(substring)\n    while i + m <= n:\n        if string[i:i+m] == substring:\n            count += 1\n        i += 1\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import *\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if substring == \"\":\n        # By convention, empty substring occurs len(string)+1 times,\n        # but typical expectations for this function likely treat it as zero.\n        return 0\n    if not string or len(substring) > len(string):\n        return 0\n    count = 0\n    i = 0\n    n = len(string)\n    m = len(substring)\n    while i + m <= n:\n        if string[i:i+m] == substring:\n            count += 1\n        i += 1\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

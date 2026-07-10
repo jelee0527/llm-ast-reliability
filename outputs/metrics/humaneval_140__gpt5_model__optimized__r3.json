@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text):\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n    \"\"\"\n    # Replace any run of 3 or more spaces with a single hyphen\n    # Then replace any remaining single spaces with underscore\n    if not text:\n        return text\n    # Use regex for efficiency on large strings\n    # First collapse runs of 3+ spaces -> hyphen\n    s = re.sub(r' {3,}', '-', text)\n    # Then replace any single space (or runs of 2 spaces which remain) with underscores\n    # But runs of exactly 2 spaces should become two underscores according to \"replace all spaces with underscores\"\n    # After previous step, only runs of 1 or 2 spaces remain; replace each space with underscore\n    s = s.replace(' ', '_')\n    return s",
+  "metrics": {
+    "total_nodes": 41,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.073171,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

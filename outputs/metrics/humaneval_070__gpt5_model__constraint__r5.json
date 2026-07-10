@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_070__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_070",
+  "task_id": "HumanEval/70",
+  "problem_name": "Strange Sort List",
+  "entry_point": "strange_sort_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef strange_sort_list(lst: List[int]) -> List[int]:\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n    # Defensive copy and handle empty case\n    if not lst:\n        return []\n\n    # Sort the list to easily pick min and max alternately\n    sorted_lst = sorted(lst)\n    result = []\n    left = 0\n    right = len(sorted_lst) - 1\n\n    # Alternate picking from left (min) then right (max)\n    pick_min = True\n    while left <= right:\n        if pick_min:\n            result.append(sorted_lst[left])\n            left += 1\n        else:\n            result.append(sorted_lst[right])\n            right -= 1\n        pick_min = not pick_min\n\n    return result\n\n# Quick tests when run as script (not executed when imported)\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 3, 4], [1, 4, 2, 3]),\n        ([5, 5, 5, 5], [5, 5, 5, 5]),\n        ([], []),\n        ([3,1,2], [1,3,2]),\n        ([10], [10]),\n        ([2,2,1,3], [1,3,2,2]),\n    ]\n    for inp, expected in tests:\n        out = strange_sort_list(inp)\n        print(inp, '->', out, 'OK' if out == expected else 'FAIL (expected '+str(expected)+')')",
+  "metrics": {
+    "total_nodes": 238,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.033613,
+    "function_names": [
+      "strange_sort_list"
+    ]
+  }
+}

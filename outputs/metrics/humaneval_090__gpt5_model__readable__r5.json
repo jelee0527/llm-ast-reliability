@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_090__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element from the list.\n    If there is no such element (list has fewer than 2 distinct values), return None.\n    \"\"\"\n    if not lst:\n        return None\n\n    smallest = None\n    second_smallest = None\n\n    for value in lst:\n        if smallest is None or value < smallest:\n            # New smallest found; previous smallest becomes candidate for second smallest\n            if smallest is None:\n                second_smallest = None\n            else:\n                # Only set second_smallest if it's different from the new smallest\n                if value != smallest:\n                    second_smallest = smallest\n            smallest = value\n        elif value != smallest:\n            # Value is greater than smallest; consider for second_smallest\n            if second_smallest is None or value < second_smallest:\n                second_smallest = value\n\n    return second_smallest\n\n# Quick manual tests (will run when module executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 3, 4, 5], 2),\n        ([5, 1, 4, 3, 2], 2),\n        ([], None),\n        ([1, 1], None),\n        ([2], None),\n        ([1, 2, 1, 2, 3], 2),\n        ([3, 3, 2, 1, 1], 2),\n        ([5, 4, 4, 4, 3], 4),\n    ]\n    for inp, expected in tests:\n        result = next_smallest(inp)\n        print(f\"{inp} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 224,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.049107,
+    "function_names": [
+      "next_smallest"
+    ]
+  }
+}

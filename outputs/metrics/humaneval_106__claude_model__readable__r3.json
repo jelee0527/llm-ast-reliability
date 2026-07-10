@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_106__claude_model__readable__r3.json",
+  "problem_id": "humaneval_106",
+  "task_id": "HumanEval/106",
+  "problem_name": "F",
+  "entry_point": "f",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def f(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            # Calculate sum of numbers from 1 to i\n            total = sum(range(1, i + 1))\n        else:\n            # Calculate factorial of i\n            total = 1\n            for j in range(1, i + 1):\n                total *= j\n        result.append(total)\n    return result",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.051282,
+    "function_names": [
+      "f"
+    ]
+  }
+}

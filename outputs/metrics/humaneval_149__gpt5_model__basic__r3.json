@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sorted_list_sum(lst: List[str]) -> List[str]:\n    \"\"\"\n    Accepts a list of strings, removes strings with odd lengths,\n    and returns the list sorted ascending by length, then alphabetically.\n    \"\"\"\n    # Keep only strings with even length\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    # Sort by length then alphabetically\n    return sorted(filtered, key=lambda s: (len(s), s))\n\n\n# Example quick tests (can be removed)\nif __name__ == \"__main__\":\n    assert sorted_list_sum([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert sorted_list_sum([\"ab\", \"a\", \"aaa\", \"cd\"]) == [\"ab\", \"cd\"]\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.019608,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

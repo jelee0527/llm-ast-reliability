@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_111__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "invalid syntax (<unknown>, line 52)",
+  "generated_code": "from typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter(s) with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \"\"\"\n    result: Dict[str, int] = {}\n    if not test:\n        return result\n\n    # Split on spaces; handle extra spaces by filtering out empty tokens\n    tokens = [tok for tok in test.split(' ') if tok != '']\n    if not tokens:\n        return result\n\n    counts: Dict[str, int] = {}\n    for tok in tokens:\n        # Expect single lowercase letters but tolerate longer tokens by treating token as key\n        counts[tok] = counts.get(tok, 0) + 1\n\n    # Find maximum count\n    max_count = None\n    for v in counts.values():\n        if max_count is None or v > max_count:\n            max_count = v\n\n    if max_count is None:\n        return result\n\n    # Collect all keys with maximum count\n    for k, v in counts.items():\n        if v == max_count:\n            result[k] = v\n\n    return result\n\n\n# Quick inline tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ('a b c', {'a':1,'b':1,'c':1}),\n        ('a b b a', {'a':2,'b':2}),\n        ('a b c a b', {'a':2,'b':2}),\n        ('b b b b a', {'b':4}),\n        ('', {}),\n        ('   ', {}),\n        ('a  a b', {'a':2}),\n    ]\n    for inp, expected in tests:\n        out = histogram(inp)\n        print(inp!r, out, 'OK' if out == expected else f'FAIL expected {expected}')"
+}

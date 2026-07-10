@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n    depth = 0\n    for ch in brackets:\n        if ch == '(':\n            depth += 1\n        elif ch == ')':\n            depth -= 1\n        else:\n            # ignore other characters or could treat as invalid; here treat as invalid\n            return False\n        if depth < 0:\n            return False\n    return depth == 0",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.127273,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

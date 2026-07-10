@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:22:13.225931+00:00",
+  "elapsed_seconds": 4.012,
+  "official_prompt": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Return the number of sentences in S that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    Leading whitespace is ignored for each sentence; the first token must be exactly \"I\".\n    \"\"\"\n    if not S:\n        return 0\n    # Split by sentence delimiters ., ?, !\n    # Keep it simple: split and strip whitespace\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        part = part.lstrip()\n        if not part:\n            continue\n        # Check if the first word is exactly \"I\"\n        # Word boundary: either end of string or followed by whitespace or punctuation\n        # We can split on whitespace to get first token\n        first_token = part.split(None, 1)[0]\n        if first_token == \"I\":\n            count += 1\n    return count",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Return the number of sentences in S that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    Leading whitespace is ignored for each sentence; the first token must be exactly \"I\".\n    \"\"\"\n    if not S:\n        return 0\n    # Split by sentence delimiters ., ?, !\n    # Keep it simple: split and strip whitespace\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        part = part.lstrip()\n        if not part:\n            continue\n        # Check if the first word is exactly \"I\"\n        # Word boundary: either end of string or followed by whitespace or punctuation\n        # We can split on whitespace to get first token\n        first_token = part.split(None, 1)[0]\n        if first_token == \"I\":\n            count += 1\n    return count"
+}

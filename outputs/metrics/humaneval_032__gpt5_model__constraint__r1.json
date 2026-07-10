@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_032__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    \"\"\"\n    Evaluates polynomial with coefficients xs at point x.\n    returns xs[0] + xs[1] * x + xs[2] * x^2 + .... xs[n] * x^n\n    \"\"\"\n    # Horner's method is numerically stable, but enumerate/pow is fine for clarity.\n    # We'll use Horner for efficiency.\n    result = 0.0\n    for coeff in reversed(xs):\n        result = result * x + coeff\n    return result\n\ndef find_zero(xs: List[float]) -> float:\n    \"\"\"Finds a real root of the polynomial with coefficients xs.\n\n    Requirements/assumptions from prompt:\n    - xs has an even number of coefficients.\n    - The largest (highest-degree) non-zero coefficient is such that a real root exists.\n\n    We implement a robust root finder that searches for a sign change on an interval\n    and then applies bisection to locate a root. If no sign change is found on\n    an expanding search, we attempt to find a root at an exact zero (rare).\n    The function returns one real root (float). It should be deterministic.\n\n    Examples:\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1)*(x - 2)*(x - 3)\n    1.0\n    \"\"\"\n    if not xs:\n        raise ValueError(\"Coefficient list xs must be non-empty\")\n\n    # Strip trailing zeros at highest degrees\n    coeffs = xs[:]\n    while len(coeffs) > 1 and coeffs[-1] == 0:\n        coeffs.pop()\n\n    n = len(coeffs)\n    if n == 1:\n        # constant polynomial: no root unless zero\n        if coeffs[0] == 0:\n            return 0.0\n        raise ValueError(\"Constant non-zero polynomial has no real root\")\n\n    # If linear, solve directly\n    if n == 2:\n        a0, a1 = coeffs[0], coeffs[1]\n        if a1 == 0:\n            if a0 == 0:\n                return 0.0\n            raise ValueError(\"Linear polynomial with zero slope has no root\")\n        return -a0 / a1\n\n    # Search for an interval [lo, hi] with sign change.\n    # Start with a reasonable bracket and expand exponentially.\n    def sign(x):\n        v = poly(coeffs, x)\n        if v > 0:\n            return 1\n        if v < 0:\n            return -1\n        return 0\n\n    # Check if exact zero at 0\n    if poly(coeffs, 0.0) == 0.0:\n        return 0.0\n\n    # Initial bracket candidates\n    lo = -1.0\n    hi = 1.0\n    max_expansions = 100\n    found = False\n\n    slo = sign(lo)\n    shi = sign(hi)\n    if slo == 0:\n        return lo\n    if shi == 0:\n        return hi\n\n    # Expand until sign change or limits reached\n    for _ in range(max_expansions):\n        if slo * shi < 0:\n            found = True\n            break\n        # No sign change: expand outward\n        lo *= 2.0\n        hi *= 2.0\n        slo = sign(lo)\n        shi = sign(hi)\n        if slo == 0:\n            return lo\n        if shi == 0:\n            return hi\n\n    if not found:\n        # As a fallback, try scanning a range linearly within a large bound\n        bound = 1e6\n        steps = 2000\n        prev_x = -bound\n        prev_v = poly(coeffs, prev_x)\n        if prev_v == 0.0:\n            return prev_x\n        step = (2 * bound) / steps\n        for i in range(1, steps + 1):\n            x = -bound + i * step\n            v = poly(coeffs, x)\n            if v == 0.0:\n                return x\n            if prev_v * v < 0:\n                lo, hi = prev_x, x\n                found = True\n                break\n            prev_x, prev_v = x, v\n\n    if not found:\n        raise ValueError(\"Failed to bracket a root\")\n\n    # Bisection method for reliable convergence\n    f_lo = poly(coeffs, lo)\n    f_hi = poly(coeffs, hi)\n    if f_lo == 0.0:\n        return lo\n    if f_hi == 0.0:\n        return hi\n    if f_lo * f_hi > 0:\n        # Should not happen if bracketed\n        raise ValueError(\"Bracket does not contain a sign change\")\n\n    tol = 1e-12\n    max_iter = 200\n    for _ in range(max_iter):\n        mid = 0.5 * (lo + hi)\n        f_mid = poly(coeffs, mid)\n        if f_mid == 0.0:\n            return mid\n        # If interval is sufficiently small in x or f value is small, accept mid\n        if abs(hi - lo) < tol or abs(f_mid) < 1e-14:\n            return mid\n        if f_lo * f_mid < 0:\n            hi = mid\n            f_hi = f_mid\n        else:\n            lo = mid\n            f_lo = f_mid\n\n    # Return midpoint if max iterations reached\n    return 0.5 * (lo + hi)",
+  "metrics": {
+    "total_nodes": 669,
+    "ast_depth": 10,
+    "branch_count": 25,
+    "loop_count": 5,
+    "function_count": 3,
+    "control_flow_count": 56,
+    "control_flow_ratio": 0.083707,
+    "function_names": [
+      "poly",
+      "find_zero",
+      "sign"
+    ]
+  }
+}

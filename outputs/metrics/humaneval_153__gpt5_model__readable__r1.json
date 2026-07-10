@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef Strongest_Extension(class_name: str, extensions: List[str]) -> str:\n    \"\"\"\n    Determine the strongest extension by strength = (number of uppercase letters) - (number of lowercase letters).\n    If multiple extensions tie, the earliest in the list is chosen.\n    Return \"ClassName.ExtensionName\".\n    \"\"\"\n    best_index = None\n    best_strength = None\n\n    for idx, ext in enumerate(extensions):\n        cap = sum(1 for ch in ext if ch.isupper())\n        sm = sum(1 for ch in ext if ch.islower())\n        strength = cap - sm\n\n        if best_strength is None or strength > best_strength:\n            best_strength = strength\n            best_index = idx\n\n    # If no extensions provided, return just the class name (no extension appended)\n    if best_index is None:\n        return class_name\n\n    return f\"{class_name}.{extensions[best_index]}\"\n\n\n# Example usage (can be removed if only the function definition is desired)\nif __name__ == \"__main__\":\n    print(Strongest_Extension('my_class', ['AA', 'Be', 'CC']))  # Expected: my_class.AA\n    print(Strongest_Extension('Slices', ['SErviNGSliCes', 'Cheese', 'StuFfed']))  # Expected: Slices.SErviNGSliCes",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.037037,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

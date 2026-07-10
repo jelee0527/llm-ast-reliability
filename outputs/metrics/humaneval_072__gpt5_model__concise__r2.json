@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef will_it_fly(q: List[Any], w: float) -> bool:\n    return q == q[::-1] and sum(q) <= w",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02381,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

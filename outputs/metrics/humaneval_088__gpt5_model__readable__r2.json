@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting.\n    Sort ascending if (first element + last element) is odd, otherwise sort descending.\n    Do not modify the original array.\n    \"\"\"\n    # Make a shallow copy so original isn't modified\n    arr_copy = list(array)\n\n    # Empty or single-element arrays are already sorted (just return the copy)\n    if len(arr_copy) < 2:\n        return arr_copy\n\n    first = arr_copy[0]\n    last = arr_copy[-1]\n\n    total = first + last\n\n    if total % 2 == 1:\n        # Sum is odd -> ascending\n        return sorted(arr_copy)\n    else:\n        # Sum is even -> descending\n        return sorted(arr_copy, reverse=True)\n\n\n# Example quick tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        ([], []),\n        ([5], [5]),\n        ([2, 4, 3, 0, 1, 5], [0, 1, 2, 3, 4, 5]),\n        ([2, 4, 3, 0, 1, 5, 6], [6, 5, 4, 3, 2, 1, 0]),\n    ]\n    for inp, expected in tests:\n        result = sort_array(inp)\n        print(\"in:\", inp, \"out:\", result, \"expected:\", expected, \"ok:\", result == expected)",
+  "metrics": {
+    "total_nodes": 190,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.036842,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

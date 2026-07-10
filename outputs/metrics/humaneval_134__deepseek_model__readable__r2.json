@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def check_if_last_char_is_a_letter(txt):\n    if not txt or txt[-1] == ' ':\n        return False\n    if not txt[-1].isalpha():\n        return False\n    if len(txt) == 1:\n        return txt.isalpha()\n    if txt[-2] == ' ':\n        return True\n    return False",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.132353,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

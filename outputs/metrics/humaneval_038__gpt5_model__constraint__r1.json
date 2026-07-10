@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_038__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n    # Split into groups of up to 3 chars\n    groups: List[str] = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # For groups that are full length 3, reverse the rotation: encoded = b c a -> original = a b c\n    decoded_groups = []\n    for group in groups:\n        if len(group) == 3:\n            # group[2] was original first char, group[0] original second, group[1] original third?\n            # encode did: original abc -> encoded bca. So encoded[0]=b, [1]=c, [2]=a.\n            # To recover abc: a = encoded[2], b = encoded[0], c = encoded[1]\n            decoded = group[2] + group[0] + group[1]\n            decoded_groups.append(decoded)\n        else:\n            # groups shorter than 3 were left unchanged\n            decoded_groups.append(group)\n    return \"\".join(decoded_groups)\n\n\n# Quick internal tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        \"\",\n        \"a\",\n        \"ab\",\n        \"abc\",\n        \"abcd\",\n        \"abcdef\",\n        \"abcdefg\",\n        \"The quick brown fox jumps over the lazy dog\",\n    ]\n    for t in tests:\n        enc = encode_cyclic(t)\n        dec = decode_cyclic(enc)\n        print(f\"orig: {t!r}, enc: {enc!r}, dec: {dec!r}, ok: {dec==t}\")",
+  "metrics": {
+    "total_nodes": 286,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.024476,
+    "function_names": [
+      "encode_cyclic",
+      "decode_cyclic"
+    ]
+  }
+}

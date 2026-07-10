@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\"\"\"\n    prod = None\n    for ch in str(abs(int(n))):\n        d = ord(ch) - 48\n        if d % 2 == 1:\n            prod = d if prod is None else prod * d\n    return 0 if prod is None else prod",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.068493,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

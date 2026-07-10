@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_107__claude_model__concise__r5.json",
+  "problem_id": "humaneval_107",
+  "task_id": "HumanEval/107",
+  "problem_name": "Even Odd Palindrome",
+  "entry_point": "even_odd_palindrome",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def even_odd_palindrome(n):\n    def is_palindrome(x):\n        return str(x) == str(x)[::-1]\n    \n    even = sum(1 for i in range(1, n+1) if is_palindrome(i) and i % 2 == 0)\n    odd = sum(1 for i in range(1, n+1) if is_palindrome(i) and i % 2 == 1)\n    return (even, odd)",
+  "metrics": {
+    "total_nodes": 103,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.019417,
+    "function_names": [
+      "even_odd_palindrome",
+      "is_palindrome"
+    ]
+  }
+}

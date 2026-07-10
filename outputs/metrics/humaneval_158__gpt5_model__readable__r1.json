@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"Return the word with the maximum number of unique characters.\n    If multiple words tie, return the lexicographically smallest among them.\n    If the input list is empty, return an empty string.\n    \"\"\"\n    if not words:\n        return \"\"\n    # For each word compute (unique_char_count, word)\n    # We want maximum unique_char_count, and for ties smallest word lexicographically.\n    # So we can track best by comparing tuples (unique_count, -lex) but easier:\n    best_word = None\n    best_unique_count = -1\n    for word in words:\n        unique_count = len(set(word))\n        if unique_count > best_unique_count:\n            best_unique_count = unique_count\n            best_word = word\n        elif unique_count == best_unique_count:\n            # tie: choose lexicographically smaller\n            if best_word is None or word < best_word:\n                best_word = word\n    return best_word if best_word is not None else \"\"\n\n\n# Quick manual tests (will run when module executed)\nif __name__ == \"__main__\":\n    assert find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    assert find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    assert find_max([\"aaaaaaa\", \"bb\", \"cc\"]) == \"aaaaaaa\"\n    assert find_max([]) == \"\"\n    print(\"All self-tests passed.\")",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.056962,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_036__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Iterator\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    if n <= 0:\n        return 0\n\n    def multiples_below(limit: int, divisor: int) -> Iterator[int]:\n        # yield multiples of divisor less than limit\n        start = divisor\n        while start < limit:\n            yield start\n            start += divisor\n\n    seen = set()\n    count = 0\n\n    # iterate multiples of 11 and 13, avoid double-counting by tracking seen numbers\n    for value in multiples_below(n, 11):\n        if value not in seen:\n            seen.add(value)\n            count += str(value).count('7')\n    for value in multiples_below(n, 13):\n        if value not in seen:\n            seen.add(value)\n            count += str(value).count('7')\n\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 157,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.057325,
+    "function_names": [
+      "fizz_buzz",
+      "multiples_below"
+    ]
+  }
+}

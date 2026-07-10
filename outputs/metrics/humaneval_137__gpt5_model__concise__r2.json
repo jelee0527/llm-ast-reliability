@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Union, Optional\nimport re\nfrom decimal import Decimal, InvalidOperation, getcontext\n\ngetcontext().prec = 28\n\nNumberLike = Union[int, float, str]\n\ndef _to_decimal_and_kind(x: NumberLike):\n    # Returns (Decimal value, original_kind) where original_kind is type(x)\n    if isinstance(x, str):\n        s = x.strip()\n        # replace comma with dot only if comma used as decimal separator (no dots)\n        if ',' in s and '.' not in s:\n            s = s.replace(',', '.')\n        # remove thousands separators: if there are dots and commas, assume dots are thousand separators and commas decimal\n        elif '.' in s and ',' in s:\n            # if last comma is after last dot, treat comma as decimal sep\n            if s.rfind(',') > s.rfind('.'):\n                s = s.replace('.', '').replace(',', '.')\n            else:\n                s = s.replace(',', '')\n        # remove spaces\n        s = s.replace(' ', '')\n        try:\n            d = Decimal(s)\n        except InvalidOperation:\n            # fall back: extract numeric-like with regex\n            m = re.search(r'[+-]?\\d+([.,]\\d+)?', x)\n            if not m:\n                raise\n            s2 = m.group(0).replace(',', '.')\n            d = Decimal(s2)\n        return d, str\n    elif isinstance(x, bool):\n        # treat bool as int\n        return Decimal(int(x)), int\n    elif isinstance(x, int):\n        return Decimal(x), int\n    elif isinstance(x, float):\n        # convert float to string with repr to preserve value then to Decimal\n        return Decimal(repr(x)), float\n    else:\n        raise TypeError(\"Unsupported type\")\n\ndef compare_one(a: NumberLike, b: NumberLike) -> Optional[NumberLike]:\n    da, ka = _to_decimal_and_kind(a)\n    db, kb = _to_decimal_and_kind(b)\n    if da == db:\n        return None\n    if da > db:\n        return a\n    else:\n        return b",
+  "metrics": {
+    "total_nodes": 322,
+    "ast_depth": 13,
+    "branch_count": 11,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.062112,
+    "function_names": [
+      "_to_decimal_and_kind",
+      "compare_one"
+    ]
+  }
+}

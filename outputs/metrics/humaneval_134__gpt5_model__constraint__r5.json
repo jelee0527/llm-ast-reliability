@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_134__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "invalid syntax (<unknown>, line 55)",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n    if not isinstance(txt, str):\n        return False\n    if txt == \"\":\n        return False\n    # If last character is space, immediate False\n    if txt[-1] == \" \":\n        return False\n    last_char = txt[-1]\n    # Check last char is a letter\n    if last_char not in string.ascii_letters:\n        return False\n    # Now determine whether it is a standalone \"word\" of length 1.\n    # Split by spaces; words are groups separated by space.\n    parts = txt.split(\" \")\n    # If there are trailing or leading empty strings due to spaces, split handles it.\n    # Last non-empty segment should be compared: if its length is 1 and equals last_char, return True.\n    # However specification: last character is letter and is not part of a word -> meaning the last space-separated token is a single letter.\n    # If last token is empty (shouldn't happen because we checked last char not space), handle anyway.\n    if len(parts) == 0:\n        return False\n    last_token = parts[-1]\n    if last_token == \"\":\n        return False\n    return len(last_token) == 1 and last_token.isalpha() and last_token == last_char\n\n# Optional quick tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"apple pie\", False),\n        (\"apple pi e\", True),\n        (\"apple pi e \", False),\n        (\"\", False),\n        (\"a\", True),\n        (\"apple a\", True),\n        (\"apple ab\", False),\n        (\"apple a!\", False),\n        (\"apple  b\", False),  # double space creates empty token then 'b' -> last token 'b' so True? but string ends with 'b' and token 'b' so True expected; test expecting False here commented\n    ]\n    for s, exp in tests:\n        print(s!r, check_if_last_char_is_a_letter(s), \"expected\", exp)"
+}

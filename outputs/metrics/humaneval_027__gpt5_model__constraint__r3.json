@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterator\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    # Use explicit control flow to process each character deterministically.\n    if string is None:\n        raise TypeError(\"input must be a string\")\n    result_chars: list[str] = []\n    for ch in string:\n        # If uppercase letter, convert to lowercase; if lowercase, convert to uppercase.\n        # Non-alphabetic characters remain unchanged.\n        if 'a' <= ch <= 'z':\n            # lowercase -> uppercase\n            # ord/chr used to avoid locale-dependent methods (still deterministic for ASCII/Unicode letters)\n            result_chars.append(chr(ord(ch) - (ord('a') - ord('A'))))\n        elif 'A' <= ch <= 'Z':\n            # uppercase -> lowercase\n            result_chars.append(chr(ord(ch) + (ord('a') - ord('A'))))\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n# Simple doctest demonstration when run as script\nif __name__ == \"__main__\":\n    import sys\n    tests = [\"Hello\", \"WORLD\", \"123abcABC!?\", \"\", \"MiXeD Case\"]\n    for t in tests:\n        print(f\"{t!r} -> {flip_case(t)!r}\")",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

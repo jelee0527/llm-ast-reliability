@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_029__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_029",
+  "task_id": "HumanEval/29",
+  "problem_name": "Filter By Prefix",
+  "entry_point": "filter_by_prefix",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    result = []\n    for s in strings:\n        if s.startswith(prefix):\n            result.append(s)\n    return result",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06,
+    "function_names": [
+      "filter_by_prefix"
+    ]
+  }
+}

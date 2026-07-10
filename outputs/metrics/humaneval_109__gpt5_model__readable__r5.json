@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be rotated (right shifts) some number of times\n    to become non-decreasing (sorted ascending with possible equal elements).\n    Empty array returns True. Elements are unique per problem statement.\n    \"\"\"\n    if not arr:\n        return True\n\n    n = len(arr)\n    # Count number of \"drops\" where a later element is smaller than previous.\n    drops = 0\n    drop_index = -1\n    for i in range(1, n):\n        if arr[i] < arr[i - 1]:\n            drops += 1\n            drop_index = i\n            if drops > 1:\n                return False\n\n    # If there are no drops, already non-decreasing\n    if drops == 0:\n        return True\n\n    # Exactly one drop at position drop_index means arr[drop_index] < arr[drop_index-1]\n    # For a rotation to make array sorted, the tail segment arr[drop_index:] followed by arr[:drop_index]\n    # must be non-decreasing overall. Because elements are unique, it's sufficient to check\n    # that last element <= first element after rotation, i.e., arr[-1] <= arr[0].\n    # More directly, after one allowed rotation count (any), the condition is:\n    # arr[drop_index:] is increasing, arr[:drop_index] is increasing, and arr[-1] <= arr[0].\n    # Since we already ensured there's only one drop, both segments are individually non-decreasing.\n    return arr[-1] <= arr[0]",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.082569,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

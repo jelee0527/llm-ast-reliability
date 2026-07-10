@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_062__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def derivative(xs: list):\n    if not xs:\n        return []\n    return [i * xs[i] for i in range(1, len(xs))]",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.078947,
+    "function_names": [
+      "derivative"
+    ]
+  }
+}

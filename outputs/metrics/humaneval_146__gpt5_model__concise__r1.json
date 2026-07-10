@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_146__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef specialFilter(nums: Iterable[int]) -> int:\n    def first_digit(n: int) -> int:\n        n = abs(n)\n        while n >= 10:\n            n //= 10\n        return n\n    def last_digit(n: int) -> int:\n        return abs(n) % 10\n    odd = {1,3,5,7,9}\n    count = 0\n    for x in nums:\n        if x > 10 and first_digit(x) in odd and last_digit(x) in odd:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 3,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.054054,
+    "function_names": [
+      "specialFilter",
+      "first_digit",
+      "last_digit"
+    ]
+  }
+}

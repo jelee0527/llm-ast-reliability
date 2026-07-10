@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:45:03.238408+00:00",
+  "elapsed_seconds": 3.863,
+  "official_prompt": "\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    \"\"\"\n    if not (isinstance(n, int) and isinstance(m, int)):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # count of integers\n    count = m - n + 1\n    # sum of arithmetic sequence from n to m\n    total = (n + m) * count // 2\n    # If (n + m) * count is odd, use float division to get correct average, then round\n    if ((n + m) * count) % 2 != 0:\n        avg = round(((n + m) * count) / 2 / count)\n    else:\n        avg = round(total / count)\n    # Convert to binary string with 0b prefix\n    return bin(int(avg))",
+  "generated_code": "import math\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    \"\"\"\n    if not (isinstance(n, int) and isinstance(m, int)):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # count of integers\n    count = m - n + 1\n    # sum of arithmetic sequence from n to m\n    total = (n + m) * count // 2\n    # If (n + m) * count is odd, use float division to get correct average, then round\n    if ((n + m) * count) % 2 != 0:\n        avg = round(((n + m) * count) / 2 / count)\n    else:\n        avg = round(total / count)\n    # Convert to binary string with 0b prefix\n    return bin(int(avg))"
+}

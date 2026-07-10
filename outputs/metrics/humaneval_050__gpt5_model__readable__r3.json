@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every lowercase alphabetic character by 5.\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    result_chars: List[str] = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            shifted = chr(((ord(ch) + 5 - ord('a')) % 26) + ord('a'))\n            result_chars.append(shifted)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input a string encoded with encode_shift function.\n    Returns the decoded string by shifting every lowercase alphabetic character back by 5.\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    result_chars: List[str] = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            original = chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a'))\n            result_chars.append(original)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\n# Example usage (can be removed if only functions are needed):\nif __name__ == \"__main__\":\n    sample = \"hello world zzz abc\"\n    encoded = encode_shift(sample)\n    decoded = decode_shift(encoded)\n    print(\"Original:\", sample)\n    print(\"Encoded :\", encoded)\n    print(\"Decoded :\", decoded)",
+  "metrics": {
+    "total_nodes": 220,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.031818,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

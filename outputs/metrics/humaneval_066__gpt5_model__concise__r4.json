@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_066__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef digitSum(s):\n    \"\"\"Return sum of ASCII codes of uppercase letters in s.\"\"\"\n    return sum(ord(ch) for ch in s if 'A' <= ch <= 'Z')",
+  "metrics": {
+    "total_nodes": 30,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.033333,
+    "function_names": [
+      "digitSum"
+    ]
+  }
+}

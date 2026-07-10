@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibonacci sequence:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Efficient iterative (non-recursive) computation.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Use rolling window of last four values: [f(n-4), f(n-3), f(n-2), f(n-1)]\n    a, b, c, d = 0, 0, 2, 0  # corresponds to n=0,1,2,3\n    for _ in range(4, n + 1):\n        e = a + b + c + d\n        a, b, c, d = b, c, d, e\n    return d\n\nif __name__ == \"__main__\":\n    # Quick sanity tests from the docstring\n    print(fib4(5))  # expected 4\n    print(fib4(6))  # expected 8\n    print(fib4(7))  # expected 14)",
+  "metrics": {
+    "total_nodes": 153,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.084967,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

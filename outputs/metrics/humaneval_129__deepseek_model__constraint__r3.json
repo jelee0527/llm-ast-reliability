@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from collections import deque\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For each cell, store the best path of length up to k starting from that cell\n    # We'll use BFS-like DP: dp[length][r][c] = best path list (as tuple) of that length starting at (r,c)\n    # But storing full lists for all lengths is heavy. Instead, we can do iterative deepening:\n    # Start with paths of length 1, then extend.\n    \n    # dp[l][r][c] = tuple of values for best path of length l starting at (r,c)\n    dp = [[None for _ in range(n)] for _ in range(n)]\n    for r in range(n):\n        for c in range(n):\n            dp[r][c] = (grid[r][c],)\n    \n    for length in range(2, k + 1):\n        new_dp = [[None for _ in range(n)] for _ in range(n)]\n        for r in range(n):\n            for c in range(n):\n                best = None\n                for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    nr, nc = r + dr, c + dc\n                    if 0 <= nr < n and 0 <= nc < n:\n                        candidate = (grid[r][c],) + dp[nr][nc]\n                        if best is None or candidate < best:\n                            best = candidate\n                new_dp[r][c] = best\n        dp = new_dp\n    \n    best_overall = None\n    for r in range(n):\n        for c in range(n):\n            if best_overall is None or dp[r][c] < best_overall:\n                best_overall = dp[r][c]\n    return list(best_overall)",
+  "metrics": {
+    "total_nodes": 352,
+    "ast_depth": 14,
+    "branch_count": 4,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.039773,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

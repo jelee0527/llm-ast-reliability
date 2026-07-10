@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n \"\"\"\n    if n <= 1:\n        return 0\n    # check from sqrt downwards for factor pairs\n    for i in range(int(math.isqrt(n)), 0, -1):\n        if n % i == 0:\n            j = n // i\n            # j is the paired divisor >= i\n            if j < n:\n                return j\n            if i < n:\n                return i\n    return 1",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.111111,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_116__deepseek_model__constraint__r1.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sort_array(arr):\n    def count_ones(n):\n        count = 0\n        if n < 0:\n            n = -n\n        while n:\n            count += n & 1\n            n >>= 1\n        return count\n    \n    return sorted(arr, key=lambda x: (count_ones(x), x))",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='sort_array',\n      args=arguments(\n        args=[\n          arg(arg='arr')]),\n      body=[\n        FunctionDef(\n          name='count_ones',\n          args=arguments(\n            args=[\n              arg(arg='n')]),\n          body=[\n            Assign(\n              targets=[\n                Name(id='count', ctx=Store())],\n              value=Constant(value=0)),\n            If(\n              test=Compare(\n                left=Name(id='n', ctx=Load()),\n                ops=[\n                  Lt()],\n                comparators=[\n                  Constant(value=0)]),\n              body=[\n                Assign(\n                  targets=[\n                    Name(id='n', ctx=Store())],\n                  value=UnaryOp(\n                    op=USub(),\n                    operand=Name(id='n', ctx=Load())))]),\n            While(\n              test=Name(id='n', ctx=Load()),\n              body=[\n                AugAssign(\n                  target=Name(id='count', ctx=Store()),\n                  op=Add(),\n                  value=BinOp(\n                    left=Name(id='n', ctx=Load()),\n                    op=BitAnd(),\n                    right=Constant(value=1))),\n                AugAssign(\n                  target=Name(id='n', ctx=Store()),\n                  op=RShift(),\n                  value=Constant(value=1))]),\n            Return(\n              value=Name(id='count', ctx=Load()))]),\n        Return(\n          value=Call(\n            func=Name(id='sorted', ctx=Load()),\n            args=[\n              Name(id='arr', ctx=Load())],\n            keywords=[\n              keyword(\n                arg='key',\n                value=Lambda(\n                  args=arguments(\n                    args=[\n                      arg(arg='x')]),\n                  body=Tuple(\n                    elts=[\n                      Call(\n                        func=Name(id='count_ones', ctx=Load()),\n                        args=[\n                          Name(id='x', ctx=Load())]),\n                      Name(id='x', ctx=Load())],\n                    ctx=Load())))]))])])"
+}

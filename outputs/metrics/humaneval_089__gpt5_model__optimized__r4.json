@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate each lowercase and uppercase letter forward by 4 positions (2 multiplied by 2).\n    Non-letter characters are left unchanged.\"\"\"\n    # shift = 2 multiplied to two places -> interpreted as 2 * 2 = 4\n    shift = 4\n    lower = string.ascii_lowercase\n    upper = string.ascii_uppercase\n    l_map = {c: lower[(i + shift) % 26] for i, c in enumerate(lower)}\n    u_map = {c: upper[(i + shift) % 26] for i, c in enumerate(upper)}\n    res = []\n    for ch in s:\n        if ch in l_map:\n            res.append(l_map[ch])\n        elif ch in u_map:\n            res.append(u_map[ch])\n        else:\n            res.append(ch)\n    return ''.join(res)\n\n# Quick examples for verification (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(encrypt('hi'))         # expected 'lm'\n    print(encrypt('asdfghjkl'))  # expected 'ewhjklnop'\n    print(encrypt('gf'))         # expected 'kj'\n    print(encrypt('et'))         # expected 'ix'",
+  "metrics": {
+    "total_nodes": 189,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.026455,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import sys\nfrom functools import lru_cache\n\ndef tri(n):\n    \"\"\"Return list of first n+1 Tribonacci numbers indexed from 0..n, with tri(1)=3.\n    According to the problem examples, tri(0)=1 (since tri(3) example yields [1,3,2,8]).\n    Recurrence:\n      tri(1) = 3\n      if n is even: tri(n) = 1 + n/2\n      if n is odd: tri(n) = tri(n-1) + tri(n-2) + tri(n+1)\n    The odd recurrence references tri(n+1); to compute consistently we solve with memoization\n    handling dependencies. For even n the value is direct.\n    \"\"\"\n    # interpret n as non-negative integer index; need list of length n+1\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # From example tri(0)=1, tri(1)=3, tri(2)=1+2/2=2, tri(3)=8\n    # We'll compute integers; note 1 + n/2 should yield integer when n is even.\n    sys.setrecursionlimit(max(10000, 2*(n+10)))\n    @lru_cache(None)\n    def T(k):\n        if k == 0:\n            return 1\n        if k == 1:\n            return 3\n        if k % 2 == 0:\n            return 1 + (k // 2)\n        # k is odd and >1: tri(k) = tri(k-1) + tri(k-2) + tri(k+1)\n        # Rearranged to solve for tri(k+1): tri(k+1) = tri(k) - tri(k-1) - tri(k-2)\n        # But that introduces circularity. Instead compute by solving forward:\n        # We'll compute tri values iteratively up to needed by handling odd eqn as:\n        # tri(k+1) = tri(k) - tri(k-1) - tri(k-2)\n        # To avoid circular recursion, compute tri sequentially in outer function.\n        # This function will not be used for odd k in isolation.\n        raise RuntimeError(\"Should not call T for odd k directly\")\n    # Build array up to n\n    res = [0]*(n+1)\n    for i in range(n+1):\n        if i == 0:\n            res[i] = 1\n        elif i == 1:\n            res[i] = 3\n        elif i % 2 == 0:\n            res[i] = 1 + (i // 2)\n        else:\n            # i is odd >1. We have recurrence tri(i) = tri(i-1) + tri(i-2) + tri(i+1)\n            # Rearranged: tri(i+1) = tri(i) - tri(i-1) - tri(i-2)\n            # So to compute tri(i) we need tri(i+1). We'll compute tri(i+1) using even/odd nature:\n            # Note i is odd => i+1 is even, so tri(i+1) = 1 + (i+1)/2 straightforward.\n            tri_ip1 = 1 + ((i+1)//2)\n            res[i] = res[i-1] + res[i-2] + tri_ip1\n    return res\n\n# If run as script, can do a simple test\nif __name__ == \"__main__\":\n    # Example: tri(3) -> [1,3,2,8]\n    print(tri(3))",
+  "metrics": {
+    "total_nodes": 223,
+    "ast_depth": 13,
+    "branch_count": 8,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.067265,
+    "function_names": [
+      "tri",
+      "T"
+    ]
+  }
+}

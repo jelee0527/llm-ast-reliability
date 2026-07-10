@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__claude_model__concise__r2.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def modp(n: int, p: int):\n    return pow(2, n, p)",
+  "metrics": {
+    "total_nodes": 18,
+    "ast_depth": 6,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

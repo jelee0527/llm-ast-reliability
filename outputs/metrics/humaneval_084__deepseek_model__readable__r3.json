@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def solve(N):\n    digit_sum = sum(int(digit) for digit in str(N))\n    return bin(digit_sum)[2:]",
+  "metrics": {
+    "total_nodes": 34,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.029412,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

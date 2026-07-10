@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_063__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_063",
+  "task_id": "HumanEval/63",
+  "problem_name": "Fibfib",
+  "entry_point": "fibfib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef fibfib(n: int):\n    \"\"\"Compute n-th Tribonacci-like number: T(0)=0,T(1)=0,T(2)=1, T(n)=T(n-1)+T(n-2)+T(n-3).\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0 or n == 1:\n        return 0\n    if n == 2:\n        return 1\n    # fast doubling-like via matrix exponentiation 3x3\n    def mat_mul(A, B):\n        return [\n            [A[0][0]*B[0][0] + A[0][1]*B[1][0] + A[0][2]*B[2][0],\n             A[0][0]*B[0][1] + A[0][1]*B[1][1] + A[0][2]*B[2][1],\n             A[0][0]*B[0][2] + A[0][1]*B[1][2] + A[0][2]*B[2][2]],\n            [A[1][0]*B[0][0] + A[1][1]*B[1][0] + A[1][2]*B[2][0],\n             A[1][0]*B[0][1] + A[1][1]*B[1][1] + A[1][2]*B[2][1],\n             A[1][0]*B[0][2] + A[1][1]*B[1][2] + A[1][2]*B[2][2]],\n            [A[2][0]*B[0][0] + A[2][1]*B[1][0] + A[2][2]*B[2][0],\n             A[2][0]*B[0][1] + A[2][1]*B[1][1] + A[2][2]*B[2][1],\n             A[2][0]*B[0][2] + A[2][1]*B[1][2] + A[2][2]*B[2][2]]\n        ]\n    def mat_pow(M, e):\n        # identity 3x3\n        R = [[1,0,0],[0,1,0],[0,0,1]]\n        while e:\n            if e & 1:\n                R = mat_mul(R, M)\n            M = mat_mul(M, M)\n            e >>= 1\n        return R\n    # transformation matrix for tribonacci: [Tn, Tn-1, Tn-2]^T = A * [Tn-1, Tn-2, Tn-3]^T\n    A = [[1,1,1],[1,0,0],[0,1,0]]\n    # we want T(n) given state at n=2: [T2, T1, T0] = [1,0,0]\n    # Applying A^(n-2) * [T2,T1,T0]\n    P = mat_pow(A, n-2)\n    T2, T1, T0 = 1,0,0\n    Tn = P[0][0]*T2 + P[0][1]*T1 + P[0][2]*T0\n    return Tn",
+  "metrics": {
+    "total_nodes": 733,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.015007,
+    "function_names": [
+      "fibfib",
+      "mat_mul",
+      "mat_pow"
+    ]
+  }
+}

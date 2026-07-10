@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:38:17.082688+00:00",
+  "elapsed_seconds": 5.679,
+  "official_prompt": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional, Iterable\n\ndef prod_signs(arr: Iterable[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs.\n    Sign of each number: 1 if positive, -1 if negative, 0 if zero.\n    If any element is zero, overall product of signs is 0 -> return 0.\n    If arr is empty, return None.\n    \"\"\"\n    # Convert to iterator-safe sequence check\n    try:\n        it = iter(arr)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable of integers\")\n    # Use variables to accumulate\n    total_mag = 0\n    sign_prod = 1\n    any_item = False\n    for x in it:\n        any_item = True\n        if x == 0:\n            return 0\n        if x < 0:\n            sign_prod = -sign_prod\n            total_mag += -x\n        else:\n            total_mag += x\n    if not any_item:\n        return None\n    return sign_prod * total_mag\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6\n    assert prod_signs([5]) == 5\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import Optional, Iterable\n\ndef prod_signs(arr: Iterable[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs.\n    Sign of each number: 1 if positive, -1 if negative, 0 if zero.\n    If any element is zero, overall product of signs is 0 -> return 0.\n    If arr is empty, return None.\n    \"\"\"\n    # Convert to iterator-safe sequence check\n    try:\n        it = iter(arr)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable of integers\")\n    # Use variables to accumulate\n    total_mag = 0\n    sign_prod = 1\n    any_item = False\n    for x in it:\n        any_item = True\n        if x == 0:\n            return 0\n        if x < 0:\n            sign_prod = -sign_prod\n            total_mag += -x\n        else:\n            total_mag += x\n    if not any_item:\n        return None\n    return sign_prod * total_mag\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6\n    assert prod_signs([5]) == 5\n    print(\"Tests passed.\")"
+}

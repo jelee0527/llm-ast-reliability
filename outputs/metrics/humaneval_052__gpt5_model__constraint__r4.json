@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_052__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef below_threshold(l: List[int], t: int) -> bool:\n    \"\"\"Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"\n    # Explicit control flow: iterate and check each element\n    if l is None:\n        return True\n    for item in l:\n        # If any item is not strictly less than t, return False\n        if item >= t:\n            return False\n    return True\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.122807,
+    "function_names": [
+      "below_threshold"
+    ]
+  }
+}

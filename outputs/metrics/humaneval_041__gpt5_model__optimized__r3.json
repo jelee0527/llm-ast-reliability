@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Two sets of n cars each, one set moving left-to-right (L2R) and another\n    moving right-to-left (R2L). They start very far apart on a straight infinite line\n    and move simultaneously at the same speed. Each L2R car will collide with\n    every R2L car exactly once as they pass through each other (cars are unaffected).\n    Therefore the total number of collisions is n * n.\n\n    Args:\n        n: number of cars in each direction (nonnegative integer)\n\n    Returns:\n        Total number of collisions (int)\n    \"\"\"\n    if n <= 0:\n        return 0\n    return n * n\n\n# Example usage:\nif __name__ == \"__main__\":\n    # simple tests\n    for i in range(6):\n        print(i, car_race_collision(i))",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.098039,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

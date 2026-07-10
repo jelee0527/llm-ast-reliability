@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import itertools\n\ndef is_nested(string):\n    \"\"\"\n    Return True iff there exists a subsequence of the bracket string which is a valid balanced bracket sequence\n    and contains at least one pair of brackets that are nested (i.e., some opening bracket matched with a closing\n    bracket that is not the immediate next bracket in the subsequence).\n    The input contains only '[' and ']'.\n    \"\"\"\n\n    # Quick rejects: need at least one '[' and one ']' and at least 3 characters to have nesting (e.g. \"[[]]\")\n    if not string or string.count('[') == 0 or string.count(']') == 0 or len(string) < 3:\n        return False\n\n    n = len(string)\n\n    # We are looking for any valid subsequence (preserving order) that is balanced and has nesting.\n    # A minimal nested valid sequence has length at least 4? Actually \"[[]]\" length 4 is nested.\n    # Approach: dynamic programming tracking possible stack depths reachable and whether nesting has occurred.\n    # We'll maintain a set of states for each position: (depth, nested_flag)\n    # Start with depth 0, nested False.\n    states = {(0, False)}\n\n    for ch in string:\n        new_states = set()\n        for depth, nested in states:\n            # Option: skip this character (subsequence)\n            new_states.add((depth, nested))\n\n            if ch == '[':\n                # take opening: depth increases\n                new_states.add((depth + 1, nested))\n            else:  # ch == ']'\n                # can take closing only if depth > 0 (to remain valid)\n                if depth > 0:\n                    # taking a closing can create nesting if it closes something beyond immediate previous taken '['.\n                    # We consider nested occurs if depth before closing >= 2 (i.e., there is an inner open inside an outer).\n                    new_nested = nested or (depth >= 2)\n                    new_states.add((depth - 1, new_nested))\n\n        # Prune impossible large depths: depth cannot exceed total opens remaining; keep realistic bound\n        # But simple prune: depths greater than number of remaining characters are unnecessary.\n        # Compute max remaining possible opens as remaining chars count\n        # We'll limit depth to length of string to keep finite.\n        pruned = set()\n        max_depth_allowed = n  # safe cap\n        for d, nd in new_states:\n            if 0 <= d <= max_depth_allowed:\n                pruned.add((d, nd))\n        states = pruned\n\n    # After processing all characters, check if any state is balanced (depth==0) and nested flag True\n    for depth, nested in states:\n        if depth == 0 and nested:\n            return True\n    return False\n\n\n# Quick tests (can be removed)\nif __name__ == \"__main__\":\n    tests = {\n        '[[]]': True,\n        '[]]]]]]][[[[[]': False,\n        '[][]': False,\n        '[]': False,\n        '[[][]]': True,\n        '[[]][[': True,\n    }\n    for s, expected in tests.items():\n        result = is_nested(s)\n        print(s, result, expected)",
+  "metrics": {
+    "total_nodes": 266,
+    "ast_depth": 12,
+    "branch_count": 6,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:05:13.448852+00:00",
+  "elapsed_seconds": 2.908,
+  "official_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Return True if n can be written as the sum of exactly 4 positive even numbers.\"\"\"\n    if not isinstance(n, int) or n <= 0:\n        return False\n    # Sum of four positive even numbers = 2*(a+b+c+d) where each a..d >=1, so n must be even and >= 8\n    return n % 2 == 0 and n >= 8\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = {4: False, 6: False, 8: True, 10: True, 7: False, 0: False, 20: True}\n    for k, v in tests.items():\n        print(k, is_equal_to_sum_even(k), \"expected\", v)",
+  "generated_code": "import math\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Return True if n can be written as the sum of exactly 4 positive even numbers.\"\"\"\n    if not isinstance(n, int) or n <= 0:\n        return False\n    # Sum of four positive even numbers = 2*(a+b+c+d) where each a..d >=1, so n must be even and >= 8\n    return n % 2 == 0 and n >= 8\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = {4: False, 6: False, 8: True, 10: True, 7: False, 0: False, 20: True}\n    for k, v in tests.items():\n        print(k, is_equal_to_sum_even(k), \"expected\", v)"
+}

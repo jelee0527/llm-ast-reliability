@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = []\n    for char in message:\n        if char.isalpha():\n            if char in vowels:\n                # Find the vowel 2 places ahead (wrapping not needed as per examples)\n                shift = 2\n                if char.islower():\n                    new_char = chr((ord(char) - ord('a') + shift) % 26 + ord('a'))\n                else:\n                    new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))\n                # Swap case of the new character\n                result.append(new_char.swapcase())\n            else:\n                # Swap case of the consonant\n                result.append(char.swapcase())\n        else:\n            result.append(char)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 15,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.036232,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

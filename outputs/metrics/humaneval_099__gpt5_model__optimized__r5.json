@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    \"\"\"\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    \"\"\"\n    s = value.strip()\n    if not s:\n        raise ValueError(\"Empty input\")\n    # Use Decimal for precise half detection only if necessary\n    # But float is sufficient for typical inputs; handle large/special via Decimal\n    try:\n        # Try fast path with float\n        x = float(s)\n    except Exception:\n        from decimal import Decimal, getcontext, InvalidOperation\n        # increase precision for safety\n        getcontext().prec = max(28, len(s) + 5)\n        try:\n            dx = Decimal(s)\n        except InvalidOperation:\n            raise ValueError(\"Invalid numeric string\")\n        # split into integer part and fractional part\n        sign = -1 if dx < 0 else 1\n        adx = abs(dx)\n        floor = int(adx.to_integral_value(rounding=\"ROUND_FLOOR\"))\n        frac = adx - Decimal(floor)\n        half = Decimal('0.5')\n        if frac < half:\n            return sign * floor\n        elif frac > half:\n            return sign * (floor + 1)\n        else:\n            # exactly half -> away from zero\n            return sign * (floor + 1)\n    # Handle NaN or inf\n    if math.isnan(x) or math.isinf(x):\n        raise ValueError(\"Non-finite number\")\n    # For finite float, compute nearest with tie breaking away from zero\n    # Use math.modf to get fractional and integer parts\n    frac, integer = math.modf(x)\n    # math.modf returns fractional part with same sign as x\n    int_part = int(integer)\n    frac_abs = abs(frac)\n    if frac_abs < 0.5:\n        return int_part\n    if frac_abs > 0.5:\n        # move away from zero if positive fraction -> ceil, if negative -> floor\n        if x > 0:\n            return int_part + 1\n        else:\n            return int_part - 1\n    # exactly half: tie -> away from zero\n    if x >= 0:\n        return int_part + 1\n    else:\n        return int_part - 1",
+  "metrics": {
+    "total_nodes": 274,
+    "ast_depth": 11,
+    "branch_count": 11,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 22,
+    "control_flow_ratio": 0.080292,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

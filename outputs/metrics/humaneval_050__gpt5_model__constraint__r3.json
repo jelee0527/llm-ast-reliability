@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Lowercase letters a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    out_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            out_chars.append(chr(((ord(ch) + 5 - ord('a')) % 26) + ord('a')))\n        else:\n            out_chars.append(ch)\n    return \"\".join(out_chars)\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Reverses the shift applied by encode_shift (shifts letters by -5).\n    Non-lowercase characters are left unchanged.\n    \"\"\"\n    out_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            out_chars.append(chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')))\n        else:\n            out_chars.append(ch)\n    return \"\".join(out_chars)\n\n\n# Example usage when run as script (can be removed if importing as module)\nif __name__ == \"__main__\":\n    test = \"hello world! xyz\"\n    encoded = encode_shift(test)\n    decoded = decode_shift(encoded)\n    print(\"Original:\", test)\n    print(\"Encoded :\", encoded)\n    print(\"Decoded :\", decoded)",
+  "metrics": {
+    "total_nodes": 192,
+    "ast_depth": 14,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.036458,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

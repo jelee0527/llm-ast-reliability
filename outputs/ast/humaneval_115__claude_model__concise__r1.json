@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_115__claude_model__concise__r1.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def max_fill(grid, capacity):\n    import math\n    return sum(math.ceil(sum(row) / capacity) for row in grid)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='max_fill',\n      args=arguments(\n        args=[\n          arg(arg='grid'),\n          arg(arg='capacity')]),\n      body=[\n        Import(\n          names=[\n            alias(name='math')]),\n        Return(\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Call(\n                  func=Attribute(\n                    value=Name(id='math', ctx=Load()),\n                    attr='ceil',\n                    ctx=Load()),\n                  args=[\n                    BinOp(\n                      left=Call(\n                        func=Name(id='sum', ctx=Load()),\n                        args=[\n                          Name(id='row', ctx=Load())]),\n                      op=Div(),\n                      right=Name(id='capacity', ctx=Load()))]),\n                generators=[\n                  comprehension(\n                    target=Name(id='row', ctx=Store()),\n                    iter=Name(id='grid', ctx=Load()),\n                    is_async=0)])]))])])"
+}

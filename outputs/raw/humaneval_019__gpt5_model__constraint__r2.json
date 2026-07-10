@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:54:20.215221+00:00",
+  "elapsed_seconds": 5.86,
+  "official_prompt": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\n_WORD_TO_INT = {\n    'zero': 0,\n    'one': 1,\n    'two': 2,\n    'three': 3,\n    'four': 4,\n    'five': 5,\n    'six': 6,\n    'seven': 7,\n    'eight': 8,\n    'nine': 9,\n}\n\n_INT_TO_WORD = {v: k for k, v in _WORD_TO_INT.items()}\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    if numbers is None:\n        return ''\n    s = numbers.strip()\n    if s == '':\n        return ''\n    parts = s.split()\n    ints: List[int] = []\n    for p in parts:\n        key = p.lower()\n        if key not in _WORD_TO_INT:\n            raise ValueError(f\"Invalid numeral: {p}\")\n        ints.append(_WORD_TO_INT[key])\n    ints.sort()\n    words: List[str] = []\n    for i in ints:\n        words.append(_INT_TO_WORD[i])\n    return ' '.join(words)",
+  "generated_code": "from typing import List\n\n_WORD_TO_INT = {\n    'zero': 0,\n    'one': 1,\n    'two': 2,\n    'three': 3,\n    'four': 4,\n    'five': 5,\n    'six': 6,\n    'seven': 7,\n    'eight': 8,\n    'nine': 9,\n}\n\n_INT_TO_WORD = {v: k for k, v in _WORD_TO_INT.items()}\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    if numbers is None:\n        return ''\n    s = numbers.strip()\n    if s == '':\n        return ''\n    parts = s.split()\n    ints: List[int] = []\n    for p in parts:\n        key = p.lower()\n        if key not in _WORD_TO_INT:\n            raise ValueError(f\"Invalid numeral: {p}\")\n        ints.append(_WORD_TO_INT[key])\n    ints.sort()\n    words: List[str] = []\n    for i in ints:\n        words.append(_INT_TO_WORD[i])\n    return ' '.join(words)"
+}

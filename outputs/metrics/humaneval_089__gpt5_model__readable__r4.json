@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from string import ascii_lowercase as LOWER, ascii_uppercase as UPPER\n\ndef encrypt(s):\n    \"\"\"\n    Shift letters by 4 positions forward in the alphabet (2 multiplied by 2).\n    Preserve case. Non-letter characters are left unchanged.\n    Examples:\n      encrypt('hi') -> 'lm'\n      encrypt('asdfghjkl') -> 'ewhjklnop'\n      encrypt('gf') -> 'kj'\n      encrypt('et') -> 'ix'\n    \"\"\"\n    shift = 2 * 2  # two multiplied by two -> shift of 4\n    lower_map = {c: LOWER[(i + shift) % 26] for i, c in enumerate(LOWER)}\n    upper_map = {c: UPPER[(i + shift) % 26] for i, c in enumerate(UPPER)}\n    result_chars = []\n    for ch in s:\n        if ch in lower_map:\n            result_chars.append(lower_map[ch])\n        elif ch in upper_map:\n            result_chars.append(upper_map[ch])\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)",
+  "metrics": {
+    "total_nodes": 141,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.028369,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

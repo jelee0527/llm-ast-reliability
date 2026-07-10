@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_053__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y and return the result.\n\n    Examples:\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Validate input types to provide clear errors for non-integers\n    if not isinstance(x, int) or not isinstance(y, int):\n        raise TypeError(\"Both x and y must be integers\")\n    return x + y\n\n\n# Simple self-test when run as a script\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod(verbose=True)",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "add"
+    ]
+  }
+}

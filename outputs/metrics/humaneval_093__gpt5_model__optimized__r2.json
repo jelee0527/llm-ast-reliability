@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message (letters and spaces assumed) and encodes by:\n    - swapping case of all letters\n    - replacing all vowels in the message (regardless of case) with the letter\n      that appears 2 places ahead in the English alphabet, preserving case after swap.\n    Assumes only letters and spaces.\n    \"\"\"\n    # define vowels and mapping for two-steps ahead in alphabet\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    # create mapping for lowercase vowels to two letters ahead (wrap z->a)\n    def two_ahead(ch):\n        # ch is lowercase vowel\n        # compute two ahead\n        return chr((ord(ch) - ord('a') + 2) % 26 + ord('a'))\n\n    res_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # swap case\n            swapped = ch.swapcase()\n            # check vowel relative to original letter (problem statement implies vowels in message -> before swap)\n            if ch.lower() in vowels:\n                # produce two ahead using original vowel, then apply case of swapped letter\n                repl = two_ahead(ch.lower())\n                # swapped has opposite case of original; we want result to have same case as swapped\n                if swapped.isupper():\n                    repl = repl.upper()\n                else:\n                    repl = repl.lower()\n                res_chars.append(repl)\n            else:\n                res_chars.append(swapped)\n        else:\n            # preserve non-letters (e.g., spaces)\n            res_chars.append(ch)\n    return ''.join(res_chars)\n\n\n# Quick tests if run directly\nif __name__ == \"__main__\":\n    print(encode('test'))             # expected 'TGST'\n    print(encode('This is a message'))# expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 167,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.041916,
+    "function_names": [
+      "encode",
+      "two_ahead"
+    ]
+  }
+}

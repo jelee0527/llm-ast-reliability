@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse the music string and return beats for each note.\"\"\"\n    token_map = {'o':4, 'o|':2, '.|':1}\n    # split by whitespace\n    tokens = re.findall(r'o\\||o|\\.\\\\\\||\\.\\\\|\\.|\\.\\||\\S+', music_string)  # fallback pattern but we'll simpler handle below\n    # Simpler: split on whitespace and filter empty\n    parts = [p for p in music_string.split() if p]\n    result = []\n    for p in parts:\n        if p in token_map:\n            result.append(token_map[p])\n        else:\n            # try to match patterns within token (in case of punctuation)\n            if p.endswith('|') and p[:-1] == 'o':\n                result.append(2)\n            elif p == 'o':\n                result.append(4)\n            elif p == '.|':\n                result.append(1)\n            else:\n                # attempt to extract valid tokens from p sequentially\n                i = 0\n                n = len(p)\n                while i < n:\n                    if p.startswith('o|', i):\n                        result.append(2); i += 2\n                    elif p.startswith('o', i):\n                        result.append(4); i += 1\n                    elif p.startswith('.|', i):\n                        result.append(1); i += 2\n                    elif p[i].isspace():\n                        i += 1\n                    else:\n                        # skip unknown char\n                        i += 1\n    return result",
+  "metrics": {
+    "total_nodes": 242,
+    "ast_depth": 17,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

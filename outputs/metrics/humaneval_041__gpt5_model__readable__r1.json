@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from math import comb\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move at the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    # Each of the n left-to-right cars will collide with each of the n right-to-left cars exactly once.\n    # There are n * n pairings.\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n\n\n\n# Example usage:\nif __name__ == \"__main__\":\n    for test in [0, 1, 2, 5, 10]:\n        print(f\"n={test} -> collisions={car_race_collision(test)}\")",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.093333,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

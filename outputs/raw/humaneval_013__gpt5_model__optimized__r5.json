@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:44:27.326409+00:00",
+  "elapsed_seconds": 4.071,
+  "official_prompt": "\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b \"\"\"\n    # Handle zero and sign: gcd(0,0) conventionally 0\n    a_abs = abs(a)\n    b_abs = abs(b)\n    if a_abs == 0:\n        return b_abs\n    if b_abs == 0:\n        return a_abs\n    # Binary GCD (Stein's algorithm) for efficiency\n    # count common factors of 2\n    shift = 0\n    while ((a_abs | b_abs) & 1) == 0:\n        a_abs >>= 1\n        b_abs >>= 1\n        shift += 1\n    # make a_abs odd\n    while (a_abs & 1) == 0:\n        a_abs >>= 1\n    while b_abs != 0:\n        # make b_abs odd\n        while (b_abs & 1) == 0:\n            b_abs >>= 1\n        # now both odd; swap if necessary so a_abs <= b_abs\n        if a_abs > b_abs:\n            a_abs, b_abs = b_abs, a_abs\n        b_abs = b_abs - a_abs\n    return a_abs << shift\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import Optional\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b \"\"\"\n    # Handle zero and sign: gcd(0,0) conventionally 0\n    a_abs = abs(a)\n    b_abs = abs(b)\n    if a_abs == 0:\n        return b_abs\n    if b_abs == 0:\n        return a_abs\n    # Binary GCD (Stein's algorithm) for efficiency\n    # count common factors of 2\n    shift = 0\n    while ((a_abs | b_abs) & 1) == 0:\n        a_abs >>= 1\n        b_abs >>= 1\n        shift += 1\n    # make a_abs odd\n    while (a_abs & 1) == 0:\n        a_abs >>= 1\n    while b_abs != 0:\n        # make b_abs odd\n        while (b_abs & 1) == 0:\n            b_abs >>= 1\n        # now both odd; swap if necessary so a_abs <= b_abs\n        if a_abs > b_abs:\n            a_abs, b_abs = b_abs, a_abs\n        b_abs = b_abs - a_abs\n    return a_abs << shift\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

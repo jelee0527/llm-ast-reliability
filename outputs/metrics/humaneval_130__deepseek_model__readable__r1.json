@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def tri(n):\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    \n    # Base cases\n    if n == 0:\n        return [1]\n    if n == 1:\n        return [1, 3]\n    \n    # Initialize list with first two known values\n    result = [1, 3]\n    \n    # Compute values up to n\n    for i in range(2, n + 1):\n        if i % 2 == 0:\n            # Even case: tri(i) = 1 + i / 2\n            next_value = 1 + i // 2\n        else:\n            # Odd case: tri(i) = tri(i-1) + tri(i-2) + tri(i+1)\n            # We need tri(i+1) which is even, so compute it first\n            next_even = 1 + (i + 1) // 2\n            next_value = result[i - 1] + result[i - 2] + next_even\n        result.append(next_value)\n    \n    return result",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.070866,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_037__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def sort_even(l: list):\n    even_values = sorted([l[i] for i in range(0, len(l), 2)])\n    result = l[:]\n    for i, val in zip(range(0, len(l), 2), even_values):\n        result[i] = val\n    return result",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='sort_even',\n      args=arguments(\n        args=[\n          arg(\n            arg='l',\n            annotation=Name(id='list', ctx=Load()))]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='even_values', ctx=Store())],\n          value=Call(\n            func=Name(id='sorted', ctx=Load()),\n            args=[\n              ListComp(\n                elt=Subscript(\n                  value=Name(id='l', ctx=Load()),\n                  slice=Name(id='i', ctx=Load()),\n                  ctx=Load()),\n                generators=[\n                  comprehension(\n                    target=Name(id='i', ctx=Store()),\n                    iter=Call(\n                      func=Name(id='range', ctx=Load()),\n                      args=[\n                        Constant(value=0),\n                        Call(\n                          func=Name(id='len', ctx=Load()),\n                          args=[\n                            Name(id='l', ctx=Load())]),\n                        Constant(value=2)]),\n                    is_async=0)])])),\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=Subscript(\n            value=Name(id='l', ctx=Load()),\n            slice=Slice(),\n            ctx=Load())),\n        For(\n          target=Tuple(\n            elts=[\n              Name(id='i', ctx=Store()),\n              Name(id='val', ctx=Store())],\n            ctx=Store()),\n          iter=Call(\n            func=Name(id='zip', ctx=Load()),\n            args=[\n              Call(\n                func=Name(id='range', ctx=Load()),\n                args=[\n                  Constant(value=0),\n                  Call(\n                    func=Name(id='len', ctx=Load()),\n                    args=[\n                      Name(id='l', ctx=Load())]),\n                  Constant(value=2)]),\n              Name(id='even_values', ctx=Load())]),\n          body=[\n            Assign(\n              targets=[\n                Subscript(\n                  value=Name(id='result', ctx=Load()),\n                  slice=Name(id='i', ctx=Load()),\n                  ctx=Store())],\n              value=Name(id='val', ctx=Load()))]),\n        Return(\n          value=Name(id='result', ctx=Load()))])])"
+}

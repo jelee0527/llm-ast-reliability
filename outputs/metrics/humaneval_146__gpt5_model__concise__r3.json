@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_146__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef specialFilter(nums):\n    \"\"\"Return count of numbers >10 and whose first and last digits are odd.\"\"\"\n    count = 0\n    for n in nums:\n        if n <= 10:\n            continue\n        s = str(abs(int(n)))\n        if not s:\n            continue\n        if int(s[0]) % 2 == 1 and int(s[-1]) % 2 == 1:\n            count += 1\n    return count\n\n# Quick tests\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))  # 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))  # 2",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.062992,
+    "function_names": [
+      "specialFilter"
+    ]
+  }
+}

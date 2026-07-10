@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import deque\n\ndef minPath(grid, k):\n    \"\"\"\n    Return lexicographically smallest sequence of values of length k obtainable\n    by walking on grid (can revisit cells), moving 4-directionally, starting\n    from any cell. Values are unique 1..N*N.\n    \"\"\"\n    n = len(grid)\n    if n == 0:\n        return []\n    # Map value -> position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # directions\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # Precompute for each cell its neighbors positions\n    neighbors = {}\n    for i in range(n):\n        for j in range(n):\n            nb = []\n            for di,dj in dirs:\n                ni, nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    nb.append((ni,nj))\n            neighbors[(i,j)] = nb\n\n    # We want lexicographically smallest length-k path. Greedy BFS layers:\n    # At step t we have set of reachable positions from any chosen minimal prefix.\n    # Choose minimal value among positions reachable in one step from current frontier.\n    # Start frontier = all positions (you may start anywhere)\n    # For step 1..k:\n    #   Among all positions in frontier, pick minimal grid value -> that's next value.\n    #   New frontier = all positions that are at most one move from any position in frontier\n    # but constrained to positions that have that minimal value for the chosen cell?\n    # Actually we must choose a specific cell that attains that minimal value and then next frontier\n    # is its neighbors (including itself if revisiting counts only by moving? Path visits cells; staying put is not allowed unless neighbor includes same cell. So cannot stay put.)\n    # However you can visit same cell later by moving away and back.\n    #\n    # Correct approach:\n    # Use BFS of states (position) but prune lexicographically: at each depth choose minimal value reachable.\n    # Maintain set of positions reachable at current depth that correspond to prefixes equal to chosen minimal prefix.\n    #\n    # Initialization: reachable = set of all positions\n    # For step from 1..k:\n    #   Among reachable, find minimal cell value; append it.\n    #   New reachable = set of positions that can be reached in one move from any position in reachable AND that have value equal to that minimal? No.\n    # Wait: For lexicographic minima, at each step we must pick next value = min over all positions in reachable of grid[pos].\n    # Then we restrict reachable to positions that have that value.\n    # For next iteration, reachable = all neighbors of those positions (since next step starts from chosen positions).\n    #\n    # Implement accordingly.\n    #\n    # Edge cases: k==0\n    if k <= 0:\n        return []\n    # initial reachable all positions\n    reachable = set((i,j) for i in range(n) for j in range(n))\n    res = []\n    for step in range(k):\n        # find minimal value among reachable\n        min_val = None\n        min_positions = []\n        for p in reachable:\n            v = grid[p[0]][p[1]]\n            if min_val is None or v < min_val:\n                min_val = v\n                min_positions = [p]\n            elif v == min_val:\n                min_positions.append(p)\n        # append value\n        res.append(min_val)\n        # build next reachable: neighbors of all min_positions\n        new_reach = set()\n        for p in min_positions:\n            for nb in neighbors[p]:\n                new_reach.add(nb)\n        # If no neighbors (shouldn't happen unless isolated), reachable becomes empty.\n        reachable = new_reach\n        if not reachable and step != k-1:\n            # cannot continue moves; but visiting exactly k cells is required.\n            # If no reachable, it's impossible; but problem guarantees answer exists.\n            # To be safe, break.\n            break\n    return res\n\n\n# Quick self-test with given examples\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 435,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 9,
+    "function_count": 1,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.045977,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

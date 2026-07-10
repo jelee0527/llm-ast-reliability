@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:52:54.831187+00:00",
+  "elapsed_seconds": 4.977,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Make a shallow copy to avoid mutating input\n    arr = list(l)\n    # Ensure elements are comparable; will raise if not\n    try:\n        arr.sort()\n    except TypeError:\n        # Try to provide a clearer error\n        raise TypeError(\"List elements are not comparable\")\n    mid = n // 2\n    if n % 2 == 1:\n        return arr[mid]\n    else:\n        # For even count, return average as float if elements are numeric,\n        # otherwise attempt to compute (a + b) / 2 which may fail for non-numeric types.\n        a, b = arr[mid - 1], arr[mid]\n        try:\n            return (a + b) / 2\n        except TypeError:\n            # If addition or division not supported, return tuple of the two middle elements\n            return (a, b)",
+  "generated_code": "from typing import List, Any\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Make a shallow copy to avoid mutating input\n    arr = list(l)\n    # Ensure elements are comparable; will raise if not\n    try:\n        arr.sort()\n    except TypeError:\n        # Try to provide a clearer error\n        raise TypeError(\"List elements are not comparable\")\n    mid = n // 2\n    if n % 2 == 1:\n        return arr[mid]\n    else:\n        # For even count, return average as float if elements are numeric,\n        # otherwise attempt to compute (a + b) / 2 which may fail for non-numeric types.\n        a, b = arr[mid - 1], arr[mid]\n        try:\n            return (a + b) / 2\n        except TypeError:\n            # If addition or division not supported, return tuple of the two middle elements\n            return (a, b)"
+}

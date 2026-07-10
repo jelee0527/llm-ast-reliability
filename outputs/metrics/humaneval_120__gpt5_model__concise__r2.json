@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport heapq\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    if k <= 0:\n        return []\n    if k >= len(arr):\n        return sorted(arr)\n    # Use nlargest for efficiency, then return sorted result\n    return sorted(heapq.nlargest(k, arr))",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.081967,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

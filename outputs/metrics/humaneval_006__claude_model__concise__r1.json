@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_006__claude_model__concise__r1.json",
+  "problem_id": "humaneval_006",
+  "task_id": "HumanEval/6",
+  "problem_name": "Parse Nested Parens",
+  "entry_point": "parse_nested_parens",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s):\n        depth = max_d = 0\n        for c in s:\n            if c == '(':\n                depth += 1\n                max_d = max(max_d, depth)\n            elif c == ')':\n                depth -= 1\n        return max_d\n    return [max_depth(g) for g in paren_string.split()]",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.064103,
+    "function_names": [
+      "parse_nested_parens",
+      "max_depth"
+    ]
+  }
+}

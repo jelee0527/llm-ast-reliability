@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    \"\"\"\n    if n > m:\n        return -1\n    # count of integers\n    count = m - n + 1\n    # sum of arithmetic sequence: (first + last) * count / 2\n    total = (n + m) * count // 2  # this is integer since (n+m)*count is even when needed\n    # Compute exact average as float to correctly round .5 cases to nearest integer\n    avg = (n + m) / 2  # average of endpoints equals average of full sequence\n    # Round to nearest integer: Python's round ties to even; to follow conventional rounding .5 up,\n    # implement custom rounding\n    if avg >= 0:\n        rounded = int(floor(avg + 0.5))\n    else:\n        rounded = int(-floor(-avg + 0.5))\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

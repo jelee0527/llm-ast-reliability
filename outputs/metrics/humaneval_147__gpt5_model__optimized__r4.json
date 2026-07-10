@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_147__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from itertools import combinations\nimport sys\n\ndef get_max_triples(n: int) -> int:\n    \"\"\"\n    Compute number of triples (i<j<k) such that a[i]+a[j]+a[k] is divisible by 3,\n    where a[i] = i*i - i + 1 for i = 1..n.\n    \"\"\"\n    if n < 3:\n        return 0\n    # Determine residues of a[i] mod 3.\n    # Compute pattern for i mod 3:\n    # For i = 0 mod3 -> a = 0*0 -0 +1 =1 mod3\n    # i=1 -> 1-1+1=1 mod3\n    # i=2 -> 4-2+1=3 ->0 mod3\n    # So residues: i%3 == 0 -> 1; i%3==1 ->1; i%3==2 ->0\n    # Note: i ranges 1..n, so i%3 values are 1,2,0 cycle.\n    cnt = [0,0,0]  # counts for residues 0,1,2\n    # count numbers i in 1..n with i%3 == r\n    # For r==0 corresponds to residue class 0 meaning i%3==0 -> a%3 == 1\n    # We'll map directly: for i%3==2 -> a%3==0 ; for i%3==0 or 1 -> a%3==1\n    # So only residues present are 0 and 1.\n    # Count i%3==2:\n    cnt0 = n // 3  # numbers divisible by 3\n    rem = n % 3\n    # i%3 == 1 occurs count = n//3 + (1 if rem>=1 else 0)\n    cnt_i1 = n // 3 + (1 if rem >= 1 else 0)\n    # i%3 == 2 occurs count = n//3 + (1 if rem>=2 else 0)\n    cnt_i2 = n // 3 + (1 if rem >= 2 else 0)\n    # Now map to a%3:\n    # a%3 == 0 when i%3==2 -> count_zero\n    count_zero = cnt_i2\n    # a%3 == 1 when i%3==0 or 1\n    count_one = cnt0 + cnt_i1\n    count_two = 0\n    # Count triples where sum mod3 ==0:\n    # Cases: (0,0,0), (1,1,1), (0,1,2) but count_two==0 so last impossible.\n    def comb3(x):\n        if x < 3:\n            return 0\n        return x * (x-1) * (x-2) // 6\n    def comb2(x):\n        if x < 2:\n            return 0\n        return x * (x-1) // 2\n    total = comb3(count_zero) + comb3(count_one)\n    return total\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data:\n        print(0)\n    else:\n        n = int(data[0])\n        print(get_max_triples(n))",
+  "metrics": {
+    "total_nodes": 225,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 3,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.057778,
+    "function_names": [
+      "get_max_triples",
+      "comb3",
+      "comb2"
+    ]
+  }
+}

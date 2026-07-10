@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_070__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_070",
+  "task_id": "HumanEval/70",
+  "problem_name": "Strange Sort List",
+  "entry_point": "strange_sort_list",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef strange_sort_list(lst: List[int]) -> List[int]:\n    \"\"\"\n    Given list of integers, return list in strange order.\n    Strange sorting: start with the minimum value, then maximum of the remaining integers,\n    then minimum of remaining, then maximum, and so on.\n    \"\"\"\n    if not lst:\n        return []\n    # Work on a sorted copy\n    s = sorted(lst)\n    res = []\n    left, right = 0, len(s) - 1\n    # Alternate taking from left (min) then right (max)\n    take_left = True\n    while left <= right:\n        if take_left:\n            res.append(s[left])\n            left += 1\n        else:\n            res.append(s[right])\n            right -= 1\n        take_left = not take_left\n    return res",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.042735,
+    "function_names": [
+      "strange_sort_list"
+    ]
+  }
+}

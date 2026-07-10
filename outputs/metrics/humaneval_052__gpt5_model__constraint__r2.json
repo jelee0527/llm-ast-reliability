@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_052__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_052",
+  "task_id": "HumanEval/52",
+  "problem_name": "Below Threshold",
+  "entry_point": "below_threshold",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef below_threshold(l: List[int], t: int) -> bool:\n    \"\"\"Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n    \"\"\"\n    # Explicitly handle empty list: vacuously True\n    if l is None:\n        raise TypeError(\"l must be a list\")\n    for x in l:\n        # Ensure numeric comparison; raise if non-numeric encountered\n        try:\n            if not (x < t):\n                return False\n        except TypeError:\n            raise TypeError(\"elements of l must be comparable to t\")\n    return True",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.140351,
+    "function_names": [
+      "below_threshold"
+    ]
+  }
+}

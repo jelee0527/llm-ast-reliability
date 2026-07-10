@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\" brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"(\")\n    False\n    >>> correct_bracketing(\"()\")\n    True\n    >>> correct_bracketing(\"(()())\")\n    True\n    >>> correct_bracketing(\")(()\")\n    False\n    \"\"\"\n    # Use a counter for balance: increment for '(' and decrement for ')'.\n    # If counter ever negative, a closing bracket appears before a matching opening.\n    # At end, counter must be zero for all openings to be matched.\n    if brackets is None:\n        return False\n    balance = 0\n    for ch in brackets:\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        else:\n            # invalid character; treat as unbalanced\n            return False\n        if balance < 0:\n            return False\n    return balance == 0\n\nif __name__ == \"__main__\":\n    # basic tests\n    tests = [\n        (\"(\", False),\n        (\"()\", True),\n        (\"(()())\", True),\n        (\")(()\", False),\n        (\"\", True),\n        (\"((()))\", True),\n        (\"(()\", False),\n        (\")\", False),\n        (\"()()()\", True),\n        (\"())(()\", False),\n    ]\n    for s, expected in tests:\n        result = correct_bracketing(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 152,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.072368,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

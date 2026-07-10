@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:00:23.381029+00:00",
+  "elapsed_seconds": 3.933,
+  "official_prompt": "\ndef exchange(lst1, lst2):\n    \"\"\"In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef exchange(lst1, lst2):\n    \"\"\"In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of elements)\n    it's possible to make all elements of lst1 even; otherwise return \"NO\".\n    \"\"\"\n    # Count parity occurrence\n    # For each position we can swap elements arbitrarily between lists (not necessarily same index).\n    # Since any number of elements can be exchanged, effectively we can choose any multiset of elements\n    # from the union but we must keep sizes: lst1 must end up with len(lst1) elements chosen from\n    # the combined multiset where remaining go to lst2.\n    # Goal: can we select len(lst1) elements from combined elements such that all selected are even.\n    combined = lst1 + lst2\n    even_count = sum(1 for x in combined if x % 2 == 0)\n    # Need at least len(lst1) even numbers to fill lst1 with evens\n    return \"YES\" if even_count >= len(lst1) else \"NO\"",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of elements)\n    it's possible to make all elements of lst1 even; otherwise return \"NO\".\n    \"\"\"\n    # Count parity occurrence\n    # For each position we can swap elements arbitrarily between lists (not necessarily same index).\n    # Since any number of elements can be exchanged, effectively we can choose any multiset of elements\n    # from the union but we must keep sizes: lst1 must end up with len(lst1) elements chosen from\n    # the combined multiset where remaining go to lst2.\n    # Goal: can we select len(lst1) elements from combined elements such that all selected are even.\n    combined = lst1 + lst2\n    even_count = sum(1 for x in combined if x % 2 == 0)\n    # Need at least len(lst1) even numbers to fill lst1 with evens\n    return \"YES\" if even_count >= len(lst1) else \"NO\""
+}

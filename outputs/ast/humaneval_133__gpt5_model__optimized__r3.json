@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_133__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Iterable\n\ndef sum_squares(lst: Iterable[float]) -> int:\n    \"\"\"Return the sum of squares of the ceiling of each number in lst.\"\"\"\n    total = 0\n    for x in lst:\n        c = math.ceil(x)\n        total += c * c\n    return total",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='math')]),\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Iterable')],\n      level=0),\n    FunctionDef(\n      name='sum_squares',\n      args=arguments(\n        args=[\n          arg(\n            arg='lst',\n            annotation=Subscript(\n              value=Name(id='Iterable', ctx=Load()),\n              slice=Name(id='float', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return the sum of squares of the ceiling of each number in lst.')),\n        Assign(\n          targets=[\n            Name(id='total', ctx=Store())],\n          value=Constant(value=0)),\n        For(\n          target=Name(id='x', ctx=Store()),\n          iter=Name(id='lst', ctx=Load()),\n          body=[\n            Assign(\n              targets=[\n                Name(id='c', ctx=Store())],\n              value=Call(\n                func=Attribute(\n                  value=Name(id='math', ctx=Load()),\n                  attr='ceil',\n                  ctx=Load()),\n                args=[\n                  Name(id='x', ctx=Load())])),\n            AugAssign(\n              target=Name(id='total', ctx=Store()),\n              op=Add(),\n              value=BinOp(\n                left=Name(id='c', ctx=Load()),\n                op=Mult(),\n                right=Name(id='c', ctx=Load())))]),\n        Return(\n          value=Name(id='total', ctx=Load()))],\n      returns=Name(id='int', ctx=Load()))])"
+}

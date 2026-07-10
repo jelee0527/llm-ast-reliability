@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_009__claude_model__readable__r2.json",
+  "problem_id": "humaneval_009",
+  "task_id": "HumanEval/9",
+  "problem_name": "Rolling Max",
+  "entry_point": "rolling_max",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    if not numbers:\n        return []\n    \n    result = []\n    current_max = numbers[0]\n    \n    for number in numbers:\n        if number > current_max:\n            current_max = number\n        result.append(current_max)\n    \n    return result",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.072464,
+    "function_names": [
+      "rolling_max"
+    ]
+  }
+}

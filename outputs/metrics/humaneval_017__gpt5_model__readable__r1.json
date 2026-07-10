@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a string of musical symbols and return durations in beats.\n\n    Legend:\n      'o'  -> whole note, 4 beats\n      'o|' -> half note, 2 beats\n      '.|' -> quarter note, 1 beat\n\n    The input may contain notes separated by whitespace. Extra spaces are ignored.\n    \"\"\"\n    if music_string is None:\n        return []\n\n    # Normalize whitespace and split tokens\n    tokens = re.findall(r'o\\||\\.\\\\\\||o|\\.\\\\|\\.|\\S+', music_string)\n    # The above regex is intentionally broad to capture expected tokens.\n    # Simpler approach: split on whitespace and process each piece.\n    if not tokens:\n        tokens = music_string.split()\n\n    durations: List[int] = []\n    for token in tokens:\n        t = token.strip()\n        if t == '':\n            continue\n        # Accept tokens exactly as specified: 'o', 'o|', '.|'\n        if t == 'o':\n            durations.append(4)\n        elif t == 'o|':\n            durations.append(2)\n        elif t == '.|':\n            durations.append(1)\n        else:\n            # Try to clean token of surrounding punctuation/spaces and re-evaluate\n            cleaned = t.strip()\n            if cleaned == 'o':\n                durations.append(4)\n            elif cleaned == 'o|':\n                durations.append(2)\n            elif cleaned == '.|':\n                durations.append(1)\n            else:\n                # If token contains multiple notes concatenated without spaces,\n                # attempt to split by known patterns.\n                i = 0\n                L = len(cleaned)\n                while i < L:\n                    if cleaned.startswith('o|', i):\n                        durations.append(2)\n                        i += 2\n                    elif cleaned.startswith('.|', i):\n                        durations.append(1)\n                        i += 2\n                    elif cleaned[i] == 'o':\n                        durations.append(4)\n                        i += 1\n                    elif cleaned[i].isspace():\n                        i += 1\n                    else:\n                        # Unknown symbol: skip it\n                        i += 1\n\n    return durations\n\n# Simple test when run as script\nif __name__ == \"__main__\":\n    example = 'o o| .| o| o| .| .| .| .| o o'\n    print(parse_music(example))",
+  "metrics": {
+    "total_nodes": 293,
+    "ast_depth": 19,
+    "branch_count": 14,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.064846,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

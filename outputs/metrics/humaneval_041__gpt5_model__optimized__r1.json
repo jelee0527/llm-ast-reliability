@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Return the number of collisions between two sets of n cars each,\n    one set moving left-to-right and the other right-to-left on an infinite line,\n    when all cars move at the same speed and start far apart.\n\n    For every pair consisting of one L->R car and one R->L car, they will meet exactly once.\n    Thus the total number of collisions is n * n.\n    \"\"\"\n    return n * n\n\n# Quick standalone test when run as script\nif __name__ == \"__main__\":\n    import sys\n    try:\n        arg = int(sys.argv[1]) if len(sys.argv) > 1 else 3\n    except Exception:\n        arg = 3\n    print(car_race_collision(arg))",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.057971,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef will_it_fly(q: Iterable[int], w: int) -> bool:\n    \"\"\"\n    Return True if the object q will fly, False otherwise.\n    The object will fly if:\n      - it is balanced (a palindrome: reads the same forwards and backwards)\n      - the sum of its elements is less than or equal to w\n    \"\"\"\n    # Convert to list to support generic iterables\n    lst = list(q)\n    # Check for palindrome (balanced)\n    is_balanced = lst == lst[::-1]\n    # Check weight constraint\n    total_weight = sum(lst)\n    return is_balanced and total_weight <= w\n\n\n# Example quick tests when run as a script (these lines can be removed if not wanted)\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2], 5, False),\n        ([3, 2, 3], 1, False),\n        ([3, 2, 3], 9, True),\n        ([3], 5, True),\n    ]\n    for q, w, expected in tests:\n        result = will_it_fly(q, w)\n        print(f\"will_it_fly({q}, {w}) -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 148,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.02027,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

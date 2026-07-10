@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def do_algebra(operator, operand):\n    result = operand[0]\n    for i, op in enumerate(operator):\n        if op == '+':\n            result += operand[i + 1]\n        elif op == '-':\n            result -= operand[i + 1]\n        elif op == '*':\n            result *= operand[i + 1]\n        elif op == '//':\n            result //= operand[i + 1]\n        elif op == '**':\n            result **= operand[i + 1]\n    return result",
+  "metrics": {
+    "total_nodes": 123,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.056911,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

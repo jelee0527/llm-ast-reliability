@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__claude_model__readable__r4.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def compare(game, guess):\n    return [abs(actual - predicted) for actual, predicted in zip(game, guess)]",
+  "metrics": {
+    "total_nodes": 30,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.033333,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_006__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_006",
+  "task_id": "HumanEval/6",
+  "problem_name": "Parse Nested Parens",
+  "entry_point": "parse_nested_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n    if not isinstance(paren_string, str):\n        raise TypeError(\"Input must be a string\")\n\n    groups = paren_string.split()\n    result: List[int] = []\n\n    for grp in groups:\n        max_depth = 0\n        current = 0\n        for ch in grp:\n            if ch == '(':\n                current += 1\n                if current > max_depth:\n                    max_depth = current\n            elif ch == ')':\n                current -= 1\n                if current < 0:\n                    # Unbalanced: more closing than opening; treat as invalid input\n                    raise ValueError(f\"Unbalanced parentheses in group: {grp}\")\n            else:\n                # Invalid character encountered\n                raise ValueError(f\"Invalid character '{ch}' in group: {grp}\")\n        if current != 0:\n            # Unbalanced: more opening than closing\n            raise ValueError(f\"Unbalanced parentheses in group: {grp}\")\n        result.append(max_depth)\n\n    return result\n\nif __name__ == \"__main__\":\n    # Quick sanity check\n    print(parse_nested_parens('(()()) ((())) () ((())()())'))  # expected [2,3,1,3]",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 13,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.082353,
+    "function_names": [
+      "parse_nested_parens"
+    ]
+  }
+}

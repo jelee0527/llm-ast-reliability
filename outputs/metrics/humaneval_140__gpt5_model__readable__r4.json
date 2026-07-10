@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef fix_spaces(text: str) -> str:\n    \"\"\"\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with '-'\n\n    Examples:\n    fix_spaces(\"Example\") -> \"Example\"\n    fix_spaces(\"Example 1\") -> \"Example_1\"\n    fix_spaces(\" Example 2\") -> \"_Example_2\"\n    fix_spaces(\" Example   3\") -> \"_Example-3\"\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n\n    # Replace any run of 3 or more spaces with a single hyphen\n    result = re.sub(r' {3,}', '-', text)\n    # Replace any remaining single or double spaces with underscores\n    result = re.sub(r' {1,2}', '_', result)\n    return result\n\n\n# Quick self-tests (will run when module is executed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"Example\", \"Example\"),\n        (\"Example 1\", \"Example_1\"),\n        (\" Example 2\", \"_Example_2\"),\n        (\" Example   3\", \"_Example-3\"),\n        (\"A  B\", \"A_B\"),           # two spaces -> underscore\n        (\"A   B\", \"A-B\"),          # three spaces -> hyphen\n        (\"A    B\", \"A-B\"),         # four spaces -> hyphen\n        (\"  Leading\", \"__Leading\"),# two leading spaces -> two underscores\n        (\"   Leading\", \"-Leading\") # three leading spaces -> hyphen then text\n    ]\n    for inp, expected in tests:\n        out = fix_spaces(inp)\n        print(f\"'{inp}' -> '{out}'  (expected: '{expected}')\")",
+  "metrics": {
+    "total_nodes": 136,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.036765,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

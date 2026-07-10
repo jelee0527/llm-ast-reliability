@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n    if not isinstance(txt, str):\n        raise TypeError(\"Input must be a string\")\n    # If any whitespace characters present, split on any whitespace\n    if re.search(r'\\s', txt):\n        # Split on all whitespace (like str.split())\n        parts = txt.split()\n        return parts\n    # No whitespace: check for commas\n    if ',' in txt:\n        # Split on commas; preserve empty segments? examples suggest basic split\n        parts = txt.split(',')\n        return parts\n    # No whitespace and no commas: return count of lowercase letters with odd order\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            order = ord(ch) - ord('a')  # 0-based\n            if order % 2 == 1:\n                count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.091743,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

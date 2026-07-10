@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:19:00.706118+00:00",
+  "elapsed_seconds": 5.035,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "def starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n == 1:\n        return 1\n    \n    # Count of n-digit numbers starting with 1:\n    # First digit is 1, remaining (n-1) digits can be anything (0-9)\n    starts_with_1 = 10 ** (n - 1)\n    \n    # Count of n-digit numbers ending with 1:\n    # Last digit is 1, first digit can be 1-9 (n-digit number), remaining (n-2) digits can be anything\n    ends_with_1 = 9 * (10 ** (n - 2)) if n >= 2 else 1\n    \n    # Count of n-digit numbers both starting and ending with 1 (to avoid double counting):\n    # First digit is 1, last digit is 1, remaining (n-2) digits can be anything\n    starts_and_ends_with_1 = 10 ** (n - 2) if n >= 2 else 1\n    \n    # Use inclusion-exclusion principle\n    total_count = starts_with_1 + ends_with_1 - starts_and_ends_with_1\n    \n    return total_count",
+  "generated_code": "def starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n == 1:\n        return 1\n    \n    # Count of n-digit numbers starting with 1:\n    # First digit is 1, remaining (n-1) digits can be anything (0-9)\n    starts_with_1 = 10 ** (n - 1)\n    \n    # Count of n-digit numbers ending with 1:\n    # Last digit is 1, first digit can be 1-9 (n-digit number), remaining (n-2) digits can be anything\n    ends_with_1 = 9 * (10 ** (n - 2)) if n >= 2 else 1\n    \n    # Count of n-digit numbers both starting and ending with 1 (to avoid double counting):\n    # First digit is 1, last digit is 1, remaining (n-2) digits can be anything\n    starts_and_ends_with_1 = 10 ** (n - 2) if n >= 2 else 1\n    \n    # Use inclusion-exclusion principle\n    total_count = starts_with_1 + ends_with_1 - starts_and_ends_with_1\n    \n    return total_count"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__claude_model__readable__r4.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def find_max(words):\n    if not words:\n        return \"\"\n    \n    max_unique = max(len(set(word)) for word in words)\n    candidates = [word for word in words if len(set(word)) == max_unique]\n    return min(candidates)",
+  "metrics": {
+    "total_nodes": 60,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

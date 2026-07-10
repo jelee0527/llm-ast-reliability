@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_003__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_003",
+  "task_id": "HumanEval/3",
+  "problem_name": "Below Zero",
+  "entry_point": "below_zero",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n    balance = 0\n    for op in operations:\n        # Ensure op is an integer (explicit control flow for robustness)\n        if not isinstance(op, int):\n            # try to coerce if it's a float that represents an integer-like value\n            if isinstance(op, float) and op.is_integer():\n                op = int(op)\n            else:\n                raise TypeError(\"operations must be integers\")\n        balance += op\n        if balance < 0:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.088608,
+    "function_names": [
+      "below_zero"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:25:07.796146+00:00",
+  "elapsed_seconds": 3.824,
+  "official_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal part.\n    The decimal part is number - floor(number). For numbers that are\n    very close to an integer due to floating point representation, this\n    function returns a value rounded to a reasonable precision.\n    \"\"\"\n    # Validate input\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if number < 0:\n        raise ValueError(\"number must be non-negative\")\n\n    # Compute integer part explicitly without importing math.floor\n    integer_part = int(number)  # int() truncates toward zero; for non-negative numbers this is floor\n    decimal_part = number - integer_part\n\n    # Guard against tiny negative zeros like -0.0 due to floating point arithmetic\n    if decimal_part < 0 and decimal_part > -1e-15:\n        decimal_part = 0.0\n\n    # Round to a sensible number of decimal places to avoid artifacts\n    return float(round(decimal_part, 15))",
+  "generated_code": "from typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal part.\n    The decimal part is number - floor(number). For numbers that are\n    very close to an integer due to floating point representation, this\n    function returns a value rounded to a reasonable precision.\n    \"\"\"\n    # Validate input\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if number < 0:\n        raise ValueError(\"number must be non-negative\")\n\n    # Compute integer part explicitly without importing math.floor\n    integer_part = int(number)  # int() truncates toward zero; for non-negative numbers this is floor\n    decimal_part = number - integer_part\n\n    # Guard against tiny negative zeros like -0.0 due to floating point arithmetic\n    if decimal_part < 0 and decimal_part > -1e-15:\n        decimal_part = 0.0\n\n    # Round to a sensible number of decimal places to avoid artifacts\n    return float(round(decimal_part, 15))"
+}

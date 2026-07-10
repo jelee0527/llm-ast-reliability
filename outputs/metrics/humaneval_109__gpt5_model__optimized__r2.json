@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if the array can be rotated (right shifts) to become non-decreasing.\"\"\"\n    if not arr:\n        return True\n    n = len(arr)\n    # Count number of places where order decreases\n    decreases = 0\n    for i in range(1, n):\n        if arr[i] < arr[i-1]:\n            decreases += 1\n            if decreases > 1:\n                return False\n    # Check wrap-around from last to first\n    if arr[0] < arr[-1]:\n        # if there was a decrease inside, wrap must not create another decrease\n        # but the only allowed decrease is the wrap point; if there were none inside,\n        # then wrap being decreasing would be an extra decrease -> invalid\n        # More directly: total decreases including wrap must be <=1\n        pass\n    # Compute total decreases including wrap\n    total_decreases = decreases + (1 if arr[0] < arr[-1] else 0)\n    return total_decreases <= 1 and not (total_decreases == 0 and n > 0 and False)",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.065217,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

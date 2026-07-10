@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_016__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_016",
+  "task_id": "HumanEval/16",
+  "problem_name": "Count Distinct Characters",
+  "entry_point": "count_distinct_characters",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    if string is None:\n        return 0\n    seen: Set[str] = set()\n    for ch in string:\n        # normalize case by lowercasing; this treats characters without case mapping the same\n        # as their lowercase (e.g., digits and punctuation remain unchanged)\n        norm = ch.lower()\n        if norm not in seen:\n            seen.add(norm)\n    return len(seen)\n\nif __name__ == \"__main__\":\n    # Basic self-tests\n    assert count_distinct_characters('xyzXYZ') == 3\n    assert count_distinct_characters('Jerry') == 4\n    assert count_distinct_characters('') == 0\n    assert count_distinct_characters(None) == 0\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 109,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.055046,
+    "function_names": [
+      "count_distinct_characters"
+    ]
+  }
+}

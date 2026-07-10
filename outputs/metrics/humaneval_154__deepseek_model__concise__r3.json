@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__deepseek_model__concise__r3.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def cycpattern_check(a , b):\n    if len(b) == 0:\n        return True\n    double_b = b + b\n    for i in range(len(b)):\n        if double_b[i:i+len(b)] in a:\n            return True\n    return False",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.098361,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

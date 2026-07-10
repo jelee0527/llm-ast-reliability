@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_036__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import sys\nfrom typing import Iterator\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\"\"\"\n    if n <= 0:\n        return 0\n    count = 0\n    # iterate multiples of 11\n    seen = set()\n    step1 = 11\n    for k in range(step1, n, step1):\n        seen.add(k)\n    step2 = 13\n    for k in range(step2, n, step2):\n        seen.add(k)\n    for num in seen:\n        count += str(num).count('7')\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.06087,
+    "function_names": [
+      "fizz_buzz"
+    ]
+  }
+}

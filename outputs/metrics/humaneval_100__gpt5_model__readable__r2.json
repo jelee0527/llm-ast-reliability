@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef make_a_pile(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a list of length n where:\n    - the first element is n,\n    - each subsequent element is the next odd number if the previous is odd,\n      or the next even number if the previous is even.\n\n    Example:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    pile = [n]\n    current = n\n    for _ in range(1, n):\n        # If current is odd, next odd is current + 2. If even, next even is current + 2.\n        # In both cases the rule reduces to adding 2.\n        current += 2\n        pile.append(current)\n    return pile\n\nif __name__ == \"__main__\":\n    # Quick tests\n    print(make_a_pile(1))  # [1]\n    print(make_a_pile(2))  # [2, 4]\n    print(make_a_pile(3))  # [3, 5, 7]\n    print(make_a_pile(5))  # [5, 7, 9, 11, 13]",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.059829,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

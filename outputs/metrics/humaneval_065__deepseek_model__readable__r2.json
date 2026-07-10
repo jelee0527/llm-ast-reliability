@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__deepseek_model__readable__r2.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    digits = str(x)\n    num_digits = len(digits)\n    \n    if shift > num_digits:\n        return digits[::-1]\n    \n    if shift == 0:\n        return digits\n    \n    shift = shift % num_digits\n    shifted_digits = digits[-shift:] + digits[:-shift]\n    return shifted_digits",
+  "metrics": {
+    "total_nodes": 83,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.060241,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

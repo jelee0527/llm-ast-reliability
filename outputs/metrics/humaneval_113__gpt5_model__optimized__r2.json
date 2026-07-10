@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of digit-strings, return transformed sentences where every\n    occurrence of the letter 'i' in the template is replaced by the count of\n    odd digits in the corresponding input string.\n    \"\"\"\n    template = \"the number of odd elements in the string {n} of the input.\"\n    # We'll replace every 'i' (lowercase i) in the template with the digit string.\n    # But examples show replacing \"i\" in words like \"in\", \"string\", \"input\" producing e.g. \"4n\", \"str4ng\", \"4nput\".\n    # So we perform a simple character-level replacement of 'i' -> count_str.\n    out = []\n    for s in lst:\n        # count odd digits\n        cnt = sum(1 for ch in s if (ord(ch) - ord('0')) % 2 == 1)\n        cnt_str = str(cnt)\n        # replace all lowercase 'i' characters with cnt_str\n        result = template.replace(\"{n}\", cnt_str).replace(\"i\", cnt_str)\n        out.append(result)\n    return out\n\n# If run as a script, simple quick test (not required by problem, but harmless)\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 13,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.023256,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

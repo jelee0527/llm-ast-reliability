@@ -1,0 +1,16 @@
+{
+  "source_file": "humaneval_111__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "error",
+  "error_type": "syntax_error",
+  "error_message": "invalid syntax (<unknown>, line 45)",
+  "generated_code": "from collections import Counter\nfrom typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter(s) with the highest repetition and their corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n    Examples:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n    \"\"\"\n    if not test:\n        return {}\n\n    # Split by whitespace and filter out any empty tokens (defensive)\n    tokens = [tok for tok in test.split() if tok != \"\"]\n    if not tokens:\n        return {}\n\n    counts = Counter(tokens)\n    # Find the maximum occurrence\n    max_count = max(counts.values())\n    # Select all letters with count equal to max_count\n    result = {letter: count for letter, count in counts.items() if count == max_count}\n    return result\n\n\n# Example quick tests (can be removed if not needed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"a b c\", {\"a\":1,\"b\":1,\"c\":1}),\n        (\"a b b a\", {\"a\":2,\"b\":2}),\n        (\"a b c a b\", {\"a\":2,\"b\":2}),\n        (\"b b b b a\", {\"b\":4}),\n        (\"\", {}),\n        (\"   \", {}),\n        (\"x x y z y x\", {\"x\":3}),\n    ]\n    for inp, expected in tests:\n        out = histogram(inp)\n        print(inp!r, out, \"OK\" if out == expected else \"FAIL\")"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:11:20.107083+00:00",
+  "elapsed_seconds": 4.279,
+  "official_prompt": "\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import Tuple\n\ndef solve(s: str) -> str:\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vice versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function returns the resulting string.\n    \"\"\"\n    if not isinstance(s, str):\n        # If input isn't a string, coerce to string\n        s = str(s)\n\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n\n    # For strings with letters, swap case for letters, keep others unchanged\n    result_chars = []\n    for ch in s:\n        if ch.isalpha():\n            # swap case\n            result_chars.append(ch.swapcase())\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Simple quick tests when running the module directly\nif __name__ == \"__main__\":\n    tests = [\n        (\"1234\", \"4321\"),\n        (\"ab\", \"AB\"),\n        (\"#a@C\", \"#A@c\"),\n        (\"\", \"\"),            # empty\n        (\"123a\", \"123A\"),\n        (\"!@#\", \"#@!\"),\n        (\"AaBb\", \"aAbB\"),\n    ]\n    for inp, expected in tests:\n        out = solve(inp)\n        print(inp, \"=>\", out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "generated_code": "from typing import Tuple\n\ndef solve(s: str) -> str:\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vice versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function returns the resulting string.\n    \"\"\"\n    if not isinstance(s, str):\n        # If input isn't a string, coerce to string\n        s = str(s)\n\n    has_letter = any(ch.isalpha() for ch in s)\n    if not has_letter:\n        return s[::-1]\n\n    # For strings with letters, swap case for letters, keep others unchanged\n    result_chars = []\n    for ch in s:\n        if ch.isalpha():\n            # swap case\n            result_chars.append(ch.swapcase())\n        else:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Simple quick tests when running the module directly\nif __name__ == \"__main__\":\n    tests = [\n        (\"1234\", \"4321\"),\n        (\"ab\", \"AB\"),\n        (\"#a@C\", \"#A@c\"),\n        (\"\", \"\"),            # empty\n        (\"123a\", \"123A\"),\n        (\"!@#\", \"#@!\"),\n        (\"AaBb\", \"aAbB\"),\n    ]\n    for inp, expected in tests:\n        out = solve(inp)\n        print(inp, \"=>\", out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")"
+}

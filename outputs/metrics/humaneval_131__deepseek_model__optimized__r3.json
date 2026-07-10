@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_131__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def digits(n):\n    product = 1\n    has_odd = False\n    while n > 0:\n        digit = n % 10\n        if digit % 2 == 1:\n            product *= digit\n            has_odd = True\n        n //= 10\n    return product if has_odd else 0",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.070175,
+    "function_names": [
+      "digits"
+    ]
+  }
+}

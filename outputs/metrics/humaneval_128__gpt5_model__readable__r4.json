@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, where each sign is 1 (positive), -1 (negative), or 0 (zero).\n    Return None for empty arr.\n\n    Examples:\n    prod_signs([1, 2, 2, -4]) -> -9   because sum of magnitudes = 1+2+2+4 = 9, product of signs = -1 -> -9\n    prod_signs([0, 1]) -> 0           because product of signs = 0\n    prod_signs([]) -> None\n    \"\"\"\n    if not arr:\n        return None\n\n    total_magnitude = 0\n    sign_product = 1\n\n    for x in arr:\n        total_magnitude += abs(x)\n        if x == 0:\n            sign_product = 0\n            # once zero sign encountered, final result will be 0; can break magnitude accumulation if desired\n            # but to keep behavior consistent we can stop updating sign_product and continue summing magnitudes\n            # however since sign_product is 0, result will be 0 regardless of magnitudes; we can continue summing or break\n            # choose to continue summing to follow literal description (sum of magnitudes always computed)\n        elif sign_product != 0:\n            # update sign_product only if it hasn't been zeroed\n            sign_product *= 1 if x > 0 else -1\n\n    return total_magnitude * sign_product\n\n\n# Quick simple tests\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6  # magnitudes 1+2+3=6, signs product = -1 -> -6\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 155,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.051613,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

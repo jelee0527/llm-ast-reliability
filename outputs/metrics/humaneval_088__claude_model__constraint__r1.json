@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def sort_array(array):\n    if len(array) == 0:\n        return []\n    total = array[0] + array[-1]\n    if total % 2 == 1:\n        return sorted(array)\n    else:\n        return sorted(array, reverse=True)",
+  "metrics": {
+    "total_nodes": 56,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.089286,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

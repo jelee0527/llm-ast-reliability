@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_059__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    max_factor = None\n    while n % 2 == 0:\n        max_factor = 2\n        n //= 2\n    # Now n is odd\n    factor = 3\n    # Only need to check up to sqrt(n)\n    while factor * factor <= n:\n        if n % factor == 0:\n            max_factor = factor\n            while n % factor == 0:\n                n //= factor\n        factor += 2\n    if n > 1:\n        # n is prime\n        max_factor = n\n    if max_factor is None:\n        # This would mean original n was prime; per contract this shouldn't happen,\n        # but handle gracefully by returning n.\n        return n\n    return int(max_factor)\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert largest_prime_factor(13195) == 29\n    assert largest_prime_factor(2048) == 2\n    # Additional checks\n    assert largest_prime_factor(18) == 3\n    assert largest_prime_factor(2*3*5*7*11) == 11\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 175,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.062857,
+    "function_names": [
+      "largest_prime_factor"
+    ]
+  }
+}

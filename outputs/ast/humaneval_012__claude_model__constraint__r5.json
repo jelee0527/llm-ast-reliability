@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_012__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_012",
+  "task_id": "HumanEval/12",
+  "problem_name": "Longest",
+  "entry_point": "longest",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    result = strings[0]\n    for s in strings[1:]:\n        if len(s) > len(result):\n            result = s\n    return result",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List'),\n        alias(name='Optional')],\n      level=0),\n    FunctionDef(\n      name='longest',\n      args=arguments(\n        args=[\n          arg(\n            arg='strings',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='str', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='strings', ctx=Load())),\n          body=[\n            Return(\n              value=Constant(value=None))]),\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=Subscript(\n            value=Name(id='strings', ctx=Load()),\n            slice=Constant(value=0),\n            ctx=Load())),\n        For(\n          target=Name(id='s', ctx=Store()),\n          iter=Subscript(\n            value=Name(id='strings', ctx=Load()),\n            slice=Slice(\n              lower=Constant(value=1)),\n            ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Call(\n                  func=Name(id='len', ctx=Load()),\n                  args=[\n                    Name(id='s', ctx=Load())]),\n                ops=[\n                  Gt()],\n                comparators=[\n                  Call(\n                    func=Name(id='len', ctx=Load()),\n                    args=[\n                      Name(id='result', ctx=Load())])]),\n              body=[\n                Assign(\n                  targets=[\n                    Name(id='result', ctx=Store())],\n                  value=Name(id='s', ctx=Load()))])]),\n        Return(\n          value=Name(id='result', ctx=Load()))],\n      returns=Subscript(\n        value=Name(id='Optional', ctx=Load()),\n        slice=Name(id='str', ctx=Load()),\n        ctx=Load()))])"
+}

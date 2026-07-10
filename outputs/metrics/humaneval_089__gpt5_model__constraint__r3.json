@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate alphabet letters by 4 positions (2 multiplied by 2).\n    Only lowercase a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # shift by 4 with wraparound\n            orig_index = ord(ch) - ord('a')\n            new_index = (orig_index + 4) % 26\n            result_chars.append(chr(ord('a') + new_index))\n        elif 'A' <= ch <= 'Z':\n            # preserve case: shift uppercase similarly\n            orig_index = ord(ch) - ord('A')\n            new_index = (orig_index + 4) % 26\n            result_chars.append(chr(ord('A') + new_index))\n        else:\n            # leave other characters unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Quick internal tests (will not run when imported, but left for completeness)\nif __name__ == \"__main__\":\n    tests = {\n        'hi': 'lm',\n        'asdfghjkl': 'ewhjklnop',\n        'gf': 'kj',\n        'et': 'ix',\n        'Hello, World!': 'Lipps, Asvph!'\n    }\n    for inp, expected in tests.items():\n        out = encrypt(inp)\n        print(inp, '->', out, 'OK' if out == expected else f'FAIL (expected {expected})')",
+  "metrics": {
+    "total_nodes": 211,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.042654,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

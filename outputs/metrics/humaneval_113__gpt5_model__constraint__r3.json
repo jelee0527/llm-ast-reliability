@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n    \"\"\"\n    out = []\n    for s in lst:\n        # count odd digits\n        count = 0\n        for ch in s:\n            if ch in '13579':\n                count += 1\n        # convert count to string\n        n = str(count)\n        # replace occurrences of 'a' letters in the template words with digits where appropriate\n        # Template: \"the number of odd elements in the string i of the input.\"\n        # Need to replace occurrences of 'i' character as a standalone letter in certain words:\n        # Observing examples: \"in\" -> \"1n\", \"string\" -> \"str1ng\", \"input\" -> \"1nput\"?? Example shows \"4nput.\" -> so input becomes \"4nput.\"\n        # It appears we should replace the first vowel-like 'i' letter in specific words with the digit.\n        # Simpler: replace the substring \" in \" -> f\" {n}n \" (spaces preserved),\n        # replace \"string\" -> f\"str{n}ng\",\n        # replace \"input\" -> f\"{n}nput\" (as in examples).\n        # Also handle uppercase if any (not expected).\n        template = \"the number of odd elements in the string i of the input.\"\n        # perform replacements deterministically\n        result = template\n        # replace \" in \" (with spaces) first\n        result = result.replace(\" in \", \" \" + n + \"n \")\n        # replace \" string \" is not present (it's \"the string i\"), so replace \"string\" with str{n}ng\n        result = result.replace(\"string\", \"str\" + n + \"ng\")\n        # the standalone \" i \" (space i space) should become \" {n} \" but in template it's \" string i of\"\n        # replace \" i \" with \" \" + n + \" \"\n        result = result.replace(\" i \", \" \" + n + \" \")\n        # replace \" the input\" ending: replace \"input\" with \"{n}nput\"\n        result = result.replace(\"input\", n + \"nput\")\n        out.append(result)\n    return out\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "metrics": {
+    "total_nodes": 158,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.031646,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:01:32.294772+00:00",
+  "elapsed_seconds": 3.16,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from math import isqrt\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # check from smallest factors up to sqrt to find largest divisor via pairs\n    max_div = 1\n    r = isqrt(n)\n    for a in range(1, r + 1):\n        if n % a == 0:\n            b = n // a\n            if a != n and a > max_div:\n                max_div = a\n            if b != n and b > max_div:\n                max_div = b\n    return max_div",
+  "generated_code": "from math import isqrt\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # check from smallest factors up to sqrt to find largest divisor via pairs\n    max_div = 1\n    r = isqrt(n)\n    for a in range(1, r + 1):\n        if n % a == 0:\n            b = n // a\n            if a != n and a > max_div:\n                max_div = a\n            if b != n and b > max_div:\n                max_div = b\n    return max_div"
+}

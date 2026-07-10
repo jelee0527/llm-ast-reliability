@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__claude_model__constraint__r4.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def same_chars(s0: str, s1: str):\n    return set(s0) == set(s1)",
+  "metrics": {
+    "total_nodes": 22,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

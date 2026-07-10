@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Dict, List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number out of range (1..1000)\")\n\n    vals: List[Tuple[int,str]] = [\n        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),\n        (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),\n        (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')\n    ]\n    res_chars: List[str] = []\n    n = number\n    for v, roman in vals:\n        if n == 0:\n            break\n        q, n = divmod(n, v)\n        if q:\n            res_chars.append(roman * q)\n    return ''.join(res_chars).lower()\n\nif __name__ == \"__main__\":\n    # quick tests\n    assert int_to_mini_roman(19) == 'xix'\n    assert int_to_mini_roman(152) == 'clii'\n    assert int_to_mini_roman(426) == 'cdxxvi'\n    assert int_to_mini_roman(1) == 'i'\n    assert int_to_mini_roman(1000) == 'm'\n    print(\"ok\")",
+  "metrics": {
+    "total_nodes": 240,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

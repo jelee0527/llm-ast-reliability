@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def generate_integers(a, b):\n    start = min(a, b)\n    end = max(a, b)\n    return [num for num in range(start, end + 1) if num % 2 == 0]",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

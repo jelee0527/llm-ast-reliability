@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_022__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_022",
+  "task_id": "HumanEval/22",
+  "problem_name": "Filter Integers",
+  "entry_point": "filter_integers",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\" Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"\n    return [value for value in values if isinstance(value, int) and not isinstance(value, bool)]",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020833,
+    "function_names": [
+      "filter_integers"
+    ]
+  }
+}

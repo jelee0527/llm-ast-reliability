@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Lowercase a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # shift within lowercase letters\n            shifted = ((ord(ch) - ord('a') + 5) % 26) + ord('a')\n            result_chars.append(chr(shifted))\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Reverses the shift of 5 for lowercase a-z; other characters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            # reverse shift within lowercase letters\n            shifted = ((ord(ch) - ord('a') - 5) % 26) + ord('a')\n            result_chars.append(chr(shifted))\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\n\n# Example usage for manual testing (can be removed if undesired)\nif __name__ == \"__main__\":\n    original = \"hello world zzz\"\n    encoded = encode_shift(original)\n    decoded = decode_shift(encoded)\n    print(\"original:\", original)\n    print(\"encoded :\", encoded)\n    print(\"decoded :\", decoded)",
+  "metrics": {
+    "total_nodes": 202,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.034653,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

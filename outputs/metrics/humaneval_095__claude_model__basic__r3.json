@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__claude_model__basic__r3.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def check_dict_case(dict):\n    if not dict:\n        return False\n    \n    keys = dict.keys()\n    \n    for key in keys:\n        if not isinstance(key, str):\n            return False\n    \n    all_lower = all(key.islower() for key in keys)\n    all_upper = all(key.isupper() for key in keys)\n    \n    return all_lower or all_upper",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.077922,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

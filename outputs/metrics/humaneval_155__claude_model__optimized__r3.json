@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_155__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def even_odd_count(num):\n    num = abs(num)\n    even = sum(1 for d in str(num) if int(d) % 2 == 0)\n    odd = sum(1 for d in str(num) if int(d) % 2 != 0)\n    return (even, odd)",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.013699,
+    "function_names": [
+      "even_odd_count"
+    ]
+  }
+}

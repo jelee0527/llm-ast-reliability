@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef Strongest_Extension(class_name: str, extensions: List[str]) -> str:\n    \"\"\"Return 'ClassName.Extension' for the extension with maximum strength,\n    where strength = number_of_uppercase_letters - number_of_lowercase_letters.\n    If tie, choose the earliest in the list.\n    \"\"\"\n    best_idx = -1\n    best_score = None\n    for i, ext in enumerate(extensions):\n        caps = sum(1 for ch in ext if 'A' <= ch <= 'Z')\n        lowers = sum(1 for ch in ext if 'a' <= ch <= 'z')\n        score = caps - lowers\n        if best_score is None or score > best_score:\n            best_score = score\n            best_idx = i\n    # If extensions list could be empty, handle by returning just class_name\n    if best_idx == -1:\n        return class_name\n    return f\"{class_name}.{extensions[best_idx]}\"",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.036232,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

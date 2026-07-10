@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Dict, Any\n\ndef check_dict_case(d: Dict[Any, Any]) -> bool:\n    if not isinstance(d, dict) or len(d) == 0:\n        return False\n    keys = list(d.keys())\n    # All keys must be strings\n    if not all(isinstance(k, str) for k in keys):\n        return False\n    # Check at least one key exists (already ensured), then test all lower or all upper\n    all_lower = all(k == k.lower() for k in keys)\n    all_upper = all(k == k.upper() for k in keys)\n    return (all_lower or all_upper) and not (all_lower and all_upper and any(k == \"\" for k in keys))",
+  "metrics": {
+    "total_nodes": 146,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.034247,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

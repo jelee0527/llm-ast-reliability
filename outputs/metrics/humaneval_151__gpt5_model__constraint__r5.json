@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List, Any\n\ndef double_the_difference(lst: List[Any]) -> int:\n    \"\"\"\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n    If the input list is empty, return 0.\n    \"\"\"\n    if not lst:\n        return 0\n\n    total = 0\n    for item in lst:\n        # Must be an integer type (but bool is subclass of int; exclude bool)\n        if isinstance(item, bool):\n            continue\n        if isinstance(item, int):\n            val = item\n        else:\n            # Accept numeric types that represent integers exactly (e.g., 3.0)\n            if isinstance(item, float):\n                if math.isfinite(item) and item.is_integer():\n                    val = int(item)\n                else:\n                    continue\n            else:\n                # Not a number we accept\n                continue\n\n        if val < 0:\n            continue\n        # odd check\n        if val % 2 != 0:\n            total += val * val\n\n    return total\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 3, 2, 0], 10),\n        ([-1, -2, 0], 0),\n        ([9, -2], 81),\n        ([0], 0),\n        ([3.0, 4.0, 5.2, True, False, -3.0], 9),\n    ]\n    for inp, expected in tests:\n        result = double_the_difference(inp)\n        print(inp, result, \"OK\" if result == expected else f\"ERR expected {expected}\")",
+  "metrics": {
+    "total_nodes": 217,
+    "ast_depth": 11,
+    "branch_count": 9,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.078341,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

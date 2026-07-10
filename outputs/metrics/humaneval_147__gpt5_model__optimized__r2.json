@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_147__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from itertools import combinations\ndef get_max_triples(n):\n    \"\"\"\n    Returns number of triples (i<j<k) such that a[i]+a[j]+a[k] divisible by 3,\n    where a[t]=t*t - t + 1 for t=1..n.\n    \"\"\"\n    # Observe a[t] mod 3 depends on t mod 3.\n    # Compute residues:\n    # t mod3 = 0 -> a = 0 - 0 +1 =1 mod3\n    # t mod3 = 1 -> 1 -1 +1 =1 mod3\n    # t mod3 = 2 -> 1 -2 +1 =0 mod3\n    # So residues: r0 (t%3==0) ->1, r1 (t%3==1)->1, r2 (t%3==2)->0\n    c0 = n // 3            # count of t%3==0\n    c1 = n // 3 + (1 if n % 3 >= 1 else 0)  # t%3==1\n    c2 = n // 3 + (1 if n % 3 == 2 else 0)  # t%3==2\n    # But mapping above: residues values:\n    # residue 1 count = c0 + c1\n    ones = c0 + c1\n    zeros = c2\n    # Need number of triples with sum %3 ==0.\n    # Possibilities:\n    # (0,0,0): choose 3 from zeros\n    # (1,1,1): choose 3 from ones (since residue 2 doesn't occur)\n    # (0,1,2) etc not applicable because only residues 0 and1 exist here.\n    def comb3(x):\n        if x < 3:\n            return 0\n        return x*(x-1)*(x-2)//6\n    total = comb3(zeros) + comb3(ones)\n    return total\n\n# If run as script for quick sanity:\nif __name__ == \"__main__\":\n    print(get_max_triples(5))",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.051852,
+    "function_names": [
+      "get_max_triples",
+      "comb3"
+    ]
+  }
+}

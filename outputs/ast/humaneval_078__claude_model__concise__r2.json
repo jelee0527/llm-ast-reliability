@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_078__claude_model__concise__r2.json",
+  "problem_id": "humaneval_078",
+  "task_id": "HumanEval/78",
+  "problem_name": "Hex Key",
+  "entry_point": "hex_key",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def hex_key(num):\n    primes = {'2', '3', '5', '7', 'B', 'D'}\n    return sum(1 for c in num if c in primes)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='hex_key',\n      args=arguments(\n        args=[\n          arg(arg='num')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='primes', ctx=Store())],\n          value=Set(\n            elts=[\n              Constant(value='2'),\n              Constant(value='3'),\n              Constant(value='5'),\n              Constant(value='7'),\n              Constant(value='B'),\n              Constant(value='D')])),\n        Return(\n          value=Call(\n            func=Name(id='sum', ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=Constant(value=1),\n                generators=[\n                  comprehension(\n                    target=Name(id='c', ctx=Store()),\n                    iter=Name(id='num', ctx=Load()),\n                    ifs=[\n                      Compare(\n                        left=Name(id='c', ctx=Load()),\n                        ops=[\n                          In()],\n                        comparators=[\n                          Name(id='primes', ctx=Load())])],\n                    is_async=0)])]))])])"
+}

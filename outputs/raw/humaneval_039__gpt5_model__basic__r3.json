@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:34:26.306127+00:00",
+  "elapsed_seconds": 4.76,
+  "official_prompt": "\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterator\nimport math\n\ndef _is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0:\n        return False\n    r = int(math.isqrt(num))\n    for i in range(3, r + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef _fib_generator() -> Iterator[int]:\n    a, b = 0, 1\n    while True:\n        a, b = b, a + b\n        yield a\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    gen = _fib_generator()\n    count = 0\n    for f in gen:\n        if _is_prime(f):\n            count += 1\n            if count == n:\n                return f\n    # unreachable, generator is infinite\n    raise RuntimeError(\"Unexpected termination\")",
+  "generated_code": "from typing import Iterator\nimport math\n\ndef _is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0:\n        return False\n    r = int(math.isqrt(num))\n    for i in range(3, r + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef _fib_generator() -> Iterator[int]:\n    a, b = 0, 1\n    while True:\n        a, b = b, a + b\n        yield a\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    gen = _fib_generator()\n    count = 0\n    for f in gen:\n        if _is_prime(f):\n            count += 1\n            if count == n:\n                return f\n    # unreachable, generator is infinite\n    raise RuntimeError(\"Unexpected termination\")"
+}

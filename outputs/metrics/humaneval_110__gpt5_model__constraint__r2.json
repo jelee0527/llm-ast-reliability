@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Determine if by exchanging elements between lst1 and lst2 (any number of exchanges)\n    we can make all elements of lst1 even. Return \"YES\" or \"NO\".\"\"\"\n    # Count parity in both lists\n    # Elements are either even or odd. Swapping preserves counts of evens across combined lists,\n    # but we can move any even from lst2 into lst1 by swapping with an odd in lst1.\n    # Goal: make every position in lst1 even. That requires at least len(lst1) even numbers\n    # total or at minimum ability to have every position occupied by an even.\n    # More precisely: we need at least as many evens in the combined multiset as len(lst1),\n    # because after exchanges lst1 will contain len(lst1) elements, all even.\n    total_evens = sum(1 for x in lst1 if x % 2 == 0) + sum(1 for x in lst2 if x % 2 == 0)\n    if total_evens >= len(lst1):\n        return \"YES\"\n    return \"NO\"",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

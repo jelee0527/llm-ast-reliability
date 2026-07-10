@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:22:11.552914+00:00",
+  "elapsed_seconds": 3.876,
+  "official_prompt": "\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef solution(lst):\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    \n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12\n    solution([3, 3, 3, 3, 3]) ==> 9\n    solution([30, 13, 24, 321]) ==>0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef solution(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    Positions are zero-indexed (i.e., even positions are indices 0, 2, 4, ...).\n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12  (5 + 7)\n    solution([3, 3, 3, 3, 3]) ==> 9  (3 + 3 + 3 at indices 0,2,4)\n    solution([30, 13, 24, 321]) ==> 0 (30 and 24 are even)\n    \"\"\"\n    if not lst:\n        return 0\n\n    total = 0\n    # Iterate over even indices and add value if it's odd\n    for index in range(0, len(lst), 2):\n        value = lst[index]\n        if value % 2 != 0:\n            total += value\n\n    return total",
+  "generated_code": "from typing import List\n\ndef solution(lst: List[int]) -> int:\n    \"\"\"Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n    Positions are zero-indexed (i.e., even positions are indices 0, 2, 4, ...).\n\n    Examples\n    solution([5, 8, 7, 1]) ==> 12  (5 + 7)\n    solution([3, 3, 3, 3, 3]) ==> 9  (3 + 3 + 3 at indices 0,2,4)\n    solution([30, 13, 24, 321]) ==> 0 (30 and 24 are even)\n    \"\"\"\n    if not lst:\n        return 0\n\n    total = 0\n    # Iterate over even indices and add value if it's odd\n    for index in range(0, len(lst), 2):\n        value = lst[index]\n        if value % 2 != 0:\n            total += value\n\n    return total"
+}

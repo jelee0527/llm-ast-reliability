@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_075__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_075",
+  "task_id": "HumanEval/75",
+  "problem_name": "Is Multiply Prime",
+  "entry_point": "is_multiply_prime",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_multiply_prime(a):\n    \"\"\"Return True if a is product of exactly three primes (with repetition allowed), False otherwise.\n    Assumes a < 100 (but works generally for positive integers).\"\"\"\n    if not isinstance(a, int) or a <= 0:\n        return False\n    # simple primality\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n % 2 == 0:\n            return n == 2\n        r = int(math.sqrt(n))\n        for i in range(3, r+1, 2):\n            if n % i == 0:\n                return False\n        return True\n    # try factoring into three primes p*q*r\n    # generate primes up to a\n    primes = [p for p in range(2, a+1) if is_prime(p)]\n    for i in range(len(primes)):\n        p = primes[i]\n        if a % p != 0:\n            continue\n        a1 = a // p\n        for j in range(i, len(primes)):  # allow repetition, start at i\n            q = primes[j]\n            if a1 % q != 0:\n                continue\n            r = a1 // q\n            if r >= q and is_prime(r):  # ensure third factor is prime; order nondecreasing to avoid duplicates\n                return True\n    return False\n\n# Optional simple tests\nif __name__ == \"__main__\":\n    tests = [30, 8, 12, 27, 1, 64, 70, 97]\n    for t in tests:\n        print(t, is_multiply_prime(t))",
+  "metrics": {
+    "total_nodes": 251,
+    "ast_depth": 9,
+    "branch_count": 8,
+    "loop_count": 4,
+    "function_count": 2,
+    "control_flow_count": 21,
+    "control_flow_ratio": 0.083665,
+    "function_names": [
+      "is_multiply_prime",
+      "is_prime"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of non-negative integers according to the number of ones in their binary representation in ascending order.\n    For numbers with the same number of ones, sort by their decimal value ascending.\n    Negative numbers are sorted by their value ascending (as in examples), but their binary ones count will be ignored/treated as their two's complement is not relevant here.\n    \"\"\"\n    # Define a key function: tuple( count of ones in binary of non-negative numbers, value )\n    # For negative numbers, use a large ones count so they sort by value only as in example.\n    def ones_count(n: int) -> int:\n        if n >= 0:\n            return bin(n).count('1')\n        # For negative numbers, return a special marker that keeps their relative order by value\n        # Use a very large number so they come after non-negative numbers when sorting by ones count,\n        # but in the provided example negatives appear sorted ascending and after positives if any.\n        return float('inf')\n    # Sort using tuple key\n    return sorted(arr, key=lambda x: (ones_count(x), x))",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.059701,
+    "function_names": [
+      "sort_array",
+      "ones_count"
+    ]
+  }
+}

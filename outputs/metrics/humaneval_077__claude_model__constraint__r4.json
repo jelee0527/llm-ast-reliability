@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__claude_model__constraint__r4.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def iscube(a):\n    if a < 0:\n        a = -a\n        cbrt = round(a ** (1/3))\n        return cbrt ** 3 == a\n    else:\n        cbrt = round(a ** (1/3))\n        return cbrt ** 3 == a",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.046154,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

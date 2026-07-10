@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef do_algebra(operator: List[str], operand: List[int]) -> int:\n    \"\"\"\n    Evaluate an algebraic expression defined by operator list and operand list.\n    Operators supported: '+', '-', '*', '//', '**'\n    Operator list length is len(operand) - 1.\n    Evaluation follows Python's operator semantics and precedence.\n    \"\"\"\n    if not operator or not operand or len(operator) != len(operand) - 1:\n        raise ValueError(\"Invalid operator/operand lengths\")\n    # Build expression string safely by joining tokens.\n    # Since operands are non-negative integers, we can convert them to str directly.\n    ops_allowed = {'+', '-', '*', '//', '**'}\n    for op in operator:\n        if op not in ops_allowed:\n            raise ValueError(f\"Unsupported operator: {op}\")\n    # Interleave operands and operators\n    tokens = []\n    for i, num in enumerate(operand):\n        tokens.append(str(int(num)))\n        if i < len(operator):\n            tokens.append(operator[i])\n    expr = \" \".join(tokens)\n    # Evaluate expression using Python's eval with restricted globals/locals\n    # to avoid accidental name access. Only builtins not provided.\n    result = eval(expr, {\"__builtins__\": None}, {})\n    # Ensure integer result (// and ** with ints yield ints, +,-,* yield ints)\n    if not isinstance(result, int):\n        # If result is float but represents integer (shouldn't happen here), convert.\n        try:\n            if abs(result - int(result)) < 1e-12:\n                result = int(result)\n            else:\n                # For safety, return int conversion (floor)\n                result = int(result)\n        except Exception:\n            result = int(result)\n    return result",
+  "metrics": {
+    "total_nodes": 215,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.051163,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

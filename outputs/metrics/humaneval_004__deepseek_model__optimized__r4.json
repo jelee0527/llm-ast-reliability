@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_004__deepseek_model__optimized__r4.json",
+  "problem_id": "humaneval_004",
+  "task_id": "HumanEval/4",
+  "problem_name": "Mean Absolute Deviation",
+  "entry_point": "mean_absolute_deviation",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    n = len(numbers)\n    if n == 0:\n        return 0.0\n    mean = sum(numbers) / n\n    total = 0.0\n    for x in numbers:\n        total += abs(x - mean)\n    return total / n",
+  "metrics": {
+    "total_nodes": 71,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.056338,
+    "function_names": [
+      "mean_absolute_deviation"
+    ]
+  }
+}

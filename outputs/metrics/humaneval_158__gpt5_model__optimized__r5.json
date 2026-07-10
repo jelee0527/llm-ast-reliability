@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"\n    Return the word with maximum number of unique characters.\n    If multiple have the same maximum, return the lexicographically smallest one.\n    \"\"\"\n    if not words:\n        return \"\"\n    max_unique = -1\n    best_word = None\n    for w in words:\n        # compute number of unique characters\n        unique_count = len(set(w))\n        if unique_count > max_unique:\n            max_unique = unique_count\n            best_word = w\n        elif unique_count == max_unique:\n            if w < best_word:\n                best_word = w\n    return best_word if best_word is not None else \"\"\n\n\n# Quick simple tests (will run when module executed)\nif __name__ == \"__main__\":\n    assert find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    assert find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    assert find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"aaaaaaa\"\n    assert find_max([]) == \"\"\n    assert find_max([\"ab\", \"ba\"]) == \"ab\"  # lexicographically smaller when unique counts equal\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

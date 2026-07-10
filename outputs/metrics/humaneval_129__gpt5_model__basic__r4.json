@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import deque\n\ndef minPath(grid, k):\n    n = len(grid)\n    # map value to position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # neighbors function\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n    # For k==1 answer is minimal value\n    if k == 1:\n        # find minimal value location\n        minv = min(pos.keys())\n        return [minv]\n    # We will build the path greedily position by position.\n    # At step t (0-based) we maintain set of possible current positions reachable\n    # after having matched the chosen prefix values. Initially all cells are possible (start anywhere).\n    # But better: start with all cells; for first value choose minimal possible value among all cells.\n    # Then for subsequent steps choose minimal next value among neighbors of current reachable positions,\n    # but must ensure that it's possible to complete to length k (i.e., from chosen next positions there exists some path of remaining steps).\n    # To ensure feasibility we can compute BFS reachability layers forward for remaining steps.\n    # Precompute adjacency list\n    adj = {}\n    for i in range(n):\n        for j in range(n):\n            nbrs = []\n            for dx,dy in dirs:\n                ni, nj = i+dx, j+dy\n                if 0 <= ni < n and 0 <= nj < n:\n                    nbrs.append((ni,nj))\n            adj[(i,j)] = nbrs\n    # Helper: from a set of positions, compute set of positions reachable in exactly s steps (allow revisiting)\n    # We will use dynamic programming: reachable_steps[s] is set of positions reachable in exactly s steps from given starts.\n    def reachable_in_s(start_positions, s):\n        cur = set(start_positions)\n        for _ in range(s):\n            nxt = set()\n            for p in cur:\n                for q in adj[p]:\n                    nxt.add(q)\n            cur = nxt\n            if not cur:\n                break\n        return cur\n\n    # Initial possible positions: all cells\n    possible = set((i,j) for i in range(n) for j in range(n))\n    result = []\n    # For step 0..k-1\n    for step in range(k):\n        # For each candidate value in grid (sorted increasing), see if any cell with that value is reachable from possible in zero steps if step==0 (start anywhere),\n        # or is neighbor of possible (i.e., reachable in one move) depending on modeling.\n        # Actually 'possible' contains positions where we are currently located before choosing next cell.\n        # For step 0, possible is all cells and choosing a cell means staying at that cell (no move cost).\n        # For step>0, must move from previous possible to chosen cell by one edge.\n        # So define candidates as positions reachable in one move from possible (for step>0) or possible itself (step==0).\n        if step == 0:\n            candidates = set(possible)\n        else:\n            candidates = set()\n            for p in possible:\n                for q in adj[p]:\n                    candidates.add(q)\n        if not candidates:\n            # should not happen\n            return []\n        # We'll try candidate values in ascending order\n        # Build mapping value -> list of positions with that value intersecting candidates\n        val_to_positions = {}\n        for (i,j) in candidates:\n            v = grid[i][j]\n            val_to_positions.setdefault(v, []).append((i,j))\n        found = False\n        for v in sorted(val_to_positions.keys()):\n            positions_with_v = val_to_positions[v]\n            # From these positions, we need to check if it's possible to complete remaining steps (k - step -1)\n            rem = k - step - 1\n            if rem == 0:\n                # OK choose this v\n                chosen_positions = set(positions_with_v)\n                result.append(v)\n                possible = chosen_positions\n                found = True\n                break\n            # compute reachable positions in exactly rem steps from any of positions_with_v\n            reachable = reachable_in_s(positions_with_v, rem)\n            if reachable:\n                # feasible\n                chosen_positions = set(positions_with_v)\n                result.append(v)\n                possible = chosen_positions\n                found = True\n                break\n        if not found:\n            # fallback (shouldn't happen)\n            # pick minimal value among candidates\n            v = min(val_to_positions.keys())\n            result.append(v)\n            possible = set(val_to_positions[v])\n    return result\n\n# Example quick tests\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 605,
+    "ast_depth": 11,
+    "branch_count": 9,
+    "loop_count": 13,
+    "function_count": 2,
+    "control_flow_count": 29,
+    "control_flow_ratio": 0.047934,
+    "function_names": [
+      "minPath",
+      "reachable_in_s"
+    ]
+  }
+}

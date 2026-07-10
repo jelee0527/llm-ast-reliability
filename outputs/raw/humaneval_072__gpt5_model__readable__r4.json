@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:41:44.211715+00:00",
+  "elapsed_seconds": 5.649,
+  "official_prompt": "\ndef will_it_fly(q,w):\n    '''\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n    Example:\n    will_it_fly([1, 2], 5) ➞ False \n    # 1+2 is less than the maximum possible weight, but it's unbalanced.\n\n    will_it_fly([3, 2, 3], 1) ➞ False\n    # it's balanced, but 3+2+3 is more than the maximum possible weight.\n\n    will_it_fly([3, 2, 3], 9) ➞ True\n    # 3+2+3 is less than the maximum possible weight, and it's balanced.\n\n    will_it_fly([3], 5) ➞ True\n    # 3 is less than the maximum possible weight, and it's balanced.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef will_it_fly(q,w):\n    '''\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n    Example:\n    will_it_fly([1, 2], 5) ➞ False \n    # 1+2 is less than the maximum possible weight, but it's unbalanced.\n\n    will_it_fly([3, 2, 3], 1) ➞ False\n    # it's balanced, but 3+2+3 is more than the maximum possible weight.\n\n    will_it_fly([3, 2, 3], 9) ➞ True\n    # 3+2+3 is less than the maximum possible weight, and it's balanced.\n\n    will_it_fly([3], 5) ➞ True\n    # 3 is less than the maximum possible weight, and it's balanced.\n    '''\n\n",
+  "raw_response": "def will_it_fly(q, w):\n    \"\"\"\n    Return True if list q is palindromic (balanced) and the sum of its elements\n    is less than or equal to w. Otherwise return False.\n    \"\"\"\n    # Ensure q is a sequence we can compare; convert to list to be safe\n    try:\n        seq = list(q)\n    except TypeError:\n        # If q is not iterable, it can't be valid input; treat as not flying\n        return False\n\n    # Check palindrome (balanced)\n    is_balanced = seq == seq[::-1]\n\n    # Check weight constraint\n    try:\n        total_weight = sum(seq)\n    except TypeError:\n        # If elements are not summable (e.g., non-numeric), treat as invalid -> not flying\n        return False\n\n    return is_balanced and (total_weight <= w)",
+  "generated_code": "def will_it_fly(q, w):\n    \"\"\"\n    Return True if list q is palindromic (balanced) and the sum of its elements\n    is less than or equal to w. Otherwise return False.\n    \"\"\"\n    # Ensure q is a sequence we can compare; convert to list to be safe\n    try:\n        seq = list(q)\n    except TypeError:\n        # If q is not iterable, it can't be valid input; treat as not flying\n        return False\n\n    # Check palindrome (balanced)\n    is_balanced = seq == seq[::-1]\n\n    # Check weight constraint\n    try:\n        total_weight = sum(seq)\n    except TypeError:\n        # If elements are not summable (e.g., non-numeric), treat as invalid -> not flying\n        return False\n\n    return is_balanced and (total_weight <= w)"
+}

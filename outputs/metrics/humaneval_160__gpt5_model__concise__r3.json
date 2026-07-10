@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport operator as op\nimport functools\n\n_ops = {\n    '+': lambda a,b: a + b,\n    '-': lambda a,b: a - b,\n    '*': lambda a,b: a * b,\n    '//': lambda a,b: a // b,\n    '**': lambda a,b: a ** b\n}\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    if not operator or not operand or len(operator) != len(operand) - 1:\n        raise ValueError(\"Invalid input lengths\")\n    # To respect Python operator precedence, evaluate by parsing into tokens and using a shunting-yard-like approach.\n    # Convert tokens lists\n    tokens = []\n    for i, op_str in enumerate(operator):\n        tokens.append(str(operand[i]))\n        tokens.append(op_str)\n    tokens.append(str(operand[-1]))\n    # Define precedence and right-assoc for **\n    prec = {'+':1, '-':1, '*':2, '//':2, '**':3}\n    right_assoc = {'**'}\n    # Shunting-yard to RPN\n    output = []\n    stack = []\n    i = 0\n    while i < len(tokens):\n        tok = tokens[i]\n        if tok.isdigit():\n            output.append(int(tok))\n        else:\n            while stack:\n                top = stack[-1]\n                if top in prec and ((prec[top] > prec[tok]) or (prec[top] == prec[tok] and tok not in right_assoc)):\n                    output.append(stack.pop())\n                else:\n                    break\n            stack.append(tok)\n        i += 1\n    while stack:\n        output.append(stack.pop())\n    # Evaluate RPN\n    eval_stack = []\n    for t in output:\n        if isinstance(t, int):\n            eval_stack.append(t)\n        else:\n            b = eval_stack.pop()\n            a = eval_stack.pop()\n            eval_stack.append(_ops[t](a,b))\n    return eval_stack[0]",
+  "metrics": {
+    "total_nodes": 402,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.029851,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

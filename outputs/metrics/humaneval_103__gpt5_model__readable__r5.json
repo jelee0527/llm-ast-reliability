@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef rounded_avg(n: int, m: int) -> Union[str, int]:\n    \"\"\"Compute the rounded average of integers from n to m inclusive, return as binary string.\n    If n > m return -1.\n    \"\"\"\n    if not isinstance(n, int) or not isinstance(m, int):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n    # number of terms\n    count = m - n + 1\n    # sum of arithmetic sequence\n    total = (n + m) * count // 2\n    # If (n+m)*count is odd, integer division truncated; better to compute exact float for rounding\n    # Use precise rounding to nearest integer\n    average = total / count  # this yields exact float for integer total and count\n    rounded = int(average + 0.5) if average >= 0 else int(average - 0.5)\n    return bin(rounded)\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    print(rounded_avg(1, 5))   # \"0b11\"\n    print(rounded_avg(7, 5))   # -1\n    print(rounded_avg(10, 20)) # \"0b1111\"\n    print(rounded_avg(20, 33)) # \"0b11010\"",
+  "metrics": {
+    "total_nodes": 170,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.041176,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

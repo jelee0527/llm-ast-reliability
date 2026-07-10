@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_049__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import sys\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"p must be a positive integer\")\n    if n < 0:\n        # handle negative exponent by computing modular inverse of 2^(-n)\n        # requires 2 and p to be coprime\n        if p == 1:\n            return 0\n        # use pow with negative exponent only supported in Python 3.8+ for modular inverse\n        # emulate via pow(2, -n, p) if available, otherwise compute inverse\n        try:\n            return pow(2, n, p)\n        except TypeError:\n            # compute inverse of 2 modulo p\n            if pow(2, p-1, p) != 1:\n                raise ValueError(\"modular inverse does not exist\")\n            inv2 = pow(2, p-2, p)\n            return pow(inv2, -n, p)\n    # use built-in pow for efficiency\n    return pow(2, n, p)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod(verbose=False)",
+  "metrics": {
+    "total_nodes": 122,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.098361,
+    "function_names": [
+      "modp"
+    ]
+  }
+}

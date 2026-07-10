@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:20:10.975693+00:00",
+  "elapsed_seconds": 2.063,
+  "official_prompt": "\ndef specialFilter(nums):\n    \"\"\"Write a function that takes an array of numbers as input and returns \n    the number of elements in the array that are greater than 10 and both \n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1 \n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef specialFilter(nums):\n    \"\"\"Write a function that takes an array of numbers as input and returns \n    the number of elements in the array that are greater than 10 and both \n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1 \n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    def first_last_odd(n: int) -> bool:\n        s = str(abs(n))\n        return int(s[0]) % 2 == 1 and int(s[-1]) % 2 == 1\n\n    return sum(1 for x in nums if x > 10 and first_last_odd(x))",
+  "generated_code": "from typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    def first_last_odd(n: int) -> bool:\n        s = str(abs(n))\n        return int(s[0]) % 2 == 1 and int(s[-1]) % 2 == 1\n\n    return sum(1 for x in nums if x > 10 and first_last_odd(x))"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def compare_one(a, b):\n    def parse_value(v):\n        if isinstance(v, str):\n            v = v.replace(\",\", \".\")\n            return float(v)\n        return float(v)\n    \n    val_a = parse_value(a)\n    val_b = parse_value(b)\n    \n    if val_a > val_b:\n        return a\n    elif val_b > val_a:\n        return b\n    else:\n        return None",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.105263,
+    "function_names": [
+      "compare_one",
+      "parse_value"
+    ]
+  }
+}

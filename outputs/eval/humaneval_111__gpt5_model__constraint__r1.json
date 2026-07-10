@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_111__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "SyntaxError",
+  "error_message": "invalid syntax (<string>, line 52)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 42, in main\n    exec(generated_code, namespace)\n  File \"<string>\", line 52\n    print(inp!r, out, 'OK' if out == expected else f'FAIL expected {expected}')\n             ^\nSyntaxError: invalid syntax\n"
+}

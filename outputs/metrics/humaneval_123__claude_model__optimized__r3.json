@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_123__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_123",
+  "task_id": "HumanEval/123",
+  "problem_name": "Get Odd Collatz",
+  "entry_point": "get_odd_collatz",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def get_odd_collatz(n):\n    odds = set()\n    current = n\n    while current != 1:\n        if current % 2 != 0:\n            odds.add(current)\n        if current % 2 == 0:\n            current = current // 2\n        else:\n            current = 3 * current + 1\n    odds.add(1)\n    return sorted(odds)",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.050633,
+    "function_names": [
+      "get_odd_collatz"
+    ]
+  }
+}

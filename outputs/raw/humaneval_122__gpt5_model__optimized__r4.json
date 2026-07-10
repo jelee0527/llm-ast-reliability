@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_122",
+  "task_id": "HumanEval/122",
+  "problem_name": "Add Elements",
+  "entry_point": "add_elements",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:24:38.798516+00:00",
+  "elapsed_seconds": 4.418,
+  "official_prompt": "\ndef add_elements(arr, k):\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Example:\n\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\n        Output: 24 # sum of 21 + 3\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef add_elements(arr, k):\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n    Example:\n\n        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4\n        Output: 24 # sum of 21 + 3\n\n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    if k <= 0:\n        return 0\n    s = 0\n    # Only consider first k elements (k guaranteed 1..len(arr) but guard anyway)\n    for x in arr[:k]:\n        # number of digits for non-negative integers:\n        # treat negative by absolute value\n        if abs(x) <= 99:\n            s += x\n    return s\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert add_elements([111,21,3,4000,5,6,7,8,9], 4) == 24\n    assert add_elements([1,2,3], 2) == 3\n    assert add_elements([-10, 200, 99], 3) == -10 + 99\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import List\n\ndef add_elements(arr: List[int], k: int) -> int:\n    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \"\"\"\n    if k <= 0:\n        return 0\n    s = 0\n    # Only consider first k elements (k guaranteed 1..len(arr) but guard anyway)\n    for x in arr[:k]:\n        # number of digits for non-negative integers:\n        # treat negative by absolute value\n        if abs(x) <= 99:\n            s += x\n    return s\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert add_elements([111,21,3,4000,5,6,7,8,9], 4) == 24\n    assert add_elements([1,2,3], 2) == 3\n    assert add_elements([-10, 200, 99], 3) == -10 + 99\n    print(\"Tests passed.\")"
+}

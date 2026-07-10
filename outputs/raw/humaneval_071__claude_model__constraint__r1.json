@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_071",
+  "task_id": "HumanEval/71",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:04:27.236850+00:00",
+  "elapsed_seconds": 2.097,
+  "official_prompt": "\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n\n",
+  "raw_response": "import math\n\ndef triangle_area(a, b, c):\n    if a + b > c and a + c > b and b + c > a:\n        s = (a + b + c) / 2\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        return round(area, 2)\n    else:\n        return -1",
+  "generated_code": "import math\n\ndef triangle_area(a, b, c):\n    if a + b > c and a + c > b and b + c > a:\n        s = (a + b + c) / 2\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        return round(area, 2)\n    else:\n        return -1"
+}

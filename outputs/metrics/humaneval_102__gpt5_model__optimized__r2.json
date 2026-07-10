@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from math import ceil, floor\nfrom typing import Union\n\ndef choose_num(x: Union[int, float], y: Union[int, float]) -> int:\n    \"\"\"Return the largest even integer within [x, y] inclusive, or -1 if none.\"\"\"\n    try:\n        lx = float(x)\n        ry = float(y)\n    except Exception:\n        raise TypeError(\"x and y must be numbers\")\n    if lx > ry:\n        return -1\n    # smallest integer >= lx\n    start = ceil(lx)\n    # largest integer <= ry\n    end = floor(ry)\n    if start > end:\n        return -1\n    # Make sure end is even; if not, move down by 1\n    if end % 2 != 0:\n        end -= 1\n    if end < start:\n        # maybe start is even and within range, otherwise none\n        if start % 2 == 0 and start <= floor(ry):\n            return int(start)\n        return -1\n    return int(end)",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.077922,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

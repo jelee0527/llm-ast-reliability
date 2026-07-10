@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\nfrom typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if not string:\n        return string\n    # Use str.swapcase which is implemented in C and is efficient\n    return string.swapcase()\n\n# Simple tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello\", \"hELLO\"),\n        (\"\", \"\"),\n        (\"ABCdef123!@\", \"abcDEF123!@\"),\n        (\"already LOWER\", \"ALREADY lower\"),\n        (\"MiXeD 123\", \"mIxEd 123\"),\n        (\"ß\", \"SS\" if sys.maxunicode < 0x110000 else \"ẞ\".swapcase() )  # placeholder, just to exercise non-ascii\n    ]\n    for inp, expected in tests:\n        out = flip_case(inp)\n        print(repr(inp), \"->\", repr(out))",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.056075,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

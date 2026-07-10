@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_104__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    result = []\n    for num in x:\n        has_even = False\n        for digit in str(num):\n            if int(digit) % 2 == 0:\n                has_even = True\n                break\n        if not has_even:\n            result.append(num)\n    return sorted(result)",
+  "metrics": {
+    "total_nodes": 62,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.096774,
+    "function_names": [
+      "unique_digits"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_030__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_030",
+  "task_id": "HumanEval/30",
+  "problem_name": "Get Positive",
+  "entry_point": "get_positive",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef get_positive(l: List[Any]) -> List[float]:\n    \"\"\"Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    result: List[float] = []\n    for item in l:\n        # accept ints and floats, skip other types\n        if isinstance(item, (int, float)):\n            # treat strictly positive numbers only (exclude zero)\n            if item > 0:\n                # preserve numeric type (int stays int, float stays float)\n                result.append(item)\n        else:\n            # try to convert strings that represent numbers\n            if isinstance(item, str):\n                s = item.strip()\n                if s == \"\":\n                    continue\n                try:\n                    # prefer int when possible\n                    if '.' in s or 'e' in s or 'E' in s:\n                        num = float(s)\n                    else:\n                        num = int(s)\n                except Exception:\n                    continue\n                if num > 0:\n                    result.append(num)\n            # ignore other types\n            continue\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 157,
+    "ast_depth": 11,
+    "branch_count": 8,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.082803,
+    "function_names": [
+      "get_positive"
+    ]
+  }
+}

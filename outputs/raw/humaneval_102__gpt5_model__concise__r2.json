@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:43:21.020361+00:00",
+  "elapsed_seconds": 2.259,
+  "official_prompt": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef choose_num(x, y):\n    \"\"\"Return the largest even integer in [x, y] inclusive, or -1 if none.\"\"\"\n    try:\n        lx = math.ceil(x)\n        ux = math.floor(y)\n    except Exception:\n        return -1\n    if lx > ux:\n        return -1\n    # largest integer <= ux that's even\n    if ux % 2 == 0:\n        candidate = ux\n    else:\n        candidate = ux - 1\n    if candidate < lx:\n        return -1\n    return int(candidate)",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"Return the largest even integer in [x, y] inclusive, or -1 if none.\"\"\"\n    try:\n        lx = math.ceil(x)\n        ux = math.floor(y)\n    except Exception:\n        return -1\n    if lx > ux:\n        return -1\n    # largest integer <= ux that's even\n    if ux % 2 == 0:\n        candidate = ux\n    else:\n        candidate = ux - 1\n    if candidate < lx:\n        return -1\n    return int(candidate)"
+}

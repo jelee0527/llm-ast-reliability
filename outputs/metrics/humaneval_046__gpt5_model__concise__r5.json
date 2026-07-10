@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef fib4(n: int):\n    \"\"\"Compute n-th Fib4 number iteratively.\n    Base: f(0)=0, f(1)=0, f(2)=2, f(3)=0, and f(n)=f(n-1)+f(n-2)+f(n-3)+f(n-4) for n>=4.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0: return 0\n    if n == 1: return 0\n    if n == 2: return 2\n    if n == 3: return 0\n    a, b, c, d = 0, 0, 2, 0  # f(0), f(1), f(2), f(3)\n    for _ in range(4, n+1):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 132,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.098485,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

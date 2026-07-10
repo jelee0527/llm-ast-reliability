@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_134__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt: str) -> bool:\n    \"\"\"\n    Return True if the last character of txt is an alphabetical character\n    and is not part of a word (i.e., it is a single-letter token separated by spaces).\n    Otherwise return False.\n    \"\"\"\n    if not txt:\n        return False\n\n    # Strip trailing spaces because a trailing space means last token is empty -> False\n    if txt[-1].isspace():\n        return False\n\n    # Split by spaces to get tokens; consecutive spaces produce empty tokens, but we handle trailing spaces above\n    tokens = txt.split(' ')\n\n    if not tokens:\n        return False\n\n    last_token = tokens[-1]\n\n    # Last token must be a single alphabetical character\n    return len(last_token) == 1 and last_token in string.ascii_letters\n\n\n# Quick tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"apple pie\", False),\n        (\"apple pi e\", True),\n        (\"apple pi e \", False),\n        (\"\", False),\n        (\"a\", True),\n        (\" a\", True),\n        (\"ab c\", False),\n        (\"ab c \", False),\n        (\"ab c d\", True),\n        (\"ab c d1\", False),\n        (\"ab c d!\", False),\n    ]\n    for s, expected in tests:\n        result = check_if_last_char_is_a_letter(s)\n        print(f\"{s!r} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.054217,
+    "function_names": [
+      "check_if_last_char_is_a_letter"
+    ]
+  }
+}

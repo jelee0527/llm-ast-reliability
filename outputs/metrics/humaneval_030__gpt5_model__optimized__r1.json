@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_030__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_030",
+  "task_id": "HumanEval/30",
+  "problem_name": "Get Positive",
+  "entry_point": "get_positive",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef get_positive(l: List[float]) -> List[float]:\n    \"\"\"Return only positive numbers in the list, preserving order and duplicates.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n    \"\"\"\n    if not l:\n        return []\n    # Use list comprehension for speed and low memory overhead\n    return [x for x in l if x > 0]",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "get_positive"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"db0db\"\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append(str(n % 2))\n        n = n // 2\n    bits.reverse()\n    return \"db\" + \"\".join(bits) + \"db\"",
+  "metrics": {
+    "total_nodes": 69,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.057971,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

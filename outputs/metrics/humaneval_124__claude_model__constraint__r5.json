@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def valid_date(date):\n    if not date:\n        return False\n    \n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    \n    mm_str, dd_str, yyyy_str = parts\n    \n    if len(mm_str) != 2 or len(dd_str) != 2 or len(yyyy_str) != 4:\n        return False\n    \n    if not mm_str.isdigit() or not dd_str.isdigit() or not yyyy_str.isdigit():\n        return False\n    \n    mm = int(mm_str)\n    dd = int(dd_str)\n    yyyy = int(yyyy_str)\n    \n    if mm < 1 or mm > 12:\n        return False\n    \n    if mm in [1, 3, 5, 7, 8, 10, 12]:\n        if dd < 1 or dd > 31:\n            return False\n    elif mm in [4, 6, 9, 11]:\n        if dd < 1 or dd > 30:\n            return False\n    elif mm == 2:\n        if dd < 1 or dd > 29:\n            return False\n    \n    return True",
+  "metrics": {
+    "total_nodes": 214,
+    "ast_depth": 10,
+    "branch_count": 11,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.093458,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__claude_model__concise__r5.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def cycpattern_check(a, b):\n    doubled = b + b\n    return any(doubled[i:i+len(b)] in a for i in range(len(b)))",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

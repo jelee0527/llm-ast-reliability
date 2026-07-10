@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from math import floor, modf, isnan, isinf\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal (fractional) part.\n    For example: truncate_number(3.5) -> 0.5\n    Handles positive numbers; for non-finite or negative inputs behavior follows math.modf.\n    \"\"\"\n    # Use math.modf which returns (fractional, integer)\n    # Ensure input is a float\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if isnan(number) or isinf(number):\n        return number  # preserve NaN and infinities\n    frac, _ = modf(float(number))\n    # For negative numbers, modf returns negative fractional part; problem states positive input,\n    # but ensure returned fractional part is non-negative by taking absolute for negative inputs.\n    return frac if frac >= 0.0 else -frac",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

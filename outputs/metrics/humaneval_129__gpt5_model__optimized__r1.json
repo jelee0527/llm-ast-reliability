@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import heapq\nfrom collections import deque\n\ndef minPath(grid, k):\n    \"\"\"\n    Returns the lexicographically smallest sequence of length k (values) obtainable\n    by any walk of k steps (visiting k cells, not necessarily distinct) on the grid\n    moving 4-directionally. Each number 1..N*N appears exactly once.\n    \"\"\"\n    n = len(grid)\n    if n == 0:\n        return []\n    # map value -> position\n    pos = [None] * (n * n + 1)\n    for i in range(n):\n        for j in range(n):\n            v = grid[i][j]\n            pos[v] = (i, j)\n\n    # Precompute neighbors for positions 0..n-1 x 0..n-1\n    dirs = [(1,0),(-1,0),(0,1),(0,-1)]\n\n    # We will build the lexicographically minimal sequence step by step.\n    # At step t (1-based), we have a set of reachable positions after t-1 moves\n    # that realize the prefix chosen so far. Initially, before any moves, all\n    # positions are reachable as starting cells.\n    # For choosing value for position t, we try candidate values in increasing\n    # order; for a candidate value v at cell (i,j), we check whether from any\n    # position in current reachable set we can in one move (or zero for start)\n    # arrive at (i,j) and still be able to complete remaining length (k-t)\n    # arbitrarily (always true because you can always walk in grid). However,\n    # to ensure future lexicographic minimality, we need to guarantee existence\n    # of some continuation; since continuation always exists as long as we can\n    # make required number of steps staying inside, the constraint is simply\n    # reachability in one move from current reachable set (or starting).\n    #\n    # More precisely: maintain current_positions set of coordinates where the\n    # walker could be after having produced chosen prefix. For t=1, we can\n    # choose any cell as start (no move needed). For subsequent t, chosen cell\n    # must be neighbor of some position in current_positions.\n    #\n    # After choosing a cell, update current_positions to be that single cell's coordinate.\n    # However duplicates allowed: since path can revisit, after choosing value,\n    # future moves depend only on that cell.\n    #\n    # So algorithm: For t=1..k, iterate values v from 1..n*n increasing, for each\n    # v check if its position is reachable (for t==1 always true). For t>1 check\n    # if pos[v] is neighbor of current_pos. But current_pos is a single cell (because\n    # chosen uniquely). So simply greedy: pick smallest possible value at each step\n    # among neighbors of current cell (for t>1) or any cell (t==1).\n    #\n    # This greedy is correct because lexicographic comparison cares earliest positions,\n    # and moving to the smallest possible value at each step that is reachable yields\n    # unique minimal path.\n    #\n    # Implementation: for t==1 choose global minimum value (1). But note: starting can be any cell,\n    # so first element is overall minimum value 1 always. So result[0]=1. Then for each subsequent\n    # step choose smallest value among neighbors of current cell (including staying? Problem says\n    # move to neighbor cells that share an edge; cannot stay in place). So cannot stay. Must move.\n    #\n    # Example given first: grid 1..9, k=3: start at 1 then neighbors are 2 and 4; pick 2 then neighbors of 2 include 1 and 3 and 5 etc; picks 1 -> [1,2,1].\n    #\n    # So code: start at pos[1]. For step 2..k, examine neighbor coordinates within grid, collect their values, pick min value, move there.\n    #\n    # Edgecases: if k==0 return []. k>=1 per spec.\n    res = []\n    # first pick global min value which is 1\n    cur_v = 1\n    cur_i, cur_j = pos[cur_v]\n    res.append(cur_v)\n    for step in range(2, k+1):\n        best_v = None\n        best_pos = None\n        for di, dj in dirs:\n            ni, nj = cur_i + di, cur_j + dj\n            if 0 <= ni < n and 0 <= nj < n:\n                v = grid[ni][nj]\n                if best_v is None or v < best_v:\n                    best_v = v\n                    best_pos = (ni, nj)\n        # Move to the neighbor with smallest value\n        # It is guaranteed there is at least one neighbor (n>=2 so interior or edge)\n        cur_i, cur_j = best_pos\n        cur_v = best_v\n        res.append(cur_v)\n    return res",
+  "metrics": {
+    "total_nodes": 277,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.032491,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

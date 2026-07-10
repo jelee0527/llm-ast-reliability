@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_078__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_078",
+  "task_id": "HumanEval/78",
+  "problem_name": "Hex Key",
+  "entry_point": "hex_key",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import sys\n\ndef hex_key(num: str) -> int:\n    primes = {'2', '3', '5', '7', 'B', 'D'}\n    count = 0\n    for ch in num:\n        if ch in primes:\n            count += 1\n    return count\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip()\n    if data == \"\":\n        print(0)\n    else:\n        # assume single token input; if multiple lines/tokens, take first token\n        token = data.split()[0]\n        print(hex_key(token))",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.053191,
+    "function_names": [
+      "hex_key"
+    ]
+  }
+}

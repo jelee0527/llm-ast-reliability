@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef sort_even(l: List[Any]) -> List[Any]:\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indices, while its values at the even indices are equal\n    to the values of the even indices of l, but sorted.\n    \"\"\"\n    # Work on a copy to avoid mutating input\n    result = list(l)\n    # Extract values at even indices (0-based)\n    even_indices = [i for i in range(0, len(l), 2)]\n    even_values = [l[i] for i in even_indices]\n    # Sort the even-index values\n    even_values.sort()\n    # Place sorted even values back into result at even indices\n    for idx, val in zip(even_indices, even_values):\n        result[idx] = val\n    return result\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert sort_even([1, 2, 3]) == [1, 2, 3]\n    assert sort_even([5, 6, 3, 4]) == [3, 6, 5, 4]\n    assert sort_even([]) == []\n    assert sort_even([10]) == [10]\n    assert sort_even([9,8,7,6,5]) == [5,8,7,6,9]\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 182,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.016484,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

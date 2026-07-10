@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef unique(l: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    seen = set()\n    unique_list = []\n    for item in l:\n        if item not in seen:\n            seen.add(item)\n            unique_list.append(item)\n    try:\n        return sorted(unique_list)\n    except TypeError:\n        # fallback: if elements are not directly comparable, return insertion-unique order\n        return unique_list",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.068493,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

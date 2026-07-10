@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_009",
+  "task_id": "HumanEval/9",
+  "problem_name": "Rolling Max",
+  "entry_point": "rolling_max",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:37:18.999844+00:00",
+  "elapsed_seconds": 3.236,
+  "official_prompt": "from typing import List, Tuple\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List, Tuple\n\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    result: List[int] = []\n    if not numbers:\n        return result\n    current_max = numbers[0]\n    result.append(current_max)\n    for num in numbers[1:]:\n        if num > current_max:\n            current_max = num\n        result.append(current_max)\n    return result\n\n# Quick simple test when run as script\nif __name__ == \"__main__\":\n    print(rolling_max([1, 2, 3, 2, 3, 4, 2]))",
+  "generated_code": "from typing import List, Tuple\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    result: List[int] = []\n    if not numbers:\n        return result\n    current_max = numbers[0]\n    result.append(current_max)\n    for num in numbers[1:]:\n        if num > current_max:\n            current_max = num\n        result.append(current_max)\n    return result\n\n# Quick simple test when run as script\nif __name__ == \"__main__\":\n    print(rolling_max([1, 2, 3, 2, 3, 4, 2]))"
+}

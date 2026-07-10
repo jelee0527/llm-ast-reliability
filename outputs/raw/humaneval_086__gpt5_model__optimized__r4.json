@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:11:59.524001+00:00",
+  "elapsed_seconds": 2.684,
+  "official_prompt": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Return an ordered version of the string where, for each word (sequence of non-space characters),\n    its characters are sorted by ascending ASCII value. The positions of spaces are preserved.\n    \"\"\"\n    # Split by spaces but keep spaces: use regex to find sequences of non-space or sequences of spaces\n    parts = re.findall(r'\\S+|\\s+', s)\n    result_parts = []\n    for part in parts:\n        if part.isspace():\n            result_parts.append(part)\n        else:\n            # sort characters by their ASCII value and rejoin\n            sorted_part = ''.join(sorted(part))\n            result_parts.append(sorted_part)\n    return ''.join(result_parts)",
+  "generated_code": "import re\n\ndef anti_shuffle(s):\n    \"\"\"\n    Return an ordered version of the string where, for each word (sequence of non-space characters),\n    its characters are sorted by ascending ASCII value. The positions of spaces are preserved.\n    \"\"\"\n    # Split by spaces but keep spaces: use regex to find sequences of non-space or sequences of spaces\n    parts = re.findall(r'\\S+|\\s+', s)\n    result_parts = []\n    for part in parts:\n        if part.isspace():\n            result_parts.append(part)\n        else:\n            # sort characters by their ASCII value and rejoin\n            sorted_part = ''.join(sorted(part))\n            result_parts.append(sorted_part)\n    return ''.join(result_parts)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__claude_model__concise__r4.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def is_nested(string):\n    opening = []\n    closing = []\n    for i, c in enumerate(string):\n        if c == '[':\n            opening.append(i)\n        else:\n            closing.append(i)\n    \n    # We need to find if there's a valid nested subsequence\n    # i.e., [[ ]] pattern where indices satisfy i1 < i2 < j2 < j1\n    # Use a stack-based approach to find matched pairs, then check for nesting\n    \n    stack = []\n    matched = []\n    for i, c in enumerate(string):\n        if c == '[':\n            stack.append(i)\n        elif c == ']' and stack:\n            matched.append((stack.pop(), i))\n    \n    # Check if any matched pair contains another matched pair\n    for i in range(len(matched)):\n        for j in range(len(matched)):\n            if i != j:\n                a, b = matched[i]\n                c, d = matched[j]\n                if a < c and d < b:\n                    return True\n    \n    return False",
+  "metrics": {
+    "total_nodes": 183,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.060109,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

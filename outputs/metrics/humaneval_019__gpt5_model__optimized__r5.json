@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\nWORD_TO_DIGIT = {\n    'zero': 0,\n    'one': 1,\n    'two': 2,\n    'three': 3,\n    'four': 4,\n    'five': 5,\n    'six': 6,\n    'seven': 7,\n    'eight': 8,\n    'nine': 9,\n}\n\nDIGIT_TO_WORD = {v: k for k, v in WORD_TO_DIGIT.items()}\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    if not numbers:\n        return ''\n    parts = numbers.split()\n    # Map to digits, ignoring any invalid tokens (though per spec all are valid)\n    digits = [WORD_TO_DIGIT[p] for p in parts if p in WORD_TO_DIGIT]\n    digits.sort()\n    return ' '.join(DIGIT_TO_WORD[d] for d in digits)",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.026087,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

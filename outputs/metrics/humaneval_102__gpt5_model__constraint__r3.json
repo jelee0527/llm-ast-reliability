@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_102__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If\n    there's no such number, then the function should return -1.\n    \"\"\"\n    try:\n        # Ensure inputs are numbers\n        x_val = float(x)\n        y_val = float(y)\n    except Exception:\n        return -1\n\n    # If x > y, empty interval\n    if x_val > y_val:\n        return -1\n\n    # Find largest integer <= y\n    y_floor = math.floor(y_val)\n\n    # If that integer is even, candidate is y_floor, else y_floor - 1\n    if y_floor % 2 == 0:\n        candidate = y_floor\n    else:\n        candidate = y_floor - 1\n\n    # Check candidate is within [x, y]\n    if candidate < math.ceil(x_val) and candidate < x_val:\n        # candidate less than x (covers fractional x)\n        return -1\n\n    if candidate < x_val:\n        return -1\n\n    if candidate < x_val - 1e-12:  # numerical safety\n        return -1\n\n    # Also ensure candidate <= y (should hold by construction)\n    if candidate > y_val:\n        return -1\n\n    return int(candidate)",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.098592,
+    "function_names": [
+      "choose_num"
+    ]
+  }
+}

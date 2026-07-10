@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__basic__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For each cell, store (value, row, col)\n    # We'll use a priority queue to expand paths lexicographically\n    # Each entry: (tuple_of_values, row, col, length)\n    # But to avoid storing full tuples repeatedly, we use BFS-like expansion\n    # with heap prioritizing the path sequence\n    \n    # Initialize heap with all cells as starting points\n    heap = []\n    for r in range(n):\n        for c in range(n):\n            heapq.heappush(heap, (grid[r][c], r, c, 1, [grid[r][c]]))\n    \n    while heap:\n        val, r, c, length, path = heapq.heappop(heap)\n        if length == k:\n            return path\n        for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < n and 0 <= nc < n:\n                new_path = path + [grid[nr][nc]]\n                heapq.heappush(heap, (tuple(new_path), nr, nc, length+1, new_path))\n    return []",
+  "metrics": {
+    "total_nodes": 251,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.039841,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

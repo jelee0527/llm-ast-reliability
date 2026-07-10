@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__claude_model__readable__r4.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def solve(N):\n    binary_representation = bin(N)[2:]\n    digit_sum = sum(int(digit) for digit in binary_representation)\n    binary_of_sum = bin(digit_sum)[2:]\n    return binary_of_sum",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020833,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

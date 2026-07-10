@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_092__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \"\"\"\n    # First check that all are of integer type (not float even if value like 3.0)\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n\n    # Now check any of the three equals the sum of the other two\n    if x == y + z:\n        return True\n    if y == x + z:\n        return True\n    if z == x + y:\n        return True\n\n    return False\n\n\n# Simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (5, 2, 7, True),\n        (3, 2, 2, False),\n        (3, -2, 1, True),\n        (3.6, -2.2, 2, False),\n        (0, 0, 0, True),\n        (1, 1, 2, True),\n        (1, 2, 3, False),\n    ]\n    for a, b, c, expected in tests:\n        result = any_int(a, b, c)\n        print((a, b, c), result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 197,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.060914,
+    "function_names": [
+      "any_int"
+    ]
+  }
+}

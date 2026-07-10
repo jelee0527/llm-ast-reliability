@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef valid_date(date):\n    \"\"\"Validate date string in mm-dd-yyyy format with given rules.\"\"\"\n    if not isinstance(date, str) or not date:\n        return False\n    # Must match mm-dd-yyyy with numeric parts (no leading/trailing spaces)\n    m = re.fullmatch(r'(\\d+)-(\\d+)-(\\d+)', date)\n    if not m:\n        return False\n    mm, dd, yyyy = m.groups()\n    try:\n        month = int(mm)\n        day = int(dd)\n        year = int(yyyy)\n    except ValueError:\n        return False\n    if month < 1 or month > 12:\n        return False\n    if day < 1:\n        return False\n    # Days per month according to problem (Feb up to 29)\n    if month in (1,3,5,7,8,10,12):\n        return day <= 31\n    if month in (4,6,9,11):\n        return day <= 30\n    # month == 2\n    return day <= 29",
+  "metrics": {
+    "total_nodes": 154,
+    "ast_depth": 8,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.097403,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_097__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_097",
+  "task_id": "HumanEval/97",
+  "problem_name": "Multiply",
+  "entry_point": "multiply",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def multiply(a, b):\n    \"\"\"Complete the function that takes two integers and returns \n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n    \"\"\"\n    unit_a = abs(a) % 10\n    unit_b = abs(b) % 10\n    return unit_a * unit_b",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='multiply',\n      args=arguments(\n        args=[\n          arg(arg='a'),\n          arg(arg='b')]),\n      body=[\n        Expr(\n          value=Constant(value='Complete the function that takes two integers and returns \\n    the product of their unit digits.\\n    Assume the input is always valid.\\n    Examples:\\n    multiply(148, 412) should return 16.\\n    multiply(19, 28) should return 72.\\n    multiply(2020, 1851) should return 0.\\n    multiply(14,-15) should return 20.\\n    ')),\n        Assign(\n          targets=[\n            Name(id='unit_a', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='abs', ctx=Load()),\n              args=[\n                Name(id='a', ctx=Load())]),\n            op=Mod(),\n            right=Constant(value=10))),\n        Assign(\n          targets=[\n            Name(id='unit_b', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='abs', ctx=Load()),\n              args=[\n                Name(id='b', ctx=Load())]),\n            op=Mod(),\n            right=Constant(value=10))),\n        Return(\n          value=BinOp(\n            left=Name(id='unit_a', ctx=Load()),\n            op=Mult(),\n            right=Name(id='unit_b', ctx=Load())))])])"
+}

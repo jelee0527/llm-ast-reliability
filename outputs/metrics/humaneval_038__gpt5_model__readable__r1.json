@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_038__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_cyclic(s: str) -> str:\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    Example: \"abcdefg\" -> groups [\"abc\",\"def\",\"g\"] -> [\"bca\",\"efd\",\"g\"] -> \"bcaefdg\"\n    \"\"\"\n    if not s:\n        return \"\"\n    group_size = 3\n    groups: List[str] = [s[i:i+group_size] for i in range(0, len(s), group_size)]\n    encoded_groups: List[str] = []\n    for group in groups:\n        if len(group) == group_size:\n            # cycle left by one: abc -> bca\n            encoded_groups.append(group[1:] + group[0])\n        else:\n            # leave shorter final group unchanged\n            encoded_groups.append(group)\n    return \"\".join(encoded_groups)\n\n\ndef decode_cyclic(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    Reverse operation of encode_cyclic: for each full group of 3 characters,\n    rotate right by one (bca -> abc). Partial final group is left unchanged.\n    \"\"\"\n    if not s:\n        return \"\"\n    group_size = 3\n    groups: List[str] = [s[i:i+group_size] for i in range(0, len(s), group_size)]\n    decoded_groups: List[str] = []\n    for group in groups:\n        if len(group) == group_size:\n            # encoded was left-rotated by one; decode by right-rotating by one\n            # bca -> abc  (group[-1] + group[:-1])\n            decoded_groups.append(group[-1] + group[:-1])\n        else:\n            decoded_groups.append(group)\n    return \"\".join(decoded_groups)",
+  "metrics": {
+    "total_nodes": 241,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.041494,
+    "function_names": [
+      "encode_cyclic",
+      "decode_cyclic"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_066__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def digitSum(s):\n    return sum(ord(ch) for ch in s if ch.isupper())",
+  "metrics": {
+    "total_nodes": 24,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "digitSum"
+    ]
+  }
+}

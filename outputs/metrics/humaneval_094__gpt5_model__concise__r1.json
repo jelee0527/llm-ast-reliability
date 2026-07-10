@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef skjkasdkd(lst: List[int]) -> int:\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        r = int(math.isqrt(n))\n        f = 5\n        while f <= r:\n            if n % f == 0 or n % (f + 2) == 0:\n                return False\n            f += 6\n        return True\n\n    max_p = None\n    for x in lst:\n        if x is None:\n            continue\n        try:\n            n = int(x)\n        except:\n            continue\n        if n >= 2 and is_prime(n):\n            if max_p is None or n > max_p:\n                max_p = n\n    if max_p is None:\n        return 0\n    return sum(int(d) for d in str(abs(max_p)))",
+  "metrics": {
+    "total_nodes": 205,
+    "ast_depth": 11,
+    "branch_count": 9,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.097561,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

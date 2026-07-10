@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from string import ascii_lowercase, ascii_uppercase\n\ndef encrypt(s: str) -> str:\n    \"\"\"Rotate letters by 4 positions (two multiplied by two).\n    Non-letter characters are left unchanged. Case is preserved.\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n\n    shift = 2 * 2  # \"letters shift down by two multiplied to two places\" -> 4\n    lower = ascii_lowercase\n    upper = ascii_uppercase\n    result_chars = []\n\n    for ch in s:\n        if ch in lower:\n            idx = (lower.index(ch) + shift) % 26\n            result_chars.append(lower[idx])\n        elif ch in upper:\n            idx = (upper.index(ch) + shift) % 26\n            result_chars.append(upper[idx])\n        else:\n            result_chars.append(ch)\n\n    return ''.join(result_chars)\n\n\n# Quick self-test (will run only when file executed directly)\nif __name__ == \"__main__\":\n    test_cases = {\n        \"hi\": \"lm\",\n        \"asdfghjkl\": \"ewhjklnop\",\n        \"gf\": \"kj\",\n        \"et\": \"ix\",\n        \"Hello, World!\": \"Lipps, Asvph!\"\n    }\n    for inp, expected in test_cases.items():\n        out = encrypt(inp)\n        print(f\"{inp!r} -> {out!r}  {'OK' if out==expected else 'FAIL (expected '+expected+')'}\")",
+  "metrics": {
+    "total_nodes": 212,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.042453,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

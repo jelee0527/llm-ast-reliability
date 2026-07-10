@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__claude_model__readable__r1.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def will_it_fly(q, w):\n    is_balanced = q == q[::-1]\n    total_weight = sum(q)\n    return is_balanced and total_weight <= w",
+  "metrics": {
+    "total_nodes": 39,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.025641,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

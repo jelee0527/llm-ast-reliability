@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return the number of vowels in string s.\n    Vowels: a, e, i, o, u (case-insensitive). 'y' counts only if it is the last character.\n    \"\"\"\n    if not s:\n        return 0\n    s_str = str(s)\n    lower = s_str.lower()\n    count = 0\n    # Count standard vowels\n    for ch in lower:\n        if ch in ('a', 'e', 'i', 'o', 'u'):\n            count += 1\n    # Count 'y' only if it's the last character\n    if lower.endswith('y'):\n        count += 1\n    return count\n\n# Basic tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcde\", 2),\n        (\"ACEDY\", 3),\n        (\"\", 0),\n        (\"y\", 1),\n        (\"Y\", 1),\n        (\"rhythm\", 0),      # 'y' not at end counts 0\n        (\"play\", 1),        # a + y at end => 2? actually 'a' is vowel and y at end; expect 2\n        (\"play\", 2),\n        (\"sky\", 1),         # only y at end\n        (\"AEIOU\", 5),\n        (\"bcd\", 0),\n        (\"crypt\", 0),\n        (\"encyclopy\", 3),   # e, o, y at end\n    ]\n    for inp, expected in tests:\n        out = vowels_count(inp)\n        print(repr(inp), out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.050847,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

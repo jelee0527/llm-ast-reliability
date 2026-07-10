@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_113__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef odd_count(lst: List[str]) -> List[str]:\n    \"\"\"Given a list of strings of digits, return transformed strings describing\n    the number of odd digits in each input string, where each occurrence of the\n    character 'i' in the template is replaced by the count digit(s).\n    Template: \"the number of odd elements in the string X of the input.\"\n    But according to examples, the letter 'i' is replaced by the count digit,\n    producing e.g. \"the number of odd elements 4n the str4ng 4 of the 4nput.\"\n    \"\"\"\n    out = []\n    for s in lst:\n        # Count odd digits in the string\n        count = 0\n        for ch in s:\n            if ch in '13579':\n                count += 1\n        count_str = str(count)\n        # Start from the template with lowercase i characters where replacements occur.\n        template = \"the number of odd elements in the string i of the input.\"\n        # Replace each 'i' with the count string\n        # We must replace every 'i' character, including within words.\n        res_chars = []\n        for ch in template:\n            if ch == 'i':\n                res_chars.append(count_str)\n            else:\n                res_chars.append(ch)\n        # Join; since count_str may be multi-character, join yields a string\n        res = ''.join(res_chars)\n        out.append(res)\n    return out\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    print(odd_count(['1234567']))\n    print(odd_count(['3',\"11111111\"]))",
+  "metrics": {
+    "total_nodes": 141,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.049645,
+    "function_names": [
+      "odd_count"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Given string s like \"5 apples and 6 oranges\" and integer n total fruits,\n    return number of mangoes: n - apples - oranges.\n    \"\"\"\n    # Find all integers in the string (handles negative if ever present)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # fallback: try splitting by non-digit and parse first two numbers if possible\n        nums = [m for m in re.findall(r'\\d+', s)]\n    if not nums:\n        return n\n    # Take first two numbers as apples and oranges (in order)\n    apples = int(nums[0]) if len(nums) >= 1 else 0\n    oranges = int(nums[1]) if len(nums) >= 2 else 0\n    return n - apples - oranges\n\n\n# Example quick tests (will run if file executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"5 apples and 6 oranges\", 19, 8),\n        (\"0 apples and 1 oranges\", 3, 2),\n        (\"2 apples and 3 oranges\", 100, 95),\n        (\"100 apples and 1 oranges\", 120, 19),\n    ]\n    for s, n, expected in tests:\n        res = fruit_distribution(s, n)\n        print(s, n, \"->\", res, \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 173,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.046243,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

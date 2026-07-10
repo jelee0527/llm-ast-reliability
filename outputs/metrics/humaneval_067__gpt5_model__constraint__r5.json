@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parse counts of apples and oranges from string s and return mango count = n - apples - oranges.\n    \"\"\"\n    # Find all integers in the string (including negative, though negatives unlikely)\n    nums = re.findall(r'-?\\d+', s)\n    if len(nums) < 2:\n        # Try a more robust parse splitting by words if regex failed\n        parts = s.replace('and', ' ').split()\n        nums = [tok for tok in parts if tok.lstrip('-').isdigit()]\n    if len(nums) < 2:\n        raise ValueError(\"Could not parse two integer counts from input string\")\n    apples = int(nums[0])\n    oranges = int(nums[1])\n    mangoes = n - apples - oranges\n    return mangoes\n\n# Example usage (can be removed if only function is needed)\nif __name__ == \"__main__\":\n    tests = [\n        (\"5 apples and 6 oranges\", 19),\n        (\"0 apples and 1 oranges\", 3),\n        (\"2 apples and 3 oranges\", 100),\n        (\"100 apples and 1 oranges\", 120),\n    ]\n    for s, n in tests:\n        print(s, n, \"->\", fruit_distribution(s, n))",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.036145,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

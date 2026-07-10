@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_013__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b \"\"\"\n    # Handle zero and negative values; gcd(0,0) defined as 0\n    a0 = abs(a)\n    b0 = abs(b)\n    if a0 == 0:\n        return b0\n    if b0 == 0:\n        return a0\n    # Euclidean algorithm\n    while b0:\n        a0, b0 = b0, a0 % b0\n    return a0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.081395,
+    "function_names": [
+      "greatest_common_divisor"
+    ]
+  }
+}

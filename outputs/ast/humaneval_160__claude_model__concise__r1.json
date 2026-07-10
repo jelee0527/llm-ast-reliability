@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_160__claude_model__concise__r1.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def do_algebra(operator, operand):\n    expression = str(operand[0])\n    for op, num in zip(operator, operand[1:]):\n        expression += op + str(num)\n    return eval(expression)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='do_algebra',\n      args=arguments(\n        args=[\n          arg(arg='operator'),\n          arg(arg='operand')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='expression', ctx=Store())],\n          value=Call(\n            func=Name(id='str', ctx=Load()),\n            args=[\n              Subscript(\n                value=Name(id='operand', ctx=Load()),\n                slice=Constant(value=0),\n                ctx=Load())])),\n        For(\n          target=Tuple(\n            elts=[\n              Name(id='op', ctx=Store()),\n              Name(id='num', ctx=Store())],\n            ctx=Store()),\n          iter=Call(\n            func=Name(id='zip', ctx=Load()),\n            args=[\n              Name(id='operator', ctx=Load()),\n              Subscript(\n                value=Name(id='operand', ctx=Load()),\n                slice=Slice(\n                  lower=Constant(value=1)),\n                ctx=Load())]),\n          body=[\n            AugAssign(\n              target=Name(id='expression', ctx=Store()),\n              op=Add(),\n              value=BinOp(\n                left=Name(id='op', ctx=Load()),\n                op=Add(),\n                right=Call(\n                  func=Name(id='str', ctx=Load()),\n                  args=[\n                    Name(id='num', ctx=Load())])))]),\n        Return(\n          value=Call(\n            func=Name(id='eval', ctx=Load()),\n            args=[\n              Name(id='expression', ctx=Load())]))])])"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_146__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef specialFilter(nums: List[int]) -> int:\n    \"\"\"Return count of numbers > 10 whose first and last digits are odd.\"\"\"\n    count = 0\n    for n in nums:\n        if n <= 10:\n            continue\n        # Work with absolute value for digit extraction\n        a = abs(n)\n        last = a % 10\n        if last % 2 == 0:\n            continue\n        # find first digit\n        # use while loop to avoid conversion to string for speed/space\n        while a >= 10:\n            a //= 10\n        first = a\n        if first % 2 == 1:\n            count += 1\n    return count\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))  # expected 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))  # expected 2",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.066667,
+    "function_names": [
+      "specialFilter"
+    ]
+  }
+}

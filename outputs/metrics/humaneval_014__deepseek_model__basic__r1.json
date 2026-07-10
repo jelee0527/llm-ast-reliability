@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_014__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_014",
+  "task_id": "HumanEval/14",
+  "problem_name": "All Prefixes",
+  "entry_point": "all_prefixes",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    return [string[:i] for i in range(1, len(string) + 1)]",
+  "metrics": {
+    "total_nodes": 40,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.025,
+    "function_names": [
+      "all_prefixes"
+    ]
+  }
+}

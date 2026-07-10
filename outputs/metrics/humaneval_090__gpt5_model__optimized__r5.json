@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_090__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Optional, List\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list, or None if it doesn't exist.\n    \"\"\"\n    if not lst:\n        return None\n    # Track smallest and second smallest distinct values\n    min1 = None\n    min2 = None\n    for x in lst:\n        if min1 is None or x < min1:\n            # x becomes new smallest; shift previous smallest to second if distinct\n            if min1 is None or x != min1:\n                min2 = min1\n            min1 = x\n        elif x != min1:\n            if min2 is None or x < min2:\n                min2 = x\n    return min2\n\n# Quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    assert next_smallest([1,2,3,4,5]) == 2\n    assert next_smallest([5,1,4,3,2]) == 2\n    assert next_smallest([]) is None\n    assert next_smallest([1,1]) is None\n    assert next_smallest([1,2,1,2]) == 2\n    assert next_smallest([2,1]) == 2\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.04712,
+    "function_names": [
+      "next_smallest"
+    ]
+  }
+}

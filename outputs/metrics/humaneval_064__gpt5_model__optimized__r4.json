@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef vowels_count(s):\n    \"\"\"Return number of vowels in string s.\n    Vowels: a,e,i,o,u (case-insensitive). 'y' counts only if it's the last character of the word.\n    \"\"\"\n    if not s:\n        return 0\n    s = str(s)\n    count = 0\n    # Count a,e,i,o,u (case-insensitive)\n    for ch in s:\n        if ch.lower() in ('a', 'e', 'i', 'o', 'u'):\n            count += 1\n    # Check for trailing 'y' or 'Y'\n    if s and s[-1].lower() == 'y':\n        count += 1\n    return count\n\n# Basic tests\nif __name__ == \"__main__\":\n    tests = {\n        \"abcde\": 2,\n        \"ACEDY\": 3,     # A, E, trailing Y\n        \"rhythm\": 0,    # no vowels, trailing 'm' so y not counted\n        \"y\": 1,         # single letter y counts\n        \"Y\": 1,\n        \"sky\": 1,       # trailing y counts\n        \"SYZYGY\": 1,    # trailing Y only\n        \"aeiou\": 5,\n        \"AEIOUY\": 6,    # all vowels plus trailing Y\n        \"\": 0,\n        \"bcd\": 0,\n        \"why?\": 1,      # last char is '?', so y not counted (function treats raw string)\n        \"happy\": 2,     # a and trailing y\n    }\n    for inp, expected in tests.items():\n        result = vowels_count(inp)\n        print(f\"{inp!r}: {result} (expected {expected})\", \"OK\" if result == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 160,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.05625,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

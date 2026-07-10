@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef get_row(lst: List[List[int]], x: int) -> List[Tuple[int,int]]:\n    res: List[Tuple[int,int]] = []\n    for i, row in enumerate(lst):\n        # collect column indices where value equals x\n        cols = [j for j, val in enumerate(row) if val == x]\n        if cols:\n            # sort columns in descending order\n            cols.sort(reverse=True)\n            for j in cols:\n                res.append((i, j))\n    return res",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.033333,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_137__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_137",
+  "task_id": "HumanEval/137",
+  "problem_name": "Compare One",
+  "entry_point": "compare_one",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef _to_number(x):\n    if isinstance(x, (int, float)):\n        return float(x)\n    if isinstance(x, str):\n        s = x.replace(',', '.')\n        try:\n            return float(s)\n        except ValueError:\n            raise ValueError(f\"Cannot convert {x!r} to float\")\n    raise TypeError(f\"Unsupported type: {type(x)}\")\n\ndef compare_one(a, b):\n    \"\"\"\n    Takes integers, floats, or strings representing real numbers (decimal point may be '.' or ',').\n    Returns the larger variable in its original type. Returns None if equal numerically.\n    \"\"\"\n    na = _to_number(a)\n    nb = _to_number(b)\n    if na == nb:\n        return None\n    return a if na > nb else b",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.094017,
+    "function_names": [
+      "_to_number",
+      "compare_one"
+    ]
+  }
+}

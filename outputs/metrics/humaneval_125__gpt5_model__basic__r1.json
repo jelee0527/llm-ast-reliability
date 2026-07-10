@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Union\n\ndef split_words(txt: str) -> Union[List[str], int]:\n    \"\"\"\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    \"\"\"\n    if any(ch.isspace() for ch in txt):\n        # split on any whitespace\n        # mimic behavior of str.split() which splits on runs of whitespace\n        return txt.split()\n    elif ',' in txt:\n        # split on commas, remove empty pieces? The example implies straightforward split keeping pieces.\n        return txt.split(',')\n    else:\n        # count lower-case letters with odd order: ord('a')=0 -> odd order means ord(letter)-ord('a') is odd\n        count = 0\n        base = ord('a')\n        for ch in txt:\n            if 'a' <= ch <= 'z':\n                if (ord(ch) - base) % 2 == 1:\n                    count += 1\n        return count",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.074766,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

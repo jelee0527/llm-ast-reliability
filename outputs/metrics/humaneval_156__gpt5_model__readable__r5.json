@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Dict, List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= number <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n\n    # Ordered mapping of integer values to Roman numeral symbols (standard subtractive notation)\n    value_symbols: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n\n    result_parts: List[str] = []\n    remaining = number\n\n    for value, symbol in value_symbols:\n        if remaining == 0:\n            break\n        count = remaining // value\n        if count:\n            result_parts.append(symbol * count)\n            remaining -= value * count\n\n    roman = \"\".join(result_parts).lower()\n    return roman\n\n\n# Quick self-tests when module is run directly\nif __name__ == \"__main__\":\n    tests = {\n        19: \"xix\",\n        152: \"clii\",\n        426: \"cdxxvi\",\n        1: \"i\",\n        4: \"iv\",\n        9: \"ix\",\n        40: \"xl\",\n        944: \"cmxliv\",\n        1000: \"m\",\n    }\n    for n, expected in tests.items():\n        got = int_to_mini_roman(n)\n        assert got == expected, f\"{n}: expected {expected}, got {got}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 271,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.04059,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

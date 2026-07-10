@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef will_it_fly(q, w):\n    \"\"\"\n    Return True if list q is palindromic (balanced) and sum(q) <= w, else False.\n    \"\"\"\n    # Ensure q is an iterable that supports reversed; convert to list for safe operations and single traversal\n    try:\n        seq = list(q)\n    except TypeError:\n        # not iterable\n        return False\n    # Check palindrome by comparing elements from ends without creating reversed copy beyond list\n    i, j = 0, len(seq) - 1\n    total = 0\n    while i <= j:\n        if i == j:\n            total += seq[i]\n        else:\n            if seq[i] != seq[j]:\n                return False\n            total += seq[i] + seq[j]\n        # Early exit if total already exceeds w\n        if total > w:\n            return False\n        i += 1\n        j -= 1\n    return total <= w",
+  "metrics": {
+    "total_nodes": 130,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.069231,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef decimal_to_binary(decimal):\n    \"\"\"Convert a non-negative integer to binary string wrapped with 'db' prefixes/suffixes.\"\"\"\n    # Handle zero explicitly\n    if not isinstance(decimal, int):\n        # If float but integer-valued, accept; otherwise raise\n        if isinstance(decimal, float) and decimal.is_integer():\n            decimal = int(decimal)\n        else:\n            raise TypeError(\"Input must be an integer.\")\n    if decimal < 0:\n        raise ValueError(\"Input must be non-negative.\")\n    if decimal == 0:\n        return \"db0db\"\n    bits = []\n    n = decimal\n    while n > 0:\n        bits.append('1' if (n & 1) else '0')\n        n >>= 1\n    bits.reverse()\n    return \"db\" + ''.join(bits) + \"db\"",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.084034,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

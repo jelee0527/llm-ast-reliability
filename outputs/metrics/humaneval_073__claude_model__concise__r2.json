@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__claude_model__concise__r2.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def smallest_change(arr):\n    n = len(arr)\n    return sum(arr[i] != arr[n-1-i] for i in range(n//2))",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020408,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

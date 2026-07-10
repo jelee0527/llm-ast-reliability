@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__claude_model__concise__r3.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    return ''.join('0' if x == y else '1' for x, y in zip(a, b))",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.047619,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

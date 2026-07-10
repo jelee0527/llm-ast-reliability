@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import deque\nfrom typing import List, Tuple\n\ndef minPath(grid: List[List[int]], k: int) -> List[int]:\n    \"\"\"\n    Find the lexicographically smallest sequence of length k reachable by moving\n    stepwise between 4-directional neighbors on the grid, starting from any cell.\n    The sequence records the cell values visited (cells may repeat).\n    \"\"\"\n    n = len(grid)\n    if n == 0 or k <= 0:\n        return []\n\n    # Map value -> (r,c) for quick access (values are unique 1..n*n)\n    pos = {}\n    for r in range(n):\n        for c in range(n):\n            pos[grid[r][c]] = (r, c)\n\n    # Precompute neighbors for each cell (coordinates)\n    neighbors = {}\n    for r in range(n):\n        for c in range(n):\n            nbrs = []\n            if r > 0: nbrs.append((r - 1, c))\n            if r < n - 1: nbrs.append((r + 1, c))\n            if c > 0: nbrs.append((r, c - 1))\n            if c < n - 1: nbrs.append((r, c + 1))\n            neighbors[(r, c)] = nbrs\n\n    # For lexicographic minimal sequence, we can greedily choose at each step\n    # the smallest possible value that still allows completing a path of remaining length.\n    # That requires checking reachability: from a candidate cell, can we make (remaining-1) further moves?\n    # However moves can revisit cells; only grid bounds matter. A cell can always take steps within connected component.\n    # The grid is fully connected via adjacency, so any cell can reach any other in finite steps <= (n*n).\n    # But since revisiting is allowed, a necessary and sufficient condition to be able to make t moves from a cell\n    # is that there exists at least one neighbor if t >= 1, or t == 0 is always possible.\n    # More precisely, for making exactly t moves (visiting t+1 cells), we need that either t == 0, or the graph has at least 2 nodes\n    # or there exists a path of length t which is always true for grid with n>=2 unless stuck at isolated cell (never happens).\n    #\n    # Given that N >= 2 per problem, from any start you can always produce any length path by bouncing between neighbors.\n    # Therefore the global lexicographically minimal sequence is produced by:\n    # - Choose globally minimal possible first value (i.e., value 1).\n    # - For subsequent positions, from current cell choose the smallest-valued neighbor reachable at that step,\n    #   but you can also stay? Problem requires moving to neighbor each step (you visit exactly k cells; each step you move to neighbor).\n    # So at each step pick the smallest value among neighbors of current cell; repeat.\n    #\n    # However you are allowed to start from any cell; so first element should be minimal over all cell values (which is 1).\n    # Start at value 1's position and greedily pick the smallest neighbor value at each move.\n    #\n    # This greedy is correct because at each prefix we pick the minimal possible next value given current location;\n    # alternative starts with same prefix would require earlier element smaller, impossible.\n    #\n    # Implement greedy walk of length k starting from the cell containing minimum value (which is 1).\n    start_pos = pos[min(pos.keys())]\n    r, c = start_pos\n    result = [grid[r][c]]\n    for _ in range(1, k):\n        # choose neighbor with smallest cell value\n        best = None\n        best_val = None\n        for (nr, nc) in neighbors[(r, c)]:\n            val = grid[nr][nc]\n            if best is None or val < best_val:\n                best = (nr, nc)\n                best_val = val\n        # move to best neighbor\n        r, c = best\n        result.append(grid[r][c])\n\n    return result\n\n\n# Example quick tests (can be removed or commented out if not desired)\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expected [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expected [1]",
+  "metrics": {
+    "total_nodes": 423,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 6,
+    "function_count": 1,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.035461,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

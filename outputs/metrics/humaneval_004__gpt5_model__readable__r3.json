@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_004__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_004",
+  "task_id": "HumanEval/4",
+  "problem_name": "Mean Absolute Deviation",
+  "entry_point": "mean_absolute_deviation",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\nimport math\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not isinstance(numbers, list):\n        raise TypeError(\"Input must be a list of numbers.\")\n    if len(numbers) == 0:\n        raise ValueError(\"Input list must not be empty.\")\n\n    # Convert elements to floats and validate contents\n    processed: List[float] = []\n    for i, value in enumerate(numbers):\n        if isinstance(value, (int, float)):\n            processed.append(float(value))\n        else:\n            raise TypeError(f\"List element at index {i} is not a numeric type.\")\n\n    n = len(processed)\n    mean_value = sum(processed) / n\n\n    total_abs_diff = 0.0\n    for value in processed:\n        total_abs_diff += abs(value - mean_value)\n\n    mad = total_abs_diff / n\n    # Normalize - handle potential negative zero\n    if mad == 0.0:\n        return 0.0\n    # Return finite float\n    if not math.isfinite(mad):\n        raise ArithmeticError(\"Computed MAD is not a finite number.\")\n    return mad",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.072222,
+    "function_names": [
+      "mean_absolute_deviation"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from string import ascii_lowercase as lc\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase letters by 4 positions (two multiplied by two). Non-letters unchanged.\"\"\"\n    trans = {c: lc[(i + 4) % 26] for i, c in enumerate(lc)}\n    return ''.join(trans[ch] if ch in trans else ch for ch in s)",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.03125,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

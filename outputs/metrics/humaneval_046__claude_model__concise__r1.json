@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__claude_model__concise__r1.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def fib4(n: int):\n    if n == 0: return 0\n    if n == 1: return 0\n    if n == 2: return 2\n    if n == 3: return 0\n    a, b, c, d = 0, 0, 2, 0\n    for _ in range(n - 3):\n        a, b, c, d = b, c, d, a + b + c + d\n    return d",
+  "metrics": {
+    "total_nodes": 102,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.098039,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

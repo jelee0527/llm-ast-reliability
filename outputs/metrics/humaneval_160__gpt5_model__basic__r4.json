@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_160__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import operator as _op\nimport math\n\n_ops = {\n    '+': _op.add,\n    '-': _op.sub,\n    '*': _op.mul,\n    '//': lambda a, b: a // b,\n    '**': _op.pow\n}\n\n_precedence = {\n    '+': 1,\n    '-': 1,\n    '*': 2,\n    '//': 2,\n    '**': 3\n}\n\ndef do_algebra(operator, operand):\n    # Convert to lists to avoid mutating inputs\n    ops = list(operator)\n    vals = list(operand)\n    # Shunting-yard style evaluation using two stacks\n    op_stack = []\n    val_stack = []\n    # Helper to apply top operator\n    def apply_top():\n        if not op_stack:\n            return\n        op = op_stack.pop()\n        # binary operator: need two values\n        if len(val_stack) < 2:\n            raise ValueError(\"Insufficient operands\")\n        b = val_stack.pop()\n        a = val_stack.pop()\n        # For exponentiation, ensure integer power and handle large ints\n        func = _ops[op]\n        val_stack.append(func(a, b))\n    # Iterate through sequence: value then operator alternating\n    n_vals = len(vals)\n    n_ops = len(ops)\n    for i in range(n_vals):\n        val_stack.append(vals[i])\n        if i < n_ops:\n            cur_op = ops[i]\n            if cur_op not in _ops:\n                raise ValueError(f\"Unknown operator: {cur_op}\")\n            # Handle right-associative exponentiation: highest precedence but right-assoc\n            while op_stack:\n                top = op_stack[-1]\n                if top not in _precedence:\n                    break\n                if (_precedence[top] > _precedence[cur_op]) or (_precedence[top] == _precedence[cur_op] and cur_op != '**'):\n                    apply_top()\n                else:\n                    break\n            op_stack.append(cur_op)\n    # Apply remaining operators\n    while op_stack:\n        apply_top()\n    if len(val_stack) != 1:\n        raise ValueError(\"Invalid expression\")\n    return val_stack[0]",
+  "metrics": {
+    "total_nodes": 319,
+    "ast_depth": 12,
+    "branch_count": 7,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.053292,
+    "function_names": [
+      "do_algebra",
+      "apply_top"
+    ]
+  }
+}

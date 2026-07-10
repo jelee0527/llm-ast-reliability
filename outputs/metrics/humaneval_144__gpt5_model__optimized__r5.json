@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if product x * n is a whole number, False otherwise.\n    x and n are strings like \"a/b\" with positive integer numerator and denominator.\n    \"\"\"\n    fx = Fraction(x)\n    fn = Fraction(n)\n    prod = fx * fn\n    return prod.denominator == 1",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.02381,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

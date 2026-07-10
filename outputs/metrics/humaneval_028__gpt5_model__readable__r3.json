@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_028__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_028",
+  "task_id": "HumanEval/28",
+  "problem_name": "Concatenate",
+  "entry_point": "concatenate",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    \"\"\" Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n    \"\"\"\n    # Defensive: ensure all items are strings; if not, convert to string\n    if not strings:\n        return \"\"\n    # Use join for efficient concatenation\n    return \"\".join(str(s) for s in strings)",
+  "metrics": {
+    "total_nodes": 39,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "concatenate"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    if not words:\n        return \"\"\n    # For each word compute number of unique characters\n    best = None\n    best_count = -1\n    for w in words:\n        cnt = len(set(w))\n        if cnt > best_count:\n            best_count = cnt\n            best = w\n        elif cnt == best_count:\n            # choose lexicographically smaller\n            if w < best:\n                best = w\n    return best\n\n# Quick self-test\nif __name__ == \"__main__\":\n    assert find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    assert find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    assert find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"aaaaaaa\"\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.06015,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

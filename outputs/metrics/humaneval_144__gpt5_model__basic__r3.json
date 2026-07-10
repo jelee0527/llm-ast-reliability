@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_144__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if x * n is a whole number, False otherwise.\n    x and n are strings like \"a/b\" with positive integers.\n    \"\"\"\n    # Parse fractions\n    try:\n        fx = Fraction(x)\n        fn = Fraction(n)\n    except Exception:\n        # If parsing fails, raise ValueError to signal invalid input\n        raise\n    prod = fx * fn\n    return prod.denominator == 1",
+  "metrics": {
+    "total_nodes": 47,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06383,
+    "function_names": [
+      "simplify"
+    ]
+  }
+}

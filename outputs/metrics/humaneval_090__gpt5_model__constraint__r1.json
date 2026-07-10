@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_090__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list.\n    Return None if there is no such element.\n    \"\"\"\n    if not lst:\n        return None\n\n    # Track smallest and second smallest distinct values\n    smallest = None\n    second = None\n\n    for x in lst:\n        # skip non-integers? problem states integers, so accept all\n        if smallest is None:\n            smallest = x\n            continue\n\n        if x == smallest:\n            continue\n\n        if x < smallest:\n            # new smallest, previous smallest may become second\n            second = smallest\n            smallest = x\n        else:\n            # x > smallest\n            if second is None or x < second:\n                second = x\n\n    return second\n\n# Quick manual tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,4,5], 2),\n        ([5,1,4,3,2], 2),\n        ([], None),\n        ([1,1], None),\n        ([2,1], 2),\n        ([1,2,1,2], 2),\n        ([3,3,2,2,1,1], 2),\n        ([1], None),\n        ([1,1,2], 2),\n    ]\n    for inp, expected in tests:\n        out = next_smallest(inp)\n        print(inp, out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 223,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.058296,
+    "function_names": [
+      "next_smallest"
+    ]
+  }
+}

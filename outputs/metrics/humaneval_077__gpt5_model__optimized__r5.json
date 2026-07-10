@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    if a == 0:\n        return True\n    # handle negative numbers\n    sign = 1\n    if a < 0:\n        sign = -1\n        a = -a\n    # integer cube root via round of float then adjust\n    # use math.isclose for safety on large floats isn't necessary; instead compute integer root using integer binary search\n    lo, hi = 0, int(1 << ((a.bit_length() + 2) // 3 + 2))  # rough upper bound\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        cube = mid * mid * mid\n        if cube == a:\n            return True if sign == 1 else True  # sign handled by working with absolute value; cube sign would match original sign\n        if cube < a:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return False",
+  "metrics": {
+    "total_nodes": 140,
+    "ast_depth": 13,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.064286,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

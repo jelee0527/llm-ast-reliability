@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message (only letters and spaces assumed) and:\n    - swaps case of all letters\n    - replaces all vowels in the message (after case swap) with the letter that appears\n      2 places ahead of that vowel in the English alphabet, preserving case.\n    \"\"\"\n    # Vowels set for lowercase and uppercase\n    vowels_lower = {'a','e','i','o','u'}\n    vowels_upper = {'A','E','I','O','U'}\n    # Helper to shift a vowel 2 places ahead, wrapping around, preserving case\n    def shift_vowel(ch):\n        if ch.islower():\n            alpha = string.ascii_lowercase\n        else:\n            alpha = string.ascii_uppercase\n        idx = alpha.index(ch)\n        return alpha[(idx + 2) % 26]\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # swap case\n            ch_swapped = ch.lower() if ch.isupper() else ch.upper()\n            # if swapped char is vowel, shift it\n            if ch_swapped in vowels_lower or ch_swapped in vowels_upper:\n                ch_final = shift_vowel(ch_swapped)\n            else:\n                ch_final = ch_swapped\n            result_chars.append(ch_final)\n        else:\n            # keep non-letter characters as is (e.g., spaces)\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n# Quick tests from prompt\nif __name__ == \"__main__\":\n    print(encode('test'))             # expected 'TGST'\n    print(encode('This is a message'))# expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.044444,
+    "function_names": [
+      "encode",
+      "shift_vowel"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_114__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef minSubArraySum(nums: List[int]) -> int:\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    \"\"\"\n    if not nums:\n        raise ValueError(\"Input list must be non-empty\")\n    # Kadane's algorithm variant for minimum subarray sum\n    current_min = nums[0]\n    global_min = nums[0]\n    for x in nums[1:]:\n        # either extend previous minimum subarray or start fresh at x\n        if current_min + x < x:\n            current_min = current_min + x\n        else:\n            current_min = x\n        if current_min < global_min:\n            global_min = current_min\n    return global_min\n\n# Simple tests when run as a script\nif __name__ == \"__main__\":\n    assert minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    assert minSubArraySum([-1, -2, -3]) == -6\n    assert minSubArraySum([5]) == 5\n    assert minSubArraySum([-5]) == -5\n    assert minSubArraySum([3, -4, 2, -3, 1]) == -5\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 181,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.038674,
+    "function_names": [
+      "minSubArraySum"
+    ]
+  }
+}

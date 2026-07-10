@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_032__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_032",
+  "task_id": "HumanEval/32",
+  "problem_name": "Find Zero",
+  "entry_point": "find_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])\n\ndef find_zero(xs: List[float]) -> float:\n    n = len(xs) - 1\n    # Use Newton's method starting from 0\n    x = 0.0\n    for _ in range(100):\n        f = poly(xs, x)\n        if abs(f) < 1e-12:\n            return x\n        # Compute derivative\n        deriv = sum([coeff * i * math.pow(x, i-1) for i, coeff in enumerate(xs) if i > 0])\n        if deriv == 0:\n            break\n        x = x - f / deriv\n    # Fallback: binary search on a reasonable range\n    # Find bounds where polynomial changes sign\n    step = 1.0\n    left = -10.0\n    right = 10.0\n    f_left = poly(xs, left)\n    f_right = poly(xs, right)\n    # Expand search range if needed\n    while f_left * f_right > 0:\n        left -= step\n        right += step\n        step *= 2\n        f_left = poly(xs, left)\n        f_right = poly(xs, right)\n    # Binary search\n    for _ in range(100):\n        mid = (left + right) / 2\n        f_mid = poly(xs, mid)\n        if abs(f_mid) < 1e-12:\n            return mid\n        if f_left * f_mid < 0:\n            right = mid\n            f_right = f_mid\n        else:\n            left = mid\n            f_left = f_mid\n    return (left + right) / 2",
+  "metrics": {
+    "total_nodes": 330,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.036364,
+    "function_names": [
+      "poly",
+      "find_zero"
+    ]
+  }
+}

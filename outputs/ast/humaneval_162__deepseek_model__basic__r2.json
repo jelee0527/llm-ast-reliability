@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_162__deepseek_model__basic__r2.json",
+  "problem_id": "humaneval_162",
+  "task_id": "HumanEval/162",
+  "problem_name": "String To Md5",
+  "entry_point": "string_to_md5",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import hashlib\n\ndef string_to_md5(text):\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='hashlib')]),\n    FunctionDef(\n      name='string_to_md5',\n      args=arguments(\n        args=[\n          arg(arg='text')]),\n      body=[\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='text', ctx=Load())),\n          body=[\n            Return(\n              value=Constant(value=None))]),\n        Return(\n          value=Call(\n            func=Attribute(\n              value=Call(\n                func=Attribute(\n                  value=Name(id='hashlib', ctx=Load()),\n                  attr='md5',\n                  ctx=Load()),\n                args=[\n                  Call(\n                    func=Attribute(\n                      value=Name(id='text', ctx=Load()),\n                      attr='encode',\n                      ctx=Load()))]),\n              attr='hexdigest',\n              ctx=Load())))])])"
+}

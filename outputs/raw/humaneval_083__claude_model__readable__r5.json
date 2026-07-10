@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:19:17.086355+00:00",
+  "elapsed_seconds": 4.65,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "def starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n == 1:\n        return 1\n    \n    # Count numbers that start with 1: 1 * 10^(n-1)\n    starts_with_one = 10 ** (n - 1)\n    \n    # Count numbers that end with 1: 9 * 10^(n-2)\n    # (first digit can be 2-9, remaining n-2 digits can be anything, last digit is 1)\n    ends_with_one = 9 * (10 ** (n - 2))\n    \n    # By inclusion-exclusion principle, subtract numbers counted twice\n    # (those that both start and end with 1): 1 * 10^(n-2)\n    starts_and_ends_with_one = 10 ** (n - 2)\n    \n    total_count = starts_with_one + ends_with_one - starts_and_ends_with_one\n    \n    return total_count",
+  "generated_code": "def starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n == 1:\n        return 1\n    \n    # Count numbers that start with 1: 1 * 10^(n-1)\n    starts_with_one = 10 ** (n - 1)\n    \n    # Count numbers that end with 1: 9 * 10^(n-2)\n    # (first digit can be 2-9, remaining n-2 digits can be anything, last digit is 1)\n    ends_with_one = 9 * (10 ** (n - 2))\n    \n    # By inclusion-exclusion principle, subtract numbers counted twice\n    # (those that both start and end with 1): 1 * 10^(n-2)\n    starts_and_ends_with_one = 10 ** (n - 2)\n    \n    total_count = starts_with_one + ends_with_one - starts_and_ends_with_one\n    \n    return total_count"
+}

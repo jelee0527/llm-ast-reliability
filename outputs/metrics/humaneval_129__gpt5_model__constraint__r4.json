@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import deque\nfrom typing import List, Tuple\n\ndef minPath(grid: List[List[int]], k: int) -> List[int]:\n    n = len(grid)\n    # map value -> (r,c)\n    pos = {}\n    for r in range(n):\n        for c in range(n):\n            pos[grid[r][c]] = (r, c)\n    # neighbors function\n    def neighbors(rc):\n        r, c = rc\n        for dr, dc in ((-1,0),(1,0),(0,-1),(0,1)):\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < n and 0 <= nc < n:\n                yield (nr, nc)\n    # Precompute adjacency mapping by value for quicker comparisons\n    # We'll perform multi-source BFS layers: maintain set of reachable positions at step t\n    # Starting positions are all cells; first value chosen is minimal possible among all cells.\n    # We'll greedily pick each next value by checking if there exists a path of remaining length\n    # starting from some neighbor with that value given that previous prefix fixed.\n    # To make deterministic and efficient, maintain current set of possible positions that match prefix.\n    # Initially, possible positions = all cells\n    all_positions = [(r,c) for r in range(n) for c in range(n)]\n    # Build value at position lookup\n    value_at = lambda rc: grid[rc[0]][rc[1]]\n    # Step 1: choose minimal value among all cells\n    # But must ensure a full path length k exists from that start (it always does because you can revisit)\n    # So pick minimal value cell(s)\n    min_val = min(value_at(rc) for rc in all_positions)\n    # Initialize result and current set\n    res = [min_val]\n    current = set([pos[min_val]])  # positions that match prefix\n    # For steps 2..k\n    for step in range(1, k):\n        # Collect candidate neighbor positions of current set\n        cand_positions = set()\n        for rc in current:\n            for nbr in neighbors(rc):\n                cand_positions.add(nbr)\n        if not cand_positions:\n            # shouldn't happen on grid with n>=1\n            break\n        # We need to pick minimal value v such that there exists at least one path of remaining length\n        # starting from some position with that value. Because revisits allowed and grid connected locally,\n        # reachability for remaining steps is always true. So we can just pick minimal value among candidates.\n        # However must consider that path can stay in place? Problem says move to neighbor each step, so must move.\n        # So choose minimal value among cand_positions.\n        best_val = min(value_at(rc) for rc in cand_positions)\n        # Update result\n        res.append(best_val)\n        # Update current set to those candidate positions with that value\n        current = set(rc for rc in cand_positions if value_at(rc) == best_val)\n    return res\n\n# Example quick tests\nif __name__ == \"__main__\":\n    print(minPath([[1,2,3],[4,5,6],[7,8,9]], 3))  # expect [1,2,1]\n    print(minPath([[5,9,3],[4,1,6],[7,8,2]], 1))  # expect [1]",
+  "metrics": {
+    "total_nodes": 401,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 6,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.027431,
+    "function_names": [
+      "minPath",
+      "neighbors"
+    ]
+  }
+}

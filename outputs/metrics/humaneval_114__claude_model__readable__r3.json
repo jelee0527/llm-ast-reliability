@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_114__claude_model__readable__r3.json",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n    min_sum = float('inf')\n    current_sum = 0\n\n    for num in nums:\n        current_sum += num\n        if current_sum < min_sum:\n            min_sum = current_sum\n        if current_sum > 0:\n            current_sum = 0\n\n    return min_sum",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.075472,
+    "function_names": [
+      "minSubArraySum"
+    ]
+  }
+}

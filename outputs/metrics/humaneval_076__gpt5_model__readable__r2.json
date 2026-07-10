@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if x is an exact integer power of n (n**k == x for some integer k >= 0).\n    Handles positive integers x and integer n. For x <= 0 or n == 0 or n == 1,\n    follows conventional definitions:\n      - x == 1 is always n**0 for any n != 0, so returns True when x == 1 and n != 0.\n      - n == 1: only 1 is a power of 1 (1**k == 1), so return True iff x == 1.\n      - n == 0: only 0**k == 0 for k>0 and 0**0 is undefined; treat x==0 as True (exists k>=1),\n        and x==1 as False.\n    Negative n: integer powers alternate sign; only integer k produce exact equality.\n    \"\"\"\n    # Validate types: require integers\n    if not isinstance(x, int) or not isinstance(n, int):\n        raise TypeError(\"Both x and n must be integers\")\n\n    # Special cases\n    if x == 1:\n        # 1 == n**0 for any n != 0\n        return n != 0\n    if n == 1:\n        return x == 1\n    if n == 0:\n        # 0**k == 0 for k >= 1, so only x == 0 qualifies\n        return x == 0\n\n    # Handle negative x with negative n: possible when exponent odd\n    # We'll attempt to find integer k >= 1 such that n**k == x\n    # Work with absolute values but track sign for odd/even k\n    abs_n = abs(n)\n    abs_x = abs(x)\n\n    if abs_x == 0:\n        # x == 0, but n != 0 (handled above) -> impossible\n        return False\n\n    # Compute possible k range: k = round(log_abs_x / log_abs_n)\n    # Use loop multiplying until we reach or exceed abs_x\n    power = 1\n    k = 0\n    while power < abs_x:\n        power *= abs_n\n        k += 1\n        # prevent infinite loop (shouldn't happen)\n        if k > 1000:\n            break\n\n    if power != abs_x:\n        return False\n\n    # Now power==abs_x and k>=0. Check sign compatibility\n    if x < 0:\n        # x negative: requires n negative and k odd\n        return n < 0 and (k % 2 == 1)\n    else:\n        # x positive: if n negative, k must be even; if n positive any k works\n        if n < 0:\n            return (k % 2 == 0)\n        else:\n            return True",
+  "metrics": {
+    "total_nodes": 176,
+    "ast_depth": 9,
+    "branch_count": 9,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.113636,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

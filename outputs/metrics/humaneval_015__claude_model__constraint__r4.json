@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_015__claude_model__constraint__r4.json",
+  "problem_id": "humaneval_015",
+  "task_id": "HumanEval/15",
+  "problem_name": "String Sequence",
+  "entry_point": "string_sequence",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def string_sequence(n: int) -> str:\n    result = []\n    for i in range(n + 1):\n        result.append(str(i))\n    return ' '.join(result)",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.047619,
+    "function_names": [
+      "string_sequence"
+    ]
+  }
+}

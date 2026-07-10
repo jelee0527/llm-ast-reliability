@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_054__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef same_chars(s0: str, s1: str) -> bool:\n    \"\"\"\n    Check if two words have the same characters.\n\n    The function returns True iff the set of distinct characters in s0\n    equals the set of distinct characters in s1.\n\n    Examples:\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    # Use explicit control flow: compute sets by iterating\n    def unique_chars(s: Iterable[str]) -> set:\n        seen = set()\n        for ch in s:\n            if ch not in seen:\n                seen.add(ch)\n        return seen\n\n    return unique_chars(s0) == unique_chars(s1)\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 82,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.060976,
+    "function_names": [
+      "same_chars",
+      "unique_chars"
+    ]
+  }
+}

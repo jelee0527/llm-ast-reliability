@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_006__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_006",
+  "task_id": "HumanEval/6",
+  "problem_name": "Parse Nested Parens",
+  "entry_point": "parse_nested_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input is a string containing multiple groups of nested parentheses separated by spaces.\n    For each group, return the maximum depth of nesting.\n\n    Examples:\n    parse_nested_parens('(()()) ((())) () ((())()())') -> [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    groups = paren_string.split()\n    depths: List[int] = []\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for ch in group:\n            if ch == '(':\n                current_depth += 1\n                if current_depth > max_depth:\n                    max_depth = current_depth\n            elif ch == ')':\n                # decrement but ensure it doesn't go negative for malformed groups\n                current_depth = max(0, current_depth - 1)\n            else:\n                # ignore any other characters (robustness)\n                continue\n        depths.append(max_depth)\n\n    return depths\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    print(parse_nested_parens('(()()) ((())) () ((())()())'))  # expected [2, 3, 1, 3]",
+  "metrics": {
+    "total_nodes": 128,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.078125,
+    "function_names": [
+      "parse_nested_parens"
+    ]
+  }
+}

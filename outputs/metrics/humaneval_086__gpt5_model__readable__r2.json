@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_086__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_086",
+  "task_id": "HumanEval/86",
+  "problem_name": "Anti Shuffle",
+  "entry_point": "anti_shuffle",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef anti_shuffle(s: str) -> str:\n    \"\"\"\n    Return a string where each contiguous sequence of non-space characters (a word)\n    has its characters sorted in ascending ASCII order, while preserving the\n    original positions of spaces.\n    \"\"\"\n    if s == \"\" or s.isspace():\n        return s\n\n    chars = list(s)\n    n = len(chars)\n    result_chars: List[str] = list(chars)  # start with a copy; we'll replace word regions\n\n    i = 0\n    while i < n:\n        if chars[i] == ' ':\n            i += 1\n            continue\n\n        # start of a word (sequence of non-space characters)\n        start = i\n        while i < n and chars[i] != ' ':\n            i += 1\n        end = i  # one past the last char of the word\n\n        word = chars[start:end]\n        # sort characters by their ASCII values\n        sorted_word = sorted(word, key=lambda ch: ord(ch))\n        # place back into result\n        result_chars[start:end] = sorted_word\n\n    return ''.join(result_chars)\n\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hi\", \"Hi\"),\n        (\"hello\", \"ehllo\"),\n        (\"Hello World!!!\", \"Hello !!!Wdlor\"),\n        (\"  multiple   spaces \", \"  elmtipul   acesps \"),\n        (\"\", \"\"),\n        (\"   \", \"   \"),\n    ]\n    for inp, expected in tests:\n        out = anti_shuffle(inp)\n        print(repr(inp), \"->\", repr(out), \"OK\" if out == expected else \"FAIL (expected \" + repr(expected) + \")\")",
+  "metrics": {
+    "total_nodes": 252,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.039683,
+    "function_names": [
+      "anti_shuffle"
+    ]
+  }
+}

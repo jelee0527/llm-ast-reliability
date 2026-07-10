@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_104__claude_model__concise__r5.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def unique_digits(x):\n    return sorted([n for n in x if all(int(d) % 2 != 0 for d in str(n))])",
+  "metrics": {
+    "total_nodes": 39,
+    "ast_depth": 13,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.025641,
+    "function_names": [
+      "unique_digits"
+    ]
+  }
+}

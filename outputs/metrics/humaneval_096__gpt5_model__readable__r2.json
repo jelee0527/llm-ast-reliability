@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_096__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef count_up_to(n: int) -> List[int]:\n    \"\"\"Return a list of all prime numbers that are less than n.\n\n    Args:\n        n: non-negative integer upper bound (exclusive)\n\n    Returns:\n        List of primes p where 0 <= p < n\n    \"\"\"\n    if n <= 2:\n        return []\n    limit = n\n    sieve = bytearray(b\"\\x01\") * limit  # True for potential primes\n    sieve[0:2] = b\"\\x00\\x00\"  # 0 and 1 are not primes\n    for i in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[i]:\n            step = i\n            start = i * i\n            sieve[start:limit:step] = b\"\\x00\" * ((limit - 1 - start) // step + 1)\n    return [i for i, is_prime in enumerate(sieve) if is_prime]",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.035211,
+    "function_names": [
+      "count_up_to"
+    ]
+  }
+}

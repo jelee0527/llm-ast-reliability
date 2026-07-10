@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_043__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_043",
+  "task_id": "HumanEval/43",
+  "problem_name": "Pairs Sum To Zero",
+  "entry_point": "pairs_sum_to_zero",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def pairs_sum_to_zero(l):\n    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='pairs_sum_to_zero',\n      args=arguments(\n        args=[\n          arg(arg='l')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='seen', ctx=Store())],\n          value=Call(\n            func=Name(id='set', ctx=Load()))),\n        For(\n          target=Name(id='num', ctx=Store()),\n          iter=Name(id='l', ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=UnaryOp(\n                  op=USub(),\n                  operand=Name(id='num', ctx=Load())),\n                ops=[\n                  In()],\n                comparators=[\n                  Name(id='seen', ctx=Load())]),\n              body=[\n                Return(\n                  value=Constant(value=True))]),\n            Expr(\n              value=Call(\n                func=Attribute(\n                  value=Name(id='seen', ctx=Load()),\n                  attr='add',\n                  ctx=Load()),\n                args=[\n                  Name(id='num', ctx=Load())]))]),\n        Return(\n          value=Constant(value=False))])])"
+}

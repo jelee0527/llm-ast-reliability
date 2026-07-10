@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase alphabet letters by 4 positions (shift down by two multiplied to two places).\n    Non-lowercase letters are left unchanged. Assumes input is lowercase letters as examples show.\"\"\"\n    if not s:\n        return s\n    lower = string.ascii_lowercase\n    shift = 4  # two multiplied to two places -> 2*2 = 4\n    trans = str.maketrans(lower, lower[shift:] + lower[:shift])\n    return s.translate(trans)",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.04918,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

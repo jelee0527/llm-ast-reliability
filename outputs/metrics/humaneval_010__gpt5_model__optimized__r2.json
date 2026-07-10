@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Efficient implementation using prefix-function (KMP) on string + '#' + reversed(string)\n    to find the longest palindromic suffix starting at some index.\n    \"\"\"\n    if not string:\n        return \"\"\n    s = string\n    rev = s[::-1]\n    # Build combined pattern: rev + '#' + s\n    combined = rev + \"#\" + s\n    n = len(combined)\n    pi: List[int] = [0] * n\n    for i in range(1, n):\n        j = pi[i - 1]\n        c = combined[i]\n        while j > 0 and combined[j] != c:\n            j = pi[j - 1]\n        if combined[j] == c:\n            j += 1\n        pi[i] = j\n    # pi[-1] is length of longest prefix of rev that matches suffix of s,\n    # i.e., longest palindromic suffix length\n    pal_suffix_len = pi[-1]\n    # Need to append reverse of the prefix of s that is before that palindromic suffix\n    to_add = s[: len(s) - pal_suffix_len][::-1]\n    return s + to_add\n\n\nif __name__ == \"__main__\":\n    # Quick tests\n    assert make_palindrome('') == ''\n    assert make_palindrome('cat') == 'catac'\n    assert make_palindrome('cata') == 'catac'\n    assert make_palindrome('a') == 'a'\n    assert make_palindrome('aa') == 'aa'\n    assert make_palindrome('ab') == 'aba'\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 277,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.028881,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

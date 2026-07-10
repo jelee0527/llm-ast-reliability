@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n    \"\"\"\n    if not arr:\n        return None\n    total_abs = 0\n    sign = 1\n    for x in arr:\n        if x == 0:\n            return 0\n        if x < 0:\n            sign = -sign\n        total_abs += abs(x)\n    return sign * total_abs\n\n# Quick self-test\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None",
+  "metrics": {
+    "total_nodes": 121,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.066116,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pluck(arr: List[int]) -> List[int]:\n    if not arr:\n        return []\n    best_val = None\n    best_idx = None\n    for i, v in enumerate(arr):\n        if v % 2 == 0:\n            if best_val is None or v < best_val:\n                best_val = v\n                best_idx = i\n    return [] if best_val is None else [best_val, best_idx]",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.074468,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

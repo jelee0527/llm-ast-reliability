@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_134",
+  "task_id": "HumanEval/134",
+  "problem_name": "Check If Last Char Is A Letter",
+  "entry_point": "check_if_last_char_is_a_letter",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:55:41.275395+00:00",
+  "elapsed_seconds": 4.819,
+  "official_prompt": "\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n    Examples:\n    check_if_last_char_is_a_letter(\"apple pie\") ➞ False\n    check_if_last_char_is_a_letter(\"apple pi e\") ➞ True\n    check_if_last_char_is_a_letter(\"apple pi e \") ➞ False\n    check_if_last_char_is_a_letter(\"\") ➞ False \n    '''\n\n",
+  "raw_response": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Return True if the last character of txt is an alphabetical character\n    and is not part of a word (i.e., it is a single-letter token separated by spaces).\n    Otherwise return False.\n    '''\n    if not txt:\n        return False\n    # Trim any trailing newline/carriage returns but preserve spaces since trailing space means False.\n    # If last character is space, it's not a letter token.\n    if txt[-1].isspace():\n        return False\n    # If last character is not a letter, return False\n    if not txt[-1].isalpha():\n        return False\n    # Now determine last token (split by spaces)\n    parts = txt.split(' ')\n    # Remove any empty strings at the end? No: trailing spaces already handled.\n    last_token = parts[-1]\n    # last_token should be exactly one letter and alphabetical\n    return len(last_token) == 1 and last_token.isalpha()",
+  "generated_code": "import string\n\ndef check_if_last_char_is_a_letter(txt):\n    '''\n    Return True if the last character of txt is an alphabetical character\n    and is not part of a word (i.e., it is a single-letter token separated by spaces).\n    Otherwise return False.\n    '''\n    if not txt:\n        return False\n    # Trim any trailing newline/carriage returns but preserve spaces since trailing space means False.\n    # If last character is space, it's not a letter token.\n    if txt[-1].isspace():\n        return False\n    # If last character is not a letter, return False\n    if not txt[-1].isalpha():\n        return False\n    # Now determine last token (split by spaces)\n    parts = txt.split(' ')\n    # Remove any empty strings at the end? No: trailing spaces already handled.\n    last_token = parts[-1]\n    # last_token should be exactly one letter and alphabetical\n    return len(last_token) == 1 and last_token.isalpha()"
+}

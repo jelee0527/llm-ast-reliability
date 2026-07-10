@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(s):\n    # Check if s contains any alphabetic letter\n    has_letter = any(ch.isalpha() for ch in s)\n    if has_letter:\n        # flip case for letters, leave others unchanged\n        return ''.join(ch.swapcase() if ch.isalpha() else ch for ch in s)\n    else:\n        # no letters: reverse the whole string\n        return s[::-1]\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().splitlines()\n    if not data:\n        sys.stdout.write(\"\")\n    else:\n        # If multiple lines, process each line and print joined by newline\n        out_lines = [solve(line) for line in data]\n        sys.stdout.write(\"\\n\".join(out_lines))",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.05,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_098__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_098",
+  "task_id": "HumanEval/98",
+  "problem_name": "Count Upper",
+  "entry_point": "count_upper",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef count_upper(s: str) -> int:\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    Even indices are 0, 2, 4, ...\n\n    Examples:\n    count_upper('aBCdEf') -> 1  (only 'E' at index 4)\n    count_upper('abcdefg') -> 0\n    count_upper('dBBE') -> 0\n    \"\"\"\n    if not s:\n        return 0\n    vowels = set(\"AEIOU\")\n    count = 0\n    # iterate over even indices\n    for i in range(0, len(s), 2):\n        ch = s[i]\n        # check uppercase vowel\n        if ch in vowels:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.074627,
+    "function_names": [
+      "count_upper"
+    ]
+  }
+}

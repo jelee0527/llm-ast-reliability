@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_160__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef do_algebra(operator: List[str], operand: List[int]) -> int:\n    \"\"\"\n    Evaluate an algebraic expression defined by operator list and operand list.\n    Operators supported: '+', '-', '*', '//', '**'\n    \"\"\"\n    if not operator or not operand:\n        raise ValueError(\"operator and operand must be non-empty\")\n    if len(operator) != len(operand) - 1:\n        raise ValueError(\"operator list length must be one less than operand list length\")\n\n    # Map operators to functions\n    def apply(op: str, a: int, b: int) -> int:\n        if op == '+':\n            return a + b\n        if op == '-':\n            return a - b\n        if op == '*':\n            return a * b\n        if op == '//':\n            # floor division; behave like Python's // for integers\n            # Handle division by zero explicitly\n            if b == 0:\n                raise ZeroDivisionError(\"integer division by zero\")\n            return a // b\n        if op == '**':\n            # exponentiation; for non-negative integer operands, result is integer\n            return a ** b\n        raise ValueError(f\"unsupported operator: {op}\")\n\n    # To respect operator precedence and left-to-right associativity where appropriate,\n    # perform a shunting-yard-like two-pass evaluation without external dependencies.\n\n    # First pass: handle exponentiation which is right-associative\n    ops = operator[:]\n    vals = operand[:]\n\n    # Process '**' from right to left\n    i = len(ops) - 1\n    while i >= 0:\n        if ops[i] == '**':\n            # compute vals[i] ** vals[i+1], replace in vals at i, remove vals[i+1] and ops[i]\n            res = apply('**', vals[i], vals[i+1])\n            vals[i] = res\n            del vals[i+1]\n            del ops[i]\n            # move one step left (i-1) relative to new ops list\n            i -= 1\n        else:\n            i -= 1\n\n    # Second pass: handle '*' (multiplication) which has higher precedence than + and -\n    i = 0\n    while i < len(ops):\n        if ops[i] == '*':\n            res = apply('*', vals[i], vals[i+1])\n            vals[i] = res\n            del vals[i+1]\n            del ops[i]\n            # do not increment i, as new operator at same index needs processing\n        else:\n            i += 1\n\n    # Third pass: handle '//' which has same precedence as '*' normally,\n    # but since '*' processed, handle '//' as well (in case mixed order)\n    i = 0\n    while i < len(ops):\n        if ops[i] == '//':\n            res = apply('//', vals[i], vals[i+1])\n            vals[i] = res\n            del vals[i+1]\n            del ops[i]\n        else:\n            i += 1\n\n    # Final pass: handle '+' and '-' left-to-right\n    result = vals[0]\n    for idx, op in enumerate(ops):\n        result = apply(op, result, vals[idx+1])\n\n    return result",
+  "metrics": {
+    "total_nodes": 455,
+    "ast_depth": 10,
+    "branch_count": 11,
+    "loop_count": 4,
+    "function_count": 2,
+    "control_flow_count": 25,
+    "control_flow_ratio": 0.054945,
+    "function_names": [
+      "do_algebra",
+      "apply"
+    ]
+  }
+}

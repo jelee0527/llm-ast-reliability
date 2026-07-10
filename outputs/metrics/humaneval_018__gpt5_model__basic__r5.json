@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if not substring:\n        # Undefined behavior: if substring is empty, choose to return 0\n        return 0\n    # Use lookahead regex to count overlapping occurrences safely, escaping substring\n    pattern = '(?={})'.format(re.escape(substring))\n    return len(re.findall(pattern, string))",
+  "metrics": {
+    "total_nodes": 51,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

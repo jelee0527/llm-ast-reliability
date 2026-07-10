@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__constraint__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import sys\nfrom collections import deque\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For k > 1, we need to find lexicographically smallest path of length k\n    # We'll use BFS with state (row, col, path_length, path_values)\n    # But to avoid exponential blowup, we use a priority queue approach\n    # Since values are unique 1..N*N, we can start from the smallest value cell\n    \n    # Find the cell with value 1\n    start_r = start_c = -1\n    for i in range(n):\n        for j in range(n):\n            if grid[i][j] == 1:\n                start_r, start_c = i, j\n                break\n        if start_r != -1:\n            break\n    \n    # BFS with pruning: we keep best path for each (r,c,length)\n    # Actually we need lexicographically smallest full path of length k\n    # We'll use DP: best_path[r][c][l] = best path tuple ending at (r,c) of length l\n    # But that's too large. Instead, we can do iterative deepening / BFS layer by layer\n    \n    # Since k can be up to N*N (maybe large), we need efficient approach\n    # Observation: to get lexicographically smallest path, we want smallest possible\n    # first element, then second, etc. So we can greedily choose next step\n    \n    # We'll do BFS from all cells simultaneously, keeping only best paths of each length\n    # Actually simpler: since answer is unique, we can do BFS with priority queue\n    # where we expand paths in lexicographic order\n    \n    # Use a heap for BFS: (path_tuple, r, c)\n    import heapq\n    \n    heap = []\n    # Start from all cells\n    for i in range(n):\n        for j in range(n):\n            heapq.heappush(heap, (grid[i][j], i, j))\n    \n    # For each length, we expand the best paths\n    # We'll keep a dictionary mapping (r,c) to best path of current length\n    # But we need to consider all paths of length L to generate length L+1\n    \n    # Actually simpler: since we want lexicographically smallest path of length k,\n    # we can do BFS level by level, keeping only the best path ending at each cell\n    # for the current length. At each step, we keep the lexicographically smallest\n    # path for each cell.\n    \n    # Initialize with paths of length 1\n    best = {}\n    for i in range(n):\n        for j in range(n):\n            best[(i, j)] = (grid[i][j],)\n    \n    for length in range(2, k + 1):\n        new_best = {}\n        for (r, c), path in best.items():\n            for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < n and 0 <= nc < n:\n                    new_path = path + (grid[nr][nc],)\n                    key = (nr, nc)\n                    if key not in new_best or new_path < new_best[key]:\n                        new_best[key] = new_path\n        best = new_best\n    \n    # Find the overall best path of length k\n    result = None\n    for path in best.values():\n        if result is None or path < result:\n            result = path\n    return list(result)",
+  "metrics": {
+    "total_nodes": 395,
+    "ast_depth": 13,
+    "branch_count": 6,
+    "loop_count": 10,
+    "function_count": 1,
+    "control_flow_count": 20,
+    "control_flow_ratio": 0.050633,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

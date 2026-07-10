@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    \"\"\"\n    if S is None:\n        return 0\n    # Split on sentence delimiters ., ?, !\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        # Strip whitespace\n        p = part.strip()\n        if not p:\n            continue\n        # Check if first word is exactly \"I\"\n        # Split by whitespace\n        first_word = p.split()[0]\n        if first_word == \"I\":\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.093333,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

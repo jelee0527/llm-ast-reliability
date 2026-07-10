@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_116__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort array of integers by number of 1-bits in their binary representation (ascending).\n    For equal counts, sort by numeric value ascending.\n\n    Non-negative and negative integers are allowed; for negatives, count bits of their\n    absolute value (as typical interpretation for these kata-type problems) — but examples\n    suggest sorting negatives by value only when counts equal. To be safe, count ones in\n    the binary representation of the absolute value.\n    \"\"\"\n    # Use tuple key: (popcount(abs(x)), x)\n    # Python 3.8+ has int.bit_count() which is efficient.\n    return sorted(arr, key=lambda x: (abs(x).bit_count(), x))",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='List')],\n      level=0),\n    FunctionDef(\n      name='sort_array',\n      args=arguments(\n        args=[\n          arg(\n            arg='arr',\n            annotation=Subscript(\n              value=Name(id='List', ctx=Load()),\n              slice=Name(id='int', ctx=Load()),\n              ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='\\n    Sort array of integers by number of 1-bits in their binary representation (ascending).\\n    For equal counts, sort by numeric value ascending.\\n\\n    Non-negative and negative integers are allowed; for negatives, count bits of their\\n    absolute value (as typical interpretation for these kata-type problems) — but examples\\n    suggest sorting negatives by value only when counts equal. To be safe, count ones in\\n    the binary representation of the absolute value.\\n    ')),\n        Return(\n          value=Call(\n            func=Name(id='sorted', ctx=Load()),\n            args=[\n              Name(id='arr', ctx=Load())],\n            keywords=[\n              keyword(\n                arg='key',\n                value=Lambda(\n                  args=arguments(\n                    args=[\n                      arg(arg='x')]),\n                  body=Tuple(\n                    elts=[\n                      Call(\n                        func=Attribute(\n                          value=Call(\n                            func=Name(id='abs', ctx=Load()),\n                            args=[\n                              Name(id='x', ctx=Load())]),\n                          attr='bit_count',\n                          ctx=Load())),\n                      Name(id='x', ctx=Load())],\n                    ctx=Load())))]))],\n      returns=Subscript(\n        value=Name(id='List', ctx=Load()),\n        slice=Name(id='int', ctx=Load()),\n        ctx=Load()))])"
+}

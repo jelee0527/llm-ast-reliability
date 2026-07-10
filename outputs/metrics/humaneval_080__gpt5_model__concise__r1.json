@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_080__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_080",
+  "task_id": "HumanEval/80",
+  "problem_name": "Is Happy",
+  "entry_point": "is_happy",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_happy(s: Any) -> bool:\n    s = str(s)\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        a, b, c = s[i], s[i+1], s[i+2]\n        if a == b or b == c or a == c:\n            return False\n    return True\n\n# Quick tests\nif __name__ == \"__main__\":\n    tests = [\"a\", \"aa\", \"abcd\", \"aabb\", \"adb\", \"xyy\"]\n    for t in tests:\n        print(t, is_happy(t))",
+  "metrics": {
+    "total_nodes": 136,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "is_happy"
+    ]
+  }
+}

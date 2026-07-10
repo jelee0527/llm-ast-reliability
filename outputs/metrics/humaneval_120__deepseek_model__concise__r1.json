@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def maximum(arr, k):\n    arr.sort()\n    return arr[-k:] if k > 0 else []",
+  "metrics": {
+    "total_nodes": 29,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.068966,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

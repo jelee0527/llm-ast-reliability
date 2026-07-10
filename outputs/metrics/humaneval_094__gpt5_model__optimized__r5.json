@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import List\n\ndef skjkasdkd(lst: List[int]) -> int:\n    \"\"\"Return sum of digits of the largest prime in lst. If none, return 0.\"\"\"\n    if not lst:\n        return 0\n\n    # Helper: Miller-Rabin deterministic for 32-bit and up to large numbers\n    def is_prime(n: int) -> bool:\n        if n <= 1:\n            return False\n        small_primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)\n        for p in small_primes:\n            if n % p == 0:\n                return n == p\n        # write n-1 as d * 2^s\n        d = n - 1\n        s = 0\n        while d % 2 == 0:\n            d //= 2\n            s += 1\n        # Deterministic bases for testing up to >2^64 (use recommended set)\n        for a in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37):\n            if a >= n:\n                continue\n            x = pow(a, d, n)\n            if x == 1 or x == n - 1:\n                continue\n            composite = True\n            for _ in range(s - 1):\n                x = (x * x) % n\n                if x == n - 1:\n                    composite = False\n                    break\n            if composite:\n                return False\n        return True\n\n    max_prime = 0\n    for v in lst:\n        if v > max_prime:\n            # only check integers >=2\n            if v >= 2 and is_prime(v):\n                max_prime = v\n\n    if max_prime == 0:\n        return 0\n\n    s = 0\n    n = abs(max_prime)\n    while n:\n        s += n % 10\n        n //= 10\n    return s\n\n\n# Optional quick tests (will run only if executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        ([0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3], 10),\n        ([1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1], 25),\n        ([1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3], 13),\n        ([0,724,32,71,99,32,6,0,5,91,83,0,5,6], 11),\n        ([0,81,12,3,1,21], 3),\n        ([0,8,1,2,1,7], 7),\n    ]\n    for lst, exp in tests:\n        print(skjkasdkd(lst), exp)",
+  "metrics": {
+    "total_nodes": 430,
+    "ast_depth": 10,
+    "branch_count": 11,
+    "loop_count": 7,
+    "function_count": 2,
+    "control_flow_count": 28,
+    "control_flow_ratio": 0.065116,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

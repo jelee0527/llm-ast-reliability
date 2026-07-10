@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    # parse string into float\n    x = float(value)\n    # get floor and ceil\n    f = math.floor(x)\n    c = math.ceil(x)\n    # if already integer\n    if f == c:\n        return int(f)\n    # distances\n    df = abs(x - f)\n    dc = abs(c - x)\n    if df < dc:\n        return int(f)\n    if dc < df:\n        return int(c)\n    # tie: choose away from zero\n    if x >= 0:\n        return int(c)\n    else:\n        return int(f)",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 7,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

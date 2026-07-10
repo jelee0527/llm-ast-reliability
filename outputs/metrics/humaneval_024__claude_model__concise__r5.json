@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_024__claude_model__concise__r5.json",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def largest_divisor(n: int) -> int:\n    for i in range(2, n + 1):\n        if n % i == 0:\n            return n // i",
+  "metrics": {
+    "total_nodes": 37,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "largest_divisor"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_044__deepseek_model__basic__r5.json",
+  "problem_id": "humaneval_044",
+  "task_id": "HumanEval/44",
+  "problem_name": "Change Base",
+  "entry_point": "change_base",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def change_base(x: int, base: int):\n    \"\"\"Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n    \"\"\"\n    if x == 0:\n        return '0'\n    digits = []\n    while x > 0:\n        digits.append(str(x % base))\n        x //= base\n    return ''.join(reversed(digits))",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.065574,
+    "function_names": [
+      "change_base"
+    ]
+  }
+}

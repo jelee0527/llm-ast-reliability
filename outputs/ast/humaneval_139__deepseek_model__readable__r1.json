@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_139__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_139",
+  "task_id": "HumanEval/139",
+  "problem_name": "Special Factorial",
+  "entry_point": "special_factorial",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def special_factorial(n):\n    \"\"\"The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n    For example:\n    >>> special_factorial(4)\n    288\n\n    The function will receive an integer as input and should return the special\n    factorial of this integer.\n    \"\"\"\n    result = 1\n    factorial = 1\n    for i in range(1, n + 1):\n        factorial *= i\n        result *= factorial\n    return result",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='special_factorial',\n      args=arguments(\n        args=[\n          arg(arg='n')]),\n      body=[\n        Expr(\n          value=Constant(value='The Brazilian factorial is defined as:\\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\\n    where n > 0\\n\\n    For example:\\n    >>> special_factorial(4)\\n    288\\n\\n    The function will receive an integer as input and should return the special\\n    factorial of this integer.\\n    ')),\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=Constant(value=1)),\n        Assign(\n          targets=[\n            Name(id='factorial', ctx=Store())],\n          value=Constant(value=1)),\n        For(\n          target=Name(id='i', ctx=Store()),\n          iter=Call(\n            func=Name(id='range', ctx=Load()),\n            args=[\n              Constant(value=1),\n              BinOp(\n                left=Name(id='n', ctx=Load()),\n                op=Add(),\n                right=Constant(value=1))]),\n          body=[\n            AugAssign(\n              target=Name(id='factorial', ctx=Store()),\n              op=Mult(),\n              value=Name(id='i', ctx=Load())),\n            AugAssign(\n              target=Name(id='result', ctx=Store()),\n              op=Mult(),\n              value=Name(id='factorial', ctx=Load()))]),\n        Return(\n          value=Name(id='result', ctx=Load()))])])"
+}

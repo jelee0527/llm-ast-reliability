@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_016__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_016",
+  "task_id": "HumanEval/16",
+  "problem_name": "Count Distinct Characters",
+  "entry_point": "count_distinct_characters",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    if string is None:\n        return 0\n    # Normalize to a common case (lowercase) and build a set of characters\n    distinct: Set[str] = set(string.lower())\n    return len(distinct)",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='typing',\n      names=[\n        alias(name='Set')],\n      level=0),\n    FunctionDef(\n      name='count_distinct_characters',\n      args=arguments(\n        args=[\n          arg(\n            arg='string',\n            annotation=Name(id='str', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value=\" Given a string, find out how many distinct characters (regardless of case) does it consist of\\n    >>> count_distinct_characters('xyzXYZ')\\n    3\\n    >>> count_distinct_characters('Jerry')\\n    4\\n    \")),\n        If(\n          test=Compare(\n            left=Name(id='string', ctx=Load()),\n            ops=[\n              Is()],\n            comparators=[\n              Constant(value=None)]),\n          body=[\n            Return(\n              value=Constant(value=0))]),\n        AnnAssign(\n          target=Name(id='distinct', ctx=Store()),\n          annotation=Subscript(\n            value=Name(id='Set', ctx=Load()),\n            slice=Name(id='str', ctx=Load()),\n            ctx=Load()),\n          value=Call(\n            func=Name(id='set', ctx=Load()),\n            args=[\n              Call(\n                func=Attribute(\n                  value=Name(id='string', ctx=Load()),\n                  attr='lower',\n                  ctx=Load()))]),\n          simple=1),\n        Return(\n          value=Call(\n            func=Name(id='len', ctx=Load()),\n            args=[\n              Name(id='distinct', ctx=Load())]))],\n      returns=Name(id='int', ctx=Load()))])"
+}

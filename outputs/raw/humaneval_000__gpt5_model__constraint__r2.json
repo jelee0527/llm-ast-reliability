@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_000",
+  "task_id": "HumanEval/0",
+  "problem_name": "Has Close Elements",
+  "entry_point": "has_close_elements",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:21:36.674623+00:00",
+  "elapsed_seconds": 5.419,
+  "official_prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    # Defensive checks\n    if threshold < 0:\n        raise ValueError(\"threshold must be non-negative\")\n    n = len(numbers)\n    if n < 2:\n        return False\n\n    # Sort numbers to only compare neighbors\n    nums_sorted = sorted(numbers)\n\n    # Compare adjacent differences\n    for i in range(1, n):\n        if abs(nums_sorted[i] - nums_sorted[i - 1]) < threshold:\n            return True\n    return False\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    # Defensive checks\n    if threshold < 0:\n        raise ValueError(\"threshold must be non-negative\")\n    n = len(numbers)\n    if n < 2:\n        return False\n\n    # Sort numbers to only compare neighbors\n    nums_sorted = sorted(numbers)\n\n    # Compare adjacent differences\n    for i in range(1, n):\n        if abs(nums_sorted[i] - nums_sorted[i - 1]) < threshold:\n            return True\n    return False\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:17:33.686975+00:00",
+  "elapsed_seconds": 7.158,
+  "official_prompt": "\ndef simplify(x, n):\n    \"\"\"Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n    You can assume that x, and n are valid fractions, and do not have zero as denominator.\n\n    simplify(\"1/5\", \"5/1\") = True\n    simplify(\"1/6\", \"2/1\") = False\n    simplify(\"7/10\", \"10/2\") = False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef simplify(x, n):\n    \"\"\"Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n    You can assume that x, and n are valid fractions, and do not have zero as denominator.\n\n    simplify(\"1/5\", \"5/1\") = True\n    simplify(\"1/6\", \"2/1\") = False\n    simplify(\"7/10\", \"10/2\") = False\n    \"\"\"\n\n",
+  "raw_response": "from math import gcd\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number.\"\"\"\n    # Parse fractions \"a/b\"\n    ax, bx = x.split('/')\n    an, bn = n.split('/')\n    a = int(ax); b = int(bx)\n    c = int(an); d = int(bn)\n    # product = (a*c) / (b*d) -> whole if numerator divisible by denominator\n    # reduce by gcd to avoid large numbers: check if (a*c) % (b*d) == 0 efficiently\n    # Cancel common factors between numerator and denominator\n    # Cancel gcd(a, b*d)\n    g1 = gcd(a, b)\n    a //= g1\n    b //= g1\n    g2 = gcd(c, b)\n    c //= g2\n    b //= g2\n    # Now denominator is b*d, but we can cancel with d as well\n    g3 = gcd(a, d)\n    a //= g3\n    d //= g3\n    g4 = gcd(c, d)\n    c //= g4\n    d //= g4\n    # After cancellation, product numerator = a*c, denominator = b*d\n    # It's whole if b==1 and d==1 (denominator reduced to 1)\n    return (b == 1 and d == 1)",
+  "generated_code": "from math import gcd\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number.\"\"\"\n    # Parse fractions \"a/b\"\n    ax, bx = x.split('/')\n    an, bn = n.split('/')\n    a = int(ax); b = int(bx)\n    c = int(an); d = int(bn)\n    # product = (a*c) / (b*d) -> whole if numerator divisible by denominator\n    # reduce by gcd to avoid large numbers: check if (a*c) % (b*d) == 0 efficiently\n    # Cancel common factors between numerator and denominator\n    # Cancel gcd(a, b*d)\n    g1 = gcd(a, b)\n    a //= g1\n    b //= g1\n    g2 = gcd(c, b)\n    c //= g2\n    b //= g2\n    # Now denominator is b*d, but we can cancel with d as well\n    g3 = gcd(a, d)\n    a //= g3\n    d //= g3\n    g4 = gcd(c, d)\n    c //= g4\n    d //= g4\n    # After cancellation, product numerator = a*c, denominator = b*d\n    # It's whole if b==1 and d==1 (denominator reduced to 1)\n    return (b == 1 and d == 1)"
+}

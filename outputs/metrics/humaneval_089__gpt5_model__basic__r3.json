@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_089__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from string import ascii_lowercase as LC, ascii_uppercase as UC\n\ndef encrypt(s):\n    \"\"\"Rotate alphabet such that letters shift down by two multiplied to two places.\n    Interpreting description and examples: each letter shifts forward by 4 positions (2*2).\n    Preserve case; non-letters remain unchanged.\n    \"\"\"\n    def shift_char(c):\n        if c.islower():\n            idx = LC.index(c)\n            return LC[(idx + 4) % 26]\n        if c.isupper():\n            idx = UC.index(c)\n            return UC[(idx + 4) % 26]\n        return c\n\n    return ''.join(shift_char(ch) for ch in s)",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.067416,
+    "function_names": [
+      "encrypt",
+      "shift_char"
+    ]
+  }
+}

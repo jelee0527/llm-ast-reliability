@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef exchange(lst1, lst2):\n    \"\"\"Return \"YES\" if by exchanging elements between lst1 and lst2 (any number of swaps)\n    it's possible to make all elements of lst1 even; otherwise \"NO\".\"\"\"\n    # Count parities: even vs odd\n    # To make all elements of lst1 even, for every odd element in lst1 we need to replace it\n    # with an even element from lst2. Swapping moves elements between lists, so available evens\n    # in lst2 are the ones with even parity initially plus any evens that come from lst1 via swaps.\n    # But swapping an odd from lst1 with an odd from lst2 achieves nothing; swapping odd from lst1\n    # with even from lst2 reduces odd count in lst1 by 1 and may increase odd count in lst2.\n    # The only requirement is that lst2 has at least as many even numbers as there are odd numbers in lst1.\n    evens2 = sum(1 for x in lst2 if x % 2 == 0)\n    odds1 = sum(1 for x in lst1 if x % 2 != 0)\n    return \"YES\" if evens2 >= odds1 else \"NO\"",
+  "metrics": {
+    "total_nodes": 61,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.032787,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def valid_date(date):\n    if not date:\n        return False\n    if len(date) != 10:\n        return False\n    if date[2] != '-' or date[5] != '-':\n        return False\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n    month_str, day_str, year_str = parts\n    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):\n        return False\n    month = int(month_str)\n    day = int(day_str)\n    year = int(year_str)\n    if month < 1 or month > 12:\n        return False\n    if day < 1:\n        return False\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        if day > 31:\n            return False\n    elif month in (4, 6, 9, 11):\n        if day > 30:\n            return False\n    elif month == 2:\n        if day > 29:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 9,
+    "branch_count": 13,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 24,
+    "control_flow_ratio": 0.12,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

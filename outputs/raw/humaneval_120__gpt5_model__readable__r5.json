@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:20:47.675648+00:00",
+  "elapsed_seconds": 3.502,
+  "official_prompt": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\nimport heapq\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Return a sorted list of length k containing the maximum k numbers from arr.\n    If k == 0, returns an empty list.\n    The returned list is sorted in non-decreasing order.\n    \"\"\"\n    if k <= 0:\n        return []\n    n = len(arr)\n    if k >= n:\n        return sorted(arr)\n    # Use a min-heap of size k to track the k largest elements\n    min_heap = arr[:k]\n    heapq.heapify(min_heap)\n    for num in arr[k:]:\n        # If current number is larger than smallest in heap, replace it\n        if num > min_heap[0]:\n            heapq.heapreplace(min_heap, num)\n    # min_heap contains the k largest elements in arbitrary order; sort before returning\n    return sorted(min_heap)",
+  "generated_code": "from typing import List\nimport heapq\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Return a sorted list of length k containing the maximum k numbers from arr.\n    If k == 0, returns an empty list.\n    The returned list is sorted in non-decreasing order.\n    \"\"\"\n    if k <= 0:\n        return []\n    n = len(arr)\n    if k >= n:\n        return sorted(arr)\n    # Use a min-heap of size k to track the k largest elements\n    min_heap = arr[:k]\n    heapq.heapify(min_heap)\n    for num in arr[k:]:\n        # If current number is larger than smallest in heap, replace it\n        if num > min_heap[0]:\n            heapq.heapreplace(min_heap, num)\n    # min_heap contains the k largest elements in arbitrary order; sort before returning\n    return sorted(min_heap)"
+}

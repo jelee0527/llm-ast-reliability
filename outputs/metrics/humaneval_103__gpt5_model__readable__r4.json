@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_103__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_103",
+  "task_id": "HumanEval/103",
+  "problem_name": "Rounded Avg",
+  "entry_point": "rounded_avg",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from math import floor\n\ndef rounded_avg(n, m):\n    \"\"\"Compute average of integers from n through m (inclusive), round to nearest integer,\n    and return its binary representation as a string (prefixed with '0b').\n    If n > m, return -1.\n    \"\"\"\n    if not (isinstance(n, int) and isinstance(m, int)):\n        raise TypeError(\"n and m must be integers\")\n    if n > m:\n        return -1\n\n    # The count of integers in the inclusive range\n    count = m - n + 1\n\n    # Sum of arithmetic sequence from n to m: count * (first + last) / 2\n    # To avoid floating point issues use integer arithmetic:\n    total = count * (n + m)\n\n    # average = total / (2 * count) = (n + m) / 2\n    # We need to round to nearest integer. Since (n + m) may be odd, handle .5 correctly.\n    # Compute numerator and denominator for average precisely:\n    numerator = n + m\n    denominator = 2\n\n    # Perform rounding to nearest integer; tie (.5) rounds up.\n    # For positive integers, we can do: (numerator + denominator//2) // denominator for integer division rounding.\n    # But denominator is 2, so:\n    rounded = (numerator + 1) // 2  # equivalent to rounding .5 up for positive numbers\n\n    # Convert to binary string with '0b' prefix\n    return bin(rounded)",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.050505,
+    "function_names": [
+      "rounded_avg"
+    ]
+  }
+}

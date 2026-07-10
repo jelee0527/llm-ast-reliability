@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:26:38.368661+00:00",
+  "elapsed_seconds": 4.159,
+  "official_prompt": "\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Any\n\ndef max_element(l: List[Any]):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be a list, got None\")\n    if not isinstance(l, list):\n        raise TypeError(f\"Input must be a list, got {type(l).__name__}\")\n    if len(l) == 0:\n        raise ValueError(\"max_element() arg is an empty list\")\n\n    # Initialize max_val with first element, then iterate remaining items\n    max_val = l[0]\n    for item in l[1:]:\n        # Use comparison; allow exceptions to surface if items are not comparable\n        if item > max_val:\n            max_val = item\n    return max_val\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List, Any\n\ndef max_element(l: List[Any]):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if l is None:\n        raise TypeError(\"Input must be a list, got None\")\n    if not isinstance(l, list):\n        raise TypeError(f\"Input must be a list, got {type(l).__name__}\")\n    if len(l) == 0:\n        raise ValueError(\"max_element() arg is an empty list\")\n\n    # Initialize max_val with first element, then iterate remaining items\n    max_val = l[0]\n    for item in l[1:]:\n        # Use comparison; allow exceptions to surface if items are not comparable\n        if item > max_val:\n            max_val = item\n    return max_val\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

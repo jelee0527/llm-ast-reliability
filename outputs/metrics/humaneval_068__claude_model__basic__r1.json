@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__claude_model__basic__r1.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def pluck(arr):\n    if not arr:\n        return []\n    \n    even_nodes = [(val, idx) for idx, val in enumerate(arr) if val % 2 == 0]\n    \n    if not even_nodes:\n        return []\n    \n    min_node = min(even_nodes, key=lambda x: (x[0], x[1]))\n    \n    return [min_node[0], min_node[1]]",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.057471,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

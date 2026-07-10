@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__claude_model__optimized__r4.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def words_string(s):\n    if not s:\n        return []\n    return [word for word in s.replace(',', ' ').split() if word]",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.096774,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

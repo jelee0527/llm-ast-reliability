@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n    '''\n    # We need a subsequence (not necessarily contiguous) that forms a valid bracket sequence\n    # and contains at least one pair that is nested (i.e., a '[' that encloses another pair).\n    # Equivalent: There exist indices i<j<k<l with string[i]=='[', string[k]=='[', string[l]==']', string[j]==']'\n    # and positions can be chosen so that matching is valid bracket sequence: simplest check is whether there\n    # exists a nested valid pair: find i<j<k<l with [ [ ] ] in that order.\n    s = string\n    n = len(s)\n    # Quick reject if too short\n    if n < 4:\n        return False\n    # We want to find indices i<k<l with s[i]=='[' and s[k]=='[' and s[l]==']' and some matching ']' for the inner '[' before the outer closing.\n    # Simpler: find pattern of two opening brackets '[' then a closing ']' then a closing ']' in sequence of indices increasing (subsequence).\n    # That is existence of indices a<b<c<d with s[a]=='[', s[b]=='[', s[c]==']', s[d]==']'.\n    # We can scan for b and c as inner pair and check there is an earlier '[' before b and a later ']' after c.\n    # Find all positions of '[' and ']'\n    opens = [i for i,ch in enumerate(s) if ch=='[']\n    closes = [i for i,ch in enumerate(s) if ch==']']\n    if not opens or not closes:\n        return False\n    # For any inner open at pos b and its matching close at pos c chosen as some close after b,\n    # check if there exists an open before b and a close after c.\n    # Iterate inner open index b from opens:\n    for b in opens:\n        # find a close c after b\n        # we can choose the earliest close after b to maximize chance\n        for c in closes:\n            if c <= b:\n                continue\n            # need an open a before b\n            # need a close d after c\n            has_a = any(a < b for a in opens)\n            has_d = any(d > c for d in closes)\n            if has_a and has_d:\n                return True\n    return False\n\n# Quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = {\n        '[[]]': True,\n        '[]]]]]]][[[[[]': False,\n        '[][]': False,\n        '[]': False,\n        '[[][]]': True,\n        '[[]][[': True,\n    }\n    for s, expected in tests.items():\n        print(s, is_nested(s), expected)",
+  "metrics": {
+    "total_nodes": 200,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.065,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

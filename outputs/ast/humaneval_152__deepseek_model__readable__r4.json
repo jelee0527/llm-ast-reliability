@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_152__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def compare(game, guess):\n    result = []\n    for score, guessed in zip(game, guess):\n        if score == guessed:\n            result.append(0)\n        else:\n            result.append(abs(score - guessed))\n    return result",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='compare',\n      args=arguments(\n        args=[\n          arg(arg='game'),\n          arg(arg='guess')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='result', ctx=Store())],\n          value=List(ctx=Load())),\n        For(\n          target=Tuple(\n            elts=[\n              Name(id='score', ctx=Store()),\n              Name(id='guessed', ctx=Store())],\n            ctx=Store()),\n          iter=Call(\n            func=Name(id='zip', ctx=Load()),\n            args=[\n              Name(id='game', ctx=Load()),\n              Name(id='guess', ctx=Load())]),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='score', ctx=Load()),\n                ops=[\n                  Eq()],\n                comparators=[\n                  Name(id='guessed', ctx=Load())]),\n              body=[\n                Expr(\n                  value=Call(\n                    func=Attribute(\n                      value=Name(id='result', ctx=Load()),\n                      attr='append',\n                      ctx=Load()),\n                    args=[\n                      Constant(value=0)]))],\n              orelse=[\n                Expr(\n                  value=Call(\n                    func=Attribute(\n                      value=Name(id='result', ctx=Load()),\n                      attr='append',\n                      ctx=Load()),\n                    args=[\n                      Call(\n                        func=Name(id='abs', ctx=Load()),\n                        args=[\n                          BinOp(\n                            left=Name(id='score', ctx=Load()),\n                            op=Sub(),\n                            right=Name(id='guessed', ctx=Load()))])]))])]),\n        Return(\n          value=Name(id='result', ctx=Load()))])])"
+}

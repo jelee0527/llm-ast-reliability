@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_073__claude_model__readable__r4.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def smallest_change(arr):\n    changes = 0\n    left = 0\n    right = len(arr) - 1\n    \n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    \n    return changes",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='smallest_change',\n      args=arguments(\n        args=[\n          arg(arg='arr')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='changes', ctx=Store())],\n          value=Constant(value=0)),\n        Assign(\n          targets=[\n            Name(id='left', ctx=Store())],\n          value=Constant(value=0)),\n        Assign(\n          targets=[\n            Name(id='right', ctx=Store())],\n          value=BinOp(\n            left=Call(\n              func=Name(id='len', ctx=Load()),\n              args=[\n                Name(id='arr', ctx=Load())]),\n            op=Sub(),\n            right=Constant(value=1))),\n        While(\n          test=Compare(\n            left=Name(id='left', ctx=Load()),\n            ops=[\n              Lt()],\n            comparators=[\n              Name(id='right', ctx=Load())]),\n          body=[\n            If(\n              test=Compare(\n                left=Subscript(\n                  value=Name(id='arr', ctx=Load()),\n                  slice=Name(id='left', ctx=Load()),\n                  ctx=Load()),\n                ops=[\n                  NotEq()],\n                comparators=[\n                  Subscript(\n                    value=Name(id='arr', ctx=Load()),\n                    slice=Name(id='right', ctx=Load()),\n                    ctx=Load())]),\n              body=[\n                AugAssign(\n                  target=Name(id='changes', ctx=Store()),\n                  op=Add(),\n                  value=Constant(value=1))]),\n            AugAssign(\n              target=Name(id='left', ctx=Store()),\n              op=Add(),\n              value=Constant(value=1)),\n            AugAssign(\n              target=Name(id='right', ctx=Store()),\n              op=Sub(),\n              value=Constant(value=1))]),\n        Return(\n          value=Name(id='changes', ctx=Load()))])])"
+}

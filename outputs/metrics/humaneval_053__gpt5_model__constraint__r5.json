@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_053__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_053",
+  "task_id": "HumanEval/53",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef add(x: int, y: int) -> int:\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Validate inputs are integers (or at least numbers)\n    if not isinstance(x, int) or not isinstance(y, int):\n        # Allow booleans? bool is subclass of int, but treat them as ints here.\n        # If other numeric types are provided, try to convert to int explicitly.\n        try:\n            x_converted = int(x)\n            y_converted = int(y)\n        except Exception:\n            raise TypeError(\"add() requires integer-compatible arguments\")\n        return x_converted + y_converted\n    return x + y\n\n# Simple self-test when run as a script\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.067416,
+    "function_names": [
+      "add"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_093__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Takes a message (letters and spaces) and:\n    - swaps case of all letters\n    - replaces all vowels in the message with the letter that appears 2 places ahead\n      of that vowel in the English alphabet (preserving case after swap)\n    Assumes only letters and spaces/punctuation may be present; non-letters left unchanged.\n    \"\"\"\n    # Define vowels lower and upper\n    vowels_lower = 'aeiou'\n    vowels_upper = 'AEIOU'\n    # Precompute mapping for vowel -> +2 in alphabet\n    def shift_char(c):\n        if c.isalpha():\n            # swap case first\n            swapped = c.swapcase()\n            # if swapped character is a vowel, replace with letter 2 ahead in alphabet keeping case\n            if swapped in vowels_lower:\n                # find position and shift\n                idx = ord(swapped) - ord('a')\n                new_idx = (idx + 2) % 26\n                return chr(ord('a') + new_idx)\n            elif swapped in vowels_upper:\n                idx = ord(swapped) - ord('A')\n                new_idx = (idx + 2) % 26\n                return chr(ord('A') + new_idx)\n            else:\n                return swapped\n        else:\n            return c\n\n    return ''.join(shift_char(ch) for ch in message)\n\n\nif __name__ == \"__main__\":\n    # Quick tests from prompt\n    print(encode('test'))            # TGST\n    print(encode('This is a message'))  # tHKS KS C MGSSCGG",
+  "metrics": {
+    "total_nodes": 165,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.054545,
+    "function_names": [
+      "encode",
+      "shift_char"
+    ]
+  }
+}

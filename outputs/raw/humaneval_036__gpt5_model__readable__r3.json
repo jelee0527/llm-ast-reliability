@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:28:28.198562+00:00",
+  "elapsed_seconds": 4.753,
+  "official_prompt": "\n\ndef fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n\n    count = 0\n    # iterate over multiples of 11 and 13 below n, but avoid double-counting multiples of both\n    seen: set[int] = set()\n\n    def count_sevens_in_number(x: int) -> int:\n        return str(x).count('7')\n\n    # helper to iterate multiples of a base less than n\n    def multiples_less_than(limit: int, base: int) -> Iterable[int]:\n        multiple = base\n        while multiple < limit:\n            yield multiple\n            multiple += base\n\n    for number in multiples_less_than(n, 11):\n        if number not in seen:\n            seen.add(number)\n            count += count_sevens_in_number(number)\n\n    for number in multiples_less_than(n, 13):\n        if number not in seen:\n            seen.add(number)\n            count += count_sevens_in_number(number)\n\n    return count\n\n\nif __name__ == \"__main__\":\n    # quick self-test using the provided doctest examples\n    import sys\n    examples = [50, 78, 79]\n    for ex in examples:\n        print(ex, \"->\", fizz_buzz(ex))",
+  "generated_code": "from typing import Iterable\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        return 0\n\n    count = 0\n    # iterate over multiples of 11 and 13 below n, but avoid double-counting multiples of both\n    seen: set[int] = set()\n\n    def count_sevens_in_number(x: int) -> int:\n        return str(x).count('7')\n\n    # helper to iterate multiples of a base less than n\n    def multiples_less_than(limit: int, base: int) -> Iterable[int]:\n        multiple = base\n        while multiple < limit:\n            yield multiple\n            multiple += base\n\n    for number in multiples_less_than(n, 11):\n        if number not in seen:\n            seen.add(number)\n            count += count_sevens_in_number(number)\n\n    for number in multiples_less_than(n, 13):\n        if number not in seen:\n            seen.add(number)\n            count += count_sevens_in_number(number)\n\n    return count\n\n\nif __name__ == \"__main__\":\n    # quick self-test using the provided doctest examples\n    import sys\n    examples = [50, 78, 79]\n    for ex in examples:\n        print(ex, \"->\", fizz_buzz(ex))"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_157__deepseek_model__basic__r2.json",
+  "problem_id": "humaneval_157",
+  "task_id": "HumanEval/157",
+  "problem_name": "Right Angle Triangle",
+  "entry_point": "right_angle_triangle",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def right_angle_triangle(a, b, c):\n    sides = sorted([a, b, c])\n    return abs(sides[0]**2 + sides[1]**2 - sides[2]**2) < 1e-12",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 11,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.018182,
+    "function_names": [
+      "right_angle_triangle"
+    ]
+  }
+}

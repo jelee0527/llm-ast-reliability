@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_014__claude_model__readable__r3.json",
+  "problem_id": "humaneval_014",
+  "task_id": "HumanEval/14",
+  "problem_name": "All Prefixes",
+  "entry_point": "all_prefixes",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    prefixes = []\n    for length in range(1, len(string) + 1):\n        prefix = string[:length]\n        prefixes.append(prefix)\n    return prefixes",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.035088,
+    "function_names": [
+      "all_prefixes"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:59:12.264363+00:00",
+  "elapsed_seconds": 4.631,
+  "official_prompt": "\ndef can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] is not greater than or equal to arr[i-1].\n    In other words, find the largest i where arr[i] < arr[i-1]. If no such index exists, return -1.\n    Assumes arr has no duplicate values.\n    \"\"\"\n    if not arr or len(arr) == 1:\n        return -1\n    # Iterate from end to start, find first position where current < previous\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Simple tests\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 4, 3, 5], 3),\n        ([1, 2, 3], -1),\n        ([5, 4, 3, 2, 1], 4),\n        ([], -1),\n        ([10], -1),\n        ([1,3,2], 2),\n        ([1,2,5,4,3], 4)\n    ]\n    for arr, expected in tests:\n        result = can_arrange(arr)\n        print(arr, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")",
+  "generated_code": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] is not greater than or equal to arr[i-1].\n    In other words, find the largest i where arr[i] < arr[i-1]. If no such index exists, return -1.\n    Assumes arr has no duplicate values.\n    \"\"\"\n    if not arr or len(arr) == 1:\n        return -1\n    # Iterate from end to start, find first position where current < previous\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Simple tests\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 2, 4, 3, 5], 3),\n        ([1, 2, 3], -1),\n        ([5, 4, 3, 2, 1], 4),\n        ([], -1),\n        ([10], -1),\n        ([1,3,2], 2),\n        ([1,2,5,4,3], 4)\n    ]\n    for arr, expected in tests:\n        result = can_arrange(arr)\n        print(arr, result, \"OK\" if result == expected else f\"FAIL (expected {expected})\")"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef by_length(arr: List[int]) -> List[str]:\n    \"\"\"\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name\n    from \"One\" through \"Nine\".\n    \"\"\"\n    # Mapping for numbers 1..9 to their names\n    names = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\",\n    }\n\n    # Filter only integers in the inclusive range 1..9\n    filtered = [x for x in arr if isinstance(x, int) and 1 <= x <= 9]\n\n    # Sort ascending then reverse to get descending order\n    filtered.sort()\n    filtered.reverse()\n\n    # Map to names\n    return [names[x] for x in filtered]",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.010638,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

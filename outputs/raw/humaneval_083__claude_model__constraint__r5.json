@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T16:19:57.304926+00:00",
+  "elapsed_seconds": 5.272,
+  "official_prompt": "\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n\n",
+  "raw_response": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    # n-digit numbers range from 10^(n-1) to 10^n - 1\n    # Count numbers that start with 1: from 10^(n-1) to 2*10^(n-1) - 1\n    # That's 10^(n-1) numbers\n    # Count numbers that end with 1: every 10th number in the range\n    # That's 10^(n-1) numbers\n    # Count numbers that start AND end with 1: start with 1 and end with 1\n    # Start with 1: 10^(n-1) to 2*10^(n-1) - 1\n    # End with 1: last digit is 1\n    # Both: 10^(n-2) numbers (fix first digit as 1, last digit as 1, middle n-2 digits free)\n    \n    start_with_1 = 10 ** (n - 1)\n    end_with_1 = 10 ** (n - 1)\n    both = 10 ** (n - 2)\n    \n    return start_with_1 + end_with_1 - both",
+  "generated_code": "def starts_one_ends(n):\n    if n == 1:\n        return 1\n    # n-digit numbers range from 10^(n-1) to 10^n - 1\n    # Count numbers that start with 1: from 10^(n-1) to 2*10^(n-1) - 1\n    # That's 10^(n-1) numbers\n    # Count numbers that end with 1: every 10th number in the range\n    # That's 10^(n-1) numbers\n    # Count numbers that start AND end with 1: start with 1 and end with 1\n    # Start with 1: 10^(n-1) to 2*10^(n-1) - 1\n    # End with 1: last digit is 1\n    # Both: 10^(n-2) numbers (fix first digit as 1, last digit as 1, middle n-2 digits free)\n    \n    start_with_1 = 10 ** (n - 1)\n    end_with_1 = 10 ** (n - 1)\n    both = 10 ** (n - 2)\n    \n    return start_with_1 + end_with_1 - both"
+}

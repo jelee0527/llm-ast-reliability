@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_039__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Generator\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    def is_prime(k: int) -> bool:\n        if k <= 1:\n            return False\n        if k <= 3:\n            return True\n        if k % 2 == 0:\n            return False\n        # check up to sqrt(k)\n        limit = int(math.isqrt(k))\n        i = 3\n        while i <= limit:\n            if k % i == 0:\n                return False\n            i += 2\n        return True\n\n    def fib_generator() -> Generator[int, None, None]:\n        a, b = 0, 1\n        while True:\n            a, b = b, a + b\n            yield a\n\n    count = 0\n    for f in fib_generator():\n        if is_prime(f):\n            count += 1\n            if count == n:\n                return f\n        # Safety: Fibonacci primes are rare but exist; loop continues until found.",
+  "metrics": {
+    "total_nodes": 192,
+    "ast_depth": 9,
+    "branch_count": 8,
+    "loop_count": 3,
+    "function_count": 3,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.098958,
+    "function_names": [
+      "prime_fib",
+      "is_prime",
+      "fib_generator"
+    ]
+  }
+}

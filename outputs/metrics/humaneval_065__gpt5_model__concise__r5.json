@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef circular_shift(x: int, shift: int) -> str:\n    s = str(abs(int(x)))\n    n = len(s)\n    if n == 0:\n        return \"\"\n    if shift < 0:\n        # normalize negative shifts to equivalent positive right shift\n        shift = (-shift) % n\n        # negative original meant left shift; convert: left k == right (n-k)\n        shift = (n - shift) % n\n    if shift == 0:\n        return s\n    if shift > n:\n        return s[::-1]\n    # right shift by shift: take last shift chars to front\n    k = shift % n\n    return s[-k:] + s[:-k]",
+  "metrics": {
+    "total_nodes": 128,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef get_row(lst: List[List[int]], x: int) -> List[Tuple[int, int]]:\n    \"\"\"\n    Return coordinates (row, column) of occurrences of x in nested list lst.\n    Coordinates sorted by row ascending, and within each row by column descending.\n    \"\"\"\n    result: List[Tuple[int, int]] = []\n    # iterate rows in order\n    for i, row in enumerate(lst):\n        if not row:\n            continue\n        # find columns where element == x\n        cols: List[int] = []\n        for j, val in enumerate(row):\n            if val == x:\n                cols.append(j)\n        if cols:\n            # sort columns descending\n            cols.sort(reverse=True)\n            for j in cols:\n                result.append((i, j))\n    return result\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert get_row([\n      [1,2,3,4,5,6],\n      [1,2,3,4,1,6],\n      [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]\n    assert get_row([], 1) == []\n    assert get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 244,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.036885,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

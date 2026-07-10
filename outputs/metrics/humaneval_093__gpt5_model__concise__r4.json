@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    vowels = 'aeiou'\n    shift = {c: chr((ord(c) - ord('a') + 2) % 26 + ord('a')) for c in string.ascii_lowercase}\n    result = []\n    for ch in message:\n        if ch.isalpha():\n            swapped = ch.swapcase()\n            # Determine lowercase letter for vowel check and replacement mapping\n            low = swapped.lower()\n            if low in vowels:\n                # find replacement for lowercase letter then restore case of swapped\n                rep_low = shift[low]\n                rep = rep_low.upper() if swapped.isupper() else rep_low\n                result.append(rep)\n            else:\n                result.append(swapped)\n        else:\n            result.append(ch)\n    return ''.join(result)\n\nif __name__ == \"__main__\":\n    print(encode('test'))\n    print(encode('This is a message'))",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.036145,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

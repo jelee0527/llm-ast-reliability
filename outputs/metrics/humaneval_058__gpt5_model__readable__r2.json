@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_058__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_058",
+  "task_id": "HumanEval/58",
+  "problem_name": "Common",
+  "entry_point": "common",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef common(l1: List[Any], l2: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique common elements for two lists.\n\n    Examples:\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n    \"\"\"\n    # Use set intersection to find unique common elements\n    set1 = set(l1)\n    set2 = set(l2)\n    intersect = set1 & set2\n\n    # Convert to a sorted list. Sorting will work for numbers and strings.\n    try:\n        return sorted(intersect)\n    except TypeError:\n        # If elements are not mutually comparable (e.g., mixed types), return list in insertion order\n        # based on appearance in l1 then l2 while preserving uniqueness.\n        seen = set()\n        ordered_common = []\n        for item in l1 + l2:\n            if item in intersect and item not in seen:\n                seen.add(item)\n                ordered_common.append(item)\n        return ordered_common",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.042735,
+    "function_names": [
+      "common"
+    ]
+  }
+}

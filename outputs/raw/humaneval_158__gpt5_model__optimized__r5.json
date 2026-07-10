@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:04:15.080485+00:00",
+  "elapsed_seconds": 4.267,
+  "official_prompt": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"\n    Return the word with maximum number of unique characters.\n    If multiple have the same maximum, return the lexicographically smallest one.\n    \"\"\"\n    if not words:\n        return \"\"\n    max_unique = -1\n    best_word = None\n    for w in words:\n        # compute number of unique characters\n        unique_count = len(set(w))\n        if unique_count > max_unique:\n            max_unique = unique_count\n            best_word = w\n        elif unique_count == max_unique:\n            if w < best_word:\n                best_word = w\n    return best_word if best_word is not None else \"\"\n\n\n# Quick simple tests (will run when module executed)\nif __name__ == \"__main__\":\n    assert find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    assert find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    assert find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"aaaaaaa\"\n    assert find_max([]) == \"\"\n    assert find_max([\"ab\", \"ba\"]) == \"ab\"  # lexicographically smaller when unique counts equal\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    \"\"\"\n    Return the word with maximum number of unique characters.\n    If multiple have the same maximum, return the lexicographically smallest one.\n    \"\"\"\n    if not words:\n        return \"\"\n    max_unique = -1\n    best_word = None\n    for w in words:\n        # compute number of unique characters\n        unique_count = len(set(w))\n        if unique_count > max_unique:\n            max_unique = unique_count\n            best_word = w\n        elif unique_count == max_unique:\n            if w < best_word:\n                best_word = w\n    return best_word if best_word is not None else \"\"\n\n\n# Quick simple tests (will run when module executed)\nif __name__ == \"__main__\":\n    assert find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    assert find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    assert find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"aaaaaaa\"\n    assert find_max([]) == \"\"\n    assert find_max([\"ab\", \"ba\"]) == \"ab\"  # lexicographically smaller when unique counts equal\n    print(\"All tests passed.\")"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_096__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_096",
+  "task_id": "HumanEval/96",
+  "problem_name": "Count Up To",
+  "entry_point": "count_up_to",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef count_up_to(n):\n    \"\"\"Return a list of prime numbers that are less than n.\n    n is a non-negative integer. If n <= 2, returns an empty list.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 2:\n        return []\n    limit = n - 1\n    # Sieve of Eratosthenes up to limit\n    sieve = bytearray(b'\\x01') * (limit + 1)  # True means prime candidate\n    sieve[0:2] = b'\\x00\\x00'  # 0 and 1 are not prime\n    for p in range(2, int(math.isqrt(limit)) + 1):\n        if sieve[p]:\n            step = p\n            start = p * p\n            sieve[start:limit+1:step] = b'\\x00' * (((limit - start) // step) + 1)\n    primes = [i for i in range(2, n) if sieve[i]]\n    return primes\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        5: [2,3],\n        11: [2,3,5,7],\n        0: [],\n        20: [2,3,5,7,11,13,17,19],\n        1: [],\n        18: [2,3,5,7,11,13,17],\n    }\n    for inp, expected in tests.items():\n        out = count_up_to(inp)\n        print(inp, out, \"OK\" if out == expected else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 245,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.040816,
+    "function_names": [
+      "count_up_to"
+    ]
+  }
+}

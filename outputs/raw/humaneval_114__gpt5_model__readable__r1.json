@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_114",
+  "task_id": "HumanEval/114",
+  "problem_name": "Minsubarraysum",
+  "entry_point": "minSubArraySum",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:08:38.948129+00:00",
+  "elapsed_seconds": 3.893,
+  "official_prompt": "\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef minSubArraySum(nums: List[int]) -> int:\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    \"\"\"\n    if not nums:\n        raise ValueError(\"Input list must be non-empty\")\n\n    # Kadane's algorithm variant for minimum subarray sum\n    current_min = nums[0]\n    global_min = nums[0]\n\n    for num in nums[1:]:\n        # Either extend the current subarray or start new at current element\n        current_min = min(num, current_min + num)\n        # Update global minimum found so far\n        global_min = min(global_min, current_min)\n\n    return global_min\n\n\n# Example quick tests (will run if file executed directly)\nif __name__ == \"__main__\":\n    print(minSubArraySum([2, 3, 4, 1, 2, 4]))   # expected 1\n    print(minSubArraySum([-1, -2, -3]))        # expected -6\n    print(minSubArraySum([3, -4, 2, -3, -1, 7])) # expected -6 (subarray [-4,2,-3,-1])",
+  "generated_code": "from typing import List\n\ndef minSubArraySum(nums: List[int]) -> int:\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    \"\"\"\n    if not nums:\n        raise ValueError(\"Input list must be non-empty\")\n\n    # Kadane's algorithm variant for minimum subarray sum\n    current_min = nums[0]\n    global_min = nums[0]\n\n    for num in nums[1:]:\n        # Either extend the current subarray or start new at current element\n        current_min = min(num, current_min + num)\n        # Update global minimum found so far\n        global_min = min(global_min, current_min)\n\n    return global_min\n\n\n# Example quick tests (will run if file executed directly)\nif __name__ == \"__main__\":\n    print(minSubArraySum([2, 3, 4, 1, 2, 4]))   # expected 1\n    print(minSubArraySum([-1, -2, -3]))        # expected -6\n    print(minSubArraySum([3, -4, 2, -3, -1, 7])) # expected -6 (subarray [-4,2,-3,-1])"
+}

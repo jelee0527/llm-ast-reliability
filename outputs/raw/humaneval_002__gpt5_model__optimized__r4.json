@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:24:56.088799+00:00",
+  "elapsed_seconds": 3.208,
+  "official_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n\n",
+  "raw_response": "from math import floor, modf, isnan, isfinite\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal (fractional) part.\n    \"\"\"\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if isnan(number):\n        return float('nan')\n    if not isfinite(number):\n        # For infinities, fractional part is undefined; return 0.0 consistent with floor behavior?\n        # Choose to return 0.0 for infinities.\n        return 0.0\n    # Use math.modf which returns (fractional, integer) and handles negatives correctly.\n    frac, _ = modf(number)\n    # For positive input, frac is already the fractional part.\n    # Ensure small negative zeros are normalized to 0.0\n    if frac == 0.0:\n        return 0.0\n    # For safety, ensure non-negative result for positive input\n    return float(frac)",
+  "generated_code": "from math import floor, modf, isnan, isfinite\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return the decimal (fractional) part.\n    \"\"\"\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    if isnan(number):\n        return float('nan')\n    if not isfinite(number):\n        # For infinities, fractional part is undefined; return 0.0 consistent with floor behavior?\n        # Choose to return 0.0 for infinities.\n        return 0.0\n    # Use math.modf which returns (fractional, integer) and handles negatives correctly.\n    frac, _ = modf(number)\n    # For positive input, frac is already the fractional part.\n    # Ensure small negative zeros are normalized to 0.0\n    if frac == 0.0:\n        return 0.0\n    # For safety, ensure non-negative result for positive input\n    return float(frac)"
+}

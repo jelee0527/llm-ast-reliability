@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_148__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    \"\"\"\n    There are eight planets in our solar system: the closest to the Sun\n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn,\n    Uranus, Neptune.\n    The function returns a tuple containing all planets whose orbits are\n    located between the orbit of planet1 and the orbit of planet2, sorted by\n    proximity to the sun. Returns an empty tuple if either name is invalid.\n    \"\"\"\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n\n    # Validate inputs: must match exactly one of the names in the list\n    if planet1 not in planets or planet2 not in planets:\n        return tuple()\n\n    i = planets.index(planet1)\n    j = planets.index(planet2)\n\n    if i < j:\n        between = planets[i+1:j]\n    elif i > j:\n        # when planet1 is farther from Sun (higher index) than planet2,\n        # we still return planets sorted by proximity to the sun (ascending index),\n        # so take planets between j and i and return them in order from sun outward\n        between = planets[j+1:i]\n    else:\n        # same planet -> no planets between\n        between = []\n\n    return tuple(between)",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.03876,
+    "function_names": [
+      "bf"
+    ]
+  }
+}

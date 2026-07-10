@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def skjkasdkd(lst):\n    def is_prime(n):\n        if n < 2:\n            return False\n        if n == 2:\n            return True\n        if n % 2 == 0:\n            return False\n        i = 3\n        while i * i <= n:\n            if n % i == 0:\n                return False\n            i += 2\n        return True\n\n    largest_prime = None\n    for num in lst:\n        if is_prime(num):\n            if largest_prime is None or num > largest_prime:\n                largest_prime = num\n\n    if largest_prime is None:\n        return 0\n\n    digit_sum = 0\n    for ch in str(largest_prime):\n        digit_sum += int(ch)\n    return digit_sum",
+  "metrics": {
+    "total_nodes": 134,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.126866,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

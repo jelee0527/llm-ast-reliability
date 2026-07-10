@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_136__claude_model__readable__r2.json",
+  "problem_id": "humaneval_136",
+  "task_id": "HumanEval/136",
+  "problem_name": "Largest Smallest Integers",
+  "entry_point": "largest_smallest_integers",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def largest_smallest_integers(lst):\n    negative_integers = [x for x in lst if x < 0]\n    positive_integers = [x for x in lst if x > 0]\n    \n    largest_negative = max(negative_integers) if negative_integers else None\n    smallest_positive = min(positive_integers) if positive_integers else None\n    \n    return (largest_negative, smallest_positive)",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='largest_smallest_integers',\n      args=arguments(\n        args=[\n          arg(arg='lst')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='negative_integers', ctx=Store())],\n          value=ListComp(\n            elt=Name(id='x', ctx=Load()),\n            generators=[\n              comprehension(\n                target=Name(id='x', ctx=Store()),\n                iter=Name(id='lst', ctx=Load()),\n                ifs=[\n                  Compare(\n                    left=Name(id='x', ctx=Load()),\n                    ops=[\n                      Lt()],\n                    comparators=[\n                      Constant(value=0)])],\n                is_async=0)])),\n        Assign(\n          targets=[\n            Name(id='positive_integers', ctx=Store())],\n          value=ListComp(\n            elt=Name(id='x', ctx=Load()),\n            generators=[\n              comprehension(\n                target=Name(id='x', ctx=Store()),\n                iter=Name(id='lst', ctx=Load()),\n                ifs=[\n                  Compare(\n                    left=Name(id='x', ctx=Load()),\n                    ops=[\n                      Gt()],\n                    comparators=[\n                      Constant(value=0)])],\n                is_async=0)])),\n        Assign(\n          targets=[\n            Name(id='largest_negative', ctx=Store())],\n          value=IfExp(\n            test=Name(id='negative_integers', ctx=Load()),\n            body=Call(\n              func=Name(id='max', ctx=Load()),\n              args=[\n                Name(id='negative_integers', ctx=Load())]),\n            orelse=Constant(value=None))),\n        Assign(\n          targets=[\n            Name(id='smallest_positive', ctx=Store())],\n          value=IfExp(\n            test=Name(id='positive_integers', ctx=Load()),\n            body=Call(\n              func=Name(id='min', ctx=Load()),\n              args=[\n                Name(id='positive_integers', ctx=Load())]),\n            orelse=Constant(value=None))),\n        Return(\n          value=Tuple(\n            elts=[\n              Name(id='largest_negative', ctx=Load()),\n              Name(id='smallest_positive', ctx=Load())],\n            ctx=Load()))])])"
+}

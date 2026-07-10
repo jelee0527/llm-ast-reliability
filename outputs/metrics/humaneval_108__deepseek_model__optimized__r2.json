@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__deepseek_model__optimized__r2.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def count_nums(arr):\n    def sum_signed_digits(n):\n        if n == 0:\n            return 0\n        if n < 0:\n            n = -n\n            sign = -1\n        else:\n            sign = 1\n        total = 0\n        first = True\n        while n > 0:\n            digit = n % 10\n            if first:\n                total += sign * digit\n                first = False\n            else:\n                total += digit\n            n //= 10\n        return total\n\n    count = 0\n    for num in arr:\n        if sum_signed_digits(num) > 0:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 117,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "count_nums",
+      "sum_signed_digits"
+    ]
+  }
+}

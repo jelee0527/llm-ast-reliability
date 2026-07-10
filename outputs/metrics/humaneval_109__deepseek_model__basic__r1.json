@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def move_one_ball(arr):\n    if not arr:\n        return True\n    n = len(arr)\n    count_breaks = 0\n    for i in range(n):\n        if arr[i] > arr[(i + 1) % n]:\n            count_breaks += 1\n            if count_breaks > 1:\n                return False\n    return True",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.102941,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

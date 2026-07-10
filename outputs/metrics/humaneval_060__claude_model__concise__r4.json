@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_060__claude_model__concise__r4.json",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "problem_name": "Sum To N",
+  "entry_point": "sum_to_n",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def sum_to_n(n: int):\n    return n * (n + 1) // 2",
+  "metrics": {
+    "total_nodes": 19,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "sum_to_n"
+    ]
+  }
+}

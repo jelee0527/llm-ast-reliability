@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_146__claude_model__concise__r4.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def specialFilter(nums):\n    odd_digits = set('13579')\n    count = 0\n    for n in nums:\n        if n > 10:\n            s = str(abs(n))\n            if s[0] in odd_digits and s[-1] in odd_digits:\n                count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "specialFilter"
+    ]
+  }
+}

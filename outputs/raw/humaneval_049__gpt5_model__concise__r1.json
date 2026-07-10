@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:55:01.687689+00:00",
+  "elapsed_seconds": 2.702,
+  "official_prompt": "\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n\n",
+  "raw_response": "from typing import *\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"p must be positive\")\n    # fast modular exponentiation, works for large n\n    result = 1 % p\n    base = 2 % p\n    exp = n\n    if exp < 0:\n        # handle negative exponent by using modular inverse if p is prime and base invertible\n        # For general p, negative exponent not supported\n        raise ValueError(\"negative exponent not supported\")\n    while exp:\n        if exp & 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        exp >>= 1\n    return result",
+  "generated_code": "from typing import *\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if p <= 0:\n        raise ValueError(\"p must be positive\")\n    # fast modular exponentiation, works for large n\n    result = 1 % p\n    base = 2 % p\n    exp = n\n    if exp < 0:\n        # handle negative exponent by using modular inverse if p is prime and base invertible\n        # For general p, negative exponent not supported\n        raise ValueError(\"negative exponent not supported\")\n    while exp:\n        if exp & 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        exp >>= 1\n    return result"
+}

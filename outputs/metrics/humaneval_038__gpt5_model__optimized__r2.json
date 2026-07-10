@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_038__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "problem_name": "Decode Cyclic",
+  "entry_point": "decode_cyclic",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n    # split into groups of up to 3\n    n = len(s)\n    groups: List[str] = [s[(3 * i):min((3 * i + 3), n)] for i in range((n + 2) // 3)]\n    # inverse operation: encoded group was group[1:] + group[0] for length 3\n    decoded_groups = []\n    for g in groups:\n        if len(g) == 3:\n            # if encoded = b c a  (original a b c), so decode: last char goes to front\n            decoded_groups.append(g[2] + g[0:2])\n        else:\n            decoded_groups.append(g)\n    return \"\".join(decoded_groups)",
+  "metrics": {
+    "total_nodes": 213,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.023474,
+    "function_names": [
+      "encode_cyclic",
+      "decode_cyclic"
+    ]
+  }
+}

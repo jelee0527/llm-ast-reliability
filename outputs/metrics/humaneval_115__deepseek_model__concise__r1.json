@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__deepseek_model__concise__r1.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def max_fill(grid, capacity):\n    import math\n    total_water = sum(sum(row) for row in grid)\n    return math.ceil(total_water / capacity)",
+  "metrics": {
+    "total_nodes": 36,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.027778,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

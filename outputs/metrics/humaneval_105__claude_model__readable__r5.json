@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_105__claude_model__readable__r5.json",
+  "problem_id": "humaneval_105",
+  "task_id": "HumanEval/105",
+  "problem_name": "By Length",
+  "entry_point": "by_length",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def by_length(arr):\n    digit_names = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\"\n    }\n    \n    valid_numbers = [num for num in arr if 1 <= num <= 9]\n    \n    sorted_numbers = sorted(valid_numbers)\n    \n    reversed_numbers = sorted_numbers[::-1]\n    \n    result = [digit_names[num] for num in reversed_numbers]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.012346,
+    "function_names": [
+      "by_length"
+    ]
+  }
+}

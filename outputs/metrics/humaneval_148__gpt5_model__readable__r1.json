@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_148__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\nPLANETS = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    \"\"\"\n    Return a tuple of planet names whose orbits lie between planet1 and planet2,\n    ordered by proximity to the Sun (inner to outer). If either planet name is\n    invalid, return an empty tuple.\n    \"\"\"\n    try:\n        idx1 = PLANETS.index(planet1)\n        idx2 = PLANETS.index(planet2)\n    except ValueError:\n        return tuple()\n\n    if idx1 == idx2:\n        return tuple()\n\n    start = min(idx1, idx2) + 1\n    end = max(idx1, idx2)\n    between = PLANETS[start:end]\n    return tuple(between)",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.043478,
+    "function_names": [
+      "bf"
+    ]
+  }
+}

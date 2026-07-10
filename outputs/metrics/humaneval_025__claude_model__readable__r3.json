@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_025__claude_model__readable__r3.json",
+  "problem_id": "humaneval_025",
+  "task_id": "HumanEval/25",
+  "problem_name": "Factorize",
+  "entry_point": "factorize",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    prime_factors = []\n    current_divisor = 2\n    remaining = n\n\n    while current_divisor * current_divisor <= remaining:\n        while remaining % current_divisor == 0:\n            prime_factors.append(current_divisor)\n            remaining //= current_divisor\n        current_divisor += 1\n\n    if remaining > 1:\n        prime_factors.append(remaining)\n\n    return prime_factors",
+  "metrics": {
+    "total_nodes": 87,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.045977,
+    "function_names": [
+      "factorize"
+    ]
+  }
+}

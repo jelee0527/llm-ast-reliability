@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_056__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_056",
+  "task_id": "HumanEval/56",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n    balance = 0\n    for bracket in brackets:\n        if bracket == \"<\":\n            balance += 1\n        elif bracket == \">\":\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0",
+  "metrics": {
+    "total_nodes": 53,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.113208,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

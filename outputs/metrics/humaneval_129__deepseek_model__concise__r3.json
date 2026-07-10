@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__concise__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # For each cell, we store the best path of length l ending at that cell\n    # as a tuple (path_list, last_cell_value) for comparison\n    # We'll use a dictionary mapping (i,j) -> best path list for current length\n    best = {}\n    for i in range(n):\n        for j in range(n):\n            best[(i,j)] = [grid[i][j]]\n    \n    for step in range(2, k+1):\n        new_best = {}\n        for (i,j), path in best.items():\n            for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:\n                ni, nj = i+di, j+dj\n                if 0 <= ni < n and 0 <= nj < n:\n                    new_path = path + [grid[ni][nj]]\n                    key = (ni, nj)\n                    if key not in new_best or new_path < new_best[key]:\n                        new_best[key] = new_path\n        best = new_best\n    \n    # Find lexicographically smallest path among all end positions\n    answer = min(best.values())\n    return answer",
+  "metrics": {
+    "total_nodes": 262,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 5,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.038168,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

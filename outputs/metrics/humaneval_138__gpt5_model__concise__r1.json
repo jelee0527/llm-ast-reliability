@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_138__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef is_equal_to_sum_even(n: Any) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n    Positive even numbers are: 2,4,6,...\n    Sum of four positive even numbers = 2*(a+b+c+d) where each a..d >=1 => sum >= 2*4 = 8 and must be divisible by 2.\n    Thus n must be even and n >= 8.\n    \"\"\"\n    try:\n        n_int = int(n)\n    except Exception:\n        return False\n    return n_int >= 8 and n_int % 2 == 0",
+  "metrics": {
+    "total_nodes": 42,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "is_equal_to_sum_even"
+    ]
+  }
+}

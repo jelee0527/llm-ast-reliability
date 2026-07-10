@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        count = 0\n        for ch in txt:\n            if ch.islower():\n                if (ord(ch) - ord('a')) % 2 != 0:\n                    count += 1\n        return count",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 13,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.114286,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport operator as op\nimport math\n\n_ops = {\n    '+': lambda a, b: a + b,\n    '-': lambda a, b: a - b,\n    '*': lambda a, b: a * b,\n    '//': lambda a, b: a // b,\n    '**': lambda a, b: a ** b,\n}\n\n# Define operator precedence groups (higher list index => higher precedence)\n_precedence = {\n    '+': 1,\n    '-': 1,\n    '*': 2,\n    '//': 2,\n    '**': 3,\n}\n\ndef do_algebra(operator: List[str], operand: List[int]):\n    # Shunting-yard-like evaluation using two stacks\n    ops = operator[:]  # list of operator tokens\n    vals = operand[:]   # list of numeric values\n\n    # Convert to lists we can mutate: treat operands as stack where we will compute left to right\n    # We'll process operators by precedence: repeatedly find highest-precedence operator leftmost and compute it\n    # This handles left-associativity for +,-,*,// and right-associativity for **\n    # For exponentiation, implement right-associative: evaluate from rightmost highest-precedence first\n    # Approach: while any operators remain, pick index to evaluate:\n    while ops:\n        # find max precedence among remaining ops\n        max_prec = max(_precedence[o] for o in ops)\n        # if exponentiation present, pick rightmost index with max_prec (right-associative)\n        idx = None\n        for i in range(len(ops)-1, -1, -1):\n            if _precedence[ops[i]] == max_prec:\n                idx = i\n                break\n        # for other operators, ensure leftmost with that precedence is used (we already picked rightmost for **)\n        if ops[idx] != '**':\n            # find leftmost with this precedence\n            for i in range(len(ops)):\n                if _precedence[ops[i]] == max_prec:\n                    idx = i\n                    break\n        a = vals[idx]\n        b = vals[idx+1]\n        res = _ops[ops[idx]](a, b)\n        # replace vals[idx:idx+2] with res and remove ops[idx]\n        vals[idx:idx+1] = [res]\n        del ops[idx]\n    return vals[0]",
+  "metrics": {
+    "total_nodes": 289,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.031142,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

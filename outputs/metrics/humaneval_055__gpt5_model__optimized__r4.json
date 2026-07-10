@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_055__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_055",
+  "task_id": "HumanEval/55",
+  "problem_name": "Fib",
+  "entry_point": "fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\nimport sys\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number using fast doubling (handles n>=0).\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # fast doubling method\n    def _fd(k):\n        if k == 0:\n            return (0, 1)\n        a, b = _fd(k >> 1)\n        c = a * ( (b << 1) - a )\n        d = a * a + b * b\n        if k & 1:\n            return (d, c + d)\n        else:\n            return (c, d)\n    return _fd(n)[0]\n\nif __name__ == \"__main__\":\n    # simple CLI for testing\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(fib(n))\n        except Exception as e:\n            print(\"Error:\", e)",
+  "metrics": {
+    "total_nodes": 183,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.071038,
+    "function_names": [
+      "fib",
+      "_fd"
+    ]
+  }
+}

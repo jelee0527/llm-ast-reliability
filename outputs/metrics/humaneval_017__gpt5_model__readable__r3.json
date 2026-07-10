@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a string of ASCII musical notes into beat lengths.\n\n    Legend:\n    'o'  -> whole note, 4 beats\n    'o|' -> half note, 2 beats\n    '.|' -> quarter note, 1 beat\n\n    Tokens are separated by whitespace. Return list of integers for each token.\n    \"\"\"\n    # mapping from token to beats\n    token_to_beats = {\n        \"o\": 4,\n        \"o|\": 2,\n        \".|\": 1,\n    }\n\n    if not isinstance(music_string, str):\n        raise TypeError(\"music_string must be a string\")\n\n    # split by any whitespace\n    parts = music_string.split()\n    result: List[int] = []\n    for p in parts:\n        if p in token_to_beats:\n            result.append(token_to_beats[p])\n        else:\n            # If token isn't exact, try to handle stray characters by stripping\n            cleaned = p.strip()\n            if cleaned in token_to_beats:\n                result.append(token_to_beats[cleaned])\n            else:\n                # Unknown token: raise an error for clarity\n                raise ValueError(f\"Unknown note token: {p!r}\")\n    return result\n\n# Example usage when run as script\nif __name__ == \"__main__\":\n    example = 'o o| .| o| o| .| .| .| .| o o'\n    print(parse_music(example))",
+  "metrics": {
+    "total_nodes": 142,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.056338,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef order_by_points(nums: List[int]) -> List[int]:\n    \"\"\"\n    Sort the given list of integers in ascending order according to the sum of their digits.\n    If sums are equal, preserve original order (stable by index).\n\n    Examples:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    # Helper to compute sum of digits of an integer (ignoring sign)\n    def sum_digits(n: int) -> int:\n        n_abs = n\n        if n_abs < 0:\n            n_abs = -n_abs\n        total = 0\n        if n_abs == 0:\n            return 0\n        while n_abs:\n            total += n_abs % 10\n            n_abs //= 10\n        return total\n\n    # Attach original index to preserve order for equal sums\n    indexed = [(i, val) for i, val in enumerate(nums)]\n    # Sort by (sum_digits(value), original_index)\n    indexed.sort(key=lambda iv: (sum_digits(iv[1]), iv[0]))\n    # Extract values in sorted order\n    return [val for (_, val) in indexed]",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.043796,
+    "function_names": [
+      "order_by_points",
+      "sum_digits"
+    ]
+  }
+}

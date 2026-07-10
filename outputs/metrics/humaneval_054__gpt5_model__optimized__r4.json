@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_054__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_054",
+  "task_id": "HumanEval/54",
+  "problem_name": "Same Chars",
+  "entry_point": "same_chars",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n    # If both empty, true\n    if not s0 and not s1:\n        return True\n    # Count characters in both strings\n    c0 = Counter(s0)\n    c1 = Counter(s1)\n    # For each character present in either, ensure both have >0 counts\n    # and that characters present in one are present in the other.\n    # This reduces to checking that the sets of keys are equal.\n    return set(c0.keys()) == set(c1.keys())",
+  "metrics": {
+    "total_nodes": 63,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.047619,
+    "function_names": [
+      "same_chars"
+    ]
+  }
+}

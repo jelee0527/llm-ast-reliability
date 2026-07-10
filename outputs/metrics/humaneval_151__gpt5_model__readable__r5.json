@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef double_the_difference(lst: List[float]) -> int:\n    \"\"\"\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n    Examples:\n    double_the_difference([1, 3, 2, 0]) -> 1 + 9 = 10\n    double_the_difference([-1, -2, 0]) -> 0\n    double_the_difference([9, -2]) -> 81\n    double_the_difference([0]) -> 0\n    \"\"\"\n    total = 0\n    for value in lst:\n        # Must be an integer type or an integer-valued float\n        if isinstance(value, (int,)) and not isinstance(value, bool):\n            integer_value = value\n        elif isinstance(value, float) and value.is_integer():\n            integer_value = int(value)\n        else:\n            continue\n\n        # Ignore negative integers\n        if integer_value < 0:\n            continue\n\n        # Check oddness and add square if odd\n        if integer_value % 2 != 0:\n            total += integer_value * integer_value\n\n    return total\n\n\n# Quick self-check when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        ([1, 3, 2, 0], 10),\n        ([-1, -2, 0], 0),\n        ([9, -2], 81),\n        ([0], 0),\n        ([1.0, 3.0, 2.5, -3.0], 10),  # 1.0 and 3.0 count, 2.5 ignored, -3.0 ignored\n        ([], 0),\n        ([True, False, 5], 25),  # True is bool and should be ignored\n    ]\n    for input_list, expected in tests:\n        result = double_the_difference(input_list)\n        assert result == expected, f\"Failed for {input_list}: got {result}, expected {expected}\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 217,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.046083,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

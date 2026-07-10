@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_020__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_020",
+  "task_id": "HumanEval/20",
+  "problem_name": "Find Closest Elements",
+  "entry_point": "find_closest_elements",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    numbers_sorted = sorted(numbers)\n    min_diff = float('inf')\n    result = (numbers_sorted[0], numbers_sorted[1])\n    for i in range(len(numbers_sorted) - 1):\n        diff = abs(numbers_sorted[i+1] - numbers_sorted[i])\n        if diff < min_diff:\n            min_diff = diff\n            result = (numbers_sorted[i], numbers_sorted[i+1])\n    return result",
+  "metrics": {
+    "total_nodes": 125,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.024,
+    "function_names": [
+      "find_closest_elements"
+    ]
+  }
+}

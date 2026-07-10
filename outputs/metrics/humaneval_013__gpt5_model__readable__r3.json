@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_013__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_013",
+  "task_id": "HumanEval/13",
+  "problem_name": "Greatest Common Divisor",
+  "entry_point": "greatest_common_divisor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n\n    Uses the Euclidean algorithm. Handles zero and negative inputs.\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    >>> greatest_common_divisor(0, 0)\n    0\n    >>> greatest_common_divisor(-12, 18)\n    6\n    \"\"\"\n    # Normalize inputs to integers\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"Both a and b must be integers\")\n\n    # Make non-negative\n    a = abs(a)\n    b = abs(b)\n\n    # Edge cases: gcd(0, 0) is defined here as 0\n    if a == 0 and b == 0:\n        return 0\n    if a == 0:\n        return b\n    if b == 0:\n        return a\n\n    # Euclidean algorithm\n    while b:\n        a, b = b, a % b\n    return a\n\n# Simple self-test when run as a script\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 127,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.086614,
+    "function_names": [
+      "greatest_common_divisor"
+    ]
+  }
+}

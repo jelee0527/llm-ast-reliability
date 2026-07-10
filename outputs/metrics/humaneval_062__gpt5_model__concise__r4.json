@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_062__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef derivative(xs: List[float]) -> List[float]:\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n    Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n    \"\"\"\n    if not xs:\n        return []\n    # derivative of constant or empty is empty list\n    if len(xs) < 2:\n        return []\n    return [xs[i] * i for i in range(1, len(xs))]",
+  "metrics": {
+    "total_nodes": 64,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.078125,
+    "function_names": [
+      "derivative"
+    ]
+  }
+}

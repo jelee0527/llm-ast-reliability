@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    # Convert input to string of digits, handle negative sign if present\n    s = str(x)\n    neg = False\n    if s.startswith('-'):\n        neg = True\n        s = s[1:]\n    # If non-digit or empty, treat as empty string\n    if not s:\n        result = \"\"\n        return ('-' + result) if neg and result else result\n    n = len(s)\n    # If shift greater than number of digits, return reversed digits\n    if shift > n:\n        res_digits = s[::-1]\n    else:\n        # Normalize shift to range [0, n)\n        k = shift % n\n        if k == 0:\n            res_digits = s\n        else:\n            # Shift right by k: take last k chars to front\n            res_digits = s[-k:] + s[:-k]\n    # Reapply negative sign if needed\n    if neg:\n        return '-' + res_digits\n    return res_digits\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (12,1,\"21\"),\n        (12,2,\"12\"),\n        (12345,2,\"45123\"),\n        (12345,7,\"54321\"),  # shift>n -> reversed\n        (-123,1,\"-312\"),\n        (0,1,\"0\"),\n        (5,10,\"5\"),  # shift>n -> reversed but single digit stays same\n    ]\n    for x, sh, expected in tests:\n        out = circular_shift(x, sh)\n        print(x, sh, \"->\", out, \"OK\" if out==expected else \"FAIL (expected \"+expected+\")\")",
+  "metrics": {
+    "total_nodes": 242,
+    "ast_depth": 11,
+    "branch_count": 8,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.049587,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

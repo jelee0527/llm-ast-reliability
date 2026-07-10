@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_133__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from math import ceil\nfrom typing import Iterable\n\ndef sum_squares(lst: Iterable[float]) -> int:\n    return sum((ceil(x))**2 for x in lst)",
+  "metrics": {
+    "total_nodes": 34,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.029412,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

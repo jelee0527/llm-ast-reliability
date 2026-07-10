@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__claude_model__concise__r4.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def reverse_delete(s,c):\n    result = ''.join(ch for ch in s if ch not in c)\n    return (result, result == result[::-1])",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.023256,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

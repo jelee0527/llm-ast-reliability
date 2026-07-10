@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_067__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_067",
+  "task_id": "HumanEval/67",
+  "problem_name": "Fruit Distribution",
+  "entry_point": "fruit_distribution",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef fruit_distribution(s, n):\n    \"\"\"\n    Parse a string describing counts of apples and oranges and return number of mangoes.\n    Example input: \"5 apples and 6 oranges\"\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"First argument must be a string\")\n    if not isinstance(n, int):\n        raise TypeError(\"Second argument must be an integer\")\n    # Find all integers in the string (including negative if any, though problem uses non-negative)\n    numbers = re.findall(r'-?\\d+', s)\n    if len(numbers) < 2:\n        raise ValueError(\"String must contain at least two integer numbers for apples and oranges\")\n    try:\n        apples = int(numbers[0])\n        oranges = int(numbers[1])\n    except ValueError:\n        raise ValueError(\"Unable to parse integer counts from string\")\n    mangoes = n - apples - oranges\n    return mangoes\n\n\n# Example quick tests (will run only if this file is executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"5 apples and 6 oranges\", 19, 8),\n        (\"0 apples and 1 oranges\", 3, 2),\n        (\"2 apples and 3 oranges\", 100, 95),\n        (\"100 apples and 1 oranges\", 120, 19),\n    ]\n    for s, n, expected in tests:\n        result = fruit_distribution(s, n)\n        print(s, n, \"->\", result, \"expected:\", expected)",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.062147,
+    "function_names": [
+      "fruit_distribution"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"\n    Return a list of absolute differences between corresponding elements of game and guess.\n    If the guess equals the score, the difference is 0.\n    \"\"\"\n    if game is None or guess is None:\n        raise ValueError(\"Both game and guess must be provided\")\n    if len(game) != len(guess):\n        raise ValueError(\"game and guess must have the same length\")\n    result: List[int] = []\n    for g, q in zip(game, guess):\n        # use explicit control flow: check equality first\n        if g == q:\n            result.append(0)\n        else:\n            diff = g - q\n            if diff < 0:\n                diff = -diff\n            result.append(diff)\n    return result\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    print(compare([1,2,3,4,5,1],[1,2,3,4,2,-2]))  # -> [0,0,0,0,3,3]\n    print(compare([0,5,0,0,0,4],[4,1,1,0,0,-2]))  # -> [4,4,1,0,0,6]",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.04712,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

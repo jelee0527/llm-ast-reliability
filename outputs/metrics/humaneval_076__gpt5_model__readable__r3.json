@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_076__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"Return True if integer x is an exact power of integer n (n**k == x for some integer k >= 0).\n    Edge cases:\n    - x and n must be integers and x >= 1.\n    - 1 is n**0 for any n != 0, so is_simple_power(1, n) == True for any n != 0.\n    - If n == 0, only x == 0 qualifies (0**k == 0 for k>0) but 0**0 is undefined; we treat only x == 0 as True.\n    - Negative bases are handled: if n < 0, only odd exponents yield negative x, so we check exact integer exponent and sign.\n    \"\"\"\n    # Validate integer inputs\n    if not isinstance(x, int) or not isinstance(n, int):\n        return False\n\n    # Handle trivial cases\n    if n == 0:\n        return x == 0  # 0**k == 0 for positive k; we consider only x==0 as simple power\n    if x == 1:\n        # 1 == n**0 for any n (including negative n), so True\n        return True\n\n    # If n == 1, only x == 1 would be a power; other x are not\n    if n == 1:\n        return x == 1\n\n    # For negative n, consider parity of exponent: result alternates sign.\n    # We can work with absolute values and then check sign consistency.\n    base = abs(n)\n    if base == 1:\n        # n was -1 here (since n==1 handled). (-1)**k is 1 for even k and -1 for odd k.\n        return x in (1, -1)\n\n    if x == 0:\n        # n != 0 here, so no exponent gives 0\n        return False\n\n    # Work with absolute values to find integer exponent\n    abs_x = abs(x)\n    # Calculate approximate exponent using logarithms\n    # Protect against math domain errors\n    try:\n        approx_k = math.log(abs_x, base)\n    except ValueError:\n        return False\n\n    # Round to nearest integer and verify exactly\n    k = int(round(approx_k))\n    if k < 0:\n        return False\n\n    if pow(base, k) != abs_x:\n        return False\n\n    # If original base was negative, x must have sign consistent with (-base)**k\n    if n < 0:\n        # (-base)**k = (-1)**k * base**k\n        if (k % 2 == 0 and x > 0) or (k % 2 == 1 and x < 0):\n            return True\n        else:\n            return False\n\n    # For positive base, sign must be positive\n    return x > 0 and pow(base, k) == x\n\n\n# Optional simple tests when running the module directly\nif __name__ == \"__main__\":\n    tests = [\n        (1, 4, True),\n        (2, 2, True),\n        (8, 2, True),\n        (3, 2, False),\n        (3, 1, False),\n        (5, 3, False),\n        (0, 0, True),   # per our definition\n        (0, 2, False),\n        (-8, -2, True),\n        (1, -5, True),\n        (-1, -1, True),\n    ]\n    for x, n, expected in tests:\n        result = is_simple_power(x, n)\n        print(x, n, result, \"OK\" if result == expected else \"FAIL (expected {})\".format(expected))",
+  "metrics": {
+    "total_nodes": 339,
+    "ast_depth": 10,
+    "branch_count": 13,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 26,
+    "control_flow_ratio": 0.076696,
+    "function_names": [
+      "is_simple_power"
+    ]
+  }
+}

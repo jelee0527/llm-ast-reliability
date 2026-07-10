@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if substring == \"\":\n        # Define: empty substring occurs 0 times (alternative interpretations exist)\n        return 0\n    if not string or len(substring) > len(string):\n        return 0\n\n    count = 0\n    start = 0\n    while True:\n        index = string.find(substring, start)\n        if index == -1:\n            break\n        count += 1\n        # Advance start by one to allow overlapping matches\n        start = index + 1\n    return count\n\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert how_many_times('', 'a') == 0\n    assert how_many_times('aaa', 'a') == 3\n    assert how_many_times('aaaa', 'aa') == 3\n    assert how_many_times('abababa', 'aba') == 3  # overlaps at 0,2,4\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 138,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.065217,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

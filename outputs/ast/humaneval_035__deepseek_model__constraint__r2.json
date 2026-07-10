@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_035__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_035",
+  "task_id": "HumanEval/35",
+  "problem_name": "Max Element",
+  "entry_point": "max_element",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def max_element(l: list):\n    \"\"\"Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n    \"\"\"\n    if not l:\n        raise ValueError(\"list is empty\")\n    max_val = l[0]\n    for x in l[1:]:\n        if x > max_val:\n            max_val = x\n    return max_val",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='max_element',\n      args=arguments(\n        args=[\n          arg(\n            arg='l',\n            annotation=Name(id='list', ctx=Load()))]),\n      body=[\n        Expr(\n          value=Constant(value='Return maximum element in the list.\\n    >>> max_element([1, 2, 3])\\n    3\\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\\n    123\\n    ')),\n        If(\n          test=UnaryOp(\n            op=Not(),\n            operand=Name(id='l', ctx=Load())),\n          body=[\n            Raise(\n              exc=Call(\n                func=Name(id='ValueError', ctx=Load()),\n                args=[\n                  Constant(value='list is empty')]))]),\n        Assign(\n          targets=[\n            Name(id='max_val', ctx=Store())],\n          value=Subscript(\n            value=Name(id='l', ctx=Load()),\n            slice=Constant(value=0),\n            ctx=Load())),\n        For(\n          target=Name(id='x', ctx=Store()),\n          iter=Subscript(\n            value=Name(id='l', ctx=Load()),\n            slice=Slice(\n              lower=Constant(value=1)),\n            ctx=Load()),\n          body=[\n            If(\n              test=Compare(\n                left=Name(id='x', ctx=Load()),\n                ops=[\n                  Gt()],\n                comparators=[\n                  Name(id='max_val', ctx=Load())]),\n              body=[\n                Assign(\n                  targets=[\n                    Name(id='max_val', ctx=Store())],\n                  value=Name(id='x', ctx=Load()))])]),\n        Return(\n          value=Name(id='max_val', ctx=Load()))])])"
+}

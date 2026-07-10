@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:01:47.010711+00:00",
+  "elapsed_seconds": 4.672,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef largest_divisor(n: int) -> int:\n    \"\"\"For a given number n, find the largest number that divides n evenly, smaller than n.\n    Returns 1 for n <= 1 or for prime numbers.\n    \"\"\"\n    if n <= 1:\n        return 1\n    # If n is even, largest proper divisor is n//2\n    if n % 2 == 0:\n        return n // 2\n    # For odd n, search for largest divisor by checking up to sqrt(n)\n    max_divisor = 1\n    limit = int(math.isqrt(n))\n    for d in range(1, limit + 1):\n        if n % d == 0:\n            other = n // d\n            if d != n and d > max_divisor:\n                max_divisor = d\n            if other != n and other > max_divisor:\n                max_divisor = other\n    return max_divisor\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    test_values = [1, 2, 3, 4, 15, 16, 17, 18, 49, 97, 100]\n    for v in test_values:\n        print(f\"{v} -> {largest_divisor(v)}\")",
+  "generated_code": "import math\n\ndef largest_divisor(n: int) -> int:\n    \"\"\"For a given number n, find the largest number that divides n evenly, smaller than n.\n    Returns 1 for n <= 1 or for prime numbers.\n    \"\"\"\n    if n <= 1:\n        return 1\n    # If n is even, largest proper divisor is n//2\n    if n % 2 == 0:\n        return n // 2\n    # For odd n, search for largest divisor by checking up to sqrt(n)\n    max_divisor = 1\n    limit = int(math.isqrt(n))\n    for d in range(1, limit + 1):\n        if n % d == 0:\n            other = n // d\n            if d != n and d > max_divisor:\n                max_divisor = d\n            if other != n and other > max_divisor:\n                max_divisor = other\n    return max_divisor\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    test_values = [1, 2, 3, 4, 15, 16, 17, 18, 49, 97, 100]\n    for v in test_values:\n        print(f\"{v} -> {largest_divisor(v)}\")"
+}

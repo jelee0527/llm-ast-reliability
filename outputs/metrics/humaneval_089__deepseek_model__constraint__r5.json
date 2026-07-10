@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def encrypt(s):\n    result = []\n    for char in s:\n        if 'a' <= char <= 'z':\n            shifted = (ord(char) - ord('a') + 4) % 26\n            result.append(chr(ord('a') + shifted))\n        elif 'A' <= char <= 'Z':\n            shifted = (ord(char) - ord('A') + 4) % 26\n            result.append(chr(ord('A') + shifted))\n        else:\n            result.append(char)\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.033613,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

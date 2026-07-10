@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:50:00.990327+00:00",
+  "elapsed_seconds": 5.148,
+  "official_prompt": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a space-separated ASCII representation of notes into beat lengths.\n\n    Legend:\n    'o'  -> whole note -> 4 beats\n    'o|' -> half note  -> 2 beats\n    '.|' -> quarter note-> 1 beat\n    \"\"\"\n    # Define mapping from token to beat count\n    token_to_beats = {\n        'o': 4,\n        'o|': 2,\n        '.|': 1,\n    }\n\n    # Split the input by whitespace to get tokens.\n    # Filter out any empty tokens that could arise from extra spaces.\n    tokens = [t for t in music_string.split() if t]\n\n    # Convert tokens to beats, raising ValueError for unknown tokens.\n    beats: List[int] = []\n    for t in tokens:\n        if t in token_to_beats:\n            beats.append(token_to_beats[t])\n        else:\n            raise ValueError(f\"Unknown note token: {t!r}\")\n\n    return beats\n\n# Example usage (can be removed/commented out if not desired):\nif __name__ == \"__main__\":\n    example = 'o o| .| o| o| .| .| .| .| o o'\n    print(parse_music(example))",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a space-separated ASCII representation of notes into beat lengths.\n\n    Legend:\n    'o'  -> whole note -> 4 beats\n    'o|' -> half note  -> 2 beats\n    '.|' -> quarter note-> 1 beat\n    \"\"\"\n    # Define mapping from token to beat count\n    token_to_beats = {\n        'o': 4,\n        'o|': 2,\n        '.|': 1,\n    }\n\n    # Split the input by whitespace to get tokens.\n    # Filter out any empty tokens that could arise from extra spaces.\n    tokens = [t for t in music_string.split() if t]\n\n    # Convert tokens to beats, raising ValueError for unknown tokens.\n    beats: List[int] = []\n    for t in tokens:\n        if t in token_to_beats:\n            beats.append(token_to_beats[t])\n        else:\n            raise ValueError(f\"Unknown note token: {t!r}\")\n\n    return beats\n\n# Example usage (can be removed/commented out if not desired):\nif __name__ == \"__main__\":\n    example = 'o o| .| o| o| .| .| .| .| o o'\n    print(parse_music(example))"
+}

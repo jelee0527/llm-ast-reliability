@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of integers by the number of 1s in their binary representation (ascending).\n    For equal counts of 1s, sort by the integer's value (ascending).\n    \"\"\"\n    # Use tuple key: (count of 1 bits in absolute value's binary for non-negative integers?)\n    # Problem statement mentions non-negative integers but examples include negatives.\n    # For negatives, use two's complement would be infinite ones; instead, count ones in\n    # the binary representation of the absolute value (as examples imply sorting by value for negatives).\n    def ones_count(n: int) -> int:\n        return bin(abs(n)).count(\"1\")\n    return sorted(arr, key=lambda x: (ones_count(x), x))",
+  "metrics": {
+    "total_nodes": 59,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.033898,
+    "function_names": [
+      "sort_array",
+      "ones_count"
+    ]
+  }
+}

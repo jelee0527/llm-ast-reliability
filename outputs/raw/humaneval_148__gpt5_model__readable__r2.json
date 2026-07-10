@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_148",
+  "task_id": "HumanEval/148",
+  "problem_name": "Bf",
+  "entry_point": "bf",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:25:24.746182+00:00",
+  "elapsed_seconds": 3.775,
+  "official_prompt": "\ndef bf(planet1, planet2):\n    '''\n    There are eight planets in our solar system: the closerst to the Sun \n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, \n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2. \n    The function should return a tuple containing all planets whose orbits are \n    located between the orbit of planet1 and the orbit of planet2, sorted by \n    the proximity to the sun. \n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names. \n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef bf(planet1, planet2):\n    '''\n    There are eight planets in our solar system: the closerst to the Sun \n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, \n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2. \n    The function should return a tuple containing all planets whose orbits are \n    located between the orbit of planet1 and the orbit of planet2, sorted by \n    the proximity to the sun. \n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names. \n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n    '''\n\n",
+  "raw_response": "from typing import Tuple\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    \"\"\"\n    Return a tuple of planet names whose orbits lie between planet1 and planet2,\n    ordered by proximity to the Sun (from inner to outer).\n    If either input is not a valid planet name, return an empty tuple.\n    \"\"\"\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n\n    # Validate inputs\n    if planet1 not in planets or planet2 not in planets:\n        return tuple()\n\n    idx1 = planets.index(planet1)\n    idx2 = planets.index(planet2)\n\n    # Determine range between indices (exclusive)\n    if idx1 < idx2:\n        middle = planets[idx1 + 1:idx2]\n    elif idx1 > idx2:\n        middle = planets[idx2 + 1:idx1]\n    else:\n        middle = []\n\n    return tuple(middle)",
+  "generated_code": "from typing import Tuple\n\ndef bf(planet1: str, planet2: str) -> Tuple[str, ...]:\n    \"\"\"\n    Return a tuple of planet names whose orbits lie between planet1 and planet2,\n    ordered by proximity to the Sun (from inner to outer).\n    If either input is not a valid planet name, return an empty tuple.\n    \"\"\"\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n\n    # Validate inputs\n    if planet1 not in planets or planet2 not in planets:\n        return tuple()\n\n    idx1 = planets.index(planet1)\n    idx2 = planets.index(planet2)\n\n    # Determine range between indices (exclusive)\n    if idx1 < idx2:\n        middle = planets[idx1 + 1:idx2]\n    elif idx1 > idx2:\n        middle = planets[idx2 + 1:idx1]\n    else:\n        middle = []\n\n    return tuple(middle)"
+}

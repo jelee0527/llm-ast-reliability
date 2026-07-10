@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_064__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_064",
+  "task_id": "HumanEval/64",
+  "problem_name": "Vowels Count",
+  "entry_point": "vowels_count",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def vowels_count(s):\n    \"\"\"Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n    Example:\n    >>> vowels_count(\"abcde\")\n    2\n    >>> vowels_count(\"ACEDY\")\n    3\n    \"\"\"\n    s_lower = s.lower()\n    vowel_count = 0\n    standard_vowels = set('aeiou')\n    \n    for i, char in enumerate(s_lower):\n        if char in standard_vowels:\n            vowel_count += 1\n        elif char == 'y' and i == len(s_lower) - 1:\n            vowel_count += 1\n    \n    return vowel_count",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.051948,
+    "function_names": [
+      "vowels_count"
+    ]
+  }
+}

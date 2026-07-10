@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:56:19.829539+00:00",
+  "elapsed_seconds": 4.297,
+  "official_prompt": "\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Return the number of elements in arr whose sum of digits > 0.\n    For negative numbers, the first digit is negative (e.g., -123 -> -1 + 2 + 3 = 4? actually -1+2+3 = 4? Wait compute correctly).\n    Examples:\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        s = str(abs(n))\n        if s == \"0\":\n            return 0\n        digits = [int(ch) for ch in s]\n        if n < 0:\n            digits[0] = -digits[0]\n        return sum(digits)\n\n    count = 0\n    for x in arr:\n        if signed_digit_sum(x) > 0:\n            count += 1\n    return count\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert count_nums([]) == 0\n    assert count_nums([-1, 11, -11]) == 1\n    assert count_nums([1, 1, 2]) == 3\n    print(\"Tests passed.\")",
+  "generated_code": "from typing import List\n\ndef count_nums(arr: List[int]) -> int:\n    \"\"\"\n    Return the number of elements in arr whose sum of digits > 0.\n    For negative numbers, the first digit is negative (e.g., -123 -> -1 + 2 + 3 = 4? actually -1+2+3 = 4? Wait compute correctly).\n    Examples:\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n    def signed_digit_sum(n: int) -> int:\n        s = str(abs(n))\n        if s == \"0\":\n            return 0\n        digits = [int(ch) for ch in s]\n        if n < 0:\n            digits[0] = -digits[0]\n        return sum(digits)\n\n    count = 0\n    for x in arr:\n        if signed_digit_sum(x) > 0:\n            count += 1\n    return count\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert count_nums([]) == 0\n    assert count_nums([-1, 11, -11]) == 1\n    assert count_nums([1, 1, 2]) == 3\n    print(\"Tests passed.\")"
+}

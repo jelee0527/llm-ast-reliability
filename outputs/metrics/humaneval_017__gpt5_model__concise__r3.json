@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse special ASCII music notation into beat lengths.\"\"\"\n    mapping = {'o': 4, 'o|': 2, '.|': 1}\n    if not music_string:\n        return []\n    tokens = music_string.split()\n    return [mapping.get(tok, 0) for tok in tokens]",
+  "metrics": {
+    "total_nodes": 57,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

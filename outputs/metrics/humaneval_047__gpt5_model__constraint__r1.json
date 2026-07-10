@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list.\")\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Make a shallow copy to avoid mutating input\n    s = list(l)\n    # Ensure elements are comparable and sort\n    try:\n        s.sort()\n    except TypeError:\n        # Try to handle numeric-like types by converting to float where possible\n        try:\n            s = sorted(float(x) for x in l)\n        except Exception:\n            raise\n    mid = n // 2\n    if n % 2 == 1:\n        return s[mid]\n    else:\n        # average of two middle elements; ensure float if needed\n        a = s[mid - 1]\n        b = s[mid]\n        try:\n            return (a + b) / 2\n        except TypeError:\n            # fallback: try numeric conversion\n            return (float(a) + float(b)) / 2",
+  "metrics": {
+    "total_nodes": 164,
+    "ast_depth": 11,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.073171,
+    "function_names": [
+      "median"
+    ]
+  }
+}

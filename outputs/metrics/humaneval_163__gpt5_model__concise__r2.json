@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int) and a > 0 and b > 0):\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = min(a, b), max(a, b)\n    res = []\n    for n in range(lo, hi + 1):\n        s = str(n)\n        if all(ch in '024680' for ch in s) and any(ch in '024680' for ch in s):\n            # ensure at least one digit is even (digits allowed are even only)\n            # above condition redundant but keeps intent clear\n            res.append(n)\n    return res",
+  "metrics": {
+    "total_nodes": 132,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.037879,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

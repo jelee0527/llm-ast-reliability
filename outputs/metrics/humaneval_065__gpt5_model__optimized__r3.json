@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_065__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_065",
+  "task_id": "HumanEval/65",
+  "problem_name": "Circular Shift",
+  "entry_point": "circular_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef circular_shift(x, shift):\n    \"\"\"Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n    \"\"\"\n    s = str(abs(int(x)))\n    n = len(s)\n    if n == 0:\n        return \"\"\n    if shift < 0:\n        # Normalize negative shifts to equivalent positive right shift\n        shift = (-shift) % n\n        # negative original means left shift; convert to right shift equivalent\n        shift = (n - shift) % n\n    if shift > n:\n        return s[::-1]\n    # Effective right shift in range 0..n-1\n    k = shift % n\n    if k == 0:\n        res = s\n    else:\n        res = s[-k:] + s[:-k]\n    # Preserve sign of original x\n    if int(x) < 0:\n        return \"-\" + res\n    return res",
+  "metrics": {
+    "total_nodes": 146,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.061644,
+    "function_names": [
+      "circular_shift"
+    ]
+  }
+}

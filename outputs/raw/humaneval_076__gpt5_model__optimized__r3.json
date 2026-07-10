@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_076",
+  "task_id": "HumanEval/76",
+  "problem_name": "Is Simple Power",
+  "entry_point": "is_simple_power",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:51:54.639041+00:00",
+  "elapsed_seconds": 6.441,
+  "official_prompt": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"\n    Return True if x is an exact integer power of n: x == n**k for some nonnegative integer k.\n    Examples:\n      is_simple_power(1, 4) -> True  (4**0)\n      is_simple_power(2, 2) -> True  (2**1)\n      is_simple_power(8, 2) -> True  (2**3)\n    \"\"\"\n    # Handle edge cases\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    if x < 1:\n        return False\n    if n == 1:\n        return x == 1\n    if n == 0:\n        return x == 0\n    if x == 1:\n        return True  # n**0 = 1 for any n != 0\n\n    # For n == -1, powers alternate between 1 and -1\n    if n == -1:\n        return x in (1, -1)\n\n    # Work with absolute values when n negative: only even exponents produce positive x\n    neg_base = n < 0\n    abs_n = abs(n)\n\n    # If abs_n == 1 handled above; now abs_n >= 2\n    # Repeatedly divide x by abs_n while divisible\n    val = x\n    while val % abs_n == 0:\n        val //= abs_n\n        if val == 1:\n            # If base was negative and exponent is odd then result would be negative,\n            # but we got positive x==1 which is fine for any exponent.\n            return True\n    return False",
+  "generated_code": "import math\n\ndef is_simple_power(x, n):\n    \"\"\"\n    Return True if x is an exact integer power of n: x == n**k for some nonnegative integer k.\n    Examples:\n      is_simple_power(1, 4) -> True  (4**0)\n      is_simple_power(2, 2) -> True  (2**1)\n      is_simple_power(8, 2) -> True  (2**3)\n    \"\"\"\n    # Handle edge cases\n    if not isinstance(x, (int,)) or not isinstance(n, (int,)):\n        return False\n    if x < 1:\n        return False\n    if n == 1:\n        return x == 1\n    if n == 0:\n        return x == 0\n    if x == 1:\n        return True  # n**0 = 1 for any n != 0\n\n    # For n == -1, powers alternate between 1 and -1\n    if n == -1:\n        return x in (1, -1)\n\n    # Work with absolute values when n negative: only even exponents produce positive x\n    neg_base = n < 0\n    abs_n = abs(n)\n\n    # If abs_n == 1 handled above; now abs_n >= 2\n    # Repeatedly divide x by abs_n while divisible\n    val = x\n    while val % abs_n == 0:\n        val //= abs_n\n        if val == 1:\n            # If base was negative and exponent is odd then result would be negative,\n            # but we got positive x==1 which is fine for any exponent.\n            return True\n    return False"
+}

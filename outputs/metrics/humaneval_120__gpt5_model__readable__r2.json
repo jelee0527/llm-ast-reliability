@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport heapq\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    # Handle edge cases\n    if k <= 0:\n        return []\n    if k >= len(arr):\n        return sorted(arr)\n    # Use a min-heap of size k to track the largest k elements\n    min_heap = []\n    for num in arr:\n        if len(min_heap) < k:\n            heapq.heappush(min_heap, num)\n        else:\n            # If current number is larger than the smallest in heap, replace it\n            if num > min_heap[0]:\n                heapq.heapreplace(min_heap, num)\n    # min_heap contains the k largest elements in arbitrary order; sort before returning\n    return sorted(min_heap)",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.075472,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_027__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    # Validate input type\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n\n    # Build result by flipping case of alphabetic characters\n    result_chars = []\n    for ch in string:\n        if 'a' <= ch <= 'z':\n            # lowercase to uppercase\n            # ord diff between 'a' and 'A' is 32\n            result_chars.append(chr(ord(ch) - 32))\n        elif 'A' <= ch <= 'Z':\n            # uppercase to lowercase\n            result_chars.append(chr(ord(ch) + 32))\n        else:\n            # non-alphabetic characters unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\nif __name__ == \"__main__\":\n    # Simple tests\n    assert flip_case(\"Hello\") == \"hELLO\"\n    assert flip_case(\"\") == \"\"\n    assert flip_case(\"123!@#\") == \"123!@#\"\n    assert flip_case(\"aBcZ\") == \"AbCz\"\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 143,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.048951,
+    "function_names": [
+      "flip_case"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:23:20.866886+00:00",
+  "elapsed_seconds": 3.541,
+  "official_prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    res: List[str] = []\n    balance = 0\n    start = None\n    for i, ch in enumerate(s):\n        if ch == '(':\n            if balance == 0:\n                start = i\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n            if balance == 0 and start is not None:\n                res.append(s[start:i+1])\n                start = None\n        else:\n            # ignore other characters (if any)\n            continue\n    return res\n\n# Simple test when run as script\nif __name__ == \"__main__\":\n    print(separate_paren_groups('( ) (( )) (( )( ))'))",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    res: List[str] = []\n    balance = 0\n    start = None\n    for i, ch in enumerate(s):\n        if ch == '(':\n            if balance == 0:\n                start = i\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n            if balance == 0 and start is not None:\n                res.append(s[start:i+1])\n                start = None\n        else:\n            # ignore other characters (if any)\n            continue\n    return res\n\n# Simple test when run as script\nif __name__ == \"__main__\":\n    print(separate_paren_groups('( ) (( )) (( )( ))'))"
+}

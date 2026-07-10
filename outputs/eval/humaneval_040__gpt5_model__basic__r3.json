@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_040__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_040",
+  "task_id": "HumanEval/40",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

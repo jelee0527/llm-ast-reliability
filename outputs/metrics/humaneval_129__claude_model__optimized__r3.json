@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    # Get neighbors of a cell\n    def get_neighbors(r, c):\n        neighbors = []\n        for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < n and 0 <= nc < n:\n                neighbors.append((nr, nc))\n        return neighbors\n    \n    # For each cell, precompute the minimum neighbor value\n    min_neighbor = {}\n    for i in range(n):\n        for j in range(n):\n            neighbors = get_neighbors(i, j)\n            min_neighbor[(i,j)] = min(grid[nr][nc] for nr, nc in neighbors)\n    \n    # Use BFS/dynamic programming approach\n    # State: (row, col) -> minimum path list of length k starting optimally\n    # We'll use a greedy approach with memoization\n    # At each step, from current cell, pick the move that leads to lexicographically smallest path\n    \n    # Actually, let's think about this differently:\n    # The optimal path will start from the cell with value 1 (or near it)\n    # and at each step move to the neighbor with minimum value\n    # But we need to be careful - greedy works here because at each step\n    # we want the smallest possible next value\n    \n    # For each starting cell, simulate k steps greedily\n    # Then pick the best overall path\n    \n    # But greedy at each step might not be globally optimal\n    # We need proper DP\n    \n    # dp[step][r][c] = minimum path of length `step` ending at (r,c)\n    # This would be O(k * n^2) states, each storing a list of length step -> too much memory\n    \n    # Better: since we want lexicographically minimum, at each position\n    # we only need to track which cells are reachable with the current minimum path prefix\n    \n    # Start: find minimum value cell - that's always the best start\n    # At each step, from the set of current \"optimal\" cells, expand to neighbors\n    # keeping only those that achieve the minimum next value\n    \n    # Initialize: best starting value is 1\n    min_val = 1\n    current_cells = {pos[min_val]}\n    path = [min_val]\n    \n    for step in range(k - 1):\n        # Find minimum neighbor value across all current cells\n        best_next = float('inf')\n        for (r, c) in current_cells:\n            for (nr, nc) in get_neighbors(r, c):\n                best_next = min(best_next, grid[nr][nc])\n        \n        path.append(best_next)\n        \n        # Update current cells to all neighbors that have best_next value\n        next_cells = set()\n        for (r, c) in current_cells:\n            for (nr, nc) in get_neighbors(r, c):\n                if grid[nr][nc] == best_next:\n                    next_cells.add((nr, nc))\n        \n        current_cells = next_cells\n    \n    # But wait - we also need to consider all possible starting cells, not just cell with value 1\n    # Actually cell with value 1 is always the best start since 1 is the minimum possible value\n    # So path[0] = 1 always gives the lexicographically smallest start\n    \n    return path",
+  "metrics": {
+    "total_nodes": 363,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 10,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.038567,
+    "function_names": [
+      "minPath",
+      "get_neighbors"
+    ]
+  }
+}

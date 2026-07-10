@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_140__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_140",
+  "task_id": "HumanEval/140",
+  "problem_name": "Fix Spaces",
+  "entry_point": "fix_spaces",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def fix_spaces(text):\n    result = []\n    i = 0\n    while i < len(text):\n        if text[i] == ' ':\n            count = 0\n            while i < len(text) and text[i] == ' ':\n                count += 1\n                i += 1\n            if count > 2:\n                result.append('-')\n            else:\n                result.append('_' * count)\n        else:\n            result.append(text[i])\n            i += 1\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.043103,
+    "function_names": [
+      "fix_spaces"
+    ]
+  }
+}

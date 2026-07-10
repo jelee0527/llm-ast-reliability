@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_129__claude_model__readable__r4.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value in the grid\n    value_to_position = {}\n    for row in range(n):\n        for col in range(n):\n            value_to_position[grid[row][col]] = (row, col)\n    \n    def get_neighbors(row, col):\n        neighbors = []\n        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n        for dr, dc in directions:\n            new_row, new_col = row + dr, col + dc\n            if 0 <= new_row < n and 0 <= new_col < n:\n                neighbors.append((new_row, new_col))\n        return neighbors\n    \n    def get_min_neighbor_value(row, col):\n        neighbors = get_neighbors(row, col)\n        return min(grid[r][c] for r, c in neighbors)\n    \n    # Use dynamic programming where state is (row, col, steps_remaining)\n    # dp[row][col][step] = minimum path list starting from (row, col) with 'step' steps remaining\n    # To avoid storing full lists, we use a greedy approach with BFS/DP\n    \n    # dp[row][col] = minimum path of length k starting from cell (row, col)\n    # We build this bottom up\n    \n    # For each cell, compute the best path of length k\n    # dp[steps][row][col] = minimum path value list of length 'steps' starting at (row,col)\n    # This is memory intensive, so instead we track just the first element comparison\n    \n    # Better approach: at each step, track the minimum path\n    # paths[row][col] = best path starting at (row, col) for current length\n    \n    # Initialize for k=1: path is just the cell value\n    current_paths = {}\n    for row in range(n):\n        for col in range(n):\n            current_paths[(row, col)] = [grid[row][col]]\n    \n    # Extend paths step by step\n    for step in range(1, k):\n        new_paths = {}\n        for row in range(n):\n            for col in range(n):\n                best_path = None\n                neighbors = get_neighbors(row, col)\n                for nr, nc in neighbors:\n                    # Path: go to (row, col) first, then follow best path from neighbor\n                    candidate_path = [grid[row][col]] + current_paths[(nr, nc)]\n                    if best_path is None or candidate_path < best_path:\n                        best_path = candidate_path\n                new_paths[(row, col)] = best_path\n        current_paths = new_paths\n    \n    # Find the overall minimum path across all starting cells\n    min_path = None\n    for row in range(n):\n        for col in range(n):\n            path = current_paths[(row, col)]\n            if min_path is None or path < min_path:\n                min_path = path\n    \n    return min_path",
+  "metrics": {
+    "total_nodes": 404,
+    "ast_depth": 13,
+    "branch_count": 3,
+    "loop_count": 11,
+    "function_count": 3,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.042079,
+    "function_names": [
+      "minPath",
+      "get_neighbors",
+      "get_min_neighbor_value"
+    ]
+  }
+}

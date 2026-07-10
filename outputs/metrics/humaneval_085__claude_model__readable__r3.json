@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_085__claude_model__readable__r3.json",
+  "problem_id": "humaneval_085",
+  "task_id": "HumanEval/85",
+  "problem_name": "Add",
+  "entry_point": "add",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n    total = 0\n    for index, value in enumerate(lst):\n        if index % 2 != 0 and value % 2 == 0:\n            total += value\n    return total",
+  "metrics": {
+    "total_nodes": 50,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.06,
+    "function_names": [
+      "add"
+    ]
+  }
+}

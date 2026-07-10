@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_055",
+  "task_id": "HumanEval/55",
+  "problem_name": "Fib",
+  "entry_point": "fib",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:05:23.136819+00:00",
+  "elapsed_seconds": 4.028,
+  "official_prompt": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n\n",
+  "raw_response": "from functools import lru_cache\nimport sys\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number using fast doubling (handles n>=0).\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # fast doubling method\n    def _fd(k):\n        if k == 0:\n            return (0, 1)\n        a, b = _fd(k >> 1)\n        c = a * ( (b << 1) - a )\n        d = a * a + b * b\n        if k & 1:\n            return (d, c + d)\n        else:\n            return (c, d)\n    return _fd(n)[0]\n\nif __name__ == \"__main__\":\n    # simple CLI for testing\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(fib(n))\n        except Exception as e:\n            print(\"Error:\", e)",
+  "generated_code": "from functools import lru_cache\nimport sys\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number using fast doubling (handles n>=0).\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # fast doubling method\n    def _fd(k):\n        if k == 0:\n            return (0, 1)\n        a, b = _fd(k >> 1)\n        c = a * ( (b << 1) - a )\n        d = a * a + b * b\n        if k & 1:\n            return (d, c + d)\n        else:\n            return (c, d)\n    return _fd(n)[0]\n\nif __name__ == \"__main__\":\n    # simple CLI for testing\n    if len(sys.argv) > 1:\n        try:\n            n = int(sys.argv[1])\n            print(fib(n))\n        except Exception as e:\n            print(\"Error:\", e)"
+}

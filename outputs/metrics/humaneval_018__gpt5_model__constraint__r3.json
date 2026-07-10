@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_018__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_018",
+  "task_id": "HumanEval/18",
+  "problem_name": "How Many Times",
+  "entry_point": "how_many_times",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlapping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    if substring is None or string is None:\n        return 0\n    if substring == \"\":\n        # Define: empty substring occurs len(string)+1 times usually,\n        # but for this utility we return 0 as counting meaningful occurrences.\n        return 0\n    count = 0\n    start = 0\n    while True:\n        idx = string.find(substring, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # allow overlapping by advancing only one position\n    return count\n\n# Quick self-tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"\", \"a\", 0),\n        (\"aaa\", \"a\", 3),\n        (\"aaaa\", \"aa\", 3),\n        (\"abababa\", \"aba\", 3),\n        (\"aaaaa\", \"aa\", 4),\n        (\"abc\", \"\", 0),\n        (\"abc\", \"d\", 0),\n    ]\n    all_ok = True\n    for s, sub, expected in tests:\n        result = how_many_times(s, sub)\n        ok = result == expected\n        print(f\"how_many_times({s!r}, {sub!r}) = {result} (expected {expected}) -> {'OK' if ok else 'FAIL'}\")\n        if not ok:\n            all_ok = False\n    if not all_ok:\n        raise SystemExit(1)",
+  "metrics": {
+    "total_nodes": 212,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.066038,
+    "function_names": [
+      "how_many_times"
+    ]
+  }
+}

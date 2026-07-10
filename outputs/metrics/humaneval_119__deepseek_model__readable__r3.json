@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def match_parens(lst):\n    def is_balanced(s):\n        balance = 0\n        for char in s:\n            if char == '(':\n                balance += 1\n            else:\n                balance -= 1\n            if balance < 0:\n                return False\n        return balance == 0\n\n    first, second = lst\n    return 'Yes' if is_balanced(first + second) or is_balanced(second + first) else 'No'",
+  "metrics": {
+    "total_nodes": 79,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.088608,
+    "function_names": [
+      "match_parens",
+      "is_balanced"
+    ]
+  }
+}

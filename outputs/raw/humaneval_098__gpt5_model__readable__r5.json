@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_098",
+  "task_id": "HumanEval/98",
+  "problem_name": "Count Upper",
+  "entry_point": "count_upper",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:36:38.896272+00:00",
+  "elapsed_seconds": 4.121,
+  "official_prompt": "\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef count_upper(s):\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n    \n    For example:\n    count_upper('aBCdEf') returns 1\n    count_upper('abcdefg') returns 0\n    count_upper('dBBE') returns 0\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef count_upper(s: str) -> int:\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n\n    Even indices means index % 2 == 0 (0-based indexing).\n    Uppercase vowels are the characters: 'A', 'E', 'I', 'O', 'U'.\n\n    Examples:\n    count_upper('aBCdEf') -> 1\n    count_upper('abcdefg') -> 0\n    count_upper('dBBE') -> 0\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string.\")\n\n    uppercase_vowels: set = {\"A\", \"E\", \"I\", \"O\", \"U\"}\n    count = 0\n    # Iterate over even indices only for efficiency\n    for i in range(0, len(s), 2):\n        if s[i] in uppercase_vowels:\n            count += 1\n    return count\n\n# Quick self-tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"aBCdEf\", 1),\n        (\"abcdefg\", 0),\n        (\"dBBE\", 0),\n        (\"AEIOU\", 3),   # indices 0,2,4 are A,I,U -> 3\n        (\"\", 0),\n        (\"A\", 1),\n        (\"aE\", 0),\n    ]\n    for inp, expected in tests:\n        result = count_upper(inp)\n        print(f\"{inp!r} -> {result} (expected {expected})\")",
+  "generated_code": "from typing import Iterable\n\ndef count_upper(s: str) -> int:\n    \"\"\"\n    Given a string s, count the number of uppercase vowels in even indices.\n\n    Even indices means index % 2 == 0 (0-based indexing).\n    Uppercase vowels are the characters: 'A', 'E', 'I', 'O', 'U'.\n\n    Examples:\n    count_upper('aBCdEf') -> 1\n    count_upper('abcdefg') -> 0\n    count_upper('dBBE') -> 0\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string.\")\n\n    uppercase_vowels: set = {\"A\", \"E\", \"I\", \"O\", \"U\"}\n    count = 0\n    # Iterate over even indices only for efficiency\n    for i in range(0, len(s), 2):\n        if s[i] in uppercase_vowels:\n            count += 1\n    return count\n\n# Quick self-tests when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"aBCdEf\", 1),\n        (\"abcdefg\", 0),\n        (\"dBBE\", 0),\n        (\"AEIOU\", 3),   # indices 0,2,4 are A,I,U -> 3\n        (\"\", 0),\n        (\"A\", 1),\n        (\"aE\", 0),\n    ]\n    for inp, expected in tests:\n        result = count_upper(inp)\n        print(f\"{inp!r} -> {result} (expected {expected})\")"
+}

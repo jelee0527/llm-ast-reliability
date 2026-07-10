@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase letters by 4 positions (two multiplied by two).\n    Non-lowercase characters are left unchanged.\n    Examples:\n    encrypt('hi') -> 'lm'\n    encrypt('asdfghjkl') -> 'ewhjklnop'\n    encrypt('gf') -> 'kj'\n    encrypt('et') -> 'ix'\n    \"\"\"\n    shift = 2 * 2  # two multiplied by two => shift of 4\n    lower = string.ascii_lowercase\n    result_chars = []\n    for ch in s:\n        if ch in lower:\n            idx = ord(ch) - ord('a')\n            new_idx = (idx + shift) % 26\n            result_chars.append(chr(ord('a') + new_idx))\n        else:\n            # If character is uppercase, preserve case and shift similarly\n            if ch.isupper():\n                idx = ord(ch) - ord('A')\n                new_idx = (idx + shift) % 26\n                result_chars.append(chr(ord('A') + new_idx))\n            else:\n                result_chars.append(ch)\n    return ''.join(result_chars)",
+  "metrics": {
+    "total_nodes": 146,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.027397,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

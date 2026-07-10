@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\"Return True if the input string of '(' and ')' is properly balanced.\n\n    Every opening bracket must have a corresponding closing bracket and the\n    order must be valid (no closing bracket before its matching opener).\n    \"\"\"\n    balance = 0\n    for ch in brackets:\n        if ch == '(':\n            balance += 1\n        elif ch == ')':\n            balance -= 1\n        else:\n            # If other characters appear, treat as invalid input\n            return False\n        if balance < 0:\n            # A closing bracket appeared without a matching opener\n            return False\n    return balance == 0\n\n\n# Basic self-test when run as a script\nif __name__ == \"__main__\":\n    tests = {\n        \"(\": False,\n        \"()\": True,\n        \"(()())\": True,\n        \")(()\": False,\n        \"\": True,\n        \"((()))\": True,\n        \"(()\": False,\n        \"())(\": False,\n        \"abc\": False,\n    }\n    for s, expected in tests.items():\n        result = correct_bracketing(s)\n        print(f\"{s!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 124,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.072581,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def will_it_fly(q, w):\n    \"\"\"\n    Return True if list q is palindromic (reads same forwards/backwards)\n    and the sum of its elements is less than or equal to w. Otherwise False.\n    \"\"\"\n    # Ensure q is a sequence; handle None gracefully\n    if q is None:\n        return False\n    # Check palindrome: compare list to its reversed version\n    try:\n        is_balanced = list(q) == list(reversed(q))\n    except TypeError:\n        # If elements are not comparable in this way, not balanced\n        return False\n    # Compute total weight; if elements aren't numeric this will raise TypeError\n    try:\n        total_weight = sum(q)\n    except TypeError:\n        return False\n    return is_balanced and total_weight <= w\n\n\n# Example quick tests (will run when file executed)\nif __name__ == \"__main__\":\n    tests = [\n        (([1, 2], 5), False),\n        (([3, 2, 3], 1), False),\n        (([3, 2, 3], 9), True),\n        (([3], 5), True),\n        (([], 0), True),  # empty list is palindromic and sum 0\n    ]\n    for args, expected in tests:\n        result = will_it_fly(*args)\n        print(f\"will_it_fly{args} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.055901,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n    if arr is None or len(arr) == 0:\n        return None\n\n    total_magnitude = 0\n    sign_product = 1\n\n    for x in arr:\n        # update magnitude sum\n        total_magnitude += abs(x)\n        # determine sign contribution\n        if x == 0:\n            sign_product = 0\n            # once zero, product remains zero; but continue to sum magnitudes\n        else:\n            if sign_product != 0:\n                if x < 0:\n                    sign_product *= -1\n                else:\n                    sign_product *= 1\n\n    return None if total_magnitude is None else sign_product * total_magnitude\n\nif __name__ == \"__main__\":\n    # quick tests\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6  # signs multiply to -1, sum magnitudes 6 -> -6\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.050847,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

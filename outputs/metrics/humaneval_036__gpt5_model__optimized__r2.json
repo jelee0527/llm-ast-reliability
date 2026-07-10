@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_036__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_036",
+  "task_id": "HumanEval/36",
+  "problem_name": "Fizz Buzz",
+  "entry_point": "fizz_buzz",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Iterator\n\ndef fizz_buzz(n: int) -> int:\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\"\"\"\n    if n <= 0:\n        return 0\n    def gen_multiples(limit: int) -> Iterator[int]:\n        # Generate multiples of 11 or 13 below limit without duplicates\n        seen = set()\n        # iterate multiples of 11\n        m = 11\n        while m < limit:\n            seen.add(m)\n            m += 11\n        # iterate multiples of 13\n        m = 13\n        while m < limit:\n            seen.add(m)\n            m += 13\n        for x in seen:\n            yield x\n    count = 0\n    for value in gen_multiples(n):\n        # count '7' digits\n        count += str(value).count('7')\n    return count\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 136,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 4,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "fizz_buzz",
+      "gen_multiples"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    \"\"\"\n    if S is None:\n        return 0\n    # Split by sentence delimiters ., ?, !\n    # Keep it simple: split on those characters\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for part in parts:\n        # Strip whitespace\n        s = part.strip()\n        if not s:\n            continue\n        # Get first word if any\n        # Split on whitespace\n        words = s.split()\n        if not words:\n            continue\n        first = words[0]\n        # Compare exactly to \"I\"\n        if first == \"I\":\n            count += 1\n    return count\n\n# Basic tests\nif __name__ == \"__main__\":\n    print(is_bored(\"Hello world\"))  # 0\n    print(is_bored(\"The sky is blue. The sun is shining. I love this weather\"))  # 1\n    print(is_bored(\"I am here. I? You! I.\"))  # 3",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.086207,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

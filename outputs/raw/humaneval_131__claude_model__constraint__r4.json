@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_131",
+  "task_id": "HumanEval/131",
+  "problem_name": "Digits",
+  "entry_point": "digits",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:24:22.319815+00:00",
+  "elapsed_seconds": 1.933,
+  "official_prompt": "\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n\n",
+  "raw_response": "def digits(n):\n    product = 1\n    found_odd = False\n    for ch in str(n):\n        d = int(ch)\n        if d % 2 != 0:\n            product *= d\n            found_odd = True\n    if not found_odd:\n        return 0\n    return product",
+  "generated_code": "def digits(n):\n    product = 1\n    found_odd = False\n    for ch in str(n):\n        d = int(ch)\n        if d % 2 != 0:\n            product *= d\n            found_odd = True\n    if not found_odd:\n        return 0\n    return product"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_144__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if the product of fractions x and n is a whole number, False otherwise.\n    x and n are strings in the form \"numerator/denominator\" with positive integer parts.\n    \"\"\"\n    # Parse fraction string into Fraction object\n    def parse_fraction(frac_str):\n        num_str, denom_str = frac_str.split('/')\n        return Fraction(int(num_str), int(denom_str))\n    frac_x = parse_fraction(x)\n    frac_n = parse_fraction(n)\n    product = frac_x * frac_n\n    # A Fraction is a whole number if its denominator equals 1\n    return product.denominator == 1\n\n# Example quick tests\nif __name__ == \"__main__\":\n    assert simplify(\"1/5\", \"5/1\") == True\n    assert simplify(\"1/6\", \"2/1\") == False\n    assert simplify(\"7/10\", \"10/2\") == False\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 110,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.027273,
+    "function_names": [
+      "simplify",
+      "parse_fraction"
+    ]
+  }
+}

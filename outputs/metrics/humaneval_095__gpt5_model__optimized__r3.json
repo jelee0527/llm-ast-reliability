@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any, Dict\n\ndef check_dict_case(d: Dict[Any, Any]) -> bool:\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False if the given dictionary is empty.\n    \"\"\"\n    if not isinstance(d, dict):\n        raise TypeError(\"Input must be a dictionary\")\n    if len(d) == 0:\n        return False\n\n    seen_lower = False\n    seen_upper = False\n\n    for key in d.keys():\n        if not isinstance(key, str):\n            return False\n        # A key that has no letters (e.g., \"123\", \"_\") is neither lower nor upper;\n        # treat such keys as preventing a pure lower/upper classification.\n        has_alpha = False\n        is_all_lower = True\n        is_all_upper = True\n        for ch in key:\n            if ch.isalpha():\n                has_alpha = True\n                if not ch.islower():\n                    is_all_lower = False\n                if not ch.isupper():\n                    is_all_upper = False\n        if not has_alpha:\n            return False\n        if is_all_lower:\n            seen_lower = True\n        elif is_all_upper:\n            seen_upper = True\n        else:\n            return False\n        if seen_lower and seen_upper:\n            return False\n\n    return seen_lower != seen_upper  # True if exactly one of them is True.",
+  "metrics": {
+    "total_nodes": 165,
+    "ast_depth": 11,
+    "branch_count": 10,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 19,
+    "control_flow_ratio": 0.115152,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

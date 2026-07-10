@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_121__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_121",
+  "task_id": "HumanEval/121",
+  "problem_name": "Solution",
+  "entry_point": "solution",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def solution(lst):\n    return sum(lst[i] for i in range(len(lst)) if i % 2 == 0 and lst[i] % 2 != 0)",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020833,
+    "function_names": [
+      "solution"
+    ]
+  }
+}

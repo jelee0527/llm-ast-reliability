@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    # Validate k bounds\n    n = len(arr)\n    if k <= 0:\n        return []\n    if k >= n:\n        return sorted(arr)\n\n    # Use a simple selection algorithm: find k largest using a min-heap approach\n    # but implement manually to avoid external dependencies: maintain a sorted list of size k\n    # We'll keep the k largest seen so far in a list 'top' sorted ascending.\n    top: List[int] = []\n\n    for x in arr:\n        if len(top) < k:\n            # insert x into top keeping ascending order\n            inserted = False\n            for i in range(len(top)):\n                if x < top[i]:\n                    top.insert(i, x)\n                    inserted = True\n                    break\n            if not inserted:\n                top.append(x)\n        else:\n            # top is size k, smallest is top[0]\n            if x > top[0]:\n                # replace smallest: remove top[0], then insert x maintaining order\n                top.pop(0)\n                # insert x into correct position\n                inserted = False\n                for i in range(len(top)):\n                    if x < top[i]:\n                        top.insert(i, x)\n                        inserted = True\n                        break\n                if not inserted:\n                    top.append(x)\n        # ensure top never exceeds k due to any logic error\n        if len(top) > k:\n            # remove smallest extras\n            while len(top) > k:\n                top.pop(0)\n\n    # top is sorted ascending and has k largest elements\n    return top[:]",
+  "metrics": {
+    "total_nodes": 237,
+    "ast_depth": 12,
+    "branch_count": 9,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.075949,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import math\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part. \"\"\"\n    if number is None:\n        raise TypeError(\"number must be provided\")\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be numeric\")\n    if number < 0:\n        raise ValueError(\"number must be non-negative\")\n    # Use math.floor to get integer part, handle large floats\n    int_part = math.floor(number)\n    frac = number - int_part\n    # Clamp tiny negative due to floating point error to 0\n    if abs(frac) < 1e-15:\n        return 0.0\n    return frac",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.104651,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

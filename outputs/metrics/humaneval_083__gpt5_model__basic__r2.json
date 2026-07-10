@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # Total n-digit numbers: from 10^(n-1) to 10^n - 1 => 9 * 10^(n-1)\n    total_n_digit = 9 * (10 ** (n - 1))\n    # Count that start with 1: fix first digit 1, remaining n-1 digits free: 10^(n-1)\n    start_with_1 = 10 ** (n - 1)\n    # Count that end with 1: fix last digit 1, first digit cannot be 0 => 9 * 10^(n-2) if n>=2, else 1 when n==1\n    if n == 1:\n        end_with_1 = 1\n    else:\n        end_with_1 = 9 * (10 ** (n - 2))\n    # Overlap: numbers that both start and end with 1: first digit 1, last digit 1,\n    # middle n-2 digits free: 10^(n-2) if n>=2, else 1 when n==1\n    if n == 1:\n        overlap = 1\n    elif n == 2:\n        overlap = 1  # \"11\" only\n    else:\n        overlap = 10 ** (n - 2)\n    return start_with_1 + end_with_1 - overlap",
+  "metrics": {
+    "total_nodes": 121,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.049587,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

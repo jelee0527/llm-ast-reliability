@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"\n    Given two lists of integers 'game' (actual scores) and 'guess' (predicted scores),\n    return a list where each element is 0 if the guess matches the score, otherwise\n    the absolute difference between the guess and the score.\n    \"\"\"\n    if len(game) != len(guess):\n        raise ValueError(\"Input lists must have the same length.\")\n    return [0 if g == s else abs(s - g) for s, g in zip(game, guess)]",
+  "metrics": {
+    "total_nodes": 78,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.051282,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_150__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_150",
+  "task_id": "HumanEval/150",
+  "problem_name": "X Or Y",
+  "entry_point": "x_or_y",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef x_or_y(n, x, y):\n    \"\"\"Return x if n is prime, otherwise return y.\n    n: integer (can be negative, zero, or positive)\n    x, y: any values to return\n    \"\"\"\n    def is_prime(num):\n        # Handle cases less than 2 (not prime)\n        if num < 2:\n            return False\n        # 2 and 3 are prime\n        if num <= 3:\n            return True\n        # Even numbers >2 are not prime\n        if num % 2 == 0:\n            return False\n        # Check odd divisors up to sqrt(num)\n        limit = int(math.isqrt(num))\n        for divisor in range(3, limit + 1, 2):\n            if num % divisor == 0:\n                return False\n        return True\n\n    return x if is_prime(n) else y\n\n\n# Example quick tests when run as a script\nif __name__ == \"__main__\":\n    print(x_or_y(7, 34, 12))   # expect 34\n    print(x_or_y(15, 8, 5))    # expect 5\n    print(x_or_y(2, \"prime\", \"composite\"))  # expect \"prime\"\n    print(x_or_y(1, \"prime\", \"composite\"))  # expect \"composite\"",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.094891,
+    "function_names": [
+      "x_or_y",
+      "is_prime"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_126__deepseek_model__optimized__r3.json",
+  "problem_id": "humaneval_126",
+  "task_id": "HumanEval/126",
+  "problem_name": "Is Sorted",
+  "entry_point": "is_sorted",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def is_sorted(lst):\n    if len(lst) <= 1:\n        return True\n    for i in range(1, len(lst)):\n        if lst[i] < lst[i-1]:\n            return False\n        if i >= 2 and lst[i] == lst[i-1] == lst[i-2]:\n            return False\n    return True",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.093023,
+    "function_names": [
+      "is_sorted"
+    ]
+  }
+}

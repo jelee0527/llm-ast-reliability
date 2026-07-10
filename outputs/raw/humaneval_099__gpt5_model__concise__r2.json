@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:38:05.709135+00:00",
+  "elapsed_seconds": 4.425,
+  "official_prompt": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n\n",
+  "raw_response": "import math\nfrom decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\n\ndef closest_integer(value: str) -> int:\n    # Use Decimal for precise half cases\n    getcontext().prec = max(28, len(value) + 10)\n    d = Decimal(value)\n    # If fractional part is exactly 0.5 or -0.5, need round away from zero\n    sign = 1 if d >= 0 else -1\n    absd = d.copy_abs()\n    int_part = int(absd // 1)\n    frac = absd - int_part\n    # Compare frac to 0.5 with Decimal precision\n    half = Decimal('0.5')\n    if frac == half:\n        # away from zero\n        return sign * (int_part + 1)\n    else:\n        # use normal rounding to nearest integer\n        return int(d.to_integral_value(rounding=ROUND_HALF_UP)) if d >= 0 else int(d.to_integral_value(rounding=ROUND_HALF_DOWN))",
+  "generated_code": "import math\nfrom decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\n\ndef closest_integer(value: str) -> int:\n    # Use Decimal for precise half cases\n    getcontext().prec = max(28, len(value) + 10)\n    d = Decimal(value)\n    # If fractional part is exactly 0.5 or -0.5, need round away from zero\n    sign = 1 if d >= 0 else -1\n    absd = d.copy_abs()\n    int_part = int(absd // 1)\n    frac = absd - int_part\n    # Compare frac to 0.5 with Decimal precision\n    half = Decimal('0.5')\n    if frac == half:\n        # away from zero\n        return sign * (int_part + 1)\n    else:\n        # use normal rounding to nearest integer\n        return int(d.to_integral_value(rounding=ROUND_HALF_UP)) if d >= 0 else int(d.to_integral_value(rounding=ROUND_HALF_DOWN))"
+}

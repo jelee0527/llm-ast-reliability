@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_146__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef specialFilter(nums):\n    \"\"\"Return the count of numbers in nums that are:\n       - greater than 10\n       - have both first and last digits odd (1,3,5,7,9)\n    Numbers may be negative or non-integers; only the integer portion is considered\n    for digit checks (sign is ignored for digit extraction).\n    \"\"\"\n    def first_and_last_digits_are_odd(n):\n        # Work with absolute integer portion of n\n        try:\n            # Convert to int by truncation toward zero\n            integer_part = int(n)\n        except Exception:\n            return False\n        integer_part = abs(integer_part)\n        if integer_part == 0:\n            return False\n        last_digit = integer_part % 10\n        # get first digit\n        first_digit = integer_part\n        while first_digit >= 10:\n            first_digit //= 10\n        odd_digits = {1, 3, 5, 7, 9}\n        return first_digit in odd_digits and last_digit in odd_digits\n\n    count = 0\n    for x in nums:\n        # check greater than 10 (using numeric comparison)\n        try:\n            if x > 10 and first_and_last_digits_are_odd(x):\n                count += 1\n        except Exception:\n            # skip non-comparable entries\n            continue\n    return count\n\n# Example quick tests\nif __name__ == \"__main__\":\n    print(specialFilter([15, -73, 14, -15]))      # expected 1\n    print(specialFilter([33, -2, -3, 45, 21, 109]))  # expected 2",
+  "metrics": {
+    "total_nodes": 166,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.072289,
+    "function_names": [
+      "specialFilter",
+      "first_and_last_digits_are_odd"
+    ]
+  }
+}

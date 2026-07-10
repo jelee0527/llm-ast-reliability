@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef make_a_pile(n: int) -> List[int]:\n    \"\"\"\n    Given a positive integer n, return a list of length n representing a pile\n    of n levels of stones. The first level has n stones. Each subsequent level\n    uses the next odd number if the current number is odd, or the next even\n    number if the current number is even.\n\n    Example:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n\n    result: List[int] = []\n    current = n\n    for _ in range(n):\n        result.append(current)\n        # If current is odd, next odd is current + 2; if even, next even is current + 2.\n        # That is simply current += 2 each time.\n        current += 2\n    return result\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(make_a_pile(1))  # [1]\n    print(make_a_pile(2))  # [2,4]\n    print(make_a_pile(3))  # [3,5,7]\n    print(make_a_pile(5))  # [5,7,9,11,13]",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.058333,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

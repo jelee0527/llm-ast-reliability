@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_120__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_120",
+  "task_id": "HumanEval/120",
+  "problem_name": "Maximum",
+  "entry_point": "maximum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef maximum(arr: List[int], k: int) -> List[int]:\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n    \"\"\"\n    # Validate k bounds\n    n = len(arr)\n    if k <= 0:\n        return []\n    if k >= n:\n        return sorted(arr)\n    # Use a simple selection algorithm: maintain a list of k largest seen so far\n    # Initialize with first k elements sorted ascending\n    topk = sorted(arr[:k])\n    # For each remaining element, if greater than smallest in topk, replace and reinsert\n    for x in arr[k:]:\n        if x > topk[0]:\n            # find position to insert x to keep topk sorted\n            # remove smallest (index 0), then insert x in correct place\n            # we can do linear search since k <= 1000\n            del topk[0]\n            # find insertion index\n            i = 0\n            while i < k - 1 and topk[i] < x:\n                i += 1\n            # if current i points to element >= x, decide insert before or after\n            if topk and topk[i] >= x:\n                topk.insert(i, x)\n            else:\n                topk.append(x)\n    return topk[:]",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.055556,
+    "function_names": [
+      "maximum"
+    ]
+  }
+}

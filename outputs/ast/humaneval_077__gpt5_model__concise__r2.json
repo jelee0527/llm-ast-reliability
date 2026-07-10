@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_077__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef iscube(a):\n    if a == 0:\n        return True\n    # Use integer cube root by rounding\n    if a > 0:\n        k = round(a ** (1/3))\n    else:\n        k = -round(abs(a) ** (1/3))\n    return k**3 == a",
+  "ast_dump": "Module(\n  body=[\n    Import(\n      names=[\n        alias(name='math')]),\n    FunctionDef(\n      name='iscube',\n      args=arguments(\n        args=[\n          arg(arg='a')]),\n      body=[\n        If(\n          test=Compare(\n            left=Name(id='a', ctx=Load()),\n            ops=[\n              Eq()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Return(\n              value=Constant(value=True))]),\n        If(\n          test=Compare(\n            left=Name(id='a', ctx=Load()),\n            ops=[\n              Gt()],\n            comparators=[\n              Constant(value=0)]),\n          body=[\n            Assign(\n              targets=[\n                Name(id='k', ctx=Store())],\n              value=Call(\n                func=Name(id='round', ctx=Load()),\n                args=[\n                  BinOp(\n                    left=Name(id='a', ctx=Load()),\n                    op=Pow(),\n                    right=BinOp(\n                      left=Constant(value=1),\n                      op=Div(),\n                      right=Constant(value=3)))]))],\n          orelse=[\n            Assign(\n              targets=[\n                Name(id='k', ctx=Store())],\n              value=UnaryOp(\n                op=USub(),\n                operand=Call(\n                  func=Name(id='round', ctx=Load()),\n                  args=[\n                    BinOp(\n                      left=Call(\n                        func=Name(id='abs', ctx=Load()),\n                        args=[\n                          Name(id='a', ctx=Load())]),\n                      op=Pow(),\n                      right=BinOp(\n                        left=Constant(value=1),\n                        op=Div(),\n                        right=Constant(value=3)))])))]),\n        Return(\n          value=Compare(\n            left=BinOp(\n              left=Name(id='k', ctx=Load()),\n              op=Pow(),\n              right=Constant(value=3)),\n            ops=[\n              Eq()],\n            comparators=[\n              Name(id='a', ctx=Load())]))])])"
+}

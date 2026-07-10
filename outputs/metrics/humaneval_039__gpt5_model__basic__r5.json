@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_039__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0:\n        return False\n    r = int(math.isqrt(num))\n    for i in range(3, r + 1, 2):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if n <= 0:\n        raise ValueError(\"n must be positive\")\n    count = 0\n    a, b = 0, 1\n    # generate Fibonacci numbers and test primality\n    while True:\n        a, b = b, a + b  # advance to next Fibonacci (starts with 1)\n        if is_prime(a):\n            count += 1\n            if count == n:\n                return a",
+  "metrics": {
+    "total_nodes": 150,
+    "ast_depth": 8,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.106667,
+    "function_names": [
+      "is_prime",
+      "prime_fib"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Correlation analysis between functional and structural metrics}
+\label{tab:correlation_analysis}
+\begin{tabular}{lcccc}
+\toprule
+Source & Relationship & N & Spearman $\rho$ & p-value \\
+\midrule
+repeat\_stability & success\_rate vs. ssi & 2460 & 0.157 & 5.67e-15 \\
+repeat\_stability & success\_rate vs. avg\_repeat\_distance & 2460 & -0.157 & 5.67e-15 \\
+prompt\_sensitivity & success\_rate vs. pssi & 492 & -0.202 & 6.18e-06 \\
+structural\_diversity & success\_rate vs. sds & 492 & -0.240 & 6.82e-08 \\
+model\_summary & functional\_pass\_rate vs. ssi & 3 & 0.500 & 0.6667 \\
+model\_summary & functional\_pass\_rate vs. pssi & 3 & 0.500 & 0.6667 \\
+model\_summary & functional\_pass\_rate vs. sds & 3 & 0.500 & 0.6667 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from decimal import Decimal, getcontext, ROUND_HALF_UP, ROUND_HALF_DOWN\nimport math\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n    '''\n    # Use Decimal for exact fractional checking\n    # Set precision sufficiently large for typical inputs\n    getcontext().prec = 50\n    num = Decimal(value)\n    # Get integer part toward zero and remainder\n    # For positive numbers, floor and ceil differ; for negative, similar logic applies\n    flo = int(num.to_integral_value(rounding=ROUND_HALF_DOWN)) if num >= 0 else int(num.to_integral_value(rounding=ROUND_HALF_UP))\n    # Alternatively use math.floor/ceil on float if safe, but keep Decimal operations:\n    lower = int(num.to_integral_value(rounding='ROUND_FLOOR'))\n    upper = int(num.to_integral_value(rounding='ROUND_CEILING'))\n    # Compute distances to lower and upper\n    dist_lower = abs(num - Decimal(lower))\n    dist_upper = abs(Decimal(upper) - num)\n    if dist_lower < dist_upper:\n        return lower\n    if dist_upper < dist_lower:\n        return upper\n    # Equidistant: choose the one away from zero\n    # For positive numbers, away from zero is upper; for negative, away from zero is lower (more negative)\n    if num >= 0:\n        return upper\n    else:\n        return lower",
+  "metrics": {
+    "total_nodes": 147,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.054422,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_146__deepseek_model__concise__r2.json",
+  "problem_id": "humaneval_146",
+  "task_id": "HumanEval/146",
+  "problem_name": "Specialfilter",
+  "entry_point": "specialFilter",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def specialFilter(nums):\n    count = 0\n    for num in nums:\n        if abs(num) > 10:\n            s = str(abs(num))\n            if int(s[0]) % 2 == 1 and int(s[-1]) % 2 == 1:\n                count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 74,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.054054,
+    "function_names": [
+      "specialFilter"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_038__deepseek_model__concise__r5.json",
+  "problem_id": "humaneval_038",
+  "task_id": "HumanEval/38",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "NameError",
+  "error_message": "name 'encode_cyclic' is not defined",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 60, in main\n    namespace[\"check\"](candidate)\n  File \"<string>\", line 13, in check\nNameError: name 'encode_cyclic' is not defined\n"
+}

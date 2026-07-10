@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef unique(l: List[Any]):\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use a set to collect unique items, then return a sorted list.\n    # Sorting requires elements to be comparable; let Python raise if they are not.\n    return sorted(set(l))\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    print(unique([5, 3, 5, 2, 3, 3, 9, 0, 123]))",
+  "metrics": {
+    "total_nodes": 48,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

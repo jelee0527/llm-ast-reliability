@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_027",
+  "task_id": "HumanEval/27",
+  "problem_name": "Flip Case",
+  "entry_point": "flip_case",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:08:03.441547+00:00",
+  "elapsed_seconds": 3.803,
+  "official_prompt": "\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n\n",
+  "raw_response": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    # Build result using list for efficiency\n    result_chars: list[str] = []\n    for ch in string:\n        # Use str methods to determine case and flip\n        if 'a' <= ch <= 'z':\n            result_chars.append(ch.upper())\n        elif 'A' <= ch <= 'Z':\n            result_chars.append(ch.lower())\n        else:\n            # Non-alphabetic characters remain unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello\", \"hELLO\"),\n        (\"\", \"\"),\n        (\"ABCdef123!?\", \"abcDEF123!?\"),\n        (\"Already LOWER and UPPER\", \"aLREADY lower AND upper\"),\n        (\"MiXeD123\", \"mIxEd123\"),\n    ]\n    for inp, expected in tests:\n        out = flip_case(inp)\n        assert out == expected, f\"flip_case({inp!r})=={out!r}, expected {expected!r}\"\n    print(\"All tests passed.\")",
+  "generated_code": "from typing import Iterable\n\ndef flip_case(string: str) -> str:\n    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    if not isinstance(string, str):\n        raise TypeError(\"Input must be a string\")\n    # Build result using list for efficiency\n    result_chars: list[str] = []\n    for ch in string:\n        # Use str methods to determine case and flip\n        if 'a' <= ch <= 'z':\n            result_chars.append(ch.upper())\n        elif 'A' <= ch <= 'Z':\n            result_chars.append(ch.lower())\n        else:\n            # Non-alphabetic characters remain unchanged\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    tests = [\n        (\"Hello\", \"hELLO\"),\n        (\"\", \"\"),\n        (\"ABCdef123!?\", \"abcDEF123!?\"),\n        (\"Already LOWER and UPPER\", \"aLREADY lower AND upper\"),\n        (\"MiXeD123\", \"mIxEd123\"),\n    ]\n    for inp, expected in tests:\n        out = flip_case(inp)\n        assert out == expected, f\"flip_case({inp!r})=={out!r}, expected {expected!r}\"\n    print(\"All tests passed.\")"
+}

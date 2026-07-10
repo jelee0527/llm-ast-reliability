@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__claude_model__concise__r2.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def double_the_difference(lst):\n    return sum(x**2 for x in lst if isinstance(x, (int, float)) and not isinstance(x, bool) and x == int(x) and x > 0 and int(x) % 2 == 1)",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.015152,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:12:20.230309+00:00",
+  "elapsed_seconds": 3.101,
+  "official_prompt": "\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be > 1\")\n    largest = None\n    # remove factors of 2\n    while n % 2 == 0:\n        largest = 2\n        n //= 2\n    # odd factors\n    f = 3\n    maxf = math.isqrt(n) + 1\n    while f <= maxf and n > 1:\n        while n % f == 0:\n            largest = f\n            n //= f\n            maxf = math.isqrt(n) + 1\n        f += 2\n    if n > 1:\n        largest = n\n    return int(largest)",
+  "generated_code": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be > 1\")\n    largest = None\n    # remove factors of 2\n    while n % 2 == 0:\n        largest = 2\n        n //= 2\n    # odd factors\n    f = 3\n    maxf = math.isqrt(n) + 1\n    while f <= maxf and n > 1:\n        while n % f == 0:\n            largest = f\n            n //= f\n            maxf = math.isqrt(n) + 1\n        f += 2\n    if n > 1:\n        largest = n\n    return int(largest)"
+}

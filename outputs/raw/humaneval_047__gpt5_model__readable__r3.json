@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:51:58.732435+00:00",
+  "elapsed_seconds": 3.684,
+  "official_prompt": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Optional\n\ndef median(l: List[float]) -> Optional[float]:\n    \"\"\"Return median of elements in the list l.\n\n    If the list is empty, returns None.\n\n    Examples:\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        return None\n\n    # Work on a shallow copy so original list isn't mutated.\n    sorted_list = sorted(l)\n    mid = n // 2\n\n    if n % 2 == 1:\n        # Odd length: middle element\n        return sorted_list[mid]\n    else:\n        # Even length: average of two middle elements\n        return (sorted_list[mid - 1] + sorted_list[mid]) / 2.0\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "from typing import List, Optional\n\ndef median(l: List[float]) -> Optional[float]:\n    \"\"\"Return median of elements in the list l.\n\n    If the list is empty, returns None.\n\n    Examples:\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not isinstance(l, list):\n        raise TypeError(\"Input must be a list\")\n    n = len(l)\n    if n == 0:\n        return None\n\n    # Work on a shallow copy so original list isn't mutated.\n    sorted_list = sorted(l)\n    mid = n // 2\n\n    if n % 2 == 1:\n        # Odd length: middle element\n        return sorted_list[mid]\n    else:\n        # Even length: average of two middle elements\n        return (sorted_list[mid - 1] + sorted_list[mid]) / 2.0\n\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

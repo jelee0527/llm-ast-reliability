@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_011__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_011",
+  "task_id": "HumanEval/11",
+  "problem_name": "String Xor",
+  "entry_point": "string_xor",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n    # Ensure inputs are strings of same length; if lengths differ, align right (pad left with '0')\n    la, lb = len(a), len(b)\n    if la < lb:\n        a = a.zfill(lb)\n    elif lb < la:\n        b = b.zfill(la)\n    # Use list comprehension for speed, convert characters to ints via ord\n    # ord('0') = 48, ord('1') = 49, so xor of bits can be done with ^ on (ord - 48)\n    res_chars = []\n    for ca, cb in zip(a, b):\n        bit = (ord(ca) - 48) ^ (ord(cb) - 48)\n        # convert 0/1 to char\n        res_chars.append('1' if bit else '0')\n    return ''.join(res_chars)",
+  "metrics": {
+    "total_nodes": 126,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.039683,
+    "function_names": [
+      "string_xor"
+    ]
+  }
+}

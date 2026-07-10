@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    \"\"\"\n    Returns lexicographically smallest sequence of values of length k obtainable by moving on grid (4-neighbors),\n    starting anywhere. Grid is NxN with permutation of 1..N^2.\n    \"\"\"\n    n = len(grid)\n    if n == 0 or k == 0:\n        return []\n    # Map value to position for quick lookup\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    # Precompute neighbors for each cell\n    neigh = {}\n    for i in range(n):\n        for j in range(n):\n            lst = []\n            if i > 0: lst.append((i-1, j))\n            if i < n-1: lst.append((i+1, j))\n            if j > 0: lst.append((i, j-1))\n            if j < n-1: lst.append((i, j+1))\n            neigh[(i,j)] = lst\n\n    # We will do a greedy BFS-like construction of the lexicographically smallest path:\n    # At step t (0-based), maintain set of reachable positions after taking the chosen prefix.\n    # For step 0, candidates are all positions. Choose minimal value among them.\n    # For subsequent steps, from current reachable set, expand to neighbors (including staying? Problem says visiting exactly k cells, can revisit but must move to neighbors; staying is not allowed unless neighbor is same cell—so cannot stay). So moves only to neighbors.\n    # Choose among reachable next positions the minimal grid value; prune reachable to those positions that have that minimal value. Continue.\n    # This yields the unique lexicographically smallest sequence.\n    # Initialize reachable as all positions\n    reachable = set((i,j) for i in range(n) for j in range(n))\n    result = []\n    for step in range(k):\n        # Find minimal value among reachable positions\n        minv = None\n        for (i,j) in reachable:\n            v = grid[i][j]\n            if minv is None or v < minv:\n                minv = v\n        result.append(minv)\n        # If last step, break\n        if step == k-1:\n            break\n        # Build next reachable set: from any current reachable, move to neighbors\n        next_reach = set()\n        # Only consider neighbor positions whose value can potentially be minimal in future,\n        # but we must include all neighbors because next choice depends on their values.\n        for (i,j) in reachable:\n            # But only positions that currently hold the chosen minv should be allowed to continue path,\n            # because lexicographic choice required that prefix equals chosen values. So we must restrict current positions to those with value == minv before expanding.\n            pass\n        # Restrict current to those with value == minv\n        cur_positions = [p for p in reachable if grid[p[0]][p[1]] == minv]\n        for (i,j) in cur_positions:\n            for nb in neigh[(i,j)]:\n                next_reach.add(nb)\n        reachable = next_reach\n        if not reachable:\n            # No moves possible (shouldn't happen in valid grids if k consistent), but handle\n            break\n    return result",
+  "metrics": {
+    "total_nodes": 401,
+    "ast_depth": 12,
+    "branch_count": 8,
+    "loop_count": 9,
+    "function_count": 1,
+    "control_flow_count": 21,
+    "control_flow_ratio": 0.052369,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

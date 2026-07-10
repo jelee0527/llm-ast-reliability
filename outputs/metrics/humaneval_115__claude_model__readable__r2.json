@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_115__claude_model__readable__r2.json",
+  "problem_id": "humaneval_115",
+  "task_id": "HumanEval/115",
+  "problem_name": "Max Fill",
+  "entry_point": "max_fill",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def max_fill(grid, capacity):\n    import math\n    \n    total_bucket_lowerings = 0\n    \n    for well in grid:\n        water_units = sum(well)\n        bucket_lowerings_for_well = math.ceil(water_units / capacity)\n        total_bucket_lowerings += bucket_lowerings_for_well\n    \n    return total_bucket_lowerings",
+  "metrics": {
+    "total_nodes": 47,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.042553,
+    "function_names": [
+      "max_fill"
+    ]
+  }
+}

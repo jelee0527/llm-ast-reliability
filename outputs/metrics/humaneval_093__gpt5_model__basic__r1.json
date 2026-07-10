@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__basic__r1.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \"\"\"\n    # mapping of vowels to the vowel two letters ahead (wrapping)\n    # vowels list in lowercase and uppercase\n    vowels_lower = ['a', 'e', 'i', 'o', 'u']\n    # Build mapping for lower and upper\n    mapping = {}\n    for i, v in enumerate(vowels_lower):\n        # two ahead cyclic\n        mapped = vowels_lower[(i + 2) % len(vowels_lower)]\n        mapping[v] = mapped\n        mapping[v.upper()] = mapped.upper()\n    # Now process: swap case of all letters, then replace vowels with mapped letter\n    result_chars = []\n    for ch in message:\n        if ch.isalpha():\n            swapped = ch.swapcase()\n            # If swapped is a vowel (either case), replace using mapping\n            if swapped in mapping:\n                result_chars.append(mapping[swapped])\n            else:\n                result_chars.append(swapped)\n        else:\n            # If not a letter, leave as is (though prompt says assume only letters)\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\n\n# Quick self-test when run as script (not required)\nif __name__ == \"__main__\":\n    print(encode('test'))              # expected 'TGST'\n    print(encode('This is a message')) # expected 'tHKS KS C MGSSCGG'",
+  "metrics": {
+    "total_nodes": 165,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.036364,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

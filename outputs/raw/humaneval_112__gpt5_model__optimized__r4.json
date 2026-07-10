@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:05:12.321685+00:00",
+  "elapsed_seconds": 3.847,
+  "official_prompt": "\ndef reverse_delete(s,c):\n    \"\"\"Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef reverse_delete(s,c):\n    \"\"\"Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n    \"\"\"\n\n",
+  "raw_response": "from typing import Tuple\n\ndef reverse_delete(s: str, c: str) -> Tuple[str, bool]:\n    \"\"\"\n    Remove all characters in s that appear in c, then check if resulting string is a palindrome.\n    Returns (result_string, is_palindrome).\n    \"\"\"\n    if not s:\n        return (\"\", True)\n    if not c:\n        res = s\n        return (res, res == res[::-1])\n    remove = set(c)\n    # Build resulting string efficiently\n    res_chars = [ch for ch in s if ch not in remove]\n    res = \"\".join(res_chars)\n    # Check palindrome without creating another full reversed string if possible\n    i, j = 0, len(res) - 1\n    is_pal = True\n    while i < j:\n        if res[i] != res[j]:\n            is_pal = False\n            break\n        i += 1\n        j -= 1\n    return (res, is_pal)",
+  "generated_code": "from typing import Tuple\n\ndef reverse_delete(s: str, c: str) -> Tuple[str, bool]:\n    \"\"\"\n    Remove all characters in s that appear in c, then check if resulting string is a palindrome.\n    Returns (result_string, is_palindrome).\n    \"\"\"\n    if not s:\n        return (\"\", True)\n    if not c:\n        res = s\n        return (res, res == res[::-1])\n    remove = set(c)\n    # Build resulting string efficiently\n    res_chars = [ch for ch in s if ch not in remove]\n    res = \"\".join(res_chars)\n    # Check palindrome without creating another full reversed string if possible\n    i, j = 0, len(res) - 1\n    is_pal = True\n    while i < j:\n        if res[i] != res[j]:\n            is_pal = False\n            break\n        i += 1\n        j -= 1\n    return (res, is_pal)"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef prod_signs(arr: List[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs.\n    For each number, its sign is 1 if >0, -1 if <0, and 0 if ==0.\n    The result is (sum of absolute values) * (product of signs).\n    Return None for empty arr.\n    \"\"\"\n    if not arr:\n        return None\n\n    total_magnitude = 0\n    sign_product = 1\n\n    for n in arr:\n        # accumulate magnitude\n        total_magnitude += abs(n)\n        # update sign product\n        if n == 0:\n            sign_product = 0\n            # once zero, product remains zero; can break if desired,\n            # but continue to accumulate magnitudes as required\n        else:\n            sign_product *= 1 if n > 0 else -1\n\n    return total_magnitude * sign_product\n\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6\n    assert prod_signs([5]) == 5\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 159,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.044025,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

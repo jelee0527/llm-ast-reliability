@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_074__deepseek_model__constraint__r3.json",
+  "problem_id": "humaneval_074",
+  "task_id": "HumanEval/74",
+  "problem_name": "Total Match",
+  "entry_point": "total_match",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def total_match(lst1, lst2):\n    def total_chars(lst):\n        return sum(len(s) for s in lst)\n    total1 = total_chars(lst1)\n    total2 = total_chars(lst2)\n    if total1 <= total2:\n        return lst1\n    else:\n        return lst2",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "total_match",
+      "total_chars"
+    ]
+  }
+}

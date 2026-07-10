@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_138",
+  "task_id": "HumanEval/138",
+  "problem_name": "Is Equal To Sum Even",
+  "entry_point": "is_equal_to_sum_even",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T09:06:09.471592+00:00",
+  "elapsed_seconds": 6.225,
+  "official_prompt": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n\n",
+  "raw_response": "from typing import Any\n\ndef is_equal_to_sum_even(n: Any) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Positive even numbers are 2,4,6,...\n    Sum of four positive evens = 2 * (a+b+c+d) where a,b,c,d are positive integers >=1\n    Thus n must be even and at least 8 (2*4).\n    \"\"\"\n    # Ensure integer\n    try:\n        n_int = int(n)\n    except Exception:\n        return False\n    if n_int != n and not isinstance(n, int):\n        # if passed float that is integral, int(n) will equal n, but above check prevents wrong types\n        try:\n            if float(n) != int(float(n)):\n                return False\n            n_int = int(float(n))\n        except Exception:\n            return False\n    n = n_int\n    return n % 2 == 0 and n >= 8\n\n# Quick simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [4,6,8,10,7,0,100,9,8.0,10.0,'12']\n    for t in tests:\n        print(t, is_equal_to_sum_even(t))",
+  "generated_code": "from typing import Any\n\ndef is_equal_to_sum_even(n: Any) -> bool:\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers.\n\n    Positive even numbers are 2,4,6,...\n    Sum of four positive evens = 2 * (a+b+c+d) where a,b,c,d are positive integers >=1\n    Thus n must be even and at least 8 (2*4).\n    \"\"\"\n    # Ensure integer\n    try:\n        n_int = int(n)\n    except Exception:\n        return False\n    if n_int != n and not isinstance(n, int):\n        # if passed float that is integral, int(n) will equal n, but above check prevents wrong types\n        try:\n            if float(n) != int(float(n)):\n                return False\n            n_int = int(float(n))\n        except Exception:\n            return False\n    n = n_int\n    return n % 2 == 0 and n >= 8\n\n# Quick simple tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [4,6,8,10,7,0,100,9,8.0,10.0,'12']\n    for t in tests:\n        print(t, is_equal_to_sum_even(t))"
+}

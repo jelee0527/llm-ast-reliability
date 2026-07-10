@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef is_nested(string: str) -> bool:\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n    '''\n    # We need to check whether there exists a subsequence (not necessarily contiguous)\n    # that forms a valid bracket sequence and includes at least one nested pair.\n    # A nested pair means an opening bracket that is matched with a closing bracket\n    # that encloses another matched pair: e.g. '[' X ']' where X is a non-empty valid sequence.\n    #\n    # Strategy:\n    # - A nested valid subsequence requires at least two opening brackets and two closing brackets.\n    # - We can attempt to find indices i<j<k<l such that string[i]=='[', string[j]=='[',\n    #   string[k]==']', string[l]==']' and there exists a match structure making nesting.\n    # - Simpler: determine if there exists a subsequence that forms pattern \"[ A ]\" where A\n    #   is a non-empty valid bracket sequence. So we need an opening '[' at position p and a closing ']'\n    #   at position q>p, and between p and q there exists at least one matched pair (i.e., there exists\n    #   at least one '[' and one ']' in that interval that can form a valid sequence).\n    #\n    # Implementation:\n    # - Precompute positions of '[' and ']' as lists.\n    # - For each possible outer pair (choose an opening at pos p and a closing at pos q>p),\n    #   check whether inside (p, q) there exists any valid bracket subsequence (of length >=2).\n    # - To decide if inside (p, q) there exists a non-empty valid subsequence, we can greedily\n    #   match '[' with later ']' within the interval. If we can find at least one matched pair inside,\n    #   then the outer pair containing that inside pair forms nesting.\n    #\n    # Efficiency: O(n^2) in worst case, acceptable for typical string sizes.\n    s = string\n    n = len(s)\n    # Quick rejections:\n    if n < 4:\n        return False  # need at least \"[[]]\" -> length 4\n    # Collect positions\n    opens: List[int] = [i for i, ch in enumerate(s) if ch == '[']\n    closes: List[int] = [i for i, ch in enumerate(s) if ch == ']']\n    if len(opens) < 2 or len(closes) < 2:\n        return False\n    # For faster lookup of closes after a position, build next-close index list (positions of closes)\n    # But we'll just iterate.\n    # For each outer opening position p (from opens), and each closing q in closes with q>p:\n    # check if inside (p,q) we can find at least one matched pair.\n    # To check inside, use a simple stack count: greedily pair opens with closes inside interval.\n    for p in opens:\n        # Build list of inside characters between p and any q; we can scan closes > p as candidates.\n        # For each q>p:\n        for q in closes:\n            if q <= p:\n                continue\n            # Now check if inside (p,q) contains at least one matched pair.\n            balance = 0\n            matched_pairs = 0\n            # We iterate from p+1 to q-1\n            for k in range(p + 1, q):\n                ch = s[k]\n                if ch == '[':\n                    balance += 1\n                else:  # ch == ']'\n                    if balance > 0:\n                        balance -= 1\n                        matched_pairs += 1\n                        # If we found at least one matched pair, nesting exists\n                        if matched_pairs >= 1:\n                            return True\n                    else:\n                        # closing without matching inside; as subsequence we could skip it,\n                        # so continue scanning; unmatched closings don't help pairing.\n                        continue\n            # no matched pairs inside for this outer pair; try next q\n    return False\n\n# Example quick tests (can be removed if undesired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"[[]]\", True),\n        (\"[]]]]]]][[[[[]\", False),\n        (\"[][]\", False),\n        (\"[]\", False),\n        (\"[[][]]\", True),\n        (\"[[]][[\", True),\n        (\"[[[]]]\", True),\n        (\"[[[]\", True),  # subsequence \"[[]]\" exists: positions 0,1,3,4? check string: \"[[[]\" -> length 4, but there's only 3 chars; this test may be invalid\n    ]\n    for s, exp in tests:\n        print(s, is_nested(s), exp)",
+  "metrics": {
+    "total_nodes": 263,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.064639,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

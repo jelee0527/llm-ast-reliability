@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef decimal_to_binary(decimal: Any) -> str:\n    \"\"\"Convert an integer decimal to a binary string wrapped with 'db' at both ends.\n    \n    The function accepts an integer (or any value that can be interpreted as int).\n    Returns a string like 'db<binary_representation>db'.\n    \"\"\"\n    # Ensure input is an integer\n    try:\n        number = int(decimal)\n    except Exception as e:\n        raise ValueError(f\"Input cannot be converted to int: {e}\")\n    \n    # Handle zero explicitly\n    if number == 0:\n        return \"db0db\"\n    \n    # Handle negative numbers: include a leading '-' before the binary digits\n    is_negative = number < 0\n    number = abs(number)\n    \n    bits = []\n    while number > 0:\n        bits.append(str(number % 2))\n        number //= 2\n    bits.reverse()\n    binary_body = \"\".join(bits)\n    if is_negative:\n        binary_body = \"-\" + binary_body\n    return f\"db{binary_body}db\"",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.058333,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

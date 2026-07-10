@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_088__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_088",
+  "task_id": "HumanEval/88",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(array: List[int]) -> List[int]:\n    \"\"\"\n    Given an array of non-negative integers, return a copy sorted:\n    - ascending if sum(first element, last element) is odd\n    - descending if that sum is even\n\n    The original array must not be modified.\n    \"\"\"\n    # Defensive copy\n    arr_copy = list(array)\n\n    # Handle empty array or single element: just return copy\n    if not arr_copy or len(arr_copy) == 1:\n        return arr_copy\n\n    first = arr_copy[0]\n    last = arr_copy[-1]\n\n    total = first + last\n\n    # If sum is odd -> ascending; if even -> descending\n    if total % 2 == 1:\n        # ascending\n        return sorted(arr_copy)\n    else:\n        # descending\n        return sorted(arr_copy, reverse=True)",
+  "metrics": {
+    "total_nodes": 96,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.052083,
+    "function_names": [
+      "sort_array"
+    ]
+  }
+}

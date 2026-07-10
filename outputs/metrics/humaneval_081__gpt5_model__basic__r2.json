@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_081__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_081",
+  "task_id": "HumanEval/81",
+  "problem_name": "Numerical Letter Grade",
+  "entry_point": "numerical_letter_grade",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def numerical_letter_grade(grades):\n    \"\"\"Convert list of numeric GPAs to letter grades per specified table.\"\"\"\n    # Define thresholds in descending order\n    thresholds = [\n        (4.0, \"A+\"),\n        (3.7, \"A\"),\n        (3.3, \"A-\"),\n        (3.0, \"B+\"),\n        (2.7, \"B\"),\n        (2.3, \"B-\"),\n        (2.0, \"C+\"),\n        (1.7, \"C\"),\n        (1.3, \"C-\"),\n        (1.0, \"D+\"),\n        (0.7, \"D\"),\n        (0.0, \"D-\"),\n    ]\n    result = []\n    for g in grades:\n        # Treat values very close to 4.0 as 4.0\n        # and ensure floats are handled; also treat negative as 0.0\n        try:\n            val = float(g)\n        except Exception:\n            val = 0.0\n        if abs(val - 4.0) < 1e-9:\n            result.append(\"A+\")\n            continue\n        if val <= 0.0:\n            # Exactly 0.0 => E, values below or equal 0 are E per table (0.0 -> E)\n            # Table shows 0.0 -> E and >0.0 -> D- for values greater than 0\n            if abs(val - 0.0) < 1e-9:\n                result.append(\"E\")\n            else:\n                # Negative GPAs treated as E\n                result.append(\"E\")\n            continue\n        # For positive values greater than 0, find first threshold strictly less-than or equal per spec:\n        # The table uses strict greater-than for many entries: e.g. >3.7 => A, 4.0 => A+\n        # Implement by checking thresholds descending and choosing first where val > threshold (except 4.0 handled)\n        placed = False\n        for thresh, grade in thresholds[1:]:  # skip the 4.0 entry already handled\n            if val > thresh:\n                result.append(grade)\n                placed = True\n                break\n        if not placed:\n            # If not placed by strict > checks, then it must be in (0.0, 0.7] or exactly 0 handled earlier.\n            # For val > 0.0 up to and including 0.7 should map to D-\n            result.append(\"D-\")\n    return result\n\n\n# Optional simple test when run as script\nif __name__ == \"__main__\":\n    print(numerical_letter_grade([4.0, 3, 1.7, 2, 3.5]))  # ['A+', 'B', 'C-', 'C', 'A-']",
+  "metrics": {
+    "total_nodes": 210,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.061905,
+    "function_names": [
+      "numerical_letter_grade"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_116__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of non-negative integers according to the number of ones in their binary\n    representation (ascending). For equal counts of ones, sort by decimal value (ascending).\n\n    Examples:\n        >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n        >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n        >>> sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]\n    \"\"\"\n    # Define key: tuple (# of ones in binary representation, value)\n    # For negative numbers, Python's bin() includes a '-' sign; we consider absolute value's bits.\n    def sort_key(value: int):\n        ones_count = bin(value if value >= 0 else -value).count(\"1\")\n        return (ones_count, value)\n\n    return sorted(arr, key=sort_key)",
+  "metrics": {
+    "total_nodes": 63,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.047619,
+    "function_names": [
+      "sort_array",
+      "sort_key"
+    ]
+  }
+}

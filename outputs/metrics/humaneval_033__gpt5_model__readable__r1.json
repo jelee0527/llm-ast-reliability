@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Any\n\ndef sort_third(l: List[Any]) -> List[Any]:\n    \"\"\"Return a new list where elements at indices divisible by 3 are sorted,\n    while all other positions remain the same.\n\n    Examples:\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n    \"\"\"\n    # Collect elements whose indices are divisible by 3\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    third_values = [l[i] for i in third_indices]\n\n    # Sort those collected values\n    sorted_third_values = sorted(third_values)\n\n    # Build result by replacing values at divisible-by-3 indices with sorted ones\n    result = list(l)  # copy to avoid mutating input\n    for idx, value in zip(third_indices, sorted_third_values):\n        result[idx] = value\n\n    return result\n\n# Quick self-test when run as a script\nif __name__ == \"__main__\":\n    assert sort_third([1, 2, 3]) == [1, 2, 3]\n    assert sort_third([5, 6, 3, 4, 8, 9, 2]) == [2, 6, 3, 4, 8, 9, 5]",
+  "metrics": {
+    "total_nodes": 149,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.020134,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

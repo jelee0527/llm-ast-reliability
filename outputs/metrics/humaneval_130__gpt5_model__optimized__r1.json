@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"Return list of first n+1 Tribonacci numbers as defined:\n    tri(0) .. tri(n)\n    Definitions provided in prompt:\n    tri(1) = 3\n    tri(n) = 1 + n/2   if n is even\n    tri(n) = tri(n-1) + tri(n-2) + tri(n+1)  if n is odd\n    Note: the recurrence for odd n references tri(n+1) (a future value). We resolve by computing\n    values iteratively using system of equations:\n      For even k: tri(k) = 1 + k/2 (given directly)\n      For odd k: tri(k) - tri(k+1) = tri(k-1) + tri(k-2)\n    We can compute increasing indices by handling pairs (odd k, next even k+1) because even values are direct.\n    We'll compute from 0..n; tri(0) is not specified explicitly in prompt examples; example tri(3) -> [1,3,2,8]\n    which implies tri(0)=1. We'll set tri(0)=1 to match example.\n    All values are integers.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Initialize list for 0..n\n    res = [0] * (n + 1)\n    # Set tri(0) from example\n    if n >= 0:\n        res[0] = 1\n    if n >= 1:\n        res[1] = 3\n    # Helper to compute even value\n    def even_val(k: int) -> int:\n        return 1 + k // 2\n    # Compute sequentially\n    i = 2\n    while i <= n:\n        if i % 2 == 0:\n            res[i] = even_val(i)\n            i += 1\n        else:\n            # i is odd. recurrence: tri(i) = tri(i-1) + tri(i-2) + tri(i+1)\n            # Rearranged to compute tri(i+1) if tri(i) unknown: tri(i+1) = tri(i) - tri(i-1) - tri(i-2)\n            # But tri(i+1) is even (since odd+1)-> direct known. So we can solve for tri(i):\n            # tri(i) = tri(i-1) + tri(i-2) + tri(i+1)\n            # tri(i+1) known as even_val(i+1)\n            res[i] = res[i-1] + res[i-2] + even_val(i+1)\n            i += 1\n    return res",
+  "metrics": {
+    "total_nodes": 164,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.04878,
+    "function_names": [
+      "tri",
+      "even_val"
+    ]
+  }
+}

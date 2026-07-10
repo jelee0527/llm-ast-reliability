@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_129__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def minPath(grid, k):\n    n = len(grid)\n    \n    # Find position of each value\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    # Get neighbors of a cell\n    def get_neighbors(r, c):\n        neighbors = []\n        for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < n and 0 <= nc < n:\n                neighbors.append((nr, nc))\n        return neighbors\n    \n    # BFS/dynamic programming approach\n    # dp[cell] = list of minimum paths of current length ending at cell\n    # We'll store the minimum path as a list\n    \n    # Initialize: paths of length 1\n    # For each cell, path is just [grid[r][c]]\n    # current state: dict mapping (r,c) -> best path ending there\n    \n    # We want the global minimum path of length k\n    # Use DP: best[r][c] = minimum path of current length ending at (r,c)\n    \n    best = {}\n    for i in range(n):\n        for j in range(n):\n            best[(i,j)] = [grid[i][j]]\n    \n    for step in range(k - 1):\n        new_best = {}\n        for i in range(n):\n            for j in range(n):\n                # Can come from any neighbor or stay concept - actually we move TO (i,j)\n                # from a neighbor\n                candidates = []\n                for ni, nj in get_neighbors(i, j):\n                    if (ni, nj) in best:\n                        candidate = best[(ni, nj)] + [grid[i][j]]\n                        candidates.append(candidate)\n                if candidates:\n                    new_best[(i,j)] = min(candidates)\n        best = new_best\n    \n    # Find the minimum path among all ending cells\n    result = None\n    for i in range(n):\n        for j in range(n):\n            if (i,j) in best:\n                if result is None or best[(i,j)] < result:\n                    result = best[(i,j)]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 379,
+    "ast_depth": 14,
+    "branch_count": 5,
+    "loop_count": 11,
+    "function_count": 2,
+    "control_flow_count": 18,
+    "control_flow_ratio": 0.047493,
+    "function_names": [
+      "minPath",
+      "get_neighbors"
+    ]
+  }
+}

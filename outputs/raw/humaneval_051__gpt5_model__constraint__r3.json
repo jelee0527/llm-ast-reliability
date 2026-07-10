@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_051",
+  "task_id": "HumanEval/51",
+  "problem_name": "Remove Vowels",
+  "entry_point": "remove_vowels",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:59:35.142245+00:00",
+  "elapsed_seconds": 4.291,
+  "official_prompt": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n\n",
+  "raw_response": "import sys\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\\\nghijklm\")\n    'bcdf\\\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    vowels = set('aeiouAEIOU')\n    result_chars = []\n    for ch in text:\n        if ch not in vowels:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    # Simple test runner for the included doctest-like examples\n    tests = [\n        (\"\", \"\"),\n        (\"abcdef\\nghijklm\", \"bcdf\\nghjklm\"),\n        (\"abcdef\", \"bcdf\"),\n        (\"aaaaa\", \"\"),\n        (\"aaBAA\", \"B\"),\n        (\"zbcd\", \"zbcd\"),\n    ]\n    all_ok = True\n    for inp, expected in tests:\n        out = remove_vowels(inp)\n        ok = out == expected\n        print(f\"remove_vowels({inp!r}) -> {out!r}  Expected: {expected!r}  {'OK' if ok else 'FAIL'}\")\n        if not ok:\n            all_ok = False\n    if not all_ok:\n        sys.exit(1)",
+  "generated_code": "import sys\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\\\nghijklm\")\n    'bcdf\\\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"text must be a string\")\n    vowels = set('aeiouAEIOU')\n    result_chars = []\n    for ch in text:\n        if ch not in vowels:\n            result_chars.append(ch)\n    return ''.join(result_chars)\n\nif __name__ == \"__main__\":\n    # Simple test runner for the included doctest-like examples\n    tests = [\n        (\"\", \"\"),\n        (\"abcdef\\nghijklm\", \"bcdf\\nghjklm\"),\n        (\"abcdef\", \"bcdf\"),\n        (\"aaaaa\", \"\"),\n        (\"aaBAA\", \"B\"),\n        (\"zbcd\", \"zbcd\"),\n    ]\n    all_ok = True\n    for inp, expected in tests:\n        out = remove_vowels(inp)\n        ok = out == expected\n        print(f\"remove_vowels({inp!r}) -> {out!r}  Expected: {expected!r}  {'OK' if ok else 'FAIL'}\")\n        if not ok:\n            all_ok = False\n    if not all_ok:\n        sys.exit(1)"
+}

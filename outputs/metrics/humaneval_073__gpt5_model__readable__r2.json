@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_073__gpt5_model__readable__r2.json",
+  "problem_id": "humaneval_073",
+  "task_id": "HumanEval/73",
+  "problem_name": "Smallest Change",
+  "entry_point": "smallest_change",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef smallest_change(arr: List[int]) -> int:\n    \"\"\"\n    Given an array arr of integers, return the minimum number of elements that\n    need to be changed to make the array palindromic. In one change, you can\n    change one element to any other element.\n    \"\"\"\n    n = len(arr)\n    changes = 0\n    left = 0\n    right = n - 1\n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    return changes\n\n\n# Quick self-tests (will run when module executed)\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,5,4,7,9,6], 4),\n        ([1, 2, 3, 4, 3, 2, 2], 1),\n        ([1, 2, 3, 2, 1], 0),\n        ([], 0),\n        ([1], 0),\n        ([1,2], 1),\n        ([1,1,2,2,1], 1),\n    ]\n    for arr, expected in tests:\n        result = smallest_change(arr)\n        print(f\"{arr} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 188,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.026596,
+    "function_names": [
+      "smallest_change"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__claude_model__constraint__r2.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def pluck(arr):\n    if not arr:\n        return []\n    \n    result = []\n    for i, val in enumerate(arr):\n        if val % 2 == 0:\n            if not result or val < result[0]:\n                result = [val, i]\n    \n    return result",
+  "metrics": {
+    "total_nodes": 66,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

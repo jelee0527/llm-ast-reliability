@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_062__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_062",
+  "task_id": "HumanEval/62",
+  "problem_name": "Derivative",
+  "entry_point": "derivative",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef derivative(xs: List[float]) -> List[float]:\n    \"\"\" xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n    Return derivative of this polynomial in the same form.\n    Examples:\n    derivative([3, 1, 2, 4, 5]) -> [1, 4, 12, 20]\n    derivative([1, 2, 3]) -> [2, 6]\n    \"\"\"\n    if not isinstance(xs, list):\n        raise TypeError(\"Input must be a list of coefficients.\")\n    n = len(xs)\n    if n <= 1:\n        return []\n    # derivative coefficient for x^k is (k+1)*xs[k+1]\n    result: List[float] = []\n    for k in range(1, n):\n        coeff = k * xs[k]\n        result.append(coeff)\n    return result\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert derivative([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\n    assert derivative([1, 2, 3]) == [2, 6]\n    assert derivative([5]) == []\n    assert derivative([]) == []\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 162,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.04321,
+    "function_names": [
+      "derivative"
+    ]
+  }
+}

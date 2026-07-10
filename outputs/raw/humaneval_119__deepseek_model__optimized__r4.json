@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "evaluation_type": "humaneval",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T13:51:43.307203+00:00",
+  "elapsed_seconds": 2.039,
+  "official_prompt": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n\n",
+  "raw_response": "```python\ndef match_parens(lst):\n    def balance(s):\n        bal = 0\n        min_bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            min_bal = min(min_bal, bal)\n        return bal, min_bal\n    \n    a, b = lst\n    bal_a, min_a = balance(a)\n    bal_b, min_b = balance(b)\n    \n    # Try order a+b\n    if min_a >= 0 and bal_a + min_b >= 0 and bal_a + bal_b == 0:\n        return 'Yes'\n    # Try order b+a\n    if min_b >= 0 and bal_b + min_a >= 0 and bal_b + bal_a == 0:\n        return 'Yes'\n    return 'No'",
+  "generated_code": "def match_parens(lst):\n    def balance(s):\n        bal = 0\n        min_bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            min_bal = min(min_bal, bal)\n        return bal, min_bal\n    \n    a, b = lst\n    bal_a, min_a = balance(a)\n    bal_b, min_b = balance(b)\n    \n    # Try order a+b\n    if min_a >= 0 and bal_a + min_b >= 0 and bal_a + bal_b == 0:\n        return 'Yes'\n    # Try order b+a\n    if min_b >= 0 and bal_b + min_a >= 0 and bal_b + bal_a == 0:\n        return 'Yes'\n    return 'No'"
+}

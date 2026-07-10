@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_061__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_061",
+  "task_id": "HumanEval/61",
+  "problem_name": "Correct Bracketing",
+  "entry_point": "correct_bracketing",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef correct_bracketing(brackets: str) -> bool:\n    \"\"\"Return True if every opening bracket '(' has a corresponding closing bracket ')'\n    and the brackets are properly nested. Otherwise return False.\n\n    Args:\n        brackets: string consisting of '(' and ')' characters.\n\n    Examples:\n        >>> correct_bracketing(\"(\")\n        False\n        >>> correct_bracketing(\"()\")\n        True\n        >>> correct_bracketing(\"(()())\")\n        True\n        >>> correct_bracketing(\")(()\")\n        False\n    \"\"\"\n    # Use a counter as stack height. Increment for '(' and decrement for ')'.\n    depth = 0\n    for ch in brackets:\n        if ch == '(':\n            depth += 1\n        elif ch == ')':\n            depth -= 1\n        else:\n            # If other characters are present, treat as invalid input -> not balanced\n            return False\n        # At no point should closing brackets exceed openings\n        if depth < 0:\n            return False\n    # All openings must be closed\n    return depth == 0\n\nif __name__ == \"__main__\":\n    # Quick self-test\n    tests = [\"(\", \"()\", \"(()())\", \")(()\", \"\", \"(()\", \"())(\", \"((()))\", \"())\"]\n    for t in tests:\n        print(f\"{t!r}: {correct_bracketing(t)}\")",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.090909,
+    "function_names": [
+      "correct_bracketing"
+    ]
+  }
+}

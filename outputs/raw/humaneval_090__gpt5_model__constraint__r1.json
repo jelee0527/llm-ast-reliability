@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:20:03.304730+00:00",
+  "elapsed_seconds": 5.516,
+  "official_prompt": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import List, Optional\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list.\n    Return None if there is no such element.\n    \"\"\"\n    if not lst:\n        return None\n\n    # Track smallest and second smallest distinct values\n    smallest = None\n    second = None\n\n    for x in lst:\n        # skip non-integers? problem states integers, so accept all\n        if smallest is None:\n            smallest = x\n            continue\n\n        if x == smallest:\n            continue\n\n        if x < smallest:\n            # new smallest, previous smallest may become second\n            second = smallest\n            smallest = x\n        else:\n            # x > smallest\n            if second is None or x < second:\n                second = x\n\n    return second\n\n# Quick manual tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,4,5], 2),\n        ([5,1,4,3,2], 2),\n        ([], None),\n        ([1,1], None),\n        ([2,1], 2),\n        ([1,2,1,2], 2),\n        ([3,3,2,2,1,1], 2),\n        ([1], None),\n        ([1,1,2], 2),\n    ]\n    for inp, expected in tests:\n        out = next_smallest(inp)\n        print(inp, out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")",
+  "generated_code": "from typing import List, Optional\n\ndef next_smallest(lst: List[int]) -> Optional[int]:\n    \"\"\"\n    Return the 2nd smallest distinct element of the list.\n    Return None if there is no such element.\n    \"\"\"\n    if not lst:\n        return None\n\n    # Track smallest and second smallest distinct values\n    smallest = None\n    second = None\n\n    for x in lst:\n        # skip non-integers? problem states integers, so accept all\n        if smallest is None:\n            smallest = x\n            continue\n\n        if x == smallest:\n            continue\n\n        if x < smallest:\n            # new smallest, previous smallest may become second\n            second = smallest\n            smallest = x\n        else:\n            # x > smallest\n            if second is None or x < second:\n                second = x\n\n    return second\n\n# Quick manual tests when run as script\nif __name__ == \"__main__\":\n    tests = [\n        ([1,2,3,4,5], 2),\n        ([5,1,4,3,2], 2),\n        ([], None),\n        ([1,1], None),\n        ([2,1], 2),\n        ([1,2,1,2], 2),\n        ([3,3,2,2,1,1], 2),\n        ([1], None),\n        ([1,1,2], 2),\n    ]\n    for inp, expected in tests:\n        out = next_smallest(inp)\n        print(inp, out, \"OK\" if out == expected else f\"FAIL (expected {expected})\")"
+}

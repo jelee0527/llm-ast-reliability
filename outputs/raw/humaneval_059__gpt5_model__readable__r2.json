@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:12:36.903339+00:00",
+  "elapsed_seconds": 4.151,
+  "official_prompt": "\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    largest = None\n    while n % 2 == 0:\n        largest = 2\n        n //= 2\n    # Check odd factors up to sqrt(n)\n    factor = 3\n    max_possible = math.isqrt(n) + 1\n    while factor <= max_possible and n > 1:\n        if n % factor == 0:\n            largest = factor\n            while n % factor == 0:\n                n //= factor\n            max_possible = math.isqrt(n) + 1\n        factor += 2\n    # If remaining n is >1 it is prime and larger than any found factor\n    if n > 1:\n        largest = n\n    if largest is None:\n        # This would mean original n was prime, but per assumptions this shouldn't happen.\n        return int(n)\n    return int(largest)",
+  "generated_code": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    largest = None\n    while n % 2 == 0:\n        largest = 2\n        n //= 2\n    # Check odd factors up to sqrt(n)\n    factor = 3\n    max_possible = math.isqrt(n) + 1\n    while factor <= max_possible and n > 1:\n        if n % factor == 0:\n            largest = factor\n            while n % factor == 0:\n                n //= factor\n            max_possible = math.isqrt(n) + 1\n        factor += 2\n    # If remaining n is >1 it is prime and larger than any found factor\n    if n > 1:\n        largest = n\n    if largest is None:\n        # This would mean original n was prime, but per assumptions this shouldn't happen.\n        return int(n)\n    return int(largest)"
+}

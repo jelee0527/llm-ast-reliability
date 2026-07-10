@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_127__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_127",
+  "task_id": "HumanEval/127",
+  "problem_name": "Intersection",
+  "entry_point": "intersection",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0:\n        return False\n    r = int(math.isqrt(n))\n    for i in range(3, r + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n\ndef intersection(interval1, interval2):\n    a1, b1 = interval1\n    a2, b2 = interval2\n    # Determine intersection range [L, R]\n    L = max(a1, a2)\n    R = min(b1, b2)\n    if L > R:\n        return \"NO\"\n    length = R - L  # closed intervals => length = end - start\n    return \"YES\" if is_prime(length) else \"NO\"",
+  "metrics": {
+    "total_nodes": 146,
+    "ast_depth": 8,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.09589,
+    "function_names": [
+      "is_prime",
+      "intersection"
+    ]
+  }
+}

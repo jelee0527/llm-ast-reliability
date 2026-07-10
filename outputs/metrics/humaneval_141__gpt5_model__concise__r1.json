@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef file_name_check(file_name):\n    # Check exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    name, ext = file_name.rsplit('.', 1)\n    # Non-empty name and valid extension\n    if not name or ext not in {'txt', 'exe', 'dll'}:\n        return 'No'\n    # Starts with a latin letter\n    if not re.match(r'^[A-Za-z]', name):\n        return 'No'\n    # No more than three digits in the whole file name\n    digit_count = sum(ch.isdigit() for ch in file_name)\n    if digit_count > 3:\n        return 'No'\n    return 'Yes'",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.101124,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_099__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_099",
+  "task_id": "HumanEval/99",
+  "problem_name": "Closest Integer",
+  "entry_point": "closest_integer",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from decimal import Decimal, ROUND_HALF_UP, ROUND_FLOOR, ROUND_CEILING, getcontext\n\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n    '''\n    # Use Decimal for exact half handling\n    # Increase precision to handle large inputs safely\n    getcontext().prec = max(28, len(value) + 5)\n    num = Decimal(value)\n\n    # Separate integer part and fractional part\n    integer_part = int(num.to_integral_value(rounding=ROUND_FLOOR if num >= 0 else ROUND_CEILING))\n    # Compute fractional component as positive Decimal\n    frac = abs(num - Decimal(integer_part))\n\n    if frac == 0:\n        return integer_part\n\n    if frac < Decimal('0.5'):\n        return integer_part\n    if frac > Decimal('0.5'):\n        # move toward nearest integer\n        if num >= 0:\n            return integer_part + 1\n        else:\n            return integer_part - 1\n\n    # frac == 0.5: tie -> round away from zero\n    if num >= 0:\n        return integer_part + 1\n    else:\n        return integer_part - 1\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = [\"10\", \"15.3\", \"14.5\", \"-14.5\", \"2.4999\", \"-2.4999\", \"2.5\", \"-2.5\", \"0.5\", \"-0.5\", \"0\"]\n    for t in tests:\n        print(t, \"->\", closest_integer(t))",
+  "metrics": {
+    "total_nodes": 180,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.077778,
+    "function_names": [
+      "closest_integer"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_059",
+  "task_id": "HumanEval/59",
+  "problem_name": "Largest Prime Factor",
+  "entry_point": "largest_prime_factor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T06:11:59.204129+00:00",
+  "elapsed_seconds": 3.77,
+  "official_prompt": "\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    max_pf = None\n    while n % 2 == 0:\n        max_pf = 2\n        n //= 2\n    # Check odd factors up to sqrt(n)\n    f = 3\n    max_possible = math.isqrt(n) + 1\n    while f <= max_possible and n > 1:\n        if n % f == 0:\n            max_pf = f\n            while n % f == 0:\n                n //= f\n            max_possible = math.isqrt(n) + 1\n        f += 2\n    # If remainder > 1, it's a prime factor larger than previous ones\n    if n > 1:\n        max_pf = n\n    if max_pf is None:\n        # n was prime originally; per docstring assume not prime, but handle anyway\n        return None\n    return int(max_pf)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "generated_code": "import math\n\ndef largest_prime_factor(n: int):\n    \"\"\"Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n    \"\"\"\n    if n <= 1:\n        raise ValueError(\"n must be greater than 1\")\n    # Remove factors of 2\n    max_pf = None\n    while n % 2 == 0:\n        max_pf = 2\n        n //= 2\n    # Check odd factors up to sqrt(n)\n    f = 3\n    max_possible = math.isqrt(n) + 1\n    while f <= max_possible and n > 1:\n        if n % f == 0:\n            max_pf = f\n            while n % f == 0:\n                n //= f\n            max_possible = math.isqrt(n) + 1\n        f += 2\n    # If remainder > 1, it's a prime factor larger than previous ones\n    if n > 1:\n        max_pf = n\n    if max_pf is None:\n        # n was prime originally; per docstring assume not prime, but handle anyway\n        return None\n    return int(max_pf)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()"
+}

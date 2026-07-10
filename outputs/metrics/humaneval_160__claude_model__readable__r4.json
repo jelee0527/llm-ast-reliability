@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_160__claude_model__readable__r4.json",
+  "problem_id": "humaneval_160",
+  "task_id": "HumanEval/160",
+  "problem_name": "Do Algebra",
+  "entry_point": "do_algebra",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def do_algebra(operator, operand):\n    expression = str(operand[0])\n    \n    for i, op in enumerate(operator):\n        expression += \" \" + op + \" \" + str(operand[i + 1])\n    \n    result = eval(expression)\n    return result",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.030769,
+    "function_names": [
+      "do_algebra"
+    ]
+  }
+}

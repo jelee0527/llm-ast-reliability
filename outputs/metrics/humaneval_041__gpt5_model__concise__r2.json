@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Count collisions between n left-to-right cars and n right-to-left cars,\n    all moving at the same speed on a line, starting from very far apart.\n    Each pair of cars moving in opposite directions will collide exactly once.\n    So total collisions = n * n.\n    \"\"\"\n    return n * n\n\n# Quick test (not required): \nif __name__ == \"__main__\":\n    for i in range(6):\n        print(i, car_race_collision(i))",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.069767,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

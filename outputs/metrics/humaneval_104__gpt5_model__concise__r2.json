@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_104__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_104",
+  "task_id": "HumanEval/104",
+  "problem_name": "Unique Digits",
+  "entry_point": "unique_digits",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef unique_digits(x: List[int]) -> List[int]:\n    def has_even_digit(n: int) -> bool:\n        if n == 0:\n            return True\n        while n:\n            if (n % 10) % 2 == 0:\n                return True\n            n //= 10\n        return False\n    res = [n for n in x if not has_even_digit(n)]\n    return sorted(res)",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.08642,
+    "function_names": [
+      "unique_digits",
+      "has_even_digit"
+    ]
+  }
+}

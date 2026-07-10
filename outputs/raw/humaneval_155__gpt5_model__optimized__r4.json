@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_155",
+  "task_id": "HumanEval/155",
+  "problem_name": "Even Odd Count",
+  "entry_point": "even_odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T23:58:03.356482+00:00",
+  "elapsed_seconds": 2.897,
+  "official_prompt": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n\n",
+  "raw_response": "import math\nfrom typing import Tuple\n\ndef even_odd_count(num: int) -> Tuple[int, int]:\n    \"\"\"Given an integer, return a tuple (even_count, odd_count) of its digits.\n    Handles negative numbers and zero.\"\"\"\n    # Work with absolute value\n    n = abs(int(num))\n    if n == 0:\n        return (1, 0)  # zero is even\n    even = 0\n    odd = 0\n    while n:\n        d = n % 10\n        if d & 1:\n            odd += 1\n        else:\n            even += 1\n        n //= 10\n    return (even, odd)",
+  "generated_code": "import math\nfrom typing import Tuple\n\ndef even_odd_count(num: int) -> Tuple[int, int]:\n    \"\"\"Given an integer, return a tuple (even_count, odd_count) of its digits.\n    Handles negative numbers and zero.\"\"\"\n    # Work with absolute value\n    n = abs(int(num))\n    if n == 0:\n        return (1, 0)  # zero is even\n    even = 0\n    odd = 0\n    while n:\n        d = n % 10\n        if d & 1:\n            odd += 1\n        else:\n            even += 1\n        n //= 10\n    return (even, odd)"
+}

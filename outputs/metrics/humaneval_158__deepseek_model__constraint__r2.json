@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_158__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def find_max(words):\n    def unique_count(s):\n        return len(set(s))\n    \n    max_word = words[0]\n    max_unique = unique_count(words[0])\n    \n    for word in words[1:]:\n        u = unique_count(word)\n        if u > max_unique or (u == max_unique and word < max_word):\n            max_word = word\n            max_unique = u\n    \n    return max_word",
+  "metrics": {
+    "total_nodes": 88,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.045455,
+    "function_names": [
+      "find_max",
+      "unique_count"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"Return list of first n+1 Tribonacci numbers as defined.\"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # We need indices 0..n inclusive. Definition gives tri(1)=3.\n    # Interpret tri(0)=1 based on example tri(3) = [1,3,2,8] => tri(0)=1, tri(1)=3, tri(2)=2, tri(3)=8\n    res = [0] * (n + 1)\n    if n >= 0:\n        res[0] = 1\n    if n >= 1:\n        res[1] = 3\n    # For even n: tri(n) = 1 + n/2 -> integer\n    # For odd n: tri(n) = tri(n-1) + tri(n-2) + tri(n+1) -> depends on tri(n+1)\n    # This is nonstandard because odd depends on next; we can compute by handling evens directly and solving odds using system:\n    # We'll compute progressively increasing index but when encountering odd k we can compute tri(k+1) if needed (k+1 even) using formula.\n    i = 2\n    while i <= n:\n        if i % 2 == 0:\n            # even\n            res[i] = 1 + i // 2\n            i += 1\n        else:\n            # odd: res[i] = res[i-1] + res[i-2] + res[i+1]; need res[i+1]\n            # i+1 is even, so compute it first (if within range)\n            if i + 1 <= n:\n                res[i+1] = 1 + (i + 1) // 2\n            else:\n                # i+1 out of range: we cannot compute res[i] because it depends on out-of-range term.\n                # But by problem, we only need up to n; when n is odd, tri(n) refers to tri(n+1) which is undefined.\n                # However example and intent implies we should still compute using the definition; assume tri(n+1) uses formula for even (n+1).\n                # Since i+1 > n, compute it temporarily without storing beyond bounds.\n                tmp_next = 1 + (i + 1) // 2\n                res[i] = res[i-1] + res[i-2] + tmp_next\n                i += 1\n                continue\n            # now compute res[i]\n            res[i] = res[i-1] + res[i-2] + res[i+1]\n            i += 2  # we already set i+1\n    return res",
+  "metrics": {
+    "total_nodes": 234,
+    "ast_depth": 12,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Optional\n\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every lowercase alphabet character by 5 in the alphabet.\n    Non-lowercase letters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            shifted = chr(((ord(ch) + 5 - ord('a')) % 26) + ord('a'))\n            result_chars.append(shifted)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Handles only lowercase letters shifted by encode_shift; other characters are left unchanged.\n    \"\"\"\n    result_chars = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            shifted = chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a'))\n            result_chars.append(shifted)\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)",
+  "metrics": {
+    "total_nodes": 161,
+    "ast_depth": 13,
+    "branch_count": 2,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.037267,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

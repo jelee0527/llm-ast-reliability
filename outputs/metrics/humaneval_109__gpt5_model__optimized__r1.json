@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be made non-decreasing by some number of right shifts.\"\"\"\n    n = len(arr)\n    if n <= 1:\n        return True\n    # Count number of \"drops\" where arr[i] > arr[i+1]\n    drops = 0\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            if drops > 1:\n                return False\n    # Additionally, check wrap-around: last <= first is required if there was a drop,\n    # but more simply, if there is no drop it's already sorted; if one drop then\n    # arr[-1] <= arr[0] must hold to be a rotation of a sorted array.\n    if drops == 0:\n        return True\n    return arr[-1] <= arr[0]",
+  "metrics": {
+    "total_nodes": 101,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.089109,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__claude_model__readable__r1.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def encrypt(s):\n    result = []\n    shift = 2 * 2  # shift down by two multiplied by two = 4\n    \n    for char in s:\n        if char.isalpha():\n            if char.islower():\n                base = ord('a')\n                shifted_char = chr((ord(char) - base + shift) % 26 + base)\n            else:\n                base = ord('A')\n                shifted_char = chr((ord(char) - base + shift) % 26 + base)\n            result.append(shifted_char)\n        else:\n            result.append(char)\n    \n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 122,
+    "ast_depth": 14,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.032787,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

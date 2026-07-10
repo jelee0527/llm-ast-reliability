@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_113",
+  "task_id": "HumanEval/113",
+  "problem_name": "Odd Count",
+  "entry_point": "odd_count",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:07:09.970361+00:00",
+  "elapsed_seconds": 4.076,
+  "official_prompt": "\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    >>> odd_count(['3',\"11111111\"])\n    [\"the number of odd elements 1n the str1ng 1 of the 1nput.\",\n     \"the number of odd elements 8n the str8ng 8 of the 8nput.\"]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    >>> odd_count(['3',\"11111111\"])\n    [\"the number of odd elements 1n the str1ng 1 of the 1nput.\",\n     \"the number of odd elements 8n the str8ng 8 of the 8nput.\"]\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings of digits, return list of formatted strings where\n    every 'i' in the template is replaced by the count of odd digits in that input string.\n    \"\"\"\n    out = []\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # But original examples show no spaces around inserted numbers and replace every 'i' letter\n    # Build template matching problem statement: \"the number of odd elements i the stri ng i of the i nput.\"\n    # Instead, use original sentence from docstring:\n    base = \"the number of odd elements i n the stri ng i of the i nput.\"\n    # Simpler: use given expected outputs to craft exact template:\n    tmpl = \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n    for s in lst:\n        # count odd digits\n        count = sum((ord(c) - ord('0')) & 1 for c in s)\n        out.append(tmpl.format(n=count))\n    return out",
+  "generated_code": "import re\n\ndef odd_count(lst):\n    \"\"\"Given a list of strings of digits, return list of formatted strings where\n    every 'i' in the template is replaced by the count of odd digits in that input string.\n    \"\"\"\n    out = []\n    template = \"the number of odd elements i n the str i ng i of the i nput.\"\n    # But original examples show no spaces around inserted numbers and replace every 'i' letter\n    # Build template matching problem statement: \"the number of odd elements i the stri ng i of the i nput.\"\n    # Instead, use original sentence from docstring:\n    base = \"the number of odd elements i n the stri ng i of the i nput.\"\n    # Simpler: use given expected outputs to craft exact template:\n    tmpl = \"the number of odd elements {n}n the str{n}ng {n} of the {n}nput.\"\n    for s in lst:\n        # count odd digits\n        count = sum((ord(c) - ord('0')) & 1 for c in s)\n        out.append(tmpl.format(n=count))\n    return out"
+}

@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__gpt5_model__constraint__r5.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Determine if by concatenating the two strings in some order the result is a balanced parentheses string.\n    Return 'Yes' or 'No'.\n    \"\"\"\n    if not isinstance(lst, list) or len(lst) != 2:\n        raise ValueError(\"Input must be a list of two strings.\")\n    a, b = lst[0], lst[1]\n\n    def is_good(s: str) -> bool:\n        balance = 0\n        for ch in s:\n            if ch == '(':\n                balance += 1\n            elif ch == ')':\n                balance -= 1\n            else:\n                # invalid character\n                return False\n            if balance < 0:\n                return False\n        return balance == 0\n\n    # Check both concatenation orders\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    else:\n        return 'No'\n\n\n# Quick internal tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (['()(', ')'], 'Yes'),\n        ([')', ')'], 'No'),\n        (['(', ')'], 'Yes'),\n        (['(()', '())'], 'Yes'),\n        (['(()', ')('], 'No'),\n    ]\n    for inp, exp in tests:\n        out = match_parens(inp)\n        print(inp, out, 'OK' if out == exp else f'FAIL (expected {exp})')",
+  "metrics": {
+    "total_nodes": 224,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.066964,
+    "function_names": [
+      "match_parens",
+      "is_good"
+    ]
+  }
+}

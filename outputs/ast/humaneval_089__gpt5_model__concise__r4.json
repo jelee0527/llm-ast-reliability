@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_089__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from string import ascii_lowercase as lc\n\ndef encrypt(s):\n    \"\"\"Rotate lowercase letters by 4 positions (two multiplied by two). Non-letters unchanged.\"\"\"\n    trans = {c: lc[(i + 4) % 26] for i, c in enumerate(lc)}\n    return ''.join(trans[ch] if ch in trans else ch for ch in s)",
+  "ast_dump": "Module(\n  body=[\n    ImportFrom(\n      module='string',\n      names=[\n        alias(name='ascii_lowercase', asname='lc')],\n      level=0),\n    FunctionDef(\n      name='encrypt',\n      args=arguments(\n        args=[\n          arg(arg='s')]),\n      body=[\n        Expr(\n          value=Constant(value='Rotate lowercase letters by 4 positions (two multiplied by two). Non-letters unchanged.')),\n        Assign(\n          targets=[\n            Name(id='trans', ctx=Store())],\n          value=DictComp(\n            key=Name(id='c', ctx=Load()),\n            value=Subscript(\n              value=Name(id='lc', ctx=Load()),\n              slice=BinOp(\n                left=BinOp(\n                  left=Name(id='i', ctx=Load()),\n                  op=Add(),\n                  right=Constant(value=4)),\n                op=Mod(),\n                right=Constant(value=26)),\n              ctx=Load()),\n            generators=[\n              comprehension(\n                target=Tuple(\n                  elts=[\n                    Name(id='i', ctx=Store()),\n                    Name(id='c', ctx=Store())],\n                  ctx=Store()),\n                iter=Call(\n                  func=Name(id='enumerate', ctx=Load()),\n                  args=[\n                    Name(id='lc', ctx=Load())]),\n                is_async=0)])),\n        Return(\n          value=Call(\n            func=Attribute(\n              value=Constant(value=''),\n              attr='join',\n              ctx=Load()),\n            args=[\n              GeneratorExp(\n                elt=IfExp(\n                  test=Compare(\n                    left=Name(id='ch', ctx=Load()),\n                    ops=[\n                      In()],\n                    comparators=[\n                      Name(id='trans', ctx=Load())]),\n                  body=Subscript(\n                    value=Name(id='trans', ctx=Load()),\n                    slice=Name(id='ch', ctx=Load()),\n                    ctx=Load()),\n                  orelse=Name(id='ch', ctx=Load())),\n                generators=[\n                  comprehension(\n                    target=Name(id='ch', ctx=Store()),\n                    iter=Name(id='s', ctx=Load()),\n                    is_async=0)])]))])])"
+}

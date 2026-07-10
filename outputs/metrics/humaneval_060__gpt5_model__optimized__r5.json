@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_060__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "problem_name": "Sum To N",
+  "entry_point": "sum_to_n",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Union\n\ndef sum_to_n(n: int) -> int:\n    \"\"\"Return the sum of integers from 1 to n inclusive.\n    Uses the arithmetic series formula for O(1) time and O(1) space.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # Formula: n*(n+1)//2\n    return n * (n + 1) // 2\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 65,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.092308,
+    "function_names": [
+      "sum_to_n"
+    ]
+  }
+}

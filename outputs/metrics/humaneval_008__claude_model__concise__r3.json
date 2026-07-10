@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_008__claude_model__concise__r3.json",
+  "problem_id": "humaneval_008",
+  "task_id": "HumanEval/8",
+  "problem_name": "Sum Product",
+  "entry_point": "sum_product",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\nfrom functools import reduce\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    return (sum(numbers), reduce(lambda x, y: x * y, numbers, 1))",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.020408,
+    "function_names": [
+      "sum_product"
+    ]
+  }
+}

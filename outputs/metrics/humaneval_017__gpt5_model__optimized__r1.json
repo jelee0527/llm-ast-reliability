@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\nimport re\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\"Parse a string of musical notes into their beat durations.\n\n    Legend:\n    'o'  -> whole note (4 beats)\n    'o|' -> half note  (2 beats)\n    '.|' -> quarter note (1 beat)\n\n    Notes in the input may be separated by spaces. The patterns may appear\n    adjacent (e.g., \"o o| .|\") and extra whitespace is ignored.\n\n    Returns a list of integers for each note's duration.\n    \"\"\"\n    if not music_string:\n        return []\n\n    # Tokenize by whitespace; each token should represent one note pattern.\n    tokens = music_string.split()\n\n    result: List[int] = []\n    for tok in tokens:\n        if tok == 'o':\n            result.append(4)\n        elif tok == 'o|':\n            result.append(2)\n        elif tok == '.|':\n            result.append(1)\n        else:\n            # In case of malformed or concatenated input like 'o o|'\n            # try to extract known patterns sequentially.\n            i = 0\n            n = len(tok)\n            while i < n:\n                # try longest patterns first\n                if tok.startswith('o|', i):\n                    result.append(2)\n                    i += 2\n                elif tok.startswith('.|', i):\n                    result.append(1)\n                    i += 2\n                elif tok.startswith('o', i):\n                    result.append(4)\n                    i += 1\n                else:\n                    # skip unknown characters\n                    i += 1\n    return result",
+  "metrics": {
+    "total_nodes": 179,
+    "ast_depth": 15,
+    "branch_count": 7,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.061453,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

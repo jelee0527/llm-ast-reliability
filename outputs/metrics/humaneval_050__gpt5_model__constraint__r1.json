@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_050__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_050",
+  "task_id": "HumanEval/50",
+  "problem_name": "Decode Shift",
+  "entry_point": "decode_shift",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    Only lowercase a-z are shifted; other characters are left unchanged.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"s must be a string\")\n    result_chars: List[str] = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            shifted = ((ord(ch) - ord('a') + 5) % 26) + ord('a')\n            result_chars.append(chr(shifted))\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    Only lowercase a-z are shifted back; other characters are left unchanged.\n    \"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"s must be a string\")\n    result_chars: List[str] = []\n    for ch in s:\n        if 'a' <= ch <= 'z':\n            shifted = ((ord(ch) - ord('a') - 5) % 26) + ord('a')\n            result_chars.append(chr(shifted))\n        else:\n            result_chars.append(ch)\n    return \"\".join(result_chars)",
+  "metrics": {
+    "total_nodes": 203,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.049261,
+    "function_names": [
+      "encode_shift",
+      "decode_shift"
+    ]
+  }
+}

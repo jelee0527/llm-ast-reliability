@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_094__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "problem_name": "Skjkasdkd",
+  "entry_point": "skjkasdkd",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def skjkasdkd(lst):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    largest_prime = 0\n    for num in lst:\n        if is_prime(num) and num > largest_prime:\n            largest_prime = num\n\n    digit_sum = 0\n    for digit_char in str(largest_prime):\n        digit_sum += int(digit_char)\n\n    return digit_sum",
+  "metrics": {
+    "total_nodes": 144,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 3,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.097222,
+    "function_names": [
+      "skjkasdkd",
+      "is_prime"
+    ]
+  }
+}

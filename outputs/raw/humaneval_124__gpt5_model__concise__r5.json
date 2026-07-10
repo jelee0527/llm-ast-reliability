@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:27:46.314655+00:00",
+  "elapsed_seconds": 3.275,
+  "official_prompt": "\ndef valid_date(date):\n    \"\"\"You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n    for example: \n    valid_date('03-11-2000') => True\n\n    valid_date('15-01-2012') => False\n\n    valid_date('04-0-2040') => False\n\n    valid_date('06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef valid_date(date):\n    \"\"\"You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n    for example: \n    valid_date('03-11-2000') => True\n\n    valid_date('15-01-2012') => False\n\n    valid_date('04-0-2040') => False\n\n    valid_date('06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"\n\n",
+  "raw_response": "import re\n\ndef valid_date(date):\n    if not date or not isinstance(date, str):\n        return False\n    # must match mm-dd-yyyy with digits only\n    m = re.fullmatch(r'(\\d{1,2})-(\\d{1,2})-(\\d{4})', date)\n    if not m:\n        return False\n    mm, dd, yyyy = m.groups()\n    try:\n        month = int(mm)\n        day = int(dd)\n        year = int(yyyy)\n    except ValueError:\n        return False\n    if month < 1 or month > 12:\n        return False\n    if day < 1:\n        return False\n    # days per month: Feb max 29 per spec (no leap-year check)\n    if month in (1,3,5,7,8,10,12):\n        return day <= 31\n    elif month in (4,6,9,11):\n        return day <= 30\n    else:  # month == 2\n        return day <= 29",
+  "generated_code": "import re\n\ndef valid_date(date):\n    if not date or not isinstance(date, str):\n        return False\n    # must match mm-dd-yyyy with digits only\n    m = re.fullmatch(r'(\\d{1,2})-(\\d{1,2})-(\\d{4})', date)\n    if not m:\n        return False\n    mm, dd, yyyy = m.groups()\n    try:\n        month = int(mm)\n        day = int(dd)\n        year = int(yyyy)\n    except ValueError:\n        return False\n    if month < 1 or month > 12:\n        return False\n    if day < 1:\n        return False\n    # days per month: Feb max 29 per spec (no leap-year check)\n    if month in (1,3,5,7,8,10,12):\n        return day <= 31\n    elif month in (4,6,9,11):\n        return day <= 30\n    else:  # month == 2\n        return day <= 29"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_079__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_079",
+  "task_id": "HumanEval/79",
+  "problem_name": "Decimal To Binary",
+  "entry_point": "decimal_to_binary",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef decimal_to_binary(decimal):\n    \"\"\"Convert an integer to binary string wrapped with 'db' at both ends.\"\"\"\n    # Handle zero explicitly\n    if decimal == 0:\n        return \"db0db\"\n    # Handle negative numbers if any: keep sign in front of binary digits\n    sign = ''\n    if decimal < 0:\n        sign = '-'\n        decimal = abs(decimal)\n    bits = []\n    while decimal > 0:\n        bits.append(str(decimal % 2))\n        decimal //= 2\n    bits.reverse()\n    return \"db\" + sign + \"\".join(bits) + \"db\"",
+  "metrics": {
+    "total_nodes": 91,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.054945,
+    "function_names": [
+      "decimal_to_binary"
+    ]
+  }
+}

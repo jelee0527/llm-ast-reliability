@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_108__claude_model__readable__r1.json",
+  "problem_id": "humaneval_108",
+  "task_id": "HumanEval/108",
+  "problem_name": "Count Nums",
+  "entry_point": "count_nums",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def count_nums(arr):\n    \"\"\"\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n    \"\"\"\n    def digit_sum(n):\n        if n < 0:\n            digits = [int(d) for d in str(abs(n))]\n            digits[0] = -digits[0]\n        else:\n            digits = [int(d) for d in str(n)]\n        return sum(digits)\n\n    count = 0\n    for num in arr:\n        if digit_sum(num) > 0:\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 97,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.051546,
+    "function_names": [
+      "count_nums",
+      "digit_sum"
+    ]
+  }
+}

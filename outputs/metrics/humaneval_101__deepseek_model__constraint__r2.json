@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_101__deepseek_model__constraint__r2.json",
+  "problem_id": "humaneval_101",
+  "task_id": "HumanEval/101",
+  "problem_name": "Words String",
+  "entry_point": "words_string",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n    result = []\n    current_word = []\n    for char in s:\n        if char == ',' or char == ' ':\n            if current_word:\n                result.append(''.join(current_word))\n                current_word = []\n        else:\n            current_word.append(char)\n    if current_word:\n        result.append(''.join(current_word))\n    return result",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.0625,
+    "function_names": [
+      "words_string"
+    ]
+  }
+}

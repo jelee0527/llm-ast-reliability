@@ -1,0 +1,29 @@
+{
+  "source_file": "humaneval_039__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\nfrom typing import Iterator\n\ndef is_prime(n: int) -> bool:\n    if n < 2:\n        return False\n    small_primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29)\n    for p in small_primes:\n        if n == p:\n            return True\n        if n % p == 0:\n            return False\n    # Miller-Rabin deterministic bases for 64-bit integers\n    d = n - 1\n    s = 0\n    while d % 2 == 0:\n        d //= 2\n        s += 1\n    def check(a: int) -> bool:\n        x = pow(a, d, n)\n        if x == 1 or x == n - 1:\n            return True\n        for _ in range(s - 1):\n            x = (x * x) % n\n            if x == n - 1:\n                return True\n        return False\n    # bases for deterministic test for n < 2^64\n    for a in (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37):\n        if a >= n:\n            break\n        if not check(a):\n            return False\n    return True\n\ndef fib_generator() -> Iterator[int]:\n    a, b = 0, 1\n    while True:\n        yield b\n        a, b = b, a + b\n\ndef prime_fib(n: int) -> int:\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # Known: Fibonacci primes are rare; generate Fibonacci numbers and test primality.\n    count = 0\n    for f in fib_generator():\n        if f > 1 and is_prime(f):\n            count += 1\n            if count == n:\n                return f\n# quick manual test when run as script\nif __name__ == \"__main__\":\n    import sys\n    if len(sys.argv) > 1:\n        k = int(sys.argv[1])\n        print(prime_fib(k))\n    else:\n        # sample prints for demonstration\n        print(prime_fib(1))\n        print(prime_fib(2))\n        print(prime_fib(3))\n        print(prime_fib(4))\n        print(prime_fib(5))",
+  "metrics": {
+    "total_nodes": 384,
+    "ast_depth": 9,
+    "branch_count": 12,
+    "loop_count": 6,
+    "function_count": 4,
+    "control_flow_count": 29,
+    "control_flow_ratio": 0.075521,
+    "function_names": [
+      "is_prime",
+      "fib_generator",
+      "prime_fib",
+      "check"
+    ]
+  }
+}

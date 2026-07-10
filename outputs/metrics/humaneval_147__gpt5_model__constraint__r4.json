@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_147__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef get_max_triples(n: int) -> int:\n    \"\"\"\n    Compute number of triples (i<j<k) such that a[i]+a[j]+a[k] is divisible by 3,\n    where a[i] = i*i - i + 1 for i = 1..n.\n    \"\"\"\n    if n < 3:\n        return 0\n\n    # Determine residue of a[i] modulo 3.\n    # Compute pattern by observing periodicity modulo 3 over i mod 3.\n    # For i mod 3 == 0: i=3t => i^2 - i +1 = 9t^2 -3t +1 ≡ 1 (mod3)\n    # For i mod 3 == 1: i=3t+1 => (9t^2+6t+1) - (3t+1) +1 = 9t^2+3t+1 ≡ 1 (mod3)\n    # For i mod 3 == 2: i=3t+2 => (9t^2+12t+4) - (3t+2) +1 = 9t^2+9t+3 ≡ 0 (mod3)\n    # So residues: i%3==0 -> 1, i%3==1 ->1, i%3==2 ->0\n    # Count how many indices fall into each residue class for i=1..n\n    cnt_mod = [0, 0, 0]  # counts for residues 0,1,2 of a[i] mod3\n    # For i%3 == 2 => a%3 == 0\n    # For i%3 == 0 or 1 => a%3 == 1\n    # There are no a%3 == 2 values.\n    # Count i with i%3 == 2\n    # Count of numbers in 1..n with remainder r is n//3 plus maybe one if r <= n%3\n    full = n // 3\n    rem = n % 3\n    # For i%3 == 1: numbers where i mod3 ==1: count = full + (1 if rem>=1 else 0)\n    cnt_i_mod = [\n        full + (1 if rem >= 0 and 0 != 0 else 0),  # placeholder for i%3==0 not used\n        full + (1 if rem >= 1 else 0),  # i%3==1\n        full + (1 if rem >= 2 else 0),  # i%3==2\n    ]\n    # Correct count for i%3==0: full + (1 if rem >= 0 and ?). Simpler compute directly:\n    cnt_i_mod[0] = full + (1 if rem >= 0 and False else 0)  # set to full, will fix below\n    # Actually counts for i%3==0 is full (since remainders 1..rem are 1 and 2 only)\n    cnt_i_mod[0] = full\n    # Now map to a%3 counts:\n    # a%3 == 0 comes from i%3 == 2\n    cnt_mod[0] = cnt_i_mod[2]\n    # a%3 == 1 comes from i%3 == 0 and 1\n    cnt_mod[1] = cnt_i_mod[0] + cnt_i_mod[1]\n    cnt_mod[2] = 0\n\n    c0 = cnt_mod[0]\n    c1 = cnt_mod[1]\n    c2 = cnt_mod[2]  # always 0\n\n    # Number of triples summing to multiple of 3:\n    # Possible residue combinations (unordered i<j<k) that sum to 0 mod3:\n    # (0,0,0): choose 3 from c0\n    # (1,1,1): choose 3 from c1\n    # (0,1,2): but c2==0 so none\n    def comb3(x: int) -> int:\n        if x < 3:\n            return 0\n        return (x * (x - 1) * (x - 2)) // 6\n\n    total = comb3(c0) + comb3(c1)\n    return total\n\n# If run as script, include a simple test (not required, but harmless).\nif __name__ == \"__main__\":\n    # Example from prompt\n    print(get_max_triples(5))",
+  "metrics": {
+    "total_nodes": 247,
+    "ast_depth": 10,
+    "branch_count": 7,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.044534,
+    "function_names": [
+      "get_max_triples",
+      "comb3"
+    ]
+  }
+}

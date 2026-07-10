@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_083__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_083",
+  "task_id": "HumanEval/83",
+  "problem_name": "Starts One Ends",
+  "entry_point": "starts_one_ends",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef starts_one_ends(n):\n    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    if n <= 0:\n        return 0\n    # Total n-digit numbers: 9 * 10^(n-1)\n    # Count that start with 1: 10^(n-1)\n    # Count that end with 1: 9 * 10^(n-2)  if n>=2, else 1 for n==1\n    # Overlap (both start and end with 1): for n==1 it's 1; for n>=2 it's 10^(n-2)\n    if n == 1:\n        return 1  # only the number 1\n    # Use pow for large n efficiently\n    pow10_n_1 = pow(10, n-1)\n    pow10_n_2 = pow(10, n-2)\n    start_count = pow10_n_1\n    end_count = 9 * pow10_n_2\n    overlap = pow10_n_2\n    return start_count + end_count - overlap",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 7,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.064935,
+    "function_names": [
+      "starts_one_ends"
+    ]
+  }
+}

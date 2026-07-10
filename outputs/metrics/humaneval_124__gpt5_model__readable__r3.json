@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef valid_date(date: str) -> bool:\n    \"\"\"Validate a date string in the format mm-dd-yyyy.\n\n    Rules:\n    - Non-empty string.\n    - Format must be exactly mm-dd-yyyy using '-' as separators.\n    - Month between 1 and 12.\n    - Day between 1 and allowed max for the given month.\n      * Months with 31 days: 1,3,5,7,8,10,12\n      * Months with 30 days: 4,6,9,11\n      * February allowed up to 29 (no leap-year check required).\n    - Year must be a non-negative integer (allowing year 0 and above).\n\n    Returns True if valid, otherwise False.\n    \"\"\"\n    if not isinstance(date, str):\n        return False\n    if not date:\n        return False\n\n    # Split by '-' and ensure exactly 3 parts\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n\n    month_str, day_str, year_str = parts\n\n    # All parts must be non-empty\n    if not month_str or not day_str or not year_str:\n        return False\n\n    # Ensure no leading/trailing spaces\n    if month_str.strip() != month_str or day_str.strip() != day_str or year_str.strip() != year_str:\n        return False\n\n    # All characters should be digits (no plus/minus, no spaces)\n    if not (month_str.isdigit() and day_str.isdigit() and year_str.isdigit()):\n        return False\n\n    try:\n        month = int(month_str)\n        day = int(day_str)\n        year = int(year_str)\n    except ValueError:\n        return False\n\n    # Validate month\n    if month < 1 or month > 12:\n        return False\n\n    # Validate year (non-negative)\n    if year < 0:\n        return False\n\n    # Determine maximum days for the month\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        max_day = 31\n    elif month in (4, 6, 9, 11):\n        max_day = 30\n    else:  # month == 2\n        max_day = 29\n\n    # Validate day\n    if day < 1 or day > max_day:\n        return False\n\n    # All checks passed\n    return True\n\n\n# Optional simple tests when running the module directly\nif __name__ == \"__main__\":\n    test_cases = {\n        '03-11-2000': True,\n        '15-01-2012': False,\n        '04-0-2040': False,\n        '06-04-2020': True,\n        '06/04/2020': False,\n        '02-29-2019': True,  # allowed by rule (up to 29), leap-year not enforced\n        '02-30-2020': False,\n        '00-10-2020': False,\n        '12-31-0000': True,\n        ' 06-04-2020': False,\n        '06-04-2020 ': False,\n    }\n    for d, expected in test_cases.items():\n        result = valid_date(d)\n        print(f\"{d!r}: {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 310,
+    "ast_depth": 9,
+    "branch_count": 13,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 25,
+    "control_flow_ratio": 0.080645,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

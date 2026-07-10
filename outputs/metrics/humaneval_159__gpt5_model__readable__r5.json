@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef eat(number: int, need: int, remaining: int) -> List[int]:\n    \"\"\"\n    Return [total_eaten_after_meals, remaining_carrots_after_meals].\n    You try to eat 'need' more carrots. If there aren't enough remaining carrots,\n    you eat all that are left.\n    \"\"\"\n    # Ensure inputs are non-negative integers within constraints\n    if number < 0 or need < 0 or remaining < 0:\n        raise ValueError(\"Inputs must be non-negative integers\")\n    # Determine how many carrots you actually eat now\n    eat_now = min(need, remaining)\n    total_eaten = number + eat_now\n    remaining_after = remaining - eat_now\n    return [total_eaten, remaining_after]",
+  "metrics": {
+    "total_nodes": 80,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.0375,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

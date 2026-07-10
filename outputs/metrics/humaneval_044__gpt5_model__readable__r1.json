@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_044__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_044",
+  "task_id": "HumanEval/44",
+  "problem_name": "Change Base",
+  "entry_point": "change_base",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef change_base(x: int, base: int) -> str:\n    \"\"\"Change numerical base of input number x to base.\n    Return string representation after the conversion.\n    Base numbers are less than 10 and greater than 1.\n    \"\"\"\n    if not isinstance(x, int) or not isinstance(base, int):\n        raise TypeError(\"x and base must be integers\")\n    if base <= 1 or base >= 10:\n        raise ValueError(\"base must be an integer >1 and <10\")\n    if x == 0:\n        return \"0\"\n    negative = x < 0\n    n = abs(x)\n    digits: List[str] = []\n    while n > 0:\n        remainder = n % base\n        digits.append(str(remainder))\n        n //= base\n    if negative:\n        digits.append('-')\n    return ''.join(reversed(digits))\n\n\nif __name__ == \"__main__\":\n    # Quick tests\n    assert change_base(8, 3) == '22'\n    assert change_base(8, 2) == '1000'\n    assert change_base(7, 2) == '111'\n    assert change_base(0, 2) == '0'\n    assert change_base(-5, 2) == '-101'\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 204,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.04902,
+    "function_names": [
+      "change_base"
+    ]
+  }
+}

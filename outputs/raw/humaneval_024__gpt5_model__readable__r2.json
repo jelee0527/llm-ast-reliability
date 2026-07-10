@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_024",
+  "task_id": "HumanEval/24",
+  "problem_name": "Largest Divisor",
+  "entry_point": "largest_divisor",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T05:02:00.607164+00:00",
+  "elapsed_seconds": 13.094,
+  "official_prompt": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\"For a given integer n > 0, return the largest divisor of n that is smaller than n.\n    If n <= 1 return None (no positive divisor smaller than n).\n    Examples:\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(13)\n    1\n    >>> largest_divisor(1) is None\n    True\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # The largest proper divisor is at most n//2, but we can search using factors up to sqrt(n)\n    # to find divisor pairs and track the largest proper divisor < n.\n    largest = 1  # 1 is always a divisor for n > 1\n    limit = int(math.isqrt(n))\n    for d in range(2, limit + 1):\n        if n % d == 0:\n            other = n // d\n            # other is the paired divisor and is >= d\n            if other < n:\n                largest = max(largest, other)\n            if d < n:\n                largest = max(largest, d)\n            # If we already found n//2, that's the maximum possible proper divisor, we can stop early\n            if largest == n // 2:\n                break\n\n    # If no divisor found other than 1, largest remains 1 (for prime n)\n    return largest",
+  "generated_code": "from typing import Optional\nimport math\n\ndef largest_divisor(n: int) -> Optional[int]:\n    \"\"\"For a given integer n > 0, return the largest divisor of n that is smaller than n.\n    If n <= 1 return None (no positive divisor smaller than n).\n    Examples:\n    >>> largest_divisor(15)\n    5\n    >>> largest_divisor(13)\n    1\n    >>> largest_divisor(1) is None\n    True\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n <= 1:\n        return None\n\n    # The largest proper divisor is at most n//2, but we can search using factors up to sqrt(n)\n    # to find divisor pairs and track the largest proper divisor < n.\n    largest = 1  # 1 is always a divisor for n > 1\n    limit = int(math.isqrt(n))\n    for d in range(2, limit + 1):\n        if n % d == 0:\n            other = n // d\n            # other is the paired divisor and is >= d\n            if other < n:\n                largest = max(largest, other)\n            if d < n:\n                largest = max(largest, d)\n            # If we already found n//2, that's the maximum possible proper divisor, we can stop early\n            if largest == n // 2:\n                break\n\n    # If no divisor found other than 1, largest remains 1 (for prime n)\n    return largest"
+}

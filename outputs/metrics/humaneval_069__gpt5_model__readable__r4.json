@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_069__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_069",
+  "task_id": "HumanEval/69",
+  "problem_name": "Search",
+  "entry_point": "search",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from collections import Counter\nfrom typing import List\n\ndef search(lst: List[int]) -> int:\n    \"\"\"\n    Return the greatest integer x > 0 such that frequency(x) >= x.\n    If no such integer exists, return -1.\n    \"\"\"\n    if not lst:\n        return -1\n\n    counts = Counter(lst)\n    # Consider only positive integers present in the list\n    candidates = [value for value, freq in counts.items() if value > 0 and freq >= value]\n    if not candidates:\n        return -1\n    return max(candidates)",
+  "metrics": {
+    "total_nodes": 81,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.061728,
+    "function_names": [
+      "search"
+    ]
+  }
+}

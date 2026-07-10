@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_034__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_034",
+  "task_id": "HumanEval/34",
+  "problem_name": "Unique",
+  "entry_point": "unique",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List, Iterable, Any\n\ndef unique(l: List[Any]) -> List[Any]:\n    \"\"\"Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n    \"\"\"\n    # Use set for uniqueness (O(n) average time, O(n) space),\n    # then sort the result (O(k log k) where k is number of unique items).\n    # This handles arbitrary comparable items.\n    if not l:\n        return []\n    # If elements are not hashable, fall back to slower unique preserving by sorting\n    try:\n        uniq = set(l)\n        return sorted(uniq)\n    except TypeError:\n        # Elements unhashable (e.g., lists). Use sorting with key fallback by string representation.\n        # First try to sort directly; if that fails, sort by repr to get deterministic order.\n        try:\n            return sorted({tuple(x) if isinstance(x, list) else x for x in l})\n        except Exception:\n            seen = []\n            for item in l:\n                if item not in seen:\n                    seen.append(item)\n            try:\n                return sorted(seen)\n            except Exception:\n                return sorted(seen, key=repr)\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 135,
+    "ast_depth": 13,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.096296,
+    "function_names": [
+      "unique"
+    ]
+  }
+}

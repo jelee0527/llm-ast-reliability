@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_048__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_048",
+  "task_id": "HumanEval/48",
+  "problem_name": "Is Palindrome",
+  "entry_point": "is_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef is_palindrome(text: str):\n    \"\"\"\n    Checks if given string is a palindrome\n\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n    \"\"\"\n    if not isinstance(text, str):\n        raise TypeError(\"Input must be a string\")\n    # A string is a palindrome if it equals its reverse\n    return text == text[::-1]",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.078947,
+    "function_names": [
+      "is_palindrome"
+    ]
+  }
+}

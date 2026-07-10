@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_037__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_037",
+  "task_id": "HumanEval/37",
+  "problem_name": "Sort Even",
+  "entry_point": "sort_even",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_even(l: List):\n    even_indices = list(range(0, len(l), 2))\n    evens = sorted((l[i] for i in even_indices))\n    res = list(l)\n    for idx, val in zip(even_indices, evens):\n        res[idx] = val\n    return res",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "sort_even"
+    ]
+  }
+}

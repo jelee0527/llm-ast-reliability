@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_152__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_152",
+  "task_id": "HumanEval/152",
+  "problem_name": "Compare",
+  "entry_point": "compare",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef compare(game: List[int], guess: List[int]) -> List[int]:\n    \"\"\"\n    Return a list of absolute differences between corresponding elements of game and guess.\n    If elements are equal, the difference is 0.\n    \"\"\"\n    if not isinstance(game, (list, tuple)) or not isinstance(guess, (list, tuple)):\n        raise TypeError(\"Both game and guess must be list or tuple of numbers.\")\n    if len(game) != len(guess):\n        raise ValueError(\"game and guess must have the same length.\")\n    result: List[int] = []\n    for g, q in zip(game, guess):\n        # Ensure numeric types; allow ints and floats\n        if not isinstance(g, (int, float)) or not isinstance(q, (int, float)):\n            raise TypeError(\"Elements of game and guess must be numeric (int or float).\")\n        diff = g - q\n        if diff < 0:\n            diff = -diff\n        # If it's an integer-like float, convert to int for cleaner output\n        if isinstance(diff, float) and diff.is_integer():\n            diff = int(diff)\n        result.append(diff)\n    return result\n\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    print(compare([1,2,3,4,5,1],[1,2,3,4,2,-2]))  # -> [0,0,0,0,3,3]\n    print(compare([0,5,0,0,0,4],[4,1,1,0,0,-2]))  # -> [4,4,1,0,0,6]",
+  "metrics": {
+    "total_nodes": 250,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 11,
+    "control_flow_ratio": 0.044,
+    "function_names": [
+      "compare"
+    ]
+  }
+}

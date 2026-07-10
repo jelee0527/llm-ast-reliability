@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef get_row(lst: List[List[int]], x: int) -> List[Tuple[int, int]]:\n    result: List[Tuple[int, int]] = []\n    for r, row in enumerate(lst):\n        cols = [c for c, val in enumerate(row) if val == x]\n        # sort columns in descending order per requirements\n        cols.sort(reverse=True)\n        for c in cols:\n            result.append((r, c))\n    return result\n\n# Optional simple tests (can be removed if only function desired)\nif __name__ == \"__main__\":\n    assert get_row([\n      [1,2,3,4,5,6],\n      [1,2,3,4,1,6],\n      [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]\n    assert get_row([], 1) == []\n    assert get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 219,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.018265,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

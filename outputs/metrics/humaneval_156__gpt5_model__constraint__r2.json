@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List, Tuple\n\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n    \"\"\"\n    if not isinstance(number, int):\n        raise TypeError(\"number must be an integer\")\n    if number < 1 or number > 1000:\n        raise ValueError(\"number must be between 1 and 1000 inclusive\")\n\n    # Roman numeral mapping from highest to lowest with subtractive forms included\n    roman_map: List[Tuple[int, str]] = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n\n    result_parts: List[str] = []\n    remaining = number\n\n    for value, numeral in roman_map:\n        if remaining == 0:\n            break\n        count = remaining // value\n        if count:\n            result_parts.append(numeral * count)\n            remaining -= value * count\n\n    roman = \"\".join(result_parts).lower()\n    return roman\n\n# Quick tests when run as script\nif __name__ == \"__main__\":\n    tests = {\n        19: \"xix\",\n        152: \"clii\",\n        426: \"cdxxvi\",\n        1: \"i\",\n        4: \"iv\",\n        9: \"ix\",\n        40: \"xl\",\n        944: \"cmxliv\",\n        1000: \"m\",\n    }\n    for n, expected in tests.items():\n        got = int_to_mini_roman(n)\n        print(n, got, \"OK\" if got == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 268,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

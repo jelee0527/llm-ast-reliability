@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_047__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List, Any\nimport math\nimport statistics\n\ndef median(l: List[Any]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    if not l:\n        raise ValueError(\"median() arg is an empty sequence\")\n    # Use Python's statistics.median for robust handling of numeric types\n    return statistics.median(l)",
+  "metrics": {
+    "total_nodes": 37,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "median"
+    ]
+  }
+}

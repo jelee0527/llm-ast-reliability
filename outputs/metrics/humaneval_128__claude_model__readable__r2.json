@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__claude_model__readable__r2.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def prod_signs(arr):\n    if not arr:\n        return None\n    \n    # Calculate the product of all signs\n    sign_product = 1\n    for number in arr:\n        if number == 0:\n            sign_product = 0\n            break\n        elif number < 0:\n            sign_product *= -1\n    \n    # Calculate the sum of magnitudes\n    sum_of_magnitudes = sum(abs(number) for number in arr)\n    \n    return sign_product * sum_of_magnitudes",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 8,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.102941,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_109__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_109",
+  "task_id": "HumanEval/109",
+  "problem_name": "Move One Ball",
+  "entry_point": "move_one_ball",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef move_one_ball(arr: List[int]) -> bool:\n    \"\"\"Return True if arr can be rotated (right shifts) to become sorted non-decreasingly.\"\"\"\n    if not arr:\n        return True\n    n = len(arr)\n    # Count the number of \"drops\" where arr[i] > arr[i+1]\n    drops = 0\n    drop_pos = -1\n    for i in range(n - 1):\n        if arr[i] > arr[i + 1]:\n            drops += 1\n            drop_pos = i\n            if drops > 1:\n                return False\n    # If no drops, already sorted\n    if drops == 0:\n        return True\n    # Exactly one drop: check if rotating after drop will produce sorted array.\n    # For rotation to work, last element must be <= first element after rotation.\n    # More directly, arr[0] should be >= arr[-1] after appropriate right rotations.\n    # Condition for a single drop at position drop_pos is that arr[-1] <= arr[0]\n    # (which ensures the tail up to end and head from start are non-decreasing when joined).\n    return arr[-1] <= arr[0]",
+  "metrics": {
+    "total_nodes": 111,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.081081,
+    "function_names": [
+      "move_one_ball"
+    ]
+  }
+}

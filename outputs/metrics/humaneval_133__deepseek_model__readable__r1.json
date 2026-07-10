@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_133__deepseek_model__readable__r1.json",
+  "problem_id": "humaneval_133",
+  "task_id": "HumanEval/133",
+  "problem_name": "Sum Squares",
+  "entry_point": "sum_squares",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import math\n\ndef sum_squares(lst):\n    \"\"\"You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the upper int(Ceiling) first.\n    \"\"\"\n    total = 0\n    for number in lst:\n        ceiling_value = math.ceil(number)\n        total += ceiling_value ** 2\n    return total",
+  "metrics": {
+    "total_nodes": 39,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.051282,
+    "function_names": [
+      "sum_squares"
+    ]
+  }
+}

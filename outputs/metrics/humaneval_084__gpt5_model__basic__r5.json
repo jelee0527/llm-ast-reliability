@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef solve(N):\n    \"\"\"Given a positive integer N, return the total sum of its digits in binary as a string.\"\"\"\n    # Sum of decimal digits of N\n    s = sum(int(d) for d in str(N))\n    # Convert to binary string without '0b'\n    return bin(s)[2:]",
+  "metrics": {
+    "total_nodes": 38,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.026316,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

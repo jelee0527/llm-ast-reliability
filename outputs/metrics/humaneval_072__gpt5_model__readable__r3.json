@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    \"\"\"\n    Return True if list q is palindromic (reads the same forwards and backwards)\n    and the sum of its elements is less than or equal to w. Otherwise return False.\n    \"\"\"\n    if q is None:\n        return False\n    # Check palindrome: list equals its reversed version\n    if q != q[::-1]:\n        return False\n    # Check weight constraint\n    return sum(q) <= w",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.096154,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

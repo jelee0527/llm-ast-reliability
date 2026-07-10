@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_077__deepseek_model__readable__r4.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

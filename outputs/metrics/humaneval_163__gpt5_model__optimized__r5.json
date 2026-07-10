@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_163__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import math\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Even digits: numbers from 0-9 that are even? Based on examples, they mean even single-digit integers\n    between a and b inclusive. So only values 0,2,4,6,8 that fall in [min(a,b), max(a,b)].\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    lo = min(a, b)\n    hi = max(a, b)\n    evens = [0,2,4,6,8]\n    res = []\n    for d in evens:\n        if lo <= d <= hi:\n            res.append(d)\n    return res",
+  "metrics": {
+    "total_nodes": 94,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.053191,
+    "function_names": [
+      "generate_integers"
+    ]
+  }
+}

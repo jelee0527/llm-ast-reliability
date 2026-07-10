@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_112__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_112",
+  "task_id": "HumanEval/112",
+  "problem_name": "Reverse Delete",
+  "entry_point": "reverse_delete",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef reverse_delete(s: str, c: str) -> Tuple[str, bool]:\n    remove = set(c)\n    filtered_chars = [ch for ch in s if ch not in remove]\n    res = ''.join(filtered_chars)\n    is_pal = res == res[::-1]\n    return res, is_pal",
+  "metrics": {
+    "total_nodes": 77,
+    "ast_depth": 8,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.012987,
+    "function_names": [
+      "reverse_delete"
+    ]
+  }
+}

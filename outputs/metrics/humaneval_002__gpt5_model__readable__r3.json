@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_002__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Union\nimport math\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n    The decimal part is the leftover after removing the integer part.\n    For example: truncate_number(3.5) -> 0.5\n\n    Args:\n        number: a non-negative floating point number\n\n    Returns:\n        The fractional (decimal) part as a float in [0.0, 1.0).\n\n    Notes:\n        Uses math.floor to determine the integer part to avoid issues with\n        negative numbers; behavior for negative inputs is not specified but\n        this implementation will still return number - floor(number).\n    \"\"\"\n    if not isinstance(number, (int, float)):\n        raise TypeError(\"number must be an int or float\")\n    # Use math.floor to get the integer part (largest integer not greater than number)\n    integer_part = math.floor(number)\n    decimal_part = number - integer_part\n    # Guard against tiny negative rounding errors (e.g., -0.0)\n    if abs(decimal_part) < 1e-15:\n        decimal_part = 0.0\n    return decimal_part",
+  "metrics": {
+    "total_nodes": 68,
+    "ast_depth": 8,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "truncate_number"
+    ]
+  }
+}

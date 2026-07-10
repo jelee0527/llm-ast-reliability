@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_135__gpt5_model__basic__r5.json",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import typing\n\ndef can_arrange(arr: typing.List[int]) -> int:\n    \"\"\"Return the largest index i such that arr[i] is not greater than or equal to arr[i-1].\n    In other words, find the largest i where arr[i] < arr[i-1]. If none, return -1.\n    Assumes no duplicate values.\n    \"\"\"\n    # iterate from end to start checking for a descent\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n\n# Quick simple tests (can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    print(can_arrange([1, 2, 4, 3, 5]))  # expected 3\n    print(can_arrange([1, 2, 3]))        # expected -1\n    print(can_arrange([]))               # expected -1\n    print(can_arrange([5, 4, 3, 2, 1]))  # expected 1 (largest index where arr[i] < arr[i-1] is i=4? but we want largest index; here i=4)",
+  "metrics": {
+    "total_nodes": 116,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.043103,
+    "function_names": [
+      "can_arrange"
+    ]
+  }
+}

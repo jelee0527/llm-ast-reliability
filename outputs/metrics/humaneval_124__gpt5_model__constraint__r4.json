@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_124__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef valid_date(date):\n    \"\"\"Validate date string in format mm-dd-yyyy.\n    Returns True if valid, False otherwise.\n    \"\"\"\n    if not isinstance(date, str):\n        return False\n    if date == \"\":\n        return False\n    # Strict format mm-dd-yyyy where mm and dd can be 1 or 2 digits? Problem examples use zero-padded mm and dd.\n    # The description says format mm-dd-yyyy; enforce two digits for month and day, and four digits for year.\n    if not re.fullmatch(r\"\\d{2}-\\d{2}-\\d{4}\", date):\n        return False\n    parts = date.split('-')\n    try:\n        mm = int(parts[0])\n        dd = int(parts[1])\n        yyyy = int(parts[2])\n    except (ValueError, IndexError):\n        return False\n    # Month between 1 and 12\n    if mm < 1 or mm > 12:\n        return False\n    # Day at least 1\n    if dd < 1:\n        return False\n    # Days per month per problem: Feb max 29 (no leap-year check), Apr/Jun/Sep/Nov max 30, others 31\n    if mm == 2:\n        if dd > 29:\n            return False\n    elif mm in (4, 6, 9, 11):\n        if dd > 30:\n            return False\n    else:\n        if dd > 31:\n            return False\n    # Year: allow any 4-digit including 0000? The regex allows 0000; accept it as valid per spec not restricting year.\n    return True\n\n# Example quick tests (can be removed if not desired)\nif __name__ == \"__main__\":\n    tests = [\n        (\"03-11-2000\", True),\n        (\"15-01-2012\", False),\n        (\"04-0-2040\", False),\n        (\"06-04-2020\", True),\n        (\"06/04/2020\", False),\n        (\"02-29-2019\", True),  # per spec Feb allows up to 29 even if not leap year\n        (\"02-30-2020\", False),\n        (\"00-10-2020\", False),\n        (\"01-32-2020\", False),\n    ]\n    for s, exp in tests:\n        print(s, valid_date(s), \"expected\", exp)",
+  "metrics": {
+    "total_nodes": 229,
+    "ast_depth": 8,
+    "branch_count": 12,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 23,
+    "control_flow_ratio": 0.100437,
+    "function_names": [
+      "valid_date"
+    ]
+  }
+}

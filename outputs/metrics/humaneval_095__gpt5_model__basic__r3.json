@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_095__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_095",
+  "task_id": "HumanEval/95",
+  "problem_name": "Check Dict Case",
+  "entry_point": "check_dict_case",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef check_dict_case(d: dict) -> bool:\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False if the given dictionary is empty.\n    \"\"\"\n    # Return False for empty dict\n    if not d:\n        return False\n\n    all_lower = True\n    all_upper = True\n\n    for key in d.keys():\n        # All keys must be strings\n        if not isinstance(key, str):\n            return False\n        # For lower-case check: string must be equal to its lower() and\n        # must contain at least one cased character to avoid treating\n        # non-letter strings like \"123\" as both lower and upper.\n        if key != key.lower() or not any(ch.isalpha() for ch in key):\n            all_lower = False\n        # For upper-case check similarly\n        if key != key.upper() or not any(ch.isalpha() for ch in key):\n            all_upper = False\n        # Early exit if neither possible\n        if not all_lower and not all_upper:\n            return False\n\n    return all_lower or all_upper\n\n\n# Simple test cases when running as script\nif __name__ == \"__main__\":\n    tests = [\n        ({\"a\":\"apple\", \"b\":\"banana\"}, True),\n        ({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}, False),\n        ({\"a\":\"apple\", 8:\"banana\", \"a2\":\"apple\"}, False),\n        ({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}, False),\n        ({\"STATE\":\"NC\", \"ZIP\":\"12345\" }, True),\n        ({\"123\":\"num\", \"456\":\"num2\"}, False),  # no letters -> treated as neither\n        ({\"abc123\":\"x\", \"def456\":\"y\"}, True),  # contains letters and all lower\n    ]\n    for inp, expected in tests:\n        print(inp, check_dict_case(inp), \"expected\", expected)",
+  "metrics": {
+    "total_nodes": 227,
+    "ast_depth": 12,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.052863,
+    "function_names": [
+      "check_dict_case"
+    ]
+  }
+}

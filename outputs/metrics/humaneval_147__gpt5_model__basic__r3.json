@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_147__gpt5_model__basic__r3.json",
+  "problem_id": "humaneval_147",
+  "task_id": "HumanEval/147",
+  "problem_name": "Get Max Triples",
+  "entry_point": "get_max_triples",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import itertools\n\ndef get_max_triples(n):\n    \"\"\"\n    Return the number of triples (a[i], a[j], a[k]) with i<j<k from array a where\n    a[i] = i*i - i + 1, such that sum is divisible by 3.\n    \"\"\"\n    # We only need residues modulo 3 of a[i].\n    # Compute counts of residues 0,1,2 among i=1..n.\n    counts = [0,0,0]\n    for i in range(1, n+1):\n        val = (i*i - i + 1) % 3\n        counts[val] += 1\n\n    c0, c1, c2 = counts\n\n    # Number of ways to choose 3 from same residue\n    def comb3(x):\n        if x < 3:\n            return 0\n        return x*(x-1)*(x-2)//6\n\n    # Number of ways to choose two from one residue and one from another\n    def comb2(x):\n        if x < 2:\n            return 0\n        return x*(x-1)//2\n\n    total = 0\n    # All three residues 0,0,0\n    total += comb3(c0)\n    # All three residues 1,1,1\n    total += comb3(c1)\n    # All three residues 2,2,2\n    total += comb3(c2)\n    # One of each 0,1,2\n    total += c0 * c1 * c2\n    # Two 1's and one 2 -> (1+1+2) %3 == 1 -> not divisible; check which combos sum to 0:\n    # Valid mixed combos are (1,1,1) handled, (2,2,2) handled, (0,1,2) handled.\n    # Also combinations like two of residue r and one of residue s where (2r + s) %3 ==0.\n    # Compute those:\n    # For r=1: 2*1 + s ≡ 0 -> s ≡ 1 -> that's (1,1,1) already\n    # For r=2: 2*2 + s ≡ 0 -> 4 + s ≡ 0 -> 1 + s ≡ 0 -> s ≡ 2 -> (2,2,2) already\n    # For r=0: 2*0 + s ≡ 0 -> s ≡ 0 -> (0,0,0) already\n    # So no additional mixed two-one combos.\n    return total\n\n# Example usage:\nif __name__ == \"__main__\":\n    print(get_max_triples(5))",
+  "metrics": {
+    "total_nodes": 184,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 3,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.048913,
+    "function_names": [
+      "get_max_triples",
+      "comb3",
+      "comb2"
+    ]
+  }
+}

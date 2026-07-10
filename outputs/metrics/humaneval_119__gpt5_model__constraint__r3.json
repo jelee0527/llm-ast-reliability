@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_119__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef match_parens(lst: List[str]) -> str:\n    \"\"\"\n    Determine if concatenating the two strings in some order yields a balanced parentheses string.\n    Returns 'Yes' or 'No'.\n    \"\"\"\n    if not isinstance(lst, list) or len(lst) != 2:\n        raise ValueError(\"Input must be a list of two strings.\")\n    a, b = lst[0], lst[1]\n\n    def is_good(s: str) -> bool:\n        bal = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            elif ch == ')':\n                bal -= 1\n            else:\n                # invalid character\n                return False\n            if bal < 0:\n                return False\n        return bal == 0\n\n    # Check both orders\n    if is_good(a + b) or is_good(b + a):\n        return 'Yes'\n    return 'No'",
+  "metrics": {
+    "total_nodes": 139,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.086331,
+    "function_names": [
+      "match_parens",
+      "is_good"
+    ]
+  }
+}

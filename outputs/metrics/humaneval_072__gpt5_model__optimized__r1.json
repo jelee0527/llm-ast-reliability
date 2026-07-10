@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_072__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_072",
+  "task_id": "HumanEval/72",
+  "problem_name": "Will It Fly",
+  "entry_point": "will_it_fly",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef will_it_fly(q, w):\n    \"\"\"\n    Return True if list q is palindromic and sum(q) <= w, else False.\n    \"\"\"\n    # Validate inputs: expecting an iterable of numbers and numeric w\n    try:\n        # Convert q to sequence for efficient index access only if not already sequence\n        # But avoid copying large lists unnecessarily: first try to use as-is\n        # Check palindrome without creating reversed copy: two-pointer\n        n = len(q)\n        i, j = 0, n - 1\n        while i < j:\n            if q[i] != q[j]:\n                return False\n            i += 1\n            j -= 1\n        # Compute sum; if q is a generator, this will consume it, but palindrome check required sequence\n        total = 0\n        for x in q:\n            total += x\n        return total <= w\n    except TypeError:\n        # q might be an iterator without len; convert to list\n        q_list = list(q)\n        n = len(q_list)\n        i, j = 0, n - 1\n        while i < j:\n            if q_list[i] != q_list[j]:\n                return False\n            i += 1\n            j -= 1\n        return sum(q_list) <= w",
+  "metrics": {
+    "total_nodes": 167,
+    "ast_depth": 10,
+    "branch_count": 3,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.05988,
+    "function_names": [
+      "will_it_fly"
+    ]
+  }
+}

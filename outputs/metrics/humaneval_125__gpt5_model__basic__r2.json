@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_125__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_125",
+  "task_id": "HumanEval/125",
+  "problem_name": "Split Words",
+  "entry_point": "split_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import re\n\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") ➞ [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n    if re.search(r'\\s', txt):\n        # split on any whitespace\n        return re.split(r'\\s+', txt.strip())\n    if ',' in txt:\n        # split on commas, trimming possible surrounding whitespace\n        parts = [p.strip() for p in txt.split(',')]\n        return parts\n    # no whitespace and no commas: count lowercase letters with odd order\n    count = 0\n    for ch in txt:\n        if 'a' <= ch <= 'z':\n            order = ord(ch) - ord('a')\n            if order % 2 == 1:\n                count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 104,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.076923,
+    "function_names": [
+      "split_words"
+    ]
+  }
+}

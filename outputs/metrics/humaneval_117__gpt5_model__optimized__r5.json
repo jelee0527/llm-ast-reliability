@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_117__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_117",
+  "task_id": "HumanEval/117",
+  "problem_name": "Select Words",
+  "entry_point": "select_words",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\nfrom typing import List\n\ndef select_words(s: str, n: int) -> List[str]:\n    \"\"\"Return list of words from s that contain exactly n consonants.\"\"\"\n    if not s:\n        return []\n    vowels = set('aeiouAEIOU')\n    words = s.split()\n    result = []\n    for w in words:\n        # count letters that are consonants: alphabetic and not vowel\n        cnt = 0\n        for ch in w:\n            # as per assumption input contains only letters and spaces, but be safe\n            if ch.isalpha() and ch not in vowels:\n                cnt += 1\n                # optional early stop if exceeding n\n                if cnt > n:\n                    break\n        if cnt == n:\n            result.append(w)\n    return result",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.083333,
+    "function_names": [
+      "select_words"
+    ]
+  }
+}

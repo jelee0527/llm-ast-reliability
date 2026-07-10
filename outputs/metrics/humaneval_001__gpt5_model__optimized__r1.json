@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    res: List[str] = []\n    buf = []\n    depth = 0\n    for ch in s:\n        if ch not in '()':\n            continue\n        if ch == '(':\n            depth += 1\n            buf.append(ch)\n        else:  # ch == ')'\n            depth -= 1\n            buf.append(ch)\n            if depth == 0:\n                # complete group\n                res.append(''.join(buf))\n                buf = []\n        # If depth becomes negative, input is malformed; we'll reset to continue gracefully\n        if depth < 0:\n            depth = 0\n            buf = []\n    # ignore any trailing incomplete group\n    return res\n\nif __name__ == \"__main__\":\n    # quick test\n    print(separate_paren_groups('( ) (( )) (( )( ))'))",
+  "metrics": {
+    "total_nodes": 145,
+    "ast_depth": 10,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.055172,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

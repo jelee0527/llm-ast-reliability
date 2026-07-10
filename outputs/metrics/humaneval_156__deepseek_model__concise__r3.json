@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_156__deepseek_model__concise__r3.json",
+  "problem_id": "humaneval_156",
+  "task_id": "HumanEval/156",
+  "problem_name": "Int To Mini Roman",
+  "entry_point": "int_to_mini_roman",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def int_to_mini_roman(number):\n    val_to_roman = [\n        (1000, 'm'), (900, 'cm'), (500, 'd'), (400, 'cd'),\n        (100, 'c'), (90, 'xc'), (50, 'l'), (40, 'xl'),\n        (10, 'x'), (9, 'ix'), (5, 'v'), (4, 'iv'), (1, 'i')\n    ]\n    result = []\n    for value, symbol in val_to_roman:\n        while number >= value:\n            result.append(symbol)\n            number -= value\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 103,
+    "ast_depth": 9,
+    "branch_count": 0,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.029126,
+    "function_names": [
+      "int_to_mini_roman"
+    ]
+  }
+}

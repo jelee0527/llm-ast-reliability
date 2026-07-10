@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def double_the_difference(lst):\n    total = 0\n    for num in lst:\n        if isinstance(num, int) and not isinstance(num, bool) and num >= 0 and num % 2 != 0:\n            total += num * num\n    return total",
+  "metrics": {
+    "total_nodes": 58,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.051724,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_087__claude_model__readable__r4.json",
+  "problem_id": "humaneval_087",
+  "task_id": "HumanEval/87",
+  "problem_name": "Get Row",
+  "entry_point": "get_row",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def get_row(lst, x):\n    coordinates = []\n    \n    for row_index, row in enumerate(lst):\n        row_coordinates = []\n        for col_index, value in enumerate(row):\n            if value == x:\n                row_coordinates.append((row_index, col_index))\n        \n        row_coordinates.sort(key=lambda coord: coord[1], reverse=True)\n        coordinates.extend(row_coordinates)\n    \n    return coordinates",
+  "metrics": {
+    "total_nodes": 86,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.046512,
+    "function_names": [
+      "get_row"
+    ]
+  }
+}

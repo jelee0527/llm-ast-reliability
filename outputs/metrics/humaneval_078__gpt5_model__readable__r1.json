@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_078__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_078",
+  "task_id": "HumanEval/78",
+  "problem_name": "Hex Key",
+  "entry_point": "hex_key",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef hex_key(num: str) -> int:\n    \"\"\"\n    Count how many hexadecimal digits in the input string represent prime numbers.\n    Considered prime digit values in hex: 2, 3, 5, 7, B(11), D(13).\n    Input is assumed to be a valid hex string (uppercase A-F) or empty.\n    \"\"\"\n    # Set of hexadecimal characters that correspond to prime decimal values\n    prime_hex_digits: Set[str] = {\"2\", \"3\", \"5\", \"7\", \"B\", \"D\"}\n    \n    if not num:\n        return 0\n    \n    count = 0\n    for ch in num:\n        if ch in prime_hex_digits:\n            count += 1\n    return count\n\n# Example quick tests (will run when module is executed)\nif __name__ == \"__main__\":\n    tests = {\n        \"AB\": 1,\n        \"1077E\": 2,\n        \"ABED1A33\": 4,\n        \"123456789ABCDEF0\": 6,\n        \"2020\": 2,\n        \"\": 0,\n    }\n    for inp, expected in tests.items():\n        result = hex_key(inp)\n        print(f\"{inp!r} -> {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 118,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.059322,
+    "function_names": [
+      "hex_key"
+    ]
+  }
+}

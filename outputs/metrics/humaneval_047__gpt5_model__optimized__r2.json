@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_047__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_047",
+  "task_id": "HumanEval/47",
+  "problem_name": "Median",
+  "entry_point": "median",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\nimport random\nimport math\n\ndef median(l: List[float]):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    n = len(l)\n    if n == 0:\n        raise ValueError(\"median() arg is an empty list\")\n    # Use Quickselect for O(n) average time and O(1) extra space.\n    # Work on a copy to avoid modifying caller's list.\n    arr = list(l)\n\n    def select(k):\n        lo = 0\n        hi = len(arr) - 1\n        while True:\n            if lo == hi:\n                return arr[lo]\n            # random pivot to avoid worst-case\n            pivot_index = random.randint(lo, hi)\n            pivot = arr[pivot_index]\n            # three-way partition\n            i = lo\n            lt = lo\n            gt = hi\n            while i <= gt:\n                if arr[i] < pivot:\n                    arr[lt], arr[i] = arr[i], arr[lt]\n                    lt += 1\n                    i += 1\n                elif arr[i] > pivot:\n                    arr[i], arr[gt] = arr[gt], arr[i]\n                    gt -= 1\n                else:\n                    i += 1\n            # now arr[lo:lt] < pivot, arr[lt:gt+1]==pivot, arr[gt+1:hi+1]>pivot\n            if k < lt:\n                hi = lt - 1\n            elif k > gt:\n                lo = gt + 1\n            else:\n                return arr[k]\n\n    if n % 2 == 1:\n        return select(n // 2)\n    else:\n        a = select(n // 2 - 1)\n        b = select(n // 2)\n        return (a + b) / 2.0\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 326,
+    "ast_depth": 12,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 15,
+    "control_flow_ratio": 0.046012,
+    "function_names": [
+      "median",
+      "select"
+    ]
+  }
+}

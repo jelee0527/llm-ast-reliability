@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\n    Rotations are cyclic shifts of b.\n    \"\"\"\n    # Validate input types\n    if not isinstance(a, str) or not isinstance(b, str):\n        raise TypeError(\"Both inputs must be strings\")\n    # Edge cases\n    if b == \"\":\n        # empty string is a substring of any string (including empty)\n        return True\n    if a == \"\":\n        # non-empty b cannot be substring of empty a\n        return False\n    # If b longer than a, still possible: rotations of b may be substring only if len(b) <= len(a)\n    # So quick rejection:\n    if len(b) > len(a):\n        return False\n\n    # Generate all rotations of b and check membership in a\n    n = len(b)\n    # A simple and efficient trick: all rotations of b are substrings of b+b\n    doubled = b + b\n    # We only need to check each rotation starting index 0..n-1\n    for i in range(n):\n        rot = doubled[i:i + n]\n        if rot in a:\n            return True\n    return False\n\n\n# Optional: simple test suite when run as script\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for x, y, expected in tests:\n        result = cycpattern_check(x, y)\n        print(f\"cycpattern_check({x!r}, {y!r}) => {result} (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.067308,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

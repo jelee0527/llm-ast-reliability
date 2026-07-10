@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    \"\"\"Determine if by exchanging elements (any number) between two lists,\n    we can make all elements of lst1 even. Return \"YES\" or \"NO\".\"\"\"\n    # Count evens and odds in both lists\n    ev1 = sum(1 for x in lst1 if x % 2 == 0)\n    od1 = len(lst1) - ev1\n    ev2 = sum(1 for x in lst2 if x % 2 == 0)\n    od2 = len(lst2) - ev2\n\n    # Each odd in lst1 must be replaced by an even from lst2.\n    # Exchanges can swap any elements; effectively we can move any evens from lst2 into lst1,\n    # while sending elements from lst1 to lst2 (their parity affects counts).\n    # The simplest condition: total evens available after any swaps must be >= len(lst1).\n    # Total evens available = ev1 + ev2\n    # But note that when moving an even from lst2 to lst1, we send some element from lst1 to lst2,\n    # possibly changing evens count in lst2; however total number of evens across both lists is conserved.\n    # So we need total evens >= len(lst1).\n    if ev1 + ev2 >= len(lst1):\n        return \"YES\"\n    else:\n        return \"NO\"",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.028037,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

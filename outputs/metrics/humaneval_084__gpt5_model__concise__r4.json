@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_084__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_084",
+  "task_id": "HumanEval/84",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import sys\n\ndef solve(N):\n    s = sum(int(d) for d in str(N))\n    return bin(s)[2:]\n\nif __name__ == \"__main__\":\n    data = sys.stdin.read().strip().split()\n    if not data: \n        sys.exit(0)\n    try:\n        N = int(data[0])\n    except:\n        N = 0\n    print(solve(N))",
+  "metrics": {
+    "total_nodes": 96,
+    "ast_depth": 12,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

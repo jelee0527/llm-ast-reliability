@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_077__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def iscube(a):\n    if a == 0:\n        return True\n    a_abs = abs(a)\n    low = 0\n    high = a_abs\n    while low <= high:\n        mid = (low + high) // 2\n        cube = mid * mid * mid\n        if cube == a_abs:\n            return True\n        elif cube < a_abs:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return False",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.073684,
+    "function_names": [
+      "iscube"
+    ]
+  }
+}

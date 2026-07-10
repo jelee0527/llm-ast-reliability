@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_060__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_060",
+  "task_id": "HumanEval/60",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "execution_success": false,
+  "passed": false,
+  "error_type": "SyntaxError",
+  "error_message": "f-string: unmatched ')' (<string>, line 27)",
+  "traceback": "Traceback (most recent call last):\n  File \"/app/humaneval_worker.py\", line 42, in main\n    exec(generated_code, namespace)\n  File \"<string>\", line 27\n    print(f\"sum_to_n({t}) = {sum_to_n(t))}\")\n                                           ^\nSyntaxError: f-string: unmatched ')'\n"
+}

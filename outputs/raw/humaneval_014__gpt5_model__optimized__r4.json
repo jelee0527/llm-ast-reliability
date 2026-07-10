@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_014",
+  "task_id": "HumanEval/14",
+  "problem_name": "All Prefixes",
+  "entry_point": "all_prefixes",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:45:48.921105+00:00",
+  "elapsed_seconds": 3.34,
+  "official_prompt": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    # Preallocate list of correct size for efficiency\n    n = len(string)\n    if n == 0:\n        return []\n    prefixes: List[str] = [None] * n  # type: ignore\n    # Build prefixes incrementally to avoid repeated slicing costs where possible\n    # Keep a running list of characters and join each time\n    # However, using slicing string[:i+1] is efficient in Python (O(i)) and overall O(n^2) total.\n    # We'll use slicing which is simple and adequate for this task.\n    for i in range(n):\n        prefixes[i] = string[: i + 1]\n    return prefixes[:]",
+  "generated_code": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    # Preallocate list of correct size for efficiency\n    n = len(string)\n    if n == 0:\n        return []\n    prefixes: List[str] = [None] * n  # type: ignore\n    # Build prefixes incrementally to avoid repeated slicing costs where possible\n    # Keep a running list of characters and join each time\n    # However, using slicing string[:i+1] is efficient in Python (O(i)) and overall O(n^2) total.\n    # We'll use slicing which is simple and adequate for this task.\n    for i in range(n):\n        prefixes[i] = string[: i + 1]\n    return prefixes[:]"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_154__gpt5_model__optimized__r1.json",
+  "problem_id": "humaneval_154",
+  "task_id": "HumanEval/154",
+  "problem_name": "Cycpattern Check",
+  "entry_point": "cycpattern_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import *\nimport collections\n\ndef cycpattern_check(a: str, b: str) -> bool:\n    \"\"\"Return True if b or any rotation of b is a substring of a.\"\"\"\n    if not b:\n        return True  # empty string is substring\n    if not a:\n        return False\n    # If b longer than a, its rotation can't be substring of a\n    if len(b) > len(a):\n        return False\n    # Create all rotations by checking substring in b+b\n    doubled = b + b\n    # Only need to check starting positions 0..len(b)-1\n    # Use Python substring search which is efficient (Boyer-Moore/Haystack)\n    for i in range(len(b)):\n        candidate = doubled[i:i+len(b)]\n        if candidate in a:\n            return True\n    return False\n\n# Quick manual tests (will run when file executed directly)\nif __name__ == \"__main__\":\n    tests = [\n        (\"abcd\",\"abd\", False),\n        (\"hello\",\"ell\", True),\n        (\"whassup\",\"psus\", False),\n        (\"abab\",\"baa\", True),\n        (\"efef\",\"eeff\", False),\n        (\"himenss\",\"simen\", True),\n    ]\n    for A,B,exp in tests:\n        res = cycpattern_check(A,B)\n        print(A, B, res, \"OK\" if res==exp else \"FAIL\")",
+  "metrics": {
+    "total_nodes": 177,
+    "ast_depth": 10,
+    "branch_count": 6,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.073446,
+    "function_names": [
+      "cycpattern_check"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_129__deepseek_model__optimized__r1.json",
+  "problem_id": "humaneval_129",
+  "task_id": "HumanEval/129",
+  "problem_name": "Minpath",
+  "entry_point": "minPath",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "optimized",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import heapq\n\ndef minPath(grid, k):\n    n = len(grid)\n    if k == 1:\n        min_val = min(min(row) for row in grid)\n        return [min_val]\n    \n    # dp[pos][step] = best path list starting from pos with given steps\n    # We'll store as tuple (value_list) for lexicographic comparison\n    # But to save memory, we store only the best path for each (r,c,steps)\n    # Use dictionary: (r,c,steps) -> tuple of values\n    best = {}\n    \n    # Initialize for step = 1\n    for r in range(n):\n        for c in range(n):\n            best[(r,c,1)] = (grid[r][c],)\n    \n    # Build paths for steps from 2 to k\n    for step in range(2, k+1):\n        for r in range(n):\n            for c in range(n):\n                candidates = []\n                for dr, dc in [(-1,0),(1,0),(0,-1),(0,1)]:\n                    nr, nc = r + dr, c + dc\n                    if 0 <= nr < n and 0 <= nc < n:\n                        prev = best.get((nr,nc,step-1))\n                        if prev:\n                            candidates.append((grid[r][c],) + prev)\n                if candidates:\n                    best[(r,c,step)] = min(candidates)\n    \n    # Find the best path of length k\n    answer = None\n    for r in range(n):\n        for c in range(n):\n            path = best.get((r,c,k))\n            if path:\n                if answer is None or path < answer:\n                    answer = path\n    return list(answer)",
+  "metrics": {
+    "total_nodes": 318,
+    "ast_depth": 16,
+    "branch_count": 6,
+    "loop_count": 8,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.050314,
+    "function_names": [
+      "minPath"
+    ]
+  }
+}

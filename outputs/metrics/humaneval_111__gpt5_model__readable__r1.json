@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_111__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_111",
+  "task_id": "HumanEval/111",
+  "problem_name": "Histogram",
+  "entry_point": "histogram",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from collections import Counter\nfrom typing import Dict\n\ndef histogram(test: str) -> Dict[str, int]:\n    \"\"\"Given a string representing space separated lowercase letters, return a dictionary\n    of the letter(s) with the most repetition mapped to their corresponding count.\n    If several letters have the same maximal occurrence, return all of them.\n    \"\"\"\n    if not test:\n        return {}\n    # Split on whitespace and filter out any empty tokens\n    tokens = [tok for tok in test.split() if tok]\n    if not tokens:\n        return {}\n    counts = Counter(tokens)\n    max_count = max(counts.values())\n    # Select all letters with count equal to max_count\n    return {letter: cnt for letter, cnt in counts.items() if cnt == max_count}",
+  "metrics": {
+    "total_nodes": 95,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.052632,
+    "function_names": [
+      "histogram"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "source_file": "humaneval_039__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_039",
+  "task_id": "HumanEval/39",
+  "problem_name": "Prime Fib",
+  "entry_point": "prime_fib",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import math\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int) or n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    # Miller-Rabin primality test for deterministically correct results for 64-bit integers\n    def is_prime(a):\n        if a < 2:\n            return False\n        small_primes = [2,3,5,7,11,13,17,19,23,29]\n        for p in small_primes:\n            if a % p == 0:\n                return a == p\n        # write a-1 as d*2^s\n        d = a - 1\n        s = 0\n        while d % 2 == 0:\n            d //= 2\n            s += 1\n        # bases for deterministic Miller-Rabin up to large ranges\n        if a < 2047:\n            bases = [2]\n        elif a < 1373653:\n            bases = [2,3]\n        elif a < 9080191:\n            bases = [31,73]\n        elif a < 4759123141:\n            bases = [2,7,61]\n        elif a < 1122004669633:\n            bases = [2,13,23,1662803]\n        elif a < 2152302898747:\n            bases = [2,3,5,7,11]\n        elif a < 3474749660383:\n            bases = [2,3,5,7,11,13]\n        elif a < 341550071728321:\n            bases = [2,3,5,7,11,13,17]\n        else:\n            bases = [2,3,5,7,11,13,17,19,23,29,31,37]\n        def check(a_base):\n            x = pow(a_base, d, a)\n            if x == 1 or x == a - 1:\n                return True\n            for _ in range(s - 1):\n                x = (x * x) % a\n                if x == a - 1:\n                    return True\n            return False\n        for base in bases:\n            if base % a == 0:\n                continue\n            if not check(base):\n                return False\n        return True\n\n    # Generate Fibonacci numbers and test primality\n    count = 0\n    a, b = 1, 1  # F1=1, F2=1, F3=2...\n    idx = 2\n    # We know 2 is the first prime Fibonacci (F3), so loop until found n primes\n    while True:\n        # advance to next Fibonacci\n        a, b = b, a + b\n        idx += 1\n        # b holds current Fibonacci number\n        if is_prime(b):\n            count += 1\n            if count == n:\n                return b\n# Quick check when n=1 should return 2 (F3). The loop starts from F3.",
+  "metrics": {
+    "total_nodes": 410,
+    "ast_depth": 14,
+    "branch_count": 17,
+    "loop_count": 5,
+    "function_count": 3,
+    "control_flow_count": 32,
+    "control_flow_ratio": 0.078049,
+    "function_names": [
+      "prime_fib",
+      "is_prime",
+      "check"
+    ]
+  }
+}

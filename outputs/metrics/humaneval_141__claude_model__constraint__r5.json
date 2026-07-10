@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__claude_model__constraint__r5.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def file_name_check(file_name):\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    parts = file_name.split('.')\n    name = parts[0]\n    extension = parts[1]\n    \n    if len(name) == 0:\n        return 'No'\n    \n    if not name[0].isalpha():\n        return 'No'\n    \n    if extension not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    digit_count = 0\n    for char in file_name:\n        if char.isdigit():\n            digit_count += 1\n    \n    if digit_count > 3:\n        return 'No'\n    \n    return 'Yes'",
+  "metrics": {
+    "total_nodes": 107,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.121495,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

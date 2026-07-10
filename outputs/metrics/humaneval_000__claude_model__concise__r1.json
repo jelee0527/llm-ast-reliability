@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_000__claude_model__concise__r1.json",
+  "problem_id": "humaneval_000",
+  "task_id": "HumanEval/0",
+  "problem_name": "Has Close Elements",
+  "entry_point": "has_close_elements",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+  "metrics": {
+    "total_nodes": 70,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.071429,
+    "function_names": [
+      "has_close_elements"
+    ]
+  }
+}

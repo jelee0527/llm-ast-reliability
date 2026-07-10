@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Return count of sentences that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    \"\"\"\n    # Split by sentence delimiters, keep non-empty trimmed sentences\n    parts = re.split(r'[.?!]', S)\n    count = 0\n    for p in parts:\n        p = p.strip()\n        if not p:\n            continue\n        # Get first word\n        m = re.match(r'([A-Za-z]+)', p)\n        if m and m.group(1) == 'I':\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 10,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.066667,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

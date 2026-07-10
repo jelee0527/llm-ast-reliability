@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_102",
+  "task_id": "HumanEval/102",
+  "problem_name": "Choose Num",
+  "entry_point": "choose_num",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:44:33.553774+00:00",
+  "elapsed_seconds": 4.769,
+  "official_prompt": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n\n",
+  "raw_response": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function returns -1.\n    \"\"\"\n    try:\n        # Ensure inputs are numbers\n        x_val = float(x)\n        y_val = float(y)\n    except (TypeError, ValueError):\n        return -1\n\n    # Range invalid if x > y\n    if x_val > y_val:\n        return -1\n\n    # Compute the largest integer <= y\n    max_int = math.floor(y_val)\n\n    # If max_int is even, candidate is max_int; otherwise max_int -1\n    if max_int % 2 == 0:\n        candidate = max_int\n    else:\n        candidate = max_int - 1\n\n    # Check candidate is within [x, y] and nonnegative integer (positive numbers assumed)\n    if candidate >= math.ceil(x_val) and candidate >= 0 and candidate >= x_val:\n        return int(candidate)\n    else:\n        return -1\n\n\n# Example quick tests (can be removed if only function required)\nif __name__ == \"__main__\":\n    tests = [\n        (12, 15),\n        (13, 12),\n        (2.2, 4.9),\n        (3, 3),\n        (4, 4),\n        (0.1, 0.9),\n        (0, 2),\n        (-1, 2),\n        (5, 5),\n    ]\n    for a, b in tests:\n        print(a, b, \"->\", choose_num(a, b))",
+  "generated_code": "import math\n\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function returns -1.\n    \"\"\"\n    try:\n        # Ensure inputs are numbers\n        x_val = float(x)\n        y_val = float(y)\n    except (TypeError, ValueError):\n        return -1\n\n    # Range invalid if x > y\n    if x_val > y_val:\n        return -1\n\n    # Compute the largest integer <= y\n    max_int = math.floor(y_val)\n\n    # If max_int is even, candidate is max_int; otherwise max_int -1\n    if max_int % 2 == 0:\n        candidate = max_int\n    else:\n        candidate = max_int - 1\n\n    # Check candidate is within [x, y] and nonnegative integer (positive numbers assumed)\n    if candidate >= math.ceil(x_val) and candidate >= 0 and candidate >= x_val:\n        return int(candidate)\n    else:\n        return -1\n\n\n# Example quick tests (can be removed if only function required)\nif __name__ == \"__main__\":\n    tests = [\n        (12, 15),\n        (13, 12),\n        (2.2, 4.9),\n        (3, 3),\n        (4, 4),\n        (0.1, 0.9),\n        (0, 2),\n        (-1, 2),\n        (5, 5),\n    ]\n    for a, b in tests:\n        print(a, b, \"->\", choose_num(a, b))"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_141__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_141",
+  "task_id": "HumanEval/141",
+  "problem_name": "File Name Check",
+  "entry_point": "file_name_check",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import re\n\ndef file_name_check(file_name: str) -> str:\n    \"\"\"\n    Return 'Yes' if file_name is valid according to rules, otherwise 'No'.\n\n    Rules:\n    - No more than three digits (0-9) anywhere in the file name.\n    - Exactly one dot '.' present.\n    - The substring before the dot (basename) is non-empty and starts with a Latin letter (A-Z or a-z).\n    - The substring after the dot (extension) must be one of: 'txt', 'exe', 'dll'.\n    \"\"\"\n    if not isinstance(file_name, str):\n        return 'No'\n\n    # Must contain exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n\n    name_part, ext_part = file_name.split('.', 1)\n\n    # name part should be non-empty and start with a latin letter\n    if not name_part:\n        return 'No'\n    if not re.match(r'^[A-Za-z]', name_part):\n        return 'No'\n\n    # extension must be exactly one of allowed values\n    if ext_part not in {'txt', 'exe', 'dll'}:\n        return 'No'\n\n    # count digits in entire file name (including both parts)\n    digit_count = sum(ch.isdigit() for ch in file_name)\n    if digit_count > 3:\n        return 'No'\n\n    return 'Yes'",
+  "metrics": {
+    "total_nodes": 108,
+    "ast_depth": 9,
+    "branch_count": 6,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.12037,
+    "function_names": [
+      "file_name_check"
+    ]
+  }
+}

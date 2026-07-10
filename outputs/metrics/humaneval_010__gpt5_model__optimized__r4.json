@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_010__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_010",
+  "task_id": "HumanEval/10",
+  "problem_name": "Make Palindrome",
+  "entry_point": "make_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import *\nimport sys\n\ndef is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\ndef make_palindrome(string: str) -> str:\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    \"\"\"\n    s = string\n    n = len(s)\n    if n <= 1:\n        return s\n    # Check longest palindromic suffix starting at i\n    # We want maximal length suffix s[i:]\n    for i in range(0, n):\n        # check if s[i:] is palindrome\n        # compare characters without creating reversed substring except through indices\n        lo = i\n        hi = n - 1\n        ok = True\n        while lo < hi:\n            if s[lo] != s[hi]:\n                ok = False\n                break\n            lo += 1\n            hi -= 1\n        if ok:\n            # append reverse of prefix s[:i]\n            if i == 0:\n                return s  # whole string is palindrome\n            return s + s[:i][::-1]\n    # fallback (shouldn't reach): append reverse of all but first char\n    return s + s[:-1][::-1]\n\nif __name__ == \"__main__\":\n    # simple tests\n    assert make_palindrome('') == ''\n    assert make_palindrome('a') == 'a'\n    assert make_palindrome('cat') == 'catac'\n    assert make_palindrome('cata') == 'catac'\n    assert make_palindrome('abba') == 'abba'\n    print(\"OK\")",
+  "metrics": {
+    "total_nodes": 221,
+    "ast_depth": 11,
+    "branch_count": 5,
+    "loop_count": 2,
+    "function_count": 2,
+    "control_flow_count": 13,
+    "control_flow_ratio": 0.058824,
+    "function_names": [
+      "is_palindrome",
+      "make_palindrome"
+    ]
+  }
+}

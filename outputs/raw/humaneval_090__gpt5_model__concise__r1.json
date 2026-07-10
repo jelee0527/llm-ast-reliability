@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_090",
+  "task_id": "HumanEval/90",
+  "problem_name": "Next Smallest",
+  "entry_point": "next_smallest",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:18:42.891131+00:00",
+  "elapsed_seconds": 2.871,
+  "official_prompt": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n\n",
+  "raw_response": "from typing import Optional, Iterable\n\ndef next_smallest(lst: Iterable[int]) -> Optional[int]:\n    it = iter(lst)\n    try:\n        first = next(it)\n    except StopIteration:\n        return None\n    smallest = first\n    second = None\n    for x in it:\n        if x < smallest:\n            second = smallest if smallest != x else second\n            smallest = x\n        elif x != smallest:\n            if second is None or x < second:\n                second = x\n    return second",
+  "generated_code": "from typing import Optional, Iterable\n\ndef next_smallest(lst: Iterable[int]) -> Optional[int]:\n    it = iter(lst)\n    try:\n        first = next(it)\n    except StopIteration:\n        return None\n    smallest = first\n    second = None\n    for x in it:\n        if x < smallest:\n            second = smallest if smallest != x else second\n            smallest = x\n        elif x != smallest:\n            if second is None or x < second:\n                second = x\n    return second"
+}

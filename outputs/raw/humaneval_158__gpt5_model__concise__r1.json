@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:03:13.740209+00:00",
+  "elapsed_seconds": 2.258,
+  "official_prompt": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    if not words:\n        return \"\"\n    # For each word compute (unique count, word). We need max by unique count, tie-break by lexicographically smallest.\n    # So key: (unique_count, negative lex order?) Instead use sorting with tuple (-unique_count, word) and pick first.\n    best = min(words, key=lambda w: (-len(set(w)), w))\n    return best",
+  "generated_code": "from typing import List\n\ndef find_max(words: List[str]) -> str:\n    if not words:\n        return \"\"\n    # For each word compute (unique count, word). We need max by unique count, tie-break by lexicographically smallest.\n    # So key: (unique_count, negative lex order?) Instead use sorting with tuple (-unique_count, word) and pick first.\n    best = min(words, key=lambda w: (-len(set(w)), w))\n    return best"
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_012__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_012",
+  "task_id": "HumanEval/12",
+  "problem_name": "Longest",
+  "entry_point": "longest",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\"Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n    if not strings:\n        return None\n\n    # Initialize with the first string\n    longest_str = strings[0]\n    longest_len = len(longest_str)\n\n    # Iterate through the rest and update when a strictly longer string is found\n    for s in strings[1:]:\n        current_len = len(s)\n        if current_len > longest_len:\n            longest_str = s\n            longest_len = current_len\n\n    return longest_str\n\n\n# Quick informal tests when run as a script\nif __name__ == \"__main__\":\n    assert longest([]) is None\n    assert longest(['a', 'b', 'c']) == 'a'\n    assert longest(['a', 'bb', 'ccc']) == 'ccc'\n    assert longest(['aa', 'b', 'cc']) == 'aa'\n    print(\"All self-tests passed.\")",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.043796,
+    "function_names": [
+      "longest"
+    ]
+  }
+}

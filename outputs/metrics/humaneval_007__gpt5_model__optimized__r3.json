@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_007__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_007",
+  "task_id": "HumanEval/7",
+  "problem_name": "Filter By Substring",
+  "entry_point": "filter_by_substring",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n    if not substring:\n        # If substring is empty, by convention all strings contain it\n        return list(strings)\n    # Use list comprehension for efficiency and preserving order\n    return [s for s in strings if substring in s]",
+  "metrics": {
+    "total_nodes": 49,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.061224,
+    "function_names": [
+      "filter_by_substring"
+    ]
+  }
+}

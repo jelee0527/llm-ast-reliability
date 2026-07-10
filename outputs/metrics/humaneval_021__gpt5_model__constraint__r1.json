@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_021__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_021",
+  "task_id": "HumanEval/21",
+  "problem_name": "Rescale To Unit",
+  "entry_point": "rescale_to_unit",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n    if numbers is None:\n        raise ValueError(\"numbers must be provided\")\n    if not isinstance(numbers, list):\n        raise TypeError(\"numbers must be a list\")\n    if len(numbers) < 2:\n        raise ValueError(\"numbers must contain at least two elements\")\n    # Validate elements are numeric (int or float)\n    for x in numbers:\n        if not isinstance(x, (int, float)):\n            raise TypeError(\"all elements of numbers must be int or float\")\n    minimum = numbers[0]\n    maximum = numbers[0]\n    # find min and max explicitly\n    for x in numbers[1:]:\n        if x < minimum:\n            minimum = x\n        if x > maximum:\n            maximum = x\n    span = maximum - minimum\n    if span == 0:\n        # all elements equal; map them to 0.0 (could also be 1.0, but 0.0 is consistent)\n        return [0.0 for _ in numbers]\n    result: List[float] = []\n    for x in numbers:\n        result.append((x - minimum) / span)\n    return result",
+  "metrics": {
+    "total_nodes": 191,
+    "ast_depth": 9,
+    "branch_count": 7,
+    "loop_count": 3,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.08377,
+    "function_names": [
+      "rescale_to_unit"
+    ]
+  }
+}

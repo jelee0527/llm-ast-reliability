@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_119",
+  "task_id": "HumanEval/119",
+  "problem_name": "Match Parens",
+  "entry_point": "match_parens",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:19:23.740393+00:00",
+  "elapsed_seconds": 4.242,
+  "official_prompt": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n\n",
+  "raw_response": "from typing import List, Tuple\n\ndef match_parens(lst: List[str]) -> str:\n    s1, s2 = lst[0], lst[1]\n\n    def analyze(s: str) -> Tuple[int, int]:\n        # returns (min_prefix_balance, total_balance)\n        bal = 0\n        min_pref = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < min_pref:\n                min_pref = bal\n        return min_pref, bal\n\n    def can_concat(a: str, b: str) -> bool:\n        min_a, tot_a = analyze(a)\n        # during a, need min_a >= 0 when starting from 0\n        if min_a < 0:\n            return False\n        # when concatenating b after a, starting balance = tot_a\n        min_b, tot_b = analyze(b)\n        if tot_a + min_b < 0:\n            return False\n        # final total must be zero\n        return tot_a + tot_b == 0\n\n    # try both orders\n    if can_concat(s1, s2) or can_concat(s2, s1):\n        return 'Yes'\n    return 'No'",
+  "generated_code": "from typing import List, Tuple\n\ndef match_parens(lst: List[str]) -> str:\n    s1, s2 = lst[0], lst[1]\n\n    def analyze(s: str) -> Tuple[int, int]:\n        # returns (min_prefix_balance, total_balance)\n        bal = 0\n        min_pref = 0\n        for ch in s:\n            if ch == '(':\n                bal += 1\n            else:\n                bal -= 1\n            if bal < min_pref:\n                min_pref = bal\n        return min_pref, bal\n\n    def can_concat(a: str, b: str) -> bool:\n        min_a, tot_a = analyze(a)\n        # during a, need min_a >= 0 when starting from 0\n        if min_a < 0:\n            return False\n        # when concatenating b after a, starting balance = tot_a\n        min_b, tot_b = analyze(b)\n        if tot_a + min_b < 0:\n            return False\n        # final total must be zero\n        return tot_a + tot_b == 0\n\n    # try both orders\n    if can_concat(s1, s2) or can_concat(s2, s1):\n        return 'Yes'\n    return 'No'"
+}

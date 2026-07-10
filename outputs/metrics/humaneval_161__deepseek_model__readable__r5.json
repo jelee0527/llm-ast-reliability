@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_161__deepseek_model__readable__r5.json",
+  "problem_id": "humaneval_161",
+  "task_id": "HumanEval/161",
+  "problem_name": "Solve",
+  "entry_point": "solve",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def solve(s):\n    result = []\n    has_letter = False\n    for ch in s:\n        if ch.isalpha():\n            has_letter = True\n            if ch.islower():\n                result.append(ch.upper())\n            else:\n                result.append(ch.lower())\n        else:\n            result.append(ch)\n    if not has_letter:\n        return s[::-1]\n    return ''.join(result)",
+  "metrics": {
+    "total_nodes": 85,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.070588,
+    "function_names": [
+      "solve"
+    ]
+  }
+}

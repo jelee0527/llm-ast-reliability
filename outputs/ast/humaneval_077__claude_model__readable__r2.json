@@ -1,0 +1,15 @@
+{
+  "source_file": "humaneval_077__claude_model__readable__r2.json",
+  "problem_id": "humaneval_077",
+  "task_id": "HumanEval/77",
+  "problem_name": "Iscube",
+  "entry_point": "iscube",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def iscube(a):\n    abs_a = abs(a)\n    cube_root = round(abs_a ** (1/3))\n    return cube_root ** 3 == abs_a",
+  "ast_dump": "Module(\n  body=[\n    FunctionDef(\n      name='iscube',\n      args=arguments(\n        args=[\n          arg(arg='a')]),\n      body=[\n        Assign(\n          targets=[\n            Name(id='abs_a', ctx=Store())],\n          value=Call(\n            func=Name(id='abs', ctx=Load()),\n            args=[\n              Name(id='a', ctx=Load())])),\n        Assign(\n          targets=[\n            Name(id='cube_root', ctx=Store())],\n          value=Call(\n            func=Name(id='round', ctx=Load()),\n            args=[\n              BinOp(\n                left=Name(id='abs_a', ctx=Load()),\n                op=Pow(),\n                right=BinOp(\n                  left=Constant(value=1),\n                  op=Div(),\n                  right=Constant(value=3)))])),\n        Return(\n          value=Compare(\n            left=BinOp(\n              left=Name(id='cube_root', ctx=Load()),\n              op=Pow(),\n              right=Constant(value=3)),\n            ops=[\n              Eq()],\n            comparators=[\n              Name(id='abs_a', ctx=Load())]))])])"
+}

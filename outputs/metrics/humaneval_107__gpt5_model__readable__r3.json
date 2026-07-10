@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_107__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_107",
+  "task_id": "HumanEval/107",
+  "problem_name": "Even Odd Palindrome",
+  "entry_point": "even_odd_palindrome",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Tuple\n\ndef even_odd_palindrome(n: int) -> Tuple[int, int]:\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Returns:\n        (even_count, odd_count)\n    \"\"\"\n    if n < 1:\n        return (0, 0)\n\n    even_count = 0\n    odd_count = 0\n\n    for x in range(1, n + 1):\n        s = str(x)\n        if s == s[::-1]:\n            if x % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)",
+  "metrics": {
+    "total_nodes": 98,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.061224,
+    "function_names": [
+      "even_odd_palindrome"
+    ]
+  }
+}

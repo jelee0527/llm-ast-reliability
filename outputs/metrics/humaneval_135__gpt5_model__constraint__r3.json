@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_135__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_135",
+  "task_id": "HumanEval/135",
+  "problem_name": "Can Arrange",
+  "entry_point": "can_arrange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef can_arrange(arr: List[int]) -> int:\n    \"\"\"\n    Return the largest index i such that arr[i] < arr[i-1].\n    If no such index exists, return -1.\n    Assumes arr contains no duplicates.\n    \"\"\"\n    # If array length less than 2, there is no such index\n    n = len(arr)\n    if n < 2:\n        return -1\n    # Iterate from end to start looking for first descent arr[i] < arr[i-1]\n    for i in range(n - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n\n# Example quick tests (can be removed if only function is desired)\nif __name__ == \"__main__\":\n    print(can_arrange([1, 2, 4, 3, 5]))  # expected 3\n    print(can_arrange([1, 2, 3]))        # expected -1",
+  "metrics": {
+    "total_nodes": 106,
+    "ast_depth": 9,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.066038,
+    "function_names": [
+      "can_arrange"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_041__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_041",
+  "task_id": "HumanEval/41",
+  "problem_name": "Car Race Collision",
+  "entry_point": "car_race_collision",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Given n cars moving left-to-right and n cars moving right-to-left on a line,\n    all at the same speed, starting far apart so that every pair of one L->R and one R->L\n    will pass each other exactly once, the total number of collisions (crossings)\n    equals n * n.\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    return n * n\n\n# Example usage:\nif __name__ == \"__main__\":\n    print(car_race_collision(0))  # 0\n    print(car_race_collision(1))  # 1\n    print(car_race_collision(5))  # 25",
+  "metrics": {
+    "total_nodes": 75,
+    "ast_depth": 7,
+    "branch_count": 3,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.08,
+    "function_names": [
+      "car_race_collision"
+    ]
+  }
+}

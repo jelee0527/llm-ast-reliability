@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__gpt5_model__readable__r1.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    Count the number of sentences that start with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n    Leading/trailing whitespace around sentences is ignored.\n    The word \"I\" must be a standalone word (case-sensitive as per examples).\n    \"\"\"\n    if not isinstance(S, str):\n        return 0\n\n    # Split on sentence delimiters: ., ?, !\n    # Keep non-empty trimmed sentences\n    parts = re.split(r'[.?!]+', S)\n    count = 0\n    for part in parts:\n        sentence = part.strip()\n        if not sentence:\n            continue\n        # Check if sentence starts with the word \"I\" followed by word boundary\n        if re.match(r'^I\\b', sentence):\n            count += 1\n    return count\n\n# Simple tests\nif __name__ == \"__main__\":\n    print(is_bored(\"Hello world\"))  # 0\n    print(is_bored(\"The sky is blue. The sun is shining. I love this weather\"))  # 1\n    print(is_bored(\"I am here! Are you? I.\"))  # 2",
+  "metrics": {
+    "total_nodes": 101,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.079208,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

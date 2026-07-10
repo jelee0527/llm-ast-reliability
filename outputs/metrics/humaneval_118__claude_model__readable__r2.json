@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__claude_model__readable__r2.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def get_closest_vowel(word):\n    vowels = set(\"aeiouAEIOU\")\n    \n    # We need to find the closest vowel between two consonants from the right side\n    # Skip the first and last characters (vowels at beginning and end don't count)\n    \n    # Iterate from right to left, but skip the last character (index len-1)\n    # and the first character (index 0)\n    for i in range(len(word) - 2, 0, -1):\n        current_char = word[i]\n        left_char = word[i - 1]\n        right_char = word[i + 1]\n        \n        # Check if current character is a vowel\n        if current_char in vowels:\n            # Check if both neighbors are consonants (not vowels)\n            if left_char not in vowels and right_char not in vowels:\n                return current_char\n    \n    return \"\"",
+  "metrics": {
+    "total_nodes": 89,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.05618,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

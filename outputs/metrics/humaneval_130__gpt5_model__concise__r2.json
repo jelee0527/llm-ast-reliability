@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_130__gpt5_model__concise__r2.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from functools import lru_cache\n\ndef tri(n):\n    \"\"\"Return list of first n+1 Tribonacci numbers where indexing matches prompt:\n    tri(0) is defined as 1 per examples (tri(3) -> [1,3,2,8] so index0=1, index1=3).\n    Recurrence:\n      tri(1)=3\n      if k is even: tri(k)=1 + k/2\n      if k is odd: tri(k)=tri(k-1)+tri(k-2)+tri(k+1)\n    We'll compute values up to n using memoization and handle forward dependency for odd k by solving linear relations where needed.\n    \"\"\"\n    # Ensure integer n >= 0\n    n = int(n)\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # We'll build values progressively. Use dict for known values.\n    vals = {}\n    vals[0] = 1\n    vals[1] = 3\n    # For even k: direct formula\n    def is_even(k): return k % 2 == 0\n    # We need to compute up to n; odd indices refer to k+1 (next), which may be even or odd.\n    # Strategy: iterate k from 2..n, if even assign directly; if odd and k+1<=n and k+1 is even,\n    # we can compute tri(k+1) first (since even), then tri(k) = tri(k-1)+tri(k-2)+tri(k+1).\n    # If k is odd and k+1 is odd (i.e., k odd implies k+1 even always), so safe.\n    for k in range(2, n+1):\n        if is_even(k):\n            vals[k] = 1 + k // 2\n        else:\n            # k odd -> k+1 is even; ensure k+1 computed if within bounds\n            if k+1 <= n and is_even(k+1) and (k+1) not in vals:\n                vals[k+1] = 1 + (k+1) // 2\n            # Ensure previous two exist (they will)\n            a = vals.get(k-1)\n            b = vals.get(k-2)\n            c = vals.get(k+1)\n            if c is None:\n                # k+1 might be out of range; but recurrence needs tri(k+1) even if >n.\n                # We must compute it regardless to compute tri(k). Compute recursively as even formula.\n                # Since k is odd, k+1 is even, so direct.\n                c = 1 + (k+1)//2\n                vals[k+1] = c\n            vals[k] = a + b + c\n    # Return list of tri(0) .. tri(n)\n    return [vals[i] for i in range(0, n+1)]",
+  "metrics": {
+    "total_nodes": 248,
+    "ast_depth": 11,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.032258,
+    "function_names": [
+      "tri",
+      "is_even"
+    ]
+  }
+}

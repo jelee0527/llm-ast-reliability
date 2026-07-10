@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_132__gpt5_model__constraint__r1.json",
+  "problem_id": "humaneval_132",
+  "task_id": "HumanEval/132",
+  "problem_name": "Is Nested",
+  "entry_point": "is_nested",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import sys\n\ndef is_nested(string):\n    '''\n    Return True iff there exists a valid subsequence of the given bracket-only string\n    where at least one bracket in the subsequence is nested.\n    Valid subsequence means it forms a correctly matched sequence of '[' and ']' in order.\n    \"Nested\" means at least one pair contains another matched pair strictly inside it.\n    '''\n    # We want to detect whether there exists a matched pair [ ... ] that encloses at least one other matched pair.\n    # Approach: scan and build positions of matching pairs using a stack to get a set of matched intervals.\n    stack = []\n    pairs = []  # list of (open_index, close_index)\n    for i, ch in enumerate(string):\n        if ch == '[':\n            stack.append(i)\n        elif ch == ']':\n            if stack:\n                open_idx = stack.pop()\n                pairs.append((open_idx, i))\n            # else unmatched closing ignored\n        else:\n            # unexpected character, ignore per problem statement only brackets exist\n            pass\n\n    # If fewer than 2 pairs, cannot have nesting.\n    if len(pairs) < 2:\n        return False\n\n    # Sort pairs by opening index\n    pairs.sort()\n    # For nesting, need an interval (a,b) and another (c,d) such that a < c < d < b\n    # Use a sweep: track the maximum closing seen for currently open outer intervals.\n    # Simpler: iterate all pairs as outer and check if any other pair lies strictly inside.\n    # Because number of characters can be large, but O(n^2) in worst-case pairs; acceptable for typical inputs.\n    # We'll optimize a bit: build an array of closes for pairs sorted by open.\n    n = len(pairs)\n    closes = [c for (_, c) in pairs]\n    opens = [o for (o, _) in pairs]\n    # For each outer pair i, any inner pair j must have opens[i] < opens[j] and closes[j] < closes[i]\n    # We can for each i check j in range(i+1, n) until opens[j] >= closes[i] (no longer inside)\n    for i in range(n):\n        oi, ci = opens[i], closes[i]\n        for j in range(i+1, n):\n            oj, cj = opens[j], closes[j]\n            if oj > oi and cj < ci:\n                return True\n            # if the inner open is past the outer close, no further j will be inside this outer\n            if oj >= ci:\n                break\n    return False\n\n# If run as script, simple tests\nif __name__ == \"__main__\":\n    tests = [\n        (\"[[]]\", True),\n        (\"[]]]]]]][[[[[]\", False),\n        (\"[][]\", False),\n        (\"[]\", False),\n        (\"[[][]]\", True),\n        (\"[[]][[\", True),\n    ]\n    for s, expected in tests:\n        res = is_nested(s)\n        print(s, res, \"OK\" if res == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 293,
+    "ast_depth": 11,
+    "branch_count": 8,
+    "loop_count": 4,
+    "function_count": 1,
+    "control_flow_count": 16,
+    "control_flow_ratio": 0.054608,
+    "function_names": [
+      "is_nested"
+    ]
+  }
+}

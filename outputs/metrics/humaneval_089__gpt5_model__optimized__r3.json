@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_089__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate letters by 4 positions (2 multiplied by 2). Preserve case; non-letters unchanged.\"\"\"\n    def shift_char(c):\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 4) % 26 + ord('a'))\n        if 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 4) % 26 + ord('A'))\n        return c\n    return ''.join(shift_char(ch) for ch in s)",
+  "metrics": {
+    "total_nodes": 100,
+    "ast_depth": 13,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.06,
+    "function_names": [
+      "encrypt",
+      "shift_char"
+    ]
+  }
+}

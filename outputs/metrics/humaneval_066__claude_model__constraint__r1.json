@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_066__claude_model__constraint__r1.json",
+  "problem_id": "humaneval_066",
+  "task_id": "HumanEval/66",
+  "problem_name": "Digitsum",
+  "entry_point": "digitSum",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def digitSum(s):\n    total = 0\n    for c in s:\n        if c.isupper():\n            total += ord(c)\n    return total",
+  "metrics": {
+    "total_nodes": 31,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.096774,
+    "function_names": [
+      "digitSum"
+    ]
+  }
+}

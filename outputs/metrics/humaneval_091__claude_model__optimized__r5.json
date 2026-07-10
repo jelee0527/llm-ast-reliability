@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__claude_model__optimized__r5.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    sentences = re.split(r'[.?!]', S)\n    count = 0\n    for sentence in sentences:\n        if re.match(r'^\\s*I\\b', sentence):\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 43,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.069767,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

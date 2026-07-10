@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_091__deepseek_model__readable__r3.json",
+  "problem_id": "humaneval_091",
+  "task_id": "HumanEval/91",
+  "problem_name": "Is Bored",
+  "entry_point": "is_bored",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import re\n\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n    sentences = re.split(r'[.?!]', S)\n    count = 0\n    for sentence in sentences:\n        stripped = sentence.strip()\n        if stripped.startswith(\"I \") or stripped == \"I\":\n            count += 1\n    return count",
+  "metrics": {
+    "total_nodes": 58,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.051724,
+    "function_names": [
+      "is_bored"
+    ]
+  }
+}

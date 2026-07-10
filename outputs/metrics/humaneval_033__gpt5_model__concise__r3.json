@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_033__gpt5_model__concise__r3.json",
+  "problem_id": "humaneval_033",
+  "task_id": "HumanEval/33",
+  "problem_name": "Sort Third",
+  "entry_point": "sort_third",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef sort_third(l: List):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the indices that are not divisible by three, while its values at the indices that are divisible by three are equal\n    to the values of the corresponding indices of l, but sorted.\n    \"\"\"\n    if not isinstance(l, list):\n        l = list(l)\n    # collect indices divisible by 3\n    idx = [i for i in range(len(l)) if i % 3 == 0]\n    vals = sorted((l[i] for i in idx))\n    res = l[:]  # copy\n    for i, v in zip(idx, vals):\n        res[i] = v\n    return res\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 119,
+    "ast_depth": 9,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.033613,
+    "function_names": [
+      "sort_third"
+    ]
+  }
+}

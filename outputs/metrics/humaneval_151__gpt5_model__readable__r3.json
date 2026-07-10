@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_151__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_151",
+  "task_id": "HumanEval/151",
+  "problem_name": "Double The Difference",
+  "entry_point": "double_the_difference",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef double_the_difference(lst: List[object]) -> int:\n    \"\"\"\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n    Examples:\n    double_the_difference([1, 3, 2, 0]) -> 1 + 9 + 0 + 0 = 10\n    double_the_difference([-1, -2, 0]) -> 0\n    double_the_difference([9, -2]) -> 81\n    double_the_difference([0]) -> 0\n    \"\"\"\n    total = 0\n    for item in lst:\n        # Must be an integer type (not float) and non-negative\n        if not isinstance(item, int):\n            continue\n        if item < 0:\n            continue\n        # Only odd integers contribute; square and add\n        if item % 2 != 0:\n            total += item * item\n    return total\n\n# Simple test cases when run as a script\nif __name__ == \"__main__\":\n    assert double_the_difference([1, 3, 2, 0]) == 10\n    assert double_the_difference([-1, -2, 0]) == 0\n    assert double_the_difference([9, -2]) == 81\n    assert double_the_difference([0]) == 0\n    assert double_the_difference([]) == 0\n    print(\"All tests passed.\")",
+  "metrics": {
+    "total_nodes": 137,
+    "ast_depth": 8,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.058394,
+    "function_names": [
+      "double_the_difference"
+    ]
+  }
+}

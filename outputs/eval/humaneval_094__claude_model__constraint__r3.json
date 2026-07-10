@@ -1,0 +1,15 @@
+{
+  "file": "humaneval_094__claude_model__constraint__r3.json",
+  "problem_id": "humaneval_094",
+  "task_id": "HumanEval/94",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "execution_success": true,
+  "passed": true,
+  "error_type": null,
+  "error_message": null,
+  "traceback": null
+}

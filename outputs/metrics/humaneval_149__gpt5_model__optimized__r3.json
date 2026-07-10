@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "import typing\n\ndef sorted_list_sum(lst: typing.List[str]) -> typing.List[str]:\n    \"\"\"\n    Accepts a list of strings, removes strings with odd lengths,\n    and returns the list sorted ascending by length, then alphabetically\n    for equal lengths.\n    \"\"\"\n    # Filter out strings with odd length\n    filtered = [s for s in lst if len(s) % 2 == 0]\n    # Sort by (length, string) for required ordering\n    filtered.sort(key=lambda s: (len(s), s))\n    return filtered\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert sorted_list_sum([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert sorted_list_sum([\"ab\", \"a\", \"aaa\", \"cd\"]) == [\"ab\", \"cd\"]\n    assert sorted_list_sum([]) == []\n    assert sorted_list_sum([\"aaa\", \"bbb\", \"cc\", \"dd\"]) == [\"cc\", \"dd\", \"aaa\", \"bbb\"] or sorted_list_sum([\"aaa\", \"bbb\", \"cc\", \"dd\"]) == [\"cc\", \"dd\", \"bbb\", \"aaa\"]",
+  "metrics": {
+    "total_nodes": 151,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.013245,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

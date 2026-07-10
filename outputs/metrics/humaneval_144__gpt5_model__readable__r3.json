@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_144__gpt5_model__readable__r3.json",
+  "problem_id": "humaneval_144",
+  "task_id": "HumanEval/144",
+  "problem_name": "Simplify",
+  "entry_point": "simplify",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from fractions import Fraction\n\ndef simplify(x, n):\n    \"\"\"Return True if product of fractions x and n is a whole number, else False.\n    x and n are strings like \"numerator/denominator\" with positive integers.\n    \"\"\"\n    # Parse strings into Fraction instances for exact rational arithmetic\n    def parse_fraction(frac_str):\n        num_str, den_str = frac_str.split(\"/\")\n        return Fraction(int(num_str), int(den_str))\n\n    frac_x = parse_fraction(x)\n    frac_n = parse_fraction(n)\n    product = frac_x * frac_n\n\n    # A Fraction is a whole number when denominator == 1\n    return product.denominator == 1\n\n\n# Example usage (can be removed if only the function is needed):\nif __name__ == \"__main__\":\n    tests = [\n        (\"1/5\", \"5/1\"),\n        (\"1/6\", \"2/1\"),\n        (\"7/10\", \"10/2\"),\n        (\"3/4\", \"4/3\"),\n        (\"6/7\", \"7/6\"),\n    ]\n    for a, b in tests:\n        print(a, \"*\", b, \"is whole?\", simplify(a, b))",
+  "metrics": {
+    "total_nodes": 129,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 4,
+    "control_flow_ratio": 0.031008,
+    "function_names": [
+      "simplify",
+      "parse_fraction"
+    ]
+  }
+}

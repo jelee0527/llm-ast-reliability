@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__claude_model__readable__r4.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "def order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n    def digit_sum(number):\n        # Convert number to string to handle digits individually\n        number_str = str(number)\n        \n        # Check if the number is negative\n        if number_str[0] == '-':\n            # For negative numbers, the first digit after '-' is negative\n            digits = [int(digit) for digit in number_str[1:]]\n            digits[0] = -digits[0]  # Make the first digit negative\n        else:\n            digits = [int(digit) for digit in number_str]\n        \n        return sum(digits)\n    \n    # Sort using digit_sum as key, with enumerate to preserve original index for stability\n    sorted_nums = sorted(enumerate(nums), key=lambda item: (digit_sum(item[1]), item[0]))\n    \n    # Extract just the numbers from the sorted (index, number) pairs\n    return [number for index, number in sorted_nums]",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 11,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.025,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

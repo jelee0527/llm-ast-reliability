@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_026__gpt5_model__readable__r4.json",
+  "problem_id": "humaneval_026",
+  "task_id": "HumanEval/26",
+  "problem_name": "Remove Duplicates",
+  "entry_point": "remove_duplicates",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\nfrom collections import Counter\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\" From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n    \"\"\"\n    counts = Counter(numbers)\n    result: List[int] = []\n    for n in numbers:\n        if counts[n] == 1:\n            result.append(n)\n    return result",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "remove_duplicates"
+    ]
+  }
+}

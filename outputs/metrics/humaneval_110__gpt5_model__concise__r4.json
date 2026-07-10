@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_110__gpt5_model__concise__r4.json",
+  "problem_id": "humaneval_110",
+  "task_id": "HumanEval/110",
+  "problem_name": "Exchange",
+  "entry_point": "exchange",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    # Count number of odd elements in lst1\n    odds1 = sum(1 for x in lst1 if x % 2 != 0)\n    # Count number of even elements in lst2\n    evens2 = sum(1 for x in lst2 if x % 2 == 0)\n    # We can replace each odd in lst1 with an even from lst2 (no limit on swaps)\n    return \"YES\" if evens2 >= odds1 else \"NO\"",
+  "metrics": {
+    "total_nodes": 73,
+    "ast_depth": 10,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 2,
+    "control_flow_ratio": 0.027397,
+    "function_names": [
+      "exchange"
+    ]
+  }
+}

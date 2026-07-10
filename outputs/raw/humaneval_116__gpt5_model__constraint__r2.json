@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_116",
+  "task_id": "HumanEval/116",
+  "problem_name": "Sort Array",
+  "entry_point": "sort_array",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T08:13:38.536307+00:00",
+  "elapsed_seconds": 4.567,
+  "official_prompt": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task.\n\nUse explicit control flow where appropriate, avoid unnecessary external\ndependencies, and produce deterministic executable code.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of non-negative integers according to the number of ones in their binary representation in ascending order.\n    For numbers with the same number of ones, sort by their decimal value ascending.\n    Negative numbers are sorted by their value ascending (as in examples), but their binary ones count will be ignored/treated as their two's complement is not relevant here.\n    \"\"\"\n    # Define a key function: tuple( count of ones in binary of non-negative numbers, value )\n    # For negative numbers, use a large ones count so they sort by value only as in example.\n    def ones_count(n: int) -> int:\n        if n >= 0:\n            return bin(n).count('1')\n        # For negative numbers, return a special marker that keeps their relative order by value\n        # Use a very large number so they come after non-negative numbers when sorting by ones count,\n        # but in the provided example negatives appear sorted ascending and after positives if any.\n        return float('inf')\n    # Sort using tuple key\n    return sorted(arr, key=lambda x: (ones_count(x), x))",
+  "generated_code": "from typing import List\n\ndef sort_array(arr: List[int]) -> List[int]:\n    \"\"\"\n    Sort an array of non-negative integers according to the number of ones in their binary representation in ascending order.\n    For numbers with the same number of ones, sort by their decimal value ascending.\n    Negative numbers are sorted by their value ascending (as in examples), but their binary ones count will be ignored/treated as their two's complement is not relevant here.\n    \"\"\"\n    # Define a key function: tuple( count of ones in binary of non-negative numbers, value )\n    # For negative numbers, use a large ones count so they sort by value only as in example.\n    def ones_count(n: int) -> int:\n        if n >= 0:\n            return bin(n).count('1')\n        # For negative numbers, return a special marker that keeps their relative order by value\n        # Use a very large number so they come after non-negative numbers when sorting by ones count,\n        # but in the provided example negatives appear sorted ascending and after positives if any.\n        return float('inf')\n    # Sort using tuple key\n    return sorted(arr, key=lambda x: (ones_count(x), x))"
+}

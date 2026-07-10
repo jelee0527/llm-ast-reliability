@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_100__deepseek_model__basic__r1.json",
+  "problem_id": "humaneval_100",
+  "task_id": "HumanEval/100",
+  "problem_name": "Make A Pile",
+  "entry_point": "make_a_pile",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "basic",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "def make_a_pile(n):\n    result = []\n    current = n\n    for i in range(n):\n        result.append(current)\n        if n % 2 == 1:\n            current += 2\n        else:\n            current += 2\n    return result",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "make_a_pile"
+    ]
+  }
+}

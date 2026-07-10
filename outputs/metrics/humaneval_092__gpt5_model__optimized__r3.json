@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_092__gpt5_model__optimized__r3.json",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Return True if x, y, z are all integers (no fractional part) and one equals the sum of the other two.\n    Otherwise return False.\n    \"\"\"\n    # Check that inputs are of numeric types and are integers (no fractional part)\n    # Accept ints and floats that represent integer values (e.g., 3.0)\n    def is_integer_value(v):\n        if isinstance(v, bool):\n            return False\n        if isinstance(v, int):\n            return True\n        if isinstance(v, float):\n            return v.is_integer()\n        return False\n\n    if not (is_integer_value(x) and is_integer_value(y) and is_integer_value(z)):\n        return False\n\n    xi, yi, zi = int(x), int(y), int(z)\n    return xi == yi + zi or yi == xi + zi or zi == xi + yi\n\n# Example quick test cases (will not run unless called)\nif __name__ == \"__main__\":\n    tests = [\n        (5, 2, 7),\n        (3, 2, 2),\n        (3, -2, 1),\n        (3.6, -2.2, 2),\n        (3.0, 1.0, 2.0),\n        (True, 1, 2),\n    ]\n    for t in tests:\n        print(t, any_int(*t))",
+  "metrics": {
+    "total_nodes": 201,
+    "ast_depth": 9,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 12,
+    "control_flow_ratio": 0.059701,
+    "function_names": [
+      "any_int",
+      "is_integer_value"
+    ]
+  }
+}

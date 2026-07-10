@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_149__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_149",
+  "task_id": "HumanEval/149",
+  "problem_name": "Sorted List Sum",
+  "entry_point": "sorted_list_sum",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import functools\n\ndef sorted_list_sum(lst):\n    \"\"\"Filter out strings with odd lengths and return list sorted by length then alphabetically.\"\"\"\n    # Keep only strings with even length\n    evens = [s for s in lst if len(s) % 2 == 0]\n    # Sort primarily by length, secondarily lexicographically\n    evens.sort(key=lambda s: (len(s), s))\n    return evens",
+  "metrics": {
+    "total_nodes": 52,
+    "ast_depth": 10,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.019231,
+    "function_names": [
+      "sorted_list_sum"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_045__gpt5_model__constraint__r4.json",
+  "problem_id": "humaneval_045",
+  "task_id": "HumanEval/45",
+  "problem_name": "Triangle Area",
+  "entry_point": "triangle_area",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "import math\n\ndef triangle_area(a, h):\n    \"\"\"Given length of a side and height return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n    \"\"\"\n    # Validate inputs: must be numeric and non-negative\n    if not (isinstance(a, (int, float)) and isinstance(h, (int, float))):\n        raise TypeError(\"a and h must be numbers\")\n    if a < 0 or h < 0:\n        raise ValueError(\"a and h must be non-negative\")\n    # Area of triangle: 0.5 * base * height\n    return 0.5 * a * h\n\nif __name__ == \"__main__\":\n    # Simple tests\n    print(triangle_area(5, 3))  # expected 7.5\n    print(triangle_area(0, 10))  # expected 0.0\n    try:\n        triangle_area(\"5\", 3)\n    except Exception as e:\n        print(\"TypeError caught as expected:\", type(e).__name__)",
+  "metrics": {
+    "total_nodes": 115,
+    "ast_depth": 10,
+    "branch_count": 4,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 7,
+    "control_flow_ratio": 0.06087,
+    "function_names": [
+      "triangle_area"
+    ]
+  }
+}

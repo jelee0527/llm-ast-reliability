@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_089__gpt5_model__optimized__r2.json",
+  "problem_id": "humaneval_089",
+  "task_id": "HumanEval/89",
+  "problem_name": "Encrypt",
+  "entry_point": "encrypt",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "import string\n\ndef encrypt(s):\n    \"\"\"Rotate alphabet by 4 positions to the right (each letter shifted down by two multiplied to two places).\"\"\"\n    if not isinstance(s, str):\n        raise TypeError(\"Input must be a string\")\n    lower = string.ascii_lowercase\n    shifted = lower[4:] + lower[:4]  # shift by 4 positions\n    trans = str.maketrans(lower, shifted)\n    return s.translate(trans)",
+  "metrics": {
+    "total_nodes": 67,
+    "ast_depth": 7,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.044776,
+    "function_names": [
+      "encrypt"
+    ]
+  }
+}

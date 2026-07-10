@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_163",
+  "task_id": "HumanEval/163",
+  "problem_name": "Generate Integers",
+  "entry_point": "generate_integers",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-11T00:15:05.687979+00:00",
+  "elapsed_seconds": 4.147,
+  "official_prompt": "\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task with attention to\ntime and space efficiency.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef generate_integers(a, b):\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Examples:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    if a <= 0 or b <= 0:\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = (a, b) if a <= b else (b, a)\n    # We only consider single-digit integers (0-9 are digits). Since a and b are positive,\n    # valid digit values are 1-9. Return even digits in [lo, hi].\n    start = max(lo, 1)\n    end = min(hi, 9)\n    if start > end:\n        return []\n    # Even digits between start and end inclusive\n    res = []\n    # First even >= start\n    first_even = start if start % 2 == 0 else start + 1\n    for v in range(first_even, end + 1, 2):\n        if 0 <= v <= 9:\n            res.append(v)\n    return res",
+  "generated_code": "from typing import List\n\ndef generate_integers(a: int, b: int) -> List[int]:\n    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    Examples:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n    if not (isinstance(a, int) and isinstance(b, int)):\n        raise TypeError(\"a and b must be integers\")\n    if a <= 0 or b <= 0:\n        raise ValueError(\"a and b must be positive integers\")\n    lo, hi = (a, b) if a <= b else (b, a)\n    # We only consider single-digit integers (0-9 are digits). Since a and b are positive,\n    # valid digit values are 1-9. Return even digits in [lo, hi].\n    start = max(lo, 1)\n    end = min(hi, 9)\n    if start > end:\n        return []\n    # Even digits between start and end inclusive\n    res = []\n    # First even >= start\n    first_even = start if start % 2 == 0 else start + 1\n    for v in range(first_even, end + 1, 2):\n        if 0 <= v <= 9:\n            res.append(v)\n    return res"
+}

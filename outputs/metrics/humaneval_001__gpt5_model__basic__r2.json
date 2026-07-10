@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_001__gpt5_model__basic__r2.json",
+  "problem_id": "humaneval_001",
+  "task_id": "HumanEval/1",
+  "problem_name": "Separate Paren Groups",
+  "entry_point": "separate_paren_groups",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    s = paren_string.replace(\" \", \"\")\n    groups: List[str] = []\n    current = []\n    depth = 0\n    for ch in s:\n        if ch not in ('(', ')'):\n            # ignore any other characters\n            continue\n        if ch == '(':\n            depth += 1\n            current.append(ch)\n        elif ch == ')':\n            if depth == 0:\n                # Unbalanced closing parenthesis; ignore or treat as separate? We'll append anyway.\n                # To keep behavior robust, start a new group if needed.\n                current.append(ch)\n            else:\n                current.append(ch)\n                depth -= 1\n        # If we've closed a full top-level group, depth==0 and current non-empty -> push\n        if depth == 0 and current:\n            groups.append(''.join(current))\n            current = []\n    # If any leftover (unbalanced), append as is\n    if current:\n        groups.append(''.join(current))\n    return groups\n\n# Quick test when run as script\nif __name__ == \"__main__\":\n    print(separate_paren_groups('( ) (( )) (( )( ))'))",
+  "metrics": {
+    "total_nodes": 172,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.05814,
+    "function_names": [
+      "separate_paren_groups"
+    ]
+  }
+}

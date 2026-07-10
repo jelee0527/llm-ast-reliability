@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_068__gpt5_model__optimized__r4.json",
+  "problem_id": "humaneval_068",
+  "task_id": "HumanEval/68",
+  "problem_name": "Pluck",
+  "entry_point": "pluck",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef pluck(arr: List[int]) -> List[int]:\n    \"\"\"\n    Return [smallest_even_value, index] for the smallest even value in arr.\n    If multiple have same smallest even value, return the one with smallest index.\n    If none or arr empty, return [].\n    \"\"\"\n    if not arr:\n        return []\n    min_val = None\n    min_idx = -1\n    for i, v in enumerate(arr):\n        if v % 2 == 0:\n            if min_val is None or v < min_val:\n                min_val = v\n                min_idx = i\n    if min_val is None:\n        return []\n    return [min_val, min_idx]",
+  "metrics": {
+    "total_nodes": 99,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 8,
+    "control_flow_ratio": 0.080808,
+    "function_names": [
+      "pluck"
+    ]
+  }
+}

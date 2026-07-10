@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T14:50:21.314338+00:00",
+  "elapsed_seconds": 3.267,
+  "official_prompt": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\nfrom typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n\n",
+  "raw_response": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    note_to_beats = {\n        'o': 4,\n        'o|': 2,\n        '.|': 1\n    }\n    \n    tokens = music_string.split()\n    beats = [note_to_beats[token] for token in tokens if token in note_to_beats]\n    \n    return beats",
+  "generated_code": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    note_to_beats = {\n        'o': 4,\n        'o|': 2,\n        '.|': 1\n    }\n    \n    tokens = music_string.split()\n    beats = [note_to_beats[token] for token in tokens if token in note_to_beats]\n    \n    return beats"
+}

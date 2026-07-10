@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_128__gpt5_model__optimized__r5.json",
+  "problem_id": "humaneval_128",
+  "task_id": "HumanEval/128",
+  "problem_name": "Prod Signs",
+  "entry_point": "prod_signs",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "optimized",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Optional, Iterable\n\ndef prod_signs(arr: Iterable[int]) -> Optional[int]:\n    \"\"\"\n    Return sum of magnitudes of integers multiplied by product of all signs.\n    Sign of each number: 1 if positive, -1 if negative, 0 if zero.\n    If any element is zero, overall product of signs is 0 -> return 0.\n    If arr is empty, return None.\n    \"\"\"\n    # Convert to iterator-safe sequence check\n    try:\n        it = iter(arr)\n    except TypeError:\n        raise TypeError(\"Input must be an iterable of integers\")\n    # Use variables to accumulate\n    total_mag = 0\n    sign_prod = 1\n    any_item = False\n    for x in it:\n        any_item = True\n        if x == 0:\n            return 0\n        if x < 0:\n            sign_prod = -sign_prod\n            total_mag += -x\n        else:\n            total_mag += x\n    if not any_item:\n        return None\n    return sign_prod * total_mag\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    assert prod_signs([1, 2, 2, -4]) == -9\n    assert prod_signs([0, 1]) == 0\n    assert prod_signs([]) is None\n    assert prod_signs([-1, -2, -3]) == -6\n    assert prod_signs([5]) == 5\n    print(\"Tests passed.\")",
+  "metrics": {
+    "total_nodes": 186,
+    "ast_depth": 8,
+    "branch_count": 5,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 10,
+    "control_flow_ratio": 0.053763,
+    "function_names": [
+      "prod_signs"
+    ]
+  }
+}

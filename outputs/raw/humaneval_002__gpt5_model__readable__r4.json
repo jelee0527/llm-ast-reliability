@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_002",
+  "task_id": "HumanEval/2",
+  "problem_name": "Truncate Number",
+  "entry_point": "truncate_number",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 4,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T04:24:36.946734+00:00",
+  "elapsed_seconds": 3.692,
+  "official_prompt": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n\n",
+  "raw_response": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n\n    The decimal part is number - floor(number). For example:\n    truncate_number(3.5) -> 0.5\n\n    Args:\n        number: A positive floating point number.\n\n    Returns:\n        The fractional (decimal) part of the number, a float in [0, 1).\n\n    \"\"\"\n    if number is None:\n        raise TypeError(\"number must be provided\")\n    try:\n        n = float(number)\n    except (ValueError, TypeError):\n        raise TypeError(\"number must be convertible to float\")\n    if n < 0:\n        raise ValueError(\"number must be non-negative\")\n    integer_part = floor(n)\n    decimal_part = n - integer_part\n    # Guard against floating point imprecision that may produce 1.0 for values\n    # very close to the next integer (e.g., 1.0000000000000002).\n    if abs(decimal_part - 1.0) < 1e-12:\n        decimal_part = 0.0\n    return decimal_part",
+  "generated_code": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, return its decimal part.\n\n    The decimal part is number - floor(number). For example:\n    truncate_number(3.5) -> 0.5\n\n    Args:\n        number: A positive floating point number.\n\n    Returns:\n        The fractional (decimal) part of the number, a float in [0, 1).\n\n    \"\"\"\n    if number is None:\n        raise TypeError(\"number must be provided\")\n    try:\n        n = float(number)\n    except (ValueError, TypeError):\n        raise TypeError(\"number must be convertible to float\")\n    if n < 0:\n        raise ValueError(\"number must be non-negative\")\n    integer_part = floor(n)\n    decimal_part = n - integer_part\n    # Guard against floating point imprecision that may produce 1.0 for values\n    # very close to the next integer (e.g., 1.0000000000000002).\n    if abs(decimal_part - 1.0) < 1e-12:\n        decimal_part = 0.0\n    return decimal_part"
+}

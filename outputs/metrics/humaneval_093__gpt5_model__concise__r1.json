@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_093__gpt5_model__concise__r1.json",
+  "problem_id": "humaneval_093",
+  "task_id": "HumanEval/93",
+  "problem_name": "Encode",
+  "entry_point": "encode",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 1,
+  "status": "success",
+  "generated_code": "import string\n\ndef encode(message):\n    # mapping for vowels: a,e,i,o,u -> c,g,k,q,w (2 letters ahead)\n    # preserve only letters assumed; but we process all chars\n    vowels = {'a':'c','e':'g','i':'k','o':'q','u':'w'}\n    vowels_upper = {k.upper():v.upper() for k,v in vowels.items()}\n    res_chars = []\n    for ch in message:\n        if ch.isalpha():\n            # swap case\n            ch_swapped = ch.swapcase()\n            # if swapped char is a vowel (in either case), replace by mapping\n            if ch_swapped in vowels:\n                res_chars.append(vowels[ch_swapped])\n            elif ch_swapped in vowels_upper:\n                res_chars.append(vowels_upper[ch_swapped])\n            else:\n                res_chars.append(ch_swapped)\n        else:\n            # non-letters kept as is\n            res_chars.append(ch)\n    return ''.join(res_chars)",
+  "metrics": {
+    "total_nodes": 131,
+    "ast_depth": 11,
+    "branch_count": 3,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.038168,
+    "function_names": [
+      "encode"
+    ]
+  }
+}

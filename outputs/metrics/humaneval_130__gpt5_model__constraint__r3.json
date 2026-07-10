@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_130__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_130",
+  "task_id": "HumanEval/130",
+  "problem_name": "Tri",
+  "entry_point": "tri",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef tri(n: int) -> List[int]:\n    \"\"\"Return a list of the first n+1 Tribonacci numbers as defined.\n    Definition:\n      tri(1) = 3\n      tri(n) = 1 + n/2, if n is even.\n      tri(n) = tri(n-1) + tri(n-2) + tri(n+1), if n is odd.\n    The sequence uses 1-based indexing for the recurrence; the returned list\n    has indices 0..n corresponding to tri(0)..tri(n). tri(0) is not defined\n    by the prompt; we set tri(0) = 1 to allow returning n=0 as a list.\n    The examples imply integer values; division n/2 yields integer when n is even.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    # We'll store values in a dict for arbitrary indices, using integers.\n    vals = {}\n    # Define tri(0) to allow returning list of length 1 when n==0.\n    vals[0] = 1\n    # Base known value tri(1) = 3\n    if n >= 1:\n        vals[1] = 3\n    # We may need values beyond current index due to recurrence that references tri(n+1)\n    # We'll compute iteratively increasing k from 2 up to n, ensuring dependencies exist.\n    # For odd k, tri(k) depends on tri(k+1), so we must sometimes compute k+1 first.\n    # Strategy: iterate k from 2 to n, when encountering odd k, compute tri(k+1) first if missing.\n    k = 2\n    while k <= n:\n        if k % 2 == 0:\n            # even: tri(k) = 1 + k/2\n            vals[k] = 1 + (k // 2)\n            k += 1\n        else:\n            # odd: tri(k) = tri(k-1) + tri(k-2) + tri(k+1)\n            # ensure tri(k+1) exists\n            kp1 = k + 1\n            if kp1 not in vals:\n                # compute tri(k+1). k+1 is even, so formula applies.\n                vals[kp1] = 1 + (kp1 // 2)\n                # If kp1 > n we still compute it to satisfy recurrence; it's okay to store extra.\n            # Now ensure tri(k-1) and tri(k-2) exist (they should if we proceed increasing k)\n            if (k - 1) not in vals:\n                # compute recursively backward if needed (shouldn't normally occur)\n                # compute from lower indices\n                i = k - 1\n                while i >= 0 and i not in vals:\n                    # fallback: compute using rules; if odd might need higher index; handle simply\n                    if i == 1:\n                        vals[1] = 3\n                        break\n                    if i % 2 == 0:\n                        vals[i] = 1 + (i // 2)\n                    else:\n                        # for unexpected case, force compute its next even value first\n                        jp1 = i + 1\n                        if jp1 not in vals:\n                            vals[jp1] = 1 + (jp1 // 2)\n                        vals[i] = vals.get(i-1, 1) + vals.get(i-2, 1) + vals[jp1]\n                    i -= 1\n            # Now compute tri(k)\n            vals[k] = vals.get(k-1, 0) + vals.get(k-2, 0) + vals.get(k+1, 0)\n            k += 1\n    # Build result list tri(0)..tri(n)\n    result = [vals.get(i, 0) for i in range(0, n+1)]\n    return result\n\n# Simple self-test when run as script\nif __name__ == \"__main__\":\n    print(tri(3))  # expected [1,3,2,8]",
+  "metrics": {
+    "total_nodes": 355,
+    "ast_depth": 14,
+    "branch_count": 9,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.039437,
+    "function_names": [
+      "tri"
+    ]
+  }
+}

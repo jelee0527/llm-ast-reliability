@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_049__gpt5_model__constraint__r2.json",
+  "problem_id": "humaneval_049",
+  "task_id": "HumanEval/49",
+  "problem_name": "Modp",
+  "entry_point": "modp",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "from typing import Any\n\ndef modp(n: int, p: int) -> int:\n    \"\"\"Return 2^n modulo p (be aware of numerics).\"\"\"\n    if not isinstance(n, int) or not isinstance(p, int):\n        raise TypeError(\"n and p must be integers\")\n    if p <= 0:\n        raise ValueError(\"p must be a positive integer\")\n    # Fast modular exponentiation (binary exponentiation)\n    base = 2 % p\n    exponent = n\n    result = 1 % p\n    if exponent < 0:\n        # handle negative exponents by computing modular inverse of 2^(-exponent)\n        # inverse exists only if gcd(2, p) == 1\n        # Use extended Euclidean algorithm to find inverse of 2 modulo p\n        def egcd(a: int, b: int):\n            if b == 0:\n                return (a, 1, 0)\n            g, x1, y1 = egcd(b, a % b)\n            return (g, y1, x1 - (a // b) * y1)\n        g, inv2, _ = egcd(2, p)\n        if g != 1:\n            raise ValueError(\"Modular inverse does not exist for negative exponent with given p\")\n        inv2 = inv2 % p\n        base = inv2\n        exponent = -exponent\n    while exponent:\n        if exponent & 1:\n            result = (result * base) % p\n        base = (base * base) % p\n        exponent >>= 1\n    return result\n\nif __name__ == \"__main__\":\n    import doctest\n    doctest.testmod()",
+  "metrics": {
+    "total_nodes": 245,
+    "ast_depth": 11,
+    "branch_count": 7,
+    "loop_count": 1,
+    "function_count": 2,
+    "control_flow_count": 14,
+    "control_flow_ratio": 0.057143,
+    "function_names": [
+      "modp",
+      "egcd"
+    ]
+  }
+}

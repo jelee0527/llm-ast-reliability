@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_158__claude_model__optimized__r3.json",
+  "problem_id": "humaneval_158",
+  "task_id": "HumanEval/158",
+  "problem_name": "Find Max",
+  "entry_point": "find_max",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "optimized",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "def find_max(words):\n    return min(words, key=lambda w: (-len(set(w)), w))",
+  "metrics": {
+    "total_nodes": 28,
+    "ast_depth": 12,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.035714,
+    "function_names": [
+      "find_max"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_153__gpt5_model__concise__r5.json",
+  "problem_id": "humaneval_153",
+  "task_id": "HumanEval/153",
+  "problem_name": "Strongest Extension",
+  "entry_point": "Strongest_Extension",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef Strongest_Extension(class_name: str, extensions: List[str]) -> str:\n    best = None\n    best_score = None\n    for ext in extensions:\n        caps = sum(1 for c in ext if c.isupper())\n        lows = sum(1 for c in ext if c.islower())\n        score = caps - lows\n        if best is None or score > best_score:\n            best = ext\n            best_score = score\n    if best is None:\n        return f\"{class_name}.\"\n    return f\"{class_name}.{best}\"",
+  "metrics": {
+    "total_nodes": 120,
+    "ast_depth": 11,
+    "branch_count": 2,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.041667,
+    "function_names": [
+      "Strongest_Extension"
+    ]
+  }
+}

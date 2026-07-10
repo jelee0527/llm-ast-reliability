@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_017__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_017",
+  "task_id": "HumanEval/17",
+  "problem_name": "Parse Music",
+  "entry_point": "parse_music",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    result = []\n    i = 0\n    while i < len(music_string):\n        if music_string[i] == 'o':\n            if i + 1 < len(music_string) and music_string[i + 1] == '|':\n                result.append(2)\n                i += 2\n            else:\n                result.append(4)\n                i += 1\n        elif music_string[i] == '.':\n            if i + 1 < len(music_string) and music_string[i + 1] == '|':\n                result.append(1)\n                i += 2\n            else:\n                i += 1\n        else:\n            i += 1\n    return result",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 12,
+    "branch_count": 4,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 6,
+    "control_flow_ratio": 0.038462,
+    "function_names": [
+      "parse_music"
+    ]
+  }
+}

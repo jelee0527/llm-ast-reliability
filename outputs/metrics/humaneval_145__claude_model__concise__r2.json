@@ -1,0 +1,27 @@
+{
+  "source_file": "humaneval_145__claude_model__concise__r2.json",
+  "problem_id": "humaneval_145",
+  "task_id": "HumanEval/145",
+  "problem_name": "Order By Points",
+  "entry_point": "order_by_points",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def order_by_points(nums):\n    def digit_sum(n):\n        s = str(abs(n))\n        digits = [int(d) for d in s]\n        if n < 0 and digits:\n            digits[0] = -digits[0]\n        return sum(digits)\n    \n    return sorted(nums, key=lambda x: digit_sum(x))",
+  "metrics": {
+    "total_nodes": 76,
+    "ast_depth": 9,
+    "branch_count": 1,
+    "loop_count": 0,
+    "function_count": 2,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.039474,
+    "function_names": [
+      "order_by_points",
+      "digit_sum"
+    ]
+  }
+}

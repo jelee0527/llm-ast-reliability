@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_019__gpt5_model__basic__r4.json",
+  "problem_id": "humaneval_019",
+  "task_id": "HumanEval/19",
+  "problem_name": "Sort Numbers",
+  "entry_point": "sort_numbers",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "basic",
+  "repeat_idx": 4,
+  "status": "success",
+  "generated_code": "from typing import List\n\nWORD_TO_INT = {\n    'zero': 0,\n    'one': 1,\n    'two': 2,\n    'three': 3,\n    'four': 4,\n    'five': 5,\n    'six': 6,\n    'seven': 7,\n    'eight': 8,\n    'nine': 9,\n}\n\nINT_TO_WORD = {v: k for k, v in WORD_TO_INT.items()}\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numerals from 'zero' to 'nine'.\n    Return the string with numbers sorted from smallest to largest.\n    \"\"\"\n    if not numbers:\n        return ''\n    parts = numbers.split()\n    # Map words to integers, ignoring any unknown tokens by raising ValueError\n    try:\n        ints: List[int] = [WORD_TO_INT[p] for p in parts]\n    except KeyError as e:\n        raise ValueError(f\"Unknown numeral: {e.args[0]}\")\n    ints.sort()\n    return ' '.join(INT_TO_WORD[i] for i in ints)",
+  "metrics": {
+    "total_nodes": 133,
+    "ast_depth": 12,
+    "branch_count": 2,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 5,
+    "control_flow_ratio": 0.037594,
+    "function_names": [
+      "sort_numbers"
+    ]
+  }
+}

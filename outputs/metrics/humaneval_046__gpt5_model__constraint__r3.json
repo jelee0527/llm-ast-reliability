@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_046__gpt5_model__constraint__r3.json",
+  "problem_id": "humaneval_046",
+  "task_id": "HumanEval/46",
+  "problem_name": "Fib4",
+  "entry_point": "fib4",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "constraint",
+  "repeat_idx": 3,
+  "status": "success",
+  "generated_code": "from typing import Iterable\n\ndef fib4(n: int) -> int:\n    \"\"\"Compute the n-th element of the Fib4 sequence non-recursively.\n    Definition:\n      fib4(0) = 0\n      fib4(1) = 0\n      fib4(2) = 2\n      fib4(3) = 0\n      fib4(n) = fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4) for n >= 4\n    \"\"\"\n    if not isinstance(n, int):\n        raise TypeError(\"n must be an integer\")\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n\n    # Base cases\n    if n == 0:\n        return 0\n    if n == 1:\n        return 0\n    if n == 2:\n        return 2\n    if n == 3:\n        return 0\n\n    # Use iterative approach keeping last four values\n    a, b, c, d = 0, 0, 2, 0  # corresponds to fib4(0), fib4(1), fib4(2), fib4(3)\n    # compute from 4..n\n    for _ in range(4, n + 1):\n        e = d + c + b + a\n        a, b, c, d = b, c, d, e\n    return d\n\n# Quick self-test when run as script\nif __name__ == \"__main__\":\n    tests = {5:4, 6:8, 7:14, 0:0, 1:0, 2:2, 3:0, 4:2}\n    for k, expected in tests.items():\n        got = fib4(k)\n        print(k, got, \"OK\" if got == expected else f\"FAIL (expected {expected})\")",
+  "metrics": {
+    "total_nodes": 208,
+    "ast_depth": 10,
+    "branch_count": 8,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 17,
+    "control_flow_ratio": 0.081731,
+    "function_names": [
+      "fib4"
+    ]
+  }
+}

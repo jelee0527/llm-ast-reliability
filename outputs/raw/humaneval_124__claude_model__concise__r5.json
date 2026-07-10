@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_124",
+  "task_id": "HumanEval/124",
+  "problem_name": "Valid Date",
+  "entry_point": "valid_date",
+  "evaluation_type": "humaneval",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 5,
+  "temperature": 0.2,
+  "max_tokens": 1200,
+  "generated_at": "2026-06-09T17:10:41.110076+00:00",
+  "elapsed_seconds": 3.663,
+  "official_prompt": "\ndef valid_date(date):\n    \"\"\"You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n    for example: \n    valid_date('03-11-2000') => True\n\n    valid_date('15-01-2012') => False\n\n    valid_date('04-0-2040') => False\n\n    valid_date('06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"\n",
+  "generation_prompt": "Complete the following Python programming task using a concise implementation.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef valid_date(date):\n    \"\"\"You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n    for example: \n    valid_date('03-11-2000') => True\n\n    valid_date('15-01-2012') => False\n\n    valid_date('04-0-2040') => False\n\n    valid_date('06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"\n\n",
+  "raw_response": "def valid_date(date):\n    if not date:\n        return False\n    try:\n        parts = date.split('-')\n        if len(parts) != 3:\n            return False\n        mm, dd, yyyy = parts\n        if len(mm) != 2 or len(dd) != 2 or len(yyyy) != 4:\n            return False\n        month, day, year = int(mm), int(dd), int(yyyy)\n        if month < 1 or month > 12:\n            return False\n        if month in [1,3,5,7,8,10,12]:\n            return 1 <= day <= 31\n        elif month in [4,6,9,11]:\n            return 1 <= day <= 30\n        elif month == 2:\n            return 1 <= day <= 29\n    except:\n        return False",
+  "generated_code": "def valid_date(date):\n    if not date:\n        return False\n    try:\n        parts = date.split('-')\n        if len(parts) != 3:\n            return False\n        mm, dd, yyyy = parts\n        if len(mm) != 2 or len(dd) != 2 or len(yyyy) != 4:\n            return False\n        month, day, year = int(mm), int(dd), int(yyyy)\n        if month < 1 or month > 12:\n            return False\n        if month in [1,3,5,7,8,10,12]:\n            return 1 <= day <= 31\n        elif month in [4,6,9,11]:\n            return 1 <= day <= 30\n        elif month == 2:\n            return 1 <= day <= 29\n    except:\n        return False"
+}

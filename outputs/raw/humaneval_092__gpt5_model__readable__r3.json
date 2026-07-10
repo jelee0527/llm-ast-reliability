@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "problem_id": "humaneval_092",
+  "task_id": "HumanEval/92",
+  "problem_name": "Any Int",
+  "entry_point": "any_int",
+  "evaluation_type": "humaneval",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 3,
+  "temperature": 0.2,
+  "max_tokens": 3000,
+  "generated_at": "2026-06-10T07:23:40.669319+00:00",
+  "elapsed_seconds": 3.9,
+  "official_prompt": "\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n",
+  "generation_prompt": "Complete the following Python programming task using readable code,\nclear variable names, and an understandable structure.\n\nReturn only the complete executable Python code.\nInclude all required imports and the full function definition.\nDo not include Markdown code fences or explanations.\n\n\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) ➞ True\n    \n    any_int(3, 2, 2) ➞ False\n\n    any_int(3, -2, 1) ➞ True\n    \n    any_int(3.6, -2.2, 2) ➞ False\n  \n\n    \n    '''\n\n",
+  "raw_response": "from typing import Any\n\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if all inputs are integers (no fractional part) and one of the numbers\n    equals the sum of the other two. Returns False otherwise.\n    \"\"\"\n    # Check that all inputs are of numeric types and are integers (no fractional part).\n    # Accept ints and floats that represent whole numbers (e.g., 3.0).\n    def is_integer_value(value: Any) -> bool:\n        if isinstance(value, bool):\n            # exclude booleans, which are instances of int in Python\n            return False\n        if isinstance(value, int):\n            return True\n        if isinstance(value, float):\n            return value.is_integer()\n        return False\n\n    if not (is_integer_value(x) and is_integer_value(y) and is_integer_value(z)):\n        return False\n\n    # Convert to int safely (floats that are integer-valued become ints)\n    xi, yi, zi = int(x), int(y), int(z)\n\n    # Check whether any one equals the sum of the other two\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)",
+  "generated_code": "from typing import Any\n\n\ndef any_int(x: Any, y: Any, z: Any) -> bool:\n    \"\"\"\n    Returns True if all inputs are integers (no fractional part) and one of the numbers\n    equals the sum of the other two. Returns False otherwise.\n    \"\"\"\n    # Check that all inputs are of numeric types and are integers (no fractional part).\n    # Accept ints and floats that represent whole numbers (e.g., 3.0).\n    def is_integer_value(value: Any) -> bool:\n        if isinstance(value, bool):\n            # exclude booleans, which are instances of int in Python\n            return False\n        if isinstance(value, int):\n            return True\n        if isinstance(value, float):\n            return value.is_integer()\n        return False\n\n    if not (is_integer_value(x) and is_integer_value(y) and is_integer_value(z)):\n        return False\n\n    # Convert to int safely (floats that are integer-valued become ints)\n    xi, yi, zi = int(x), int(y), int(z)\n\n    # Check whether any one equals the sum of the other two\n    return (xi == yi + zi) or (yi == xi + zi) or (zi == xi + yi)"
+}

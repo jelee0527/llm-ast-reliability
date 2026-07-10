@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_118__gpt5_model__readable__r5.json",
+  "problem_id": "humaneval_118",
+  "task_id": "HumanEval/118",
+  "problem_name": "Get Closest Vowel",
+  "entry_point": "get_closest_vowel",
+  "model_name": "gpt5_model",
+  "model_id": "gpt-5-mini",
+  "provider": "openai",
+  "prompt_name": "readable",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "from typing import Set\n\ndef get_closest_vowel(word: str) -> str:\n    \"\"\"\n    Find the closest vowel from the right side of the word that stands between two consonants.\n    Vowels at the beginning or end of the word do not count. Case sensitive: return the vowel as in input.\n    Return empty string if no qualifying vowel is found.\n    \"\"\"\n    if not word or len(word) < 3:\n        return \"\"\n    vowels: Set[str] = set(\"aeiouAEIOU\")\n    # Iterate from the rightmost possible middle position to the left\n    # middle index i must satisfy 0 < i < len(word)-1\n    for i in range(len(word) - 2, 0, -1):\n        ch = word[i]\n        if ch in vowels:\n            left = word[i - 1]\n            right = word[i + 1]\n            if left not in vowels and right not in vowels:\n                return ch\n    return \"\"\n\n\n# Quick manual tests (these lines can be removed if only the function is desired)\nif __name__ == \"__main__\":\n    tests = [\"yogurt\", \"FULL\", \"quick\", \"ab\", \"bAcid\", \"racecar\", \"AeI\", \"xbex\"]\n    for t in tests:\n        print(t, \"->\", get_closest_vowel(t))",
+  "metrics": {
+    "total_nodes": 156,
+    "ast_depth": 9,
+    "branch_count": 4,
+    "loop_count": 2,
+    "function_count": 1,
+    "control_flow_count": 9,
+    "control_flow_ratio": 0.057692,
+    "function_names": [
+      "get_closest_vowel"
+    ]
+  }
+}

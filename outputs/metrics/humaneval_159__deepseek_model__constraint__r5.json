@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_159__deepseek_model__constraint__r5.json",
+  "problem_id": "humaneval_159",
+  "task_id": "HumanEval/159",
+  "problem_name": "Eat",
+  "entry_point": "eat",
+  "model_name": "deepseek_model",
+  "model_id": "deepseek-chat",
+  "provider": "deepseek",
+  "prompt_name": "constraint",
+  "repeat_idx": 5,
+  "status": "success",
+  "generated_code": "def eat(number, need, remaining):\n    eaten = number + min(need, remaining)\n    left = max(0, remaining - need)\n    return [eaten, left]",
+  "metrics": {
+    "total_nodes": 40,
+    "ast_depth": 7,
+    "branch_count": 0,
+    "loop_count": 0,
+    "function_count": 1,
+    "control_flow_count": 1,
+    "control_flow_ratio": 0.025,
+    "function_names": [
+      "eat"
+    ]
+  }
+}

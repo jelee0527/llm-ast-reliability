@@ -1,0 +1,26 @@
+{
+  "source_file": "humaneval_069__claude_model__concise__r2.json",
+  "problem_id": "humaneval_069",
+  "task_id": "HumanEval/69",
+  "problem_name": "Search",
+  "entry_point": "search",
+  "model_name": "claude_model",
+  "model_id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "prompt_name": "concise",
+  "repeat_idx": 2,
+  "status": "success",
+  "generated_code": "def search(lst):\n    from collections import Counter\n    counts = Counter(lst)\n    result = -1\n    for num, freq in counts.items():\n        if freq >= num and num > result:\n            result = num\n    return result",
+  "metrics": {
+    "total_nodes": 55,
+    "ast_depth": 8,
+    "branch_count": 1,
+    "loop_count": 1,
+    "function_count": 1,
+    "control_flow_count": 3,
+    "control_flow_ratio": 0.054545,
+    "function_names": [
+      "search"
+    ]
+  }
+}
