@@ -1,0 +1,7 @@
+excluded_feature,num_features,features,ssi_rank_correlation,ssi_n,ssi_model_order_unchanged,pssi_rank_correlation,pssi_n,pssi_model_order_unchanged,sds_rank_correlation,sds_n,sds_model_order_unchanged
+none,5,"ast_depth,branch_count,loop_count,function_count,control_flow_ratio",1.0,2459,True,0.9999999999999998,492,True,1.0,492,True
+ast_depth,4,"branch_count,loop_count,function_count,control_flow_ratio",0.9870549037449444,2459,True,0.9435972063550381,492,True,0.9508315015170722,492,True
+branch_count,4,"ast_depth,loop_count,function_count,control_flow_ratio",0.9974434555022156,2459,True,0.9732249483601187,492,True,0.9847633831502266,492,True
+loop_count,4,"ast_depth,branch_count,function_count,control_flow_ratio",0.9956772688102189,2459,True,0.9707649511117704,492,True,0.9758772590509511,492,True
+function_count,4,"ast_depth,branch_count,loop_count,control_flow_ratio",0.9947468646924058,2459,True,0.9531081666582698,492,True,0.9533892547678474,492,True
+control_flow_ratio,4,"ast_depth,branch_count,loop_count,function_count",0.9472395476844633,2459,True,0.9332846192018688,492,True,0.9438457466053072,492,True

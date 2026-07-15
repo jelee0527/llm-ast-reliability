@@ -1,8 +1,8 @@
 source,x_metric,y_metric,n,spearman_rho,p_value,significant_0_05,note
-repeat_stability,success_rate,ssi,2460,0.15659194043855448,5.673947017395731e-15,True,
-repeat_stability,success_rate,avg_repeat_distance,2460,-0.15659312082958418,5.67126350719947e-15,True,
-prompt_sensitivity,success_rate,pssi,492,-0.2021892453546196,6.180040909956759e-06,True,
-structural_diversity,success_rate,sds,492,-0.24030391625111056,6.817852315835885e-08,True,
+repeat_stability,success_rate,ssi,2459,0.1628386726334499,4.470877962829032e-16,True,
+repeat_stability,success_rate,avg_repeat_distance,2459,-0.1628398374228531,4.468707118289387e-16,True,
+prompt_sensitivity,success_rate,pssi,492,-0.20467814392214062,4.717448598175396e-06,True,
+structural_diversity,success_rate,sds,492,-0.24344945111223432,4.5328402544874295e-08,True,
 model_summary,functional_pass_rate,ssi,3,0.5,0.6666666666666666,False,
 model_summary,functional_pass_rate,pssi,3,0.5,0.6666666666666666,False,
 model_summary,functional_pass_rate,sds,3,0.5,0.6666666666666666,False,

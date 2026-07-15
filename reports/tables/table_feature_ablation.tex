@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Leave-one-feature-out robustness analysis}
+\label{tab:feature_ablation}
+\begin{tabular}{lccc}
+\toprule
+Excluded Feature & SSI $\rho$ & PSSI $\rho$ & SDS $\rho$ \\
+\midrule
+ast\_depth & 0.987 & 0.944 & 0.951 \\
+branch\_count & 0.997 & 0.973 & 0.985 \\
+loop\_count & 0.996 & 0.971 & 0.976 \\
+function\_count & 0.995 & 0.953 & 0.953 \\
+control\_flow\_ratio & 0.947 & 0.933 & 0.944 \\
+\bottomrule
+\end{tabular}
+\end{table}

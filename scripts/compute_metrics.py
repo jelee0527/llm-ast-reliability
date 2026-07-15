@@ -363,22 +363,62 @@ def distance_to_stability(
     )
 
 
+def compute_functional_rate_map(
+    dataframe: pd.DataFrame,
+    group_columns: list[str],
+) -> dict[tuple[Any, ...], float]:
+    """Return functional pass rates computed from all generated samples."""
+    grouped = (
+        dataframe.groupby(
+            group_columns,
+            dropna=False,
+        )["functional_passed"]
+        .mean()
+    )
+
+    rate_map: dict[tuple[Any, ...], float] = {}
+
+    for key, value in grouped.items():
+        normalized_key = key if isinstance(key, tuple) else (key,)
+        rate_map[normalized_key] = float(value)
+
+    return rate_map
+
+
+def compute_group_count_map(
+    dataframe: pd.DataFrame,
+    group_columns: list[str],
+    count_column: str,
+) -> dict[tuple[Any, ...], int]:
+    """Return counts from the complete generation table, including AST failures."""
+    grouped = (
+        dataframe.groupby(
+            group_columns,
+            dropna=False,
+        )[count_column]
+        .count()
+    )
+
+    count_map: dict[tuple[Any, ...], int] = {}
+
+    for key, value in grouped.items():
+        normalized_key = key if isinstance(key, tuple) else (key,)
+        count_map[normalized_key] = int(value)
+
+    return count_map
+
+
 def compute_repeat_stability(
     dataframe: pd.DataFrame,
 ) -> pd.DataFrame:
     """
-    SSI:
-    같은 문제·모델·프롬프트 조건에서
-    반복 생성된 코드들 사이의 평균 구조 거리를 계산한다.
+    Compute SSI within each problem-model-prompt condition.
 
-    Average Distance가 작을수록 안정적이며,
-    SSI = 1 / (1 + Average Distance)로 변환한다.
+    SSI is undefined when fewer than two AST-parsable repetitions are
+    available because no pairwise structural comparison can be made.
+    Functional success rates are always calculated from all generated
+    samples, including outputs that could not be parsed into an AST.
     """
-
-    valid_df = dataframe[
-        dataframe["ast_success"]
-    ].copy()
-
     standardized_features = [
         f"z_{feature}"
         for feature in STRUCTURAL_FEATURES
@@ -393,66 +433,55 @@ def compute_repeat_stability(
         "prompt_name",
     ]
 
+    functional_rate_map = compute_functional_rate_map(
+        dataframe=dataframe,
+        group_columns=group_columns,
+    )
+
     rows: list[dict[str, Any]] = []
 
-    for group_keys, group in valid_df.groupby(
+    for group_keys, group in dataframe.groupby(
         group_columns,
         dropna=False,
     ):
-        matrix = (
-            group[standardized_features]
-            .dropna()
-            .to_numpy(dtype=float)
+        valid_group = group[
+            group["ast_success"]
+            & group[standardized_features]
+            .notna()
+            .all(axis=1)
+        ]
+
+        matrix = valid_group[
+            standardized_features
+        ].to_numpy(dtype=float)
+
+        if len(matrix) < 2:
+            distances: list[float] = []
+            average_distance = np.nan
+            stability_score = np.nan
+        else:
+            distances = pairwise_euclidean_distances(matrix)
+            average_distance = float(np.mean(distances))
+            stability_score = distance_to_stability(average_distance)
+
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
         )
 
-        distances = (
-            pairwise_euclidean_distances(
-                matrix
-            )
-        )
-
-        average_distance = (
-            float(np.mean(distances))
-            if distances
-            else 0.0
-        )
-
-        stability_score = (
-            distance_to_stability(
-                average_distance
-            )
-        )
-
-        row = dict(
-            zip(
-                group_columns,
-                group_keys,
-            )
-        )
-
+        row = dict(zip(group_columns, normalized_keys))
         row.update(
             {
-                "num_samples":
-                    len(group),
-                "num_valid_vectors":
-                    len(matrix),
-                "num_pairs":
-                    len(distances),
-                "avg_repeat_distance":
-                    average_distance,
-                "stability_score":
-                    stability_score,
-                "ssi":
-                    stability_score,
-                "success_rate":
-                    float(
-                        group[
-                            "functional_passed"
-                        ].mean()
-                    ),
+                "num_samples": len(group),
+                "num_valid_vectors": len(matrix),
+                "num_pairs": len(distances),
+                "avg_repeat_distance": average_distance,
+                "stability_score": stability_score,
+                "ssi": stability_score,
+                "success_rate": functional_rate_map[normalized_keys],
             }
         )
-
         rows.append(row)
 
     return pd.DataFrame(rows)
@@ -461,10 +490,7 @@ def compute_repeat_stability(
 def compute_prompt_centroids(
     dataframe: pd.DataFrame,
 ) -> pd.DataFrame:
-    valid_df = dataframe[
-        dataframe["ast_success"]
-    ].copy()
-
+    """Compute one structural centroid for every parsable prompt condition."""
     standardized_features = [
         f"z_{feature}"
         for feature in STRUCTURAL_FEATURES
@@ -479,47 +505,51 @@ def compute_prompt_centroids(
         "prompt_name",
     ]
 
-    aggregations = {
-        column: "mean"
-        for column in standardized_features
-    }
-
-    aggregations[
-        "functional_passed"
-    ] = "mean"
+    valid_df = dataframe[
+        dataframe["ast_success"]
+        & dataframe[standardized_features]
+        .notna()
+        .all(axis=1)
+    ].copy()
 
     centroids = (
         valid_df.groupby(
             group_columns,
             dropna=False,
-        )
-        .agg(aggregations)
+        )[standardized_features]
+        .mean()
         .reset_index()
-        .rename(
-            columns={
-                "functional_passed":
-                    "prompt_success_rate"
-            }
-        )
     )
 
-    return centroids
+    valid_counts = (
+        valid_df.groupby(
+            group_columns,
+            dropna=False,
+        )
+        .size()
+        .rename("num_valid_samples")
+        .reset_index()
+    )
+
+    return centroids.merge(
+        valid_counts,
+        on=group_columns,
+        how="left",
+    )
 
 
 def compute_prompt_sensitivity(
     dataframe: pd.DataFrame,
 ) -> pd.DataFrame:
     """
-    PSSI:
-    동일 문제·동일 모델에서
-    프롬프트별 구조 중심점 사이의 평균 거리이다.
+    Compute PSSI as the mean pairwise distance between prompt centroids.
 
-    값이 클수록 프롬프트 변화에 민감하다.
+    Prompt centroids average the repeated generations within a prompt,
+    so PSSI isolates the between-prompt structural shift from stochastic
+    within-prompt variation. PSSI is undefined when fewer than two prompt
+    centroids are available.
     """
-
-    centroids = compute_prompt_centroids(
-        dataframe
-    )
+    centroids = compute_prompt_centroids(dataframe)
 
     standardized_features = [
         f"z_{feature}"
@@ -534,58 +564,67 @@ def compute_prompt_sensitivity(
         "provider",
     ]
 
+    full_prompt_count = (
+        dataframe.groupby(
+            group_columns,
+            dropna=False,
+        )["prompt_name"]
+        .nunique()
+        .to_dict()
+    )
+
+    functional_rate_map = compute_functional_rate_map(
+        dataframe=dataframe,
+        group_columns=group_columns,
+    )
+
     rows: list[dict[str, Any]] = []
 
-    for group_keys, group in centroids.groupby(
+    for group_keys, full_group in dataframe.groupby(
         group_columns,
         dropna=False,
     ):
-        matrix = (
-            group[standardized_features]
-            .dropna()
-            .to_numpy(dtype=float)
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
         )
 
-        distances = (
-            pairwise_euclidean_distances(
-                matrix
-            )
-        )
+        centroid_group = centroids
+        for column, value in zip(group_columns, normalized_keys):
+            if pd.isna(value):
+                centroid_group = centroid_group[
+                    centroid_group[column].isna()
+                ]
+            else:
+                centroid_group = centroid_group[
+                    centroid_group[column] == value
+                ]
 
-        average_prompt_distance = (
-            float(np.mean(distances))
-            if distances
-            else 0.0
-        )
+        matrix = centroid_group[
+            standardized_features
+        ].dropna().to_numpy(dtype=float)
 
-        row = dict(
-            zip(
-                group_columns,
-                group_keys,
-            )
-        )
+        if len(matrix) < 2:
+            distances: list[float] = []
+            average_prompt_distance = np.nan
+        else:
+            distances = pairwise_euclidean_distances(matrix)
+            average_prompt_distance = float(np.mean(distances))
 
+        row = dict(zip(group_columns, normalized_keys))
         row.update(
             {
-                "num_prompt_types":
-                    len(group),
-                "num_valid_prompt_vectors":
-                    len(matrix),
-                "num_prompt_pairs":
-                    len(distances),
-                "avg_prompt_distance":
-                    average_prompt_distance,
-                "pssi":
-                    average_prompt_distance,
-                "success_rate":
-                    float(
-                        group[
-                            "prompt_success_rate"
-                        ].mean()
-                    ),
+                "num_prompt_types": int(
+                    full_prompt_count[normalized_keys]
+                ),
+                "num_valid_prompt_vectors": len(matrix),
+                "num_prompt_pairs": len(distances),
+                "avg_prompt_distance": average_prompt_distance,
+                "pssi": average_prompt_distance,
+                "success_rate": functional_rate_map[normalized_keys],
             }
         )
-
         rows.append(row)
 
     return pd.DataFrame(rows)
@@ -595,18 +634,13 @@ def compute_structural_diversity(
     dataframe: pd.DataFrame,
 ) -> pd.DataFrame:
     """
-    SDS:
-    동일 문제·동일 모델에서 생성된 전체 코드의
-    구조 벡터가 중심점에서 얼마나 퍼져 있는지 측정한다.
+    Compute SDS within each problem-model group.
 
-    각 표준화 구조 벡터와 그룹 중심점 사이의
-    평균 Euclidean distance를 SDS로 사용한다.
+    SDS is the mean Euclidean distance from each parsable structural vector
+    to the group centroid. Groups with fewer than two valid vectors are
+    treated as undefined instead of perfectly non-diverse. Functional pass
+    rates are calculated from all generated samples.
     """
-
-    valid_df = dataframe[
-        dataframe["ast_success"]
-    ].copy()
-
     standardized_features = [
         f"z_{feature}"
         for feature in STRUCTURAL_FEATURES
@@ -620,37 +654,38 @@ def compute_structural_diversity(
         "provider",
     ]
 
+    functional_rate_map = compute_functional_rate_map(
+        dataframe=dataframe,
+        group_columns=group_columns,
+    )
+
     rows: list[dict[str, Any]] = []
 
-    for group_keys, group in valid_df.groupby(
+    for group_keys, group in dataframe.groupby(
         group_columns,
         dropna=False,
     ):
-        matrix = (
-            group[standardized_features]
-            .dropna()
-            .to_numpy(dtype=float)
-        )
+        valid_group = group[
+            group["ast_success"]
+            & group[standardized_features]
+            .notna()
+            .all(axis=1)
+        ]
 
-        if len(matrix) == 0:
+        matrix = valid_group[
+            standardized_features
+        ].to_numpy(dtype=float)
+
+        if len(matrix) < 2:
             structural_variance = np.nan
             sds = np.nan
         else:
             centroid = matrix.mean(axis=0)
-
-            centroid_distances = (
-                np.linalg.norm(
-                    matrix - centroid,
-                    axis=1,
-                )
+            centroid_distances = np.linalg.norm(
+                matrix - centroid,
+                axis=1,
             )
-
-            sds = float(
-                np.mean(
-                    centroid_distances
-                )
-            )
-
+            sds = float(np.mean(centroid_distances))
             structural_variance = float(
                 np.mean(
                     np.var(
@@ -661,36 +696,25 @@ def compute_structural_diversity(
                 )
             )
 
-        row = dict(
-            zip(
-                group_columns,
-                group_keys,
-            )
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
         )
 
+        row = dict(zip(group_columns, normalized_keys))
         row.update(
             {
-                "num_samples":
-                    len(group),
-                "num_valid_vectors":
-                    len(matrix),
-                "structural_variance":
-                    structural_variance,
-                "sds":
-                    sds,
-                "success_rate":
-                    float(
-                        group[
-                            "functional_passed"
-                        ].mean()
-                    ),
+                "num_samples": len(group),
+                "num_valid_vectors": len(matrix),
+                "structural_variance": structural_variance,
+                "sds": sds,
+                "success_rate": functional_rate_map[normalized_keys],
             }
         )
-
         rows.append(row)
 
     return pd.DataFrame(rows)
-
 
 def compute_model_summary(
     metrics_df: pd.DataFrame,

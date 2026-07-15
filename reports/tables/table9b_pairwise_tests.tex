@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Significant Holm-adjusted Wilcoxon signed-rank comparisons}
+\label{tab:pairwise_tests}
+\begin{tabular}{lccccc}
+\toprule
+Comparison & Metric & Group A & Group B & Pairs & Holm $p$ \\
+\midrule
+prompt\_effect\_on\_ssi & ssi & basic & concise & 491 & 0.0073 \\
+prompt\_effect\_on\_ssi & ssi & concise & constraint & 491 & 7.12e-07 \\
+prompt\_effect\_on\_ssi & ssi & concise & optimized & 491 & 0.0072 \\
+prompt\_effect\_on\_ssi & ssi & concise & readable & 491 & 2.12e-05 \\
+model\_effect\_on\_ssi & ssi & claude\_model & gpt5\_model & 164 & 3.47e-28 \\
+model\_effect\_on\_ssi & ssi & claude\_model & deepseek\_model & 164 & 1.85e-15 \\
+model\_effect\_on\_ssi & ssi & gpt5\_model & deepseek\_model & 164 & 3.47e-28 \\
+model\_effect\_on\_pssi & pssi & claude\_model & gpt5\_model & 164 & 6.59e-06 \\
+model\_effect\_on\_pssi & pssi & claude\_model & deepseek\_model & 164 & 0.0034 \\
+model\_effect\_on\_pssi & pssi & gpt5\_model & deepseek\_model & 164 & 3.07e-12 \\
+model\_effect\_on\_sds & sds & claude\_model & gpt5\_model & 164 & 2.64e-16 \\
+model\_effect\_on\_sds & sds & gpt5\_model & deepseek\_model & 164 & 1.58e-19 \\
+\bottomrule
+\end{tabular}
+\end{table}

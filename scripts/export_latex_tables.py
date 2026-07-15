@@ -11,6 +11,7 @@ TABLE_DIR = ROOT_DIR / "reports" / "tables"
 MODEL_SUMMARY_PATH = RESULTS_DIR / "model_summary.csv"
 PROMPT_SUMMARY_PATH = RESULTS_DIR / "prompt_summary.csv"
 STATISTICAL_TESTS_PATH = RESULTS_DIR / "statistical_tests.csv"
+PAIRWISE_TESTS_PATH = RESULTS_DIR / "pairwise_tests.csv"
 CORRELATION_ANALYSIS_PATH = RESULTS_DIR / "correlation_analysis.csv"
 PASSED_ONLY_MODEL_SUMMARY_PATH = RESULTS_DIR / "passed_only_model_summary.csv"
 
@@ -19,6 +20,8 @@ TOP_STRUCTURAL_DIVERSITY_PATH = RESULTS_DIR / "top_structural_diversity_problems
 PROBLEM_COMPLEXITY_CORRELATION_PATH = RESULTS_DIR / "problem_complexity_correlation.csv"
 DISTANCE_FUNCTION_SENSITIVITY_PATH = RESULTS_DIR / "distance_function_sensitivity.csv"
 STRUCTURE_AWARE_RERANKING_PATH = RESULTS_DIR / "structure_aware_reranking.csv"
+FEATURE_ABLATION_SUMMARY_PATH = RESULTS_DIR / "feature_ablation_summary.csv"
+MODEL_BOOTSTRAP_CI_PATH = RESULTS_DIR / "model_metric_bootstrap_ci.csv"
 
 
 MODEL_LABELS = {
@@ -371,44 +374,76 @@ def export_top_structural_diversity_table() -> None:
 def export_statistical_tests_table() -> None:
     dataframe = load_csv(STATISTICAL_TESTS_PATH)
 
-    target_rows = dataframe[
-        dataframe["metric"].isin(
-            [
-                "ssi",
-                "pssi",
-                "sds",
-                "success_rate",
-            ]
-        )
-    ].copy()
-
     headers = [
-        "Source",
+        "Comparison",
         "Metric",
-        "Test",
-        "Statistic",
+        "Blocks",
+        "Friedman $\\chi^2$",
         "p-value",
-        "Significant",
+        "Kendall's $W$",
     ]
 
     rows = []
 
-    for _, row in target_rows.iterrows():
+    for _, row in dataframe.iterrows():
         rows.append(
             [
-                escape_latex(row["source"]),
+                escape_latex(row["comparison"]),
                 escape_latex(row["metric"]),
-                escape_latex(row["test"]),
+                str(int(row["num_blocks"])),
                 format_number(row["statistic"]),
                 format_p_value(row["p_value"]),
-                "Yes" if row["significant_0_05"] else "No",
+                format_number(row["kendalls_w"]),
             ]
         )
 
     write_latex_table(
         filename="table9_statistical_tests.tex",
-        caption="Statistical test results for structural reliability metrics",
+        caption=(
+            "Blocked repeated-measures analysis of structural "
+            "reliability measures"
+        ),
         label="tab:statistical_tests",
+        headers=headers,
+        rows=rows,
+    )
+
+
+def export_pairwise_tests_table() -> None:
+    dataframe = load_csv(PAIRWISE_TESTS_PATH)
+    dataframe = dataframe[
+        dataframe["significant_0_05_holm"] == True
+    ].copy()
+
+    headers = [
+        "Comparison",
+        "Metric",
+        "Group A",
+        "Group B",
+        "Pairs",
+        "Holm $p$",
+    ]
+
+    rows = []
+
+    for _, row in dataframe.iterrows():
+        rows.append(
+            [
+                escape_latex(row["comparison"]),
+                escape_latex(row["metric"]),
+                escape_latex(row["group_a"]),
+                escape_latex(row["group_b"]),
+                str(int(row["n_pairs"])),
+                format_p_value(row["p_value_holm"]),
+            ]
+        )
+
+    write_latex_table(
+        filename="table9b_pairwise_tests.tex",
+        caption=(
+            "Significant Holm-adjusted Wilcoxon signed-rank comparisons"
+        ),
+        label="tab:pairwise_tests",
         headers=headers,
         rows=rows,
     )
@@ -615,6 +650,115 @@ def export_structure_aware_reranking_table() -> None:
     )
 
 
+
+def format_estimate_ci(
+    mean_value: Any,
+    lower_value: Any,
+    upper_value: Any,
+) -> str:
+    if any(
+        pd.isna(value)
+        for value in [mean_value, lower_value, upper_value]
+    ):
+        return "-"
+
+    return (
+        f"{float(mean_value):.3f} "
+        f"[{float(lower_value):.3f}, {float(upper_value):.3f}]"
+    )
+
+
+def export_feature_ablation_table() -> None:
+    dataframe = load_csv(FEATURE_ABLATION_SUMMARY_PATH)
+    dataframe = dataframe[
+        dataframe["excluded_feature"] != "none"
+    ].copy()
+
+    headers = [
+        "Excluded Feature",
+        "SSI $\\rho$",
+        "PSSI $\\rho$",
+        "SDS $\\rho$",
+    ]
+
+    rows = []
+
+    for _, row in dataframe.iterrows():
+        rows.append(
+            [
+                escape_latex(row["excluded_feature"]),
+                format_number(row["ssi_rank_correlation"]),
+                format_number(row["pssi_rank_correlation"]),
+                format_number(row["sds_rank_correlation"]),
+            ]
+        )
+
+    write_latex_table(
+        filename="table_feature_ablation.tex",
+        caption="Leave-one-feature-out robustness analysis",
+        label="tab:feature_ablation",
+        headers=headers,
+        rows=rows,
+    )
+
+
+def export_model_bootstrap_ci_table() -> None:
+    dataframe = load_csv(MODEL_BOOTSTRAP_CI_PATH)
+
+    pivoted = dataframe.pivot_table(
+        index="model_name",
+        columns="metric",
+        values=["mean", "ci_lower", "ci_upper"],
+        aggfunc="first",
+    )
+
+    headers = [
+        "Model",
+        "SSI [95\\% CI]",
+        "PSSI [95\\% CI]",
+        "SDS [95\\% CI]",
+    ]
+
+    rows = []
+
+    for model_name in MODEL_LABELS:
+        if model_name not in pivoted.index:
+            continue
+
+        row = pivoted.loc[model_name]
+        rows.append(
+            [
+                escape_latex(MODEL_LABELS[model_name]),
+                format_estimate_ci(
+                    row[("mean", "ssi")],
+                    row[("ci_lower", "ssi")],
+                    row[("ci_upper", "ssi")],
+                ),
+                format_estimate_ci(
+                    row[("mean", "pssi")],
+                    row[("ci_lower", "pssi")],
+                    row[("ci_upper", "pssi")],
+                ),
+                format_estimate_ci(
+                    row[("mean", "sds")],
+                    row[("ci_lower", "sds")],
+                    row[("ci_upper", "sds")],
+                ),
+            ]
+        )
+
+    write_latex_table(
+        filename="table_model_bootstrap_ci.tex",
+        caption=(
+            "Problem-cluster bootstrap confidence intervals for "
+            "model-level structural measures"
+        ),
+        label="tab:model_bootstrap_ci",
+        headers=headers,
+        rows=rows,
+    )
+
+
 def main() -> None:
     ensure_dirs()
 
@@ -624,11 +768,14 @@ def main() -> None:
     export_top_prompt_sensitivity_table()
     export_top_structural_diversity_table()
     export_statistical_tests_table()
+    export_pairwise_tests_table()
     export_correlation_table()
     export_passed_only_table()
     export_problem_complexity_correlation_table()
     export_distance_function_sensitivity_table()
     export_structure_aware_reranking_table()
+    export_feature_ablation_table()
+    export_model_bootstrap_ci_table()
 
     print("\nLaTeX table export completed.")
     print(f"Tables saved to: {TABLE_DIR}")

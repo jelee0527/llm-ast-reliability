@@ -22,6 +22,9 @@ PROBLEM_COMPLEXITY_SUMMARY_PATH = RESULTS_DIR / "problem_complexity_summary.csv"
 DISTANCE_FUNCTION_SENSITIVITY_PATH = RESULTS_DIR / "distance_function_sensitivity.csv"
 STRUCTURE_AWARE_RERANKING_PATH = RESULTS_DIR / "structure_aware_reranking.csv"
 STRUCTURE_AWARE_RERANKING_GROUPS_PATH = RESULTS_DIR / "structure_aware_reranking_groups.csv"
+FEATURE_ABLATION_SUMMARY_PATH = RESULTS_DIR / "feature_ablation_summary.csv"
+FEATURE_ABLATION_MODEL_SUMMARY_PATH = RESULTS_DIR / "feature_ablation_model_summary.csv"
+MODEL_BOOTSTRAP_CI_PATH = RESULTS_DIR / "model_metric_bootstrap_ci.csv"
 
 
 STRUCTURAL_FEATURES = [
@@ -44,6 +47,14 @@ PROMPT_ORDER = [
     "optimized",
     "readable",
 ]
+
+MODEL_ORDER = [
+    "claude_model",
+    "gpt5_model",
+    "deepseek_model",
+]
+
+EPSILON = 1e-12
 
 
 def ensure_dirs() -> None:
@@ -524,7 +535,7 @@ def compute_distance_function_sensitivity(
             avg_distance = (
                 float(np.mean(distances))
                 if distances
-                else 0.0
+                else np.nan
             )
 
             base_row[
@@ -533,8 +544,10 @@ def compute_distance_function_sensitivity(
 
             base_row[
                 f"{metric}_ssi"
-            ] = distance_to_ssi(
-                avg_distance
+            ] = (
+                distance_to_ssi(avg_distance)
+                if not pd.isna(avg_distance)
+                else np.nan
             )
 
         rows.append(base_row)
@@ -737,6 +750,367 @@ def compute_structure_aware_reranking(
     return group_df, summary_df
 
 
+
+def standardize_feature_subset(
+    metrics_summary_df: pd.DataFrame,
+    features: list[str],
+) -> tuple[pd.DataFrame, list[str]]:
+    """Standardize a selected AST feature subset over all parsable samples."""
+    valid_df = metrics_summary_df[
+        (metrics_summary_df["ast_success"] == True)
+        & metrics_summary_df[features].notna().all(axis=1)
+    ].copy()
+
+    standardized_columns: list[str] = []
+
+    for feature in features:
+        column = f"ablation_z_{feature}"
+        standardized_columns.append(column)
+        values = valid_df[feature].astype(float)
+        mean_value = values.mean()
+        std_value = values.std(ddof=0)
+
+        if pd.isna(std_value) or std_value < EPSILON:
+            valid_df[column] = 0.0
+        else:
+            valid_df[column] = (values - mean_value) / std_value
+
+    return valid_df, standardized_columns
+
+
+def compute_metrics_for_feature_subset(
+    metrics_summary_df: pd.DataFrame,
+    features: list[str],
+) -> dict[str, pd.DataFrame]:
+    """Recompute SSI, PSSI, and SDS for one feature composition."""
+    valid_df, standardized_columns = standardize_feature_subset(
+        metrics_summary_df,
+        features,
+    )
+
+    ssi_rows: list[dict[str, Any]] = []
+    ssi_group_columns = [
+        "problem_id",
+        "task_id",
+        "model_name",
+        "prompt_name",
+    ]
+
+    for group_keys, group in valid_df.groupby(
+        ssi_group_columns,
+        dropna=False,
+    ):
+        matrix = group[standardized_columns].to_numpy(dtype=float)
+        distances = pairwise_distances(matrix, metric="euclidean")
+        average_distance = (
+            float(np.mean(distances))
+            if distances
+            else np.nan
+        )
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
+        )
+        row = dict(zip(ssi_group_columns, normalized_keys))
+        row["ssi"] = (
+            distance_to_ssi(average_distance)
+            if not pd.isna(average_distance)
+            else np.nan
+        )
+        ssi_rows.append(row)
+
+    ssi_df = pd.DataFrame(ssi_rows)
+
+    centroid_df = (
+        valid_df.groupby(
+            [
+                "problem_id",
+                "task_id",
+                "model_name",
+                "prompt_name",
+            ],
+            dropna=False,
+            as_index=False,
+        )[standardized_columns]
+        .mean()
+    )
+
+    pssi_rows: list[dict[str, Any]] = []
+    pssi_group_columns = [
+        "problem_id",
+        "task_id",
+        "model_name",
+    ]
+
+    for group_keys, group in centroid_df.groupby(
+        pssi_group_columns,
+        dropna=False,
+    ):
+        matrix = group[standardized_columns].to_numpy(dtype=float)
+        distances = pairwise_distances(matrix, metric="euclidean")
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
+        )
+        row = dict(zip(pssi_group_columns, normalized_keys))
+        row["pssi"] = (
+            float(np.mean(distances))
+            if distances
+            else np.nan
+        )
+        pssi_rows.append(row)
+
+    pssi_df = pd.DataFrame(pssi_rows)
+
+    sds_rows: list[dict[str, Any]] = []
+
+    for group_keys, group in valid_df.groupby(
+        pssi_group_columns,
+        dropna=False,
+    ):
+        matrix = group[standardized_columns].to_numpy(dtype=float)
+        normalized_keys = (
+            group_keys
+            if isinstance(group_keys, tuple)
+            else (group_keys,)
+        )
+        row = dict(zip(pssi_group_columns, normalized_keys))
+
+        if len(matrix) < 2:
+            row["sds"] = np.nan
+        else:
+            centroid = matrix.mean(axis=0)
+            row["sds"] = float(
+                np.linalg.norm(
+                    matrix - centroid,
+                    axis=1,
+                ).mean()
+            )
+
+        sds_rows.append(row)
+
+    return {
+        "ssi": ssi_df,
+        "pssi": pd.DataFrame(pssi_rows),
+        "sds": pd.DataFrame(sds_rows),
+    }
+
+
+def safe_spearman(
+    left: pd.Series,
+    right: pd.Series,
+) -> float:
+    subset = pd.DataFrame(
+        {
+            "left": left,
+            "right": right,
+        }
+    ).dropna()
+
+    if len(subset) < 3:
+        return np.nan
+
+    rho, _ = spearmanr(subset["left"], subset["right"])
+    return float(rho)
+
+
+def compute_feature_ablation(
+    metrics_summary_df: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Run leave-one-feature-out robustness analysis."""
+    configurations: list[tuple[str, list[str]]] = [
+        ("none", STRUCTURAL_FEATURES),
+    ]
+
+    configurations.extend(
+        (
+            feature,
+            [
+                candidate
+                for candidate in STRUCTURAL_FEATURES
+                if candidate != feature
+            ],
+        )
+        for feature in STRUCTURAL_FEATURES
+    )
+
+    computed: dict[str, dict[str, pd.DataFrame]] = {}
+
+    for excluded_feature, features in configurations:
+        computed[excluded_feature] = compute_metrics_for_feature_subset(
+            metrics_summary_df,
+            features,
+        )
+
+    baseline = computed["none"]
+    summary_rows: list[dict[str, Any]] = []
+    model_rows: list[dict[str, Any]] = []
+
+    metric_keys = {
+        "ssi": [
+            "problem_id",
+            "task_id",
+            "model_name",
+            "prompt_name",
+        ],
+        "pssi": [
+            "problem_id",
+            "task_id",
+            "model_name",
+        ],
+        "sds": [
+            "problem_id",
+            "task_id",
+            "model_name",
+        ],
+    }
+
+    for excluded_feature, features in configurations:
+        summary_row: dict[str, Any] = {
+            "excluded_feature": excluded_feature,
+            "num_features": len(features),
+            "features": ",".join(features),
+        }
+
+        for metric, keys in metric_keys.items():
+            merged = baseline[metric][keys + [metric]].merge(
+                computed[excluded_feature][metric][keys + [metric]],
+                on=keys,
+                how="inner",
+                suffixes=("_full", "_ablated"),
+            )
+
+            summary_row[f"{metric}_rank_correlation"] = safe_spearman(
+                merged[f"{metric}_full"],
+                merged[f"{metric}_ablated"],
+            )
+            summary_row[f"{metric}_n"] = int(
+                merged[
+                    [f"{metric}_full", f"{metric}_ablated"]
+                ].dropna().shape[0]
+            )
+
+            model_summary = (
+                computed[excluded_feature][metric]
+                .groupby("model_name", as_index=False)[metric]
+                .mean()
+            )
+            ascending = metric in {"pssi", "sds"}
+            model_summary["rank"] = model_summary[metric].rank(
+                ascending=ascending,
+                method="min",
+            )
+
+            for _, model_row in model_summary.iterrows():
+                model_rows.append(
+                    {
+                        "excluded_feature": excluded_feature,
+                        "metric": metric,
+                        "model_name": model_row["model_name"],
+                        "mean_value": model_row[metric],
+                        "rank": model_row["rank"],
+                    }
+                )
+
+            baseline_order = (
+                pd.DataFrame(model_rows)
+                .query(
+                    "excluded_feature == 'none' and metric == @metric"
+                )
+                .sort_values("rank")["model_name"]
+                .tolist()
+            )
+            current_order = (
+                model_summary.sort_values("rank")["model_name"]
+                .tolist()
+            )
+            summary_row[f"{metric}_model_order_unchanged"] = (
+                current_order == baseline_order
+            )
+
+        summary_rows.append(summary_row)
+
+    return pd.DataFrame(summary_rows), pd.DataFrame(model_rows)
+
+
+def compute_model_metric_bootstrap_ci(
+    repeat_stability_df: pd.DataFrame,
+    prompt_sensitivity_df: pd.DataFrame,
+    structural_diversity_df: pd.DataFrame,
+    n_bootstrap: int = 10000,
+    seed: int = 42,
+) -> pd.DataFrame:
+    """Calculate problem-cluster bootstrap CIs for model-level metrics."""
+    ssi_problem_model = (
+        repeat_stability_df.groupby(
+            ["problem_id", "model_name"],
+            as_index=False,
+            dropna=False,
+        )["ssi"]
+        .mean()
+    )
+
+    metric_frames = {
+        "ssi": ssi_problem_model,
+        "pssi": prompt_sensitivity_df[
+            ["problem_id", "model_name", "pssi"]
+        ].copy(),
+        "sds": structural_diversity_df[
+            ["problem_id", "model_name", "sds"]
+        ].copy(),
+    }
+
+    rng = np.random.default_rng(seed)
+    rows: list[dict[str, Any]] = []
+
+    for metric, dataframe in metric_frames.items():
+        wide = dataframe.pivot_table(
+            index="problem_id",
+            columns="model_name",
+            values=metric,
+            aggfunc="mean",
+        )
+        wide = wide.dropna(subset=MODEL_ORDER)[MODEL_ORDER]
+        values = wide.to_numpy(dtype=float)
+        num_problems = len(values)
+
+        bootstrap_means = np.empty(
+            (n_bootstrap, len(MODEL_ORDER)),
+            dtype=float,
+        )
+
+        for bootstrap_index in range(n_bootstrap):
+            sampled_indices = rng.integers(
+                0,
+                num_problems,
+                size=num_problems,
+            )
+            bootstrap_means[bootstrap_index] = values[
+                sampled_indices
+            ].mean(axis=0)
+
+        original_means = values.mean(axis=0)
+        lower = np.quantile(bootstrap_means, 0.025, axis=0)
+        upper = np.quantile(bootstrap_means, 0.975, axis=0)
+
+        for model_index, model_name in enumerate(MODEL_ORDER):
+            rows.append(
+                {
+                    "metric": metric,
+                    "model_name": model_name,
+                    "mean": float(original_means[model_index]),
+                    "ci_lower": float(lower[model_index]),
+                    "ci_upper": float(upper[model_index]),
+                    "num_problems": num_problems,
+                    "n_bootstrap": n_bootstrap,
+                    "seed": seed,
+                }
+            )
+
+    return pd.DataFrame(rows)
+
 def main() -> None:
     ensure_dirs()
 
@@ -789,6 +1163,18 @@ def main() -> None:
         )
     )
 
+    feature_ablation_summary_df, feature_ablation_model_summary_df = (
+        compute_feature_ablation(
+            metrics_summary_df
+        )
+    )
+
+    model_bootstrap_ci_df = compute_model_metric_bootstrap_ci(
+        repeat_stability_df=repeat_stability_df,
+        prompt_sensitivity_df=prompt_sensitivity_df,
+        structural_diversity_df=structural_diversity_df,
+    )
+
     save_dataframe(
         top_prompt_sensitivity_df,
         TOP_PROMPT_SENSITIVITY_PATH,
@@ -824,6 +1210,21 @@ def main() -> None:
         STRUCTURE_AWARE_RERANKING_GROUPS_PATH,
     )
 
+    save_dataframe(
+        feature_ablation_summary_df,
+        FEATURE_ABLATION_SUMMARY_PATH,
+    )
+
+    save_dataframe(
+        feature_ablation_model_summary_df,
+        FEATURE_ABLATION_MODEL_SUMMARY_PATH,
+    )
+
+    save_dataframe(
+        model_bootstrap_ci_df,
+        MODEL_BOOTSTRAP_CI_PATH,
+    )
+
     print("\n===== Top-10 Problems by Prompt Sensitivity =====")
     print(
         top_prompt_sensitivity_df.to_string(
@@ -855,6 +1256,20 @@ def main() -> None:
     print("\n===== Structure-aware Reranking =====")
     print(
         reranking_summary_df.to_string(
+            index=False
+        )
+    )
+
+    print("\n===== Leave-One-Feature-Out Robustness =====")
+    print(
+        feature_ablation_summary_df.to_string(
+            index=False
+        )
+    )
+
+    print("\n===== Model Metric Bootstrap CIs =====")
+    print(
+        model_bootstrap_ci_df.to_string(
             index=False
         )
     )

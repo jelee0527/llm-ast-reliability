@@ -418,7 +418,7 @@ humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,basic,5,5,10,0.097038164
 humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,concise,5,5,10,1.2057118937530518,0.4533683672977276,0.4533683672977276,1.0
 humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,constraint,5,5,10,0.9139848104858096,0.5224701860335971,0.5224701860335971,1.0
 humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,optimized,5,5,10,0.9984828757840774,0.5003795689806267,0.5003795689806267,1.0
-humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,readable,4,4,6,0.651954312701735,0.6053436177448043,0.6053436177448043,1.0
+humaneval_027,HumanEval/27,gpt5_model,gpt-5-mini,openai,readable,5,4,6,0.651954312701735,0.6053436177448043,0.6053436177448043,0.8
 humaneval_028,HumanEval/28,claude_model,claude-sonnet-4-6,anthropic,basic,5,5,10,0.0,1.0,1.0,1.0
 humaneval_028,HumanEval/28,claude_model,claude-sonnet-4-6,anthropic,concise,5,5,10,0.08680192417133561,0.9201308699949898,0.9201308699949898,1.0
 humaneval_028,HumanEval/28,claude_model,claude-sonnet-4-6,anthropic,constraint,5,5,10,0.0,1.0,1.0,1.0
@@ -626,9 +626,9 @@ humaneval_041,HumanEval/41,deepseek_model,deepseek-chat,deepseek,optimized,5,5,1
 humaneval_041,HumanEval/41,deepseek_model,deepseek-chat,deepseek,readable,5,5,10,0.0,1.0,1.0,1.0
 humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,basic,5,5,10,1.1946108542793252,0.4556616486472194,0.4556616486472194,1.0
 humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,concise,5,5,10,1.1488453742490863,0.4653661971138569,0.4653661971138569,1.0
-humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,constraint,1,1,0,0.0,1.0,1.0,1.0
+humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,constraint,5,1,0,,,,0.2
 humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,optimized,5,5,10,1.4477519351301993,0.40853813070187955,0.40853813070187955,1.0
-humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,readable,4,4,6,1.1720706300774193,0.4603901853616781,0.4603901853616781,1.0
+humaneval_041,HumanEval/41,gpt5_model,gpt-5-mini,openai,readable,5,4,6,1.1720706300774193,0.4603901853616781,0.4603901853616781,0.8
 humaneval_042,HumanEval/42,claude_model,claude-sonnet-4-6,anthropic,basic,5,5,10,0.0,1.0,1.0,1.0
 humaneval_042,HumanEval/42,claude_model,claude-sonnet-4-6,anthropic,concise,5,5,10,0.0,1.0,1.0,1.0
 humaneval_042,HumanEval/42,claude_model,claude-sonnet-4-6,anthropic,constraint,5,5,10,0.0,1.0,1.0,1.0
@@ -911,7 +911,7 @@ humaneval_060,HumanEval/60,deepseek_model,deepseek-chat,deepseek,optimized,5,5,1
 humaneval_060,HumanEval/60,deepseek_model,deepseek-chat,deepseek,readable,5,5,10,0.0,1.0,1.0,1.0
 humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,basic,5,5,10,0.27808811202361905,0.7824186694113621,0.7824186694113621,1.0
 humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,concise,5,5,10,0.3779177621094675,0.7257327160578076,0.7257327160578076,1.0
-humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,constraint,4,4,6,1.379726540234241,0.4202163496909893,0.4202163496909893,1.0
+humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,constraint,5,4,6,1.379726540234241,0.4202163496909893,0.4202163496909893,0.8
 humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,optimized,5,5,10,0.45749350091323376,0.6861094058899211,0.6861094058899211,1.0
 humaneval_060,HumanEval/60,gpt5_model,gpt-5-mini,openai,readable,5,5,10,0.8526497658021264,0.5397674285010035,0.5397674285010035,1.0
 humaneval_061,HumanEval/61,claude_model,claude-sonnet-4-6,anthropic,basic,5,5,10,0.0,1.0,1.0,1.0
@@ -1676,9 +1676,9 @@ humaneval_111,HumanEval/111,deepseek_model,deepseek-chat,deepseek,optimized,5,5,
 humaneval_111,HumanEval/111,deepseek_model,deepseek-chat,deepseek,readable,5,5,10,0.0,1.0,1.0,1.0
 humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,basic,5,5,10,0.3656329300460292,0.7322611940576848,0.7322611940576848,1.0
 humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,concise,5,5,10,0.7106786997762119,0.5845633081950564,0.5845633081950564,1.0
-humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,constraint,3,3,3,2.1876211378874335,0.3137135678121211,0.3137135678121211,1.0
+humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,constraint,5,3,3,2.1876211378874335,0.3137135678121211,0.3137135678121211,0.6
 humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,optimized,5,5,10,0.26373866455535977,0.7913028445258855,0.7913028445258855,1.0
-humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,readable,2,2,1,0.0,1.0,1.0,1.0
+humaneval_111,HumanEval/111,gpt5_model,gpt-5-mini,openai,readable,5,2,1,0.0,1.0,1.0,0.4
 humaneval_112,HumanEval/112,claude_model,claude-sonnet-4-6,anthropic,basic,5,5,10,0.0,1.0,1.0,1.0
 humaneval_112,HumanEval/112,claude_model,claude-sonnet-4-6,anthropic,concise,5,5,10,0.0,1.0,1.0,1.0
 humaneval_112,HumanEval/112,claude_model,claude-sonnet-4-6,anthropic,constraint,5,5,10,0.0,1.0,1.0,1.0
@@ -2021,7 +2021,7 @@ humaneval_134,HumanEval/134,deepseek_model,deepseek-chat,deepseek,optimized,5,5,
 humaneval_134,HumanEval/134,deepseek_model,deepseek-chat,deepseek,readable,5,5,10,0.19001676952744653,0.8403242925703459,0.8403242925703459,1.0
 humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,basic,5,5,10,1.2219007580467192,0.4500651059136878,0.4500651059136878,0.8
 humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,concise,5,5,10,0.891334253491428,0.5287272718473675,0.5287272718473675,0.8
-humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,constraint,4,4,6,2.0238811152245337,0.33070083177716014,0.33070083177716014,1.0
+humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,constraint,5,4,6,2.0238811152245337,0.33070083177716014,0.33070083177716014,0.8
 humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,optimized,5,5,10,1.5450836666510255,0.3929143914218978,0.3929143914218978,1.0
 humaneval_134,HumanEval/134,gpt5_model,gpt-5-mini,openai,readable,5,5,10,1.5184015389133352,0.3970772668886987,0.3970772668886987,0.8
 humaneval_135,HumanEval/135,claude_model,claude-sonnet-4-6,anthropic,basic,5,5,10,0.0,1.0,1.0,1.0
