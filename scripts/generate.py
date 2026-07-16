@@ -4,7 +4,7 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import yaml
 from anthropic import Anthropic
@@ -107,8 +107,9 @@ def generate_openai(
     client: OpenAI,
     model: str,
     prompt: str,
-    temperature: float,
+    temperature: Optional[float],
     max_tokens: int,
+    reasoning_effort: Optional[str] = None,
 ) -> str:
     request_args = {
         "model": model,
@@ -118,9 +119,9 @@ def generate_openai(
 
     if model.startswith("gpt-5"):
         request_args["reasoning"] = {
-            "effort": "minimal"
+            "effort": reasoning_effort or "minimal"
         }
-    else:
+    elif temperature is not None:
         request_args["temperature"] = temperature
 
     response = client.responses.create(
@@ -134,7 +135,7 @@ def generate_deepseek(
     client: OpenAI,
     model: str,
     prompt: str,
-    temperature: float,
+    temperature: Optional[float],
     max_tokens: int,
 ) -> str:
     response = client.chat.completions.create(
@@ -145,7 +146,11 @@ def generate_deepseek(
                 "content": prompt,
             }
         ],
-        temperature=temperature,
+        temperature=(
+            DEFAULT_TEMPERATURE
+            if temperature is None
+            else temperature
+        ),
         max_tokens=max_tokens,
         stream=False,
     )
@@ -159,13 +164,17 @@ def generate_anthropic(
     client: Anthropic,
     model: str,
     prompt: str,
-    temperature: float,
+    temperature: Optional[float],
     max_tokens: int,
 ) -> str:
     response = client.messages.create(
         model=model,
         max_tokens=max_tokens,
-        temperature=temperature,
+        temperature=(
+            DEFAULT_TEMPERATURE
+            if temperature is None
+            else temperature
+        ),
         messages=[
             {
                 "role": "user",
@@ -188,8 +197,9 @@ def generate_code(
     provider: str,
     model: str,
     prompt: str,
-    temperature: float,
+    temperature: Optional[float],
     max_tokens: int,
+    reasoning_effort: Optional[str] = None,
 ) -> str:
     if provider == "openai":
         return generate_openai(
@@ -198,6 +208,7 @@ def generate_code(
             prompt=prompt,
             temperature=temperature,
             max_tokens=max_tokens,
+            reasoning_effort=reasoning_effort,
         )
 
     if provider == "deepseek":
@@ -295,19 +306,15 @@ def main() -> None:
         )
     )
 
-    temperature = float(
-        os.getenv(
-            "EXPERIMENT_TEMPERATURE",
-            DEFAULT_TEMPERATURE,
-        )
-    )
+    temperature_override = os.getenv(
+        "EXPERIMENT_TEMPERATURE",
+        "",
+    ).strip()
 
-    max_tokens = int(
-        os.getenv(
-            "EXPERIMENT_MAX_TOKENS",
-            DEFAULT_MAX_TOKENS,
-        )
-    )
+    max_tokens_override = os.getenv(
+        "EXPERIMENT_MAX_TOKENS",
+        "",
+    ).strip()
 
     max_problems = int(
         os.getenv(
@@ -343,9 +350,41 @@ def main() -> None:
         provider = model_info["provider"]
         model_id = model_info["model"]
 
+        configured_temperature = model_info.get(
+            "temperature",
+            DEFAULT_TEMPERATURE,
+        )
+        temperature = (
+            float(temperature_override)
+            if temperature_override
+            else configured_temperature
+        )
+
+        configured_max_tokens = model_info.get(
+            "max_tokens",
+            DEFAULT_MAX_TOKENS,
+        )
+        max_tokens = (
+            int(max_tokens_override)
+            if max_tokens_override
+            else int(configured_max_tokens)
+        )
+
+        reasoning_effort = model_info.get(
+            "reasoning_effort"
+        )
+
         print(
             f"\n[Model] {model_name} "
             f"({provider}: {model_id})"
+        )
+        print(
+            "Settings:",
+            {
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+                "reasoning_effort": reasoning_effort,
+            },
         )
 
         client = get_client(provider)
@@ -391,6 +430,7 @@ def main() -> None:
                             prompt=full_prompt,
                             temperature=temperature,
                             max_tokens=max_tokens,
+                            reasoning_effort=reasoning_effort,
                         )
 
                         cleaned_code = strip_markdown_fence(
@@ -409,8 +449,19 @@ def main() -> None:
                             "provider": provider,
                             "prompt_name": prompt_name,
                             "repeat_idx": repeat_idx,
-                            "temperature": temperature,
+                            "temperature": (
+                                None
+                                if provider == "openai"
+                                and model_id.startswith("gpt-5")
+                                else temperature
+                            ),
                             "max_tokens": max_tokens,
+                            "reasoning_effort": (
+                                reasoning_effort
+                                if provider == "openai"
+                                and model_id.startswith("gpt-5")
+                                else None
+                            ),
                             "generated_at": datetime.now(
                                 timezone.utc
                             ).isoformat(),
@@ -437,8 +488,19 @@ def main() -> None:
                             "provider": provider,
                             "prompt_name": prompt_name,
                             "repeat_idx": repeat_idx,
-                            "temperature": temperature,
+                            "temperature": (
+                                None
+                                if provider == "openai"
+                                and model_id.startswith("gpt-5")
+                                else temperature
+                            ),
                             "max_tokens": max_tokens,
+                            "reasoning_effort": (
+                                reasoning_effort
+                                if provider == "openai"
+                                and model_id.startswith("gpt-5")
+                                else None
+                            ),
                             "generated_at": datetime.now(
                                 timezone.utc
                             ).isoformat(),

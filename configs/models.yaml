@@ -3,13 +3,20 @@ models:
     provider: openai
     model: gpt-5-mini
     enabled: true
+    temperature: null
+    max_tokens: 3000
+    reasoning_effort: minimal
 
   - name: deepseek_model
     provider: deepseek
     model: deepseek-chat
     enabled: false
+    temperature: 0.2
+    max_tokens: 1200
 
   - name: claude_model
     provider: anthropic
     model: claude-sonnet-4-6
     enabled: false
+    temperature: 0.2
+    max_tokens: 1200

@@ -27,17 +27,23 @@ The AST feature vector contains:
 
 ## Experimental Design
 
-| Item                  | Setting                              |
-| --------------------- | ------------------------------------ |
-| Benchmark             | Official HumanEval                   |
-| Problems              | 164                                  |
-| Models                | 3                                    |
-| Prompt conditions     | 5                                    |
-| Repetitions           | 5 per problem-model-prompt condition |
-| Total generations     | 12,300                               |
-| API collection dates  | June 9–10, 2026                      |
-| Temperature           | 0.2                                  |
-| Maximum output length | 3,000 tokens                         |
+| Item                 | Setting                              |
+| -------------------- | ------------------------------------ |
+| Benchmark            | Official HumanEval                   |
+| Problems             | 164                                  |
+| Models               | 3                                    |
+| Prompt conditions    | 5                                    |
+| Repetitions          | 5 per problem-model-prompt condition |
+| Total generations    | 12,300                               |
+| API collection dates | June 9–11, 2026                      |
+
+### Provider-Specific Generation Settings
+
+| Model             | Temperature sent to API | Maximum output length | Additional setting          |
+| ----------------- | ----------------------: | --------------------: | --------------------------- |
+| Claude Sonnet 4.6 |                     0.2 |          1,200 tokens | None                        |
+| GPT-5 mini        |           Not specified |          3,000 tokens | Reasoning effort: `minimal` |
+| DeepSeek Chat     |                     0.2 |          1,200 tokens | None                        |
 
 ### Model Conditions
 
@@ -220,8 +226,11 @@ DEEPSEEK_API_KEY=
 ANTHROPIC_API_KEY=
 
 EXPERIMENT_REPEATS=5
-EXPERIMENT_TEMPERATURE=0.2
-EXPERIMENT_MAX_TOKENS=3000
+
+# Optional global overrides. Leave commented to use the exact
+# provider-specific settings in configs/models.yaml.
+# EXPERIMENT_TEMPERATURE=0.2
+# EXPERIMENT_MAX_TOKENS=1200
 
 EXPERIMENT_MAX_PROBLEMS=0
 EXPERIMENT_MODEL_FILTER=
@@ -243,11 +252,12 @@ Then run:
 python scripts/generate.py
 ```
 
-API-hosted models may change over time. Therefore, newly generated responses are not expected to be byte-identical to the frozen responses collected on June 9–10, 2026. The files in `outputs/raw/` are the authoritative generation artifacts for the reported study.
+API-hosted models may change over time. Therefore, newly generated responses are not expected to be byte-identical to the frozen responses collected on June 9–11, 2026. The files in `outputs/raw/` are the authoritative generation artifacts for the reported study.
 
 ## Data and Reproducibility Notes
 
-- All 12,300 raw generation records include the provider, model identifier, prompt condition, repetition index, decoding settings, generation timestamp, original HumanEval prompt, complete generation prompt, raw response, and extracted Python code.
+- All 12,300 raw generation records include the provider, model identifier, prompt condition, repetition index, stored generation metadata, generation timestamp, original HumanEval prompt, complete generation prompt, raw response, and extracted Python code.
+- **Metadata note for GPT-5 mini:** the frozen GPT-5 mini JSON records contain `"temperature": 0.2` because the original logger stored the global environment value for every provider. The OpenAI request path did not transmit a temperature parameter for `gpt-5-mini`; it used `reasoning={"effort": "minimal"}` and `max_output_tokens=3000`. The frozen records are preserved unchanged for provenance, while the current generation script records the actual provider-specific request settings.
 - Non-parsable outputs are retained for functional summaries but excluded from AST-based distance calculations.
 - SSI is undefined when fewer than two AST-parsable repetitions are available for a condition.
 - PSSI is computed from distances between valid prompt-level centroids.
