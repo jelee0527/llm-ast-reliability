@@ -1,0 +1,4 @@
+model_name,num_conditions,valid_conditions,mean_normalized_tree_edit_distance,mean_tree_edit_stability
+claude_model,820,820,0.02838193354385445,0.9716180664561456
+deepseek_model,820,820,0.08326822254494473,0.9167317774550553
+gpt5_model,820,819,0.36724470116605235,0.6327552988339477

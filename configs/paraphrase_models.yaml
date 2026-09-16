@@ -1,0 +1,23 @@
+models:
+  - name: gpt5_model
+    provider: openai
+    model: gpt-5-mini
+    enabled: true
+    temperature: null
+    max_tokens: 3000
+    reasoning_effort: minimal
+
+  - name: deepseek_model
+    provider: deepseek
+    model: deepseek-flash
+    enabled: true
+    temperature: 0.2
+    max_tokens: 1200
+    thinking_mode: disabled
+
+  - name: claude_model
+    provider: anthropic
+    model: claude-sonnet-4-6
+    enabled: true
+    temperature: 0.2
+    max_tokens: 1200

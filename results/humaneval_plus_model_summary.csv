@@ -1,0 +1,4 @@
+model_name,model_id,num_samples,original_humaneval_passes,evalplus_base_passes,humaneval_plus_passes,base_disagreements,original_pass_evalplus_base_fail,original_fail_evalplus_base_pass,plus_failures_after_base_pass,original_humaneval_pass_rate,evalplus_base_pass_rate,humaneval_plus_pass_rate
+claude_model,claude-sonnet-4-6,4100,4030,4017,3827,13,13,0,190,0.9829268292682927,0.9797560975609756,0.9334146341463415
+deepseek_model,deepseek-chat,4100,3776,3755,3612,33,27,6,143,0.9209756097560976,0.9158536585365854,0.8809756097560976
+gpt5_model,gpt-5-mini,4100,3960,3929,3671,33,32,1,258,0.9658536585365853,0.9582926829268292,0.8953658536585366

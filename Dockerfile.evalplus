@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+
+COPY requirements-evalplus.txt /tmp/requirements-evalplus.txt
+
+RUN python -m pip install --no-cache-dir -r /tmp/requirements-evalplus.txt \
+    && python -c "from evalplus.data import get_human_eval_plus, get_human_eval_plus_hash; from evalplus.evaluate import get_groundtruth; problems = get_human_eval_plus(); get_groundtruth(problems, get_human_eval_plus_hash(), [])"
+
+WORKDIR /work
+
+ENTRYPOINT ["python", "-m", "evalplus.evaluate"]

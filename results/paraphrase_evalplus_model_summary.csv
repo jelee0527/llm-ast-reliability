@@ -1,0 +1,4 @@
+model_name,model_id,num_samples,evalplus_base_passes,humaneval_plus_passes,plus_failures_after_base_pass,evalplus_base_pass_rate,humaneval_plus_pass_rate
+claude_model,claude-sonnet-4-6,4100,4040,3871,169,0.9853658536585366,0.9441463414634146
+deepseek_model,deepseek-flash,4100,3931,3751,180,0.958780487804878,0.9148780487804878
+gpt5_model,gpt-5-mini,4100,3933,3677,256,0.9592682926829268,0.896829268292683
