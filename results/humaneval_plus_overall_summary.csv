@@ -1,0 +1,2 @@
+scope,num_samples,original_humaneval_passes,evalplus_base_passes,humaneval_plus_passes,base_disagreements,original_pass_evalplus_base_fail,original_fail_evalplus_base_pass,plus_failures_after_base_pass,original_humaneval_pass_rate,evalplus_base_pass_rate,humaneval_plus_pass_rate
+overall,12300,11766,11701,11110,79,72,7,591,0.9565853658536585,0.9513008130081301,0.9032520325203252

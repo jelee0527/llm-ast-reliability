@@ -12,10 +12,10 @@ Official HumanEval 12,300-sample experiment용 기존 코드 품질 지표 계�
 
 입력:
 - outputs/raw/**/*.json
-- outputs/eval/*.csv 또는 outputs/eval/**/*.csv
-- results/model_summary.csv
+- functional_summary.csv
+- results/model_metric_ranking.csv
 - results/prompt_summary.csv
-- results/repeat_stability_summary.csv 또는 유사 파일
+- results/repeat_stability.csv
 
 출력:
 - results/legacy_sample_metrics.csv
@@ -48,10 +48,15 @@ except ImportError as e:
     ) from e
 
 
-RAW_DIR = Path("outputs/raw")
-EVAL_DIR = Path("outputs/eval")
-RESULTS_DIR = Path("results")
+ROOT_DIR = Path(__file__).resolve().parent.parent
+RAW_DIR = ROOT_DIR / "outputs" / "raw"
+FUNCTIONAL_SUMMARY_PATH = ROOT_DIR / "functional_summary.csv"
+RESULTS_DIR = ROOT_DIR / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+MODEL_SUMMARY_PATH = RESULTS_DIR / "model_metric_ranking.csv"
+PROMPT_SUMMARY_PATH = RESULTS_DIR / "prompt_summary.csv"
+REPEAT_STABILITY_PATH = RESULTS_DIR / "repeat_stability.csv"
 
 
 CODE_KEYS = [
@@ -86,6 +91,7 @@ PROMPT_KEYS = [
 
 REPEAT_KEYS = [
     "repeat",
+    "repeat_idx",
     "repetition",
     "rep",
     "trial",
@@ -230,7 +236,7 @@ def load_raw_samples() -> list[dict[str, Any]]:
             code = extract_code_from_sample(item)
 
             row = {
-                "source_file": str(fp),
+                "source_file": fp.relative_to(ROOT_DIR).as_posix(),
                 "problem_id": normalize_problem_id(item.get(problem_key) if problem_key else None),
                 "model_name": normalize_model_name(item.get(model_key) if model_key else None),
                 "prompt_name": normalize_prompt_name(item.get(prompt_key) if prompt_key else None),
@@ -239,7 +245,7 @@ def load_raw_samples() -> list[dict[str, Any]]:
             }
 
             # 파일 경로에서 빠진 정보 보완
-            path_text = str(fp).replace("\\", "/").lower()
+            path_text = fp.relative_to(ROOT_DIR).as_posix().lower()
 
             if row["model_name"] is None:
                 row["model_name"] = normalize_model_name(path_text)
@@ -251,7 +257,10 @@ def load_raw_samples() -> list[dict[str, Any]]:
                 row["problem_id"] = normalize_problem_id(path_text)
 
             if row["repeat"] is None:
-                match = re.search(r"repeat[_-]?(\d+)|rep[_-]?(\d+)", path_text)
+                match = re.search(
+                    r"repeat[_-]?(\d+)|rep[_-]?(\d+)|__r(\d+)(?:\.|$)",
+                    path_text,
+                )
                 if match:
                     row["repeat"] = int(next(g for g in match.groups() if g is not None))
 
@@ -334,35 +343,20 @@ def compute_radon_metrics(code: str) -> dict[str, Any]:
 
 def load_functional_eval() -> pd.DataFrame | None:
     """
-    outputs/eval 아래 평가 CSV를 찾아서 pass 여부를 병합.
-    파일명이 달라도 pass 관련 컬럼을 최대한 탐색.
+    통합 HumanEval 평가 결과를 읽어서 pass 여부를 병합.
     """
-    csv_files = sorted(EVAL_DIR.glob("**/*.csv"))
-    if not csv_files:
-        print("[WARN] outputs/eval 아래 CSV가 없습니다. pass 여부 병합은 생략합니다.")
+    if not FUNCTIONAL_SUMMARY_PATH.exists():
+        print(
+            "[WARN] functional_summary.csv가 없습니다. "
+            "pass 여부 병합은 생략합니다."
+        )
         return None
 
-    frames = []
-    for fp in csv_files:
-        try:
-            df = pd.read_csv(fp)
-        except Exception:
-            continue
-
-        cols = set(df.columns)
-        useful = {"problem_id", "task_id", "model_name", "model", "prompt_name", "prompt_type", "repeat", "repetition"}
-        pass_like = [c for c in df.columns if c.lower() in ["passed", "pass", "success", "is_passed", "functional_pass"]]
-
-        if cols.intersection(useful) and pass_like:
-            df = df.copy()
-            df["eval_source_file"] = str(fp)
-            frames.append(df)
-
-    if not frames:
-        print("[WARN] 병합 가능한 평가 CSV를 찾지 못했습니다.")
+    try:
+        eval_df = pd.read_csv(FUNCTIONAL_SUMMARY_PATH)
+    except Exception as error:
+        print(f"[WARN] functional_summary.csv 로딩 실패: {error}")
         return None
-
-    eval_df = pd.concat(frames, ignore_index=True)
 
     rename_map = {}
     if "task_id" in eval_df.columns and "problem_id" not in eval_df.columns:
@@ -373,6 +367,8 @@ def load_functional_eval() -> pd.DataFrame | None:
         rename_map["prompt_type"] = "prompt_name"
     if "repetition" in eval_df.columns and "repeat" not in eval_df.columns:
         rename_map["repetition"] = "repeat"
+    if "repeat_idx" in eval_df.columns and "repeat" not in eval_df.columns:
+        rename_map["repeat_idx"] = "repeat"
 
     eval_df = eval_df.rename(columns=rename_map)
 
@@ -413,30 +409,12 @@ def safe_group_mean(df: pd.DataFrame, group_cols: list[str], metric_cols: list[s
     return out
 
 
-def find_results_csv(required_cols: list[str]) -> Path | None:
-    """
-    results/ 아래에서 required_cols를 모두 가진 CSV를 찾음.
-    """
-    for fp in sorted(RESULTS_DIR.glob("*.csv")):
-        try:
-            df = pd.read_csv(fp, nrows=5)
-        except Exception:
-            continue
-
-        cols = set(df.columns)
-        if all(c in cols for c in required_cols):
-            return fp
-
-    return None
-
-
 def merge_with_model_summary(legacy_model: pd.DataFrame) -> None:
-    fp = find_results_csv(["model_name", "functional_pass_rate", "ssi", "pssi", "sds"])
-    if fp is None:
+    if not MODEL_SUMMARY_PATH.exists():
         print("[WARN] model_summary CSV를 찾지 못했습니다. model comparison 병합 생략.")
         return
 
-    structural = pd.read_csv(fp)
+    structural = pd.read_csv(MODEL_SUMMARY_PATH)
     merged = pd.merge(structural, legacy_model, on="model_name", how="left")
     out = RESULTS_DIR / "legacy_vs_structural_model_comparison.csv"
     merged.to_csv(out, index=False)
@@ -444,12 +422,11 @@ def merge_with_model_summary(legacy_model: pd.DataFrame) -> None:
 
 
 def merge_with_prompt_summary(legacy_prompt: pd.DataFrame) -> None:
-    fp = find_results_csv(["prompt_name", "success_rate", "ssi"])
-    if fp is None:
+    if not PROMPT_SUMMARY_PATH.exists():
         print("[WARN] prompt_summary CSV를 찾지 못했습니다. prompt comparison 병합 생략.")
         return
 
-    structural = pd.read_csv(fp)
+    structural = pd.read_csv(PROMPT_SUMMARY_PATH)
     merged = pd.merge(structural, legacy_prompt, on="prompt_name", how="left")
     out = RESULTS_DIR / "legacy_vs_structural_prompt_comparison.csv"
     merged.to_csv(out, index=False)
@@ -461,12 +438,11 @@ def correlation_with_repeat_stability(legacy_df: pd.DataFrame) -> None:
     repeat stability 단위:
     problem_id + model_name + prompt_name 별 기존 지표 평균과 SSI를 병합해서 상관분석.
     """
-    fp = find_results_csv(["problem_id", "model_name", "prompt_name", "ssi"])
-    if fp is None:
-        print("[WARN] repeat_stability_summary CSV를 찾지 못했습니다. SSI correlation 생략.")
+    if not REPEAT_STABILITY_PATH.exists():
+        print("[WARN] repeat_stability.csv를 찾지 못했습니다. SSI correlation 생략.")
         return
 
-    structural = pd.read_csv(fp)
+    structural = pd.read_csv(REPEAT_STABILITY_PATH)
 
     for col in ["problem_id", "model_name", "prompt_name"]:
         if col not in structural.columns:

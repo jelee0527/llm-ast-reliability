@@ -5,7 +5,7 @@ Replication package for the manuscript:
 > **A Model-Agnostic AST-Based Framework for Evaluating Structural Reliability in LLM Code Generation**  
 > Jieun Lee and Inwhee Joe, 2026.
 
-This repository contains the frozen LLM generations, HumanEval functional-evaluation outputs, AST-derived metrics, statistical analyses, prompt templates, tables, figures, and source code used in the study.
+This repository contains the frozen LLM generations, HumanEval and HumanEval+ functional-evaluation outputs, AST-derived metrics, statistical analyses, semantic-preserving paraphrase experiments, prompt templates, tables, figures, and source code used in the study and its reviewer-requested robustness analyses.
 
 ## Study Overview
 
@@ -37,6 +37,8 @@ The AST feature vector contains:
 | Total generations    | 12,300                               |
 | API collection dates | June 9–11, 2026                      |
 
+The supplementary semantic-preserving paraphrase experiment uses the same 164 problems and three model conditions with five equivalent phrasings of one neutral instruction and five repetitions, producing another 12,300 samples.
+
 ### Provider-Specific Generation Settings
 
 | Model             | Temperature sent to API | Maximum output length | Additional setting          |
@@ -52,6 +54,8 @@ The AST feature vector contains:
 | Claude Sonnet 4.6 | Anthropic | `claude-sonnet-4-6` |
 | GPT-5 mini        | OpenAI    | `gpt-5-mini`        |
 | DeepSeek Chat     | DeepSeek  | `deepseek-chat`     |
+
+For the supplementary paraphrase collection, the DeepSeek endpoint returned `deepseek-flash`; requested and returned identifiers are preserved separately in the per-sample metadata.
 
 The model conditions are used to evaluate the proposed framework rather than to construct a general-purpose model leaderboard.
 
@@ -87,6 +91,14 @@ Each template is combined with the original HumanEval problem prompt through the
 | DeepSeek Chat     |     0.921 |    1.000 | 0.873 | 0.718 | 0.576 |
 
 The results show that functional correctness and structural reliability are complementary evaluation dimensions.
+
+### Reviewer-Requested Robustness Results
+
+- Original samples: 11,701 EvalPlus base passes (95.13%) and 11,110 HumanEval+ passes (90.33%); 79 evaluator disagreements are reported separately.
+- Paraphrase samples: 11,904 EvalPlus base passes (96.78%) and 11,299 HumanEval+ passes (91.86%).
+- On a common pooled feature scale, mean PSSI decreased from 0.914 to 0.392 for semantic-preserving paraphrases (57.1%; Holm-adjusted Wilcoxon p < 0.001).
+- Descriptor-based SSI agreed strongly with reduced-AST edit stability over 2,459 valid conditions (Spearman's rho = 0.969).
+- Six DeepSeek outputs reached the 1,200-token limit. In a separate post-hoc restriction analysis, 19 of 4,100 GPT-5 mini outputs exceeded 1,200 tokens. Excluding them changed branch count by -0.0918, SSI by -0.0038, PSSI by +0.0198, SDS by +0.0152, and HumanEval+ pass rate by +0.0037. This is not equivalent to regeneration under a common cap.
 
 ## Repository Structure
 
@@ -164,8 +176,11 @@ Run the following commands from the repository root:
 python scripts/compute_metrics.py
 python scripts/analyze_results.py
 python scripts/extra_analysis.py
+python scripts/compute_legacy_metrics.py
+python scripts/compute_tree_edit_validation.py
 python scripts/export_latex_tables.py
 python scripts/visualize_final.py
+python scripts/validate_reproducibility.py
 ```
 
 Expected key checks:
@@ -174,7 +189,15 @@ Expected key checks:
 Total samples: 12300
 AST success samples: 12287
 Functional passes: 11766
+Valid SSI conditions: 2459
+SSI vs. tree-edit stability Spearman rho: 0.968974
 ```
+
+The valid SSI count is one lower than the full set of 2,460
+problem-model-prompt conditions because `HumanEval/41` × `gpt5_model` ×
+`constraint` contains only one AST-parsable repetition. SSI requires at least
+two valid repetitions, so this condition is excluded consistently from every
+SSI-based correlation analysis.
 
 Outputs are written to:
 
@@ -183,6 +206,22 @@ Outputs are written to:
 - `reports/figures/` for 300-dpi PNG figures
 
 The analysis workflow was verified from the included outputs and reproduced the manuscript-level counts, rankings, blocked Friedman tests, Holm-adjusted Wilcoxon comparisons, bootstrap confidence intervals, and feature-ablation results.
+
+## Validating SSI with Tree Edit Distance
+
+`scripts/compute_tree_edit_validation.py` provides an independent structural
+validation of the descriptor-based SSI. It converts each parsable generation
+to an ordered, reduced AST that removes identifier names, literal values,
+contexts, and operator-token leaves while retaining statement nesting,
+control-flow, call, expression, and comprehension structure. For each
+problem-model-prompt condition, it computes the normalized APTED distance for
+all pairs of valid repetitions and defines tree-edit stability as one minus
+the mean normalized distance.
+
+Across the 2,459 conditions for which SSI is defined, descriptor-based SSI and
+tree-edit stability have Spearman's rho = 0.968974 (p < 0.001). The calculation
+uses 24,558 repeat-pair comparisons. Detailed condition-, model-, and
+prompt-level results are stored in `results/tree_edit_*.csv`.
 
 ## Re-running the Functional Evaluation
 
@@ -208,6 +247,80 @@ To regenerate AST and per-sample metric files from the frozen raw generations:
 python scripts/parse_ast.py
 python scripts/compute_metrics.py
 ```
+
+## Running the HumanEval+ Evaluation
+
+HumanEval+ is evaluated against the same 12,300 frozen generations; no new LLM
+calls are required. Because this step executes generated code, run it only in
+the isolated Docker container provided here.
+
+Prepare EvalPlus input and build the pinned evaluator image:
+
+```bash
+python scripts/prepare_evalplus_samples.py
+docker build -f Dockerfile.evalplus -t evalplus-evaluator .
+```
+
+Run the evaluation with network access disabled and container privileges
+restricted:
+
+```bash
+docker run --rm \
+  --network none \
+  --read-only \
+  --cap-drop ALL \
+  --security-opt no-new-privileges \
+  --cpus 4 \
+  --memory 6g \
+  --pids-limit 1024 \
+  --shm-size 1g \
+  --tmpfs /tmp:rw,exec,nosuid,size=2g \
+  -v "${PWD}/outputs/evalplus:/work" \
+  evalplus-evaluator \
+  humaneval \
+  --samples /work/humaneval_plus_samples.jsonl \
+  --parallel 4
+```
+
+Then merge the detailed EvalPlus output with the model, prompt, and repetition
+metadata from the frozen experiment:
+
+```bash
+python scripts/summarize_evalplus.py
+```
+
+The large derived JSONL input and detailed EvalPlus output remain under
+`outputs/evalplus/` and are not committed. Reusable CSV summaries are written
+to `results/`. The summarizer compares EvalPlus base-test decisions with the
+original HumanEval decisions; the 79 observed disagreements are exported and
+reported explicitly rather than silently reconciled.
+
+## Reproducing the Semantic-Paraphrase Robustness Study
+
+The exact supplementary settings and prompts are stored in
+`configs/paraphrase_models.yaml` and `configs/paraphrase_prompts.yaml`.
+Generating new responses is optional and requires provider API keys.
+
+```bash
+python scripts/generate_paraphrase.py
+python scripts/prepare_evalplus_samples.py \
+  --raw-dir outputs/paraphrase/raw \
+  --output outputs/evalplus/paraphrase_samples.jsonl
+```
+
+After evaluating that JSONL with the isolated EvalPlus container, run:
+
+```bash
+python scripts/summarize_paraphrase_evalplus.py
+python scripts/run_paraphrase_structural.py
+python scripts/analyze_paraphrase_common_scale.py
+python scripts/validate_reproducibility.py
+```
+
+The common-scale script reproduces the paired PSSI comparison, confidence
+intervals, DeepSeek truncation analysis, and post-hoc GPT 1,200-token
+restriction analysis. Primary outputs are stored under
+`results/paraphrase_structural/` and `results/paraphrase_robustness/`.
 
 ## Generating New LLM Outputs
 
