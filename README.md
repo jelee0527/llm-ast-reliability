@@ -299,7 +299,36 @@ reported explicitly rather than silently reconciled.
 
 The exact supplementary settings and prompts are stored in
 `configs/paraphrase_models.yaml` and `configs/paraphrase_prompts.yaml`.
-Generating new responses is optional and requires provider API keys.
+The exact 12,300 frozen response records used in the reported supplementary
+
+analysis are available as a versioned GitHub Release asset:
+
+- Release: https://github.com/jelee0527/llm-ast-reliability/releases/tag/v1.1.0-rnr
+
+- Archive: `paraphrase_raw_responses_12300.zip`
+
+- Direct download: https://github.com/jelee0527/llm-ast-reliability/releases/download/v1.1.0-rnr/paraphrase_raw_responses_12300.zip
+
+- SHA-256: `cfd4590dc353511f8b2a239efebcfdafaa19f189caeac43dd729ed9f39761341`
+
+- Expected JSON count: 12,300
+
+Download the archive into the repository root, verify it, and extract it:
+
+```bash
+
+sha256sum paraphrase_raw_responses_12300.zip
+python -m zipfile -t paraphrase_raw_responses_12300.zip
+python -m zipfile -e paraphrase_raw_responses_12300.zip .
+find outputs/paraphrase/raw -type f -name "*.json" | wc -l
+
+```
+
+No API keys or new LLM calls are required when using this frozen archive.
+
+Generating new responses is optional, requires provider API keys, and does not
+
+reproduce the historical frozen sample set.
 
 ```bash
 python scripts/generate_paraphrase.py
