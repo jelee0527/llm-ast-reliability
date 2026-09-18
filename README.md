@@ -319,10 +319,43 @@ Download the archive into the repository root, verify it, and extract it:
 
 sha256sum paraphrase_raw_responses_12300.zip
 python -m zipfile -t paraphrase_raw_responses_12300.zip
-python -m zipfile -e paraphrase_raw_responses_12300.zip .
+python -m zipfile -e paraphrase_raw_responses_12300.zip outputs/paraphrase
 find outputs/paraphrase/raw -type f -name "*.json" | wc -l
 
 ```
+
+The archive already contains a top-level `raw/` directory. Extracting it into
+`outputs/paraphrase` creates the required `outputs/paraphrase/raw` location.
+After extraction, audit the frozen records without running generated programs:
+
+```bash
+python scripts/validate_paraphrase_raw.py \
+  --archive paraphrase_raw_responses_12300.zip
+```
+
+Keep `validate_paraphrase_raw.py` in the `scripts/` directory, alongside
+`parse_ast.py`. Run the validation commands from the repository root.
+
+To also save the validation results at the repository root, use:
+
+```bash
+python scripts/validate_paraphrase_raw.py --archive paraphrase_raw_responses_12300.zip --report raw_validation_report.json
+```
+
+`raw_validation_report.json` is an optional output record, not a required
+input for validation or analysis. It can stay at the repository root.
+The `--report` option creates this file or replaces it if it already exists;
+without this option, the results are only printed to the terminal.
+
+The audit verifies the archive hash, all 12,300 unique sample keys, exact prompt
+text and recorded settings, and the five AST descriptors against the saved
+sample metrics (12,291 parsable samples). It does not rerun functional tests.
+The records were collected on September 15, 2026 (UTC). Of these, 12,297 follow
+the seed-42 full randomized schedule. Three retained records for HumanEval/0,
+paraphrase A, repetition 1 (one per model), were generated before the main loop.
+Their run-local schedule indices overlap with later indices; the authoritative
+sample identity is the task/model/prompt/repetition key, not `schedule_index`.
+Frozen metadata and outputs are preserved unchanged.
 
 No API keys or new LLM calls are required when using this frozen archive.
 

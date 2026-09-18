@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "records": 12300,
+  "unique_sample_keys": 12300,
+  "ast_successes": 12291,
+  "ast_failures": 9,
+  "maximum_absolute_descriptor_errors": {
+    "ast_depth": 0.0,
+    "branch_count": 0.0,
+    "loop_count": 0.0,
+    "function_count": 0.0,
+    "control_flow_ratio": 0.0
+  },
+  "matched_full_schedule_records": 12297,
+  "unique_stored_schedule_indices": 12297,
+  "known_earlier_records": [
+    {
+      "key": [
+        "HumanEval/0",
+        "claude_model",
+        "paraphrase_a",
+        1
+      ],
+      "saved_index": 3,
+      "full_schedule_index": 5376,
+      "started_at": "2026-09-15T01:31:10.277175+00:00"
+    },
+    {
+      "key": [
+        "HumanEval/0",
+        "deepseek_model",
+        "paraphrase_a",
+        1
+      ],
+      "saved_index": 1,
+      "full_schedule_index": 10349,
+      "started_at": "2026-09-15T01:31:02.331329+00:00"
+    },
+    {
+      "key": [
+        "HumanEval/0",
+        "gpt5_model",
+        "paraphrase_a",
+        1
+      ],
+      "saved_index": 2,
+      "full_schedule_index": 6366,
+      "started_at": "2026-09-15T01:31:04.466034+00:00"
+    }
+  ],
+  "models": {
+    "claude_model": {
+      "utc_range": [
+        "2026-09-15T01:31:10.277175+00:00",
+        "2026-09-15T15:29:29.728694+00:00"
+      ],
+      "identifiers": [
+        {
+          "requested": "claude-sonnet-4-6",
+          "returned": "claude-sonnet-4-6",
+          "count": 4100
+        }
+      ],
+      "finish_reasons": {
+        "end_turn": 4100
+      }
+    },
+    "deepseek_model": {
+      "utc_range": [
+        "2026-09-15T01:31:02.331329+00:00",
+        "2026-09-15T15:29:22.623394+00:00"
+      ],
+      "identifiers": [
+        {
+          "requested": "deepseek-flash",
+          "returned": "deepseek-flash",
+          "count": 4100
+        }
+      ],
+      "finish_reasons": {
+        "stop": 4094,
+        "length": 6
+      }
+    },
+    "gpt5_model": {
+      "utc_range": [
+        "2026-09-15T01:31:04.466034+00:00",
+        "2026-09-15T15:29:27.362020+00:00"
+      ],
+      "identifiers": [
+        {
+          "requested": "gpt-5-mini",
+          "returned": "gpt-5-mini-2025-08-07",
+          "count": 4100
+        }
+      ],
+      "finish_reasons": {
+        "None": 4100
+      }
+    }
+  },
+  "scope": "Static raw-record and AST audit only; no generated code or functional tests executed."
+}
