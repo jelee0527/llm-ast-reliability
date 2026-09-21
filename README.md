@@ -55,7 +55,7 @@ The supplementary semantic-preserving paraphrase experiment uses the same 164 pr
 | GPT-5 mini        | OpenAI    | `gpt-5-mini`        |
 | DeepSeek Chat     | DeepSeek  | `deepseek-chat`     |
 
-For the supplementary paraphrase collection, the DeepSeek endpoint returned `deepseek-flash`; requested and returned identifiers are preserved separately in the per-sample metadata.
+For the September 15 supplementary paraphrase collection, the DeepSeek endpoint requested and returned `deepseek-flash`. The [September 10 provider announcement](https://api-docs.deepseek.com/news/news260910/) maps that identifier to V4.1-Flash, whereas `deepseek-chat` during the June 9–11 primary collection mapped to non-thinking V4-Flash. Requested and returned identifiers are preserved separately in supplementary per-sample metadata; exact backend snapshots were not recorded. The cross-run comparison therefore does not isolate a prompt-family effect.
 
 The model conditions are used to evaluate the proposed framework rather than to construct a general-purpose model leaderboard.
 
@@ -98,9 +98,9 @@ The results show that functional correctness and structural reliability are comp
 - Paraphrase samples: 11,904 EvalPlus base passes (96.78%) and 11,299 HumanEval+ passes (91.86%).
 - On a common pooled feature scale, mean PSSI decreased from 0.914 to 0.392 for semantic-preserving paraphrases (57.1%; Holm-adjusted Wilcoxon p < 0.001).
 - Descriptor-based SSI agreed strongly with reduced-AST edit stability over 2,459 valid conditions (Spearman's rho = 0.969).
-- Additional ordered-subtree comparisons cover PSSI and SDS separately: overall Spearman correlations are 0.586 and 0.700 in the primary experiment, and 0.851 and 0.897 in the paraphrase experiment, respectively (Table 28).
-- Within-paraphrase prompt-label calibration gives observed mean PSSI 0.393840 versus mean 0.288819 under relabeling; each of the three model tests has Holm-adjusted p = 0.001499 (Table 27). This is a conditional, post hoc diagnostic, not a causal cross-run comparison.
-- Six DeepSeek outputs reached the 1,200-token limit. In a separate post-hoc restriction analysis, 19 of 4,100 GPT-5 mini outputs exceeded 1,200 tokens. Excluding them changed branch count by -0.0918, SSI by -0.0038, PSSI by +0.0198, SDS by +0.0152, and HumanEval+ pass rate by +0.0037. This is not equivalent to regeneration under a common cap.
+- Additional ordered-subtree comparisons cover PSSI and SDS separately: overall Spearman correlations are 0.586 and 0.700 in the primary experiment, and 0.851 and 0.897 in the paraphrase experiment, respectively (Table 27).
+- Within-paraphrase prompt-label calibration gives observed mean PSSI 0.393840 versus mean 0.288819 under relabeling; each of the three model tests has Holm-adjusted p = 0.001499 (Table 26). This is a conditional, post hoc diagnostic, not a causal cross-run comparison.
+- Six DeepSeek outputs reached the 1,200-token limit. In a separate post-hoc restriction analysis, 19 of 4,100 GPT-5 mini outputs exceeded 1,200 tokens. Excluding them on the fixed full-paraphrase feature scale changed branch count by -0.0918, SSI by +0.0019, PSSI by -0.0026, SDS by -0.0113, and HumanEval+ pass rate by +0.369 percentage points. This is not equivalent to regeneration under a common cap.
 
 ## Repository Structure
 
@@ -231,7 +231,7 @@ prompt-level results are stored in `results/tree_edit_*.csv`.
 [`supplementary_validation/`](supplementary_validation/) contains the scripts,
 minimal descriptor inputs, per-input SHA-256 manifests, per-group results,
 correlation intervals, permutation outputs, and exact reproduction instructions
-for Sections VI-E and VI-F (Tables 27 and 28) of the revised manuscript.
+for Sections VI-E and VI-F (Tables 26 and 27) of the revised manuscript.
 
 `validate_structure.py` compares the original five-descriptor PSSI and SDS
 with counterparts using ordered rooted AST neighborhood profiles. It uses all
@@ -416,7 +416,7 @@ python scripts/validate_reproducibility.py
 
 The common-scale script reproduces the paired PSSI comparison, confidence
 intervals, DeepSeek truncation analysis, and post-hoc GPT 1,200-token
-restriction analysis. Primary outputs are stored under
+restriction analysis. Both provider-setting exclusions retain the feature means and population standard deviations fitted to all 12,291 valid paraphrase ASTs; they do not refit the scale on retained samples. A standalone reproduction using the included minimal inputs is available in `supplementary_validation/validate_provider_sensitivity.py`. Primary outputs are stored under
 `results/paraphrase_structural/` and `results/paraphrase_robustness/`.
 
 ## Generating New LLM Outputs

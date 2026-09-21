@@ -1,7 +1,8 @@
 # Additional structural validation for Access-2026-35219
 
 This directory reproduces the post hoc prompt-label calibration in Section VI-E
-(Table 27) and the PSSI/SDS ordered-subtree validation in Section VI-F (Table 28).
+(Table 26) and the PSSI/SDS ordered-subtree validation in Section VI-F (Table 27).
+It also reproduces the provider-setting sensitivity analyses in Section VI-D, using a feature scale fitted once before either exclusion.
 It uses existing generated programs. It makes no model API calls and never
 executes generated code. Functional test results are not recomputed here.
 
@@ -25,6 +26,8 @@ September 15, 2026. The prompt families, collection times and provider identifie
 are not interchangeable experimental treatments. The main manuscript documents
 the deployment settings and their limitations. The three early supplementary
 schedule exceptions are HE-0 / paraphrase A / repetition 1, one per model.
+
+DeepSeek announced V4.1-Flash for `deepseek-flash` on September 10, 2026, before the September 15 collection. The June `deepseek-chat` requests were mapped to non-thinking V4-Flash. These provider-documented versions differ; exact backend snapshots were not recorded. Source: https://api-docs.deepseek.com/news/news260910/
 
 ## Reproduction
 
@@ -95,12 +98,42 @@ representation despite identical five-descriptor vectors, and checks its
 sparse-Gram calculations against direct Euclidean aggregation. Raw input files
 are opened only as JSON/text and parsed using `ast.parse`.
 
-## Table 27: prompt-label permutation calibration
+## Section VI-D: provider-setting sensitivity on a fixed feature scale
+
+Both exclusions retain the feature means and population standard deviations
+(`ddof=0`) fitted to all 12,291 valid paraphrase ASTs across all three models.
+The scale is not refitted after excluding outputs. SSI averages valid
+within-prompt repeat scores; PSSI and SDS average task-level scores equally.
+Functional pass rates use the saved HumanEval+ outcomes for all retained
+outputs, including those without valid ASTs. These outcomes are not retested.
+
+| Exclusion                     | Model      | SSI change | PSSI change | SDS change | HumanEval+ change (percentage points) |
+| ----------------------------- | ---------- | ---------: | ----------: | ---------: | ------------------------------------: |
+| Six truncated outputs         | DeepSeek   |    +0.0009 |     -0.0109 |    -0.0064 |                                +0.134 |
+| 19 outputs above 1,200 tokens | GPT-5 mini |    +0.0019 |     -0.0026 |    -0.0113 |                                +0.369 |
+
+Models whose outputs are not excluded have zero changes (up to floating-point
+precision). The GPT-5 mini mean branch count changes by -0.092. These are
+post hoc restrictions of already-generated outputs, not regeneration under
+a common output cap, and cannot remove provider-setting confounding.
+The saved exclusion lists and functional-status sidecar are copied from the
+frozen input snapshot's `results/paraphrase_robustness/` and
+`results/paraphrase_structural/metrics_summary.csv`, respectively.
+
+```bash
+python supplementary_validation/validate_provider_sensitivity.py --output reproduced_provider_sensitivity
+```
+
+The generated `provider_sensitivity_summary.csv` contains full, retained, and
+difference values for every model under both exclusions.
+`provider_sensitivity_metadata.json` records the fitted scale and input hashes.
+
+## Table 26: prompt-label permutation calibration
 
 The five original descriptors are standardized by their population standard
 deviations (`ddof=0`) pooled over all 12,291 valid paraphrase ASTs. This is the
-experiment-specific scale of Table 24, not the common primary/paraphrase scale
-of Table 23. Labels are randomly reassigned separately within each task–model
+experiment-specific scale of Table 23, not the common primary/paraphrase scale
+of Table 22. Labels are randomly reassigned separately within each task–model
 group, preserving all five valid prompt-group sizes. Each shuffled statistic is
 the equal-weight mean of task–model PSSI values, either over one model's 164
 tasks or all 492 groups. We use 2,000 permutations and NumPy generator seed 4201.
@@ -116,12 +149,12 @@ The sensitivity result removes every HE-0 model group, retaining the fitted
 scale and the already generated null draws. It removes all three groups with
 the early schedule exceptions, not merely the three individual observations.
 
-| Scope | Observed PSSI | Mean under relabeling | Difference |
-| --- | ---: | ---: | ---: |
-| Claude | 0.220958 | 0.116051 | 0.104907 |
-| DeepSeek | 0.258078 | 0.173158 | 0.084919 |
-| GPT-5 mini | 0.702483 | 0.577248 | 0.125235 |
-| Overall | 0.393840 | 0.288819 | 0.105021 |
+| Scope      | Observed PSSI | Mean under relabeling | Difference |
+| ---------- | ------------: | --------------------: | ---------: |
+| Claude     |      0.220958 |              0.116051 |   0.104907 |
+| DeepSeek   |      0.258078 |              0.173158 |   0.084919 |
+| GPT-5 mini |      0.702483 |              0.577248 |   0.125235 |
+| Overall    |      0.393840 |              0.288819 |   0.105021 |
 
 Every raw p-value is 1/2001; each model's adjusted p-value is 3/2001. Omitting
 HE-0 retains the result. This is a post hoc, conditional diagnostic under label
@@ -129,7 +162,7 @@ exchangeability. It does not identify a causal cross-run effect or remove the
 sampling component from an individual PSSI, and it cannot rule out temporal
 dependence or generalize beyond the fixed prompt set and parsable subset.
 
-## Table 28: richer representation for PSSI and SDS
+## Table 27: richer representation for PSSI and SDS
 
 For every node in the complete parsed AST, we collect exact ordered rooted
 neighborhood signatures at depths 0 through H. At depth 0 the signature is the
@@ -172,12 +205,12 @@ within each bootstrap sample, including ties and repeated sampled tasks.
 Intervals are pointwise 95% intervals, not simultaneous intervals. We do not
 use nominal independent-observation correlation p-values as additional claims.
 
-| Experiment | Comparison | Overall rho | Task-cluster 95% CI |
-| --- | --- | ---: | --- |
-| Primary | PSSI | 0.585734 | [0.501268, 0.658712] |
-| Primary | SDS | 0.699917 | [0.637685, 0.754191] |
-| Paraphrase | PSSI | 0.850506 | [0.812010, 0.881287] |
-| Paraphrase | SDS | 0.896908 | [0.869854, 0.917367] |
+| Experiment | Comparison | Overall rho | Task-cluster 95% CI  |
+| ---------- | ---------- | ----------: | -------------------- |
+| Primary    | PSSI       |    0.585734 | [0.501268, 0.658712] |
+| Primary    | SDS        |    0.699917 | [0.637685, 0.754191] |
+| Paraphrase | PSSI       |    0.850506 | [0.812010, 0.881287] |
+| Paraphrase | SDS        |    0.896908 | [0.869854, 0.917367] |
 
 Within-model correlations are positive. Their magnitudes vary, and primary
 PSSI in particular shows material disagreement across representations. This
@@ -192,21 +225,25 @@ https://jmlr.org/papers/v12/shervashidze11a.html
 
 ## File map
 
-| File | Contents |
-| --- | --- |
-| `validate_structure.py` | Raw AST extraction, validation and subtree comparisons |
-| `calibrate_pssi.py` | Prompt-label permutation calibration and HE-0 sensitivity |
-| `requirements-validation.txt` | Versions used for these new scripts |
-| `configs/` | Copies of both prompt-template YAMLs from the frozen commit |
-| `results/*_features.csv` | Minimal sample keys, parsing flags and five descriptors |
-| `results/*_input_sha256.csv` | SHA-256 manifest of each raw input file |
-| `results/subtree_group_scores.csv` | All 984 groups at H=1,2,3 (2,952 rows) |
-| `results/subtree_correlations.csv` | All scopes, metrics and depth limits |
-| `results/subtree_metadata.json` | Actual runtime versions, counts, depths and seed |
-| `results/permutation_group_scores.csv` | Observed PSSI and null mean per group |
-| `results/permutation_summary.csv` | Full and HE-0-excluded scope results |
-| `results/permutation_null_means.npz` | Group by permutation array; row order matches group CSV |
-| `results/permutation_metadata.json` | Permutation definitions, seed and interpretation |
+| File                                                                       | Contents                                                     |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `validate_structure.py`                                                    | Raw AST extraction, validation and subtree comparisons       |
+| `calibrate_pssi.py`                                                        | Prompt-label permutation calibration and HE-0 sensitivity    |
+| `validate_provider_sensitivity.py`                                         | Fixed-scale provider-setting exclusions in Section VI-D      |
+| `results/paraphrase_functional_status.csv`                                 | Saved HumanEval+ pass flags keyed by raw filename            |
+| `results/truncated_samples.csv`, `results/gpt_over_1200_token_samples.csv` | The six and 19 excluded records                              |
+| `results/provider_sensitivity_*`                                           | Updated exclusion results, reference scale, and input hashes |
+| `requirements-validation.txt`                                              | Versions used for these new scripts                          |
+| `configs/`                                                                 | Copies of both prompt-template YAMLs from the frozen commit  |
+| `results/*_features.csv`                                                   | Minimal sample keys, parsing flags and five descriptors      |
+| `results/*_input_sha256.csv`                                               | SHA-256 manifest of each raw input file                      |
+| `results/subtree_group_scores.csv`                                         | All 984 groups at H=1,2,3 (2,952 rows)                       |
+| `results/subtree_correlations.csv`                                         | All scopes, metrics and depth limits                         |
+| `results/subtree_metadata.json`                                            | Actual runtime versions, counts, depths and seed             |
+| `results/permutation_group_scores.csv`                                     | Observed PSSI and null mean per group                        |
+| `results/permutation_summary.csv`                                          | Full and HE-0-excluded scope results                         |
+| `results/permutation_null_means.npz`                                       | Group by permutation array; row order matches group CSV      |
+| `results/permutation_metadata.json`                                        | Permutation definitions, seed and interpretation             |
 
 The scripts, configuration copies, minimal inputs, and results match the
 accompanying `Supplementary_Validation_Access-2026-35219.zip`. This README adapts

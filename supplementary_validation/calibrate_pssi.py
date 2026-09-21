@@ -1,6 +1,6 @@
 """Within-paraphrase, within-task/model prompt-label permutation calibration.
 
-Uses the same experiment-specific population z scores as manuscript Table 24.
+Uses the same experiment-specific population z scores as manuscript Table 23.
 Preserves the observed number of valid ASTs in each prompt group. The statistic
 is the equally weighted mean PSSI over task/model groups, tested one-sided.
 The HE-0 sensitivity analysis omits all three groups containing early records;

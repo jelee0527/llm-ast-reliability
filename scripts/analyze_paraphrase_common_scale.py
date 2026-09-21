@@ -407,13 +407,13 @@ def recompute_without_truncation(
             f"Expected {EXPECTED_SAMPLES} metric rows, found {len(metrics)}"
         )
 
+    # Fit once on all valid paraphrase outputs; preserve this scale after exclusion.
+    metrics = compute_metrics.add_standardized_features(metrics)
     excluded = set(truncated["file"].astype(str))
     filtered = metrics.loc[~metrics["file"].isin(excluded)].copy()
     if len(filtered) != EXPECTED_SAMPLES - EXPECTED_TRUNCATIONS:
         raise AssertionError("Not all truncated samples matched metrics_summary.csv")
 
-    # Re-standardize after exclusion, then reuse the published implementations.
-    filtered = compute_metrics.add_standardized_features(filtered)
     stability = compute_metrics.compute_repeat_stability(filtered)
     sensitivity = compute_metrics.compute_prompt_sensitivity(filtered)
     diversity = compute_metrics.compute_structural_diversity(filtered)
@@ -507,13 +507,14 @@ def recompute_without_gpt_over_threshold(
             f"Expected {EXPECTED_SAMPLES} metric rows, found {len(metrics)}"
         )
 
+    # Fit once on all valid paraphrase outputs; preserve this scale after exclusion.
+    metrics = compute_metrics.add_standardized_features(metrics)
     excluded = set(excluded_samples["file"].astype(str))
     filtered = metrics.loc[~metrics["file"].astype(str).isin(excluded)].copy()
     expected_rows = EXPECTED_SAMPLES - EXPECTED_GPT_OVER_THRESHOLD
     if len(filtered) != expected_rows:
         raise AssertionError("Not all GPT >1,200-token samples matched metrics data")
 
-    filtered = compute_metrics.add_standardized_features(filtered)
     stability = compute_metrics.compute_repeat_stability(filtered)
     sensitivity = compute_metrics.compute_prompt_sensitivity(filtered)
     diversity = compute_metrics.compute_structural_diversity(filtered)

@@ -1,0 +1,34 @@
+{
+  "section": "VI-D",
+  "reference_samples": 12300,
+  "reference_valid_asts": 12291,
+  "scale": "All valid paraphrase ASTs, all models pooled; held fixed after exclusion",
+  "ddof": 0,
+  "feature_mean": {
+    "ast_depth": 9.288991945325849,
+    "branch_count": 1.9914571637783745,
+    "loop_count": 0.7509559840533724,
+    "function_count": 1.1122772760556505,
+    "control_flow_ratio": 0.05966598226344479
+  },
+  "feature_std": {
+    "ast_depth": 1.754232897177067,
+    "branch_count": 2.3794010475806617,
+    "loop_count": 1.0339087162411558,
+    "function_count": 0.3602421643495982,
+    "control_flow_ratio": 0.028926063096780284
+  },
+  "functional_status": "Saved HumanEval+ outcomes; not re-executed",
+  "input_repository_commit": "cdff479ea5134979c3f3d65e203688cac27bc6de",
+  "input_sha256": {
+    "paraphrase_features.csv": "b5e8c788b983621b6d30da4ea66c2b2851873ba075944467afe7602ddfdd5649",
+    "paraphrase_functional_status.csv": "cda7e76b480c1e6b9d4628c2f4591357ab11b1d8021398456bbf154014d69c5c",
+    "truncated_samples.csv": "b8a2db436cec98cb45ada529e8161e3ca6fc708315a731de753d2aac82afb142",
+    "gpt_over_1200_token_samples.csv": "39708ab1a0ed157349ce3473c78b89bffbb265f853cc7ef9c85199a8cbd265a7"
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  }
+}
