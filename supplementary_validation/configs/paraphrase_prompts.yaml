@@ -1,0 +1,44 @@
+paraphrase_a: |
+  Complete the following Python programming task.
+
+  Return only the complete executable Python code.
+  Include all required imports and the full function definition.
+  Do not include Markdown code fences or explanations.
+
+  {problem}
+
+paraphrase_b: |
+  Solve the Python programming task provided below.
+
+  Respond only with complete, executable Python code.
+  Provide every required import and the entire function definition.
+  Do not add Markdown code fences or explanatory text.
+
+  {problem}
+
+paraphrase_c: |
+  Provide a solution to the Python programming task below.
+
+  Your response must contain only complete executable Python code.
+  Make sure it includes all necessary imports and the full function definition.
+  Exclude Markdown code fences and explanations.
+
+  {problem}
+
+paraphrase_d: |
+  Below is a Python programming task. Write its solution.
+
+  Output only the complete executable Python code, including every required
+  import and the full function definition.
+  Do not output Markdown code fences or any explanation.
+
+  {problem}
+
+paraphrase_e: |
+  Implement the Python programming task that follows.
+
+  Return the complete executable Python code and nothing else.
+  The code must include all required imports and the entire function definition.
+  Do not use Markdown code fences or provide explanations.
+
+  {problem}

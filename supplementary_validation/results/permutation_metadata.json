@@ -1,0 +1,11 @@
+{
+  "permutations": 2000,
+  "seed": 4201,
+  "scope": "conditional on valid ASTs and fixed prompt set; post hoc calibration",
+  "scale": "within-paraphrase population z scores, ddof=0",
+  "null": "exchangeable prompt labels within each problem/model; valid counts preserved",
+  "p_value": "(1 + null statistics >= observed)/(B + 1), one-sided",
+  "multiplicity": "Holm adjustment of three model tests; overall aggregate reported separately",
+  "interval": "central 95% of null means, NOT effect confidence intervals",
+  "he0": "exclude all three HE-0 task/model groups; retain fitted scale and same null draws"
+}

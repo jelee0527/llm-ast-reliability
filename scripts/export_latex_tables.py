@@ -346,7 +346,6 @@ def export_top_structural_diversity_table() -> None:
     headers = [
         "Problem",
         "SDS",
-        "Structural Variance",
         "Success Rate",
     ]
 
@@ -357,7 +356,6 @@ def export_top_structural_diversity_table() -> None:
             [
                 escape_latex(row["problem_label"]),
                 format_number(row["sds"]),
-                format_number(row["structural_variance"]),
                 format_number(row["success_rate"]),
             ]
         )

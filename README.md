@@ -98,6 +98,8 @@ The results show that functional correctness and structural reliability are comp
 - Paraphrase samples: 11,904 EvalPlus base passes (96.78%) and 11,299 HumanEval+ passes (91.86%).
 - On a common pooled feature scale, mean PSSI decreased from 0.914 to 0.392 for semantic-preserving paraphrases (57.1%; Holm-adjusted Wilcoxon p < 0.001).
 - Descriptor-based SSI agreed strongly with reduced-AST edit stability over 2,459 valid conditions (Spearman's rho = 0.969).
+- Additional ordered-subtree comparisons cover PSSI and SDS separately: overall Spearman correlations are 0.586 and 0.700 in the primary experiment, and 0.851 and 0.897 in the paraphrase experiment, respectively (Table 28).
+- Within-paraphrase prompt-label calibration gives observed mean PSSI 0.393840 versus mean 0.288819 under relabeling; each of the three model tests has Holm-adjusted p = 0.001499 (Table 27). This is a conditional, post hoc diagnostic, not a causal cross-run comparison.
 - Six DeepSeek outputs reached the 1,200-token limit. In a separate post-hoc restriction analysis, 19 of 4,100 GPT-5 mini outputs exceeded 1,200 tokens. Excluding them changed branch count by -0.0918, SSI by -0.0038, PSSI by +0.0198, SDS by +0.0152, and HumanEval+ pass rate by +0.0037. This is not equivalent to regeneration under a common cap.
 
 ## Repository Structure
@@ -120,6 +122,7 @@ The results show that functional correctness and structural reliability are comp
 │   ├── figures/                 # Reproduced manuscript figures
 │   └── tables/                  # Generated LaTeX tables
 ├── scripts/                     # Generation, evaluation, analysis, and export code
+├── supplementary_validation/    # Additional PSSI/SDS validation, inputs, results, and instructions
 ├── Dockerfile.eval              # Isolated HumanEval execution environment
 ├── functional_summary.csv       # Functional result summary for all samples
 ├── requirements.txt
@@ -132,7 +135,7 @@ The included outputs are sufficient to reproduce the reported metrics, statistic
 
 ### 1. Create the analysis environment
 
-Python 3.13 is recommended for the pinned dependencies. The isolated functional evaluator uses Python 3.11 through Docker.
+Python 3.13 is recommended for the original analysis dependencies pinned in `requirements.txt`. The isolated functional evaluator uses Python 3.11 through Docker. The additional PSSI/SDS validation uses a separate Python 3.12 environment, as documented in `supplementary_validation/README.md`.
 
 ```bash
 git clone https://github.com/jelee0527/llm-ast-reliability.git
@@ -222,6 +225,38 @@ Across the 2,459 conditions for which SSI is defined, descriptor-based SSI and
 tree-edit stability have Spearman's rho = 0.968974 (p < 0.001). The calculation
 uses 24,558 repeat-pair comparisons. Detailed condition-, model-, and
 prompt-level results are stored in `results/tree_edit_*.csv`.
+
+## Additional PSSI/SDS Validation and Prompt-Label Calibration
+
+[`supplementary_validation/`](supplementary_validation/) contains the scripts,
+minimal descriptor inputs, per-input SHA-256 manifests, per-group results,
+correlation intervals, permutation outputs, and exact reproduction instructions
+for Sections VI-E and VI-F (Tables 27 and 28) of the revised manuscript.
+
+`validate_structure.py` compares the original five-descriptor PSSI and SDS
+with counterparts using ordered rooted AST neighborhood profiles. It uses all
+24,600 frozen records, with 12,287 primary and 12,291 paraphrase ASTs passing
+parsing. The main depth limit is H=2; H=1 and H=3 are reported as sensitivity
+checks. Main correlation intervals use 3,000 task-cluster bootstrap resamples
+(seed 20260920), retaining all three models of each sampled task together.
+
+`calibrate_pssi.py` uses 2,000 within-task/model prompt-label permutations
+(seed 4201), preserves valid prompt-group sizes, and adjusts the three model
+tests using Holm's procedure. The overall aggregate is reported separately.
+The HE-0 exclusion sensitivity retains the fitted feature scale and null draws.
+
+Use the separate Python 3.12 environment and commands in the
+[validation README](supplementary_validation/README.md#reproduction).
+The original `requirements.txt` remains the dependency specification for the
+original analyses. Neither additional script invokes model APIs or executes
+generated programs. The existing `v1.1.0-rnr` raw-response release remains the
+source of the paraphrase inputs.
+
+These comparisons provide convergent structural evidence. They do not establish
+semantic equivalence, defect prediction, or developer benefit; the primary
+PSSI comparison in particular retains substantial disagreement between
+representations. The permutation calibration is conditional on exchangeable
+labels, the fixed prompt set, and the AST-parsable subset.
 
 ## Re-running the Functional Evaluation
 
@@ -437,7 +472,7 @@ API-hosted models may change over time. Therefore, newly generated responses are
 - SSI is undefined when fewer than two AST-parsable repetitions are available for a condition.
 - PSSI is computed from distances between valid prompt-level centroids.
 - Standardization is recomputed from the AST-parsable sample set before structural distances are calculated.
-- Problem-cluster bootstrap confidence intervals use 10,000 resamples with seed 42.
+- The original descriptor-based analyses use problem-cluster bootstrap confidence intervals with 10,000 resamples and seed 42. The additional H=2 subtree correlations use 3,000 task-cluster bootstrap resamples and seed 20260920; their intervals are pointwise 95% intervals.
 
 ## Security
 
